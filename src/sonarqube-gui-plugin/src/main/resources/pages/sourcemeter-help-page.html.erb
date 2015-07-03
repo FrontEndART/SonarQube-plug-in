@@ -1,0 +1,56 @@
+<link rel="stylesheet" type="text/css" href=<%= "#{url_for_static(:plugin => 'SourceMeterGUI', :path => 'css/ug.css')}" %>>
+<script src=<%= "#{url_for_static(:plugin => 'SourceMeterGUI', :path => 'js/helpPage.js')}" %>></script>
+
+<script>
+  var generalUGURL = "<%= url_for_static(:plugin => 'SourceMeterGUI', :path => 'UG.html') %>";
+</script>
+
+<ul class="tabs">
+    <li><a class="sm-help-button" id="sm-help-button-general" href="#" onclick="updateHelpPage('general')">General</a></li>
+  <% 
+    plugins = Api::Utils.java_facade.getPluginsMetadata().select{|plugin| plugin.getKey().include? "SourceMeterAnalyzer"}.to_a.sort
+    selected_language = "general"
+    plugins.each do |plugin|
+      name = plugin.getName().sub("SourceMeter ", "").sub(" analyzer", "")
+      language = plugin.getKey().sub("SourceMeterAnalyzer", "")
+      if params[:language] == language
+        selected_language = language
+      end
+      %>
+      <li><a class="sm-help-button" id="sm-help-button-<%= language %>" href="#" onclick="updateHelpPage('<%= language %>')"><%= name %></a></li>
+      <%
+    end
+  %>
+</ul>
+
+<div id="sm-metrics-help-container">
+  <iframe id="sm-ug-container">
+  </iframe>
+<%
+  if plugins.empty?
+    %>
+      There are no SourceMeter analyzer plugins installed!
+    <%
+  end
+%>
+</div>
+
+<%
+  if !selected_language.empty?
+    %>
+      <script>
+          $j( window ).resize(function() {
+            if ($j('#sm-ug-container').length) {
+              resizeUG();
+            }
+          });
+          selectedHelpPageLanguage = "<%= selected_language %>";
+          <% if params[:metric] %>
+            updateHelpPage('<%= selected_language %>', '<%= params[:metric] %>');
+          <% else %>
+            updateHelpPage('<%= selected_language %>');
+          <% end %>
+      </script>
+    <%
+  end
+%>

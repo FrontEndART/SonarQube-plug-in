@@ -1,0 +1,9 @@
+#nonav {
+    margin: 0 !important;
+}
+
+#sm-ug-container {
+    width: 0;
+    height: 0;
+    border: none;
+}

@@ -1,0 +1,81 @@
+<%
+  sourcemeter_qualifiers = Api::Utils.java_facade.getComponentByClassname('SourceMeterGUI', 'com.sourcemeter.gui.resources.SourceMeterQualifiers').class
+
+  project_key = ''
+  if (params[:snapshot_id])
+    @snapshot=Snapshot.find(:last, :conditions => ['id=?', params[:snapshot_id]], :order => 'created_at desc')
+  else
+    @project = Project.find(:last, :conditions => ['id=?', params[:project_id]], :order => 'created_at desc')
+    @snapshot = @project.last_snapshot
+  end
+
+  project_key = '';
+
+  if (params[:data_key])
+    project_key = params[:data_key]
+  else
+    @resource = @snapshot.resource
+    parent_snapshot = Snapshot.find(:last, :conditions => ['id=?', @snapshot.path.split(".").last], :order => 'created_at desc')
+    grandparent_snapshot = Snapshot.find(:last, :conditions => ['id=?', parent_snapshot.path.split(".").last], :order => 'created_at desc')
+    project_key = @snapshot.resource.key
+    if @resource.qualifier == sourcemeter_qualifiers::BASE_CLASS_QUALIFIER  || @resource.qualifier == sourcemeter_qualifiers::BASE_FUNCTION_QUALIFIER
+      project_key = parent_snapshot.resource.key
+    elsif @resource.qualifier == sourcemeter_qualifiers::BASE_METHOD_QUALIFIER
+      project_key = grandparent_snapshot.resource.key
+    end
+  end  
+
+class_groups = []
+filePathMeasureObject = @snapshot.measure('SM:FilePaths')
+if filePathMeasureObject != nil
+%>
+  <table class="spaced" id="source_selector">
+<%
+  first_selected_index = 0
+  JSON.parse(filePathMeasureObject.data).each do |filePath|
+    resource = Project.by_key(filePath['id'])
+    if resource
+      class_group = {
+      :resource => resource,
+      :lines_count => (filePath['endLine'] - filePath['line'] + 1),
+      :from_line => filePath['line']
+      }
+      class_groups << class_group
+    end
+  end
+
+  no_element_is_selected = true
+
+  class_groups.each_with_index do |cl, index|
+    actual_class = class_groups[first_selected_index]
+    resource = cl[:resource]
+    original_resource = actual_class[:resource]
+    lines_count = cl[:lines_count].to_i
+    from_line = cl[:from_line].to_i
+    to_line = from_line + lines_count - 1
+    row_id = "source_selector_row_#{from_line}_#{to_line}"
+    selected = ''
+    if no_element_is_selected
+      if params[:bline] && params[:eline]
+        if params[:bline].to_i == from_line && params[:eline].to_i == to_line && resource.key == project_key
+          selected = 'selected'
+          no_element_is_selected = false
+        end
+      elsif resource.key == project_key
+        selected = 'selected'
+        no_element_is_selected = false
+      end
+    end
+
+%>
+    <tr class="<%= index.even? ? 'even' : 'odd' %> <%= selected %>" id="<%= row_id %>">
+      <td>
+        <em class="icon-qualifier-fil"></em>
+        <a style="display: none;" href="#" data-key="<%= resource.key %>" class="sourcemeter-refresh-source">sm_refresh</a>
+        <a href="#" onclick="return refreshSource('<%= row_id %>', <%= from_line %>, <%= to_line %>)"><%= cl[:resource].name + " (#{from_line})" %></a>
+      </td>
+    </tr>
+<% end %>
+  </table>
+<% end %>
+

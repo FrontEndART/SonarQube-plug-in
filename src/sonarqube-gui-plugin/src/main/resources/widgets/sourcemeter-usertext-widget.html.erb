@@ -1,0 +1,10 @@
+<%
+title = widget_properties["Title"] 
+@widget_title=  title unless title.blank? 
+text = widget_properties["Text"]
+if !text.blank?
+%>
+<div class="dashbox">
+<%= text %>
+</div>
+<% end %>

@@ -1,0 +1,123 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.sourcemeter</groupId>
+  <artifactId>sonar-sourcemeter-analyzer-rpg-plugin</artifactId>
+  <version>7.0</version>
+  <packaging>sonar-plugin</packaging>
+
+  <name>SourceMeter RPG analyzer plugin</name>
+  <description>SourceMeter RPG analyzer plugin</description>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <sonar.buildVersion>4.2</sonar.buildVersion>
+    <jdk.min.version>1.7</jdk.min.version>
+  </properties>
+
+  <dependencies>
+     <dependency>
+      <groupId>org.codehaus.sonar</groupId>
+      <artifactId>sonar-batch</artifactId>
+      <version>${sonar.buildVersion}</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.codehaus.sonar</groupId>
+      <artifactId>sonar-plugin-api</artifactId>
+      <version>${sonar.buildVersion}</version>
+      <scope>provided</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.codehaus.sonar.sslr-squid-bridge</groupId>
+      <artifactId>sslr-squid-bridge</artifactId>
+      <version>2.3</version>
+    </dependency>
+
+    <dependency>
+        <groupId>org.apache.maven.artifact</groupId>
+        <artifactId>maven-artifact</artifactId>
+        <version>3.0-alpha-1</version>
+    </dependency>
+
+    <dependency>
+        <groupId>org.apache.maven.shared</groupId>
+        <artifactId>maven-dependency-tree</artifactId>
+        <version>2.1</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.frontendart.columbus</groupId>
+      <artifactId>graphlib</artifactId>
+      <version>1.0</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.google.code.gson</groupId>
+      <artifactId>gson</artifactId>
+      <version>2.2.4</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.sourcemeter</groupId>
+      <artifactId>sonar-sourcemeter-core-plugin</artifactId>
+      <version>7.0</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.sourcemeter</groupId>
+      <artifactId>sonar-sourcemeter-analyzer-base</artifactId>
+      <version>7.0</version>
+    </dependency>
+  </dependencies>
+
+   <build>
+    <plugins>
+      <plugin>
+        <groupId>org.codehaus.sonar</groupId>
+        <artifactId>sonar-packaging-maven-plugin</artifactId>
+        <version>1.9</version>
+        <extensions>true</extensions>
+        <configuration>
+          <pluginClass>com.sourcemeter.analyzer.rpg.SourceMeterAnalyzerRPGPlugin</pluginClass>
+          <pluginKey>SourceMeterAnalyzerrpg</pluginKey>
+          <pluginName>SourceMeter RPG analyzer</pluginName>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>2.5.1</version>
+        <configuration>
+          <source>${jdk.min.version}</source>
+          <target>${jdk.min.version}</target>
+        </configuration>
+      </plugin>
+      <plugin>
+        <!-- UTF-8 bundles are not supported by Java, so they must be converted during build -->
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>native2ascii-maven-plugin</artifactId>
+        <version>1.0-beta-1</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>native2ascii</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+
+    <resources>
+      <resource>
+        <directory>${basedir}/src/main/resources</directory>
+        <filtering>false</filtering>
+        <includes>
+          <include>**/*</include>
+        </includes>
+      </resource>
+    </resources>
+  </build>
+</project>

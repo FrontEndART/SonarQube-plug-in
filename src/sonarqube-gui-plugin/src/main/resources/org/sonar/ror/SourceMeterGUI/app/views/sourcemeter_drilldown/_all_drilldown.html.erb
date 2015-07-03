@@ -1,0 +1,175 @@
+<link rel="stylesheet" type="text/css" href=<%= "#{url_for_static(:plugin => 'SourceMeterGUI', :path => 'css/drilldown.css')}" %>>
+
+<script>
+  $j( document ).ready(function() {
+    hideEmptySourceMeterTables();
+  });
+</script>
+
+<%  
+    parent_snapshot=Snapshot.find(:last, :conditions => ['id=?', @snapshot.path.split(".").last], :order => 'created_at desc')
+    grandparent_snapshot=Snapshot.find(:last, :conditions => ['id=?', parent_snapshot.path.split(".").last], :order => 'created_at desc')
+    path=@snapshot.path+@snapshot.id.to_s+'.'  
+%>
+
+<div id="source-meter-drilldown">
+<table class="spaced">
+    <tr>
+    <td>
+        <div class="scrollable">
+            <table class="spaced" id="class_selector">
+<%
+    snapshot = @snapshot
+    classes_measure_obj = snapshot.measure('SM:ClassesInFile')
+    class_snapshots=Snapshot.find(:all, :conditions => ['path LIKE ? AND qualifier LIKE ?', path+'%', @sourcemeter_qualifiers::BASE_CLASS_QUALIFIER])
+    if !@metric.nil? && !class_snapshots.blank? && !class_snapshots[0].measure(@metric).nil?
+      class_snapshots.sort! { |x,y| y.measure(@metric).value <=> x.measure(@metric).value }
+    end
+
+    displayed_classes = Array.new
+    index = 0
+    class_snapshots.each do |class_obj|
+      displayed_classes.push(class_obj.resource.id)
+      row_id = "class_row_#{class_obj.resource.id}"
+%>
+      <tr class="<%= index.even? ? 'even' : 'odd' %>" id="<%= row_id %>">
+        <td>
+          <%= image_tag("#{url_for_static(:plugin => 'SourceMeterAnalyzer' + @resource.language, :path => 'class.png')}", :class => "sm-drilldown-icons") %>
+          <% bline = class_obj.measure('SM:beginline').value.to_i %>
+          <% eline = class_obj.measure('SM:endline').value.to_i %>
+
+          <a title="New window" href="#" onclick="showLinkForResource(<%= class_obj.resource.id %>)" class="sm-show-link-button"></a>
+          <a href="#" onclick="showMetricsAndFilePaths(<%= class_obj.id %>, '<%= row_id %>', <%= bline %>, <%= eline %>, false, false, true)"><%= class_obj.resource.name %></a>
+        </td>
+<%
+        if !@metric.nil?
+%>
+          <td class="right" style="white-space: nowrap;">
+            <% measure_obj=class_obj.measure(@metric) %>
+            <%= measure_obj.formatted_value unless measure_obj.nil? %>
+          </td>
+       <%  end %>
+      </tr>
+<%
+      index += 1
+    end
+
+    if classes_measure_obj != nil
+      JSON.parse(classes_measure_obj.data).each do |class_data|
+        if !displayed_classes.include?(class_data['id'])
+          displayed_classes.push(class_data['id'])
+          row_id = "class_row_#{class_data['id']}"
+          bline = class_data['line']
+          eline = class_data['endLine']
+%>
+          <tr class="<%= index.even? ? 'even' : 'odd' %>" id="<%= row_id %>">
+            <td>
+              <%= image_tag("#{url_for_static(:plugin => 'SourceMeterAnalyzer' + @resource.language, :path => 'class.png')}", :class => "sm-drilldown-icons") %>
+              <a title="New window" href="#" onclick="showLinkForResource(<%= class_data['id'] %>)" class="sm-show-link-button"></a>
+              <a href="#" onclick="showMetricsAndFilePaths(<%= class_data['id'] %>, '<%= row_id %>', <%= bline %>, <%= eline %>, true, '<%= params[:data_key] %>', true)"><%= class_data['name'] %></a>
+            </td>
+          </tr>
+<%            
+          index += 1
+        end
+      end
+    end
+%>
+            </table>
+        </div>
+    </td>
+<%
+    displayed_methods = Array.new
+    methods_measure_obj = nil
+    method_snapshots = []
+    function_snapshots = []
+    if @resource.qualifier=='FIL'
+      methods_measure_obj = @snapshot.measure('SM:MethodsInFile')
+      method_snapshots=Snapshot.find(:all, :conditions => ['path LIKE ? AND qualifier=?', path+'%', @sourcemeter_qualifiers::BASE_METHOD_QUALIFIER])
+      if !method_snapshots.empty?
+        if !@metric.nil? && !method_snapshots.blank? && !method_snapshots[0].measure(@metric).nil?
+          method_snapshots.sort! { |x,y| y.measure(@metric).value <=> x.measure(@metric).value }
+        end
+      end
+      function_snapshots=Snapshot.find(:all, :conditions => ['path LIKE ? AND qualifier  LIKE ?', path+'%', @sourcemeter_qualifiers::BASE_FUNCTION_QUALIFIER])
+    end
+%>
+    <td class="spacer-left">
+        <div class="scrollable">
+            <table class="spaced" id="method_selector">
+<%
+    index = 0
+    if methods_measure_obj != nil
+      JSON.parse(methods_measure_obj.data).each do |method_obj|
+        if !displayed_methods.include?(method_obj['id'])
+          displayed_methods.push(method_obj['id'])
+          row_id = "method_row_#{method_obj['id']}"
+          bline = method_obj['line']
+          eline = method_obj['endLine']
+%>
+          <tr class="<%= index.even? ? 'even' : 'odd' %>" id="<%= row_id %>">
+            <td>
+              <% if method_obj['qualifier'] == @sourcemeter_qualifiers::BASE_FUNCTION_QUALIFIER %>
+                <%= image_tag("#{url_for_static(:plugin => 'SourceMeterAnalyzer' + @resource.language, :path => 'function.png')}", :class => "sm-drilldown-icons") %>
+              <% else %>
+                <%= image_tag("#{url_for_static(:plugin => 'SourceMeterAnalyzer' + @resource.language, :path => 'method.png')}", :class => "sm-drilldown-icons") %>
+              <% end %>
+              <a title="New window" href="#" onclick="showLinkForResource(<%= method_obj['id'] %>)" class="sm-show-link-button"></a>
+              <a href="#" onclick="showMetricsAndFilePaths(<%= method_obj['id'] %>, '<%= row_id %>', <%= bline %>, <%= eline %>, true, '<%= params[:data_key] %>')"><%= method_obj['name'] %></a>
+            </td>
+          </tr>
+<%
+          index += 1
+        end
+      end
+    end
+
+    function_snapshots.each do |method_obj|
+      if !displayed_methods.include?(method_obj.resource.id)
+        displayed_methods.push(method_obj.resource.id)
+        bline = method_obj.measure('SM:beginline').value.to_i
+        eline = method_obj.measure('SM:endline').value.to_i
+        row_id = "method_row_#{method_obj.resource.id}"
+%>
+        <tr class="<%= index.even? ? 'even' : 'odd' %>" id="<%= row_id %>">
+          <td>
+            <%= image_tag("#{url_for_static(:plugin => 'SourceMeterAnalyzer' + @resource.language, :path => 'function.png')}", :class => "sm-drilldown-icons") %>
+            <a title="New window" href="#" onclick="showLinkForResource(<%= method_obj.resource.id %>)" class="sm-show-link-button"></a>
+            <a href="#" onclick="showMetricsAndFilePaths(<%= method_obj.id %>, '<%= row_id %>', <%= bline %>, <%= eline %>)"><%= method_obj.resource.name%></a>
+          </td>
+        </tr>
+<%
+        index += 1
+      end
+    end
+
+    method_snapshots.each do |method_obj|
+      if !displayed_methods.include?(method_obj.resource.id)
+        bline = method_obj.measure('SM:beginline').value.to_i
+        eline = method_obj.measure('SM:endline').value.to_i
+        row_id = "method_row_#{method_obj.resource.id}"
+%>
+        <tr class="<%= index.even? ? 'even' : 'odd'%>" id="<%= row_id %>">
+          <td>
+            <%= image_tag("#{url_for_static(:plugin => 'SourceMeterAnalyzer' + @resource.language, :path => 'method.png')}", :class => "sm-drilldown-icons") %>
+            <a title="New window" href="#" onclick="showLinkForResource(<%= method_obj.resource.id %>)" class="sm-show-link-button"></a>
+            <a href="#" onclick="showMetricsAndFilePaths(<%= method_obj.id %>, '<%= row_id %>', <%= bline %>, <%= eline %>)"><%= method_obj.resource.name%></a>
+          </td>
+        </tr>
+<%
+        index += 1
+      end
+    end
+%>
+            </table>
+        </div>
+    </td> 
+    <td style="display: none" id = "sourcemeter-filepaths-row">   
+      <div id="sourcemeter-filepaths" class="scrollable">
+
+      </div>      
+    </td>      
+
+    </tr>
+</table>
+</div>

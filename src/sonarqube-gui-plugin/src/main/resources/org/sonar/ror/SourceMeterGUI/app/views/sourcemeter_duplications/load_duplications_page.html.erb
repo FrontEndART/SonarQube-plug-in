@@ -1,0 +1,18 @@
+<script>
+$j(document).ready(function() {
+  var url = '<%= ApplicationController.root_context -%>/sourcemeter_duplications/sourcemeter_duplications_page?data_key=<%= @project.key %>';
+  console.log(url);
+  $j('body').html("<div class='loading' style='width: 50px; height: 50px;'></div>");
+  $j.ajax({
+    url: url
+  }).fail(function (jqXHR, textStatus) {
+    var error = "Server error. Please contact your administrator. The status of the error is : "+ jqXHR.status + ", textStatus is : "+ textStatus;
+    $j("#accordion-panel").append($j('<div class="error">').append(error));
+  }).done(function (html) {
+    $j('body').html(html);
+  });
+});    
+</script>
+
+<div id="accordion-panel">
+</div>

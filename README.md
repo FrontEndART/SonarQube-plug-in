@@ -35,8 +35,12 @@ June 12, 2015
 
 (C) FrontEndART Software Ltd. 2001-2015
 
-
 [FrontEndART]:https://www.frontendart.com/
 [SourceMeter]:https://www.sourcemeter.com/
 [SonarQube]:http://www.sonarqube.org/
 [website]:http://www.sonarqube.org/downloads
+
+
+# Build
+`make -j1`
+

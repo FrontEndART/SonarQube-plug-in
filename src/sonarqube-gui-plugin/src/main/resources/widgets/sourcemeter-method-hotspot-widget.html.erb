@@ -1,0 +1,137 @@
+<%
+  sourcemeter_qualifiers = Api::Utils.java_facade.getComponentByClassname('SourceMeterGUI', 'com.sourcemeter.gui.resources.SourceMeterQualifiers').class
+  base_method_qualifier = sourcemeter_qualifiers::BASE_METHOD_QUALIFIER
+  base_function_qualifier = sourcemeter_qualifiers::BASE_FUNCTION_QUALIFIER
+
+  threshold = nil
+  value_s = ''  
+  metric = widget_properties["Metric"] || Metric.by_key('LOC')
+  logo = url_for_static(:plugin => 'SourceMeterGUI', :path => 'SourceMeterLogo.png')
+  title = " #{image_tag(logo)} SourceMeter: "  + (widget_properties["Title"] || ('Method Hotspots by ' + metric.short_name + " (#{metric.key}#{(', threshold: '+ value_s) if !threshold.blank?})"))
+  limit = widget_properties["Limit"] || 10
+
+  snapshots = nil
+  if metric.numeric?
+    snapshots_conditions=["(snapshots.qualifier LIKE '#{base_function_qualifier}' OR snapshots.qualifier LIKE '#{base_method_qualifier}')", "snapshots.islast=:islast", "snapshots.status = 'P'"]
+    snapshots_values={:qualifiers => @snapshot.leaves_qualifiers, :islast => true}
+    snapshots_conditions << '(snapshots.root_snapshot_id=:root_sid AND snapshots.path LIKE :path)'
+    snapshots_values[:root_sid] = (@snapshot.root_snapshot_id || @snapshot.id)
+    snapshots_values[:path]="#{@snapshot.path}#{@snapshot.id}.%"
+
+    measures_conditions = ["project_measures.rule_id IS NULL", "project_measures.characteristic_id IS NULL", "project_measures.person_id IS NULL"]
+    measures_values = {}
+    measures_conditions << "project_measures.metric_id = :m_id"
+    measures_values[:m_id] = metric.id
+
+    measures=ProjectMeasure.find(:all,
+                                 :joins => :snapshot,
+                                 :conditions => [(snapshots_conditions + measures_conditions).join(' AND '), snapshots_values.merge(measures_values)],
+                                 :order => "project_measures.value #{ 'DESC' if metric.direction <= 0 }",
+                                 :limit => limit)
+
+    snapshots=Snapshot.find(measures.map { |m| m.snapshot_id }, :include => 'project')
+    snapshots_by_id = {}
+    snapshots.each do |s|
+      snapshots_by_id[s.id]=s
+      if (threshold == nil)
+        resource = s.resource
+        threshold=configuration('sm.' + resource.language + '.' + resource.description + '.baseline.' + metric.key)
+        if(threshold.nil?)
+            baseline_def=Api::Utils.java_facade.propertyDefinitions.get('sm.' + resource.language + '.' + resource.description + '.baseline.' + metric.key)
+            if(!baseline_def.nil?)
+                threshold=baseline_def.defaultValue
+            end
+        end
+        case metric.val_type
+            when Metric::VALUE_TYPE_INT
+              value_s = number_with_precision(threshold.to_i, :precision => 0)
+            when Metric::VALUE_TYPE_FLOAT
+              value_s = number_with_precision(threshold.to_s.gsub(',', '.').to_f, :precision => 1)
+            when Metric::VALUE_TYPE_PERCENT
+              value_s = number_to_percentage(threshold.to_s.gsub(',', '.').to_f, {:precision => 1})
+            else
+              value_s = threshold
+        end
+        title = " #{image_tag(logo)} SourceMeter: "  + (widget_properties["Title"] || ('Method Hotspots by ' + metric.short_name + " (#{metric.key}#{(', threshold: '+ value_s) if !threshold.blank?})"))
+      end
+    end
+  end
+%>
+
+<% if !snapshots.blank? %>
+
+<link rel="stylesheet" type="text/css" href=<%= "#{url_for_static(:plugin => 'SourceMeterGUI', :path => 'css/widgets.css')}" %>>
+
+<div class="line-block">
+  <h3><%= title -%></h3>
+</div>
+
+<table id="sourcemeter-method-hotspots-<%= metric.name-%>-<%= widget.id -%>" class="data">
+  <thead><tr><th colspan="4"/></tr></thead>
+  <tbody>
+<%
+  metric_max_value = 0
+  if(metric.direction > 0)
+    metric_max_value = measures.last.value
+  else
+    metric_max_value = measures.first.value
+  end
+  measures.each do |measure|
+    snapshot = snapshots_by_id[measure.snapshot_id]
+    resource = snapshot.resource
+    file_snapshot = Snapshot.find(:last, :conditions => ['id=?', snapshot.path.split(".").last], :order => 'created_at desc')
+    while file_snapshot.resource.qualifier != 'FIL'
+      file_snapshot = Snapshot.find(:last, :conditions => ['id=?', file_snapshot.path.split(".").last], :order => 'created_at desc')
+    end
+
+%>
+    <tr class="<%= cycle 'even','odd' -%>">
+      <td class='icons'>
+      <% if resource.qualifier == base_method_qualifier %>
+        <%= image_tag("#{url_for_static(:plugin => 'SourceMeterAnalyzer' + resource.language, :path => 'method.png')}", :class => "sm-drilldown-icons") %>
+      <% else %>
+        <%= image_tag("#{url_for_static(:plugin => 'SourceMeterAnalyzer' + resource.language, :path => 'function.png')}", :class => "sm-drilldown-icons") %>
+      <% end %>
+      </td>
+      <td>
+        <%=
+             link_to(h(resource.name), {
+                                         :controller => "/dashboard",
+                                         :action => "index",
+                                         :id => file_snapshot.resource.id,
+                                         :sm_resource => resource.id,
+                                         :metric => metric.name,
+                                         :display_title => true
+                                       }, :popup => ['resource-' + file_snapshot.resource.key, 'height=900,width=1250,scrollbars=1,resizable=1'])
+        %>
+      </td>
+<%      if(!threshold.blank?)
+          if(metric.direction <= 0) %>
+            <%= '<td class="right baseline_bad">' if measure.value > threshold.to_s.gsub(',', '.').to_f %>
+            <%=  '<td class="right baseline_good">' if measure.value <= threshold.to_s.gsub(',', '.').to_f %>
+<%        else %>
+            <%= '<td class="right baseline_bad">' if measure.value < threshold.to_s.gsub(',', '.').to_f %>
+            <%= '<td class="right baseline_good">' if measure.value >= threshold.to_s.gsub(',', '.').to_f %>
+<%        end
+        else %> 
+      <td class="right">
+<%      end %>
+        <%= measure.formatted_value -%>
+      </td>
+      <td class="barchart">
+<%    if metric_max_value != 0 %>
+        <div class="barchart" style="width: <%= (measure.value*100/metric_max_value).round.to_i -%>%">
+<%    else %>
+        <div class="barchart sm_barchart">
+<%    end %>
+          <div class="sm_barchart sm_barchart_filled"></div>
+        </div>
+      </td>
+    </tr>
+<%
+  end
+%>
+  </tbody>
+</table>
+
+<% end %>

@@ -1,0 +1,39 @@
+.license_status_inactive {
+    color: red;
+}
+
+.license_status_full {
+    color: green;
+}
+
+.license_status_limited {
+    color: #DB8500;
+}
+
+.sm_license_header {
+    text-align: center;
+    font-weight: bold;
+}
+
+.license_table td {
+    font-size: 11px;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-bottom: 2px;
+    padding-top: 2px;
+    border: 1px solid #ddd;
+}
+
+#footer {
+    margin: 0px;
+}
+
+#ftlinks {
+    margin-top: 0px;
+}
+
+.sourcemeter_logo {
+    padding-top: 10px;
+    text-align: center;
+    width: 100%;
+}
