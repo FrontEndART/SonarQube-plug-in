@@ -31,20 +31,20 @@ package com.sourcemeter.analyzer.rpg.visitor;
 
 import graphlib.Edge;
 import graphlib.Node;
+
+import org.sonar.api.batch.SensorContext;
+import org.sonar.api.component.ResourcePerspectives;
+import org.sonar.api.resources.Project;
+import org.sonar.api.resources.Resource;
+
 import com.sourcemeter.analyzer.base.helper.GraphHelper;
 import com.sourcemeter.analyzer.base.helper.VisitorHelper;
 import com.sourcemeter.analyzer.base.visitor.ComponentTreeLoaderVisitor;
 
-import org.sonar.api.batch.SensorContext;
-import org.sonar.api.component.ResourcePerspectives;
-import org.sonar.api.config.Settings;
-import org.sonar.api.resources.Project;
-import org.sonar.api.resources.Resource;
-
 
 public class ComponentTreeLoaderVisitorRPG extends ComponentTreeLoaderVisitor {
 
-    public ComponentTreeLoaderVisitorRPG(Settings settings, ResourcePerspectives perspectives,
+    public ComponentTreeLoaderVisitorRPG(ResourcePerspectives perspectives,
             Project project, SensorContext sensorContext, long numOfNodes,
             VisitorHelper visitorHelper) {
         super(perspectives, project, sensorContext, numOfNodes, visitorHelper);

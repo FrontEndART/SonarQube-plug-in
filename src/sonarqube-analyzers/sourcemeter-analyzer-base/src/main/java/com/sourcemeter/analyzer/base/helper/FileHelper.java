@@ -65,7 +65,7 @@ public class FileHelper {
             SensorContext sensorContext, Project project, String filePath) {
         if (OSValidator.isWindows()) {
             FilePredicate filePredicate = fileSystem.predicates().hasLanguage(
-                    SourceMeterInitializer.pluginLanguage.getKey());
+                    SourceMeterInitializer.getPluginLanguage().getKey());
             Iterator<File> fileIterator = fileSystem.files(filePredicate).iterator();
 
             while (fileIterator.hasNext()) {
@@ -94,7 +94,7 @@ public class FileHelper {
         projectName = StringUtils.replace(projectName, ":", "_");
         String resultsDir = settings.getString("sm.resultsdir")
                 + File.separator + projectName + File.separator
-                + SourceMeterInitializer.pluginLanguage.getKey().toLowerCase(Locale.ENGLISH);
+                + SourceMeterInitializer.getPluginLanguage().getKey().toLowerCase(Locale.ENGLISH);
 
         File file = new File(resultsDir);
         if (!file.exists()) {

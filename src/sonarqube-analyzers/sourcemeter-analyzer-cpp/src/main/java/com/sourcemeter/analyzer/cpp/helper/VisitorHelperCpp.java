@@ -29,85 +29,36 @@
  */
 package com.sourcemeter.analyzer.cpp.helper;
 
-import graphlib.Attribute;
-import graphlib.AttributeComposite;
-import graphlib.AttributeInt;
-import graphlib.AttributeString;
-import graphlib.Node;
-import graphsupportlib.Metric.Position;
-import com.sourcemeter.analyzer.base.helper.FileHelper;
+import org.sonar.api.batch.SensorContext;
+import org.sonar.api.batch.fs.FileSystem;
+import org.sonar.api.component.ResourcePerspectives;
+import org.sonar.api.resources.Project;
+
 import com.sourcemeter.analyzer.base.helper.VisitorHelper;
 import com.sourcemeter.analyzer.cpp.SourceMeterCppMetricFinder;
 import com.sourcemeter.analyzer.cpp.profile.SourceMeterCppRuleRepository;
 
-import java.util.List;
-
-import org.sonar.api.batch.SensorContext;
-import org.sonar.api.batch.fs.FileSystem;
-import org.sonar.api.component.ResourcePerspectives;
-import org.sonar.api.config.Settings;
-import org.sonar.api.issue.Issuable;
-import org.sonar.api.issue.Issue;
-import org.sonar.api.resources.Project;
-import org.sonar.api.resources.Resource;
-import org.sonar.api.rule.RuleKey;
-
 public class VisitorHelperCpp extends VisitorHelper {
 
-    private final FileSystem fileSystem;
-
-    public VisitorHelperCpp(Project project, SensorContext sensorContext, ResourcePerspectives perspectives, Settings settings,
-            FileSystem fileSystem) {
-
-        super(project, sensorContext, perspectives, settings,
+    public VisitorHelperCpp(Project project, SensorContext sensorContext,
+            ResourcePerspectives perspectives, FileSystem fileSystem) {
+        super(project, sensorContext, perspectives, fileSystem,
                 new SourceMeterCppMetricFinder());
-
-        this.fileSystem = fileSystem;
     }
 
     @Override
-    public void uploadWarnings(Attribute attribute, Node node, Position nodePosition) {
-        AttributeComposite warningAttribute = (AttributeComposite) attribute;
-        int lineId = 0;
-        String warningText = "";
-        String warningPath = "";
+    public String getRuleKey() {
+        return SourceMeterCppRuleRepository.getRepositoryKey();
+    }
 
-        List<Attribute> compAttributes = warningAttribute.getAttributes();
-        for (Attribute a : compAttributes) {
-            if ("Path".equals(a.getName())) {
-                warningPath = ((AttributeString) a).getValue();
-            } else if ("Line".equals(a.getName())) {
-                lineId = ((AttributeInt) a).getValue();
-                if (lineId == 0) {
-                    return;
-                }
-            } else if ("WarningText".equals(a.getName())) {
-                warningText = ((AttributeString) a).getValue();
-            }
+    @Override
+    public String getWarningTextWithPrefix(String ruleKey, String warningText) {
+        if (ruleKey.startsWith("CPPCHECK_")) {
+            warningText = "SourceMeter (from Cppcheck): " + warningText;
+        } else {
+            warningText = "SourceMeter: " + warningText;
         }
 
-        Resource violationResource = FileHelper.getIndexedFileForFilePath(
-                fileSystem, sensorContext, project, warningPath);
-
-        Issuable issuable = this.perspectives.as(Issuable.class,
-                violationResource);
-        if (issuable != null) {
-            String tmpRuleKey = warningAttribute.getName();
-
-            if (tmpRuleKey.startsWith("CPPCHECK_")) {
-                warningText = "SourceMeter (from Cppcheck): " + warningText;
-            } else {
-                warningText = "SourceMeter: " + warningText;
-            }
-
-            tmpRuleKey = getCorrectedRuleKey(tmpRuleKey);
-            RuleKey ruleKey = RuleKey
-                    .of(SourceMeterCppRuleRepository.getRepositoryKey(),
-                            tmpRuleKey);
-            Issue issue = issuable.newIssueBuilder().ruleKey(ruleKey)
-                    .message(warningText).line(lineId).build();
-
-            issuable.addIssue(issue);
-        }
+        return warningText;
     }
 }

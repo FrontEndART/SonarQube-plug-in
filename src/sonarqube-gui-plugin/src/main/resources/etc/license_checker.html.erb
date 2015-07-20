@@ -6,7 +6,7 @@
 $j(document).ready(function() {
     var smFooterContent = '<div><p style="text-align:center;font-size: 11px;">'
         + '<a href="https://sourcemeter.com" target="SourceMeter">SourceMeter</a> '
-        + '<a href="https://github.com/FrontEndART/SonarQube-plug-in" target="SourceMeter_github">SonarQube plug-in</a> 7.0</p>';
+        + '<a href="https://github.com/FrontEndART/SonarQube-plug-in" target="SourceMeter_github">SonarQube plug-in</a> 7.0.4</p>';
     var isSMHeaderShown = false;
     <% if @snapshot && @snapshot.root_project && @snapshot.root_project.last_snapshot
         plugins = Api::Utils.java_facade.getPluginsMetadata().select{|plugin| plugin.getKey().include? "SourceMeterAnalyzer"}.to_a.sort

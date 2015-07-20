@@ -84,6 +84,7 @@ import com.sourcemeter.analyzer.python.profile.SourceMeterPythonRuleRepository;
                  type = PropertyType.BOOLEAN,
                  defaultValue = "false"
              ),
+
              @Property(
                  key = "sm.python.toolchainOptions",
                  name = "Add additional parameters for running SourceMeter Python toolchain.",
@@ -91,6 +92,14 @@ import com.sourcemeter.analyzer.python.profile.SourceMeterPythonRuleRepository;
                  project = false,
                  type = PropertyType.STRING,
                  defaultValue = "false"
+             ),
+             @Property(
+                 key = "sm.python.skipTUID",
+                 name = "Skip elements which does not have a TUID in result graph.",
+                 global = false,
+                 project = false,
+                 type = PropertyType.BOOLEAN,
+                 defaultValue = SourceMeterAnalyzerPythonPlugin.TRUE
              )
 })
 public class SourceMeterAnalyzerPythonPlugin extends SonarPlugin {
@@ -107,6 +116,8 @@ public class SourceMeterAnalyzerPythonPlugin extends SonarPlugin {
 
     public static final String CLONE_CLASS_SUBCATEGORY = "Clone Class";
     public static final String CLONE_INSTANCE_SUBCATEGORY = "Clone Instance";
+
+    public static final String TRUE = "true";
 
     @Override
     public List getExtensions() {

@@ -1,5 +1,6 @@
 var shouldDrilldownRefreshSelectedButtons = false;
 var lastSelectedSourceMeterElement = '';
+var refreshedSourceManually = false;
 var selectedSourceMeterElements = [];
 var refreshSourceCodeFunction = null;
 var stopButtonLoading = false;
@@ -128,7 +129,11 @@ function insertSourceMeterButtons(data_key, clickOnButton, lastSelectedElement, 
                 if (clickOnButton) {
                     checkComponentViewerSize();
                     shouldDrilldownRefreshSelectedButtons = true;
-                    lastSelectedSourceMeterElement = lastSelectedElement;
+                    if (refreshedSourceManually) {
+                        refreshedSourceManually = false;
+                    } else {
+                        lastSelectedSourceMeterElement = lastSelectedElement;
+                    }
                     $j('#sm_source_button').click();
                 }
 
@@ -353,7 +358,11 @@ function replaceBlockerViolationTrace(forceReplace) {
     }, 500);
 };
 
-function refreshSource(rowIdd, fromLine, toLine) {
+function refreshSource(rowIdd, fromLine, toLine, smResourceId) {
+    if (smResourceId && smResourceId > 0) {
+        lastSelectedSourceMeterElement = smResourceId;
+        refreshedSourceManually = true;
+    }
     lastSelectedFromLine = fromLine;
     lastSelectedToLine = toLine;
     $j('#' + rowIdd).find('.sourcemeter-refresh-source').click();
@@ -465,7 +474,6 @@ function showMetricsAndFilePaths(id, rowId, bline, eline, isProjectId, data_key,
     if (lastSelectedFromLine) {
         bline = lastSelectedFromLine;
         eline = lastSelectedToLine;
-        console.log(lastSelectedToLine);
         drilldownUrl += '&bline=' + bline + '&eline=' + eline;
     }
 

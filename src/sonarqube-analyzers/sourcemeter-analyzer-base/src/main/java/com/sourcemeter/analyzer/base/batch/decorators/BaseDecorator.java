@@ -55,7 +55,7 @@ public abstract class BaseDecorator implements Decorator {
     @Override
     public boolean shouldExecuteOnProject(Project project) {
         return fileSystem.hasFiles(fileSystem.predicates().hasLanguage(
-                SourceMeterInitializer.pluginLanguage.getKey()));
+                SourceMeterInitializer.getPluginLanguage().getKey()));
     }
 
     protected void saveFunctionsComplexityDistribution(DecoratorContext context) {

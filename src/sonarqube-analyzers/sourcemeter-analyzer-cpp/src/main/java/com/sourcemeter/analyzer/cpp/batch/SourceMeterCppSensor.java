@@ -34,16 +34,6 @@ import graphlib.GraphlibException;
 import graphlib.Node;
 import graphlib.Node.NodeType;
 import graphlib.VisitorException;
-import com.sourcemeter.analyzer.base.batch.SourceMeterSensor;
-import com.sourcemeter.analyzer.base.helper.FileHelper;
-import com.sourcemeter.analyzer.base.helper.GraphHelper;
-import com.sourcemeter.analyzer.base.visitor.NodeCounterVisitor;
-import com.sourcemeter.analyzer.cpp.SourceMeterCppMetrics;
-import com.sourcemeter.analyzer.cpp.core.resources.ClassData;
-import com.sourcemeter.analyzer.cpp.visitor.CloneTreeLoaderVisitorCpp;
-import com.sourcemeter.analyzer.cpp.visitor.ComponentTreeLoaderVisitorCpp;
-import com.sourcemeter.analyzer.cpp.visitor.LogicalTreeLoaderVisitorCpp;
-import com.sourcemeter.analyzer.cpp.visitor.PhysicalTreeLoaderVisitorCpp;
 
 import java.io.File;
 import java.util.HashMap;
@@ -68,6 +58,16 @@ import org.sonar.api.scan.filesystem.ModuleFileSystem;
 import org.sonar.api.utils.SonarException;
 
 import com.google.gson.Gson;
+import com.sourcemeter.analyzer.base.batch.SourceMeterSensor;
+import com.sourcemeter.analyzer.base.core.resources.ClassData;
+import com.sourcemeter.analyzer.base.helper.FileHelper;
+import com.sourcemeter.analyzer.base.helper.GraphHelper;
+import com.sourcemeter.analyzer.base.visitor.NodeCounterVisitor;
+import com.sourcemeter.analyzer.cpp.SourceMeterCppMetrics;
+import com.sourcemeter.analyzer.cpp.visitor.CloneTreeLoaderVisitorCpp;
+import com.sourcemeter.analyzer.cpp.visitor.ComponentTreeLoaderVisitorCpp;
+import com.sourcemeter.analyzer.cpp.visitor.LogicalTreeLoaderVisitorCpp;
+import com.sourcemeter.analyzer.cpp.visitor.PhysicalTreeLoaderVisitorCpp;
 
 public class SourceMeterCppSensor extends SourceMeterSensor {
 
@@ -147,7 +147,7 @@ public class SourceMeterCppSensor extends SourceMeterSensor {
                 nodeCounter = new NodeCounterVisitor();
                 GraphHelper.processGraph(graph, componentRoot, "ComponentTree", nodeCounter);
                 componentVisitor = new ComponentTreeLoaderVisitorCpp(
-                        this.settings, this.perspectives, this.project,
+                        this.perspectives, this.project,
                         this.sensorContext, this.fileSystem,
                         nodeCounter.getNumberOfNodes());
             }
@@ -161,7 +161,7 @@ public class SourceMeterCppSensor extends SourceMeterSensor {
             nodeCounter = new NodeCounterVisitor();
             GraphHelper.processGraph(graph, "__PhysicalRoot__", "PhysicalTree", nodeCounter);
             PhysicalTreeLoaderVisitorCpp physicalVisitor = new PhysicalTreeLoaderVisitorCpp(
-                    fileSystem, this.settings, this.perspectives, this.project,
+                    fileSystem, this.perspectives, this.project,
                     this.sensorContext, nodeCounter.getNumberOfNodes());
 
             LOG.info("      * Initialization done: " + (System.currentTimeMillis() - startTime) + MS);
@@ -192,7 +192,7 @@ public class SourceMeterCppSensor extends SourceMeterSensor {
                 nodeCounter = new NodeCounterVisitor();
                 GraphHelper.processGraph(graph, "__CloneRoot__", "CloneTree", nodeCounter);
                 cloneVisitor = new CloneTreeLoaderVisitorCpp(this.fileSystem,
-                        this.settings, this.perspectives, project,
+                        this.perspectives, project,
                         sensorContext, nodeCounter.getNumberOfNodes());
             }
 

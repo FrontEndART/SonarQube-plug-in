@@ -34,16 +34,6 @@ import graphlib.GraphlibException;
 import graphlib.Node;
 import graphlib.Node.NodeType;
 import graphlib.VisitorException;
-import com.sourcemeter.analyzer.base.batch.SourceMeterSensor;
-import com.sourcemeter.analyzer.base.helper.FileHelper;
-import com.sourcemeter.analyzer.base.helper.GraphHelper;
-import com.sourcemeter.analyzer.base.visitor.NodeCounterVisitor;
-import com.sourcemeter.analyzer.java.SourceMeterJavaMetrics;
-import com.sourcemeter.analyzer.java.core.Java;
-import com.sourcemeter.analyzer.java.visitor.CloneTreeLoaderVisitorJava;
-import com.sourcemeter.analyzer.java.visitor.ComponentTreeLoaderVisitorJava;
-import com.sourcemeter.analyzer.java.visitor.LogicalTreeLoaderVisitorJava;
-import com.sourcemeter.analyzer.java.visitor.PhysicalTreeLoaderVisitorJava;
 
 import java.io.File;
 import java.util.HashMap;
@@ -67,6 +57,17 @@ import org.sonar.api.resources.Project;
 import org.sonar.api.resources.Resource;
 import org.sonar.api.scan.filesystem.ModuleFileSystem;
 import org.sonar.api.utils.SonarException;
+
+import com.sourcemeter.analyzer.base.batch.SourceMeterSensor;
+import com.sourcemeter.analyzer.base.helper.FileHelper;
+import com.sourcemeter.analyzer.base.helper.GraphHelper;
+import com.sourcemeter.analyzer.base.visitor.NodeCounterVisitor;
+import com.sourcemeter.analyzer.java.SourceMeterJavaMetrics;
+import com.sourcemeter.analyzer.java.core.Java;
+import com.sourcemeter.analyzer.java.visitor.CloneTreeLoaderVisitorJava;
+import com.sourcemeter.analyzer.java.visitor.ComponentTreeLoaderVisitorJava;
+import com.sourcemeter.analyzer.java.visitor.LogicalTreeLoaderVisitorJava;
+import com.sourcemeter.analyzer.java.visitor.PhysicalTreeLoaderVisitorJava;
 
 public class SourceMeterJavaSensor extends SourceMeterSensor {
 
@@ -143,6 +144,7 @@ public class SourceMeterJavaSensor extends SourceMeterSensor {
      * @param sensorContext
      * @throws GraphlibException
      */
+    @Override
     protected void loadDataFromGraphBin(String filename, Project project,
             SensorContext sensorContext) throws GraphlibException {
         Graph graph = new Graph();
@@ -169,26 +171,29 @@ public class SourceMeterJavaSensor extends SourceMeterSensor {
             if (componentRoot != null) {
                 nodeCounter = new NodeCounterVisitor();
                 GraphHelper.processGraph(graph, componentRoot, "ComponentTree", nodeCounter);
-                componentVisitor = new ComponentTreeLoaderVisitorJava(this.settings, this.perspectives, project, sensorContext, nodeCounter.getNumberOfNodes());
+                componentVisitor = new ComponentTreeLoaderVisitorJava(
+                        this.fileSystem, this.perspectives, project,
+                        sensorContext, nodeCounter.getNumberOfNodes());
             }
 
             nodeCounter = new NodeCounterVisitor();
             GraphHelper.processGraph(graph, "__LogicalRoot__", "LogicalTree", nodeCounter);
-            LogicalTreeLoaderVisitorJava logicalVisitor = new LogicalTreeLoaderVisitorJava(this.fileSystem, this.settings, this.perspectives, project,
-                    sensorContext,
-                    nodeCounter.getNumberOfNodes());
+            LogicalTreeLoaderVisitorJava logicalVisitor = new LogicalTreeLoaderVisitorJava(
+                    this.fileSystem, this.settings, this.perspectives, project,
+                    sensorContext, nodeCounter.getNumberOfNodes());
 
             nodeCounter = new NodeCounterVisitor();
             GraphHelper.processGraph(graph, "__PhysicalRoot__", "PhysicalTree", nodeCounter);
-            PhysicalTreeLoaderVisitorJava physicalVisitor = new PhysicalTreeLoaderVisitorJava(this.fileSystem, this.settings, this.perspectives, project,
-                    sensorContext,
+            PhysicalTreeLoaderVisitorJava physicalVisitor = new PhysicalTreeLoaderVisitorJava(
+                    this.fileSystem, this.perspectives, project, sensorContext,
                     nodeCounter.getNumberOfNodes());
 
             CloneTreeLoaderVisitorJava cloneVisitor = null;
             if (!this.isIncrementalMode) {
                 nodeCounter = new NodeCounterVisitor();
                 GraphHelper.processGraph(graph, "__CloneRoot__", "CloneTree", nodeCounter);
-                cloneVisitor = new CloneTreeLoaderVisitorJava(this.fileSystem, this.settings, this.perspectives, project, sensorContext,
+                cloneVisitor = new CloneTreeLoaderVisitorJava(this.fileSystem,
+                        this.perspectives, project, sensorContext,
                         nodeCounter.getNumberOfNodes());
             }
 

@@ -124,7 +124,7 @@ public abstract class BaseResource extends Resource {
      */
     @Override
     public Language getLanguage() {
-        return SourceMeterInitializer.pluginLanguage;
+        return SourceMeterInitializer.getPluginLanguage();
     }
 
     /**

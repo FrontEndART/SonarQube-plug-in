@@ -36,6 +36,7 @@ if filePathMeasureObject != nil
     resource = Project.by_key(filePath['id'])
     if resource
       class_group = {
+      :sm_resource_id => filePath['smResourceId'],
       :resource => resource,
       :lines_count => (filePath['endLine'] - filePath['line'] + 1),
       :from_line => filePath['line']
@@ -72,7 +73,7 @@ if filePathMeasureObject != nil
       <td>
         <em class="icon-qualifier-fil"></em>
         <a style="display: none;" href="#" data-key="<%= resource.key %>" class="sourcemeter-refresh-source">sm_refresh</a>
-        <a href="#" onclick="return refreshSource('<%= row_id %>', <%= from_line %>, <%= to_line %>)"><%= cl[:resource].name + " (#{from_line})" %></a>
+        <a href="#" onclick="return refreshSource('<%= row_id %>', <%= from_line %>, <%= to_line %>, <%= cl[:sm_resource_id] %>)"><%= cl[:resource].name + " (#{from_line})" %></a>
       </td>
     </tr>
 <% end %>

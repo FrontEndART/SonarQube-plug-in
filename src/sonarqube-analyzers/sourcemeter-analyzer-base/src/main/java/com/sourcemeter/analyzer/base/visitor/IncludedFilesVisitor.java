@@ -34,6 +34,7 @@ import graphlib.Node;
 import graphlib.VisitorException;
 
 import java.util.HashSet;
+import java.util.Locale;
 import java.util.Set;
 
 import org.sonar.api.batch.fs.FilePredicate;
@@ -95,7 +96,8 @@ public class IncludedFilesVisitor extends BaseVisitor {
         String nodeType = node.getType().getType();
 
         if ("File".equals(nodeType) && nodeLongName != null) {
-            includedFiles.add(nodeLongName);
+            includedFiles.add(nodeLongName.replace("\\", "/")
+                    .toLowerCase(Locale.getDefault()));
         } else {
             return;
         }

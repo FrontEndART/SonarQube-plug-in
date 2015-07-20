@@ -69,7 +69,7 @@ public class ProjectDecorator implements Decorator {
     @Override
     public boolean shouldExecuteOnProject(Project project) {
         return  SourceMeterCoreInitializer.allDetectedLanguages
-                .contains(SourceMeterInitializer.pluginLanguage.getKey());
+                .contains(SourceMeterInitializer.getPluginLanguage().getKey());
     }
 
     @Override

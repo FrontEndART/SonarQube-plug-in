@@ -57,6 +57,7 @@ public class GraphHelper {
     /**
      * Position class extended with realization level information
      */
+    @edu.umd.cs.findbugs.annotations.SuppressWarnings("URF_UNREAD_PUBLIC_OR_PROTECTED_FIELD")
     public static class Position extends graphsupportlib.Metric.Position {
         public RealizationLevel realizationLevel;
 

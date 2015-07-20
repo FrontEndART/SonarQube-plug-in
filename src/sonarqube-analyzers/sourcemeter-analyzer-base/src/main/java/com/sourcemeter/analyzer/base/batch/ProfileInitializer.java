@@ -177,7 +177,7 @@ public class ProfileInitializer {
 
     private String getTresholdLine(Metric metric, String entity, String property) {
         StringBuffer baseline = new StringBuffer("sm.");
-        baseline.append(SourceMeterInitializer.pluginLanguage.getKey().toLowerCase(Locale.ENGLISH));
+        baseline.append(SourceMeterInitializer.getPluginLanguage().getKey().toLowerCase(Locale.ENGLISH));
         baseline.append(".").append(property.toLowerCase(Locale.ENGLISH))
                 .append(".baseline.").append(metric.getKey());
         Double threshold = this.settings.getDouble(baseline.toString());

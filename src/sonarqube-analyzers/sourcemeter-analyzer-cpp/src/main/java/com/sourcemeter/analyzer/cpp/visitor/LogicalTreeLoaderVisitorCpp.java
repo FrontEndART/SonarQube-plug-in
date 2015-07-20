@@ -35,6 +35,7 @@ import graphlib.Node;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import org.sonar.api.batch.SensorContext;
@@ -45,12 +46,12 @@ import org.sonar.api.resources.Project;
 import org.sonar.api.resources.Resource;
 import org.sonar.api.utils.SonarException;
 
+import com.sourcemeter.analyzer.base.core.resources.ClassData;
 import com.sourcemeter.analyzer.base.helper.FileHelper;
 import com.sourcemeter.analyzer.base.helper.GraphHelper;
 import com.sourcemeter.analyzer.base.helper.GraphHelper.Position;
 import com.sourcemeter.analyzer.base.helper.GraphHelper.RealizationLevel;
 import com.sourcemeter.analyzer.base.visitor.LogicalTreeLoaderVisitor;
-import com.sourcemeter.analyzer.cpp.core.resources.ClassData;
 import com.sourcemeter.analyzer.cpp.core.resources.CppClass;
 import com.sourcemeter.analyzer.cpp.core.resources.CppFunction;
 import com.sourcemeter.analyzer.cpp.core.resources.CppMethod;
@@ -63,7 +64,6 @@ public class LogicalTreeLoaderVisitorCpp extends LogicalTreeLoaderVisitor {
     private final Map<Resource, List<ClassData>> filePathsForClasses;
     private final Map<Resource, List<ClassData>> filePathsForMethods;
     private final Map<String, Map<String, Resource>> resourceDeclarationsWithoutDefinition;
-    private final boolean skipTUID;
 
     public static final Map<Resource, Integer> FUNCTIONS_FOR_FILES = new HashMap<Resource, Integer>();
 
@@ -73,15 +73,13 @@ public class LogicalTreeLoaderVisitorCpp extends LogicalTreeLoaderVisitor {
 
         super(fileSystem, settings, perspectives, project, sensorContext,
                 numOfNodes, new VisitorHelperCpp(project, sensorContext,
-                perspectives, settings, fileSystem));
+                perspectives, fileSystem));
 
         this.classesInFiles = new HashMap<Resource, List<ClassData>>();
         this.methodsInFiles = new HashMap<Resource, List<ClassData>>();
         this.filePathsForClasses = new HashMap<Resource, List<ClassData>>();
         this.filePathsForMethods = new HashMap<Resource, List<ClassData>>();
         this.resourceDeclarationsWithoutDefinition = new HashMap<>();
-
-        this.skipTUID = settings.getBoolean("sm.cpp.skipTUID");
     }
 
     /**
@@ -98,6 +96,11 @@ public class LogicalTreeLoaderVisitorCpp extends LogicalTreeLoaderVisitor {
     @Override
     public void preNodeVisitorFunc(Node node) {
         if (this.emptyProject) {
+            return;
+        }
+
+        String nodeName = GraphHelper.getNodeNameAttribute(node);
+        if (nodeName == null || "__LogicalRoot__".equals(nodeName)) {
             return;
         }
 
@@ -142,7 +145,6 @@ public class LogicalTreeLoaderVisitorCpp extends LogicalTreeLoaderVisitor {
 
         String nodeType = node.getType().getType();
         String nodeLongName = GraphHelper.getNodeLongNameAttribute(node);
-        String nodeName = GraphHelper.getNodeNameAttribute(node);
 
         String nodeTUID = GraphHelper.getNodeTUID(node);
 
@@ -159,8 +161,9 @@ public class LogicalTreeLoaderVisitorCpp extends LogicalTreeLoaderVisitor {
         }
 
         if (GraphHelper.isClass(node)) {
-            resource = new CppClass(nodeTUID, nodeName,
-                    nodeLongName).setParent(definitonFile);
+            resource = new CppClass(nodeTUID, nodeName, nodeLongName,
+                    nodeType.toLowerCase(Locale.ENGLISH))
+                    .setParent(definitonFile);
             if (!hasDefinition) {
                 resource = addResourceWithoutDefinition(nodeType, nodeLongName, resource);
             }
@@ -173,18 +176,22 @@ public class LogicalTreeLoaderVisitorCpp extends LogicalTreeLoaderVisitor {
             } else {
                 resource = indexedResource;
             }
+
             ClassData classData = new ClassData(resource.getId(), nodeName,
-                    resource.getQualifier(), nodePosition.line, nodePosition.endline);
+                    resource.getQualifier(), nodePosition.line,
+                    nodePosition.endline, resource.getDescription());
             storeFileForClass(file, classData, (CppClass) resource);
         } else if (this.uploadMethods && "Method".equals(nodeType)) {
             Node parentNode = GraphHelper.getParentNode(node);
             if (GraphHelper.isClass(parentNode)) {
                 String parentNodeName = GraphHelper
                         .getNodeNameAttribute(parentNode);
+                String parentNodeType = parentNode.getType().getType();
 
                 CppClass parentClass = new CppClass(
                         GraphHelper.getNodeTUID(parentNode), parentNodeName,
-                        GraphHelper.getNodeLongNameAttribute(parentNode));
+                        GraphHelper.getNodeLongNameAttribute(parentNode),
+                        parentNodeType.toLowerCase(Locale.ENGLISH));
                 resource = new CppMethod(nodeTUID,
                         nodeName, nodeLongName).setParent(parentClass);
                 if (!hasDefinition) {
@@ -202,7 +209,8 @@ public class LogicalTreeLoaderVisitorCpp extends LogicalTreeLoaderVisitor {
                 }
 
                 ClassData classData = new ClassData(resource.getId(), nodeName,
-                        resource.getQualifier(), nodePosition.line, nodePosition.endline);
+                        resource.getQualifier(), nodePosition.line,
+                        nodePosition.endline, resource.getDescription());
                 storeFileForMethod(file, classData, resource);
             }
 
@@ -221,7 +229,8 @@ public class LogicalTreeLoaderVisitorCpp extends LogicalTreeLoaderVisitor {
                 resource = indexedResource;
             }
             ClassData classData = new ClassData(resource.getId(), nodeName,
-                    resource.getQualifier(), nodePosition.line, nodePosition.endline);
+                    resource.getQualifier(), nodePosition.line,
+                    nodePosition.endline, resource.getDescription());
             storeFileForMethod(file, classData, resource);
         }
 
@@ -279,8 +288,9 @@ public class LogicalTreeLoaderVisitorCpp extends LogicalTreeLoaderVisitor {
         }
         putClassDataInResourceMap(this.classesInFiles, file, classData);
 
-        ClassData filePath = new ClassData(file.getId(), file.getName(), file.getQualifier(),
-                classData.getLine(), classData.getEndLine());
+        ClassData filePath = new ClassData(file.getId(), file.getName(),
+                file.getQualifier(), classData.getLine(),
+                classData.getEndLine(), cppClass.getDescription());
         putClassDataInResourceMap(this.filePathsForClasses, cppClass, filePath);
     }
 
@@ -297,8 +307,9 @@ public class LogicalTreeLoaderVisitorCpp extends LogicalTreeLoaderVisitor {
         }
         putClassDataInResourceMap(this.methodsInFiles, file, classData);
 
-        ClassData filePath = new ClassData(file.getId(), file.getName(), file.getQualifier(),
-                classData.getLine(), classData.getEndLine());
+        ClassData filePath = new ClassData(file.getId(), file.getName(),
+                file.getQualifier(), classData.getLine(),
+                classData.getEndLine(), cppMethod.getDescription());
         putClassDataInResourceMap(this.filePathsForMethods, cppMethod, filePath);
     }
 

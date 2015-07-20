@@ -51,9 +51,10 @@ public class PythonClass extends BaseClass {
      * @param key
      * @param filename
      * @param longName
+     * @param description
      */
-    public PythonClass(String key, String filename, String longName) {
-        super(key, filename, longName);
+    public PythonClass(String key, String filename, String longName, String description) {
+        super(key, filename, longName, description);
     }
 
     /**

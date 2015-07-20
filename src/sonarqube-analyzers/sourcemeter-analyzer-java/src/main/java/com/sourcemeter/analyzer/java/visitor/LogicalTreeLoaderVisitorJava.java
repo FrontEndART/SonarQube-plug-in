@@ -32,13 +32,9 @@ package com.sourcemeter.analyzer.java.visitor;
 import graphlib.Edge;
 import graphlib.Node;
 import graphsupportlib.Metric.Position;
-import com.sourcemeter.analyzer.base.helper.GraphHelper;
-import com.sourcemeter.analyzer.base.visitor.LogicalTreeLoaderVisitor;
-import com.sourcemeter.analyzer.java.core.resources.JavaClass;
-import com.sourcemeter.analyzer.java.core.resources.JavaMethod;
-import com.sourcemeter.analyzer.java.helper.VisitorHelperJava;
 
 import java.io.File;
+import java.util.Locale;
 
 import org.sonar.api.batch.SensorContext;
 import org.sonar.api.batch.fs.FileSystem;
@@ -48,19 +44,23 @@ import org.sonar.api.resources.Project;
 import org.sonar.api.resources.Resource;
 import org.sonar.api.utils.SonarException;
 
+import com.sourcemeter.analyzer.base.helper.GraphHelper;
+import com.sourcemeter.analyzer.base.visitor.LogicalTreeLoaderVisitor;
+import com.sourcemeter.analyzer.java.core.resources.JavaClass;
+import com.sourcemeter.analyzer.java.core.resources.JavaMethod;
+import com.sourcemeter.analyzer.java.helper.VisitorHelperJava;
+
 public class LogicalTreeLoaderVisitorJava extends LogicalTreeLoaderVisitor {
 
     private final boolean uploadMethods;
-    private final boolean skipTUID;
 
     public LogicalTreeLoaderVisitorJava(FileSystem fileSystem, Settings settings,
             ResourcePerspectives perspectives, Project project, SensorContext sensorContext, long numOfNodes) {
 
         super(fileSystem, settings, perspectives, project, sensorContext, numOfNodes,
-                new VisitorHelperJava(project, sensorContext, perspectives, settings));
+                new VisitorHelperJava(project, sensorContext, perspectives, fileSystem));
 
         this.uploadMethods = settings.getBoolean("sm.java.uploadMethods");
-        this.skipTUID = settings.getBoolean("sm.cpp.skipTUID");
     }
 
     /**
@@ -79,9 +79,13 @@ public class LogicalTreeLoaderVisitorJava extends LogicalTreeLoaderVisitor {
             return;
         }
 
+        String nodeName = GraphHelper.getNodeNameAttribute(node);
+        if (nodeName == null || "__LogicalRoot__".equals(nodeName)) {
+            return;
+        }
+
         long startLogicalTime = System.currentTimeMillis();
         String nodeLongName = GraphHelper.getNodeLongNameAttribute(node);
-        String nodeName = GraphHelper.getNodeNameAttribute(node);
         Position nodePosition = graphsupportlib.Metric.getFirstPositionAttribute(node);
 
         Resource resource = null;
@@ -102,16 +106,19 @@ public class LogicalTreeLoaderVisitorJava extends LogicalTreeLoaderVisitor {
         }
 
         if (GraphHelper.isClass(node)) {
-            resource = new JavaClass(nodeTUID, nodeName, nodeLongName);
+            resource = new JavaClass(nodeTUID, nodeName, nodeLongName,
+                    nodeType.toLowerCase(Locale.ENGLISH));
             parentResource = org.sonar.api.resources.File.fromIOFile(new File(nodePosition.path), this.project);
 
             indexResource(node, resource, parentResource, nodePosition);
         } else if (this.uploadMethods && "Method".equals(nodeType)) {
             Node parentNode = GraphHelper.getParentNode(node);
             if (GraphHelper.isClass(parentNode)) {
+                String parentNodeType = parentNode.getType().getType().toLowerCase(Locale.ENGLISH);
                 parentResource = new JavaClass(GraphHelper.getNodeTUID(parentNode),
                         GraphHelper.getNodeNameAttribute(parentNode),
-                        GraphHelper.getNodeLongNameAttribute(parentNode));
+                        GraphHelper.getNodeLongNameAttribute(parentNode),
+                        parentNodeType);
                 resource = new JavaMethod(nodeTUID, nodeName, nodeLongName)
                         .setParent(parentResource);
 

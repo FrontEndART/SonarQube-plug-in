@@ -1,5 +1,5 @@
 ANALYZERS = sourcemeter-analyzer-base sourcemeter-analyzer-cpp sourcemeter-analyzer-java sourcemeter-analyzer-python sourcemeter-analyzer-rpg
-PACKAGENAME = sourcemeter-sonarqube-plugins-package-7.0
+PACKAGENAME = sourcemeter-sonarqube-plugins-package-7.0.4
 
 all: sonarqube-plugin-package
 

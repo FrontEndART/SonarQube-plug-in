@@ -116,7 +116,7 @@ public abstract class SourceMeterSensor implements Sensor {
     @Override
     public boolean shouldExecuteOnProject(Project project) {
         return this.fileSystem.hasFiles(fileSystem.predicates().hasLanguage(
-                SourceMeterInitializer.pluginLanguage.getKey()));
+                SourceMeterInitializer.getPluginLanguage().getKey()));
     }
 
     @Override

@@ -59,7 +59,7 @@ public abstract class DefaultDecorator extends BaseDecorator {
     @Override
     public void decorate(Resource resource, DecoratorContext context) {
         if (resource.getLanguage() != null
-            && !SourceMeterInitializer.pluginLanguage.getKey().equals(resource.getLanguage().getKey())) {
+            && !SourceMeterInitializer.getPluginLanguage().getKey().equals(resource.getLanguage().getKey())) {
             return;
         }
 

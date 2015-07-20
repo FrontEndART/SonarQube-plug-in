@@ -31,48 +31,59 @@ package com.sourcemeter.analyzer.base.helper;
 
 import graphlib.Attribute;
 import graphlib.Attribute.aType;
+import graphlib.AttributeComposite;
 import graphlib.AttributeFloat;
 import graphlib.AttributeInt;
+import graphlib.AttributeString;
 import graphlib.Node;
 import graphsupportlib.Metric.Position;
-import com.sourcemeter.analyzer.base.batch.ProfileInitializer;
-import com.sourcemeter.analyzer.base.visitor.BaseVisitor;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.ListIterator;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.sonar.api.batch.SensorContext;
+import org.sonar.api.batch.fs.FileSystem;
 import org.sonar.api.component.ResourcePerspectives;
-import org.sonar.api.config.Settings;
+import org.sonar.api.issue.Issuable;
+import org.sonar.api.issue.Issue;
 import org.sonar.api.measures.Measure;
 import org.sonar.api.measures.Metric;
 import org.sonar.api.measures.Metric.ValueType;
 import org.sonar.api.resources.Project;
 import org.sonar.api.resources.Resource;
+import org.sonar.api.rule.RuleKey;
 import org.sonar.api.utils.SonarException;
 import org.sonar.plugins.SourceMeterCore.api.SourceMeterMetricFinder;
+
+import com.sourcemeter.analyzer.base.batch.ProfileInitializer;
+import com.sourcemeter.analyzer.base.visitor.BaseVisitor;
 
 /**
  * Helper class for Visitor classes to upload metrics and warnings.
  */
 public abstract class VisitorHelper {
 
-    protected static final Logger LOG = LoggerFactory.getLogger(VisitorHelper.class);
+    private static final Logger LOG = LoggerFactory.getLogger(VisitorHelper.class);
     protected static final String METRIC_PREFIX = "MET_";
 
-    protected final Project project;
-    protected final SensorContext sensorContext;
-    protected final ResourcePerspectives perspectives;
-    protected final Settings settings;
-    protected final SourceMeterMetricFinder metricFinder;
+    private final Project project;
+    private final SensorContext sensorContext;
+    private final ResourcePerspectives perspectives;
+    private final SourceMeterMetricFinder metricFinder;
+    protected final FileSystem fileSystem;
 
     public VisitorHelper(Project project, SensorContext sensorContext,
-            ResourcePerspectives perspectives, Settings settings,
+            ResourcePerspectives perspectives, FileSystem fileSystem,
             SourceMeterMetricFinder metricFinder) {
         this.project = project;
         this.sensorContext = sensorContext;
         this.perspectives = perspectives;
-        this.settings = settings;
         this.metricFinder = metricFinder;
+        this.fileSystem = fileSystem;
     }
 
     /**
@@ -83,8 +94,65 @@ public abstract class VisitorHelper {
      * @param resource
      * @param nodePosition
      */
-    public abstract void uploadWarnings(Attribute attribute, Node node,
-            Position nodePosition);
+    public void uploadWarnings(Attribute attribute, Node node, Position nodePosition) {
+        AttributeComposite warningAttribute = (AttributeComposite) attribute;
+        int lineId = 0;
+        String warningText = "";
+        String warningPath = "";
+        String stackTrace = "";
+
+        List<Attribute> compAttributes = warningAttribute.getAttributes();
+        for (Attribute a : compAttributes) {
+            if ("Path".equals(a.getName())) {
+                warningPath = ((AttributeString) a).getValue();
+            } else if ("Line".equals(a.getName())) {
+                lineId = ((AttributeInt) a).getValue();
+            } else if ("WarningText".equals(a.getName())) {
+                warningText = ((AttributeString) a).getValue();
+            } else if ("ExtraInfo".equals(a.getName())) {
+                stackTrace = getStackTraceFromWarningAttribute(
+                        (AttributeComposite) a, warningText.length());
+            }
+        }
+
+        Resource violationResource = FileHelper.getIndexedFileForFilePath(
+                fileSystem, sensorContext, project, warningPath);
+        if (violationResource == null || lineId == 0) {
+            return;
+        }
+
+        Issuable issuable = this.perspectives.as(Issuable.class, violationResource);
+        if (issuable != null) {
+            String tmpRuleKey = warningAttribute.getName();
+            warningText = getWarningTextWithPrefix(tmpRuleKey, warningText) + stackTrace;
+            tmpRuleKey = getCorrectedRuleKey(tmpRuleKey);
+            RuleKey ruleKey = RuleKey.of(getRuleKey(), tmpRuleKey);
+
+            Issue issue = issuable.newIssueBuilder()
+                    .ruleKey(ruleKey)
+                    .message(warningText.toString())
+                    .line(lineId)
+                    .build();
+
+            issuable.addIssue(issue);
+        }
+    }
+
+    /**
+     * Returns the language specific rule key.
+     *
+     * @return
+     */
+    public abstract String getRuleKey();
+
+    /**
+     * Returns the warning text with the corresponding prefix for the given rule
+     * key.
+     *
+     * @param warningText
+     * @return
+     */
+    public abstract String getWarningTextWithPrefix(String ruleKey, String warningText);
 
     /**
      * If a Ruleset metric for the current language is not uploaded, it will be
@@ -206,5 +274,102 @@ public abstract class VisitorHelper {
         }
 
         return path;
+    }
+
+    /**
+     * Creates the stack trace String from the given attribute.
+     *
+     * @param extraInfoAttribute
+     *            the attribute that contains the stack trace information
+     * @param warningTextLength
+     *            length of the current warning text
+     * @return a String, containing the stack trace information
+     */
+    public String getStackTraceFromWarningAttribute(
+            AttributeComposite extraInfoAttribute, int warningTextLength) {
+        if (!"ExtraInfo".equals(extraInfoAttribute.getName())) {
+            return "";
+        }
+
+        StringBuffer stackTrace = new StringBuffer("<br/>Trace:<br/>");
+        List<String> stackTraceList = null;
+        int callStackDepth = 0;
+
+//      Example:
+//      <attribute type = "composite" name = "ExtraInfo" context = "">
+//        <attribute type = "composite" name = "SourceLink" context = "">
+//          <attribute type = "string" name = "Path" context = "" value =
+//            "src/org/snipsnap/net/AddLabelServlet.java"/>
+//          <attribute type = "int" name = "Line" context = "" value = "71"/>
+//          <attribute type = "int" name = "Column" context = "" value = "0"/>
+//          <attribute type = "int" name = "EndLine" context = "" value = "71"/>
+//          <attribute type = "int" name = "EndColumn" context = "" value = "10000"/>
+//          <attribute type = "int" name = "CallStackDepth" context = "" value = "0"/>
+//        </attribute>
+//      ...
+//      </attribute>
+        stackTraceList = new ArrayList<String>();
+        List<Attribute> extraInfoAttributes = extraInfoAttribute.getAttributes();
+        String previousPath = "";
+        int previousLine = 0;
+        for (Attribute sourceLink : extraInfoAttributes) {
+            List<Attribute> sourceLinkAttributes = sourceLink.getAttributes();
+            String path = "";
+            int line = 0;
+            for (Attribute sourceLinkAttribute : sourceLinkAttributes) {
+                if ("Path".equals(sourceLinkAttribute.getName())) {
+                    path = ((AttributeString) sourceLinkAttribute).getValue();
+                } else if ("Line".equals(sourceLinkAttribute.getName())) {
+                    line = ((AttributeInt) sourceLinkAttribute).getValue();
+                } else if ("CallStackDepth".equals(sourceLinkAttribute
+                        .getName())) {
+                    callStackDepth = ((AttributeInt) sourceLinkAttribute)
+                            .getValue();
+                }
+            }
+            if (!previousPath.equals(path) || previousLine != line) {
+                previousLine = line;
+                previousPath = path;
+                Resource tracePathResource = org.sonar.api.resources.File
+                        .fromIOFile(new File(path), this.project);
+                StringBuffer pathLink = new StringBuffer();
+                pathLink.append("__");
+                pathLink.append(sensorContext.getResource(tracePathResource).getId());
+                pathLink.append(":");
+                pathLink.append(sensorContext.getResource(tracePathResource).getName());
+                pathLink.append(":");
+                pathLink.append(line);
+                pathLink.append(":");
+                if (callStackDepth > 0) {
+                    pathLink.append("+");
+                }
+                pathLink.append(callStackDepth);
+                pathLink.append("__<br/>");
+                stackTraceList.add(pathLink.toString());
+            }
+        }
+        int sum = warningTextLength;
+        int index = stackTraceList.size();
+        ListIterator<String> stlIt = stackTraceList.listIterator(stackTraceList.size());
+        while (stlIt.hasPrevious()) {
+            String string = stlIt.previous();
+            int length = string.length();
+            if (sum + length > 3950) {
+                break;
+            } else {
+                sum += length;
+                index--;
+            }
+        }
+        if (index > 0) {
+            stackTrace.append("...<br/>");
+        }
+        stlIt = stackTraceList.listIterator(index);
+        while (stlIt.hasNext()) {
+            String string = stlIt.next();
+            stackTrace.append(string);
+        }
+
+        return stackTrace.toString();
     }
 }

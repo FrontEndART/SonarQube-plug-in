@@ -32,14 +32,6 @@ package com.sourcemeter.analyzer.rpg.visitor;
 import graphlib.Edge;
 import graphlib.Node;
 import graphsupportlib.Metric.Position;
-import com.sourcemeter.analyzer.base.helper.GraphHelper;
-import com.sourcemeter.analyzer.base.visitor.LogicalTreeLoaderVisitor;
-import com.sourcemeter.analyzer.rpg.core.resources.RPGProcedure;
-import com.sourcemeter.analyzer.rpg.core.resources.RPGProgram;
-import com.sourcemeter.analyzer.rpg.core.resources.RPGSubroutine;
-import com.sourcemeter.analyzer.rpg.helper.FileHelperRPG;
-import com.sourcemeter.analyzer.rpg.helper.GraphHelperRPG;
-import com.sourcemeter.analyzer.rpg.helper.VisitorHelperRPG;
 
 import java.io.File;
 
@@ -51,9 +43,16 @@ import org.sonar.api.resources.Project;
 import org.sonar.api.resources.Resource;
 import org.sonar.api.utils.SonarException;
 
-public class LogicalTreeLoaderVisitorRPG extends LogicalTreeLoaderVisitor {
+import com.sourcemeter.analyzer.base.helper.GraphHelper;
+import com.sourcemeter.analyzer.base.visitor.LogicalTreeLoaderVisitor;
+import com.sourcemeter.analyzer.rpg.core.resources.RPGProcedure;
+import com.sourcemeter.analyzer.rpg.core.resources.RPGProgram;
+import com.sourcemeter.analyzer.rpg.core.resources.RPGSubroutine;
+import com.sourcemeter.analyzer.rpg.helper.FileHelperRPG;
+import com.sourcemeter.analyzer.rpg.helper.GraphHelperRPG;
+import com.sourcemeter.analyzer.rpg.helper.VisitorHelperRPG;
 
-    private final boolean skipTUID;
+public class LogicalTreeLoaderVisitorRPG extends LogicalTreeLoaderVisitor {
 
     public LogicalTreeLoaderVisitorRPG(FileSystem fileSystem,
             Settings settings, ResourcePerspectives perspectives,
@@ -61,9 +60,7 @@ public class LogicalTreeLoaderVisitorRPG extends LogicalTreeLoaderVisitor {
 
         super(fileSystem, settings, perspectives, project, sensorContext,
                 numOfNodes, new VisitorHelperRPG(project, sensorContext,
-                perspectives, settings, fileSystem));
-
-        this.skipTUID = settings.getBoolean("sm.cpp.skipTUID");
+                perspectives, fileSystem));
     }
 
     /**
@@ -82,6 +79,11 @@ public class LogicalTreeLoaderVisitorRPG extends LogicalTreeLoaderVisitor {
             return;
         }
 
+        String nodeName = GraphHelper.getNodeNameAttribute(node);
+        if (nodeName == null || "__LogicalRoot__".equals(nodeName)) {
+            return;
+        }
+
         long startLogicalTime = System.currentTimeMillis();
         Position nodePosition = graphsupportlib.Metric.getFirstPositionAttribute(node);
         String nodeType = node.getType().getType();
@@ -90,7 +92,6 @@ public class LogicalTreeLoaderVisitorRPG extends LogicalTreeLoaderVisitor {
         }
 
         String nodeLongName = GraphHelperRPG.getNodeLongNameAttribute(node);
-        String nodeName = GraphHelperRPG.getNodeNameAttribute(node);
         String nodeTUID = GraphHelperRPG.getNodeTUID(node);
         Node programNode = GraphHelperRPG.getProgramNode(node);
         String spoolFile = GraphHelperRPG.getSpoolFile(programNode);

@@ -31,25 +31,25 @@ package com.sourcemeter.analyzer.cpp.visitor;
 
 import graphlib.Edge;
 import graphlib.Node;
-import com.sourcemeter.analyzer.base.helper.GraphHelper;
-import com.sourcemeter.analyzer.base.visitor.CloneTreeLoaderVisitor;
-import com.sourcemeter.analyzer.cpp.helper.VisitorHelperCpp;
 
 import org.sonar.api.batch.SensorContext;
 import org.sonar.api.batch.fs.FileSystem;
 import org.sonar.api.component.ResourcePerspectives;
-import org.sonar.api.config.Settings;
 import org.sonar.api.resources.Project;
+
+import com.sourcemeter.analyzer.base.helper.GraphHelper;
+import com.sourcemeter.analyzer.base.visitor.CloneTreeLoaderVisitor;
+import com.sourcemeter.analyzer.cpp.helper.VisitorHelperCpp;
 
 public class CloneTreeLoaderVisitorCpp extends CloneTreeLoaderVisitor {
 
-    public CloneTreeLoaderVisitorCpp(FileSystem fileSystem, Settings settings,
+    public CloneTreeLoaderVisitorCpp(FileSystem fileSystem,
             ResourcePerspectives perspectives, Project project,
             SensorContext sensorContext, long numOfNodes) {
 
         super(fileSystem, perspectives, project, sensorContext,
                 numOfNodes, new VisitorHelperCpp(project, sensorContext,
-                perspectives, settings, fileSystem));
+                perspectives, fileSystem));
     }
 
     @Override

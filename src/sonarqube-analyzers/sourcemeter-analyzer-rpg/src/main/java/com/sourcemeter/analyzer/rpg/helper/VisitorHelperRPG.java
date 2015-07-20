@@ -29,29 +29,18 @@
  */
 package com.sourcemeter.analyzer.rpg.helper;
 
-import graphlib.Attribute;
-import graphlib.AttributeComposite;
-import graphlib.AttributeInt;
-import graphlib.AttributeString;
 import graphlib.Node;
 import graphsupportlib.Metric.Position;
-import com.sourcemeter.analyzer.base.batch.ProfileInitializer;
-import com.sourcemeter.analyzer.base.helper.VisitorHelper;
-import com.sourcemeter.analyzer.rpg.SourceMeterRPGMetricFinder;
-import com.sourcemeter.analyzer.rpg.profile.SourceMeterRPGRuleRepository;
-
-import java.io.File;
-import java.util.List;
 
 import org.sonar.api.batch.SensorContext;
 import org.sonar.api.batch.fs.FileSystem;
 import org.sonar.api.component.ResourcePerspectives;
-import org.sonar.api.config.Settings;
-import org.sonar.api.issue.Issuable;
-import org.sonar.api.issue.Issue;
 import org.sonar.api.resources.Project;
-import org.sonar.api.resources.Resource;
-import org.sonar.api.rule.RuleKey;
+
+import com.sourcemeter.analyzer.base.batch.ProfileInitializer;
+import com.sourcemeter.analyzer.base.helper.VisitorHelper;
+import com.sourcemeter.analyzer.rpg.SourceMeterRPGMetricFinder;
+import com.sourcemeter.analyzer.rpg.profile.SourceMeterRPGRuleRepository;
 
 public class VisitorHelperRPG extends VisitorHelper {
 
@@ -59,62 +48,21 @@ public class VisitorHelperRPG extends VisitorHelper {
     public static final String PROCEDURE_TRESHOLD_VIOLATION_SUFFIX = "_warning_Procedure";
     public static final String SUBROUTINE_TRESHOLD_VIOLATION_SUFFIX = "_warning_Subroutine";
 
-    private final FileSystem fileSystem;
-
     public VisitorHelperRPG(Project project, SensorContext sensorContext,
-            ResourcePerspectives perspectives, Settings settings,
-            FileSystem fileSystem) {
+            ResourcePerspectives perspectives, FileSystem fileSystem) {
 
-        super(project, sensorContext, perspectives, settings,
+        super(project, sensorContext, perspectives, fileSystem,
                 new SourceMeterRPGMetricFinder());
-
-        this.fileSystem = fileSystem;
     }
 
     @Override
-    public void uploadWarnings(Attribute attribute, Node node, Position nodePosition) {
-        if (nodePosition == null) {
-            return;
-        }
+    public String getRuleKey() {
+        return SourceMeterRPGRuleRepository.getRepositoryKey();
+    }
 
-        AttributeComposite warningAttribute = (AttributeComposite) attribute;
-        int lineId = 0;
-        String warningText = "";
-        String warningPath = "";
-
-        List<Attribute> compAttributes = warningAttribute.getAttributes();
-        for (Attribute a : compAttributes) {
-            if ("Path".equals(a.getName())) {
-                warningPath = ((AttributeString) a).getValue();
-            } else if ("Line".equals(a.getName())) {
-                lineId = ((AttributeInt) a).getValue();
-            } else if ("WarningText".equals(a.getName())) {
-                warningText = ((AttributeString) a).getValue();
-            }
-        }
-
-        warningPath = nodePosition.path;
-
-        Resource violationResource = org.sonar.api.resources.File.fromIOFile(
-                new File(warningPath), this.project);
-
-        if (violationResource == null) {
-            return;
-        }
-
-        Issuable issuable = this.perspectives.as(Issuable.class,
-                violationResource);
-        if (issuable != null) {
-            String tmpRuleKey = warningAttribute.getName();
-            tmpRuleKey = getCorrectedRuleKey(tmpRuleKey);
-            warningText = "SourceMeter: " + warningText;
-            RuleKey ruleKey = RuleKey.of(SourceMeterRPGRuleRepository.getRepositoryKey(),
-                    tmpRuleKey);
-            Issue issue = issuable.newIssueBuilder().ruleKey(ruleKey)
-                    .message(warningText).line(lineId).build();
-
-            issuable.addIssue(issue);
-        }
+    @Override
+    public String getWarningTextWithPrefix(String ruleKey, String warningText) {
+        return "SourceMeter: " + warningText;
     }
 
     @Override

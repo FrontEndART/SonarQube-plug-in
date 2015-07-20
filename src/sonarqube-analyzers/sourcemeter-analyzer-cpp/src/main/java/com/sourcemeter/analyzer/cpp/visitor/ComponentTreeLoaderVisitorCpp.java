@@ -30,24 +30,24 @@
 package com.sourcemeter.analyzer.cpp.visitor;
 
 import graphlib.Edge;
-import com.sourcemeter.analyzer.base.visitor.ComponentTreeLoaderVisitor;
-import com.sourcemeter.analyzer.cpp.helper.VisitorHelperCpp;
 
 import org.sonar.api.batch.SensorContext;
 import org.sonar.api.batch.fs.FileSystem;
 import org.sonar.api.component.ResourcePerspectives;
-import org.sonar.api.config.Settings;
 import org.sonar.api.resources.Project;
+
+import com.sourcemeter.analyzer.base.visitor.ComponentTreeLoaderVisitor;
+import com.sourcemeter.analyzer.cpp.helper.VisitorHelperCpp;
 
 
 public class ComponentTreeLoaderVisitorCpp extends ComponentTreeLoaderVisitor {
-    public ComponentTreeLoaderVisitorCpp(Settings settings,
-            ResourcePerspectives perspectives, Project project,
-            SensorContext sensorContext, FileSystem fileSystem, long numOfNodes) {
+    public ComponentTreeLoaderVisitorCpp(ResourcePerspectives perspectives,
+            Project project, SensorContext sensorContext,
+            FileSystem fileSystem, long numOfNodes) {
 
         super(perspectives, project, sensorContext,
               numOfNodes, new VisitorHelperCpp(project, sensorContext,
-              perspectives, settings, fileSystem));
+              perspectives, fileSystem));
     }
 
     /**

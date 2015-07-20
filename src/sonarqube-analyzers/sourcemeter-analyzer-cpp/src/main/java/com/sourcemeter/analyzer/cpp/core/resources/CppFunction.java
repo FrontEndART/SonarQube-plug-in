@@ -38,13 +38,13 @@ public class CppFunction extends BaseMethod {
 
     /**
      * Create CppFunction by all necessary attributes
-     * 
+     *
      * @param key
      * @param name
      * @param longName
      */
     public CppFunction(String key, String name, String longName) {
-        super(key, name, longName);
+        super(key, name, longName, DEFAULT_FUNCTION_DESCRIPTION);
     }
 
     /**

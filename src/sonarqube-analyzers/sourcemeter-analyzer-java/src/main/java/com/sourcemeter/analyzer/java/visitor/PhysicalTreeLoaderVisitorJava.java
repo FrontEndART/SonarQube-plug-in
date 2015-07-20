@@ -30,23 +30,23 @@
 package com.sourcemeter.analyzer.java.visitor;
 
 import graphlib.Edge;
-import com.sourcemeter.analyzer.base.visitor.PhysicalTreeLoaderVisitor;
-import com.sourcemeter.analyzer.java.helper.VisitorHelperJava;
 
 import org.sonar.api.batch.SensorContext;
 import org.sonar.api.batch.fs.FileSystem;
 import org.sonar.api.component.ResourcePerspectives;
-import org.sonar.api.config.Settings;
 import org.sonar.api.resources.Project;
 
+import com.sourcemeter.analyzer.base.visitor.PhysicalTreeLoaderVisitor;
+import com.sourcemeter.analyzer.java.helper.VisitorHelperJava;
+
 public class PhysicalTreeLoaderVisitorJava extends PhysicalTreeLoaderVisitor {
-    public PhysicalTreeLoaderVisitorJava(FileSystem fileSystem, Settings settings,
-            ResourcePerspectives perspectives, Project project, SensorContext sensorContext,
-            long numOfNodes) {
+    public PhysicalTreeLoaderVisitorJava(FileSystem fileSystem,
+            ResourcePerspectives perspectives, Project project,
+            SensorContext sensorContext, long numOfNodes) {
 
         super(fileSystem, perspectives, project, sensorContext,
               numOfNodes, new VisitorHelperJava(project, sensorContext,
-              perspectives, settings));
+              perspectives, fileSystem));
     }
 
     /**

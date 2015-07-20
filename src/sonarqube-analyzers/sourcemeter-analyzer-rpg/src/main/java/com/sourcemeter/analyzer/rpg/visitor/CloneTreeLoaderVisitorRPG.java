@@ -31,25 +31,25 @@ package com.sourcemeter.analyzer.rpg.visitor;
 
 import graphlib.Edge;
 import graphlib.Node;
-import com.sourcemeter.analyzer.base.helper.GraphHelper;
-import com.sourcemeter.analyzer.base.visitor.CloneTreeLoaderVisitor;
-import com.sourcemeter.analyzer.rpg.helper.VisitorHelperRPG;
 
 import org.sonar.api.batch.SensorContext;
 import org.sonar.api.batch.fs.FileSystem;
 import org.sonar.api.component.ResourcePerspectives;
-import org.sonar.api.config.Settings;
 import org.sonar.api.resources.Project;
+
+import com.sourcemeter.analyzer.base.helper.GraphHelper;
+import com.sourcemeter.analyzer.base.visitor.CloneTreeLoaderVisitor;
+import com.sourcemeter.analyzer.rpg.helper.VisitorHelperRPG;
 
 public class CloneTreeLoaderVisitorRPG extends CloneTreeLoaderVisitor {
 
     public CloneTreeLoaderVisitorRPG(FileSystem fileSystem,
-            Settings settings, ResourcePerspectives perspectives,
-            Project project, SensorContext sensorContext, long numOfNodes) {
+            ResourcePerspectives perspectives, Project project,
+            SensorContext sensorContext, long numOfNodes) {
 
         super(fileSystem, perspectives, project, sensorContext, numOfNodes,
                 new VisitorHelperRPG(project, sensorContext, perspectives,
-                        settings, fileSystem));
+                        fileSystem));
     }
 
     @Override

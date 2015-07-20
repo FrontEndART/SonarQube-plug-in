@@ -30,23 +30,23 @@
 package com.sourcemeter.analyzer.python.visitor;
 
 import graphlib.Edge;
-import com.sourcemeter.analyzer.base.visitor.PhysicalTreeLoaderVisitor;
-import com.sourcemeter.analyzer.python.helper.VisitorHelperPython;
 
 import org.sonar.api.batch.SensorContext;
 import org.sonar.api.batch.fs.FileSystem;
 import org.sonar.api.component.ResourcePerspectives;
-import org.sonar.api.config.Settings;
 import org.sonar.api.resources.Project;
+
+import com.sourcemeter.analyzer.base.visitor.PhysicalTreeLoaderVisitor;
+import com.sourcemeter.analyzer.python.helper.VisitorHelperPython;
 
 public class PhysicalTreeLoaderVisitorPython extends PhysicalTreeLoaderVisitor {
     public PhysicalTreeLoaderVisitorPython(FileSystem fileSystem,
-            Settings settings, ResourcePerspectives perspectives,
-            Project project, SensorContext sensorContext, long numOfNodes) {
+            ResourcePerspectives perspectives, Project project,
+            SensorContext sensorContext, long numOfNodes) {
 
         super(fileSystem, perspectives, project, sensorContext,
                 numOfNodes, new VisitorHelperPython(project, sensorContext,
-                perspectives, settings));
+                perspectives, fileSystem));
     }
 
     /**

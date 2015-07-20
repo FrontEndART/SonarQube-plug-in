@@ -32,8 +32,8 @@ package com.sourcemeter.analyzer.python.visitor;
 import graphlib.Edge;
 
 import org.sonar.api.batch.SensorContext;
+import org.sonar.api.batch.fs.FileSystem;
 import org.sonar.api.component.ResourcePerspectives;
-import org.sonar.api.config.Settings;
 import org.sonar.api.resources.Project;
 
 import com.sourcemeter.analyzer.base.visitor.ComponentTreeLoaderVisitor;
@@ -41,14 +41,13 @@ import com.sourcemeter.analyzer.python.helper.VisitorHelperPython;
 
 public class ComponentTreeLoaderVisitorPython extends ComponentTreeLoaderVisitor {
 
-    public ComponentTreeLoaderVisitorPython(Settings settings,
-                                            ResourcePerspectives perspectives,
-                                            Project project,
-                                            SensorContext sensorContext,
-                                            long numOfNodes) {
+    public ComponentTreeLoaderVisitorPython(FileSystem fileSystem,
+            ResourcePerspectives perspectives, Project project,
+            SensorContext sensorContext, long numOfNodes) {
 
-        super(perspectives, project, sensorContext, numOfNodes, new VisitorHelperPython(project, sensorContext,
-                                                                                        perspectives, settings));
+        super(perspectives, project, sensorContext, numOfNodes,
+                new VisitorHelperPython(project, sensorContext, perspectives,
+                fileSystem));
     }
 
     /**

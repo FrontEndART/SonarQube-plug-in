@@ -34,7 +34,7 @@
 %>
       <tr class="<%= index.even? ? 'even' : 'odd' %>" id="<%= row_id %>">
         <td>
-          <%= image_tag("#{url_for_static(:plugin => 'SourceMeterAnalyzer' + @resource.language, :path => 'class.png')}", :class => "sm-drilldown-icons") %>
+          <%= image_tag("#{url_for_static(:plugin => 'SourceMeterAnalyzer' + @resource.language, :path => class_obj.resource.description + '.png')}", :class => "sm-drilldown-icons") %>
           <% bline = class_obj.measure('SM:beginline').value.to_i %>
           <% eline = class_obj.measure('SM:endline').value.to_i %>
 
@@ -64,7 +64,7 @@
 %>
           <tr class="<%= index.even? ? 'even' : 'odd' %>" id="<%= row_id %>">
             <td>
-              <%= image_tag("#{url_for_static(:plugin => 'SourceMeterAnalyzer' + @resource.language, :path => 'class.png')}", :class => "sm-drilldown-icons") %>
+              <%= image_tag("#{url_for_static(:plugin => 'SourceMeterAnalyzer' + @resource.language, :path => class_data['description'] + '.png')}", :class => "sm-drilldown-icons") %>
               <a title="New window" href="#" onclick="showLinkForResource(<%= class_data['id'] %>)" class="sm-show-link-button"></a>
               <a href="#" onclick="showMetricsAndFilePaths(<%= class_data['id'] %>, '<%= row_id %>', <%= bline %>, <%= eline %>, true, '<%= params[:data_key] %>', true)"><%= class_data['name'] %></a>
             </td>
@@ -109,11 +109,7 @@
 %>
           <tr class="<%= index.even? ? 'even' : 'odd' %>" id="<%= row_id %>">
             <td>
-              <% if method_obj['qualifier'] == @sourcemeter_qualifiers::BASE_FUNCTION_QUALIFIER %>
-                <%= image_tag("#{url_for_static(:plugin => 'SourceMeterAnalyzer' + @resource.language, :path => 'function.png')}", :class => "sm-drilldown-icons") %>
-              <% else %>
-                <%= image_tag("#{url_for_static(:plugin => 'SourceMeterAnalyzer' + @resource.language, :path => 'method.png')}", :class => "sm-drilldown-icons") %>
-              <% end %>
+              <%= image_tag("#{url_for_static(:plugin => 'SourceMeterAnalyzer' + @resource.language, :path => method_obj['description'] + '.png')}", :class => "sm-drilldown-icons") %>
               <a title="New window" href="#" onclick="showLinkForResource(<%= method_obj['id'] %>)" class="sm-show-link-button"></a>
               <a href="#" onclick="showMetricsAndFilePaths(<%= method_obj['id'] %>, '<%= row_id %>', <%= bline %>, <%= eline %>, true, '<%= params[:data_key] %>')"><%= method_obj['name'] %></a>
             </td>
@@ -133,7 +129,7 @@
 %>
         <tr class="<%= index.even? ? 'even' : 'odd' %>" id="<%= row_id %>">
           <td>
-            <%= image_tag("#{url_for_static(:plugin => 'SourceMeterAnalyzer' + @resource.language, :path => 'function.png')}", :class => "sm-drilldown-icons") %>
+            <%= image_tag("#{url_for_static(:plugin => 'SourceMeterAnalyzer' + @resource.language, :path => method_obj.resource.description + '.png')}", :class => "sm-drilldown-icons") %>
             <a title="New window" href="#" onclick="showLinkForResource(<%= method_obj.resource.id %>)" class="sm-show-link-button"></a>
             <a href="#" onclick="showMetricsAndFilePaths(<%= method_obj.id %>, '<%= row_id %>', <%= bline %>, <%= eline %>)"><%= method_obj.resource.name%></a>
           </td>
@@ -151,7 +147,7 @@
 %>
         <tr class="<%= index.even? ? 'even' : 'odd'%>" id="<%= row_id %>">
           <td>
-            <%= image_tag("#{url_for_static(:plugin => 'SourceMeterAnalyzer' + @resource.language, :path => 'method.png')}", :class => "sm-drilldown-icons") %>
+            <%= image_tag("#{url_for_static(:plugin => 'SourceMeterAnalyzer' + @resource.language, :path => method_obj.resource.description + '.png')}", :class => "sm-drilldown-icons") %>
             <a title="New window" href="#" onclick="showLinkForResource(<%= method_obj.resource.id %>)" class="sm-show-link-button"></a>
             <a href="#" onclick="showMetricsAndFilePaths(<%= method_obj.id %>, '<%= row_id %>', <%= bline %>, <%= eline %>)"><%= method_obj.resource.name%></a>
           </td>

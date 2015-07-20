@@ -29,15 +29,15 @@
  */
 package com.sourcemeter.analyzer.base.helper;
 
-import com.sourcemeter.analyzer.base.core.resources.BaseClass;
-import com.sourcemeter.analyzer.base.core.resources.CloneClass;
-
 import java.util.Collection;
 
 import org.sonar.api.batch.DecoratorContext;
 import org.sonar.api.measures.Measure;
 import org.sonar.api.measures.Metric;
 import org.sonar.api.resources.Resource;
+
+import com.sourcemeter.analyzer.base.core.resources.BaseClass;
+import com.sourcemeter.analyzer.base.core.resources.CloneClass;
 
 public class DecoratorHelper {
 
@@ -154,6 +154,7 @@ public class DecoratorHelper {
             if (!resourceClass.isInstance(contextResource)) {
                 continue;
             }
+
             Measure childMeasure = decoratorContext.getMeasure(metric);
             if (childMeasure != null) {
                 sum += childMeasure.getValue();

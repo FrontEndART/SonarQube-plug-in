@@ -55,8 +55,7 @@ public class RPGProgram extends BaseClass {
      * @param longName
      */
     public RPGProgram(String key, String filename, String longName) {
-        super(key, filename, longName);
-        this.setDescription(DESCRIPTION);
+        super(key, filename, longName, DESCRIPTION);
     }
 
     /**

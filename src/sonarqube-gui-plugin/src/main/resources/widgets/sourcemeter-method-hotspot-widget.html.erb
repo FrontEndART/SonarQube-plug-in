@@ -4,10 +4,10 @@
   base_function_qualifier = sourcemeter_qualifiers::BASE_FUNCTION_QUALIFIER
 
   threshold = nil
-  value_s = ''  
+  value_s = ''
   metric = widget_properties["Metric"] || Metric.by_key('LOC')
   logo = url_for_static(:plugin => 'SourceMeterGUI', :path => 'SourceMeterLogo.png')
-  title = " #{image_tag(logo)} SourceMeter: "  + (widget_properties["Title"] || ('Method Hotspots by ' + metric.short_name + " (#{metric.key}#{(', threshold: '+ value_s) if !threshold.blank?})"))
+  title = " #{image_tag(logo)} SourceMeter: "  + (widget_properties["Title"] || ('Method Hotspots by ' + metric.short_name + " (#{metric.key})"))
   limit = widget_properties["Limit"] || 10
 
   snapshots = nil
@@ -32,27 +32,40 @@
     snapshots=Snapshot.find(measures.map { |m| m.snapshot_id }, :include => 'project')
     snapshots_by_id = {}
     snapshots.each do |s|
-      snapshots_by_id[s.id]=s
-      if (threshold == nil)
+      snapshots_by_id[s.id] = s
+
+      if(threshold.nil?)
         resource = s.resource
-        threshold=configuration('sm.' + resource.language + '.' + resource.description + '.baseline.' + metric.key)
+
+        threshold_key = 'sm.' + resource.language + '.' + resource.description + '.baseline.' + metric.key
+        baseline_def = Api::Utils.java_facade.propertyDefinitions.get(threshold_key)
+        if(baseline_def.nil?)
+          if(resource.qualifier == sourcemeter_qualifiers::BASE_FUNCTION_QUALIFIER)
+            threshold_key = 'sm.' + resource.language + '.method.baseline.' + metric.key
+          end
+        end
+
+        threshold = Api::Utils.java_facade.getConfigurationValue(threshold_key)
         if(threshold.nil?)
-            baseline_def=Api::Utils.java_facade.propertyDefinitions.get('sm.' + resource.language + '.' + resource.description + '.baseline.' + metric.key)
-            if(!baseline_def.nil?)
-                threshold=baseline_def.defaultValue
-            end
+          baseline_def = Api::Utils.java_facade.propertyDefinitions.get(threshold_key)
+          if(!baseline_def.nil?)
+            threshold = baseline_def.defaultValue
+          end
         end
-        case metric.val_type
-            when Metric::VALUE_TYPE_INT
-              value_s = number_with_precision(threshold.to_i, :precision => 0)
-            when Metric::VALUE_TYPE_FLOAT
-              value_s = number_with_precision(threshold.to_s.gsub(',', '.').to_f, :precision => 1)
-            when Metric::VALUE_TYPE_PERCENT
-              value_s = number_to_percentage(threshold.to_s.gsub(',', '.').to_f, {:precision => 1})
-            else
-              value_s = threshold
+
+        if(!threshold.nil?)
+          case metric.val_type
+              when Metric::VALUE_TYPE_INT
+                value_s = number_with_precision(threshold.to_i, :precision => 0)
+              when Metric::VALUE_TYPE_FLOAT
+                value_s = number_with_precision(threshold.to_s.gsub(',', '.').to_f, :precision => 1)
+              when Metric::VALUE_TYPE_PERCENT
+                value_s = number_to_percentage(threshold.to_s.gsub(',', '.').to_f, {:precision => 1})
+              else
+                value_s = threshold
+          end
+          title = " #{image_tag(logo)} SourceMeter: "  + (widget_properties["Title"] || ('Method Hotspots by ' + metric.short_name + " (#{metric.key}#{(', threshold: '+ value_s) if !threshold.blank?})"))
         end
-        title = " #{image_tag(logo)} SourceMeter: "  + (widget_properties["Title"] || ('Method Hotspots by ' + metric.short_name + " (#{metric.key}#{(', threshold: '+ value_s) if !threshold.blank?})"))
       end
     end
   end
@@ -87,11 +100,7 @@
 %>
     <tr class="<%= cycle 'even','odd' -%>">
       <td class='icons'>
-      <% if resource.qualifier == base_method_qualifier %>
-        <%= image_tag("#{url_for_static(:plugin => 'SourceMeterAnalyzer' + resource.language, :path => 'method.png')}", :class => "sm-drilldown-icons") %>
-      <% else %>
-        <%= image_tag("#{url_for_static(:plugin => 'SourceMeterAnalyzer' + resource.language, :path => 'function.png')}", :class => "sm-drilldown-icons") %>
-      <% end %>
+        <%= image_tag("#{url_for_static(:plugin => 'SourceMeterAnalyzer' + resource.language, :path => resource.description + '.png')}", :class => "sm-drilldown-icons") %>
       </td>
       <td>
         <%=

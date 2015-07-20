@@ -74,7 +74,7 @@ import com.sourcemeter.analyzer.base.visitor.IncludedFilesVisitor;
 
 public abstract class SourceMeterInitializer extends Initializer {
 
-    public static AbstractSMLanguage pluginLanguage;
+    private static AbstractSMLanguage pluginLanguage;
     protected boolean isIncrementalMode;
     protected boolean isDebugMode;
 
@@ -165,10 +165,12 @@ public abstract class SourceMeterInitializer extends Initializer {
 
         FilePredicate predicate = this.fileSystem.predicates().hasType(InputFile.Type.MAIN);
         Iterable<File> files = this.fileSystem.files(predicate);
-        String baseDir = this.fileSystem.baseDir().getCanonicalPath();
+        String baseDir = this.fileSystem.baseDir().getCanonicalPath()
+                .replace("\\", "/").toLowerCase(Locale.getDefault());
         for (File file : files) {
-            String path = file.getAbsolutePath();
-            if (pluginLanguage.isFileForCurrentLanguage(file) && !includedFiles.contains(path)) {
+            String path = file.getAbsolutePath().replace("\\", "/");
+            String lowerCasePath = path.toLowerCase(Locale.getDefault());
+            if (pluginLanguage.isFileForCurrentLanguage(file) && !includedFiles.contains(lowerCasePath)) {
                 String excludedPath = "**" + path.substring(baseDir.length(), path.length());
                 excludedFiles.add(excludedPath);
             }
@@ -389,4 +391,7 @@ public abstract class SourceMeterInitializer extends Initializer {
         return categories;
     }
 
+    public static AbstractSMLanguage getPluginLanguage() {
+        return pluginLanguage;
+    }
 }

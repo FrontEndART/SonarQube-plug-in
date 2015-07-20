@@ -1,4 +1,4 @@
-# SourceMeter SonarQube plug-in 7.0
+# SourceMeter SonarQube plug-in 7.0.4
 
 *FrontEndART* **[SourceMeter]** is a command line source code analyzer tool, which can perform **deep static analysis** of the source code of complex software systems written in **C/C++**, **Java**, **Python**, and **RPG**. [FrontEndART] offers also a **free version** of SourceMeter.
 

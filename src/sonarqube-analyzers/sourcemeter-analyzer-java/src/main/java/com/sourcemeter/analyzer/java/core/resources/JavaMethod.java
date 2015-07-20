@@ -44,7 +44,7 @@ public class JavaMethod extends BaseMethod {
      * @param longName
      */
     public JavaMethod(String key, String name, String longName) {
-        super(key, name, longName);
+        super(key, name, longName, DEFAULT_METHOD_DESCRIPTION);
     }
 
     /**

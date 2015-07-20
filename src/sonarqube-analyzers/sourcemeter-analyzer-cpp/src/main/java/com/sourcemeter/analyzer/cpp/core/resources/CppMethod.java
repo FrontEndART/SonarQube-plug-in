@@ -44,7 +44,7 @@ public class CppMethod extends BaseMethod {
      * @param longName
      */
     public CppMethod(String key, String name, String longName) {
-        super(key, name, longName);
+        super(key, name, longName, DEFAULT_METHOD_DESCRIPTION);
     }
 
     /**

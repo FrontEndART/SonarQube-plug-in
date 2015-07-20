@@ -101,6 +101,14 @@ import com.sourcemeter.analyzer.rpg.profile.SourceMeterRPGRuleRepository;
                      defaultValue = "false"
              ),
              @Property(
+                 key = "sm.python.skipTUID",
+                 name = "Skip elements which does not have a TUID in result graph.",
+                 global = false,
+                 project = false,
+                 type = PropertyType.BOOLEAN,
+                 defaultValue = SourceMeterAnalyzerRPGPlugin.TRUE
+             ),
+             @Property(
                      key = "sm.rpg.toolchainOptions",
                      name = "Add additional parameters for running SourceMeter RPG toolchain.",
                      global = false,
@@ -125,6 +133,8 @@ public class SourceMeterAnalyzerRPGPlugin extends SonarPlugin {
 
     public static final String CLONE_CLASS_SUBCATEGORY = "Clone Class";
     public static final String CLONE_INSTANCE_SUBCATEGORY = "Clone Instance";
+
+    public static final String TRUE = "true";
 
     @Override
     public List getExtensions() {

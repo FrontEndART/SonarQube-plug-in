@@ -34,16 +34,6 @@ import graphlib.GraphlibException;
 import graphlib.Node;
 import graphlib.Node.NodeType;
 import graphlib.VisitorException;
-import com.sourcemeter.analyzer.base.batch.SourceMeterSensor;
-import com.sourcemeter.analyzer.base.helper.FileHelper;
-import com.sourcemeter.analyzer.base.helper.GraphHelper;
-import com.sourcemeter.analyzer.base.visitor.NodeCounterVisitor;
-import com.sourcemeter.analyzer.rpg.SourceMeterRPGMetrics;
-import com.sourcemeter.analyzer.rpg.helper.VisitorHelperRPG;
-import com.sourcemeter.analyzer.rpg.visitor.CloneTreeLoaderVisitorRPG;
-import com.sourcemeter.analyzer.rpg.visitor.ComponentTreeLoaderVisitorRPG;
-import com.sourcemeter.analyzer.rpg.visitor.LogicalTreeLoaderVisitorRPG;
-import com.sourcemeter.analyzer.rpg.visitor.PhysicalTreeLoaderVisitorRPG;
 
 import java.io.File;
 import java.util.HashMap;
@@ -65,6 +55,17 @@ import org.sonar.api.resources.Project;
 import org.sonar.api.resources.Resource;
 import org.sonar.api.scan.filesystem.ModuleFileSystem;
 import org.sonar.api.utils.SonarException;
+
+import com.sourcemeter.analyzer.base.batch.SourceMeterSensor;
+import com.sourcemeter.analyzer.base.helper.FileHelper;
+import com.sourcemeter.analyzer.base.helper.GraphHelper;
+import com.sourcemeter.analyzer.base.visitor.NodeCounterVisitor;
+import com.sourcemeter.analyzer.rpg.SourceMeterRPGMetrics;
+import com.sourcemeter.analyzer.rpg.helper.VisitorHelperRPG;
+import com.sourcemeter.analyzer.rpg.visitor.CloneTreeLoaderVisitorRPG;
+import com.sourcemeter.analyzer.rpg.visitor.ComponentTreeLoaderVisitorRPG;
+import com.sourcemeter.analyzer.rpg.visitor.LogicalTreeLoaderVisitorRPG;
+import com.sourcemeter.analyzer.rpg.visitor.PhysicalTreeLoaderVisitorRPG;
 
 public class SourceMeterRPGSensor extends SourceMeterSensor {
 
@@ -144,9 +145,9 @@ public class SourceMeterRPGSensor extends SourceMeterSensor {
                 nodeCounter = new NodeCounterVisitor();
                 GraphHelper.processGraph(graph, componentRoot, "ComponentTree", nodeCounter);
                 componentVisitor = new ComponentTreeLoaderVisitorRPG(
-                        this.settings, this.perspectives, this.project,
-                        this.sensorContext, nodeCounter.getNumberOfNodes(), new VisitorHelperRPG(
-                        project, sensorContext, perspectives, settings, fileSystem));
+                        this.perspectives, this.project,
+                        this.sensorContext, nodeCounter.getNumberOfNodes(),
+                        new VisitorHelperRPG(project, sensorContext,perspectives, fileSystem));
             }
 
             nodeCounter = new NodeCounterVisitor();
@@ -160,7 +161,7 @@ public class SourceMeterRPGSensor extends SourceMeterSensor {
             PhysicalTreeLoaderVisitorRPG physicalVisitor = new PhysicalTreeLoaderVisitorRPG(
                     fileSystem, this.settings, this.perspectives, this.project,
                     this.sensorContext, nodeCounter.getNumberOfNodes(),
-                    new VisitorHelperRPG(project, sensorContext, perspectives, settings, fileSystem));
+                    new VisitorHelperRPG(project, sensorContext, perspectives, fileSystem));
 
             LOG.info("      * Initialization done: " + (System.currentTimeMillis() - startTime) + MS);
 
@@ -186,8 +187,8 @@ public class SourceMeterRPGSensor extends SourceMeterSensor {
                 nodeCounter = new NodeCounterVisitor();
                 GraphHelper.processGraph(graph, "__CloneRoot__", "CloneTree", nodeCounter);
                 cloneVisitor = new CloneTreeLoaderVisitorRPG(this.fileSystem,
-                        this.settings, this.perspectives, project,
-                        sensorContext, nodeCounter.getNumberOfNodes());
+                        this.perspectives, project, sensorContext,
+                        nodeCounter.getNumberOfNodes());
             }
 
             if (!this.isIncrementalMode) {

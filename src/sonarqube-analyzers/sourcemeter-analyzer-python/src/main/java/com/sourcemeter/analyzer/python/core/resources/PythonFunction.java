@@ -38,13 +38,13 @@ public class PythonFunction extends BaseMethod {
 
     /**
      * Create PythonClass by all necessary attributes
-     * 
+     *
      * @param key
      * @param name
      * @param longName
      */
     public PythonFunction(String key, String name, String longName) {
-        super(key, name, longName);
+        super(key, name, longName, DEFAULT_FUNCTION_DESCRIPTION);
     }
 
     /**

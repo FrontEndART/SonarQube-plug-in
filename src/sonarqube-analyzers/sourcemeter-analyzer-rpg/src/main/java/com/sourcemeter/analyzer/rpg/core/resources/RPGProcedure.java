@@ -45,8 +45,7 @@ public class RPGProcedure extends BaseMethod {
      * @param longName
      */
     public RPGProcedure(String key, String name, String longName) {
-        super(key, name, longName);
-        this.setDescription(DESCRIPTION);
+        super(key, name, longName, DESCRIPTION);
     }
 
     /**

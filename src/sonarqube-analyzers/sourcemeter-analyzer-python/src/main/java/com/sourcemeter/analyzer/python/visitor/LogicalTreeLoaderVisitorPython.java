@@ -32,15 +32,10 @@ package com.sourcemeter.analyzer.python.visitor;
 import graphlib.Edge;
 import graphlib.Node;
 import graphsupportlib.Metric.Position;
-import com.sourcemeter.analyzer.base.helper.GraphHelper;
-import com.sourcemeter.analyzer.base.visitor.LogicalTreeLoaderVisitor;
-import com.sourcemeter.analyzer.python.core.resources.PythonClass;
-import com.sourcemeter.analyzer.python.core.resources.PythonFunction;
-import com.sourcemeter.analyzer.python.core.resources.PythonMethod;
-import com.sourcemeter.analyzer.python.helper.VisitorHelperPython;
 
 import java.io.File;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 import org.sonar.api.batch.SensorContext;
@@ -51,19 +46,23 @@ import org.sonar.api.resources.Project;
 import org.sonar.api.resources.Resource;
 import org.sonar.api.utils.SonarException;
 
+import com.sourcemeter.analyzer.base.helper.GraphHelper;
+import com.sourcemeter.analyzer.base.visitor.LogicalTreeLoaderVisitor;
+import com.sourcemeter.analyzer.python.core.resources.PythonClass;
+import com.sourcemeter.analyzer.python.core.resources.PythonFunction;
+import com.sourcemeter.analyzer.python.core.resources.PythonMethod;
+import com.sourcemeter.analyzer.python.helper.VisitorHelperPython;
+
 public class LogicalTreeLoaderVisitorPython extends LogicalTreeLoaderVisitor {
 
     public static final Map<Resource, Integer> FUNCTIONS_FOR_FILES = new HashMap<Resource, Integer>();
-    private final boolean skipTUID;
 
     public LogicalTreeLoaderVisitorPython(FileSystem fileSystem, Settings settings, ResourcePerspectives perspectives, Project project,
             SensorContext sensorContext, long numOfNodes) {
 
         super(fileSystem, settings, perspectives, project, sensorContext,
                 numOfNodes, new VisitorHelperPython(project, sensorContext,
-                perspectives, settings));
-
-        this.skipTUID = settings.getBoolean("sm.cpp.skipTUID");
+                perspectives, fileSystem));
     }
 
     /**
@@ -83,6 +82,11 @@ public class LogicalTreeLoaderVisitorPython extends LogicalTreeLoaderVisitor {
             return;
         }
 
+        String nodeName = GraphHelper.getNodeNameAttribute(node);
+        if (nodeName == null || "__LogicalRoot__".equals(nodeName)) {
+            return;
+        }
+
         long startLogicalTime = System.currentTimeMillis();
         Position nodePosition = graphsupportlib.Metric.getFirstPositionAttribute(node);
         if (nodePosition == null) {
@@ -90,7 +94,6 @@ public class LogicalTreeLoaderVisitorPython extends LogicalTreeLoaderVisitor {
         }
 
         String nodeLongName = GraphHelper.getNodeLongNameAttribute(node);
-        String nodeName = GraphHelper.getNodeNameAttribute(node);
 
         Resource resource = null;
         Resource parentResource = null;
@@ -111,7 +114,8 @@ public class LogicalTreeLoaderVisitorPython extends LogicalTreeLoaderVisitor {
         }
 
         if (GraphHelper.isClass(node)) {
-            resource = new PythonClass(nodeTUID, nodeName, nodeLongName).setParent(file);
+            resource = new PythonClass(nodeTUID, nodeName, nodeLongName,
+                    nodeType.toLowerCase(Locale.ENGLISH)).setParent(file);
             Resource indexedResource = this.sensorContext.getResource(resource);
 
             if (null == indexedResource) {
@@ -125,10 +129,13 @@ public class LogicalTreeLoaderVisitorPython extends LogicalTreeLoaderVisitor {
                 if (GraphHelper.isClass(parentNode)) {
                     String parentNodeName = GraphHelper
                             .getNodeNameAttribute(parentNode);
+                    String parentNodeType = parentNode.getType().getType()
+                            .toLowerCase(Locale.ENGLISH);
                     parentResource = new PythonClass(
                             GraphHelper.getNodeTUID(parentNode),
                             parentNodeName,
-                            GraphHelper.getNodeLongNameAttribute(parentNode));
+                            GraphHelper.getNodeLongNameAttribute(parentNode),
+                            parentNodeType);
                     resource = new PythonMethod(nodeTUID,
                             nodeName, nodeLongName).setParent(parentResource);
 

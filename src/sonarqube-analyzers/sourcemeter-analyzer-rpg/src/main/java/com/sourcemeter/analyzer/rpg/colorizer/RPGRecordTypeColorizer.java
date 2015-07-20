@@ -68,6 +68,7 @@ public class RPGRecordTypeColorizer extends NotThreadSafeTokenizer {
     }
 
     @SuppressWarnings("PMD")
+    @edu.umd.cs.findbugs.annotations.SuppressWarnings("CN_IMPLEMENTS_CLONE_BUT_NOT_CLONEABLE")
     @Override
     public RPGRecordTypeColorizer clone() {
         // There's no super.clone() method in this case. Parent class is

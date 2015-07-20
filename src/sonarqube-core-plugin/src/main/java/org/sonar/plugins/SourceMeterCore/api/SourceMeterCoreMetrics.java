@@ -60,6 +60,44 @@ public class SourceMeterCoreMetrics implements Metrics {
             .setHidden(true)
             .create();
 
+    /**
+     * Appeared classes list for files are stored in this metric in the given format:
+     * [
+     *   {
+     *     "id" : [resource_id],
+     *     "name" : [class_name],
+     *     "line" : [line],
+     *     "endLine" : [endline]
+     *   },
+     *   ...
+     *   {
+     *   ...
+     *   }
+     * ]
+     */
+    public static final String CLASSES_IN_FILE_KEY = "SM:ClassesInFile";
+    public static final Metric CLASSES_IN_FILE = new Builder(CLASSES_IN_FILE_KEY, "Classes in file", ValueType.DATA)
+            .setHidden(true)
+            .create();
+
+    /**
+     * Appeared classes list for files are stored in this metric in the given
+     * format: see {@link #CLASSES_IN_FILE_KEY}
+     */
+    public static final String METHODS_IN_FILE_KEY = "SM:MethodsInFile";
+    public static final Metric METHODS_IN_FILE = new Builder(METHODS_IN_FILE_KEY, "Methods in file", ValueType.DATA)
+            .setHidden(true)
+            .create();
+
+    /**
+     * Files where a resource appears are stored in this metric for the resource
+     * in the given format: see {@link #CLASSES_IN_FILE_KEY}
+     */
+    public static final String FILE_PATHS_KEY = "SM:FilePaths";
+    public static final Metric FILE_PATHS = new Builder(FILE_PATHS_KEY, "File paths", ValueType.DATA)
+            .setHidden(true)
+            .create();
+
     public static final String SM_RESOURCE_KEY = "SM:resource";
     public static final Metric SM_RESOURCE = new Builder(
             SM_RESOURCE_KEY, "SourceMeter data is uploaded for the resource.",
@@ -490,7 +528,6 @@ public class SourceMeterCoreMetrics implements Metrics {
     public static final String CCL_KEY = "CCL";
     public static final Metric CCL = new Builder(CCL_KEY, "Clone Classes", ValueType.INT)
             .setDomain(COLUMBUS_DOMAIN_CLONE)
-            .setFormula(new SumChildValuesFormula(false))
             .create();
 
     public static final String CCO_KEY = "CCO";

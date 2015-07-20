@@ -34,16 +34,6 @@ import graphlib.GraphlibException;
 import graphlib.Node;
 import graphlib.Node.NodeType;
 import graphlib.VisitorException;
-import com.sourcemeter.analyzer.base.batch.SourceMeterSensor;
-import com.sourcemeter.analyzer.base.helper.FileHelper;
-import com.sourcemeter.analyzer.base.helper.GraphHelper;
-import com.sourcemeter.analyzer.base.visitor.NodeCounterVisitor;
-import com.sourcemeter.analyzer.python.SourceMeterPythonMetrics;
-import com.sourcemeter.analyzer.python.core.Python;
-import com.sourcemeter.analyzer.python.visitor.CloneTreeLoaderVisitorPython;
-import com.sourcemeter.analyzer.python.visitor.ComponentTreeLoaderVisitorPython;
-import com.sourcemeter.analyzer.python.visitor.LogicalTreeLoaderVisitorPython;
-import com.sourcemeter.analyzer.python.visitor.PhysicalTreeLoaderVisitorPython;
 
 import java.io.File;
 import java.util.HashMap;
@@ -65,6 +55,17 @@ import org.sonar.api.resources.Project;
 import org.sonar.api.resources.Resource;
 import org.sonar.api.scan.filesystem.ModuleFileSystem;
 import org.sonar.api.utils.SonarException;
+
+import com.sourcemeter.analyzer.base.batch.SourceMeterSensor;
+import com.sourcemeter.analyzer.base.helper.FileHelper;
+import com.sourcemeter.analyzer.base.helper.GraphHelper;
+import com.sourcemeter.analyzer.base.visitor.NodeCounterVisitor;
+import com.sourcemeter.analyzer.python.SourceMeterPythonMetrics;
+import com.sourcemeter.analyzer.python.core.Python;
+import com.sourcemeter.analyzer.python.visitor.CloneTreeLoaderVisitorPython;
+import com.sourcemeter.analyzer.python.visitor.ComponentTreeLoaderVisitorPython;
+import com.sourcemeter.analyzer.python.visitor.LogicalTreeLoaderVisitorPython;
+import com.sourcemeter.analyzer.python.visitor.PhysicalTreeLoaderVisitorPython;
 
 public class SourceMeterPythonSensor extends SourceMeterSensor {
 
@@ -149,7 +150,7 @@ public class SourceMeterPythonSensor extends SourceMeterSensor {
                 nodeCounter = new NodeCounterVisitor();
                 GraphHelper.processGraph(graph, componentRoot, "ComponentTree", nodeCounter);
                 componentVisitor = new ComponentTreeLoaderVisitorPython(
-                        this.settings, this.perspectives, this.project,
+                        this.fileSystem, this.perspectives, this.project,
                         this.sensorContext, nodeCounter.getNumberOfNodes());
             }
 
@@ -162,7 +163,7 @@ public class SourceMeterPythonSensor extends SourceMeterSensor {
             nodeCounter = new NodeCounterVisitor();
             GraphHelper.processGraph(graph, "__PhysicalRoot__", "PhysicalTree", nodeCounter);
             PhysicalTreeLoaderVisitorPython physicalVisitor = new PhysicalTreeLoaderVisitorPython(
-                    fileSystem, this.settings, this.perspectives, this.project,
+                    this.fileSystem, this.perspectives, this.project,
                     this.sensorContext, nodeCounter.getNumberOfNodes());
 
             LOG.info("      * Initialization done: " + (System.currentTimeMillis() - startTime) + MS);
@@ -188,8 +189,8 @@ public class SourceMeterPythonSensor extends SourceMeterSensor {
             if (!this.isIncrementalMode) {
                 nodeCounter = new NodeCounterVisitor();
                 GraphHelper.processGraph(graph, "__CloneRoot__", "CloneTree", nodeCounter);
-                cloneVisitor = new CloneTreeLoaderVisitorPython(this.fileSystem,
-                        this.settings, this.perspectives, project,
+                cloneVisitor = new CloneTreeLoaderVisitorPython(
+                        this.fileSystem, this.perspectives, project,
                         sensorContext, nodeCounter.getNumberOfNodes());
             }
 

@@ -33,10 +33,6 @@ import graphlib.AttributeString;
 import graphlib.Edge.eDirectionType;
 import graphlib.Node;
 import graphsupportlib.Metric.Position;
-import com.sourcemeter.analyzer.base.core.resources.CloneClass;
-import com.sourcemeter.analyzer.base.core.resources.CloneInstance;
-import com.sourcemeter.analyzer.base.helper.GraphHelper;
-import com.sourcemeter.analyzer.base.helper.VisitorHelper;
 
 import java.io.File;
 import java.util.AbstractMap.SimpleEntry;
@@ -54,6 +50,11 @@ import org.sonar.api.batch.fs.InputFile;
 import org.sonar.api.component.ResourcePerspectives;
 import org.sonar.api.resources.Project;
 import org.sonar.api.resources.Resource;
+
+import com.sourcemeter.analyzer.base.core.resources.CloneClass;
+import com.sourcemeter.analyzer.base.core.resources.CloneInstance;
+import com.sourcemeter.analyzer.base.helper.GraphHelper;
+import com.sourcemeter.analyzer.base.helper.VisitorHelper;
 
 /**
  * Visitor class for reading clone informations from the result graph.

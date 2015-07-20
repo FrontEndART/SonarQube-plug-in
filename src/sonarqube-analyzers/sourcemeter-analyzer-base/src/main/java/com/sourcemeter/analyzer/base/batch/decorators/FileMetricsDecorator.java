@@ -67,23 +67,10 @@ public abstract class FileMetricsDecorator extends BaseDecorator {
 
         try {
             if (Qualifiers.isFile(resource)
-                && SourceMeterInitializer.pluginLanguage
+                && SourceMeterInitializer.getPluginLanguage()
                                          .getKey()
                                          .equals(resource.getLanguage().getKey())) {
-
-                Measure measure = context.getMeasure(CoreMetrics.CLASSES);
-                if (measure == null) {
-                    measure = new Measure(CoreMetrics.CLASSES);
-                }
-                Double classes = 0.0;
-                Collection<DecoratorContext> childContexts = context.getChildren();
-                for (DecoratorContext decoratorContext : childContexts) {
-                    if (decoratorContext.getResource() instanceof BaseClass) {
-                        classes++;
-                    }
-                }
-                measure.setValue(classes);
-                context.saveMeasure(measure);
+                sumClasses(context);
 
                 if (context.getMeasure(SourceMeterCoreMetrics.SM_RESOURCE) == null) {
                     Measure smResourceMeasure = new Measure(SourceMeterCoreMetrics.SM_RESOURCE);
@@ -103,6 +90,27 @@ public abstract class FileMetricsDecorator extends BaseDecorator {
         } catch (SonarException e) {
             LOG.error("Cannot decorate file metrics! Cause: " + e.getMessage());
         }
+    }
+
+    /**
+     * Summarize the number of classes in the file.
+     *
+     * @param context
+     */
+    protected void sumClasses(DecoratorContext context) {
+        Measure measure = context.getMeasure(CoreMetrics.CLASSES);
+        if (measure == null) {
+            measure = new Measure(CoreMetrics.CLASSES);
+        }
+        Double classes = 0.0;
+        Collection<DecoratorContext> childContexts = context.getChildren();
+        for (DecoratorContext decoratorContext : childContexts) {
+            if (decoratorContext.getResource() instanceof BaseClass) {
+                classes++;
+            }
+        }
+        measure.setValue(classes);
+        context.saveMeasure(measure);
     }
 
     /**

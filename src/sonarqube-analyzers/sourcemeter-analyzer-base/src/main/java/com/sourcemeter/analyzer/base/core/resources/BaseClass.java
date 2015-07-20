@@ -37,40 +37,41 @@ import org.sonar.api.resources.File;
 public abstract class BaseClass extends BaseResource {
 
     private static final long serialVersionUID = 6435646875613564768L;
-    private static final String DESCRIPTION = "class";
+    public static final String DEFAULT_DESCRIPTION = "class";
 
     /**
      * Initialize class resource with only a key for the resource.
-     * 
+     *
      * @param key
      */
     public BaseClass(String key) {
         super(key);
-        this.setDescription(DESCRIPTION);
+        this.setDescription(DEFAULT_DESCRIPTION);
     }
 
     /**
      * Initialize a class resource with key, filename and longName attributes
-     * 
+     *
      * @param key
      * @param fileName
      * @param longName
+     * @param description
      */
-    public BaseClass(String key, String fileName, String longName) {
+    public BaseClass(String key, String fileName, String longName, String description) {
         super(key, fileName, longName);
-        this.setDescription(DESCRIPTION);
+        this.setDescription(description);
     }
 
     /**
      * Initialize a class resource with key, name and parent attributes
-     * 
+     *
      * @param key
      * @param name
      * @param parent
      */
     public BaseClass(String key, String name, File parent) {
         super(key, name, parent);
-        this.setDescription(DESCRIPTION);
+        this.setDescription(DEFAULT_DESCRIPTION);
     }
 
 }

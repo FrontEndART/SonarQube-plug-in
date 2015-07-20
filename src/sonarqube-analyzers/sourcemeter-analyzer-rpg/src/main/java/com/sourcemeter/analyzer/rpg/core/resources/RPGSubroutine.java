@@ -39,14 +39,13 @@ public class RPGSubroutine extends BaseMethod {
 
     /**
      * Create RPGSubroutine by all necessary attributes
-     * 
+     *
      * @param key
      * @param name
      * @param longName
      */
     public RPGSubroutine(String key, String name, String longName) {
-        super(key, name, longName);
-        this.setDescription(DESCRIPTION);
+        super(key, name, longName, DESCRIPTION);
     }
 
     /**

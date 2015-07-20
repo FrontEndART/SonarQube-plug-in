@@ -356,7 +356,7 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'">'+'support@frontendart.com'+'
 <dd><p>The name of the analyzed software system. The name specified here will be used for storing the results.</p>
 </dd>
 <dt><strong>-buildScript</strong></dt>
-<dd><p>Relative or absolute path name of the build script which manages the build process of the system. Using this option the Ant or Maven build analysis mode will be activated. If the build script does not return with 0, SourceMeter will stop with an error and no analysis results will be available.</p>
+<dd><p>Relative or absolute path name of the executable build script which manages the build process of the system. Using this option the Ant or Maven build analysis mode will be activated. If the build script does not return with 0, SourceMeter will stop with an error and no analysis results will be available.</p>
 </dd>
 <dt><strong>-externalHardFilter</strong></dt>
 <dd><p>Filter file specified with relative or absolute path, to filter out certain files from the analysis based on their path names. Filtered files will not appear in the results. The filter file is a simple text file containing lines starting with ‘+’ or ‘-’ characters followed by a regular expression<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a>. During the analysis, each input file will be checked for these expressions. If the first character of the last matching expression is ‘-’, then the given file will be excluded from the analysis. If the first character of the last matching expression is ‘+’, or there is no matching expression, then the file will be analyzed. A line starting with a different character than ‘-’ or ‘+’ will be ignored. Example filter file content:</p>
@@ -453,7 +453,7 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'">'+'support@frontendart.com'+'
 <dd><p>Directory of the source code to be analyzed specified with relative or absolute path. Using this option the directory analysis mode will be activated. Setting projectBaseDir is mandatory, if buildScript is not set. If both buildScript and projectBaseDir are set, then the Ant or Maven build analysis mode will be activated.</p>
 </dd>
 <dt><strong>-javacOptions</strong></dt>
-<dd><p>In directory analysis mode, the necessary parameters for compilation can be set with this option, like classpath for instance (e.g. -javacOptions=“-cp .;mydir/classpath”<a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a>).</p>
+<dd><p>In directory analysis mode, the necessary parameters for compilation can be set with this option, like classpath for instance (e.g. -javacOptions=“-cp .;mydir/classpath”<a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a>). The classpath given by this option is added to the auxiliary classpath of the PMD as well.</p>
 </dd>
 <dt><strong>-JVMOptions</strong></dt>
 <dd><p>Extra parameters can be added for the JVM used by SourceMeter. For instance the maximum available memory of the JVM can be set manually if the default value (1/4 of the physical memory) is not enough.</p>
@@ -625,8 +625,9 @@ mvn -f MyProject/pom.xml clean install -DskipTests</code></pre></li>
 <p>Due to the warning suppressor marker, the “Empty Catch Block” warning will not be issued.</p>
 <p>The warnings of the MetricHunter module cannot be suppressed at the moment.</p>
 <h1 id="demo"><a href="#demo">Demo</a></h1>
-<p>The Demo directory of the installation package contains the directory structure, the build and analyzer scripts for the analysis of an example project. The log4j open source program is included as the example project, which can also be downloaded from the following URL:</p>
+<p>The Demo directory of the installation package contains the directory structure, the build and analyzer scripts for the analysis of an example project. Version 1.2.17 and version 2.3 of the log4j open source program are included as example projects, which can also be downloaded from the following URLs:</p>
 <p><a href="http://archive.apache.org/dist/logging/log4j/1.2.17/log4j-1.2.17.zip">http://archive.apache.org/dist/logging/log4j/1.2.17/log4j-1.2.17.zip</a></p>
+<p><a href="http://archive.apache.org/dist/logging/log4j/2.3/apache-log4j-2.3-src.zip">http://archive.apache.org/dist/logging/log4j/2.3/apache-log4j-2.3-src.zip</a></p>
 <p>To perform the source code analysis of the demo project, one of the analyze-<em>.bat/analyze-</em>.sh scripts has to be executed.</p>
 <p>Contents of the Demo directory:</p>
 <p>Windows:</p>
@@ -640,29 +641,34 @@ mvn -f MyProject/pom.xml clean install -DskipTests</code></pre></li>
 <tr class="even">
 <td style="text-align: left;"></td>
 <td style="text-align: left;">apache-log4j-1.2.17</td>
-<td style="text-align: left;"># source code of log4j</td>
+<td style="text-align: left;"># source code of log4j version 1.2.17</td>
 </tr>
 <tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">apache-log4j-2.3-src</td>
+<td style="text-align: left;"># source code of log4j version 2.3</td>
+</tr>
+<tr class="even">
 <td style="text-align: left;"></td>
 <td style="text-align: left;">build-ant.bat</td>
 <td style="text-align: left;"># builds log4j (Ant call)</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;"></td>
 <td style="text-align: left;">build-maven.bat</td>
 <td style="text-align: left;"># builds log4j (Maven call)</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;"></td>
 <td style="text-align: left;">analyze-ant.bat</td>
 <td style="text-align: left;"># starts SourceMeter in Ant build analysis mode</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;"></td>
 <td style="text-align: left;">analyze-maven.bat</td>
 <td style="text-align: left;"># starts SourceMeter in Maven build analysis mode</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;"></td>
 <td style="text-align: left;">analyze-dir.bat</td>
 <td style="text-align: left;"># starts SourceMeter in Directory analysis mode</td>
@@ -680,29 +686,34 @@ mvn -f MyProject/pom.xml clean install -DskipTests</code></pre></li>
 <tr class="even">
 <td style="text-align: left;"></td>
 <td style="text-align: left;">apache-log4j-1.2.17</td>
-<td style="text-align: left;"># source code of log4j</td>
+<td style="text-align: left;"># source code of log4j version 1.2.17</td>
 </tr>
 <tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">apache-log4j-2.3-src</td>
+<td style="text-align: left;"># source code of log4j version 2.3</td>
+</tr>
+<tr class="even">
 <td style="text-align: left;"></td>
 <td style="text-align: left;">build-ant.sh</td>
 <td style="text-align: left;"># builds log4j (Ant call)</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;"></td>
 <td style="text-align: left;">build-maven.sh</td>
 <td style="text-align: left;"># builds log4j (Maven call)</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;"></td>
 <td style="text-align: left;">analyze-ant.sh</td>
 <td style="text-align: left;"># starts SourceMeter in Ant build analysis mode</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;"></td>
 <td style="text-align: left;">analyze-maven.sh</td>
 <td style="text-align: left;"># starts SourceMeter in Maven build analysis mode</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;"></td>
 <td style="text-align: left;">analyze-dir.sh</td>
 <td style="text-align: left;"># starts SourceMeter in Directory analysis mode</td>

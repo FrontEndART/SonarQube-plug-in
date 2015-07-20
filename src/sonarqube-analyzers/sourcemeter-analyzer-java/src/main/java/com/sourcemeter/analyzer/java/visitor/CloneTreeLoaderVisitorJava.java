@@ -31,25 +31,25 @@ package com.sourcemeter.analyzer.java.visitor;
 
 import graphlib.Edge;
 import graphlib.Node;
-import com.sourcemeter.analyzer.base.helper.GraphHelper;
-import com.sourcemeter.analyzer.base.visitor.CloneTreeLoaderVisitor;
-import com.sourcemeter.analyzer.java.helper.VisitorHelperJava;
 
 import org.sonar.api.batch.SensorContext;
 import org.sonar.api.batch.fs.FileSystem;
 import org.sonar.api.component.ResourcePerspectives;
-import org.sonar.api.config.Settings;
 import org.sonar.api.resources.Project;
+
+import com.sourcemeter.analyzer.base.helper.GraphHelper;
+import com.sourcemeter.analyzer.base.visitor.CloneTreeLoaderVisitor;
+import com.sourcemeter.analyzer.java.helper.VisitorHelperJava;
 
 public class CloneTreeLoaderVisitorJava extends CloneTreeLoaderVisitor {
 
-    public CloneTreeLoaderVisitorJava(FileSystem fileSystem, Settings settings,
+    public CloneTreeLoaderVisitorJava(FileSystem fileSystem,
             ResourcePerspectives perspectives, Project project,
             SensorContext sensorContext, long numOfNodes) {
 
         super(fileSystem, perspectives, project, sensorContext,
                 numOfNodes, new VisitorHelperJava(project, sensorContext,
-                perspectives, settings));
+                perspectives, fileSystem));
     }
 
     @Override

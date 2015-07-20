@@ -31,8 +31,6 @@ package com.sourcemeter.analyzer.base.visitor;
 
 import graphlib.Node;
 import graphsupportlib.Metric.Position;
-import com.sourcemeter.analyzer.base.batch.SourceMeterInitializer;
-import com.sourcemeter.analyzer.base.helper.VisitorHelper;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -47,6 +45,9 @@ import org.sonar.api.resources.Project;
 import org.sonar.api.resources.Resource;
 import org.sonar.plugins.SourceMeterCore.api.SourceMeterCoreMetrics;
 
+import com.sourcemeter.analyzer.base.batch.SourceMeterInitializer;
+import com.sourcemeter.analyzer.base.helper.VisitorHelper;
+
 /**
  * Class for visiting and storing logical nodes from the result graph.
  */
@@ -60,6 +61,7 @@ public abstract class LogicalTreeLoaderVisitor extends BaseVisitor {
     protected final boolean uploadMethods;
     protected final FileSystem fileSystem;
     protected final Settings settings;
+    protected final boolean skipTUID;
 
     protected static final Logger LOG = LoggerFactory.getLogger(LogicalTreeLoaderVisitor.class);
 
@@ -76,6 +78,7 @@ public abstract class LogicalTreeLoaderVisitor extends BaseVisitor {
         this.logicalTime = 0;
         this.numOfNodes = numOfNodes;
         this.numOfVisitedNodes = 0;
+        this.skipTUID = settings.getBoolean("sm." + SourceMeterInitializer.getPluginLanguage().getKey() + ".skipTUID");
 
         FilePredicate mainFilePredicate = fileSystem.predicates().hasType(InputFile.Type.MAIN);
 
@@ -83,7 +86,7 @@ public abstract class LogicalTreeLoaderVisitor extends BaseVisitor {
             this.emptyProject = true;
         }
 
-        this.uploadMethods = settings.getBoolean("sm." + SourceMeterInitializer.pluginLanguage.getKey() + ".uploadMethods");
+        this.uploadMethods = settings.getBoolean("sm." + SourceMeterInitializer.getPluginLanguage().getKey() + ".uploadMethods");
     }
 
     /**

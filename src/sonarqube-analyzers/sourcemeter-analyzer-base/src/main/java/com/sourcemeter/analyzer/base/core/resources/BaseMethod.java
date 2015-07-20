@@ -34,40 +34,42 @@ import org.sonar.api.resources.File;
 public abstract class BaseMethod extends BaseResource {
 
     private static final long serialVersionUID = 6435646875613564768L;
-    private static final String DESCRIPTION = "method";
+    public static final String DEFAULT_METHOD_DESCRIPTION = "method";
+    public static final String DEFAULT_FUNCTION_DESCRIPTION = "function";
 
     /**
      * Initialize method resource with only a key for the resource.
-     * 
+     *
      * @param key
      */
     public BaseMethod(String key) {
         super(key);
-        this.setDescription(DESCRIPTION);
+        this.setDescription(DEFAULT_METHOD_DESCRIPTION);
     }
 
     /**
      * Initialize a method resource with key, name and parent attributes
-     * 
+     *
      * @param key
      * @param name
      * @param parent
      */
-    public BaseMethod(String key, String fileName, String longName) {
+    public BaseMethod(String key, String fileName, String longName,
+            String description) {
         super(key, fileName, longName);
-        this.setDescription(DESCRIPTION);
+        this.setDescription(description);
     }
 
     /**
      * Initialize a method resource with key, name and parent attributes
-     * 
+     *
      * @param key
      * @param name
      * @param parent
      */
     public BaseMethod(String key, String name, File parent) {
         super(key, name, parent);
-        this.setDescription(DESCRIPTION);
+        this.setDescription(DEFAULT_METHOD_DESCRIPTION);
     }
 
 }

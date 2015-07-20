@@ -29,80 +29,37 @@
  */
 package com.sourcemeter.analyzer.python.helper;
 
-import graphlib.Attribute;
-import graphlib.AttributeComposite;
-import graphlib.AttributeInt;
-import graphlib.AttributeString;
-import graphlib.Node;
-import graphsupportlib.Metric.Position;
+import org.sonar.api.batch.SensorContext;
+import org.sonar.api.batch.fs.FileSystem;
+import org.sonar.api.component.ResourcePerspectives;
+import org.sonar.api.resources.Project;
+
 import com.sourcemeter.analyzer.base.helper.VisitorHelper;
 import com.sourcemeter.analyzer.python.SourceMeterPythonMetricFinder;
 import com.sourcemeter.analyzer.python.profile.SourceMeterPythonRuleRepository;
 
-import java.io.File;
-import java.util.List;
-
-import org.sonar.api.batch.SensorContext;
-import org.sonar.api.component.ResourcePerspectives;
-import org.sonar.api.config.Settings;
-import org.sonar.api.issue.Issuable;
-import org.sonar.api.issue.Issue;
-import org.sonar.api.resources.Project;
-import org.sonar.api.resources.Resource;
-import org.sonar.api.rule.RuleKey;
-
 public class VisitorHelperPython extends VisitorHelper {
 
     public VisitorHelperPython(Project project, SensorContext sensorContext,
-            ResourcePerspectives perspectives, Settings settings) {
+            ResourcePerspectives perspectives, FileSystem fileSystem) {
 
-        super(project, sensorContext, perspectives, settings,
+        super(project, sensorContext, perspectives, fileSystem,
                 new SourceMeterPythonMetricFinder());
     }
 
     @Override
-    public void uploadWarnings(Attribute attribute, Node node, Position nodePosition) {
-        AttributeComposite warningAttribute = (AttributeComposite) attribute;
-        int lineId = 0;
-        String warningText = "";
-        String warningPath = "";
+    public String getRuleKey() {
+        return SourceMeterPythonRuleRepository.getRepositoryKey();
+    }
 
-        List<Attribute> compAttributes = warningAttribute.getAttributes();
-        for (Attribute a : compAttributes) {
-            if ("Path".equals(a.getName())) {
-                warningPath = ((AttributeString) a).getValue();
-            } else if ("Line".equals(a.getName())) {
-                lineId = ((AttributeInt) a).getValue();
-            } else if ("WarningText".equals(a.getName())) {
-                warningText = ((AttributeString) a).getValue();
-            }
+    @Override
+    public String getWarningTextWithPrefix(String ruleKey, String warningText) {
+        if (ruleKey.startsWith("PYLINT_")) {
+            warningText = "SourceMeter (from Pylint): " + warningText;
+        } else {
+            warningText = "SourceMeter: " + warningText;
         }
 
-        Resource violationResource = org.sonar.api.resources.File.fromIOFile(
-                new File(warningPath), this.project);
-
-        if (violationResource == null) {
-            return;
-        }
-
-        Issuable issuable = this.perspectives.as(Issuable.class,
-                violationResource);
-        if (issuable != null) {
-            String tmpRuleKey = warningAttribute.getName();
-
-            if (tmpRuleKey.startsWith("PYLINT_")) {
-                warningText = "SourceMeter (from Pylint): " + warningText;
-            } else {
-                warningText = "SourceMeter: " + warningText;
-            }
-
-            tmpRuleKey = getCorrectedRuleKey(tmpRuleKey);
-            RuleKey ruleKey = RuleKey.of(SourceMeterPythonRuleRepository.getRepositoryKey(),
-                    tmpRuleKey);
-            Issue issue = issuable.newIssueBuilder().ruleKey(ruleKey)
-                    .message(warningText).line(lineId).build();
-
-            issuable.addIssue(issue);
-        }
+        return warningText;
     }
 }

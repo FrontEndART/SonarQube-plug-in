@@ -27,33 +27,51 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package com.sourcemeter.analyzer.cpp.core.resources;
+package com.sourcemeter.analyzer.base.core.resources;
 
 /**
  * Class for storing ClassData for files.
  */
 public class ClassData {
     private int id;
+    private int smResourceId;
     private String name;
     private String qualifier;
-
     private int line;
     private int endLine;
+    private final String description;
 
     /**
-     * 
+     *
      * @param id
      * @param name
      * @param beginLine
      * @param endLine
+     * @param description
      */
-    public ClassData(int id, String name, String qualifier, int beginLine, int endLine) {
-        super();
+    public ClassData(int id, String name, String qualifier, int beginLine,
+            int endLine, String description) {
         this.id = id;
         this.name = name;
         this.qualifier = qualifier;
         this.line = beginLine;
         this.endLine = endLine;
+        this.smResourceId = 0;
+        this.description = description;
+    }
+
+    /**
+     *
+     * @param id
+     * @param name
+     * @param beginLine
+     * @param endLine
+     * @param smResourceId
+     */
+    public ClassData(int id, String name, String qualifier, int beginLine,
+            int endLine, int smResourceId, String description) {
+        this(id, name, qualifier, beginLine, endLine, description);
+        this.smResourceId = smResourceId;
     }
 
     public int getId() {
@@ -94,5 +112,17 @@ public class ClassData {
 
     public void setQualifier(String qualifier) {
         this.qualifier = qualifier;
+    }
+
+    public int getSmResourceId() {
+        return smResourceId;
+    }
+
+    public void setSmResourceId(int smResourceId) {
+        this.smResourceId = smResourceId;
+    }
+
+    public String getDescription() {
+        return description;
     }
 }

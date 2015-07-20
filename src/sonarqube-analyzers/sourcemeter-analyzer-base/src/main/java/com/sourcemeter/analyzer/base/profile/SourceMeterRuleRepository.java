@@ -77,6 +77,6 @@ public abstract class SourceMeterRuleRepository extends RuleRepository {
      */
     public static String getRepositoryKey() {
         return BASE_REPOSITORY_KEY
-                + SourceMeterInitializer.pluginLanguage.getKey();
+                + SourceMeterInitializer.getPluginLanguage().getKey();
     }
 }

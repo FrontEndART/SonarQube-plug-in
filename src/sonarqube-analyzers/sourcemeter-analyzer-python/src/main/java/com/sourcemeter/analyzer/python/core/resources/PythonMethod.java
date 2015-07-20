@@ -44,7 +44,7 @@ public class PythonMethod extends BaseMethod {
      * @param longName
      */
     public PythonMethod(String key, String name, String longName) {
-        super(key, name, longName);
+        super(key, name, longName, DEFAULT_METHOD_DESCRIPTION);
     }
 
     /**
