@@ -30,7 +30,7 @@ Additionally, the plug-in extends the SONARQUBE™ platform GUI with new features 
 
 - And many more...
 
-The plug-in is compatible with the latest LTS (long term support) version 4.5[^1] of the SONARQUBE™ platform, which can be obtained from its [website]. (This version of the plug-in was successfully tested with versions 4.4, and 4.5.4.)
+The plug-in is compatible with the latest LTS (long term support) version 4.5 of the SONARQUBE™ platform, which can be obtained from its [website]. (This version of the plug-in was successfully tested with versions 4.4, and 4.5.4.)
 
 For more information about the plug-in please read the User's Guide.
 
