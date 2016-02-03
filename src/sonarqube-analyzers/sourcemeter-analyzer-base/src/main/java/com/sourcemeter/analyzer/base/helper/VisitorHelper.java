@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014-2015, FrontEndART Software Ltd.
+ * Copyright (c) 2014-2016, FrontEndART Software Ltd.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -59,13 +59,14 @@ import org.sonar.api.rule.RuleKey;
 import org.sonar.api.utils.SonarException;
 import org.sonar.plugins.SourceMeterCore.api.SourceMeterMetricFinder;
 
-import com.sourcemeter.analyzer.base.batch.ProfileInitializer;
 import com.sourcemeter.analyzer.base.visitor.BaseVisitor;
 
 /**
  * Helper class for Visitor classes to upload metrics and warnings.
  */
 public abstract class VisitorHelper {
+
+    public static final String METRIC_VIOLATION_CONTAINS = "_warning_";
 
     private static final Logger LOG = LoggerFactory.getLogger(VisitorHelper.class);
     protected static final String METRIC_PREFIX = "MET_";
@@ -235,21 +236,9 @@ public abstract class VisitorHelper {
      * @return
      */
     public String getCorrectedRuleKey(String ruleKey) {
-        if (ruleKey.contains(ProfileInitializer.CLASS_TRESHOLD_VIOLATION_SUFFIX)) {
+        if (ruleKey.contains(METRIC_VIOLATION_CONTAINS)) {
             // class treshold violation
-            ruleKey = METRIC_PREFIX + ruleKey.replaceAll(ProfileInitializer.CLASS_TRESHOLD_VIOLATION_SUFFIX, "");
-        } else if (ruleKey.contains(ProfileInitializer.METHOD_TRESHOLD_VIOLATION_SUFFIX)) {
-            // method treshold violation
-            ruleKey = METRIC_PREFIX + ruleKey.replaceAll(ProfileInitializer.METHOD_TRESHOLD_VIOLATION_SUFFIX, "");
-        } else if (ruleKey.contains(ProfileInitializer.FUNCTION_TRESHOLD_VIOLATION_SUFFIX)) {
-            // function treshold violation
-            ruleKey = METRIC_PREFIX + ruleKey.replaceAll(ProfileInitializer.FUNCTION_TRESHOLD_VIOLATION_SUFFIX, "");
-        } else if (ruleKey.contains(ProfileInitializer.ClONE_CLASS_TRESHOLD_VIOLATION_SUFFIX)) {
-            // CloneClass treshold violation
-            ruleKey = METRIC_PREFIX + ruleKey.replaceAll(ProfileInitializer.ClONE_CLASS_TRESHOLD_VIOLATION_SUFFIX, "");
-        } else if (ruleKey.contains(ProfileInitializer.CLONE_INSTANCE_TRESHOLD_VIOLATION_SUFFIX)) {
-            // CloneInstance treshold violation
-            ruleKey = METRIC_PREFIX + ruleKey.replaceAll(ProfileInitializer.CLONE_INSTANCE_TRESHOLD_VIOLATION_SUFFIX, "");
+            ruleKey = METRIC_PREFIX + ruleKey.substring(0, ruleKey.indexOf(METRIC_VIOLATION_CONTAINS));
         } else {
             String[] splittedKey = ruleKey.split("_");
             ruleKey = splittedKey[splittedKey.length - 1];
@@ -332,20 +321,28 @@ public abstract class VisitorHelper {
                 previousPath = path;
                 Resource tracePathResource = org.sonar.api.resources.File
                         .fromIOFile(new File(path), this.project);
-                StringBuffer pathLink = new StringBuffer();
-                pathLink.append("__");
-                pathLink.append(sensorContext.getResource(tracePathResource).getId());
-                pathLink.append(":");
-                pathLink.append(sensorContext.getResource(tracePathResource).getName());
-                pathLink.append(":");
-                pathLink.append(line);
-                pathLink.append(":");
-                if (callStackDepth > 0) {
-                    pathLink.append("+");
+                tracePathResource = sensorContext.getResource(tracePathResource);
+
+                if (tracePathResource != null) {
+                    StringBuffer pathLink = new StringBuffer();
+                    pathLink.append("__");
+                    pathLink.append(tracePathResource.getId());
+                    pathLink.append(":");
+                    pathLink.append(tracePathResource.getName());
+                    pathLink.append(":");
+                    pathLink.append(line);
+                    pathLink.append(":");
+                    if (callStackDepth > 0) {
+                        pathLink.append("+");
+                    }
+                    pathLink.append(callStackDepth);
+                    pathLink.append("__<br/>");
+                    stackTraceList.add(pathLink.toString());
                 }
-                pathLink.append(callStackDepth);
-                pathLink.append("__<br/>");
-                stackTraceList.add(pathLink.toString());
+                else
+                {
+                    LOG.warn ("File is not part of the project, skip from stack trace: " + path);
+                }
             }
         }
         int sum = warningTextLength;

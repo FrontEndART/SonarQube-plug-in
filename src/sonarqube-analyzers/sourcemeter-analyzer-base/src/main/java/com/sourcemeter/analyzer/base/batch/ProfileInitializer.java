@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014-2015, FrontEndART Software Ltd.
+ * Copyright (c) 2014-2016, FrontEndART Software Ltd.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -54,12 +54,6 @@ import org.sonar.api.utils.SonarException;
  * Class for initializing MetricHunter\"s input file
  */
 public class ProfileInitializer {
-
-    public static final String CLASS_TRESHOLD_VIOLATION_SUFFIX = "_warning_Class";
-    public static final String METHOD_TRESHOLD_VIOLATION_SUFFIX = "_warning_Method";
-    public static final String FUNCTION_TRESHOLD_VIOLATION_SUFFIX = "_warning_Function";
-    public static final String ClONE_CLASS_TRESHOLD_VIOLATION_SUFFIX = "_warning_CloneClass";
-    public static final String CLONE_INSTANCE_TRESHOLD_VIOLATION_SUFFIX = "_warning_CloneInstance";
 
     private final Settings settings;
     private final List<MetricHunterCategory> categories;
@@ -160,13 +154,27 @@ public class ProfileInitializer {
 
         for (MetricHunterCategory category : categories) {
             List<Metric> metrics = category.getMetrics();
+
             for (Metric metric : metrics) {
-                String line = getTresholdLine(metric,
-                        category.getCategoryName(), category.getpropertyName());
-                if (!line.isEmpty()) {
-                    buffer.append(line);
+                String metricKey = metric.getKey();
+
+                if (activeRuleKeys.contains("MET_" + metricKey)) {
+                    String line = getTresholdLine(metric,
+                                                  category.getCategoryName(),
+                                                  category.getpropertyName());
+                    if (!line.isEmpty()) {
+                        buffer.append(line);
+                    }
+                } else {
+                    // Metric threshold rule is not active. Turn it off.
+                    buffer.append("        <threshold metric-id=\"")
+                          .append(metricKey)
+                          .append("\" relation=\"gt\" value=\"none\" entity=\"")
+                          .append(category.getCategoryName())
+                          .append("\" />\n");
                 }
             }
+
             buffer.append("\n");
         }
 
@@ -181,6 +189,7 @@ public class ProfileInitializer {
         baseline.append(".").append(property.toLowerCase(Locale.ENGLISH))
                 .append(".baseline.").append(metric.getKey());
         Double threshold = this.settings.getDouble(baseline.toString());
+
         if (threshold == null) {
             return "";
         }

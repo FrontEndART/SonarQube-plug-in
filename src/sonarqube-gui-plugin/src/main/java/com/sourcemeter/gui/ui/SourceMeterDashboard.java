@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014-2015, FrontEndART Software Ltd.
+ * Copyright (c) 2014-2016, FrontEndART Software Ltd.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -58,7 +58,7 @@ public class SourceMeterDashboard extends DashboardTemplate {
         dashboard.setActivated(true);
 
         w = dashboard.addWidget("UserTextDisplayWidget", 1);
-        String usetText1 = "<p><b><u><a target=\"_blank\" href=\"https://sourcemeter.com\">SourceMeter</a></u></b> is a source code analyzer tool, which can perform deep static analysis of the source code of Java, C/C++, Python, and RPG  systems. SourceMeter contains 60+ useful source code metrics, powerful clone detection capabilities, and professionally prioritized and selected coding rule violations. To access more sophisticated static analysis features, please check other products of <b><u><a target=\"_blank\" href=\"https://frontendart.com\">FrontEndART</a></u></b>.</p><br><p>SourceMeter is based on the <b><u><a target=\"_blank\" href=\"http://www.sed.inf.u-szeged.hu/softwarequality\">Columbus technology</a></u></b> researched and developed at the <u><a target=\"_blank\" href=\"http://www.sed.inf.u-szeged.hu/\">Department of Software Engineering, University of Szeged</a></u>. It received the <u><a target=\"_blank\" href=\"http://www.inf.u-szeged.hu/~ferenc/papers/ICSM2012/MIPAward.jpg\">Most Influential Paper Award</a></u> at the 28th IEEE International Conference on Software Maintenance (<u><a target=\"_blank\" href=\"http://selab.fbk.eu/icsm2012/\">ICSM 2012</a></u>).</p>";
+        String usetText1 = "<p><b><u><a target=\"_blank\" href=\"https://sourcemeter.com\">SourceMeter</a></u></b> is a source code analyzer tool, which can perform deep static analysis of the source code of Java, C/C++, C#, Python, and RPG  systems. SourceMeter contains 60+ useful source code metrics, powerful clone detection capabilities, and professionally prioritized and selected coding rule violations. To access more sophisticated static analysis features, please check other products of <b><u><a target=\"_blank\" href=\"https://frontendart.com\">FrontEndART</a></u></b>.</p><br><p>SourceMeter is based on the <b><u><a target=\"_blank\" href=\"http://www.sed.inf.u-szeged.hu/softwarequality\">Columbus technology</a></u></b> researched and developed at the <u><a target=\"_blank\" href=\"http://www.sed.inf.u-szeged.hu/\">Department of Software Engineering, University of Szeged</a></u>. It received the <u><a target=\"_blank\" href=\"http://www.inf.u-szeged.hu/~ferenc/papers/ICSM2012/MIPAward.jpg\">Most Influential Paper Award</a></u> at the 28th IEEE International Conference on Software Maintenance (<u><a target=\"_blank\" href=\"http://selab.fbk.eu/icsm2012/\">ICSM 2012</a></u>).</p>";
         w.setProperty("Text", usetText1);
         w.setProperty("Title",
                 "<b><a target=\"_blank\" href=\"https://sourcemeter.com\">SourceMeter</a></b>");

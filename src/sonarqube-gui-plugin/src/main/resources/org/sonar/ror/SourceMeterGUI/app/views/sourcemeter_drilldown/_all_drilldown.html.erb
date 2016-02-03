@@ -39,7 +39,9 @@
           <% eline = class_obj.measure('SM:endline').value.to_i %>
 
           <a title="New window" href="#" onclick="showLinkForResource(<%= class_obj.resource.id %>)" class="sm-show-link-button"></a>
-          <a href="#" onclick="showMetricsAndFilePaths(<%= class_obj.id %>, '<%= row_id %>', <%= bline %>, <%= eline %>, false, false, true)"><%= class_obj.resource.name %></a>
+          <a href="#" onclick="showMetricsAndFilePaths(<%= class_obj.id %>, '<%= row_id %>', <%= bline %>, <%= eline %>, false, false, true)">
+            <%=h class_obj.resource.name %>
+          </a>
         </td>
 <%
         if !@metric.nil?
@@ -66,7 +68,7 @@
             <td>
               <%= image_tag("#{url_for_static(:plugin => 'SourceMeterAnalyzer' + @resource.language, :path => class_data['description'] + '.png')}", :class => "sm-drilldown-icons") %>
               <a title="New window" href="#" onclick="showLinkForResource(<%= class_data['id'] %>)" class="sm-show-link-button"></a>
-              <a href="#" onclick="showMetricsAndFilePaths(<%= class_data['id'] %>, '<%= row_id %>', <%= bline %>, <%= eline %>, true, '<%= params[:data_key] %>', true)"><%= class_data['name'] %></a>
+              <a href="#" onclick="showMetricsAndFilePaths(<%= class_data['id'] %>, '<%= row_id %>', <%= bline %>, <%= eline %>, true, '<%= params[:data_key] %>', true)"><%=h class_data['name'] %></a>
             </td>
           </tr>
 <%            
@@ -111,7 +113,7 @@
             <td>
               <%= image_tag("#{url_for_static(:plugin => 'SourceMeterAnalyzer' + @resource.language, :path => method_obj['description'] + '.png')}", :class => "sm-drilldown-icons") %>
               <a title="New window" href="#" onclick="showLinkForResource(<%= method_obj['id'] %>)" class="sm-show-link-button"></a>
-              <a href="#" onclick="showMetricsAndFilePaths(<%= method_obj['id'] %>, '<%= row_id %>', <%= bline %>, <%= eline %>, true, '<%= params[:data_key] %>')"><%= method_obj['name'] %></a>
+              <a href="#" onclick="showMetricsAndFilePaths(<%= method_obj['id'] %>, '<%= row_id %>', <%= bline %>, <%= eline %>, true, '<%= params[:data_key] %>')"><%=h method_obj['name'] %></a>
             </td>
           </tr>
 <%
@@ -131,7 +133,9 @@
           <td>
             <%= image_tag("#{url_for_static(:plugin => 'SourceMeterAnalyzer' + @resource.language, :path => method_obj.resource.description + '.png')}", :class => "sm-drilldown-icons") %>
             <a title="New window" href="#" onclick="showLinkForResource(<%= method_obj.resource.id %>)" class="sm-show-link-button"></a>
-            <a href="#" onclick="showMetricsAndFilePaths(<%= method_obj.id %>, '<%= row_id %>', <%= bline %>, <%= eline %>)"><%= method_obj.resource.name%></a>
+            <a href="#" onclick="showMetricsAndFilePaths(<%= method_obj.id %>, '<%= row_id %>', <%= bline %>, <%= eline %>)">
+              <%=h method_obj.resource.name %>
+            </a>
           </td>
         </tr>
 <%
@@ -149,7 +153,9 @@
           <td>
             <%= image_tag("#{url_for_static(:plugin => 'SourceMeterAnalyzer' + @resource.language, :path => method_obj.resource.description + '.png')}", :class => "sm-drilldown-icons") %>
             <a title="New window" href="#" onclick="showLinkForResource(<%= method_obj.resource.id %>)" class="sm-show-link-button"></a>
-            <a href="#" onclick="showMetricsAndFilePaths(<%= method_obj.id %>, '<%= row_id %>', <%= bline %>, <%= eline %>)"><%= method_obj.resource.name%></a>
+            <a href="#" onclick="showMetricsAndFilePaths(<%= method_obj.id %>, '<%= row_id %>', <%= bline %>, <%= eline %>)">
+              <%=h method_obj.resource.name %>
+            </a>
           </td>
         </tr>
 <%

@@ -1,5 +1,6 @@
 src/sonarqube-analyzers/sourcemeter-analyzer-base/target/
 src/sonarqube-analyzers/sourcemeter-analyzer-cpp/target/
+src/sonarqube-analyzers/sourcemeter-analyzer-csharp/target/
 src/sonarqube-analyzers/sourcemeter-analyzer-java/target/
 src/sonarqube-analyzers/sourcemeter-analyzer-python/target/
 src/sonarqube-analyzers/sourcemeter-analyzer-rpg/target/

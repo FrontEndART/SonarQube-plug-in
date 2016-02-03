@@ -4,11 +4,11 @@
 
   <groupId>com.sourcemeter</groupId>
   <artifactId>sonar-sourcemeter-analyzer-cpp-plugin</artifactId>
-  <version>7.0</version>
+  <version>8.0</version>
   <packaging>sonar-plugin</packaging>
 
-  <name>SourceMeter C++ analyzer plugin</name>
-  <description>SourceMeter C++ analyzer plugin</description>
+  <name>SourceMeter C/C++ analyzer plugin</name>
+  <description>SourceMeter C/C++ analyzer plugin</description>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -57,13 +57,13 @@
     <dependency>
       <groupId>com.sourcemeter</groupId>
       <artifactId>sonar-sourcemeter-core-plugin</artifactId>
-      <version>7.0</version>
+      <version>8.0</version>
     </dependency>
 
     <dependency>
       <groupId>com.sourcemeter</groupId>
       <artifactId>sonar-sourcemeter-analyzer-base</artifactId>
-      <version>7.0</version>
+      <version>8.0</version>
     </dependency>
   </dependencies>
 
@@ -77,7 +77,7 @@
         <configuration>
           <pluginClass>com.sourcemeter.analyzer.cpp.SourceMeterAnalyzerCppPlugin</pluginClass>
           <pluginKey>SourceMeterAnalyzercpp</pluginKey>
-          <pluginName>SourceMeter C++ analyzer</pluginName>
+          <pluginName>SourceMeter C/C++ analyzer</pluginName>
         </configuration>
       </plugin>
       <plugin>

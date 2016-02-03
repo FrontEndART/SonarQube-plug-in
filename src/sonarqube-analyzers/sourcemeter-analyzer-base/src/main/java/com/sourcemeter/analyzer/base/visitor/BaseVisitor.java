@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014-2015, FrontEndART Software Ltd.
+ * Copyright (c) 2014-2016, FrontEndART Software Ltd.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -32,7 +32,6 @@ package com.sourcemeter.analyzer.base.visitor;
 import graphlib.Attribute;
 import graphlib.Node;
 import graphsupportlib.Metric.Position;
-import com.sourcemeter.analyzer.base.helper.VisitorHelper;
 
 import java.util.List;
 
@@ -41,6 +40,8 @@ import org.sonar.api.component.ResourcePerspectives;
 import org.sonar.api.resources.Project;
 import org.sonar.api.resources.Qualifiers;
 import org.sonar.api.resources.Resource;
+
+import com.sourcemeter.analyzer.base.helper.VisitorHelper;
 
 /**
  * Base class for visitors. Stores data that is needed by almost all visitor

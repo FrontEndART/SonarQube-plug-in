@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014-2015, FrontEndART Software Ltd.
+ * Copyright (c) 2014-2016, FrontEndART Software Ltd.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -34,7 +34,6 @@ import graphlib.Edge.eDirectionType;
 import graphlib.Node;
 import graphsupportlib.Metric.Position;
 
-import java.io.File;
 import java.util.AbstractMap.SimpleEntry;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -53,6 +52,7 @@ import org.sonar.api.resources.Resource;
 
 import com.sourcemeter.analyzer.base.core.resources.CloneClass;
 import com.sourcemeter.analyzer.base.core.resources.CloneInstance;
+import com.sourcemeter.analyzer.base.helper.FileHelper;
 import com.sourcemeter.analyzer.base.helper.GraphHelper;
 import com.sourcemeter.analyzer.base.helper.VisitorHelper;
 
@@ -69,6 +69,7 @@ public abstract class CloneTreeLoaderVisitor extends BaseVisitor {
     private final long numOfNodes;
     private boolean emptyProject = false;
     private final VisitorHelper visitorHelper;
+    private final FileSystem fileSystem;
 
     /**
      * Initializes a CloneTreeLoaderVisitor by all necessary attributes
@@ -89,6 +90,7 @@ public abstract class CloneTreeLoaderVisitor extends BaseVisitor {
         this.project = project;
         this.sensorContext = sensorContext;
         this.visitorHelper = visitorHelper;
+        this.fileSystem = fileSystem;
 
         this.cloneTime = 0;
         this.numOfVisitedNodes = 0;
@@ -136,8 +138,8 @@ public abstract class CloneTreeLoaderVisitor extends BaseVisitor {
             Node node, SensorContext sensorContext, Project project) {
         SimpleEntry<org.sonar.api.resources.File, String> result = null;
         String projectKey = project.getKey();
-        org.sonar.api.resources.File fileResource = org.sonar.api.resources.File
-                .fromIOFile(new File(visitorHelper.getPathFromNode(node)), this.project);
+        org.sonar.api.resources.File fileResource = (org.sonar.api.resources.File) FileHelper
+                .getIndexedFileForFilePath(fileSystem, sensorContext, project, visitorHelper.getPathFromNode(node));
 
         if (fileResource != null) {
             Position pos = graphsupportlib.Metric.getFirstPositionAttribute(node);
@@ -239,8 +241,8 @@ public abstract class CloneTreeLoaderVisitor extends BaseVisitor {
         boolean disappearing = isDisappearing(node);
         if ("CloneClass".equals(nodeType) && !disappearing) {
             Node ci = collectCloneClass(node, this.project, this.sensorContext);
-            parentResource = org.sonar.api.resources.File.fromIOFile(
-                    new File(visitorHelper.getPathFromNode(ci)), this.project);
+            parentResource = (org.sonar.api.resources.File) FileHelper
+                    .getIndexedFileForFilePath(fileSystem, sensorContext, project, visitorHelper.getPathFromNode(ci));
             if (parentResource != null) {
                 resource = new CloneClass(getKeyFromNode(node), nodeName, parentResource);
                 this.sensorContext.index(resource);
@@ -248,7 +250,8 @@ public abstract class CloneTreeLoaderVisitor extends BaseVisitor {
                 return;
             }
         } else if ("CloneInstance".equals(nodeType) && !disappearing && nodePosition != null) {
-            parentResource = org.sonar.api.resources.File.fromIOFile(new File(nodePosition.path), this.project);
+            parentResource = (org.sonar.api.resources.File) FileHelper
+                    .getIndexedFileForFilePath(fileSystem, sensorContext, project, nodePosition.path);
             if (parentResource != null) {
                 resource = new CloneInstance(getKeyFromNode(node), nodeName, parentResource);
                 this.sensorContext.index(resource);

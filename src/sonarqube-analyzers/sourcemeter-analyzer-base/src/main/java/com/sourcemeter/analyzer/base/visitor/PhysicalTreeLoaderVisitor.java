@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014-2015, FrontEndART Software Ltd.
+ * Copyright (c) 2014-2016, FrontEndART Software Ltd.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -31,10 +31,6 @@ package com.sourcemeter.analyzer.base.visitor;
 
 import graphlib.Node;
 import graphsupportlib.Metric.Position;
-import com.sourcemeter.analyzer.base.helper.GraphHelper;
-import com.sourcemeter.analyzer.base.helper.VisitorHelper;
-
-import java.io.File;
 
 import org.sonar.api.batch.SensorContext;
 import org.sonar.api.batch.fs.FilePredicate;
@@ -43,6 +39,10 @@ import org.sonar.api.batch.fs.InputFile;
 import org.sonar.api.component.ResourcePerspectives;
 import org.sonar.api.resources.Project;
 import org.sonar.api.resources.Resource;
+
+import com.sourcemeter.analyzer.base.helper.FileHelper;
+import com.sourcemeter.analyzer.base.helper.GraphHelper;
+import com.sourcemeter.analyzer.base.helper.VisitorHelper;
 
 /**
  * Visitor class for visiting and storing physical nodes from the result graph.
@@ -54,6 +54,7 @@ public abstract class PhysicalTreeLoaderVisitor extends BaseVisitor {
     protected long numOfVisitedNodes;
     protected final long numOfNodes;
     protected boolean emptyProject = false;
+    private final FileSystem fileSystem;
 
     public PhysicalTreeLoaderVisitor(FileSystem fileSystem,
             ResourcePerspectives perspectives, Project project,
@@ -62,6 +63,7 @@ public abstract class PhysicalTreeLoaderVisitor extends BaseVisitor {
         super(perspectives, visitorHelper);
         this.project = project;
         this.sensorContext = sensorContext;
+        this.fileSystem = fileSystem;
 
         this.fileTime = 0;
         this.numOfVisitedNodes = 0;
@@ -109,7 +111,7 @@ public abstract class PhysicalTreeLoaderVisitor extends BaseVisitor {
         String nodeType = node.getType().getType();
 
         if ("File".equals(nodeType)) {
-            resource = org.sonar.api.resources.File.fromIOFile(new File(nodeLongName), this.project);
+            resource = FileHelper.getIndexedFileForFilePath(fileSystem, sensorContext, project, nodeLongName);
         } else {
             return;
         }

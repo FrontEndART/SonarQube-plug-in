@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014-2015, FrontEndART Software Ltd.
+ * Copyright (c) 2014-2016, FrontEndART Software Ltd.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -37,16 +37,11 @@ import org.sonar.api.batch.fs.FileSystem;
 import org.sonar.api.component.ResourcePerspectives;
 import org.sonar.api.resources.Project;
 
-import com.sourcemeter.analyzer.base.batch.ProfileInitializer;
 import com.sourcemeter.analyzer.base.helper.VisitorHelper;
 import com.sourcemeter.analyzer.rpg.SourceMeterRPGMetricFinder;
 import com.sourcemeter.analyzer.rpg.profile.SourceMeterRPGRuleRepository;
 
 public class VisitorHelperRPG extends VisitorHelper {
-
-    public static final String PROGRAM_TRESHOLD_VIOLATION_SUFFIX = "_warning_Program";
-    public static final String PROCEDURE_TRESHOLD_VIOLATION_SUFFIX = "_warning_Procedure";
-    public static final String SUBROUTINE_TRESHOLD_VIOLATION_SUFFIX = "_warning_Subroutine";
 
     public VisitorHelperRPG(Project project, SensorContext sensorContext,
             ResourcePerspectives perspectives, FileSystem fileSystem) {
@@ -63,31 +58,6 @@ public class VisitorHelperRPG extends VisitorHelper {
     @Override
     public String getWarningTextWithPrefix(String ruleKey, String warningText) {
         return "SourceMeter: " + warningText;
-    }
-
-    @Override
-    public String getCorrectedRuleKey(String ruleKey) {
-        if (ruleKey.contains(PROGRAM_TRESHOLD_VIOLATION_SUFFIX)) {
-            // program treshold violation
-            ruleKey = METRIC_PREFIX + ruleKey.replaceAll(PROGRAM_TRESHOLD_VIOLATION_SUFFIX, "");
-        } else if (ruleKey.contains(PROCEDURE_TRESHOLD_VIOLATION_SUFFIX)) {
-            // procedure treshold violation
-            ruleKey = METRIC_PREFIX + ruleKey.replaceAll(PROCEDURE_TRESHOLD_VIOLATION_SUFFIX, "");
-        } else if (ruleKey.contains(SUBROUTINE_TRESHOLD_VIOLATION_SUFFIX)) {
-            // subroutine treshold violation
-            ruleKey = METRIC_PREFIX + ruleKey.replaceAll(SUBROUTINE_TRESHOLD_VIOLATION_SUFFIX, "");
-        } else if (ruleKey.contains(ProfileInitializer.ClONE_CLASS_TRESHOLD_VIOLATION_SUFFIX)) {
-            // CloneClass treshold violation
-            ruleKey = METRIC_PREFIX + ruleKey.replaceAll(ProfileInitializer.ClONE_CLASS_TRESHOLD_VIOLATION_SUFFIX, "");
-        } else if (ruleKey.contains(ProfileInitializer.CLONE_INSTANCE_TRESHOLD_VIOLATION_SUFFIX)) {
-            // CloneInstance treshold violation
-            ruleKey = METRIC_PREFIX + ruleKey.replaceAll(ProfileInitializer.CLONE_INSTANCE_TRESHOLD_VIOLATION_SUFFIX, "");
-        } else {
-            String[] splittedKey = ruleKey.split("_");
-            ruleKey = splittedKey[splittedKey.length - 1];
-        }
-
-        return ruleKey;
     }
 
     @Override

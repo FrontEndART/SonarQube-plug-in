@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014-2015, FrontEndART Software Ltd.
+ * Copyright (c) 2014-2016, FrontEndART Software Ltd.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -55,7 +55,7 @@ import com.sourcemeter.analyzer.python.profile.SourceMeterPythonRuleRepository;
              @Property(
                  key = "sm.python.binary",
                  name = "Python 2.7 binary",
-                 description = "Path of the Python 2.7 binary.",
+                 description = "Sets Python 2.7 binary executable name (full path is required if its directory is not in PATH).",
                  category = SourceMeterAnalyzerPythonPlugin.PYTHON_GENERAL_CATEGORY,
                  project = true,
                  type = PropertyType.STRING

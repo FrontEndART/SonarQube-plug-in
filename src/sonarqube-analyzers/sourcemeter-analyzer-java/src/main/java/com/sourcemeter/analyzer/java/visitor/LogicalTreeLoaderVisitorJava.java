@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014-2015, FrontEndART Software Ltd.
+ * Copyright (c) 2014-2016, FrontEndART Software Ltd.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -52,15 +52,11 @@ import com.sourcemeter.analyzer.java.helper.VisitorHelperJava;
 
 public class LogicalTreeLoaderVisitorJava extends LogicalTreeLoaderVisitor {
 
-    private final boolean uploadMethods;
-
     public LogicalTreeLoaderVisitorJava(FileSystem fileSystem, Settings settings,
             ResourcePerspectives perspectives, Project project, SensorContext sensorContext, long numOfNodes) {
 
         super(fileSystem, settings, perspectives, project, sensorContext, numOfNodes,
                 new VisitorHelperJava(project, sensorContext, perspectives, fileSystem));
-
-        this.uploadMethods = settings.getBoolean("sm.java.uploadMethods");
     }
 
     /**
@@ -94,7 +90,7 @@ public class LogicalTreeLoaderVisitorJava extends LogicalTreeLoaderVisitor {
         String nodeTUID = GraphHelper.getNodeTUID(node);
 
         if (nodeTUID == null) {
-            String warningMessage = "A node has no TUID attribute: "
+            String warningMessage = "A " + nodeType + " node has no TUID attribute: "
                     + nodeLongName + ", UID: " + node.getUID();
 
             if (skipTUID) {

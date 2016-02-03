@@ -33,7 +33,7 @@ code > span.er { color: #ff0000; font-weight: bold; }
 <body>
 <nav id="TOC">
 <ul>
-<li><a href="#sourcemeter-7.0-for-java">SourceMeter 7.0 for Java</a></li>
+<li><a href="#sourcemeter-8.0-for-java">SourceMeter 8.0 for Java</a></li>
 <li><a href="#introduction">Introduction</a><ul>
 <li><a href="#product-characteristics">Product characteristics</a></li>
 <li><a href="#background">Background</a></li>
@@ -128,7 +128,7 @@ code > span.er { color: #ff0000; font-weight: bold; }
 <li><a href="#footnotes">Footnotes</a></li>
 </ul>
 </nav>
-<h1 id="sourcemeter-7.0-for-java"><a href="#sourcemeter-7.0-for-java">SourceMeter 7.0 for Java</a></h1>
+<h1 id="sourcemeter-8.0-for-java"><a href="#sourcemeter-8.0-for-java">SourceMeter 8.0 for Java</a></h1>
 <h1 id="introduction"><a href="#introduction">Introduction</a></h1>
 <p>FrontEndART SourceMeter for Java is a source code analyzer tool, which can perform deep static analysis of the source code of complex Java systems (<a href="https://www.sourcemeter.com">https://www.sourcemeter.com</a>).</p>
 <p>The source code of a program is usually its only up-to-date documentation. At the same time, the source code is the exquisite bearer of knowledge, business processes and methodology, accumulated over a long period of time. Source code quality decrease, which happens due to many quick fixes and time pressure, results in the increase of development and testing costs, and operational risks. In spite of this, the source code usually receives hostile treatment and is merely considered as a tool.</p>
@@ -180,17 +180,16 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'">'+'support@frontendart.com'+'
 <h2 id="supported-platforms"><a href="#supported-platforms">Supported platforms</a></h2>
 <p>SourceMeter supports the following x86 and x86-64 platforms:</p>
 <ul>
-<li><p>Microsoft Windows 7, 8, and 8.1</p></li>
+<li><p>Microsoft Windows 7, 8, 8.1, and 10</p></li>
 <li><p>Microsoft Windows 2008 R2 Server</p></li>
 <li><p>Microsoft Windows 2012 Server</p></li>
 <li><p>GNU/Linux with kernel version 2.6.18 and GNU C library 2.11 or newer</p></li>
 </ul>
 <h2 id="requirements"><a href="#requirements">Requirements</a></h2>
 <p>In order to use SourceMeter it is necessary to have JDK 1.8 or newer installed on the computer and the necessary environment variables must be set correctly (JAVA_HOME, PATH).</p>
-<p>In case of Windows, the appropriate Microsoft Visual C++ 2010 SP1 Redistributable Package must be installed. It can be downloaded from the following URL:</p>
+<p>In case of Windows, the appropriate Microsoft Visual C++ 2015 Redistributable Package must be installed. It can be downloaded from the following URL:</p>
 <ul>
-<li><p><a href="http://www.microsoft.com/en-us/download/details.aspx?id=8328">http://www.microsoft.com/en-us/download/details.aspx?id=8328</a> (x86)</p></li>
-<li><p><a href="http://www.microsoft.com/en-us/download/details.aspx?id=13523">http://www.microsoft.com/en-us/download/details.aspx?id=13523</a> (x64)</p></li>
+<li><a href="https://www.microsoft.com/en-us/download/details.aspx?id=48145">https://www.microsoft.com/en-us/download/details.aspx?id=48145</a> (x86/x64)</li>
 </ul>
 <p>If the Maven build analysis will be used then Maven 2.2.1, 3.0.5, 3.1.1, 3.2.2 or 3.2.5 has to be installed with the necessary environment variable (M2_HOME).</p>
 <p>The Linux package uses bash scripts.</p>
@@ -359,7 +358,7 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'">'+'support@frontendart.com'+'
 <dd><p>Relative or absolute path name of the executable build script which manages the build process of the system. Using this option the Ant or Maven build analysis mode will be activated. If the build script does not return with 0, SourceMeter will stop with an error and no analysis results will be available.</p>
 </dd>
 <dt><strong>-externalHardFilter</strong></dt>
-<dd><p>Filter file specified with relative or absolute path, to filter out certain files from the analysis based on their path names. Filtered files will not appear in the results. The filter file is a simple text file containing lines starting with ‘+’ or ‘-’ characters followed by a regular expression<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a>. During the analysis, each input file will be checked for these expressions. If the first character of the last matching expression is ‘-’, then the given file will be excluded from the analysis. If the first character of the last matching expression is ‘+’, or there is no matching expression, then the file will be analyzed. A line starting with a different character than ‘-’ or ‘+’ will be ignored. Example filter file content:</p>
+<dd><p>Filter file specified with relative or absolute path, to filter out certain files from the analysis based on their path names. Filtered files will not appear in the results. The filter file is a simple text file containing lines starting with ‘+’ or ‘-’ characters followed by a regular expression<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a>. Tip: you can use the and anchors to make a substring literal, reducing the need of escaping backslashes. During the analysis, each input file will be checked for these expressions. If the first character of the last matching expression is ‘-’, then the given file will be excluded from the analysis. If the first character of the last matching expression is ‘+’, or there is no matching expression, then the file will be analyzed. A line starting with a different character than ‘-’ or ‘+’ will be ignored. On Windows the checking is case-insensitive. Example filter file content:</p>
 <pre><code># Filter out all source files starting with &quot;test&quot;:
 -test[^\.]*.java
 # But test576.java is needed:
@@ -370,7 +369,7 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'">'+'support@frontendart.com'+'
 -test1742_b.java</code></pre>
 </dd>
 <dt><strong>-externalSoftFilter</strong></dt>
-<dd><p>Filter file specified with relative or absolute path to filter out source code elements (e.g. classes, methods) which are not important for some reason, but could not be filtered out via the externalHardFilter parameter. Source files containing these elements will be analyzed, but the matching results will not be calculated. The filter file is a simple text file containing lines starting with ‘+’ or ‘-’ characters followed by a regular expression. After the analysis, those source elements whose absolute path of their source position last matches an expression starting with ‘-’ will not be considered in the results. If the first character of the last matching expression is ‘+’, or there is no matching expression, then the source element will be considered as part of the software system. Example filter file content:</p>
+<dd><p>Filter file specified with relative or absolute path to filter out source code elements (e.g. classes, methods) which are not important for some reason, but could not be filtered out via the externalHardFilter parameter. Source files containing these elements will be analyzed, but the matching results will not be calculated. The filter file is a simple text file containing lines starting with ‘+’ or ‘-’ characters followed by a regular expression. Tip: you can use the and anchors to make a substring literal, reducing the need of escaping backslashes. On Windows the checking is case-insensitive. After the analysis, those source elements whose absolute path of their source position last matches an expression starting with ‘-’ will not be considered in the results. If the first character of the last matching expression is ‘+’, or there is no matching expression, then the source element will be considered as part of the software system. Example filter file content:</p>
 <pre><code>-C:\\
 +C:\\Users\\UserName\\MyProject\\
 -\\3rd\_party\\
@@ -388,8 +387,23 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'">'+'support@frontendart.com'+'
 </dl>
 <p>Source code elements in the files marked with darker background will not be considered when creating the results of the analysis.</p>
 <dl>
+<dt><strong>-runAndroidHunter</strong></dt>
+<dd><p>This parameter turns on or off the AndroidHunter module. With this feature, SourceMeter lists Android specific coding rule violations. This module checks the Java sources of the Android projects for common Android specific faults and anti-patterns. Its value can be “true” (turn this feature on) or “false” (turn this feature off). The default value is “true”.</p>
+</dd>
 <dt><strong>-runMetricHunter</strong></dt>
 <dd><p>This parameter turns on or off the MetricHunter module. With this feature, SourceMeter lists metric threshold violations. Its value can be “true” (turn this feature on) or “false” (turn this feature off). The default value is “true”.</p>
+</dd>
+<dt><strong>-runVulnerabilityHunter</strong></dt>
+<dd><p>This parameter turns on or off the VulnerabilityHunter module. With this feature, SourceMeter can detect OWASP security vulnerabilities in Java web applications. Its value can be “true” (turn this feature on) or “false” (turn this feature off). The default value is “true”.</p>
+</dd>
+<dt><strong>-runFaultHunter</strong></dt>
+<dd><p>This parameter turns on or off the FaultHunter module. With this feature, SourceMeter identifies common Java coding rule violations in the code (so-called bad practices) in a similar way as provided by the PMD tool. Its value can be “true” (turn this feature on) or “false” (turn this feature off). The default value is “true”.</p>
+</dd>
+<dt><strong>-runDCF</strong></dt>
+<dd><p>This parameter turns on or off the DuplicatedCodeFinder module. With this feature, SourceMeter identifies copy-pasted code fragments. Its value can be “true” (turn this feature on) or “false” (turn this feature off). The default value is “true”.</p>
+</dd>
+<dt><strong>-runMET</strong></dt>
+<dd><p>This parameter turns on or off the Metric module. With this feature, SourceMeter computes source code metrics. Its value can be “true” (turn this feature on) or “false” (turn this feature off). The default value is “true”.</p>
 </dd>
 <dt><strong>-profileXML</strong></dt>
 <dd><p>Global configuration file for SourceMeter. Its <em>tool-options</em> tag can be used to override the default metric thresholds for the MetricHunter tool. Furthermore, its <em>rule-options</em> tag can enable/disable or modify the priorities of multiple rules. An example profile xml file is shown below:</p>
@@ -397,19 +411,19 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'">'+'support@frontendart.com'+'
 </dl>
 <pre class="sourceCode xml"><code class="sourceCode xml">      <span class="kw">&lt;sourcemeter-profile&gt;</span>
         <span class="kw">&lt;tool-options&gt;</span>
-          <span class="kw">&lt;tool</span><span class="ot"> name</span> <span class="ot">=</span> <span class="st">'MetricHunter'</span><span class="ot"> enabled</span> <span class="ot">=</span> <span class="st">'true'</span><span class="kw">&gt;</span>
+          <span class="kw">&lt;tool</span><span class="ot"> name</span> <span class="ot">=</span> <span class="st">&quot;MetricHunter&quot;</span><span class="ot"> enabled</span> <span class="ot">=</span> <span class="st">&quot;true&quot;</span><span class="kw">&gt;</span>
               <span class="kw">&lt;metric-thresholds&gt;</span>
-                  <span class="kw">&lt;threshold</span><span class="ot"> metric-id=</span><span class="st">'LOC'</span><span class="ot"> relation=</span><span class="st">'gt'</span><span class="ot"> value=</span><span class="st">'100'</span><span class="ot"> entity=</span><span class="st">'Method'</span> <span class="kw">/&gt;</span>
-                  <span class="kw">&lt;threshold</span><span class="ot"> metric-id=</span><span class="st">'LLOC'</span><span class="ot"> relation=</span><span class="st">'gt'</span><span class="ot"> value=</span><span class="st">'none'</span><span class="ot"> entity=</span><span class="st">'Method'</span> <span class="kw">/&gt;</span>
-                  <span class="kw">&lt;threshold</span><span class="ot"> metric-id=</span><span class="st">'NUMPAR'</span><span class="ot"> relation=</span><span class="st">'gt'</span><span class="ot"> value=</span><span class="st">'43'</span><span class="ot"> entity=</span><span class="st">'Method'</span> <span class="kw">/&gt;</span>
-                  <span class="kw">&lt;threshold</span><span class="ot"> metric-id=</span><span class="st">'TLOC'</span><span class="ot"> relation=</span><span class="st">'gt'</span><span class="ot"> value=</span><span class="st">'-32'</span><span class="ot"> entity=</span><span class="st">'Method'</span> <span class="kw">/&gt;</span>
+                  <span class="kw">&lt;threshold</span><span class="ot"> metric-id=</span><span class="st">&quot;LOC&quot;</span><span class="ot"> relation=</span><span class="st">&quot;gt&quot;</span><span class="ot"> value=</span><span class="st">&quot;100&quot;</span><span class="ot"> entity=</span><span class="st">&quot;Method&quot;</span> <span class="kw">/&gt;</span>
+                  <span class="kw">&lt;threshold</span><span class="ot"> metric-id=</span><span class="st">&quot;LLOC&quot;</span><span class="ot"> relation=</span><span class="st">&quot;gt&quot;</span><span class="ot"> value=</span><span class="st">&quot;none&quot;</span><span class="ot"> entity=</span><span class="st">&quot;Method&quot;</span> <span class="kw">/&gt;</span>
+                  <span class="kw">&lt;threshold</span><span class="ot"> metric-id=</span><span class="st">&quot;NUMPAR&quot;</span><span class="ot"> relation=</span><span class="st">&quot;gt&quot;</span><span class="ot"> value=</span><span class="st">&quot;43&quot;</span><span class="ot"> entity=</span><span class="st">&quot;Method&quot;</span> <span class="kw">/&gt;</span>
+                  <span class="kw">&lt;threshold</span><span class="ot"> metric-id=</span><span class="st">&quot;TLOC&quot;</span><span class="ot"> relation=</span><span class="st">&quot;gt&quot;</span><span class="ot"> value=</span><span class="st">&quot;-32&quot;</span><span class="ot"> entity=</span><span class="st">&quot;Method&quot;</span> <span class="kw">/&gt;</span>
               <span class="kw">&lt;/metric-thresholds&gt;</span>
           <span class="kw">&lt;/tool&gt;</span>
         <span class="kw">&lt;/tool-options&gt;</span>
-      
+
         <span class="kw">&lt;rule-options&gt;</span>
-          <span class="kw">&lt;rule</span><span class="ot"> id=</span><span class="st">'ECB'</span><span class="ot"> name=</span><span class="st">'Empty Catch Block'</span><span class="ot"> priority=</span><span class="st">'Critical'</span><span class="ot"> enabled=</span><span class="st">'false'</span><span class="kw">/&gt;</span>
-          <span class="kw">&lt;rule</span><span class="ot"> id=</span><span class="st">'AFLV'</span><span class="ot"> name=</span><span class="st">'Avoid Final Local Variable'</span><span class="ot"> priority=</span><span class="st">'Major'</span><span class="ot"> enabled=</span><span class="st">'true'</span><span class="kw">/&gt;</span>
+          <span class="kw">&lt;rule</span><span class="ot"> id=</span><span class="st">&quot;ECB&quot;</span><span class="ot"> name=</span><span class="st">&quot;Empty Catch Block&quot;</span><span class="ot"> priority=</span><span class="st">&quot;Critical&quot;</span><span class="ot"> enabled=</span><span class="st">&quot;false&quot;</span><span class="kw">/&gt;</span>
+          <span class="kw">&lt;rule</span><span class="ot"> id=</span><span class="st">&quot;AFLV&quot;</span><span class="ot"> name=</span><span class="st">&quot;Avoid Final Local Variable&quot;</span><span class="ot"> priority=</span><span class="st">&quot;Major&quot;</span><span class="ot"> enabled=</span><span class="st">&quot;true&quot;</span><span class="kw">/&gt;</span>
         <span class="kw">&lt;/rule-options&gt;</span>
       <span class="kw">&lt;/sourcemeter-profile&gt;</span></code></pre>
 <dl>
@@ -777,14 +791,14 @@ It is currently set to &quot;c:\Program Files\Java\jre7&quot;</code></pre></li>
 <tr class="header">
 <th style="text-align: left;">Category</th>
 <th style="text-align: left;">Metric name</th>
-<th style="text-align: left;">Abbreviation</th>
+<th style="text-align: left;">Abbrev.</th>
 <th style="text-align: center;">Method</th>
-<th style="text-align: center;">Enum</th>
-<th style="text-align: center;">Interface</th>
 <th style="text-align: center;">Class</th>
+<th style="text-align: center;">Interface</th>
+<th style="text-align: center;">Enum</th>
 <th style="text-align: center;">Package</th>
 <th style="text-align: center;">File</th>
-<th style="text-align: center;">Component</th>
+<th style="text-align: center;">Comp.</th>
 </tr>
 </thead>
 <tbody>
@@ -1865,15 +1879,15 @@ It is currently set to &quot;c:\Program Files\Java\jre7&quot;</code></pre></li>
 <thead>
 <tr class="header">
 <th style="text-align: left;">Metric name</th>
-<th style="text-align: left;">Abbreviation</th>
-<th style="text-align: center;">CloneInstance</th>
-<th style="text-align: center;">CloneClass</th>
+<th style="text-align: left;">Abbrev.</th>
+<th style="text-align: center;">Clone Instance</th>
+<th style="text-align: center;">Clone Class</th>
 <th style="text-align: center;">Method</th>
-<th style="text-align: center;">Enum</th>
-<th style="text-align: center;">Interface</th>
 <th style="text-align: center;">Class</th>
+<th style="text-align: center;">Interface</th>
+<th style="text-align: center;">Enum</th>
 <th style="text-align: center;">Package</th>
-<th style="text-align: center;">Component</th>
+<th style="text-align: center;">Comp.</th>
 </tr>
 </thead>
 <tbody>
@@ -4837,407 +4851,2056 @@ String t = Integer.<span class="fu">toString</span>(<span class="dv">456</span>)
 <h3 id="basic-rules-1"><a href="#basic-rules-1">Basic Rules</a></h3>
 <h4 id="PMD_ABSALIL"><a href="#PMD_ABSALIL">Avoid Branching Statement As Last In Loop</a></h4>
 <p>Using a branching statement as the last part of a loop may be a bug, and/or is confusing. Ensure that the usage is not a bug, or consider using another approach.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="co">// unusual use of branching statement in a loop</span>
+<span class="kw">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; <span class="dv">10</span>; i++) {
+  <span class="kw">if</span> (i*i &lt;= <span class="dv">25</span>) {
+    <span class="kw">continue</span>;
+  }
+  <span class="kw">break</span>;
+}
+
+<span class="co">// this makes more sense ...</span>
+<span class="kw">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; <span class="dv">10</span>; i++) {
+  <span class="kw">if</span> (i*i &gt; <span class="dv">25</span>) {
+    <span class="kw">break</span>;
+  }
+}</code></pre>
 <h4 id="PMD_ADLIBDC"><a href="#PMD_ADLIBDC">Avoid Decimal Literals In Big Decimal Constructor</a></h4>
 <p>One might assume that the result of “new BigDecimal(0.1)” is exactly equal to 0.1, but it is actually equal to .1000000000000000055511151231257827021181583404541015625. This is because 0.1 cannot be represented exactly as a double (or as a binary fraction of any finite length). Thus, the long value that is being passed in to the constructor is not exactly equal to 0.1, appearances notwithstanding. The (String) constructor, on the other hand, is perfectly predictable: ‘new BigDecimal(“0.1”)’ is exactly equal to 0.1, as one would expect. Therefore, it is generally recommended that the (String) constructor be used in preference to this one.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java">BigDecimal bd = <span class="kw">new</span> BigDecimal(<span class="fl">1.123</span>);    <span class="co">// loss of precision, this would trigger the rule</span>
+BigDecimal bd = <span class="kw">new</span> BigDecimal(<span class="st">&quot;1.123&quot;</span>);  <span class="co">// preferred approach</span>
+BigDecimal bd = <span class="kw">new</span> BigDecimal(<span class="dv">12</span>);       <span class="co">// preferred approach, ok for integer values</span></code></pre>
 <h4 id="PMD_AMUO"><a href="#PMD_AMUO">Avoid Multiple Unary Operators</a></h4>
 <p>The use of multiple unary operators may be problematic, and/or confusing. Ensure that the intended usage is not a bug, or consider simplifying the expression.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="co">// These are typo bugs, or at best needlessly complex and confusing:</span>
+<span class="dt">int</span> i = - -<span class="dv">1</span>;
+<span class="dt">int</span> j = + - +<span class="dv">1</span>;
+<span class="dt">int</span> z = ~~<span class="dv">2</span>;
+<span class="dt">boolean</span> b = !!<span class="kw">true</span>;
+<span class="dt">boolean</span> c = !!!<span class="kw">true</span>;
+
+<span class="co">// These are better:</span>
+<span class="dt">int</span> i = <span class="dv">1</span>;
+<span class="dt">int</span> j = -<span class="dv">1</span>;
+<span class="dt">int</span> z = <span class="dv">2</span>;
+<span class="dt">boolean</span> b = <span class="kw">true</span>;
+<span class="dt">boolean</span> c = <span class="kw">false</span>;
+
+<span class="co">// And these just make your brain hurt:</span>
+<span class="dt">int</span> i = ~-<span class="dv">2</span>;
+<span class="dt">int</span> j = -~<span class="dv">7</span>;</code></pre>
 <h4 id="PMD_ATG"><a href="#PMD_ATG">Avoid Thread Group</a></h4>
 <p>Avoid using java.lang.ThreadGroup; although it is intended to be used in a threaded environment it contains methods that are not thread-safe.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> Bar {
+  <span class="dt">void</span> <span class="fu">buz</span>() {
+    ThreadGroup tg = <span class="kw">new</span> ThreadGroup(<span class="st">&quot;My threadgroup&quot;</span>);
+    tg = <span class="kw">new</span> ThreadGroup(tg, <span class="st">&quot;my thread group&quot;</span>);
+    tg = Thread.<span class="fu">currentThread</span>().<span class="fu">getThreadGroup</span>();
+    tg = System.<span class="fu">getSecurityManager</span>().<span class="fu">getThreadGroup</span>();
+  }
+}</code></pre>
 <h4 id="PMD_AUHCIP"><a href="#PMD_AUHCIP">Avoid Using Hard Coded IP</a></h4>
 <p>Application with hard-coded IP addresses can become impossible to deploy in some cases. Externalizing IP addresses is preferable.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> Foo {
+  <span class="kw">private</span> String ip = <span class="st">&quot;127.0.0.1&quot;</span>; <span class="co">// not recommended</span>
+}</code></pre>
 <h4 id="PMD_AUOV"><a href="#PMD_AUOV">Avoid Using Octal Values</a></h4>
 <p>Integer literals should not start with zero since this denotes that the rest of literal will be interpreted as an octal value.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="dt">int</span> i = <span class="dv">012</span>;  <span class="co">// set i with 10 not 12</span>
+<span class="dt">int</span> j = <span class="dv">010</span>;  <span class="co">// set j with 8 not 10</span>
+k = i * j;    <span class="co">// set k with 80 not 120</span></code></pre>
 <h4 id="PMD_BII"><a href="#PMD_BII">Big Integer Instantiation</a></h4>
 <p>Don’t create instances of already existing BigInteger (BigInteger.ZERO, BigInteger.ONE) and for Java 1.5 onwards, BigInteger.TEN and BigDecimal (BigDecimal.ZERO, BigDecimal.ONE, BigDecimal.TEN)</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java">BigInteger bi = <span class="kw">new</span> BigInteger(<span class="dv">1</span>);    <span class="co">// reference BigInteger.ONE instead</span>
+BigInteger bi2 = <span class="kw">new</span> BigInteger(<span class="st">&quot;0&quot;</span>); <span class="co">// reference BigInteger.ZERO instead</span>
+BigInteger bi3 = <span class="kw">new</span> BigInteger(<span class="fl">0.0</span>); <span class="co">// reference BigInteger.ZERO instead</span>
+BigInteger bi4;
+bi4 = <span class="kw">new</span> BigInteger(<span class="dv">0</span>);              <span class="co">// reference BigInteger.ZERO instead</span></code></pre>
 <h4 id="PMD_BI"><a href="#PMD_BI">Boolean Instantiation</a></h4>
 <p>Avoid instantiating Boolean objects; you can reference Boolean.TRUE, Boolean.FALSE, or call Boolean.valueOf() instead.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java">Boolean bar = <span class="kw">new</span> Boolean(<span class="st">&quot;true&quot;</span>);    <span class="co">// unnecessary creation, just reference Boolean.TRUE;</span>
+Boolean buz = Boolean.<span class="fu">valueOf</span>(<span class="kw">false</span>); <span class="co">// ...., just reference Boolean.FALSE;</span></code></pre>
 <h4 id="PMD_BNC"><a href="#PMD_BNC">Broken Null Check</a></h4>
 <p>The null check is broken since it will throw a NullPointerException itself. It is likely that you used || instead of &amp;&amp; or vice versa.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> String <span class="fu">bar</span>(String string) {
+  <span class="co">// should be &amp;&amp;</span>
+  <span class="kw">if</span> (string!=<span class="kw">null</span> || !string.<span class="fu">equals</span>(<span class="st">&quot;&quot;</span>))
+    <span class="kw">return</span> string;
+  <span class="co">// should be ||</span>
+  <span class="kw">if</span> (string==<span class="kw">null</span> &amp;&amp; string.<span class="fu">equals</span>(<span class="st">&quot;&quot;</span>))
+    <span class="kw">return</span> string;
+}</code></pre>
 <h4 id="PMD_CRS"><a href="#PMD_CRS">Check Result Set</a></h4>
 <p>Always check the return values of navigation methods (next, previous, first, last) of a ResultSet. If the value return is ‘false’, it should be handled properly.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java">Statement stat = conn.<span class="fu">createStatement</span>();
+ResultSet rst = stat.<span class="fu">executeQuery</span>(<span class="st">&quot;SELECT name FROM person&quot;</span>);
+rst.<span class="fu">next</span>(); <span class="co">// what if it returns false? bad form</span>
+String firstName = rst.<span class="fu">getString</span>(<span class="dv">1</span>);
+Statement stat = conn.<span class="fu">createStatement</span>();
+ResultSet rst = stat.<span class="fu">executeQuery</span>(<span class="st">&quot;SELECT name FROM person&quot;</span>);
+<span class="kw">if</span> (rst.<span class="fu">next</span>()) { <span class="co">// result is properly examined and used</span>
+  String firstName = rst.<span class="fu">getString</span>(<span class="dv">1</span>);
+} <span class="kw">else</span> { <span class="co">// handle missing data</span>
+}
+            </code></pre>
 <h4 id="PMD_CSR"><a href="#PMD_CSR">Check Skip Result</a></h4>
 <p>The skip() method may skip a smaller number of bytes than requested. Check the returned value to find out if it was the case or not.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> Foo {
+  <span class="kw">private</span> FileInputStream _s = <span class="kw">new</span> FileInputStream(<span class="st">&quot;file&quot;</span>);
+
+  <span class="kw">public</span> <span class="dt">void</span> <span class="fu">skip</span>(<span class="dt">int</span> n) <span class="kw">throws</span> IOException {
+    _s.<span class="fu">skip</span>(n); <span class="co">// You are not sure that exactly n bytes are skipped</span>
+  }
+
+  <span class="kw">public</span> <span class="dt">void</span> <span class="fu">skipExactly</span>(<span class="dt">int</span> n) <span class="kw">throws</span> IOException {
+    <span class="kw">while</span> (n != <span class="dv">0</span>) {
+      <span class="dt">long</span> skipped = _s.<span class="fu">skip</span>(n);
+      <span class="kw">if</span> (skipped == <span class="dv">0</span>)
+        <span class="kw">throw</span> <span class="kw">new</span> EOFException();
+      n -= skipped;
+    }
+  }
+}</code></pre>
 <h4 id="PMD_CCEWTA"><a href="#PMD_CCEWTA">Class Cast Exception With To Array</a></h4>
 <p>When deriving an array of a specific class from your Collection, one should provide an array of the same class as the parameter of the toArray() method. Doing otherwise you will result in a ClassCastException.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java">Collection c = <span class="kw">new</span> ArrayList();
+Integer obj = <span class="kw">new</span> Integer(<span class="dv">1</span>);
+c.<span class="fu">add</span>(obj);
+<span class="co">// this would trigger the rule (and throw a ClassCastException if executed)</span>
+Integer[] a = (Integer [])c.<span class="fu">toArray</span>();
+
+<span class="co">// this is fine and will not trigger the rule</span>
+Integer[] b = (Integer [])c.<span class="fu">toArray</span>(<span class="kw">new</span> Integer[c.<span class="fu">size</span>()]);</code></pre>
 <h4 id="PMD_CIS"><a href="#PMD_CIS">Collapsible If Statements</a></h4>
 <p>Sometimes two consecutive ‘if’ statements can be consolidated by separating their conditions with a boolean short-circuit operator.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="dt">void</span> <span class="fu">bar</span>() {
+  <span class="kw">if</span> (x) {      <span class="co">// original implementation</span>
+    <span class="kw">if</span> (y) {
+      <span class="co">// do stuff</span>
+    }
+  }
+}
+
+<span class="dt">void</span> <span class="fu">bar</span>() {
+  <span class="kw">if</span> (x &amp;&amp; y) { <span class="co">// optimized implementation</span>
+    <span class="co">// do stuff</span>
+  }
+}</code></pre>
 <h4 id="PMD_DCTR"><a href="#PMD_DCTR">Dont Call Thread Run</a></h4>
 <p>Explicitly calling Thread.run() method will execute in the caller’s thread of control. Instead, call Thread.start() for the intended behavior.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java">Thread t = <span class="kw">new</span> Thread();
+t.<span class="fu">run</span>();                 <span class="co">// use t.start() instead</span>
+<span class="kw">new</span> Thread().<span class="fu">run</span>();      <span class="co">// same violation</span></code></pre>
 <h4 id="PMD_DUFTFLI"><a href="#PMD_DUFTFLI">Dont Use Float Type For Loop Indices</a></h4>
 <p>Don’t use floating point for loop indices. If you must use floating point, use double unless you’re certain that float provides enough precision and you have a compelling performance need (space or time).</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> Count {
+  <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span>(String[] args) {
+    <span class="dt">final</span> <span class="dt">int</span> START = <span class="dv">2000000000</span>;
+    <span class="dt">int</span> count = <span class="dv">0</span>;
+    <span class="kw">for</span> (<span class="dt">float</span> f = START; f &lt; START + <span class="dv">50</span>; f++)
+      count++;
+    <span class="co">//Prints 0 because (float) START == (float) (START + 50).</span>
+    System.<span class="fu">out</span>.<span class="fu">println</span>(count);
+    <span class="co">//The termination test misbehaves due to floating point granularity.</span>
+  }
+}</code></pre>
 <h4 id="PMD_DCL"><a href="#PMD_DCL">Double Checked Locking</a></h4>
 <p>Partially created objects can be returned by the Double Checked Locking pattern when used in Java. An optimizing JRE may assign a reference to the baz variable before it creates the object the reference is intended to point to. For more details refer to: <a href="http://www.javaworld.com/javaworld/jw-02-2001/jw-0209-double.html">http://www.javaworld.com/javaworld/jw-02-2001/jw-0209-double.html</a> or <a href="http://www.cs.umd.edu/~pugh/java/memoryModel/DoubleCheckedLocking.html">http://www.cs.umd.edu/~pugh/java/memoryModel/DoubleCheckedLocking.html</a></p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> Foo {
+  Object baz;
+
+  Object <span class="fu">bar</span>() {
+    <span class="kw">if</span> (baz == <span class="kw">null</span>) { <span class="co">// baz may be non-null yet not fully created</span>
+      <span class="kw">synchronized</span>(<span class="kw">this</span>) {
+        <span class="kw">if</span> (baz == <span class="kw">null</span>) {
+          baz = <span class="kw">new</span> Object();
+        }
+      }
+    }
+    <span class="kw">return</span> baz;
+  }
+}</code></pre>
 <h4 id="PMD_ECB"><a href="#PMD_ECB">Empty Catch Block</a></h4>
 <p>Empty Catch Block finds instances where an exception is caught, but nothing is done. In most circumstances, this swallows an exception which should either be acted on or reported.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="dt">void</span> <span class="fu">doSomething</span>() {
+  <span class="kw">try</span> {
+    FileInputStream fis = <span class="kw">new</span> FileInputStream(<span class="st">&quot;/tmp/bugger&quot;</span>);
+  } <span class="kw">catch</span> (IOException ioe) {
+    <span class="co">// not good</span>
+  }
+}</code></pre>
 <h4 id="PMD_EFB"><a href="#PMD_EFB">Empty Finally Block</a></h4>
 <p>Empty finally blocks serve no purpose and should be removed.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> Foo {
+  <span class="kw">public</span> <span class="dt">void</span> <span class="fu">bar</span>() {
+    <span class="kw">try</span> {
+      <span class="dt">int</span> x=<span class="dv">2</span>;
+    } <span class="kw">finally</span> {
+      <span class="co">// empty!</span>
+    }
+  }
+}</code></pre>
 <h4 id="PMD_EIS"><a href="#PMD_EIS">Empty If Stmt</a></h4>
 <p>Empty If Statement finds instances where a condition is checked but nothing is done about it.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> Foo {
+ <span class="dt">void</span> <span class="fu">bar</span>(<span class="dt">int</span> x) {
+    <span class="kw">if</span> (x == <span class="dv">0</span>) {
+      <span class="co">// empty!</span>
+    }
+  }
+}</code></pre>
 <h4 id="PMD_EmSB"><a href="#PMD_EmSB">Empty Statement Block</a></h4>
 <p>Empty block statements serve no purpose and should be removed.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> Foo {
+  <span class="kw">private</span> <span class="dt">int</span> _bar;
+
+  <span class="kw">public</span> <span class="dt">void</span> <span class="fu">setBar</span>(<span class="dt">int</span> bar) {
+    { _bar = bar; } <span class="co">// Why not?</span>
+    {}              <span class="co">// But remove this.</span>
+  }
+}</code></pre>
 <h4 id="PMD_ESNIL"><a href="#PMD_ESNIL">Empty Statement Not In Loop</a></h4>
 <p>An empty statement (or a semicolon by itself) that is not used as the sole body of a ‘for’ or ‘while’ loop is probably a bug. It could also be a double semicolon, which has no purpose and should be removed.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="dt">void</span> <span class="fu">doit</span>() {
+  <span class="co">// this is probably not what you meant to do</span>
+  ;
+  <span class="co">// the extra semicolon here this is not necessary</span>
+  System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;look at the extra semicolon&quot;</span>);;
+}</code></pre>
 <h4 id="PMD_ESI"><a href="#PMD_ESI">Empty Static Initializer</a></h4>
 <p>An empty static initializer serves no purpose and should be removed.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> Foo {
+  <span class="dt">static</span> {
+    <span class="co">// empty</span>
+  }
+}</code></pre>
 <h4 id="PMD_ESS"><a href="#PMD_ESS">Empty Switch Statements</a></h4>
 <p>Empty switch statements serve no purpose and should be removed.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="dt">void</span> <span class="fu">bar</span>() {
+  <span class="dt">int</span> x = <span class="dv">2</span>;
+  <span class="kw">switch</span> (x) {
+    <span class="co">// once there was code here</span>
+    <span class="co">// but it's been commented out or something</span>
+  }
+}</code></pre>
 <h4 id="PMD_ESB"><a href="#PMD_ESB">Empty Synchronized Block</a></h4>
 <p>Empty synchronized blocks serve no purpose and should be removed.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> Foo {
+  <span class="kw">public</span> <span class="dt">void</span> <span class="fu">bar</span>() {
+    <span class="kw">synchronized</span> (<span class="kw">this</span>) {
+      <span class="co">// empty!</span>
+    }
+  }
+}</code></pre>
 <h4 id="PMD_ETB"><a href="#PMD_ETB">Empty Try Block</a></h4>
 <p>Avoid empty try blocks - what’s the point?</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> Foo {
+  <span class="kw">public</span> <span class="dt">void</span> <span class="fu">bar</span>() {
+    <span class="kw">try</span> {
+    } <span class="kw">catch</span> (Exception e) {
+      e.<span class="fu">printStackTrace</span>();
+    }
+  }
+}</code></pre>
 <h4 id="PMD_EWS"><a href="#PMD_EWS">Empty While Stmt</a></h4>
 <p>Empty While Statement finds all instances where a while statement does nothing. If it is a timing loop, then you should use Thread.sleep() for it; if it is a while loop that does a lot in the exit expression, rewrite it to make it clearer.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="dt">void</span> <span class="fu">bar</span>(<span class="dt">int</span> a, <span class="dt">int</span> b) {
+  <span class="kw">while</span> (a == b) {
+    <span class="co">// empty!</span>
+  }
+}</code></pre>
 <h4 id="PMD_EO"><a href="#PMD_EO">Extends Object</a></h4>
 <p>No need to explicitly extend Object.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> Foo <span class="kw">extends</span> Object { <span class="co">// not required</span>
+}</code></pre>
 <h4 id="PMD_FLSBWL"><a href="#PMD_FLSBWL">For Loop Should Be While Loop</a></h4>
 <p>Some for loops can be simplified while loops, this makes them more concise.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> Foo {
+  <span class="dt">void</span> <span class="fu">bar</span>() {
+    <span class="kw">for</span> (;<span class="kw">true</span>;) <span class="kw">true</span>; <span class="co">// No Init or Update part, may as well be: while (true)</span>
+  }
+}</code></pre>
 <h4 id="PMD_JI"><a href="#PMD_JI">Jumbled Incrementer</a></h4>
-<p>Avoid jumbled loop incrementers – it’s usually a mistake, and is confusing even if intentional.</p>
+<p>Avoid jumbled loop incrementers - it’s usually a mistake, and is confusing even if intentional.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> JumbledIncrementerRule1 {
+  <span class="kw">public</span> <span class="dt">void</span> <span class="fu">foo</span>() {
+    <span class="kw">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; <span class="dv">10</span>; i++) {      <span class="co">// only references 'i'</span>
+      <span class="kw">for</span> (<span class="dt">int</span> k = <span class="dv">0</span>; k &lt; <span class="dv">20</span>; i++) {    <span class="co">// references both 'i' and 'k'</span>
+        System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;Hello&quot;</span>);
+      }
+    }
+  }
+}</code></pre>
 <h4 id="PMD_MNC"><a href="#PMD_MNC">Misplaced Null Check</a></h4>
 <p>The null check here is misplaced. If the variable is null a NullPointerException will be thrown. Either the check is useless (the variable will never be “null”) or it is incorrect.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> Foo {
+  <span class="dt">void</span> <span class="fu">bar</span>() {
+    <span class="kw">if</span> (a.<span class="fu">equals</span>(baz) &amp;&amp; a != <span class="kw">null</span>) {}
+  }
+}</code></pre>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> Foo {
+  <span class="dt">void</span> <span class="fu">bar</span>() {
+    <span class="kw">if</span> (a.<span class="fu">equals</span>(baz) || a == <span class="kw">null</span>) {}
+  }
+}</code></pre>
 <h4 id="PMD_OBEAH"><a href="#PMD_OBEAH">Override Both Equals And Hashcode</a></h4>
 <p>Override both public boolean Object.equals(Object other), and public int Object.hashCode(), or override neither. Even if you are inheriting a hashCode() from a parent class, consider implementing hashCode and explicitly delegating to your superclass.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> Bar { <span class="co">// poor, missing a hashCode() method</span>
+  <span class="kw">public</span> <span class="dt">boolean</span> <span class="fu">equals</span>(Object o) {
+    <span class="co">// do some comparison</span>
+  }
+}
+
+<span class="kw">public</span> <span class="kw">class</span> Baz { <span class="co">// poor, missing an equals() method</span>
+  <span class="kw">public</span> <span class="dt">int</span> <span class="fu">hashCode</span>() {
+    <span class="co">// return some hash value</span>
+  }
+}
+
+<span class="kw">public</span> <span class="kw">class</span> Foo { <span class="co">// perfect, both methods provided</span>
+  <span class="kw">public</span> <span class="dt">boolean</span> <span class="fu">equals</span>(Object other) {
+    <span class="co">// do some comparison</span>
+  }
+  <span class="kw">public</span> <span class="dt">int</span> <span class="fu">hashCode</span>() {
+    <span class="co">// return some hash value</span>
+  }
+}</code></pre>
 <h4 id="PMD_RFFB"><a href="#PMD_RFFB">Return From Finally Block</a></h4>
 <p>Avoid returning from a finally block, this can discard exceptions.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> Bar {
+  <span class="kw">public</span> String <span class="fu">foo</span>() {
+    <span class="kw">try</span> {
+      <span class="kw">throw</span> <span class="kw">new</span> Exception( <span class="st">&quot;My Exception&quot;</span> );
+    } <span class="kw">catch</span> (Exception e) {
+      <span class="kw">throw</span> e;
+    } <span class="kw">finally</span> {
+      <span class="kw">return</span> <span class="st">&quot;A. O. K.&quot;</span>; <span class="co">// return not recommended here</span>
+    }
+  }
+}</code></pre>
 <h4 id="PMD_UIS"><a href="#PMD_UIS">Unconditional If Statement</a></h4>
 <p>Do not use “if” statements whose conditionals are always true or always false.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> Foo {
+  <span class="kw">public</span> <span class="dt">void</span> <span class="fu">close</span>() {
+    <span class="kw">if</span> (<span class="kw">true</span>) { <span class="co">// fixed conditional, not recommended</span>
+      <span class="co">// ...</span>
+    }
+  }
+}</code></pre>
 <h4 id="PMD_UCT"><a href="#PMD_UCT">Unnecessary Conversion Temporary</a></h4>
 <p>Avoid the use temporary objects when converting primitives to Strings. Use the static conversion methods on the wrapper classes instead.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> String <span class="fu">convert</span>(<span class="dt">int</span> x) {
+  String foo = <span class="kw">new</span> Integer(x).<span class="fu">toString</span>(); <span class="co">// this wastes an object</span>
+  <span class="kw">return</span> Integer.<span class="fu">toString</span>(x);             <span class="co">// preferred approach</span>
+}</code></pre>
 <h4 id="PMD_UNCIE"><a href="#PMD_UNCIE">Unused Null Check In Equals</a></h4>
 <p>After checking an object reference for null, you should invoke equals() on that object rather than passing it to another object’s equals() method.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> Test {
+  <span class="kw">public</span> String <span class="fu">method1</span>() {
+    <span class="kw">return</span> <span class="st">&quot;ok&quot;</span>;
+  }
+  
+  <span class="kw">public</span> String <span class="fu">method2</span>() {
+    <span class="kw">return</span> <span class="kw">null</span>;
+  }
+  
+  <span class="kw">public</span> <span class="dt">void</span> <span class="fu">method</span>(String a) {
+    String b;
+  
+    <span class="co">// I don't know it method1() can be &quot;null&quot;</span>
+    <span class="co">// but I know &quot;a&quot; is not null..</span>
+    <span class="co">// I'd better write a.equals(method1())</span>
+    <span class="kw">if</span> (a!=<span class="kw">null</span> &amp;&amp; <span class="fu">method1</span>().<span class="fu">equals</span>(a)) { <span class="co">// will trigger the rule</span>
+      <span class="co">//whatever</span>
+    }
+
+    <span class="kw">if</span> (<span class="fu">method1</span>().<span class="fu">equals</span>(a) &amp;&amp; a != <span class="kw">null</span>) { <span class="co">// won't trigger the rule</span>
+      <span class="co">//whatever</span>
+    }
+
+    <span class="kw">if</span> (a!=<span class="kw">null</span> &amp;&amp; <span class="fu">method1</span>().<span class="fu">equals</span>(b)) { <span class="co">// won't trigger the rule</span>
+      <span class="co">//whatever</span>
+    }
+
+    <span class="kw">if</span> (a!=<span class="kw">null</span> &amp;&amp; <span class="st">&quot;LITERAL&quot;</span>.<span class="fu">equals</span>(a)) { <span class="co">// won't trigger the rule</span>
+      <span class="co">//whatever</span>
+    }
+
+    <span class="kw">if</span> (a!=<span class="kw">null</span> &amp;&amp; !a.<span class="fu">equals</span>(<span class="st">&quot;go&quot;</span>)) { <span class="co">// won't trigger the rule</span>
+      a=<span class="fu">method2</span>();
+      <span class="kw">if</span> (<span class="fu">method1</span>().<span class="fu">equals</span>(a)) {
+        <span class="co">//whatever</span>
+      }
+    }
+  }
+}</code></pre>
 <h4 id="PMD_UOOI"><a href="#PMD_UOOI">Useless Operation On Immutable</a></h4>
 <p>An operation on an Immutable object (String, BigDecimal or BigInteger) won’t change the object itself since the result of the operation is a new object. Therefore, ignoring the operation result is an error.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">import java.math.*;</span>
+
+<span class="kw">class</span> Test {
+  <span class="dt">void</span> <span class="fu">method1</span>() {
+    BigDecimal bd=<span class="kw">new</span> BigDecimal(<span class="dv">10</span>);
+    bd.<span class="fu">add</span>(<span class="kw">new</span> BigDecimal(<span class="dv">5</span>)); <span class="co">// this will trigger the rule</span>
+  }
+
+  <span class="dt">void</span> <span class="fu">method2</span>() {
+    BigDecimal bd=<span class="kw">new</span> BigDecimal(<span class="dv">10</span>);
+    bd = bd.<span class="fu">add</span>(<span class="kw">new</span> BigDecimal(<span class="dv">5</span>)); <span class="co">// this won't trigger the rule</span>
+  }
+}</code></pre>
 <h4 id="PMD_UOM"><a href="#PMD_UOM">Useless Overriding Method</a></h4>
 <p>The overriding method merely calls the same method defined in a superclass.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="dt">void</span> <span class="fu">foo</span>(String bar) {
+  <span class="kw">super</span>.<span class="fu">foo</span>(bar); <span class="co">// why bother overriding?</span>
+}
+
+<span class="kw">public</span> String <span class="fu">foo</span>() {
+  <span class="kw">return</span> <span class="kw">super</span>.<span class="fu">foo</span>(); <span class="co">// why bother overriding?</span>
+}
+
+<span class="fu">@Id</span>
+<span class="kw">public</span> Long <span class="fu">getId</span>() {
+  <span class="kw">return</span> <span class="kw">super</span>.<span class="fu">getId</span>(); <span class="co">// OK if 'ignoreAnnotations' is false, which is the default behavior</span>
+}</code></pre>
 <h3 id="brace-rules-1"><a href="#brace-rules-1">Brace Rules</a></h3>
 <h4 id="PMD_FLMUB"><a href="#PMD_FLMUB">For Loops Must Use Braces</a></h4>
 <p>Avoid using ‘for’ statements without using curly braces. If the code formatting or indentation is lost then it becomes difficult to separate the code being controlled from the rest.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; <span class="dv">42</span>; i++)
+  <span class="fu">foo</span>();</code></pre>
 <h4 id="PMD_IESMUB"><a href="#PMD_IESMUB">If Else Stmts Must Use Braces</a></h4>
 <p>Avoid using if..else statements without using surrounding braces. If the code formatting or indentation is lost then it becomes difficult to separate the code being controlled from the rest.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="co">// this is OK</span>
+<span class="kw">if</span> (foo) x++;
+   
+<span class="co">// but this is not</span>
+<span class="kw">if</span> (foo)
+  x = x<span class="dv">+1</span>;
+<span class="kw">else</span>
+  x = x<span class="dv">-1</span>;</code></pre>
 <h4 id="PMD_ISMUB"><a href="#PMD_ISMUB">If Stmts Must Use Braces</a></h4>
 <p>Avoid using if statements without using braces to surround the code block. If the code formatting or indentation is lost then it becomes difficult to separate the code being controlled from the rest.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">if</span> (foo) <span class="co">// not recommended</span>
+  x++;
+
+<span class="kw">if</span> (foo) { <span class="co">// preferred approach</span>
+  x++;
+}</code></pre>
 <h4 id="PMD_WLMUB"><a href="#PMD_WLMUB">While Loops Must Use Braces</a></h4>
 <p>Avoid using ‘while’ statements without using braces to surround the code block. If the code formatting or indentation is lost then it becomes difficult to separate the code being controlled from the rest.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">while</span> (<span class="kw">true</span>) <span class="co">// not recommended</span>
+  x++;
+
+<span class="kw">while</span> (<span class="kw">true</span>) { <span class="co">// preferred approach</span>
+  x++;
+}</code></pre>
 <h3 id="clone-implementation-rules"><a href="#clone-implementation-rules">Clone Implementation Rules</a></h3>
 <h4 id="PMD_CTCNSE"><a href="#PMD_CTCNSE">Clone Throws Clone Not Supported Exception</a></h4>
 <p>The method clone() should throw a CloneNotSupportedException.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> MyClass <span class="kw">implements</span> Cloneable {
+  <span class="kw">public</span> Object <span class="fu">clone</span>() { <span class="co">// will cause an error</span>
+    MyClass clone = (MyClass)<span class="kw">super</span>.<span class="fu">clone</span>();
+    <span class="kw">return</span> clone;
+  }
+}</code></pre>
 <h4 id="PMD_PCI"><a href="#PMD_PCI">Proper Clone Implementation</a></h4>
 <p>Object clone() should be implemented with super.clone().</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">class</span> Foo {
+  <span class="kw">public</span> Object <span class="fu">clone</span>() {
+    <span class="kw">return</span> <span class="kw">new</span> <span class="fu">Foo</span>(); <span class="co">// This is bad</span>
+  }
+}</code></pre>
 <h3 id="controversial-rules"><a href="#controversial-rules">Controversial Rules</a></h3>
 <h4 id="PMD_AIO"><a href="#PMD_AIO">Assignment In Operand</a></h4>
 <p>Avoid assignments in operands; this can make code more complicated and harder to read.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="dt">void</span> <span class="fu">bar</span>() {
+  <span class="dt">int</span> x = <span class="dv">2</span>;
+  <span class="kw">if</span> ((x = <span class="fu">getX</span>()) == <span class="dv">3</span>) {
+    System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;3!&quot;</span>);
+  }
+}</code></pre>
 <h4 id="PMD_AAA"><a href="#PMD_AAA">Avoid Accessibility Alteration</a></h4>
-<p>Methods such as getDeclaredConstructors(), getDeclaredConstructor(Class[]) and setAccessible(),as the interface PrivilegedAction, allows for the runtime alteration of variable, class, or method visibility, even if they are private. This violates the principle of encapsulation.</p>
+<p>Methods such as getDeclaredConstructors(), getDeclaredConstructor(Class[]) and setAccessible(), as the interface PrivilegedAction, allows for the runtime alteration of variable, class, or method visibility, even if they are private. This violates the principle of encapsulation.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">import java.lang.reflect.AccessibleObject;</span>
+<span class="kw">import java.lang.reflect.Method;</span>
+<span class="kw">import java.security.PrivilegedAction;</span>
+
+<span class="kw">public</span> <span class="kw">class</span> Violation {
+  <span class="kw">public</span> <span class="dt">void</span> <span class="fu">invalidCallsInMethod</span>() <span class="kw">throws</span> SecurityException, NoSuchMethodException {
+    
+    <span class="co">// Possible call to forbidden getDeclaredConstructors</span>
+    Class[] arrayOfClass = <span class="kw">new</span> Class[<span class="dv">1</span>];
+    <span class="kw">this</span>.<span class="fu">getClass</span>().<span class="fu">getDeclaredConstructors</span>();
+    <span class="kw">this</span>.<span class="fu">getClass</span>().<span class="fu">getDeclaredConstructor</span>(arrayOfClass);
+    Class clazz = <span class="kw">this</span>.<span class="fu">getClass</span>();
+    clazz.<span class="fu">getDeclaredConstructor</span>(arrayOfClass);
+    clazz.<span class="fu">getDeclaredConstructors</span>();
+    
+    <span class="co">// Possible call to forbidden setAccessible</span>
+    clazz.<span class="fu">getMethod</span>(<span class="st">&quot;&quot;</span>, arrayOfClass).<span class="fu">setAccessible</span>(<span class="kw">false</span>);
+    AccessibleObject.<span class="fu">setAccessible</span>(<span class="kw">null</span>, <span class="kw">false</span>);
+    Method.<span class="fu">setAccessible</span>(<span class="kw">null</span>, <span class="kw">false</span>);
+    Method[] methodsArray = clazz.<span class="fu">getMethods</span>();
+    <span class="dt">int</span> nbMethod;
+    <span class="kw">for</span> ( nbMethod = <span class="dv">0</span>; nbMethod &lt; methodsArray.<span class="fu">length</span>; nbMethod++ ) {
+      methodsArray[nbMethod].<span class="fu">setAccessible</span>(<span class="kw">false</span>);
+    }
+
+    <span class="co">// Possible call to forbidden PrivilegedAction</span>
+    PrivilegedAction priv = (PrivilegedAction) <span class="kw">new</span> Object(); priv.<span class="fu">run</span>();
+  }
+}</code></pre>
 <h4 id="PMD_APMP"><a href="#PMD_APMP">Avoid Prefixing Method Parameters</a></h4>
 <p>Prefixing parameters by ‘in’ or ‘out’ pollutes the name of the parameters and reduces code readability. To indicate whether or not a parameter will be modify in a method, its better to document method behavior with Javadoc.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="co">// Not really clear</span>
+<span class="kw">public</span> <span class="kw">class</span> Foo {
+  <span class="kw">public</span> <span class="dt">void</span> <span class="fu">bar</span>(<span class="dt">int</span> inLeftOperand, Result outRightOperand) {
+    outRightOperand.<span class="fu">setValue</span>(inLeftOperand * outRightOperand.<span class="fu">getValue</span>());
+  }
+}</code></pre>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="co">// Far more useful</span>
+<span class="kw">public</span> <span class="kw">class</span> Foo {
+  <span class="co">/**</span>
+<span class="co">   *</span>
+<span class="co">   * </span><span class="kw">@param leftOperand, </span><span class="co">(purpose), not modified by method.</span>
+<span class="co">   * </span><span class="kw">@param rightOperand </span><span class="co">(purpose), will be modified by the method: contains the result.</span>
+<span class="co">   */</span>
+  <span class="kw">public</span> <span class="dt">void</span> <span class="fu">bar</span>(<span class="dt">int</span> leftOperand, Result rightOperand) {
+    rightOperand.<span class="fu">setValue</span>(leftOperand * rightOperand.<span class="fu">getValue</span>());
+  }
+}</code></pre>
 <h4 id="PMD_AUNC"><a href="#PMD_AUNC">Avoid Using Native Code</a></h4>
 <p>Unnecessary reliance on Java Native Interface (JNI) calls directly reduces application portability and increases the maintenance burden.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> SomeJNIClass {
+  <span class="kw">public</span> <span class="fu">SomeJNIClass</span>() {
+    System.<span class="fu">loadLibrary</span>(<span class="st">&quot;nativelib&quot;</span>);
+  }
+
+  <span class="dt">static</span> {
+    System.<span class="fu">loadLibrary</span>(<span class="st">&quot;nativelib&quot;</span>);
+  }
+
+  <span class="kw">public</span> <span class="dt">void</span> <span class="fu">invalidCallsInMethod</span>() <span class="kw">throws</span> SecurityException, NoSuchMethodException {
+    System.<span class="fu">loadLibrary</span>(<span class="st">&quot;nativelib&quot;</span>);
+  }
+}</code></pre>
 <h4 id="PMD_DP"><a href="#PMD_DP">Default Package</a></h4>
 <p>Use explicit scoping instead of the default package private level.</p>
 <h4 id="PMD_DNCGCE"><a href="#PMD_DNCGCE">Do Not Call Garbage Collection Explicitly</a></h4>
 <p>Calls to System.gc(), Runtime.getRuntime().gc(), and System.runFinalization() are not advised. Code should have the same behavior whether the garbage collection is disabled using the option -Xdisableexplicitgc or not. Moreover, “modern” jvms do a very good job handling garbage collections. If memory usage issues unrelated to memory leaks develop within an application, it should be dealt with JVM options rather than within the code itself.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> GCCall {
+  <span class="kw">public</span> <span class="fu">GCCall</span>() {
+    <span class="co">// Explicit gc call !</span>
+    System.<span class="fu">gc</span>();
+  }
+
+  <span class="kw">public</span> <span class="dt">void</span> <span class="fu">doSomething</span>() {
+    <span class="co">// Explicit gc call !</span>
+    Runtime.<span class="fu">getRuntime</span>().<span class="fu">gc</span>();
+  }
+
+  <span class="kw">public</span> <span class="fu">explicitGCcall</span>() { 
+    <span class="co">// Explicit gc call ! System.gc(); </span>
+  }
+
+  <span class="kw">public</span> <span class="dt">void</span> <span class="fu">doSomething</span>() { 
+    <span class="co">// Explicit gc call ! Runtime.getRuntime().gc(); </span>
+  }
+}</code></pre>
 <h4 id="PMD_DIS"><a href="#PMD_DIS">Dont Import Sun</a></h4>
-<p>Avoid importing anything from the ‘sun.*’ packages. These packages are not portable and are likely to change.</p>
+<p>Avoid importing anything from the ’sun.*’ packages. These packages are not portable and are likely to change.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">import sun.misc.foo;</span>
+
+<span class="kw">public</span> <span class="kw">class</span> Foo {}</code></pre>
 <h4 id="PMD_ODPL"><a href="#PMD_ODPL">One Declaration Per Line</a></h4>
 <p>Java allows the use of several variables declaration of the same type on one line. However, it can lead to quite messy code. This rule looks for several declarations on the same line.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java">String name;            <span class="co">// separate declarations</span>
+String lastname;
+
+String name, lastname;  <span class="co">// combined declaration, a violation</span>
+
+String name,
+       lastname;        <span class="co">// combined declaration on multiple lines, no violation by default.</span>
+                        <span class="co">// Set property strictMode to true to mark this as violation.</span></code></pre>
 <h4 id="PMD_SOE"><a href="#PMD_SOE">Suspicious Octal Escape</a></h4>
-<p>A suspicious octal escape sequence was found inside a String literal. The Java language specification (section 3.10.6) says an octalescape sequence inside a literal String shall consist of a backslash followed by: OctalDigit | OctalDigit OctalDigit | ZeroToThree OctalDigit OctalDigitAny octal escape sequence followed by non-octal digits can be confusing, e.g. “\038” is interpreted as the octal escape sequence “\03” followed by the literal character “8”.</p>
+<p>A suspicious octal escape sequence was found inside a String literal. The Java language specification (section 3.10.6) says an octal escape sequence inside a literal String shall consist of a backslash followed by: OctalDigit | OctalDigit OctalDigit | ZeroToThree OctalDigit OctalDigitAny octal escape sequence followed by non-octal digits can be confusing, e.g. “\038” is interpreted as the octal escape sequence “\03” followed by the literal character “8”.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="dt">void</span> <span class="fu">foo</span>() {
+  <span class="co">// interpreted as octal 12, followed by character '8'</span>
+  System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;suspicious: \128&quot;</span>);
+}</code></pre>
 <h4 id="PMD_UC"><a href="#PMD_UC">Unnecessary Constructor</a></h4>
 <p>This rule detects when a constructor is not necessary; i.e., when there is only one constructor, its public, has an empty body, and takes no arguments.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> Foo {
+  <span class="kw">public</span> <span class="fu">Foo</span>() {}
+}</code></pre>
 <h3 id="design-rules-1"><a href="#design-rules-1">Design Rules</a></h3>
 <h4 id="PMD_ACWAM"><a href="#PMD_ACWAM">Abstract Class Without Abstract Method</a></h4>
 <p>The abstract class does not contain any abstract methods. An abstract class suggests an incomplete implementation, which is to be completed by subclasses implementing the abstract methods. If the class is intended to be used as a base class only (not to be instantiated directly) a protected constructor can be provided prevent direct instantiation.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">abstract</span> <span class="kw">class</span> Foo {
+  <span class="dt">void</span> <span class="dt">int</span> <span class="fu">method1</span>() { <span class="co">/*...*/</span> }
+  <span class="dt">void</span> <span class="dt">int</span> <span class="fu">method2</span>() { <span class="co">/*...*/</span> }
+  <span class="co">// consider using abstract methods or removing</span>
+  <span class="co">// the abstract modifier and adding protected constructors</span>
+}</code></pre>
 <h4 id="PMD_AbCWAM"><a href="#PMD_AbCWAM">Abstract Class Without Any Method</a></h4>
 <p>If an abstract class does not provide any methods, it may be acting as a simple data container that is not meant to be instantiated. In this case, it is probably better to use a private or protected constructor in order to prevent instantiation than make the class misleadingly abstract.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> <span class="kw">abstract</span> Example {
+  String field;
+  <span class="dt">int</span> otherField;
+}</code></pre>
 <h4 id="PMD_ATNFS"><a href="#PMD_ATNFS">Assignment To Non Final Static</a></h4>
 <p>Identifies a possible unsafe usage of a static field.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> StaticField {
+  <span class="dt">static</span> <span class="dt">int</span> x;
+
+  <span class="kw">public</span> <span class="fu">FinalFields</span>(<span class="dt">int</span> y) {
+    x = y; <span class="co">// unsafe</span>
+  }
+}</code></pre>
 <h4 id="PMD_ACI"><a href="#PMD_ACI">Avoid Constants Interface</a></h4>
 <p>An interface should be used only to characterize the external behavior of an implementing class: using an interface as a container of constants is a poor usage pattern and not recommended.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">interface</span> ConstantsInterface {
+  <span class="kw">public</span> <span class="dt">static</span> <span class="dt">final</span> <span class="dt">int</span> CONSTANT1=<span class="dv">0</span>;
+  <span class="kw">public</span> <span class="dt">static</span> <span class="dt">final</span> String CONSTANT2=<span class="st">&quot;1&quot;</span>;
+}</code></pre>
 <h4 id="PMD_AICICC"><a href="#PMD_AICICC">Avoid Instanceof Checks In Catch Clause</a></h4>
 <p>Each caught exception type should be handled in its own catch clause.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">try</span> { <span class="co">// Avoid this</span>
+  <span class="co">// do something</span>
+} <span class="kw">catch</span> (Exception ee) {
+  <span class="kw">if</span> (ee <span class="kw">instanceof</span> IOException) {
+    <span class="fu">cleanup</span>();
+  }
+}
+
+<span class="kw">try</span> { <span class="co">// Prefer this:</span>
+  <span class="co">// do something</span>
+} <span class="kw">catch</span> (IOException ee) {
+  <span class="fu">cleanup</span>();
+}</code></pre>
 <h4 id="PMD_APFIFC"><a href="#PMD_APFIFC">Avoid Protected Field In Final Class</a></h4>
 <p>Do not use protected fields in final classes since they cannot be subclassed. Clarify your intent by using private or package access modifiers instead.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="dt">final</span> <span class="kw">class</span> Bar {
+  <span class="kw">private</span> <span class="dt">int</span> x;
+  <span class="kw">protected</span> <span class="dt">int</span> y;  <span class="co">// bar cannot be subclassed, so is y really private or package visible?</span>
+
+  <span class="fu">Bar</span>() {}
+}</code></pre>
 <h4 id="PMD_APMIFCNE"><a href="#PMD_APMIFCNE">Avoid Protected Method In Final Class Not Extending</a></h4>
 <p>Do not use protected methods in most final classes since they cannot be subclassed. This should only be allowed in final classes that extend other classes with protected methods (whose visibility cannot be reduced). Clarify your intent by using private or package access modifiers instead.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="dt">final</span> <span class="kw">class</span> Foo {
+  <span class="kw">private</span> <span class="dt">int</span> <span class="fu">bar</span>() {}
+
+  <span class="kw">protected</span> <span class="dt">int</span> <span class="fu">baz</span>() {} <span class="co">// Foo cannot be subclassed, and doesn't extend anything, </span>
+                         <span class="co">// so is baz() really private or package visible? </span>
+}</code></pre>
 <h4 id="PMD_ARP"><a href="#PMD_ARP">Avoid Reassigning Parameters</a></h4>
 <p>Reassigning values to incoming parameters is not recommended. Use temporary local variables instead.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> Foo {
+  <span class="kw">private</span> <span class="dt">void</span> <span class="fu">foo</span>(String bar) {
+    bar = <span class="st">&quot;something else&quot;</span>;
+  }
+}</code></pre>
 <h4 id="PMD_BC"><a href="#PMD_BC">Bad Comparison</a></h4>
 <p>Avoid equality comparisons with Double.NaN. Due to the implicit lack of representation precision when comparing floating point numbers these are likely to cause logic errors.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="dt">boolean</span> x = (y == Double.<span class="fu">NaN</span>);</code></pre>
 <h4 id="PMD_CWOPCSBF"><a href="#PMD_CWOPCSBF">Class With Only Private Constructors Should Be Final</a></h4>
 <p>A class with only private constructors should be final, unless the private constructor is invoked by an inner class.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> Foo {  <span class="co">//Should be final</span>
+  <span class="kw">private</span> <span class="fu">Foo</span>() {}
+}</code></pre>
 <h4 id="PMD_ClR"><a href="#PMD_ClR">Close Resource</a></h4>
 <p>Ensure that resources (like Connection, Statement, and ResultSet objects) are always closed after use.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> Bar {
+  <span class="kw">public</span> <span class="dt">void</span> <span class="fu">foo</span>() {
+    Connection c = pool.<span class="fu">getConnection</span>();
+    <span class="kw">try</span> {
+      <span class="co">// do stuff</span>
+    } <span class="kw">catch</span> (SQLException ex) {
+      <span class="co">// handle exception</span>
+    } <span class="kw">finally</span> {
+      <span class="co">// oops, should close the connection using 'close'!</span>
+      <span class="co">// c.close();</span>
+    }
+  }
+}</code></pre>
 <h4 id="PMD_CCOM"><a href="#PMD_CCOM">Constructor Calls Overridable Method</a></h4>
-<p>Calling overridable methods during construction poses a risk of invoking methods on an incompletely constructed object and can be difficult to debug.It may leave the sub-class unable to construct its superclass or forced to replicate the construction process completely within itself, losing the ability to call super(). If the default constructor contains a call to an overridable method, the subclass may be completely uninstantiable. Note that this includes method calls throughout the control flow graph - i.e., if a constructor Foo() calls a private method bar() that calls a public method buz(), this denotes a problem.</p>
+<p>Calling overridable methods during construction poses a risk of invoking methods on an incompletely constructed object and can be difficult to debug. It may leave the sub-class unable to construct its superclass or forced to replicate the construction process completely within itself, losing the ability to call super(). If the default constructor contains a call to an overridable method, the subclass may be completely uninstantiable. Note that this includes method calls throughout the control flow graph - i.e., if a constructor Foo() calls a private method bar() that calls a public method buz(), this denotes a problem.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> SeniorClass {
+  <span class="kw">public</span> <span class="fu">SeniorClass</span>(){
+    <span class="fu">toString</span>(); <span class="co">//may throw NullPointerException if overridden</span>
+  }
+
+  <span class="kw">public</span> String <span class="fu">toString</span>(){
+    <span class="kw">return</span> <span class="st">&quot;IAmSeniorClass&quot;</span>;
+  }
+}
+
+<span class="kw">public</span> <span class="kw">class</span> JuniorClass <span class="kw">extends</span> SeniorClass {
+  <span class="kw">private</span> String name;
+
+  <span class="kw">public</span> <span class="fu">JuniorClass</span>(){
+    <span class="kw">super</span>(); <span class="co">//Automatic call leads to NullPointerException</span>
+    name = <span class="st">&quot;JuniorClass&quot;</span>;
+  }
+
+  <span class="kw">public</span> String <span class="fu">toString</span>(){
+    <span class="kw">return</span> name.<span class="fu">toUpperCase</span>();
+  }
+}
+  </code></pre>
 <h4 id="PMD_DLNLISS"><a href="#PMD_DLNLISS">Default Label Not Last In Switch Stmt</a></h4>
 <p>By convention, the default label should be the last label in a switch statement.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> Foo {
+  <span class="dt">void</span> <span class="fu">bar</span>(<span class="dt">int</span> a) {
+    <span class="kw">switch</span> (a) {
+      <span class="kw">case</span> <span class="dv">1</span>:  <span class="co">// do something</span>
+        <span class="kw">break</span>;
+      <span class="kw">default</span>:  <span class="co">// the default case should be last, by convention</span>
+        <span class="kw">break</span>;
+      <span class="kw">case</span> <span class="dv">2</span>:
+        <span class="kw">break</span>;
+    }
+  }
+}   </code></pre>
 <h4 id="PMD_EMIACSBA"><a href="#PMD_EMIACSBA">Empty Method In Abstract Class Should Be Abstract</a></h4>
 <p>Empty methods in an abstract class should be tagged as abstract. This helps to remove their inappropriate usage by developers who should be implementing their own versions in the concrete subclasses.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">abstract</span> <span class="kw">class</span> ShouldBeAbstract {
+  <span class="kw">public</span> Object <span class="fu">couldBeAbstract</span>() {
+    <span class="co">// Should be abstract method ?</span>
+    <span class="kw">return</span> <span class="kw">null</span>;
+  }
+
+  <span class="kw">public</span> <span class="dt">void</span> <span class="fu">couldBeAbstract</span>() {
+  }
+}</code></pre>
 <h4 id="PMD_EN"><a href="#PMD_EN">Equals Null</a></h4>
 <p>Tests for null should not use the equals() method. The ‘==’ operator should be used instead.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java">String x = <span class="st">&quot;foo&quot;</span>;
+
+<span class="kw">if</span> (x.<span class="fu">equals</span>(<span class="kw">null</span>)) { <span class="co">// bad form</span>
+  <span class="fu">doSomething</span>();
+}
+
+<span class="kw">if</span> (x == <span class="kw">null</span>) { <span class="co">// preferred</span>
+  <span class="fu">doSomething</span>();
+}</code></pre>
 <h4 id="PMD_FDSBASOC"><a href="#PMD_FDSBASOC">Field Declarations Should Be At Start Of Class</a></h4>
 <p>Fields should be declared at the top of the class, before any method declarations, constructors, initializers or inner classes.</p>
-<p>Empty Code Rules</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> HelloWorldBean {
+
+  <span class="co">// Field declared before methods / inner classes - OK</span>
+  <span class="kw">private</span> String _thing;
+
+  <span class="kw">public</span> String <span class="fu">getMessage</span>() {
+    <span class="kw">return</span> <span class="st">&quot;Hello World!&quot;</span>;
+  }
+
+  <span class="co">// Field declared after methods / inner classes - avoid this</span>
+  <span class="kw">private</span> String _fieldInWrongLocation;
+}</code></pre>
 <h4 id="PMD_FFCBS"><a href="#PMD_FFCBS">Final Field Could Be Static</a></h4>
 <p>If a final field is assigned to a compile-time constant, it could be made static, thus saving overhead in each object at runtime.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> Foo {
+  <span class="kw">public</span> <span class="dt">final</span> <span class="dt">int</span> BAR = <span class="dv">42</span>; <span class="co">// this could be static and save some space</span>
+}</code></pre>
 <h4 id="PMD_IO"><a href="#PMD_IO">Idempotent Operations</a></h4>
 <p>Avoid idempotent operations - they have no effect.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> Foo {
+  <span class="kw">public</span> <span class="dt">void</span> <span class="fu">bar</span>() {
+    <span class="dt">int</span> x = <span class="dv">2</span>;
+    x = x;
+  }
+}</code></pre>
 <h4 id="PMD_IF"><a href="#PMD_IF">Immutable Field</a></h4>
 <p>Identifies private fields whose values never change once they are initialized either in the declaration of the field or by a constructor. This helps in converting existing classes to becoming immutable ones.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> Foo {
+  <span class="kw">private</span> <span class="dt">int</span> x; <span class="co">// could be final</span>
+
+  <span class="kw">public</span> <span class="fu">Foo</span>() {
+    x = <span class="dv">7</span>;
+  }
+
+  <span class="kw">public</span> <span class="dt">void</span> <span class="fu">foo</span>() {
+    <span class="dt">int</span> a = x + <span class="dv">2</span>;
+  }
+}</code></pre>
 <h4 id="PMD_ITGC"><a href="#PMD_ITGC">Instantiation To Get Class</a></h4>
 <p>Avoid instantiating an object just to call getClass() on it; use the .class public member instead.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="co">// replace this</span>
+Class c = <span class="kw">new</span> String().<span class="fu">getClass</span>();
+
+<span class="co">// with this:</span>
+Class c = String.<span class="fu">class</span>;</code></pre>
 <h4 id="PMD_LI"><a href="#PMD_LI">Logic Inversion</a></h4>
 <p>Use opposite operator instead of negating the whole expression with a logic complement operator.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="dt">boolean</span> <span class="fu">bar</span>(<span class="dt">int</span> a, <span class="dt">int</span> b) {
+  <span class="kw">if</span> (!(a == b)) <span class="co">// use !=</span>
+    <span class="kw">return</span> <span class="kw">false</span>;
+  <span class="kw">if</span> (!(a &lt; b)) <span class="co">// use &gt;=</span>
+    <span class="kw">return</span> <span class="kw">false</span>;
+  <span class="kw">return</span> <span class="kw">true</span>;
+}</code></pre>
 <h4 id="PMD_MBIS"><a href="#PMD_MBIS">Missing Break In Switch</a></h4>
 <p>Switch statements without break or return statements for each case option may indicate problematic behavior. Empty cases are ignored as these indicate an intentional fall-through.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="dt">void</span> <span class="fu">bar</span>(<span class="dt">int</span> status) {
+  <span class="kw">switch</span>(status) {
+    <span class="kw">case</span> CANCELLED:
+      <span class="fu">doCancelled</span>();
+      <span class="co">// break; hm, should this be commented out?</span>
+    <span class="kw">case</span> NEW:
+      <span class="fu">doNew</span>();
+      <span class="co">// is this really a fall-through?</span>
+    <span class="kw">case</span> REMOVED:
+      <span class="fu">doRemoved</span>();
+      <span class="co">// what happens if you add another case after this one?</span>
+    <span class="kw">case</span> OTHER: <span class="co">// empty case - this is interpreted as an intentional fall-through</span>
+    <span class="kw">case</span> ERROR:
+      <span class="fu">doErrorHandling</span>();
+      <span class="kw">break</span>;
+  }
+}</code></pre>
 <h4 id="PMD_MSMINIC"><a href="#PMD_MSMINIC">Missing Static Method In Non Instantiatable Class</a></h4>
 <p>A class that has private constructors and does not have any static methods or fields cannot be used.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="co">// This class is unusable, since it cannot be</span>
+<span class="co">// instantiated (private constructor),</span>
+<span class="co">// and no static method can be called.</span>
+
+<span class="kw">public</span> <span class="kw">class</span> Foo {
+  <span class="kw">private</span> <span class="fu">Foo</span>() {}
+  <span class="dt">void</span> <span class="fu">foo</span>() {}
+}</code></pre>
 <h4 id="PMD_NCLISS"><a href="#PMD_NCLISS">Non Case Label In Switch Statement</a></h4>
 <p>A non-case label (e.g. a named break/continue label) was present in a switch statement. This legal, but confusing. It is easy to mix up the case labels and the non-case labels.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> Foo {
+  <span class="dt">void</span> <span class="fu">bar</span>(<span class="dt">int</span> a) {
+    <span class="kw">switch</span> (a) {
+      <span class="kw">case</span> <span class="dv">1</span>:
+        <span class="co">// do something</span>
+        <span class="kw">break</span>;
+      mylabel: <span class="co">// this is legal, but confusing!</span>
+        <span class="kw">break</span>;
+      <span class="kw">default</span>:
+        <span class="kw">break</span>;
+    }
+  }
+}</code></pre>
 <h4 id="PMD_NSI"><a href="#PMD_NSI">Non Static Initializer</a></h4>
 <p>A non-static initializer block will be called any time a constructor is invoked (just prior to invoking the constructor). While this is a valid language construct, it is rarely used and is confusing.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> MyClass {
+  <span class="co">// this block gets run before any call to a constructor</span>
+  {
+    System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;I am about to construct myself&quot;</span>);
+  }
+}</code></pre>
 <h4 id="PMD_NTSS"><a href="#PMD_NTSS">Non Thread Safe Singleton</a></h4>
 <p>Non-thread safe singletons can result in bad state changes. Eliminate static singletons if possible by instantiating the object directly. Static singletons are usually not needed as only a single instance exists anyway. Other possible fixes are to synchronize the entire method or to use an initialize-on-demand holder class (do not use the double-check idiom). See Effective Java, item 48.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">private</span> <span class="dt">static</span> Foo foo = <span class="kw">null</span>;
+
+<span class="co">//multiple simultaneous callers may see partially initialized objects</span>
+<span class="kw">public</span> <span class="dt">static</span> Foo <span class="fu">getFoo</span>() {
+  <span class="kw">if</span> (foo==<span class="kw">null</span>)
+    foo = <span class="kw">new</span> <span class="fu">Foo</span>();
+  <span class="kw">return</span> foo;
+}</code></pre>
 <h4 id="PMD_OTAC"><a href="#PMD_OTAC">Optimizable To Array Call</a></h4>
 <p>Calls to a collection’s toArray() method should specify target arrays sized to match the size of the collection. Initial arrays that are too small are discarded in favour of new ones that have to be created that are the proper size.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java">List foos = <span class="fu">getFoos</span>();
+
+<span class="co">// inefficient, the array will be discarded</span>
+Foo[] fooArray = foos.<span class="fu">toArray</span>(<span class="kw">new</span> Foo[<span class="dv">0</span>]);
+   
+<span class="co">// much better; this one sizes the destination array, </span>
+<span class="co">// avoiding of a new one via reflection</span>
+Foo[] fooArray = foos.<span class="fu">toArray</span>(<span class="kw">new</span> Foo[foos.<span class="fu">size</span>()]);</code></pre>
 <h4 id="PMD_PLFICIC"><a href="#PMD_PLFICIC">Position Literals First In Case Insensitive Comparisons</a></h4>
 <p>Position literals first in comparisons, if the second argument is null then NullPointerExceptions can be avoided, they will just return false.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">class</span> Foo {
+  <span class="dt">boolean</span> <span class="fu">bar</span>(String x) {
+    <span class="kw">return</span> x.<span class="fu">equalsIgnoreCase</span>(<span class="st">&quot;2&quot;</span>); <span class="co">// should be &quot;2&quot;.equalsIgnoreCase(x)</span>
+  }
+}</code></pre>
 <h4 id="PMD_PLFIC"><a href="#PMD_PLFIC">Position Literals First In Comparisons</a></h4>
 <p>Position literals first in comparisons, if the second argument is null then NullPointerExceptions can be avoided, they will just return false.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">class</span> Foo {
+  <span class="dt">boolean</span> <span class="fu">bar</span>(String x) {
+    <span class="kw">return</span> x.<span class="fu">equals</span>(<span class="st">&quot;2&quot;</span>); <span class="co">// should be &quot;2&quot;.equals(x)</span>
+  }
+}</code></pre>
 <h4 id="PMD_PST"><a href="#PMD_PST">Preserve Stack Trace</a></h4>
 <p>Throwing a new exception from a catch block without passing the original exception into the new exception will cause the original stack trace to be lost making it difficult to debug effectively.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> Foo {
+  <span class="dt">void</span> <span class="fu">good</span>() {
+    <span class="kw">try</span>{
+      Integer.<span class="fu">parseInt</span>(<span class="st">&quot;a&quot;</span>);
+    } <span class="kw">catch</span> (Exception e) {
+      <span class="kw">throw</span> <span class="kw">new</span> Exception(e); <span class="co">// first possibility to create exception chain</span>
+    }
+    
+    <span class="kw">try</span> {
+      Integer.<span class="fu">parseInt</span>(<span class="st">&quot;a&quot;</span>);
+    } <span class="kw">catch</span> (Exception e) {
+      <span class="kw">throw</span> (IllegalStateException)<span class="kw">new</span> IllegalStateException().<span class="fu">initCause</span>(e); <span class="co">// second possibility to create exception chain.</span>
+    }
+  }
+
+  <span class="dt">void</span> <span class="fu">bad</span>() {
+    <span class="kw">try</span>{
+      Integer.<span class="fu">parseInt</span>(<span class="st">&quot;a&quot;</span>);
+    } <span class="kw">catch</span> (Exception e) {
+      <span class="kw">throw</span> <span class="kw">new</span> Exception(e.<span class="fu">getMessage</span>());
+    }
+  }
+}</code></pre>
 <h4 id="PMD_REARTN"><a href="#PMD_REARTN">Return Empty Array Rather Than Null</a></h4>
 <p>For any method that returns an array, it is a better to return an empty array rather than a null reference. This removes the need for null checking all results and avoids inadvertent NullPointerExceptions.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> Example {
+  <span class="co">// Not a good idea...</span>
+  <span class="kw">public</span> <span class="dt">int</span>[] <span class="fu">badBehavior</span>() {
+    <span class="co">// ...</span>
+    <span class="kw">return</span> <span class="kw">null</span>;
+  }
+
+  <span class="co">// Good behavior</span>
+  <span class="kw">public</span> String[] <span class="fu">bonnePratique</span>() {
+    <span class="co">//...</span>
+    <span class="kw">return</span> <span class="kw">new</span> String[<span class="dv">0</span>];
+  }
+}</code></pre>
 <h4 id="PMD_SDFNL"><a href="#PMD_SDFNL">Simple Date Format Needs Locale</a></h4>
 <p>Be sure to specify a Locale when creating SimpleDateFormat instances to ensure that locale-appropriate formatting is used.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> Foo {
+  <span class="co">// Should specify Locale.US (or whatever)</span>
+  <span class="kw">private</span> SimpleDateFormat sdf = <span class="kw">new</span> SimpleDateFormat(<span class="st">&quot;pattern&quot;</span>);
+}</code></pre>
 <h4 id="PMD_SBE"><a href="#PMD_SBE">Simplify Boolean Expressions</a></h4>
 <p>Avoid unnecessary comparisons in boolean expressions, they serve no purpose and impacts readability.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> Bar {
+  <span class="co">// can be simplified to</span>
+  <span class="co">// bar = isFoo();</span>
+  <span class="kw">private</span> <span class="dt">boolean</span> bar = (<span class="fu">isFoo</span>() == <span class="kw">true</span>);
+
+  <span class="kw">public</span> <span class="fu">isFoo</span>() { <span class="kw">return</span> <span class="kw">false</span>;}
+}</code></pre>
 <h4 id="PMD_SBR"><a href="#PMD_SBR">Simplify Boolean Returns</a></h4>
 <p>Avoid unnecessary if-then-else statements when returning a boolean. The result of the conditional test can be returned instead.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="dt">boolean</span> <span class="fu">isBarEqualTo</span>(<span class="dt">int</span> x) {
+  <span class="kw">if</span> (bar == x) { <span class="co">// this bit of code...</span>
+    <span class="kw">return</span> <span class="kw">true</span>;
+  } <span class="kw">else</span> {
+    <span class="kw">return</span> <span class="kw">false</span>;
+  }
+}
+
+<span class="kw">public</span> <span class="dt">boolean</span> <span class="fu">isBarEqualTo</span>(<span class="dt">int</span> x) {
+    <span class="kw">return</span> bar == x; <span class="co">// can be replaced with this</span>
+}</code></pre>
 <h4 id="PMD_SC"><a href="#PMD_SC">Simplify Conditional</a></h4>
 <p>No need to check for null before an instanceof; the instanceof keyword returns false when given a null argument.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">class</span> Foo {
+  <span class="dt">void</span> <span class="fu">bar</span>(Object x) {
+    <span class="kw">if</span> (x != <span class="kw">null</span> &amp;&amp; x <span class="kw">instanceof</span> Bar) {
+      <span class="co">// just drop the &quot;x != null&quot; check</span>
+    }
+  }
+}      </code></pre>
 <h4 id="PMD_SF"><a href="#PMD_SF">Singular Field</a></h4>
 <p>Fields whose scopes are limited to just single methods do not rely on the containing object to provide them to other methods. They may be better implemented as local variables within those methods.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> Foo {
+  <span class="kw">private</span> <span class="dt">int</span> x;  <span class="co">// no reason to exist at the Foo instance level</span>
+
+  <span class="kw">public</span> <span class="dt">void</span> <span class="fu">foo</span>(<span class="dt">int</span> y) {
+    x = y + <span class="dv">5</span>;
+    <span class="kw">return</span> x;
+  }
+}</code></pre>
 <h4 id="PMD_SSSHD"><a href="#PMD_SSSHD">Switch Stmts Should Have Default</a></h4>
 <p>All switch statements should include a default option to catch any unspecified values.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="dt">void</span> <span class="fu">bar</span>() {
+  <span class="dt">int</span> x = <span class="dv">2</span>;
+  <span class="kw">switch</span> (x) {
+    <span class="kw">case</span> <span class="dv">1</span>: <span class="dt">int</span> j = <span class="dv">6</span>;
+    <span class="kw">case</span> <span class="dv">2</span>: <span class="dt">int</span> j = <span class="dv">8</span>;
+    <span class="co">// missing default: here</span>
+  }
+}</code></pre>
 <h4 id="PMD_TFBFASS"><a href="#PMD_TFBFASS">Too Few Branches For ASwitch Statement</a></h4>
 <p>Switch statements are intended to be used to support complex branching behavior. Using a switch for only a few cases is ill-advised, since switches are not as easy to understand as if-then statements. In these cases use the if-then statement to increase code readability.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="co">// With a minimumNumberCaseForASwitch of 3</span>
+<span class="kw">public</span> <span class="kw">class</span> Foo {
+  <span class="kw">public</span> <span class="dt">void</span> <span class="fu">bar</span>() {
+    <span class="kw">switch</span> (condition) {
+      <span class="kw">case</span> ONE:
+        instruction;
+        <span class="kw">break</span>;
+      <span class="kw">default</span>:
+        <span class="kw">break</span>; <span class="co">// not enough for a 'switch' stmt, a simple 'if' stmt would have been more appropriate</span>
+    }
+  }
+}</code></pre>
 <h4 id="PMD_UEC"><a href="#PMD_UEC">Uncommented Empty Constructor</a></h4>
-<p>Uncommented Empty Constructor finds instances where a constructor does not contain statements, but there is no comment. By explicitly commenting empty constructors it is easier to distinguish between intentional (commented)and unintentional empty constructors.</p>
+<p>Uncommented Empty Constructor finds instances where a constructor does not contain statements, but there is no comment. By explicitly commenting empty constructors it is easier to distinguish between intentional (commented) and unintentional empty constructors.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="fu">Foo</span>() {
+  <span class="co">// This constructor is intentionally empty. Nothing special is needed here.</span>
+}</code></pre>
 <h4 id="PMD_UEM"><a href="#PMD_UEM">Uncommented Empty Method</a></h4>
 <p>Uncommented Empty Method finds instances where a method does not contain statements, but there is no comment. By explicitly commenting empty methods it is easier to distinguish between intentional (commented) and unintentional empty methods.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="dt">void</span> <span class="fu">doSomething</span>() {
+}</code></pre>
 <h4 id="PMD_ULBR"><a href="#PMD_ULBR">Unnecessary Local Before Return</a></h4>
 <p>Avoid the creation of unnecessary local variables.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> Foo {
+  <span class="kw">public</span> <span class="dt">int</span> <span class="fu">foo</span>() {
+    <span class="dt">int</span> x = <span class="fu">doSomething</span>();
+    <span class="kw">return</span> x;  <span class="co">// instead, just 'return doSomething();'</span>
+  }
+}</code></pre>
 <h4 id="PMD_USDF"><a href="#PMD_USDF">Unsynchronized Static Date Formatter</a></h4>
 <p>SimpleDateFormat instances are not synchronized. Sun recommends using separate format instances for each thread. If multiple threads must access a static formatter, the formatter must be synchronized either on method or block level.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> Foo {
+  <span class="kw">private</span> <span class="dt">static</span> <span class="dt">final</span> SimpleDateFormat sdf = <span class="kw">new</span> SimpleDateFormat();
+
+  <span class="dt">void</span> <span class="fu">bar</span>() {
+    sdf<span class="fu">.format</span>(); <span class="co">// poor, no thread-safety</span>
+  }
+
+  <span class="kw">synchronized</span> <span class="dt">void</span> <span class="fu">foo</span>() {
+    sdf<span class="fu">.format</span>(); <span class="co">// preferred</span>
+  }
+}</code></pre>
 <h4 id="PMD_UCIE"><a href="#PMD_UCIE">Use Collection Is Empty</a></h4>
 <p>The isEmpty() method on java.util.Collection is provided to determine if a collection has any elements. Comparing the value of size() to 0 does not convey intent as well as the isEmpty() method.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> Foo {
+  <span class="dt">void</span> <span class="fu">good</span>() {
+    List foo = <span class="fu">getList</span>();
+    <span class="kw">if</span> (foo.<span class="fu">isEmpty</span>()) {
+      <span class="co">// blah</span>
+    }
+  }
+
+  <span class="dt">void</span> <span class="fu">bad</span>() {
+    List foo = <span class="fu">getList</span>();
+    <span class="kw">if</span> (foo.<span class="fu">size</span>() == <span class="dv">0</span>) {
+      <span class="co">// blah</span>
+    }
+  }
+}</code></pre>
 <h4 id="PMD_ULWCC"><a href="#PMD_ULWCC">Use Locale With Case Conversions</a></h4>
 <p>When doing String.toLowerCase()/toUpperCase() conversions, use Locales to avoids problems with languages that have unusual conventions, i.e. Turkish.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">class</span> Foo {
+  <span class="co">// BAD</span>
+  <span class="kw">if</span> (x.<span class="fu">toLowerCase</span>().<span class="fu">equals</span>(<span class="st">&quot;list&quot;</span>))
+    <span class="co">// ...</span>
+
+  <span class="co">/*</span>
+<span class="co">  This will not match &quot;LIST&quot; when in Turkish locale</span>
+<span class="co">  The above could be</span>
+<span class="co">  if (x.toLowerCase(Locale.US).equals(&quot;list&quot;)) ...</span>
+<span class="co">  or simply</span>
+<span class="co">  if (x.equalsIgnoreCase(&quot;list&quot;)) ...</span>
+<span class="co">  */</span>
+
+  <span class="co">// GOOD</span>
+  String z = a.<span class="fu">toLowerCase</span>(Locale.<span class="fu">EN</span>);
+}</code></pre>
 <h4 id="PMD_UNAION"><a href="#PMD_UNAION">Use Notify All Instead Of Notify</a></h4>
 <p>Thread.notify() awakens a thread monitoring the object. If more than one thread is monitoring, then only one is chosen. The thread chosen is arbitrary; thus its usually safer to call notifyAll() instead.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java">  <span class="dt">void</span> <span class="fu">bar</span>() {
+    x.<span class="fu">notify</span>();
+    <span class="co">// If many threads are monitoring x, only one (and you won't know which) will be notified.</span>
+    <span class="co">// use instead:</span>
+    x.<span class="fu">notifyAll</span>();
+  }</code></pre>
 <h4 id="PMD_UV"><a href="#PMD_UV">Use Varargs</a></h4>
 <p>Java 5 introduced the varargs parameter declaration for methods and constructors. This syntactic sugar provides flexibility for users of these methods and constructors, allowing them to avoid having to deal with the creation of an array.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> Foo {
+  <span class="kw">public</span> <span class="dt">void</span> <span class="fu">foo</span>(String s, Object[] args) {
+    <span class="co">// Do something here...</span>
+  }
+
+  <span class="kw">public</span> <span class="dt">void</span> <span class="fu">bar</span>(String s, Object<span class="kw">... </span>args) {
+    <span class="co">// Ahh, varargs tastes much better...</span>
+  }
+}</code></pre>
 <h3 id="finalizer-rules"><a href="#finalizer-rules">Finalizer Rules</a></h3>
 <h4 id="PMD_ACF"><a href="#PMD_ACF">Avoid Calling Finalize</a></h4>
 <p>The method Object.finalize() is called by the garbage collector on an object when garbage collection determines that there are no more references to the object. It should not be invoked by application logic.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="dt">void</span> <span class="fu">foo</span>() {
+  Bar b = <span class="kw">new</span> <span class="fu">Bar</span>();
+  b.<span class="fu">finalize</span>();
+}</code></pre>
 <h4 id="PMD_EF"><a href="#PMD_EF">Empty Finalizer</a></h4>
 <p>Empty finalize methods serve no purpose and should be removed.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> Foo {
+  <span class="kw">protected</span> <span class="dt">void</span> <span class="fu">finalize</span>() {}
+}</code></pre>
 <h4 id="PMD_FDNCSF"><a href="#PMD_FDNCSF">Finalize Does Not Call Super Finalize</a></h4>
 <p>If the finalize() is implemented, its last action should be to call super.finalize.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">protected</span> <span class="dt">void</span> <span class="fu">finalize</span>() {
+  <span class="fu">something</span>();
+  <span class="co">// neglected to call super.finalize()</span>
+}</code></pre>
 <h4 id="PMD_FOCSF"><a href="#PMD_FOCSF">Finalize Only Calls Super Finalize</a></h4>
 <p>If the finalize() is implemented, it should do something besides just calling super.finalize().</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">protected</span> <span class="dt">void</span> <span class="fu">finalize</span>() {
+  <span class="kw">super</span>.<span class="fu">finalize</span>();
+}</code></pre>
 <h4 id="PMD_FO"><a href="#PMD_FO">Finalize Overloaded</a></h4>
 <p>Methods named finalize() should not have parameters. It is confusing and most likely an attempt to overload Object.finalize(). It will not be called by the VM.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> Foo {
+  <span class="co">// this is confusing and probably a bug</span>
+  <span class="kw">protected</span> <span class="dt">void</span> <span class="fu">finalize</span>(<span class="dt">int</span> a) {
+  }
+}</code></pre>
 <h4 id="PMD_FSBP"><a href="#PMD_FSBP">Finalize Should Be Protected</a></h4>
 <p>When overriding the finalize(), the new method should be set as protected. If made public, other classes may invoke it at inappropriate times.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="dt">void</span> <span class="fu">finalize</span>() {
+  <span class="co">// do something</span>
+}</code></pre>
 <h3 id="import-statement-rules"><a href="#import-statement-rules">Import Statement Rules</a></h3>
 <h4 id="PMD_DIJL"><a href="#PMD_DIJL">Dont Import Java Lang</a></h4>
 <p>Avoid importing anything from the package ‘java.lang’. These classes are automatically imported (JLS 7.5.3).</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">import java.lang.String;</span>  <span class="co">// this is unnecessary</span>
+
+<span class="kw">public</span> <span class="kw">class</span> Foo {}       <span class="co">// --- in another source code file...</span>
+
+<span class="kw">import java.lang.*;</span>       <span class="co">// this is bad</span>
+
+<span class="kw">public</span> <span class="kw">class</span> Foo {}</code></pre>
 <h4 id="PMD_DI"><a href="#PMD_DI">Duplicate Imports</a></h4>
 <p>Duplicate or overlapping import statements should be avoided.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">import java.lang.String;</span>
+<span class="kw">import java.lang.*;</span>
+
+<span class="kw">public</span> <span class="kw">class</span> Foo {}</code></pre>
 <h4 id="PMD_IFSP"><a href="#PMD_IFSP">Import From Same Package</a></h4>
 <p>There is no need to import a type that lives in the same package.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"> <span class="kw">package foo;</span>
+ 
+ <span class="kw">import foo.Buz;</span> <span class="co">// no need for this</span>
+ <span class="kw">import foo.*;</span> <span class="co">// or this</span>
+ 
+ <span class="kw">public</span> <span class="kw">class</span> Bar{}</code></pre>
 <h4 id="PMD_TMSI"><a href="#PMD_TMSI">Too Many Static Imports</a></h4>
 <p>If you overuse the static import feature, it can make your program unreadable and unmaintainable, polluting its namespace with all the static members you import. Readers of your code (including you, a few months after you wrote it) will not know which class a static member comes from (Sun 1.5 Language Guide).</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">import static Lennon;</span>
+<span class="kw">import static Ringo;</span>
+<span class="kw">import static George;</span>
+<span class="kw">import static Paul;</span>
+<span class="kw">import static Yoko;</span> <span class="co">// Too much !</span></code></pre>
 <h4 id="PMD_UFQN"><a href="#PMD_UFQN">Unnecessary Fully Qualified Name</a></h4>
 <p>Import statements allow the use of non-fully qualified names. The use of a fully qualified name which is covered by an import statement is redundant. Consider using the non-fully qualified name.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">import java.util.List;</span>
+
+<span class="kw">public</span> <span class="kw">class</span> Foo {
+  <span class="kw">private</span> java.<span class="fu">util</span>.<span class="fu">List</span> list1; <span class="co">// Unnecessary FQN</span>
+  <span class="kw">private</span> List list2;           <span class="co">// More appropriate given import of 'java.util.List'</span>
+}</code></pre>
 <h3 id="j2ee-rules"><a href="#j2ee-rules">J2EE Rules</a></h3>
 <h4 id="PMD_DNCSE"><a href="#PMD_DNCSE">Do Not Call System Exit</a></h4>
 <p>Web applications should not call System.exit(), since only the web container or the application server should stop the JVM. This rule also checks for the equivalent call Runtime.getRuntime().exit().</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="dt">void</span> <span class="fu">bar</span>() {
+    System.<span class="fu">exit</span>(<span class="dv">0</span>); <span class="co">// never call this when running in an application server!</span>
+}
+<span class="kw">public</span> <span class="dt">void</span> <span class="fu">foo</span>() {
+    Runtime.<span class="fu">getRuntime</span>().<span class="fu">exit</span>(<span class="dv">0</span>); <span class="co">// never stop the JVM manually, the container will do this.</span>
+}</code></pre>
 <h4 id="PMD_LHNC"><a href="#PMD_LHNC">Local Home Naming Convention</a></h4>
 <p>The Local Home interface of a Session EJB should be suffixed by ‘LocalHome’.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">interface</span> MyBeautifulLocalHome <span class="kw">extends</span> javax.<span class="fu">ejb</span>.<span class="fu">EJBLocalHome</span> {} <span class="co">// proper name</span>
+<span class="kw">public</span> <span class="kw">interface</span> MissingProperSuffix <span class="kw">extends</span> javax.<span class="fu">ejb</span>.<span class="fu">EJBLocalHome</span> {} <span class="co">// non-standard name</span></code></pre>
 <h4 id="PMD_LISNC"><a href="#PMD_LISNC">Local Interface Session Naming Convention</a></h4>
 <p>The Local Interface of a Session EJB should be suffixed by ‘Local’.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">interface</span> MyLocal <span class="kw">extends</span> javax.<span class="fu">ejb</span>.<span class="fu">EJBLocalObject</span> {} <span class="co">// proper name</span>
+<span class="kw">public</span> <span class="kw">interface</span> MissingProperSuffix <span class="kw">extends</span> javax.<span class="fu">ejb</span>.<span class="fu">EJBLocalObject</span> {} <span class="co">// non-standard name</span></code></pre>
 <h4 id="PMD_MDBASBNC"><a href="#PMD_MDBASBNC">MDBAnd Session Bean Naming Convention</a></h4>
 <p>The EJB Specification states that any MessageDrivenBean or SessionBean should be suffixed by ‘Bean’.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> SomeBean <span class="kw">implements</span> SessionBean{} <span class="co">// proper name</span>
+<span class="kw">public</span> <span class="kw">class</span> MissingTheProperSuffix <span class="kw">implements</span> SessionBean {} <span class="co">// non-standard name</span></code></pre>
 <h4 id="PMD_RINC"><a href="#PMD_RINC">Remote Interface Naming Convention</a></h4>
 <p>Remote Interface of a Session EJB should not have a suffix.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="co">/* Poor Session suffix */</span>
+<span class="kw">public</span> <span class="kw">interface</span> BadSuffixSession <span class="kw">extends</span> javax.<span class="fu">ejb</span>.<span class="fu">EJBObject</span> {}
+
+<span class="co">/* Poor EJB suffix */</span>
+<span class="kw">public</span> <span class="kw">interface</span> BadSuffixEJB <span class="kw">extends</span> javax.<span class="fu">ejb</span>.<span class="fu">EJBObject</span> {}
+
+<span class="co">/* Poor Bean suffix */</span>
+<span class="kw">public</span> <span class="kw">interface</span> BadSuffixBean <span class="kw">extends</span> javax.<span class="fu">ejb</span>.<span class="fu">EJBObject</span> {}</code></pre>
 <h4 id="PMD_RSINC"><a href="#PMD_RSINC">Remote Session Interface Naming Convention</a></h4>
 <p>A Remote Home interface type of a Session EJB should be suffixed by ‘Home’.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">interface</span> MyBeautifulHome <span class="kw">extends</span> javax.<span class="fu">ejb</span>.<span class="fu">EJBHome</span> {} <span class="co">// proper name</span>
+<span class="kw">public</span> <span class="kw">interface</span> MissingProperSuffix <span class="kw">extends</span> javax.<span class="fu">ejb</span>.<span class="fu">EJBHome</span> {} <span class="co">// non-standard name</span></code></pre>
 <h4 id="PMD_SEJBFSBF"><a href="#PMD_SEJBFSBF">Static EJBField Should Be Final</a></h4>
 <p>According to the J2EE specification, an EJB should not have any static fields with write access. However, static read-only fields are allowed. This ensures proper behavior especially when instances are distributed by the container on several JREs.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> SomeEJB <span class="kw">extends</span> EJBObject <span class="kw">implements</span> EJBLocalHome {
+  <span class="kw">private</span> <span class="dt">static</span> <span class="dt">int</span> CountA; <span class="co">// poor, field can be edited</span>
+  <span class="kw">private</span> <span class="dt">static</span> <span class="dt">final</span> <span class="dt">int</span> CountB; <span class="co">// preferred, read-only access</span>
+}</code></pre>
 <h3 id="junit-rules"><a href="#junit-rules">JUnit Rules</a></h3>
 <h4 id="PMD_JUASIM"><a href="#PMD_JUASIM">JUnit Assertions Should Include Message</a></h4>
 <p>JUnit assertions should include an informative message - i.e., use the three-argument version of assertEquals(), not the two-argument version.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> Foo <span class="kw">extends</span> TestCase {
+  <span class="kw">public</span> <span class="dt">void</span> <span class="fu">testSomething</span>() {
+    <span class="fu">assertEquals</span>(<span class="st">&quot;foo&quot;</span>, <span class="st">&quot;bar&quot;</span>);
+    <span class="co">// Use the form:</span>
+    <span class="co">// assertEquals(&quot;Foo does not equals bar&quot;, &quot;foo&quot;, &quot;bar&quot;);</span>
+    <span class="co">// instead</span>
+  }
+}</code></pre>
 <h4 id="PMD_JUS"><a href="#PMD_JUS">JUnit Spelling</a></h4>
 <p>Some JUnit framework methods are easy to misspell.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">import junit.framework.*;</span>
+
+<span class="kw">public</span> <span class="kw">class</span> Foo <span class="kw">extends</span> TestCase {
+  <span class="kw">public</span> <span class="dt">void</span> <span class="fu">setup</span>() {} <span class="co">// oops, should be setUp</span>
+  <span class="kw">public</span> <span class="dt">void</span> <span class="fu">TearDown</span>() {} <span class="co">// oops, should be tearDown</span>
+}</code></pre>
 <h4 id="PMD_JUSS"><a href="#PMD_JUSS">JUnit Static Suite</a></h4>
 <p>The suite() method in a JUnit test needs to be both public and static.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">import junit.framework.*;</span>
+
+<span class="kw">public</span> <span class="kw">class</span> Foo <span class="kw">extends</span> TestCase {
+  <span class="kw">public</span> <span class="dt">void</span> <span class="fu">suite</span>() {}         <span class="co">// oops, should be static</span>
+  <span class="kw">private</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">suite</span>() {} <span class="co">// oops, should be public</span>
+}</code></pre>
 <h4 id="PMD_JUTCTMA"><a href="#PMD_JUTCTMA">JUnit Test Contains Too Many Asserts</a></h4>
 <p>JUnit tests should not contain too many asserts. Many asserts are indicative of a complex test, for which it is harder to verify correctness. Consider breaking the test scenario into multiple, shorter test scenarios. Customize the maximum number of assertions used by this Rule to suit your needs.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> MyTestCase <span class="kw">extends</span> TestCase {
+  <span class="co">// Ok</span>
+  <span class="kw">public</span> <span class="dt">void</span> <span class="fu">testMyCaseWithOneAssert</span>() {
+    <span class="dt">boolean</span> myVar = <span class="kw">false</span>;
+    <span class="fu">assertFalse</span>(<span class="st">&quot;should be false&quot;</span>, myVar);
+  }
+
+  <span class="co">// Bad, too many asserts (assuming max=1)</span>
+  <span class="kw">public</span> <span class="dt">void</span> <span class="fu">testMyCaseWithMoreAsserts</span>() {
+    <span class="dt">boolean</span> myVar = <span class="kw">false</span>;
+    <span class="fu">assertFalse</span>(<span class="st">&quot;myVar should be false&quot;</span>, myVar);
+    <span class="fu">assertEquals</span>(<span class="st">&quot;should equals false&quot;</span>, <span class="kw">false</span>, myVar);
+  }
+}</code></pre>
 <h4 id="PMD_JUTSIA"><a href="#PMD_JUTSIA">JUnit Tests Should Include Assert</a></h4>
 <p>JUnit tests should include at least one assertion. This makes the tests more robust, and using assert with messages provide the developer a clearer idea of what the test does.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> Foo <span class="kw">extends</span> TestCase {
+  <span class="kw">public</span> <span class="dt">void</span> <span class="fu">testSomething</span>() {
+    Bar b = <span class="fu">findBar</span>();
+    <span class="co">// This is better than having a NullPointerException</span>
+    <span class="co">// assertNotNull(&quot;bar not found&quot;, b);</span>
+    b.<span class="fu">work</span>();
+  }
+}</code></pre>
 <h4 id="PMD_SBA"><a href="#PMD_SBA">Simplify Boolean Assertion</a></h4>
 <p>Avoid negation in an assertTrue or assertFalse test. For example, rephrase: assertTrue(!expr); as: assertFalse(expr);</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> SimpleTest <span class="kw">extends</span> TestCase {
+  <span class="kw">public</span> <span class="dt">void</span> <span class="fu">testX</span>() {
+    <span class="fu">assertTrue</span>(<span class="st">&quot;not empty&quot;</span>, !r.<span class="fu">isEmpty</span>()); <span class="co">// replace with assertFalse(&quot;not empty&quot;, r.isEmpty())</span>
+    <span class="fu">assertFalse</span>(!r.<span class="fu">isEmpty</span>()); <span class="co">// replace with assertTrue(r.isEmpty())</span>
+  }
+}</code></pre>
 <h4 id="PMD_TCWTC"><a href="#PMD_TCWTC">Test Class Without Test Cases</a></h4>
 <p>Test classes end with the suffix Test. Having a non-test class with that name is not a good practice, since most people will assume it is a test case. Test classes have test methods named testXXX.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="co">//Consider changing the name of the class if it is not a test</span>
+<span class="co">//Consider adding test methods if it is a test</span>
+<span class="kw">public</span> <span class="kw">class</span> CarTest {
+  <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span>(String[] args) {
+    <span class="co">// do something</span>
+  }
+  <span class="co">// code</span>
+}</code></pre>
 <h4 id="PMD_UBA"><a href="#PMD_UBA">Unnecessary Boolean Assertion</a></h4>
 <p>A JUnit test assertion with a boolean literal is unnecessary since it always will evaluate to the same thing. Consider using flow control (in case of assertTrue(false) or similar) or simply removing statements like assertTrue(true) and assertFalse(false). If you just want a test to halt after finding an error, use the fail() method and provide an indication message of why it did.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> SimpleTest <span class="kw">extends</span> TestCase {
+  <span class="kw">public</span> <span class="dt">void</span> <span class="fu">testX</span>() {
+    <span class="fu">assertTrue</span>(<span class="kw">true</span>);  <span class="co">// serves no real purpose</span>
+  }
+}</code></pre>
 <h4 id="PMD_UAEIOAT"><a href="#PMD_UAEIOAT">Use Assert Equals Instead Of Assert True</a></h4>
 <p>This rule detects JUnit assertions in object equality. These assertions should be made by more specific methods, like assertEquals.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> FooTest <span class="kw">extends</span> TestCase {
+  <span class="dt">void</span> <span class="fu">testCode</span>() {
+    Object a, b;
+    <span class="fu">assertTrue</span>(a.<span class="fu">equals</span>(b));                  <span class="co">// bad usage</span>
+    <span class="fu">assertEquals</span>(?a should equals b?, a, b);  <span class="co">// good usage</span>
+  }
+}</code></pre>
 <h4 id="PMD_UANIOAT"><a href="#PMD_UANIOAT">Use Assert Null Instead Of Assert True</a></h4>
 <p>This rule detects JUnit assertions in object references equality. These assertions should be made by more specific methods, like assertNull, assertNotNull.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> FooTest <span class="kw">extends</span> TestCase {
+  <span class="dt">void</span> <span class="fu">testCode</span>() {
+    Object a = <span class="fu">doSomething</span>();
+    <span class="fu">assertTrue</span>(a==<span class="kw">null</span>);        <span class="co">// bad usage</span>
+    <span class="fu">assertNull</span>(a);              <span class="co">// good usage</span>
+    <span class="fu">assertTrue</span>(a != <span class="kw">null</span>);      <span class="co">// bad usage</span>
+    <span class="fu">assertNotNull</span>(a);           <span class="co">// good usage</span>
+  }
+}</code></pre>
 <h4 id="PMD_UASIOAT"><a href="#PMD_UASIOAT">Use Assert Same Instead Of Assert True</a></h4>
 <p>This rule detects JUnit assertions in object references equality. These assertions should be made by more specific methods, like assertSame, assertNotSame.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> FooTest <span class="kw">extends</span> TestCase {
+  <span class="dt">void</span> <span class="fu">testCode</span>() {
+    Object a, b;
+    <span class="fu">assertTrue</span>(a == b); <span class="co">// bad usage</span>
+    <span class="fu">assertSame</span>(a, b);   <span class="co">// good usage</span>
+  }
+}</code></pre>
 <h4 id="PMD_UATIOAE"><a href="#PMD_UATIOAE">Use Assert True Instead Of Assert Equals</a></h4>
 <p>When asserting a value is the same as a boolean literal, use assertTrue/assertFalse, instead of assertEquals.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> MyTestCase <span class="kw">extends</span> TestCase {
+  <span class="kw">public</span> <span class="dt">void</span> <span class="fu">testMyCase</span>() {
+    <span class="dt">boolean</span> myVar = <span class="kw">true</span>;
+    <span class="co">// Ok</span>
+    <span class="fu">assertTrue</span>(<span class="st">&quot;myVar is true&quot;</span>, myVar);
+    <span class="co">// Bad</span>
+    <span class="fu">assertEquals</span>(<span class="st">&quot;myVar is true&quot;</span>, <span class="kw">true</span>, myVar);
+    <span class="co">// Bad</span>
+    <span class="fu">assertEquals</span>(<span class="st">&quot;myVar is false&quot;</span>, <span class="kw">false</span>, myVar);
+  }
+}</code></pre>
 <h3 id="jakarta-commons-logging-rules"><a href="#jakarta-commons-logging-rules">Jakarta Commons Logging Rules</a></h3>
 <h4 id="PMD_GDL"><a href="#PMD_GDL">Guard Debug Logging</a></h4>
 <p>When log messages are composed by concatenating strings, the whole section should be guarded by a isDebugEnabled() check to avoid performance and memory issues.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> Test {
+  <span class="kw">private</span> <span class="dt">static</span> <span class="dt">final</span> Log __log = LogFactory.<span class="fu">getLog</span>(Test.<span class="fu">class</span>);
+  <span class="kw">public</span> <span class="dt">void</span> <span class="fu">test</span>() {
+    <span class="co">// okay:</span>
+    __log.<span class="fu">debug</span>(<span class="st">&quot;log something&quot;</span>);
+
+    <span class="co">// okay:</span>
+    __log.<span class="fu">debug</span>(<span class="st">&quot;log something with exception&quot;</span>, e);
+
+    <span class="co">// bad:</span>
+    __log.<span class="fu">debug</span>(<span class="st">&quot;log something&quot;</span> + <span class="st">&quot; and &quot;</span> + <span class="st">&quot;concat strings&quot;</span>);
+
+    <span class="co">// bad:</span>
+    __log.<span class="fu">debug</span>(<span class="st">&quot;log something&quot;</span> + <span class="st">&quot; and &quot;</span> + <span class="st">&quot;concat strings&quot;</span>, e);
+
+    <span class="co">// good:</span>
+    <span class="kw">if</span> (__log.<span class="fu">isDebugEnabled</span>()) {
+      __log.<span class="fu">debug</span>(<span class="st">&quot;bla&quot;</span> + <span class="st">&quot;&quot;</span>,e );
+    }
+  }
+}</code></pre>
 <h4 id="PMD_GLS"><a href="#PMD_GLS">Guard Log Statement</a></h4>
 <p>Whenever using a log level, one should check if the loglevel is actually enabled, or otherwise skip the associate String creation and manipulation.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="co">// Add this for performance</span>
+<span class="kw">if</span> (log.<span class="fu">isDebugEnabled</span>() { 
+  <span class="co">// ...</span>
+  log.<span class="fu">debug</span>(<span class="st">&quot;log something&quot;</span> + <span class="st">&quot; and &quot;</span> + <span class="st">&quot;concat strings&quot;</span>);
+}</code></pre>
 <h4 id="PMD_PL"><a href="#PMD_PL">Proper Logger</a></h4>
 <p>A logger should normally be defined private static final and be associated with the correct class. Private final Log log; is also allowed for rare cases where loggers need to be passed around, with the restriction that the logger needs to be passed into the constructor.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> Foo {
+  <span class="kw">private</span> <span class="dt">static</span> <span class="dt">final</span> Log LOG = LogFactory.<span class="fu">getLog</span>(Foo.<span class="fu">class</span>);  <span class="co">// proper way</span>
+  <span class="kw">protected</span> Log LOG = LogFactory.<span class="fu">getLog</span>(Testclass.<span class="fu">class</span>);       <span class="co">// wrong approach</span>
+}</code></pre>
 <h4 id="PMD_UCEL"><a href="#PMD_UCEL">Use Correct Exception Logging</a></h4>
 <p>To make sure the full stacktrace is printed out, use the logging statement with two arguments: a String and a Throwable.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> Main {
+  <span class="kw">private</span> <span class="dt">static</span> <span class="dt">final</span> Log _LOG = LogFactory.<span class="fu">getLog</span>( Main.<span class="fu">class</span> );
+  <span class="dt">void</span> <span class="fu">bar</span>() {
+    <span class="kw">try</span> {
+    } <span class="kw">catch</span>( Exception e ) {
+      _LOG.<span class="fu">error</span>( e ); <span class="co">//Wrong!</span>
+    } <span class="kw">catch</span>( OtherException oe ) {
+      _LOG.<span class="fu">error</span>( oe.<span class="fu">getMessage</span>(), oe ); <span class="co">//Correct</span>
+    }
+  }
+}</code></pre>
 <h3 id="java-logging-rules-1"><a href="#java-logging-rules-1">Java Logging Rules</a></h3>
 <h4 id="PMD_APST"><a href="#PMD_APST">Avoid Print Stack Trace</a></h4>
 <p>Avoid printStackTrace(); use a logger call instead.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">class</span> Foo {
+  <span class="dt">void</span> <span class="fu">bar</span>() {
+    <span class="kw">try</span> {
+      <span class="co">// do something</span>
+    } <span class="kw">catch</span> (Exception e) {
+      e.<span class="fu">printStackTrace</span>();
+    }
+  }
+}</code></pre>
 <h4 id="PMD_GLSJU"><a href="#PMD_GLSJU">Guard Log Statement Java Util</a></h4>
 <p>Whenever using a log level, one should check if the loglevel is actually enabled, or otherwise skip the associate String creation and manipulation.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="co">// Add this for performance</span>
+<span class="kw">if</span> (log.<span class="fu">isLoggable</span>(Level.<span class="fu">FINE</span>)) {
+  <span class="co">// ...</span>
+  log.<span class="fu">fine</span>(<span class="st">&quot;log something&quot;</span> + <span class="st">&quot; and &quot;</span> + <span class="st">&quot;concat strings&quot;</span>);
+}</code></pre>
 <h4 id="PMD_LINSF"><a href="#PMD_LINSF">Logger Is Not Static Final</a></h4>
 <p>In most cases, the Logger reference can be declared as static and final.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> Foo {
+  Logger log = Logger.<span class="fu">getLogger</span>(Foo.<span class="fu">class</span>.<span class="fu">getName</span>());               <span class="co">// not recommended</span>
+  <span class="dt">static</span> <span class="dt">final</span> Logger log = Logger.<span class="fu">getLogger</span>(Foo.<span class="fu">class</span>.<span class="fu">getName</span>());  <span class="co">// preferred approach</span>
+}</code></pre>
 <h4 id="PMD_MTOL"><a href="#PMD_MTOL">More Than One Logger</a></h4>
 <p>Normally only one logger is used in each class.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> Foo {
+  Logger log = Logger.<span class="fu">getLogger</span>(Foo.<span class="fu">class</span>.<span class="fu">getName</span>());
+  <span class="co">// It is very rare to see two loggers on a class, normally</span>
+  <span class="co">// log information is multiplexed by levels</span>
+  Logger log2= Logger.<span class="fu">getLogger</span>(Foo.<span class="fu">class</span>.<span class="fu">getName</span>());
+}</code></pre>
 <h4 id="PMD_SP"><a href="#PMD_SP">System Println</a></h4>
 <p>References to System.(out|err).print are usually intended for debugging purposes and can remain in the codebase even in production code. By using a logger one can enable/disable this behavior at will (and by priority) and avoid clogging the Standard out log.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">class</span> Foo {
+  Logger log = Logger.<span class="fu">getLogger</span>(Foo.<span class="fu">class</span>.<span class="fu">getName</span>());
+  <span class="kw">public</span> <span class="dt">void</span> <span class="fu">testA</span> () {
+    System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;Entering test&quot;</span>);
+    <span class="co">// Better use this</span>
+    log.<span class="fu">fine</span>(<span class="st">&quot;Entering test&quot;</span>);
+  }
+}</code></pre>
 <h3 id="javabean-rules"><a href="#javabean-rules">JavaBean Rules</a></h3>
 <h4 id="PMD_MSVUID"><a href="#PMD_MSVUID">Missing Serial Version UID</a></h4>
 <p>Serializable classes should provide a serialVersionUID field.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> Foo <span class="kw">implements</span> java.<span class="fu">io</span>.<span class="fu">Serializable</span> {
+  String name;
+  <span class="co">// Define serialization id to avoid serialization related bugs</span>
+  <span class="co">// i.e., public static final long serialVersionUID = 4328743;</span>
+}</code></pre>
 <h3 id="naming-rules-1"><a href="#naming-rules-1">Naming Rules</a></h3>
 <h4 id="PMD_ADS"><a href="#PMD_ADS">Avoid Dollar Signs</a></h4>
 <p>Avoid using dollar signs in variable/method/class/interface names.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> Fo$o { <span class="co">// not a recommended name</span>
+}</code></pre>
 <h4 id="PMD_AFNMMN"><a href="#PMD_AFNMMN">Avoid Field Name Matching Method Name</a></h4>
 <p>It can be confusing to have a field name with the same name as a method. While this is permitted, having information (field) and actions (method) is not clear naming. Developers versed in Smalltalk often prefer this approach as the methods denote accessor methods.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> Foo {
+  Object bar;
+  <span class="co">// bar is data or an action or both?</span>
+  <span class="dt">void</span> <span class="fu">bar</span>() {
+  }
+}</code></pre>
 <h4 id="PMD_AFNMTN"><a href="#PMD_AFNMTN">Avoid Field Name Matching Type Name</a></h4>
 <p>It is somewhat confusing to have a field name matching the declaring class name. This probably means that type and/or field names should be chosen more carefully.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> Foo <span class="kw">extends</span> Bar {
+  <span class="dt">int</span> foo; <span class="co">// There is probably a better name that can be used</span>
+}</code></pre>
 <h4 id="PMD_BGMN"><a href="#PMD_BGMN">Boolean Get Method Name</a></h4>
 <p>Methods that return boolean results should be named as predicate statements to denote this. I.e, ‘isReady()’, ‘hasValues()’, ‘canCommit()’, ‘willFail()’, etc. Avoid the use of the ‘get’ prefix for these methods.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="dt">boolean</span> <span class="fu">getFoo</span>();              <span class="co">// bad</span>
+<span class="kw">public</span> <span class="dt">boolean</span> <span class="fu">isFoo</span>();               <span class="co">// ok</span>
+<span class="kw">public</span> <span class="dt">boolean</span> <span class="fu">getFoo</span>(<span class="dt">boolean</span> bar);   <span class="co">// ok, unless checkParameterizedMethods=true</span></code></pre>
 <h4 id="PMD_CNC"><a href="#PMD_CNC">Class Naming Conventions</a></h4>
 <p>Class names should always begin with an upper case character.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> Foo {}</code></pre>
 <h4 id="PMD_GN"><a href="#PMD_GN">Generics Naming</a></h4>
 <p>Names for references to generic values should be limited to a single uppercase letter.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">interface</span> GenericDao&lt;E <span class="kw">extends</span> BaseModel, K <span class="kw">extends</span> Serializable&gt; <span class="kw">extends</span> BaseDao {
+  <span class="co">// This is ok...</span>
+}
+
+<span class="kw">public</span> <span class="kw">interface</span> GenericDao&lt;E <span class="kw">extends</span> BaseModel, K <span class="kw">extends</span> Serializable&gt; {
+  <span class="co">// Also this</span>
+}
+
+<span class="kw">public</span> <span class="kw">interface</span> GenericDao&lt;e <span class="kw">extends</span> BaseModel, K <span class="kw">extends</span> Serializable&gt; {
+  <span class="co">// 'e' should be an 'E'</span>
+}
+
+<span class="kw">public</span> <span class="kw">interface</span> GenericDao&lt;EF <span class="kw">extends</span> BaseModel, K <span class="kw">extends</span> Serializable&gt; {
+  <span class="co">// 'EF' is not ok.</span>
+}</code></pre>
 <h4 id="PMD_MeNC"><a href="#PMD_MeNC">Method Naming Conventions</a></h4>
 <p>Method names should always begin with a lower case character, and should not contain underscores.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> Foo {
+  <span class="kw">public</span> <span class="dt">void</span> <span class="fu">fooStuff</span>() {
+  }
+}</code></pre>
 <h4 id="PMD_MWSNAEC"><a href="#PMD_MWSNAEC">Method With Same Name As Enclosing Class</a></h4>
 <p>Non-constructor methods should not have the same name as the enclosing class.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> MyClass {
+  <span class="kw">public</span> <span class="fu">MyClass</span>() {}         <span class="co">// this is OK because it is a constructor</span>
+  <span class="kw">public</span> <span class="dt">void</span> <span class="fu">MyClass</span>() {}    <span class="co">// this is bad because it is a method</span>
+}</code></pre>
 <h4 id="PMD_NP"><a href="#PMD_NP">No Package</a></h4>
 <p>Detects when a class or interface does not have a package definition.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="co">// no package declaration</span>
+<span class="kw">public</span> <span class="kw">class</span> ClassInDefaultPackage {
+}</code></pre>
 <h4 id="PMD_PC"><a href="#PMD_PC">Package Case</a></h4>
 <p>Detects when a package definition contains uppercase characters.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">package com.MyCompany;</span>  <span class="co">// should be lowercase name</span>
+
+<span class="kw">public</span> <span class="kw">class</span> SomeClass {
+}</code></pre>
 <h4 id="PMD_SCN"><a href="#PMD_SCN">Short Class Name</a></h4>
 <p>Class names with fewer than five characters are not recommended.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> Foo {
+}</code></pre>
 <h4 id="PMD_SMN"><a href="#PMD_SMN">Short Method Name</a></h4>
 <p>Method names that are very short are not helpful to the reader.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> ShortMethod {
+  <span class="kw">public</span> <span class="dt">void</span> <span class="fu">a</span>( <span class="dt">int</span> i ) { <span class="co">// Violation</span>
+  }
+}</code></pre>
 <h4 id="PMD_SCFN"><a href="#PMD_SCFN">Suspicious Constant Field Name</a></h4>
-<p>Field names using all uppercase characters - Sun’s Java naming conventions indicating constants – should be declared as final.</p>
+<p>Field names using all uppercase characters - Sun’s Java naming conventions indicating constants - should be declared as final.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> Foo {
+  <span class="co">// this is bad, since someone could accidentally</span>
+  <span class="co">// do PI = 2.71828; which is actually e</span>
+  <span class="co">// final double PI = 3.14; is ok</span>
+  <span class="dt">double</span> PI = <span class="fl">3.14</span>;
+}</code></pre>
 <h4 id="PMD_SEMN"><a href="#PMD_SEMN">Suspicious Equals Method Name</a></h4>
 <p>The method name and parameter number are suspiciously close to equals(Object), which can denote an intention to override the equals(Object) method.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> Foo {
+  <span class="kw">public</span> <span class="dt">int</span> <span class="fu">equals</span>(Object o) {
+    <span class="co">// oops, this probably was supposed to be boolean equals</span>
+  }
+  <span class="kw">public</span> <span class="dt">boolean</span> <span class="fu">equals</span>(String s) {
+    <span class="co">// oops, this probably was supposed to be equals(Object)</span>
+  }
+  <span class="kw">public</span> <span class="dt">boolean</span> <span class="fu">equals</span>(Object o1, Object o2) {
+    <span class="co">// oops, this probably was supposed to be equals(Object)</span>
+  }
+}</code></pre>
 <h4 id="PMD_SHMN"><a href="#PMD_SHMN">Suspicious Hashcode Method Name</a></h4>
 <p>The method name and return type are suspiciously close to hashCode(), which may denote an intention to override the hashCode() method.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> Foo {
+  <span class="kw">public</span> <span class="dt">int</span> <span class="fu">hashcode</span>() { <span class="co">// oops, this probably was supposed to be 'hashCode'</span>
+  }
+}</code></pre>
 <h4 id="PMD_VNC"><a href="#PMD_VNC">Variable Naming Conventions</a></h4>
 <p>A variable naming conventions rule - customize this to your liking. Currently, it checks for final variables that should be fully capitalized and non-final variables that should not include underscores.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> Foo {
+  <span class="kw">public</span> <span class="dt">static</span> <span class="dt">final</span> <span class="dt">int</span> MY_NUM = <span class="dv">0</span>;
+  <span class="kw">public</span> String myTest = <span class="st">&quot;&quot;</span>;
+  DataModule dmTest = <span class="kw">new</span> <span class="fu">DataModule</span>();
+}</code></pre>
 <h3 id="optimization-rules-1"><a href="#optimization-rules-1">Optimization Rules</a></h3>
 <h4 id="PMD_AES"><a href="#PMD_AES">Add Empty String</a></h4>
 <p>The conversion of literals to strings by concatenating them with empty strings is inefficient. It is much better to use one of the type-specific toString() methods instead.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java">String s = <span class="st">&quot;&quot;</span> + <span class="dv">123</span>;                <span class="co">// inefficient </span>
+String t = Integer.<span class="fu">toString</span>(<span class="dv">456</span>);   <span class="co">// preferred approach</span></code></pre>
 <h4 id="PMD_AAL"><a href="#PMD_AAL">Avoid Array Loops</a></h4>
 <p>Instead of manually copying data between two arrays, use the efficient System.arraycopy method instead.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> Test {
+  <span class="kw">public</span> <span class="dt">void</span> <span class="fu">bar</span>() {
+    <span class="dt">int</span>[] a = <span class="kw">new</span> <span class="dt">int</span>[<span class="dv">10</span>];
+    <span class="dt">int</span>[] b = <span class="kw">new</span> <span class="dt">int</span>[<span class="dv">10</span>];
+    <span class="kw">for</span> (<span class="dt">int</span> i=<span class="dv">0</span>;i&lt;<span class="dv">10</span>;i++) {
+      b[i]=a[i];
+    }
+  }
+}
+
+<span class="co">// this will trigger the rule</span>
+<span class="kw">for</span> (<span class="dt">int</span> i=<span class="dv">0</span>;i&lt;<span class="dv">10</span>;i++) {
+  b[i]=a[c[i]];
+}</code></pre>
 <h4 id="PMD_RFI"><a href="#PMD_RFI">Redundant Field Initializer</a></h4>
 <p>Java will initialize fields with known default values so any explicit initialization of those same defaults is redundant and results in a larger class file (approximately three additional bytecode instructions per field).</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> C {
+  <span class="dt">boolean</span> b = <span class="kw">false</span>; <span class="co">// examples of redundant initializers</span>
+  <span class="dt">byte</span> by   = <span class="dv">0</span>;
+  <span class="dt">short</span> s   = <span class="dv">0</span>;
+  <span class="dt">char</span> c    = <span class="dv">0</span>;
+  <span class="dt">int</span> i     = <span class="dv">0</span>;
+  <span class="dt">long</span> l    = <span class="dv">0</span>;
+  <span class="dt">float</span> f   = .0f;    <span class="co">// all possible float literals</span>
+  <span class="dt">double</span> d  = 0d;     <span class="co">// all possible double literals</span>
+  Object o  = <span class="kw">null</span>;
+  MyClass mca[] = <span class="kw">null</span>;
+  <span class="dt">int</span> i1 = <span class="dv">0</span>, ia1[] = <span class="kw">null</span>;
+  <span class="kw">class</span> Nested {
+    <span class="dt">boolean</span> b = <span class="kw">false</span>;
+  }
+}</code></pre>
 <h4 id="PMD_UWOC"><a href="#PMD_UWOC">Unnecessary Wrapper Object Creation</a></h4>
 <p>Most wrapper classes provide static conversion methods that avoid the need to create intermediate objects just to create the primitive forms. Using these avoids the cost of creating objects that also need to be garbage-collected later.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="dt">int</span> <span class="fu">convert</span>(String s) {
+  <span class="dt">int</span> i, i2;
+
+  i = Integer.<span class="fu">valueOf</span>(s).<span class="fu">intValue</span>();            <span class="co">// this wastes an object</span>
+  i = Integer.<span class="fu">parseInt</span>(s);                      <span class="co">// this is better</span>
+
+  i2 = Integer.<span class="fu">valueOf</span>(i).<span class="fu">intValue</span>();           <span class="co">// this wastes an object</span>
+  i2 = i;                                       <span class="co">// this is better</span>
+
+  String s3 = Integer.<span class="fu">valueOf</span>(i2).<span class="fu">toString</span>();   <span class="co">// this wastes an object</span>
+  s3 = Integer.<span class="fu">toString</span>(i2);                    <span class="co">// this is better</span>
+
+  <span class="kw">return</span> i2;
+}</code></pre>
 <h4 id="PMD_UALIOV"><a href="#PMD_UALIOV">Use Array List Instead Of Vector</a></h4>
 <p>ArrayList is a much better Collection implementation than Vector if thread-safe operation is not required.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> SimpleTest <span class="kw">extends</span> TestCase {
+  <span class="kw">public</span> <span class="dt">void</span> <span class="fu">testX</span>() {
+    Collection c1 = <span class="kw">new</span> Vector();
+    Collection c2 = <span class="kw">new</span> ArrayList();  <span class="co">// achieves the same with much better performance</span>
+  }
+}</code></pre>
 <h4 id="PMD_UAAL"><a href="#PMD_UAAL">Use Arrays As List</a></h4>
-<p>The java.util.Arrays class has a “asList” method that should be used when you want to create a new List from an array of objects. It is faster than executing a loop to copy all the elements of the array one by one.</p>
+<p>The java.util.Arrays class has an “asList” method that should be used when you want to create a new List from an array of objects. It is faster than executing a loop to copy all the elements of the array one by one.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> Test {
+  <span class="kw">public</span> <span class="dt">void</span> <span class="fu">foo</span>(Integer[] ints) {
+    <span class="co">// could just use Arrays.asList(ints)</span>
+    List l= <span class="kw">new</span> ArrayList(<span class="dv">10</span>);
+    <span class="kw">for</span> (<span class="dt">int</span> i=<span class="dv">0</span>; i&lt; <span class="dv">100</span>; i++) {
+      l.<span class="fu">add</span>(ints[i]);
+    }
+    <span class="kw">for</span> (<span class="dt">int</span> i=<span class="dv">0</span>; i&lt; <span class="dv">100</span>; i++) {
+      l.<span class="fu">add</span>(a[i].<span class="fu">toString</span>()); <span class="co">// won't trigger the rule</span>
+    }
+  }
+}</code></pre>
 <h4 id="PMD_USBFSA"><a href="#PMD_USBFSA">Use String Buffer For String Appends</a></h4>
 <p>The use of the ‘+=’ operator for appending strings causes the JVM to create and use an internal StringBuffer. If a non-trivial number of these concatenations are being used then the explicit use of a StringBuilder or threadsafe StringBuffer is recommended to avoid this.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> Foo {
+  <span class="dt">void</span> <span class="fu">bar</span>() {
+    String a;
+    a = <span class="st">&quot;foo&quot;</span>;
+    a += <span class="st">&quot; bar&quot;</span>;
+    <span class="co">// better would be:</span>
+    <span class="co">// StringBuilder a = new StringBuilder(&quot;foo&quot;);</span>
+    <span class="co">// a.append(&quot; bar);</span>
+  }
+}</code></pre>
 <h3 id="security-code-guideline-rules-1"><a href="#security-code-guideline-rules-1">Security Code Guideline Rules</a></h3>
 <h4 id="PMD_AISD"><a href="#PMD_AISD">Array Is Stored Directly</a></h4>
 <p>Constructors and methods receiving arrays should clone objects and store the copy. This prevents future changes from the user from affecting the original array.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> Foo {
+  <span class="kw">private</span> String [] x;
+  <span class="kw">public</span> <span class="dt">void</span> <span class="fu">foo</span> (String [] param) {
+    <span class="co">// Don't do this, make a copy of the array at least</span>
+    <span class="kw">this</span>.<span class="fu">x</span>=param;
+  }
+}</code></pre>
 <h4 id="PMD_MRIA"><a href="#PMD_MRIA">Method Returns Internal Array</a></h4>
 <p>Exposing internal arrays to the caller violates object encapsulation since elements can be removed or replaced outside of the object that owns it. It is safer to return a copy of the array.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> SecureSystem {
+  UserData [] ud;
+  <span class="kw">public</span> UserData [] <span class="fu">getUserData</span>() {
+    <span class="co">// Don't return directly the internal array, return a copy</span>
+    <span class="kw">return</span> ud;
+  }
+}</code></pre>
 <h3 id="strict-exception-rules-1"><a href="#strict-exception-rules-1">Strict Exception Rules</a></h3>
 <h4 id="PMD_ACGE"><a href="#PMD_ACGE">Avoid Catching Generic Exception</a></h4>
 <p>Avoid catching generic exceptions such as NullPointerException, RuntimeException, Exception in try-catch block.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">package com.igate.primitive;</span>
+
+<span class="kw">public</span> <span class="kw">class</span> PrimitiveType {
+  <span class="kw">public</span> <span class="dt">void</span> <span class="fu">downCastPrimitiveType</span>() {
+    <span class="kw">try</span> {
+      System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot; i [&quot;</span> + i + <span class="st">&quot;]&quot;</span>);
+    } <span class="kw">catch</span>(Exception e) {
+      e.<span class="fu">printStackTrace</span>();
+    } <span class="kw">catch</span>(RuntimeException e) {
+      e.<span class="fu">printStackTrace</span>();
+    } <span class="kw">catch</span>(NullPointerException e) {
+      e.<span class="fu">printStackTrace</span>();
+    }
+  } 
+}</code></pre>
 <h4 id="PMD_ACNPE"><a href="#PMD_ACNPE">Avoid Catching NPE</a></h4>
 <p>Code should never throw NullPointerExceptions under normal circumstances. A catch block may hide the original error, causing other, more subtle problems later on.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> Foo {
+  <span class="dt">void</span> <span class="fu">bar</span>() {
+    <span class="kw">try</span> {
+      <span class="co">// do something</span>
+    } <span class="kw">catch</span> (NullPointerException npe) {
+    }
+  }
+}</code></pre>
 <h4 id="PMD_ACT"><a href="#PMD_ACT">Avoid Catching Throwable</a></h4>
 <p>Catching Throwable errors is not recommended since its scope is very broad. It includes runtime issues such as OutOfMemoryError that should be exposed and managed separately.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="dt">void</span> <span class="fu">bar</span>() {
+  <span class="kw">try</span> {
+    <span class="co">// do something</span>
+  } <span class="kw">catch</span> (Throwable th) { <span class="co">// should not catch Throwable</span>
+    th.<span class="fu">printStackTrace</span>();
+  }
+}</code></pre>
 <h4 id="PMD_ALEI"><a href="#PMD_ALEI">Avoid Losing Exception Information</a></h4>
 <p>Statements in a catch block that invoke accessors on the exception without using the information only add to code size. Either remove the invocation, or use the return result.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="dt">void</span> <span class="fu">bar</span>() {
+  <span class="kw">try</span> {
+    <span class="co">// do something</span>
+  } <span class="kw">catch</span> (SomeException se) {
+    se.<span class="fu">getMessage</span>();
+  }
+}</code></pre>
 <h4 id="PMD_ARE"><a href="#PMD_ARE">Avoid Rethrowing Exception</a></h4>
 <p>Catch blocks that merely rethrow a caught exception only add to code size and runtime complexity.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="dt">void</span> <span class="fu">bar</span>() {
+  <span class="kw">try</span> {
+    <span class="co">// do something</span>
+  } <span class="kw">catch</span> (SomeException se) {
+    <span class="kw">throw</span> se;
+  }
+}</code></pre>
 <h4 id="PMD_ATNIOSE"><a href="#PMD_ATNIOSE">Avoid Throwing New Instance Of Same Exception</a></h4>
 <p>Catch blocks that merely rethrow a caught exception wrapped inside a new instance of the same type only add to code size and runtime complexity.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="dt">void</span> <span class="fu">bar</span>() {
+  <span class="kw">try</span> {
+    <span class="co">// do something</span>
+  } <span class="kw">catch</span> (SomeException se) {
+    <span class="co">// harmless comment      </span>
+    <span class="kw">throw</span> <span class="kw">new</span> <span class="fu">SomeException</span>(se);
+  }
+}</code></pre>
 <h4 id="PMD_ATNPE"><a href="#PMD_ATNPE">Avoid Throwing Null Pointer Exception</a></h4>
 <p>Avoid throwing NullPointerExceptions. These are confusing because most people will assume that the virtual machine threw it. Consider using an IllegalArgumentException instead; this will be clearly seen as a programmer-initiated exception.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> Foo {
+  <span class="dt">void</span> <span class="fu">bar</span>() {
+    <span class="kw">throw</span> <span class="kw">new</span> NullPointerException();
+  }
+}</code></pre>
 <h4 id="PMD_ATRET"><a href="#PMD_ATRET">Avoid Throwing Raw Exception Types</a></h4>
 <p>Avoid throwing certain exception types. Rather than throw a raw RuntimeException, Throwable, Exception, or Error, use a subclassed exception or error instead.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> Foo {
+  <span class="kw">public</span> <span class="dt">void</span> <span class="fu">bar</span>() <span class="kw">throws</span> Exception {
+    <span class="kw">throw</span> <span class="kw">new</span> Exception();
+  }
+}</code></pre>
 <h4 id="PMD_DNEJLE"><a href="#PMD_DNEJLE">Do Not Extend Java Lang Error</a></h4>
 <p>Errors are system exceptions. Do not extend them.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> Foo <span class="kw">extends</span> Error { }</code></pre>
 <h4 id="PMD_DNTEIF"><a href="#PMD_DNTEIF">Do Not Throw Exception In Finally</a></h4>
 <p>Throwing exceptions within a ‘finally’ block is confusing since they may mask other exceptions or code defects. Note: This is a PMD implementation of the Lint4j rule “A throw in a finally block”</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> Foo {
+  <span class="kw">public</span> <span class="dt">void</span> <span class="fu">bar</span>() {
+    <span class="kw">try</span> {
+      <span class="co">// Here do some stuff</span>
+    } <span class="kw">catch</span>( Exception e) {
+      <span class="co">// Handling the issue</span>
+    } <span class="kw">finally</span> {
+      <span class="co">// is this really a good idea ?</span>
+      <span class="kw">throw</span> <span class="kw">new</span> Exception();
+    }
+  }
+}</code></pre>
 <h4 id="PMD_EAFC"><a href="#PMD_EAFC">Exception As Flow Control</a></h4>
 <p>Using Exceptions as form of flow control is not recommended as they obscure true exceptions when debugging. Either add the necessary validation or use an alternate control structure.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="dt">void</span> <span class="fu">bar</span>() {
+  <span class="kw">try</span> {
+    <span class="kw">try</span> {
+    } <span class="kw">catch</span> (Exception e) {
+      <span class="kw">throw</span> <span class="kw">new</span> <span class="fu">WrapperException</span>(e);
+      <span class="co">// this is essentially a GOTO to the WrapperException catch block</span>
+    }
+  } <span class="kw">catch</span> (WrapperException e) {
+    <span class="co">// do some more stuff</span>
+  }
+}</code></pre>
 <h3 id="string-and-stringbuffer-rules-1"><a href="#string-and-stringbuffer-rules-1">String and StringBuffer Rules</a></h3>
 <h4 id="PMD_ADL"><a href="#PMD_ADL">Avoid Duplicate Literals</a></h4>
 <p>Code containing duplicate String literals can usually be improved by declaring the String as a constant field.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">private</span> <span class="dt">void</span> <span class="fu">bar</span>() {
+  <span class="fu">buz</span>(<span class="st">&quot;Howdy&quot;</span>);
+  <span class="fu">buz</span>(<span class="st">&quot;Howdy&quot;</span>);
+  <span class="fu">buz</span>(<span class="st">&quot;Howdy&quot;</span>);
+  <span class="fu">buz</span>(<span class="st">&quot;Howdy&quot;</span>);
+}
+<span class="kw">private</span> <span class="dt">void</span> <span class="fu">buz</span>(String x) {}</code></pre>
 <h4 id="PMD_ASBF"><a href="#PMD_ASBF">Avoid String Buffer Field</a></h4>
 <p>StringBuffers/StringBuilders can grow considerably, and so may become a source of memory leaks if held within objects with long lifetimes.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> Foo {
+  <span class="kw">private</span> StringBuffer buffer;  <span class="co">// potential memory leak as an instance variable;</span>
+}</code></pre>
 <h4 id="PMD_CASR"><a href="#PMD_CASR">Consecutive Appends Should Reuse</a></h4>
 <p>Consecutively calls to StringBuffer/StringBuilder .append should reuse the target object. This can improve the performance.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java">String foo = <span class="st">&quot; &quot;</span>;
+
+StringBuffer buf = <span class="kw">new</span> StringBuffer();
+buf.<span class="fu">append</span>(<span class="st">&quot;Hello&quot;</span>); <span class="co">// poor</span>
+buf.<span class="fu">append</span>(foo);
+buf.<span class="fu">append</span>(<span class="st">&quot;World&quot;</span>);
+
+StringBuffer buf = <span class="kw">new</span> StringBuffer();
+buf.<span class="fu">append</span>(<span class="st">&quot;Hello&quot;</span>).<span class="fu">append</span>(foo).<span class="fu">append</span>(<span class="st">&quot;World&quot;</span>); <span class="co">// good</span></code></pre>
 <h4 id="PMD_CLA"><a href="#PMD_CLA">Consecutive Literal Appends</a></h4>
 <p>Consecutively calling StringBuffer/StringBuilder.append with String literals</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java">StringBuffer buf = <span class="kw">new</span> StringBuffer();
+buf.<span class="fu">append</span>(<span class="st">&quot;Hello&quot;</span>).<span class="fu">append</span>(<span class="st">&quot; &quot;</span>).<span class="fu">append</span>(<span class="st">&quot;World&quot;</span>); <span class="co">// poor</span>
+buf.<span class="fu">append</span>(<span class="st">&quot;Hello World&quot;</span>); <span class="co">// good</span></code></pre>
 <h4 id="PMD_ISB"><a href="#PMD_ISB">Inefficient String Buffering</a></h4>
 <p>Avoid concatenating non-literals in a StringBuffer constructor or append() since intermediate buffers will need to be created and destroyed by the JVM.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="co">// Avoid this, two buffers are actually being created here</span>
+StringBuffer sb = <span class="kw">new</span> StringBuffer(<span class="st">&quot;tmp = &quot;</span>+System.<span class="fu">getProperty</span>(<span class="st">&quot;java.io.tmpdir&quot;</span>));
+    
+<span class="co">// do this instead</span>
+StringBuffer sb = <span class="kw">new</span> StringBuffer(<span class="st">&quot;tmp = &quot;</span>);
+sb.<span class="fu">append</span>(System.<span class="fu">getProperty</span>(<span class="st">&quot;java.io.tmpdir&quot;</span>));</code></pre>
 <h4 id="PMD_SBIWC"><a href="#PMD_SBIWC">String Buffer Instantiation With Char</a></h4>
 <p>Individual character values provided as initialization arguments will be converted into integers. This can lead to internal buffer sizes that are larger than expected.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="co">// misleading instantiation, these buffers</span>
+<span class="co">// are actually sized to 99 characters long</span>
+StringBuffer  sb1 = <span class="kw">new</span> StringBuffer('c');   
+StringBuilder sb2 = <span class="kw">new</span> StringBuilder('c');
+
+<span class="co">// in these forms, just single characters are allocated</span>
+StringBuffer  sb3 = <span class="kw">new</span> StringBuffer(<span class="st">&quot;c&quot;</span>);
+StringBuilder sb4 = <span class="kw">new</span> StringBuilder(<span class="st">&quot;c&quot;</span>);</code></pre>
 <h4 id="PMD_StI"><a href="#PMD_StI">String Instantiation</a></h4>
 <p>Avoid instantiating String objects; this is usually unnecessary since they are immutable and can be safely shared.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">private</span> String bar = <span class="kw">new</span> String(<span class="st">&quot;bar&quot;</span>); <span class="co">// just do a String bar = &quot;bar&quot;;</span></code></pre>
 <h4 id="PMD_STS"><a href="#PMD_STS">String To String</a></h4>
 <p>Avoid calling toString() on objects already known to be string instances; this is unnecessary.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">private</span> String <span class="fu">baz</span>() {
+  String bar = <span class="st">&quot;howdy&quot;</span>;
+  <span class="kw">return</span> bar.<span class="fu">toString</span>();
+}</code></pre>
 <h4 id="PMD_UCC"><a href="#PMD_UCC">Unnecessary Case Change</a></h4>
 <p>Using equalsIgnoreCase() is faster than using toUpperCase/toLowerCase().equals()</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="dt">boolean</span> answer1 = buz.<span class="fu">toUpperCase</span>().<span class="fu">equals</span>(<span class="st">&quot;baz&quot;</span>);            <span class="co">// should be buz.equalsIgnoreCase(&quot;baz&quot;)</span>
+<span class="dt">boolean</span> answer2 = buz.<span class="fu">toUpperCase</span>().<span class="fu">equalsIgnoreCase</span>(<span class="st">&quot;baz&quot;</span>);  <span class="co">// another unnecessary toUpperCase()</span></code></pre>
 <h4 id="PMD_UETCS"><a href="#PMD_UETCS">Use Equals To Compare Strings</a></h4>
 <p>Using ‘==’ or ‘!=’ to compare strings only works if intern version is used on both sides. Use the equals() method instead.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="dt">boolean</span> <span class="fu">test</span>(String s) {
+  <span class="kw">if</span> (s == <span class="st">&quot;one&quot;</span>) <span class="kw">return</span> <span class="kw">true</span>;        <span class="co">// unreliable</span>
+  <span class="kw">if</span> (<span class="st">&quot;two&quot;</span>.<span class="fu">equals</span>(s)) <span class="kw">return</span> <span class="kw">true</span>;   <span class="co">// better</span>
+  <span class="kw">return</span> <span class="kw">false</span>;
+}</code></pre>
 <h3 id="type-resolution-rules-1"><a href="#type-resolution-rules-1">Type Resolution Rules</a></h3>
 <h4 id="PMD_ClMMIC"><a href="#PMD_ClMMIC">Clone Method Must Implement Cloneable</a></h4>
 <p>The method clone() should only be implemented if the class implements the Cloneable interface with the exception of a final method that only throws CloneNotSupportedException. This version uses PMD’s type resolution facilities, and can detect if the class implements or extends a Cloneable class.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java">
+<span class="kw">public</span> <span class="kw">class</span> MyClass {
+  <span class="kw">public</span> Object <span class="fu">clone</span>() <span class="kw">throws</span> CloneNotSupportedException {
+    <span class="kw">return</span> foo;
+  }
+}</code></pre>
 <h4 id="PMD_LoC"><a href="#PMD_LoC">Loose Coupling</a></h4>
 <p>Avoid using implementation types (i.e., HashSet); use the interface (i.e, Set) instead</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">import java.util.ArrayList;</span>
+<span class="kw">import java.util.HashSet;</span>
+
+<span class="kw">public</span> <span class="kw">class</span> Bar {
+  <span class="co">// Use List instead</span>
+  <span class="kw">private</span> ArrayList list = <span class="kw">new</span> ArrayList();
+  <span class="co">// Use Set instead</span>
+  <span class="kw">public</span> HashSet <span class="fu">getFoo</span>() {
+    <span class="kw">return</span> <span class="kw">new</span> HashSet();
+  }
+}</code></pre>
 <h4 id="PMD_SiDTE"><a href="#PMD_SiDTE">Signature Declare Throws Exception</a></h4>
 <p>It is unclear which exceptions that can be thrown from the methods. It might be difficult to document and understand the vague interfaces. Use either a class derived from RuntimeException or a checked exception. JUnit classes are excluded.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="dt">void</span> <span class="fu">methodThrowingException</span>() <span class="kw">throws</span> Exception {
+}</code></pre>
 <h4 id="PMD_UnI"><a href="#PMD_UnI">Unused Imports</a></h4>
 <p>Avoid unused import statements. This rule will find unused on demand imports, i.e. import com.foo.*.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">import java.io.*;</span> <span class="co">// not referenced or required</span>
+
+<span class="kw">public</span> <span class="kw">class</span> Foo {}</code></pre>
 <h3 id="unnecessary-and-unused-code-rules-1"><a href="#unnecessary-and-unused-code-rules-1">Unnecessary and Unused Code Rules</a></h3>
 <h4 id="PMD_ULV"><a href="#PMD_ULV">Unused Local Variable</a></h4>
 <p>Detects when a local variable is declared and/or assigned, but not used.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> Foo {
+  <span class="kw">public</span> <span class="dt">void</span> <span class="fu">doSomething</span>() {
+    <span class="dt">int</span> i = <span class="dv">5</span>; <span class="co">// Unused</span>
+  }
+}</code></pre>
 <h4 id="PMD_UPF"><a href="#PMD_UPF">Unused Private Field</a></h4>
 <p>Detects when a private field is declared and/or assigned a value, but not used.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> Something {
+  <span class="kw">private</span> <span class="dt">static</span> <span class="dt">int</span> FOO = <span class="dv">2</span>; <span class="co">// Unused</span>
+  <span class="kw">private</span> <span class="dt">int</span> i = <span class="dv">5</span>; <span class="co">// Unused</span>
+  <span class="kw">private</span> <span class="dt">int</span> j = <span class="dv">6</span>;
+  <span class="kw">public</span> <span class="dt">int</span> <span class="fu">addOne</span>() {
+    <span class="kw">return</span> j++;
+  }
+}</code></pre>
 <h4 id="PMD_UPM"><a href="#PMD_UPM">Unused Private Method</a></h4>
 <p>Unused Private Method detects when a private method is declared but is unused.</p>
+<p>Example(s):</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> Something {
+  <span class="kw">private</span> <span class="dt">void</span> <span class="fu">foo</span>() {} <span class="co">// unused</span>
+}</code></pre>
 <h2 id="reference-of-findbugs-coding-rule-violations"><a href="#reference-of-findbugs-coding-rule-violations">Reference of FindBugs coding rule violations</a></h2>
 <p>FrontEndART SourceMeter incorporates the <a href="http://findbugs.sourceforge.net">FindBugs</a> tool for coding rule violation checking and imports its results. SourceMeter also associates the issued rule violations with source code elements (i.e. methods, classes, packages, and components), and calculates metrics for the source code elements, which represent the amount of violations of each ruleset, rule, and priority groups, respectively.</p>
 <p>SourceMeter uses FindBugs “as is”, without any guaranties that the results of FindBugs are correct. All statements of the FindBugs license apply here as well. All texts describing the rulesets and the individual rules are copied from the configuration files of FindBugs with some minor grammatical fixes.</p>

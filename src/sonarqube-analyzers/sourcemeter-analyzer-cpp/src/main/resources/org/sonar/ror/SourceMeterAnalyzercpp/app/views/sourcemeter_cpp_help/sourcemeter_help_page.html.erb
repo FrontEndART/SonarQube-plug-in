@@ -33,7 +33,7 @@ code > span.er { color: #ff0000; font-weight: bold; }
 <body>
 <nav id="TOC">
 <ul>
-<li><a href="#sourcemeter-7.0-for-cc">SourceMeter 7.0 for C/C++</a></li>
+<li><a href="#sourcemeter-8.0-for-cc">SourceMeter 8.0 for C/C++</a></li>
 <li><a href="#introduction">Introduction</a><ul>
 <li><a href="#product-characteristics">Product characteristics</a></li>
 <li><a href="#background">Background</a></li>
@@ -101,7 +101,7 @@ code > span.er { color: #ff0000; font-weight: bold; }
 <li><a href="#footnotes">Footnotes</a></li>
 </ul>
 </nav>
-<h1 id="sourcemeter-7.0-for-cc"><a href="#sourcemeter-7.0-for-cc">SourceMeter 7.0 for C/C++</a></h1>
+<h1 id="sourcemeter-8.0-for-cc"><a href="#sourcemeter-8.0-for-cc">SourceMeter 8.0 for C/C++</a></h1>
 <h1 id="introduction"><a href="#introduction">Introduction</a></h1>
 <p>FrontEndART SourceMeter for C/C++ is a source code analyzer tool, which can perform deep static analysis of the source code of complex C/C++ systems (<a href="https://www.sourcemeter.com">https://www.sourcemeter.com</a>).</p>
 <p>The source code of a program is usually its only up-to-date documentation. At the same time, the source code is the exquisite bearer of knowledge, business processes and methodology, accumulated over a long period of time. Source code quality decrease, which happens due to many quick fixes and time pressure, results in the increase of development and testing costs, and operational risks. In spite of this, the source code usually receives hostile treatment and is merely considered as a tool.</p>
@@ -151,16 +151,15 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'">'+'support@frontendart.com'+'
 <h2 id="supported-platforms"><a href="#supported-platforms">Supported platforms</a></h2>
 <p>SourceMeter supports the following x86 and x86-64 platforms:</p>
 <ul>
-<li><p>Microsoft Windows 7, 8, and 8.1</p></li>
+<li><p>Microsoft Windows 7, 8, 8.1, and 10</p></li>
 <li><p>Microsoft Windows 2008 R2 Server</p></li>
 <li><p>Microsoft Windows 2012 Server</p></li>
 <li><p>GNU/Linux with kernel version 2.6.18 and GNU C library 2.11 or newer</p></li>
 </ul>
 <h2 id="requirements"><a href="#requirements">Requirements</a></h2>
-<p>In case of Windows, the appropriate Microsoft Visual C++ 2010 SP1 Redistributable Package must be installed. It can be downloaded from the following URL:</p>
+<p>In case of Windows, the appropriate Microsoft Visual C++ 2015 Redistributable Package must be installed. It can be downloaded from the following URL:</p>
 <ul>
-<li><p><a href="http://www.microsoft.com/en-us/download/details.aspx?id=8328">http://www.microsoft.com/en-us/download/details.aspx?id=8328</a> (x86)</p></li>
-<li><p><a href="http://www.microsoft.com/en-us/download/details.aspx?id=13523">http://www.microsoft.com/en-us/download/details.aspx?id=13523</a> (x64)</p></li>
+<li><a href="https://www.microsoft.com/en-us/download/details.aspx?id=48145">https://www.microsoft.com/en-us/download/details.aspx?id=48145</a> (x86/x64)</li>
 </ul>
 <p>The Linux package uses the code page conversion functions of the GNU C Library. If the conversion modules are not in the standard /usr/lib/gconv directory then the GCONV_PATH environment variable must be set according to the current installation of the GNU C Library.</p>
 <p>E.g.:</p>
@@ -260,8 +259,8 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'">'+'support@frontendart.com'+'
 </ul>
 <p>Windows:</p>
 <ul>
-<li><p>The software system shall be compilable with Microsoft Visual Studio 2010/2012/2013</p></li>
-<li><p>The appropriate visual studio compiler environment has to be active when SourceMeter is started. The necessary environments can be seen in the Recommended Environment table below.</p></li>
+<li><p>The software system shall be compilable with Microsoft Visual Studio 2010/2012/2013/2015.</p></li>
+<li><p>The appropriate visual studio compiler environment has to be active when SourceMeter is started. The necessary environments can be seen in the Recommended Environment table below. The compiler environment can be set up by running the appropriate ‘Visual Studio Command Prompt’ or by starting the ‘%VSINSTALLDIR%.bat’ with the appropriate parameters from a command line.</p></li>
 </ul>
 <p>The following table summarizes the recommended environments for running SourceMeter. It shows which Visual Studio environment should be used to run which version of SourceMeter, given the architecture of the computer and the intended target architecture of the built software system.</p>
 <table>
@@ -318,7 +317,7 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'">'+'support@frontendart.com'+'
 <dd><p>Relative or absolute path name of the executable build script which manages the build process of the system. If the build script does not return with 0, SourceMeter will stop with an error and no analysis results will be available.</p>
 </dd>
 <dt><strong>-externalHardFilter</strong></dt>
-<dd><p>Filter file specified with relative or absolute path, to filter out certain files from the analysis. Filtered files will not appear in the results. The filter file is a simple text file containing lines starting with ‘+’ or ‘-’ characters followed by a regular expression<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a>. During the analysis, the arguments of the wrapped commands will be checked for these expressions. If the first character of the last matching expression is ‘-’, then the given command will not be wrapped and it will be excluded from the analysis. If the first character of the last matching expression is ‘+’, or there is no matching expression, then the command will be wrapped. A line starting with a different character than ‘-’ or ‘+’ will be ignored. Example filter file content:</p>
+<dd><p>Filter file specified with relative or absolute path, to filter out certain files from the analysis. Filtered files will not appear in the results. The filter file is a simple text file containing lines starting with ‘+’ or ‘-’ characters followed by a regular expression<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a>. Tip: you can use the and anchors to make a substring literal, reducing the need of escaping backslashes. During the analysis, the arguments of the wrapped commands will be checked for these expressions. If the first character of the last matching expression is ‘-’, then the given command will not be wrapped and it will be excluded from the analysis. If the first character of the last matching expression is ‘+’, or there is no matching expression, then the command will be wrapped. A line starting with a different character than ‘-’ or ‘+’ will be ignored. On Windows the checking is case-insensitive. Example filter file content:</p>
 <pre><code># Filter out commands containing 'conftest':
 -conftest
 # Filter out default 'a.out' binary outputs:
@@ -327,7 +326,7 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'">'+'support@frontendart.com'+'
 <dd><p>Please note that contrary to other languages, not the name of the input files are checked but the arguments of the wrapped commands! If filtering based on arguments would be too difficult (e.g. because the build contains a <em>configure</em> step that should be completely disregarded but its subcommands are unknown) then the <strong>SM_DISABLE_ANALYSIS</strong> environment variable can be specified. While it is set to <em>true</em>, every wrappable command will be ignored. A build script using this method is shown in the Usage section.</p>
 </dd>
 <dt><strong>-externalSoftFilter</strong></dt>
-<dd><p>Filter file specified with relative or absolute path to filter out source code elements (e.g. classes, methods) which are not important for some reason, but could not be filtered out via the externalHardFilter parameter. Source files containing these elements will be analyzed, but the matching results will not be calculated. The filter file is a simple text file containing lines starting with ‘+’ or ‘-’ characters followed by a regular expression. After the analysis, those source elements whose absolute path of their source position last matches an expression starting with ‘-’ will not be considered in the results. If the first character of the last matching expression is ‘+’, or there is no matching expression, then the source element will be considered as part of the software system. Example filter file content:</p>
+<dd><p>Filter file specified with relative or absolute path to filter out source code elements (e.g. classes, methods) which are not important for some reason, but could not be filtered out via the externalHardFilter parameter. Source files containing these elements will be analyzed, but the matching results will not be calculated. The filter file is a simple text file containing lines starting with ‘+’ or ‘-’ characters followed by a regular expression. Tip: you can use the and anchors to make a substring literal, reducing the need of escaping backslashes. On Windows the checking is case-insensitive. After the analysis, those source elements whose absolute path of their source position last matches an expression starting with ‘-’ will not be considered in the results. If the first character of the last matching expression is ‘+’, or there is no matching expression, then the source element will be considered as part of the software system. Example filter file content:</p>
 <pre><code>-C:\\
 +C:\\Users\\UserName\\MyProject\\
 -\\3rd\_party\\
@@ -347,25 +346,34 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'">'+'support@frontendart.com'+'
 <dt><strong>-runMetricHunter</strong></dt>
 <dd><p>This parameter turns on or off the MetricHunter module. With this feature, SourceMeter lists metric threshold violations. Its value can be “true” (turn this feature on) or “false” (turn this feature off). The default value is “true”.</p>
 </dd>
+<dt><strong>-runFaultHunter</strong></dt>
+<dd><p>This parameter turns on or off the FaultHunter module. With this feature, SourceMeter identifies common C/C++ coding rule violations (so-called bad practices) in the code. Its value can be “true” (turn this feature on) or “false” (turn this feature off). The default value is “true”.</p>
+</dd>
+<dt><strong>-runDCF</strong></dt>
+<dd><p>This parameter turns on or off the DuplicatedCodeFinder module. With this feature, SourceMeter identifies copy-pasted code fragments. Its value can be “true” (turn this feature on) or “false” (turn this feature off). The default value is “true”.</p>
+</dd>
+<dt><strong>-runMET</strong></dt>
+<dd><p>This parameter turns on or off the Metric module. With this feature, SourceMeter computes source code metrics. Its value can be “true” (turn this feature on) or “false” (turn this feature off). The default value is “true”.</p>
+</dd>
 <dt><strong>-profileXML</strong></dt>
 <dd><p>Global configuration file for SourceMeter. Its <em>tool-options</em> tag can be used to override the default metric thresholds for the MetricHunter tool. Furthermore, its <em>rule-options</em> tag can enable/disable or modify the priorities of multiple rules. An example profile xml file is shown below:</p>
 </dd>
 </dl>
 <pre class="sourceCode xml"><code class="sourceCode xml">      <span class="kw">&lt;sourcemeter-profile&gt;</span>
         <span class="kw">&lt;tool-options&gt;</span>
-          <span class="kw">&lt;tool</span><span class="ot"> name</span> <span class="ot">=</span> <span class="st">'MetricHunter'</span><span class="ot"> enabled</span> <span class="ot">=</span> <span class="st">'true'</span><span class="kw">&gt;</span>
+          <span class="kw">&lt;tool</span><span class="ot"> name</span> <span class="ot">=</span> <span class="st">&quot;MetricHunter&quot;</span><span class="ot"> enabled</span> <span class="ot">=</span> <span class="st">&quot;true&quot;</span><span class="kw">&gt;</span>
               <span class="kw">&lt;metric-thresholds&gt;</span>
-                  <span class="kw">&lt;threshold</span><span class="ot"> metric-id=</span><span class="st">'LOC'</span><span class="ot"> relation=</span><span class="st">'gt'</span><span class="ot"> value=</span><span class="st">'100'</span><span class="ot"> entity=</span><span class="st">'Method'</span> <span class="kw">/&gt;</span>
-                  <span class="kw">&lt;threshold</span><span class="ot"> metric-id=</span><span class="st">'LLOC'</span><span class="ot"> relation=</span><span class="st">'gt'</span><span class="ot"> value=</span><span class="st">'none'</span><span class="ot"> entity=</span><span class="st">'Method'</span> <span class="kw">/&gt;</span>
-                  <span class="kw">&lt;threshold</span><span class="ot"> metric-id=</span><span class="st">'NUMPAR'</span><span class="ot"> relation=</span><span class="st">'gt'</span><span class="ot"> value=</span><span class="st">'43'</span><span class="ot"> entity=</span><span class="st">'Method'</span> <span class="kw">/&gt;</span>
-                  <span class="kw">&lt;threshold</span><span class="ot"> metric-id=</span><span class="st">'TLOC'</span><span class="ot"> relation=</span><span class="st">'gt'</span><span class="ot"> value=</span><span class="st">'-32'</span><span class="ot"> entity=</span><span class="st">'Method'</span> <span class="kw">/&gt;</span>
+                  <span class="kw">&lt;threshold</span><span class="ot"> metric-id=</span><span class="st">&quot;LOC&quot;</span><span class="ot"> relation=</span><span class="st">&quot;gt&quot;</span><span class="ot"> value=</span><span class="st">&quot;100&quot;</span><span class="ot"> entity=</span><span class="st">&quot;Method&quot;</span> <span class="kw">/&gt;</span>
+                  <span class="kw">&lt;threshold</span><span class="ot"> metric-id=</span><span class="st">&quot;LLOC&quot;</span><span class="ot"> relation=</span><span class="st">&quot;gt&quot;</span><span class="ot"> value=</span><span class="st">&quot;none&quot;</span><span class="ot"> entity=</span><span class="st">&quot;Method&quot;</span> <span class="kw">/&gt;</span>
+                  <span class="kw">&lt;threshold</span><span class="ot"> metric-id=</span><span class="st">&quot;NUMPAR&quot;</span><span class="ot"> relation=</span><span class="st">&quot;gt&quot;</span><span class="ot"> value=</span><span class="st">&quot;43&quot;</span><span class="ot"> entity=</span><span class="st">&quot;Method&quot;</span> <span class="kw">/&gt;</span>
+                  <span class="kw">&lt;threshold</span><span class="ot"> metric-id=</span><span class="st">&quot;TLOC&quot;</span><span class="ot"> relation=</span><span class="st">&quot;gt&quot;</span><span class="ot"> value=</span><span class="st">&quot;-32&quot;</span><span class="ot"> entity=</span><span class="st">&quot;Method&quot;</span> <span class="kw">/&gt;</span>
               <span class="kw">&lt;/metric-thresholds&gt;</span>
           <span class="kw">&lt;/tool&gt;</span>
         <span class="kw">&lt;/tool-options&gt;</span>
-      
+
         <span class="kw">&lt;rule-options&gt;</span>
-          <span class="kw">&lt;rule</span><span class="ot"> id=</span><span class="st">'IL'</span><span class="ot"> name=</span><span class="st">'Member Init Order'</span><span class="ot"> priority=</span><span class="st">'Critical'</span><span class="ot"> enabled=</span><span class="st">'false'</span><span class="kw">/&gt;</span>
-          <span class="kw">&lt;rule</span><span class="ot"> id=</span><span class="st">'ULTZ'</span><span class="ot"> name=</span><span class="st">'Unsigned Compare Less Than Zero'</span><span class="ot"> priority=</span><span class="st">'Major'</span><span class="ot"> enabled=</span><span class="st">'true'</span><span class="kw">/&gt;</span>
+          <span class="kw">&lt;rule</span><span class="ot"> id=</span><span class="st">&quot;IL&quot;</span><span class="ot"> name=</span><span class="st">&quot;Member Init Order&quot;</span><span class="ot"> priority=</span><span class="st">&quot;Critical&quot;</span><span class="ot"> enabled=</span><span class="st">&quot;false&quot;</span><span class="kw">/&gt;</span>
+          <span class="kw">&lt;rule</span><span class="ot"> id=</span><span class="st">&quot;ULTZ&quot;</span><span class="ot"> name=</span><span class="st">&quot;Unsigned Compare Less Than Zero&quot;</span><span class="ot"> priority=</span><span class="st">&quot;Major&quot;</span><span class="ot"> enabled=</span><span class="st">&quot;true&quot;</span><span class="kw">/&gt;</span>
         <span class="kw">&lt;/rule-options&gt;</span>
       <span class="kw">&lt;/sourcemeter-profile&gt;</span></code></pre>
 <dl>
@@ -404,6 +412,9 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'">'+'support@frontendart.com'+'
 </dd>
 <dt><strong>-cleanProject</strong></dt>
 <dd><p>Removes all files created during the analysis from the given directory recursively.</p>
+</dd>
+<dt><strong>-faultTolerant</strong></dt>
+<dd><p>This parameter turns on or off the fault tolerant mode. In fault tolerant mode if any non critical error happens, then the analysis will continue and some of the results will be generated. Its value can be “true” (turn this feature on) or “false” (turn this feature off). The default value is “true”.</p>
 </dd>
 <dt><strong>-prefix</strong></dt>
 <dd>We can give a certain prefix for the wrapped program names in Linux to wrapp special versions of these. If it is not set then the following commands are wrapped during the analysis:
@@ -460,7 +471,7 @@ unset SM_DISABLE_ANALYSIS
  -externalHardFilter=HardFilter.txt</code></pre></li>
 </ol>
 <h1 id="result-files"><a href="#result-files">Result files</a></h1>
-<p>If any problems occur in the execution of the tools of the SourceMeter package during the code analysis, SourceMeter returns with error code 1. The error code of the given tool appears on the screen (detailed information on the bug can be found in the log directory), and the analysis is stopped, but the result files created until the failure are not deleted.</p>
+<p>If any critical problems occur in the execution of the tools of the SourceMeter package during the code analysis, SourceMeter returns with non zero exit code. The error code of the given tool appears on the screen (detailed information on the bug can be found in the log directory), and the analysis stops, but the result files created until the failure are not deleted. Unless the fault tolerant mode is disabled the SourceMeter tries to generate as much result as it can with tolerating the not critical errors. If the fault tolerant mode is disabled with the faultTolerant parameter, then the analysis will stop in case of any error.</p>
 <p>An error-free execution of SourceMeter produces the following files:</p>
 <ul>
 <li><p>Files containing the results of the static analysis in the results directory (set by the resultsDir parameter):</p>
@@ -636,15 +647,15 @@ unset SM_DISABLE_ANALYSIS
 <tr class="header">
 <th style="text-align: left;">Category</th>
 <th style="text-align: left;">Metric name</th>
-<th style="text-align: left;">Abbreviation</th>
-<th style="text-align: center;">Component</th>
-<th style="text-align: center;">File</th>
-<th style="text-align: center;">Namespace</th>
-<th style="text-align: center;">Class/Structure</th>
+<th style="text-align: left;">Abbrev.</th>
+<th style="text-align: center;">Method, Function</th>
+<th style="text-align: center;">Class, Struct</th>
 <th style="text-align: center;">Union</th>
 <th style="text-align: center;">Interface</th>
 <th style="text-align: center;">Enum</th>
-<th style="text-align: center;">Method/Function</th>
+<th style="text-align: center;">Namespace</th>
+<th style="text-align: center;">File</th>
+<th style="text-align: center;">Comp.</th>
 </tr>
 </thead>
 <tbody>
@@ -653,10 +664,10 @@ unset SM_DISABLE_ANALYSIS
 <td style="text-align: left;">Lack of Cohesion in Methods 5</td>
 <td style="text-align: left;">LCOM5</td>
 <td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
@@ -665,7 +676,6 @@ unset SM_DISABLE_ANALYSIS
 <td style="text-align: left;">Complexity metrics</td>
 <td style="text-align: left;">McCabe’s Cyclomatic Complexity</td>
 <td style="text-align: left;">McCC</td>
-<td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
@@ -673,43 +683,44 @@ unset SM_DISABLE_ANALYSIS
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"></td>
 <td style="text-align: left;">Nesting Level</td>
 <td style="text-align: left;">NL</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
-<td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"></td>
 <td style="text-align: left;">Nesting Level Else-If</td>
 <td style="text-align: left;">NLE</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
-<td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"></td>
 <td style="text-align: left;">Weighted Methods per Class</td>
 <td style="text-align: left;">WMC</td>
 <td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 </tr>
@@ -718,11 +729,11 @@ unset SM_DISABLE_ANALYSIS
 <td style="text-align: left;">Coupling Between Object classes</td>
 <td style="text-align: left;">CBO</td>
 <td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
-<td style="text-align: center;">X</td>
-<td style="text-align: center;">X</td>
-<td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 </tr>
@@ -731,11 +742,11 @@ unset SM_DISABLE_ANALYSIS
 <td style="text-align: left;">Coupling Between Object classes Inverse</td>
 <td style="text-align: left;">CBOI</td>
 <td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
-<td style="text-align: center;">X</td>
-<td style="text-align: center;">X</td>
-<td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 </tr>
@@ -743,37 +754,37 @@ unset SM_DISABLE_ANALYSIS
 <td style="text-align: left;"></td>
 <td style="text-align: left;">Number of Incoming Invocations</td>
 <td style="text-align: left;">NII</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
-<td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"></td>
 <td style="text-align: left;">Number of Outgoing Invocations</td>
 <td style="text-align: left;">NOI</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
-<td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"></td>
 <td style="text-align: left;">Response set For Class</td>
 <td style="text-align: left;">RFC</td>
 <td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
@@ -783,52 +794,52 @@ unset SM_DISABLE_ANALYSIS
 <td style="text-align: left;">API Documentation</td>
 <td style="text-align: left;">AD</td>
 <td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
-<td style="text-align: center;">X</td>
-<td style="text-align: center;">X</td>
-<td style="text-align: center;">X</td>
-<td style="text-align: center;">X</td>
-<td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"></td>
 <td style="text-align: left;">Comment Density</td>
 <td style="text-align: left;">CD</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"></td>
 <td style="text-align: left;">Comment Lines of Code</td>
 <td style="text-align: left;">CLOC</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;">X</td>
-<td style="text-align: center;">X</td>
-<td style="text-align: center;">X</td>
-<td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
-<td style="text-align: center;">X</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"></td>
 <td style="text-align: left;">Documentation Lines of Code</td>
 <td style="text-align: left;">DLOC</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
-<td style="text-align: center;">X</td>
-<td style="text-align: center;">X</td>
-<td style="text-align: center;">X</td>
-<td style="text-align: center;">X</td>
-<td style="text-align: center;">X</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"></td>
@@ -838,9 +849,9 @@ unset SM_DISABLE_ANALYSIS
 <td style="text-align: center;">X</td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;">X</td>
-<td style="text-align: center;">X</td>
-<td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
 </tr>
 <tr class="even">
@@ -851,34 +862,34 @@ unset SM_DISABLE_ANALYSIS
 <td style="text-align: center;">X</td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;">X</td>
-<td style="text-align: center;">X</td>
-<td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"></td>
 <td style="text-align: left;">Total API Documentation</td>
 <td style="text-align: left;">TAD</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"></td>
 <td style="text-align: left;">Total Comment Density</td>
 <td style="text-align: left;">TCD</td>
 <td style="text-align: center;">X</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">X</td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
 </tr>
@@ -887,10 +898,10 @@ unset SM_DISABLE_ANALYSIS
 <td style="text-align: left;">Total Comment Lines of Code</td>
 <td style="text-align: left;">TCLOC</td>
 <td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
-<td style="text-align: center;">X</td>
-<td style="text-align: center;">X</td>
-<td style="text-align: center;">X</td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
@@ -899,38 +910,38 @@ unset SM_DISABLE_ANALYSIS
 <td style="text-align: left;"></td>
 <td style="text-align: left;">Total Public Documented API</td>
 <td style="text-align: left;">TPDA</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"></td>
 <td style="text-align: left;">Total Public Undocumented API</td>
 <td style="text-align: left;">TPUA</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Inheritance metrics</td>
 <td style="text-align: left;">Depth of Inheritance Tree</td>
 <td style="text-align: left;">DIT</td>
 <td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 </tr>
@@ -939,11 +950,11 @@ unset SM_DISABLE_ANALYSIS
 <td style="text-align: left;">Number of Ancestors</td>
 <td style="text-align: left;">NOA</td>
 <td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 </tr>
@@ -952,11 +963,11 @@ unset SM_DISABLE_ANALYSIS
 <td style="text-align: left;">Number of Children</td>
 <td style="text-align: left;">NOC</td>
 <td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 </tr>
@@ -965,11 +976,11 @@ unset SM_DISABLE_ANALYSIS
 <td style="text-align: left;">Number of Descendants</td>
 <td style="text-align: left;">NOD</td>
 <td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 </tr>
@@ -978,11 +989,11 @@ unset SM_DISABLE_ANALYSIS
 <td style="text-align: left;">Number of Parents</td>
 <td style="text-align: left;">NOP</td>
 <td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 </tr>
@@ -990,39 +1001,39 @@ unset SM_DISABLE_ANALYSIS
 <td style="text-align: left;">Size metrics</td>
 <td style="text-align: left;">Lines of Code</td>
 <td style="text-align: left;">LOC</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
-<td style="text-align: center;">X</td>
-<td style="text-align: center;">X</td>
-<td style="text-align: center;">X</td>
-<td style="text-align: center;">X</td>
-<td style="text-align: center;">X</td>
-<td style="text-align: center;">X</td>
-<td style="text-align: center;">X</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"></td>
 <td style="text-align: left;">Logical Lines of Code</td>
 <td style="text-align: left;">LLOC</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
-<td style="text-align: center;">X</td>
-<td style="text-align: center;">X</td>
-<td style="text-align: center;">X</td>
-<td style="text-align: center;">X</td>
-<td style="text-align: center;">X</td>
-<td style="text-align: center;">X</td>
-<td style="text-align: center;">X</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"></td>
 <td style="text-align: left;">Number of Attributes</td>
 <td style="text-align: left;">NA</td>
 <td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
-<td style="text-align: center;">X</td>
-<td style="text-align: center;">X</td>
-<td style="text-align: center;">X</td>
-<td style="text-align: center;">X</td>
-<td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
 </tr>
 <tr class="even">
@@ -1031,10 +1042,10 @@ unset SM_DISABLE_ANALYSIS
 <td style="text-align: left;">NCL</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 </tr>
@@ -1044,10 +1055,10 @@ unset SM_DISABLE_ANALYSIS
 <td style="text-align: left;">NEN</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 </tr>
@@ -1056,10 +1067,10 @@ unset SM_DISABLE_ANALYSIS
 <td style="text-align: left;">Number of Getters</td>
 <td style="text-align: left;">NG</td>
 <td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
-<td style="text-align: center;">X</td>
-<td style="text-align: center;">X</td>
-<td style="text-align: center;">X</td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
@@ -1070,10 +1081,10 @@ unset SM_DISABLE_ANALYSIS
 <td style="text-align: left;">NIN</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 </tr>
@@ -1082,11 +1093,11 @@ unset SM_DISABLE_ANALYSIS
 <td style="text-align: left;">Number of Local Attributes</td>
 <td style="text-align: left;">NLA</td>
 <td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 </tr>
@@ -1095,11 +1106,11 @@ unset SM_DISABLE_ANALYSIS
 <td style="text-align: left;">Number of Local Getters</td>
 <td style="text-align: left;">NLG</td>
 <td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 </tr>
@@ -1108,11 +1119,11 @@ unset SM_DISABLE_ANALYSIS
 <td style="text-align: left;">Number of Local Methods</td>
 <td style="text-align: left;">NLM</td>
 <td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 </tr>
@@ -1121,11 +1132,11 @@ unset SM_DISABLE_ANALYSIS
 <td style="text-align: left;">Number of Local Public Attributes</td>
 <td style="text-align: left;">NLPA</td>
 <td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 </tr>
@@ -1134,11 +1145,11 @@ unset SM_DISABLE_ANALYSIS
 <td style="text-align: left;">Number of Local Public Methods</td>
 <td style="text-align: left;">NLPM</td>
 <td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 </tr>
@@ -1147,11 +1158,11 @@ unset SM_DISABLE_ANALYSIS
 <td style="text-align: left;">Number of Local Setters</td>
 <td style="text-align: left;">NLS</td>
 <td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 </tr>
@@ -1160,10 +1171,10 @@ unset SM_DISABLE_ANALYSIS
 <td style="text-align: left;">Number of Methods</td>
 <td style="text-align: left;">NM</td>
 <td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
-<td style="text-align: center;">X</td>
-<td style="text-align: center;">X</td>
-<td style="text-align: center;">X</td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
@@ -1174,10 +1185,10 @@ unset SM_DISABLE_ANALYSIS
 <td style="text-align: left;">NPKG</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 </tr>
@@ -1185,24 +1196,24 @@ unset SM_DISABLE_ANALYSIS
 <td style="text-align: left;"></td>
 <td style="text-align: left;">Number of Parameters</td>
 <td style="text-align: left;">NUMPAR</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"></td>
 <td style="text-align: left;">Number of Public Attributes</td>
 <td style="text-align: left;">NPA</td>
 <td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
-<td style="text-align: center;">X</td>
-<td style="text-align: center;">X</td>
-<td style="text-align: center;">X</td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
@@ -1212,10 +1223,10 @@ unset SM_DISABLE_ANALYSIS
 <td style="text-align: left;">Number of Public Methods</td>
 <td style="text-align: left;">NPM</td>
 <td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
-<td style="text-align: center;">X</td>
-<td style="text-align: center;">X</td>
-<td style="text-align: center;">X</td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
@@ -1225,10 +1236,10 @@ unset SM_DISABLE_ANALYSIS
 <td style="text-align: left;">Number of Setters</td>
 <td style="text-align: left;">NS</td>
 <td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
-<td style="text-align: center;">X</td>
-<td style="text-align: center;">X</td>
-<td style="text-align: center;">X</td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
@@ -1237,14 +1248,14 @@ unset SM_DISABLE_ANALYSIS
 <td style="text-align: left;"></td>
 <td style="text-align: left;">Number of Statements</td>
 <td style="text-align: left;">NOS</td>
-<td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
-<td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"></td>
@@ -1252,10 +1263,10 @@ unset SM_DISABLE_ANALYSIS
 <td style="text-align: left;">NST</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 </tr>
@@ -1265,10 +1276,10 @@ unset SM_DISABLE_ANALYSIS
 <td style="text-align: left;">NUN</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 </tr>
@@ -1277,12 +1288,12 @@ unset SM_DISABLE_ANALYSIS
 <td style="text-align: left;">Total Lines of Code</td>
 <td style="text-align: left;">TLOC</td>
 <td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
-<td style="text-align: center;">X</td>
-<td style="text-align: center;">X</td>
-<td style="text-align: center;">X</td>
-<td style="text-align: center;">X</td>
-<td style="text-align: center;">X</td>
 <td style="text-align: center;">X</td>
 </tr>
 <tr class="even">
@@ -1290,19 +1301,18 @@ unset SM_DISABLE_ANALYSIS
 <td style="text-align: left;">Total Logical Lines of Code</td>
 <td style="text-align: left;">TLLOC</td>
 <td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
-<td style="text-align: center;">X</td>
-<td style="text-align: center;">X</td>
-<td style="text-align: center;">X</td>
-<td style="text-align: center;">X</td>
-<td style="text-align: center;">X</td>
 <td style="text-align: center;">X</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"></td>
 <td style="text-align: left;">Total Number of Attributes</td>
 <td style="text-align: left;">TNA</td>
-<td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;">X</td>
@@ -1310,95 +1320,96 @@ unset SM_DISABLE_ANALYSIS
 <td style="text-align: center;">X</td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"></td>
 <td style="text-align: left;">Total Number of Classes</td>
 <td style="text-align: left;">TNCL</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"></td>
 <td style="text-align: left;">Total Number of Directories</td>
 <td style="text-align: left;">TNDI</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"></td>
 <td style="text-align: left;">Total Number of Enums</td>
 <td style="text-align: left;">TNEN</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"></td>
 <td style="text-align: left;">Total Number of Files</td>
 <td style="text-align: left;">TNFI</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"></td>
 <td style="text-align: left;">Total Number of Getters</td>
 <td style="text-align: left;">TNG</td>
-<td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"></td>
 <td style="text-align: left;">Total Number of Interfaces</td>
 <td style="text-align: left;">TNIN</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"></td>
 <td style="text-align: left;">Total Number of Local Attributes</td>
 <td style="text-align: left;">TNLA</td>
 <td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 </tr>
@@ -1407,11 +1418,11 @@ unset SM_DISABLE_ANALYSIS
 <td style="text-align: left;">Total Number of Local Getters</td>
 <td style="text-align: left;">TNLG</td>
 <td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 </tr>
@@ -1420,11 +1431,11 @@ unset SM_DISABLE_ANALYSIS
 <td style="text-align: left;">Total Number of Local Methods</td>
 <td style="text-align: left;">TNLM</td>
 <td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 </tr>
@@ -1433,11 +1444,11 @@ unset SM_DISABLE_ANALYSIS
 <td style="text-align: left;">Total Number of Local Public Attributes</td>
 <td style="text-align: left;">TNLPA</td>
 <td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 </tr>
@@ -1446,11 +1457,11 @@ unset SM_DISABLE_ANALYSIS
 <td style="text-align: left;">Total Number of Local Public Methods</td>
 <td style="text-align: left;">TNLPM</td>
 <td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 </tr>
@@ -1459,11 +1470,11 @@ unset SM_DISABLE_ANALYSIS
 <td style="text-align: left;">Total Number of Local Setters</td>
 <td style="text-align: left;">TNLS</td>
 <td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 </tr>
@@ -1471,142 +1482,142 @@ unset SM_DISABLE_ANALYSIS
 <td style="text-align: left;"></td>
 <td style="text-align: left;">Total Number of Methods</td>
 <td style="text-align: left;">TNM</td>
-<td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"></td>
 <td style="text-align: left;">Total Number of Packages</td>
 <td style="text-align: left;">TNPKG</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"></td>
 <td style="text-align: left;">Total Number of Public Attributes</td>
 <td style="text-align: left;">TNPA</td>
-<td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"></td>
 <td style="text-align: left;">Total Number of Public Classes</td>
 <td style="text-align: left;">TNPCL</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"></td>
 <td style="text-align: left;">Total Number of Public Enums</td>
 <td style="text-align: left;">TNPEN</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"></td>
 <td style="text-align: left;">Total Number of Public Interfaces</td>
 <td style="text-align: left;">TNPIN</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"></td>
 <td style="text-align: left;">Total Number of Public Methods</td>
 <td style="text-align: left;">TNPM</td>
-<td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"></td>
 <td style="text-align: left;">Total Number of Public Structures</td>
 <td style="text-align: left;">TNPST</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"></td>
 <td style="text-align: left;">Total Number of Public Unions</td>
 <td style="text-align: left;">TNPUN</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"></td>
 <td style="text-align: left;">Total Number of Setters</td>
 <td style="text-align: left;">TNS</td>
-<td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"></td>
 <td style="text-align: left;">Total Number of Statements</td>
 <td style="text-align: left;">TNOS</td>
 <td style="text-align: center;">X</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">X</td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
 </tr>
@@ -1614,27 +1625,27 @@ unset SM_DISABLE_ANALYSIS
 <td style="text-align: left;"></td>
 <td style="text-align: left;">Total Number of Structures</td>
 <td style="text-align: left;">TNST</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"></td>
 <td style="text-align: left;">Total Number of Unions</td>
 <td style="text-align: left;">TNUN</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
 </tr>
 </tbody>
 </table>
@@ -1900,15 +1911,13 @@ unset SM_DISABLE_ANALYSIS
 <thead>
 <tr class="header">
 <th style="text-align: left;">Metric name</th>
-<th style="text-align: left;">Abbreviation</th>
-<th style="text-align: center;">CloneInstance</th>
-<th style="text-align: center;">CloneClass</th>
-<th style="text-align: center;">Method</th>
-<th style="text-align: center;">Enum</th>
-<th style="text-align: center;">Union</th>
-<th style="text-align: center;">Class</th>
+<th style="text-align: left;">Abbrev.</th>
+<th style="text-align: center;">Clone Instance</th>
+<th style="text-align: center;">Clone Class</th>
+<th style="text-align: center;">Method, Function</th>
+<th style="text-align: center;">Class, Struct, Union, Interface, Enum</th>
 <th style="text-align: center;">Namespace</th>
-<th style="text-align: center;">Component</th>
+<th style="text-align: center;">Comp.</th>
 </tr>
 </thead>
 <tbody>
@@ -1917,8 +1926,6 @@ unset SM_DISABLE_ANALYSIS
 <td style="text-align: left;">CA</td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;">X</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
@@ -1933,14 +1940,10 @@ unset SM_DISABLE_ANALYSIS
 <td style="text-align: center;">X</td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;">X</td>
-<td style="text-align: center;">X</td>
-<td style="text-align: center;">X</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Clone Complexity</td>
 <td style="text-align: left;">CCO</td>
-<td style="text-align: center;">X</td>
-<td style="text-align: center;">X</td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;">X</td>
@@ -1957,16 +1960,12 @@ unset SM_DISABLE_ANALYSIS
 <td style="text-align: center;">X</td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;">X</td>
-<td style="text-align: center;">X</td>
-<td style="text-align: center;">X</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Clone Elimination Effort</td>
 <td style="text-align: left;">CEE</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
@@ -1977,8 +1976,6 @@ unset SM_DISABLE_ANALYSIS
 <td style="text-align: left;">CEG</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
@@ -1993,15 +1990,11 @@ unset SM_DISABLE_ANALYSIS
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Clone Instances</td>
 <td style="text-align: left;">CI</td>
 <td style="text-align: center;"></td>
-<td style="text-align: center;">X</td>
-<td style="text-align: center;">X</td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;">X</td>
@@ -2017,16 +2010,12 @@ unset SM_DISABLE_ANALYSIS
 <td style="text-align: center;">X</td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;">X</td>
-<td style="text-align: center;">X</td>
-<td style="text-align: center;">X</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Clone Lines of Code</td>
 <td style="text-align: left;">CLLOC</td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;">X</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
@@ -2041,28 +2030,22 @@ unset SM_DISABLE_ANALYSIS
 <td style="text-align: center;">X</td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;">X</td>
-<td style="text-align: center;">X</td>
-<td style="text-align: center;">X</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Clone Risk</td>
 <td style="text-align: left;">CR</td>
+<td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Clone Variability</td>
 <td style="text-align: left;">CV</td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;">X</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
@@ -2077,8 +2060,6 @@ unset SM_DISABLE_ANALYSIS
 <td style="text-align: center;">X</td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;">X</td>
-<td style="text-align: center;">X</td>
-<td style="text-align: center;">X</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Logical Lines of Duplicated Code</td>
@@ -2089,20 +2070,16 @@ unset SM_DISABLE_ANALYSIS
 <td style="text-align: center;">X</td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;">X</td>
-<td style="text-align: center;">X</td>
-<td style="text-align: center;">X</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Normalized Clone Radius</td>
 <td style="text-align: left;">NCR</td>
+<td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
 </tr>
 </tbody>
 </table>

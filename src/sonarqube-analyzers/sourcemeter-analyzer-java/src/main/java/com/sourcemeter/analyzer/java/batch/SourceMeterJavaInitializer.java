@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014-2015, FrontEndART Software Ltd.
+ * Copyright (c) 2014-2016, FrontEndART Software Ltd.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -326,6 +326,10 @@ public class SourceMeterJavaInitializer extends SourceMeterInitializer {
         List<MetricHunterCategory> categories = new ArrayList<MetricHunterCategory>();
 
         categories.add(new MetricHunterCategory("Class", SourceMeterJavaMetrics
+                .getClassThresholdMetrics()));
+        categories.add(new MetricHunterCategory("Interface", "class", SourceMeterJavaMetrics
+                .getClassThresholdMetrics()));
+        categories.add(new MetricHunterCategory("Enum", "class", SourceMeterJavaMetrics
                 .getClassThresholdMetrics()));
 
         categories.add(new MetricHunterCategory("Method",

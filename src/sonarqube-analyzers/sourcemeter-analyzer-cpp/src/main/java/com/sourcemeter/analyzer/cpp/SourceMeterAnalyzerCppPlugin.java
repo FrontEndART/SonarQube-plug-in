@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014-2015, FrontEndART Software Ltd.
+ * Copyright (c) 2014-2016, FrontEndART Software Ltd.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -56,7 +56,7 @@ import com.sourcemeter.analyzer.cpp.profile.SourceMeterCppRuleRepository;
              @Property(
                  key = "sm.cpp.hardFilter",
                  name = "Hard filter",
-                 description = "Hard filter file's path for SourceMeter CPP analyzer.",
+                 description = "Hard filter file's path for SourceMeter C/C++ analyzer.",
                  category = SourceMeterAnalyzerCppPlugin.CPP_GENERAL_CATEGORY,
                  project = true,
                  type = PropertyType.STRING
@@ -78,7 +78,7 @@ import com.sourcemeter.analyzer.cpp.profile.SourceMeterCppRuleRepository;
              ),
              @Property(
                  key = "sm.cpp.skip",
-                 name = "Skip SourceMeter C++ analyze on multi language projects.",
+                 name = "Skip SourceMeter C/C++ analyze on multi language projects.",
                  global = false,
                  project = false,
                  type = PropertyType.BOOLEAN,
@@ -86,7 +86,7 @@ import com.sourcemeter.analyzer.cpp.profile.SourceMeterCppRuleRepository;
              ),
              @Property(
                  key = "sm.cpp.skipToolchain",
-                 name = "Skip SourceMeter C++ toolchain (only upload results from existing result directory).",
+                 name = "Skip SourceMeter C/C++ toolchain (only upload results from existing result directory).",
                  global = false,
                  project = false,
                  type = PropertyType.BOOLEAN,
@@ -102,7 +102,7 @@ import com.sourcemeter.analyzer.cpp.profile.SourceMeterCppRuleRepository;
              ),
              @Property(
                  key = "sm.cpp.toolchainOptions",
-                 name = "Add additional parameters for running SourceMeter C++ toolchain.",
+                 name = "Add additional parameters for running SourceMeter C/C++ toolchain.",
                  global = false,
                  project = false,
                  type = PropertyType.STRING,
@@ -119,10 +119,10 @@ public class SourceMeterAnalyzerCppPlugin extends SonarPlugin {
     public static final String CLONE_CLASS_BASELINE_KEY = "sm.cpp.cloneclass.baseline.";
     public static final String CLONE_INSTANCE_BASELINE_KEY = "sm.cpp.cloneinstance.baseline.";
 
-    public static final String CPP_GENERAL_CATEGORY = "SourceMeter C++";
-    public static final String BASELINE_CATEGORY = "SourceMeter C++: Class Thresholds";
-    public static final String CLONE_BASELINE_CATEGORY = "SourceMeter C++: Clone Thresholds";
-    public static final String METHOD_BASELINE_CATEGORY = "SourceMeter C++: Method Thresholds";
+    public static final String CPP_GENERAL_CATEGORY = "SourceMeter C/C++";
+    public static final String BASELINE_CATEGORY = "SourceMeter C/C++: Class Thresholds";
+    public static final String CLONE_BASELINE_CATEGORY = "SourceMeter C/C++: Clone Thresholds";
+    public static final String METHOD_BASELINE_CATEGORY = "SourceMeter C/C++: Method Thresholds";
 
     public static final String CLONE_CLASS_SUBCATEGORY = "Clone Class";
     public static final String CLONE_INSTANCE_SUBCATEGORY = "Clone Instance";

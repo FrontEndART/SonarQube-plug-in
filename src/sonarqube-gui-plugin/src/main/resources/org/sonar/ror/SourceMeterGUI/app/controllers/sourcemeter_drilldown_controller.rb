@@ -1,4 +1,4 @@
-# Copyright (c) 2014-2015, FrontEndART Software Ltd.
+# Copyright (c) 2014-2016, FrontEndART Software Ltd.
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
@@ -29,17 +29,17 @@
 class SourcemeterDrilldownController < ApplicationController
      
   def load_drilldown
-    @sourcemeter_qualifiers = Api::Utils.java_facade.getComponentByClassname('SourceMeterGUI', 'com.sourcemeter.gui.resources.SourceMeterQualifiers').class
-    @project = Project.by_key(params[:data_key])
-    @snapshot = Snapshot.find(:last, :conditions => ['project_id=?', @project.id], :order => 'created_at desc')
-    @resource = @snapshot.resource
+    @sourcemeter_qualifiers = java_facade.getComponentByClassname('SourceMeterGUI', 'com.sourcemeter.gui.resources.SourceMeterQualifiers').class
+    @project=Project.by_key(params[:data_key])
+    @snapshot=Snapshot.find(:last, :conditions => ['project_id=?', @project.id], :order => 'created_at desc')
+    @resource=@snapshot.resource
   end
   
   def load_method_drilldown
-    @sourcemeter_qualifiers = Api::Utils.java_facade.getComponentByClassname('SourceMeterGUI', 'com.sourcemeter.gui.resources.SourceMeterQualifiers').class
+    @sourcemeter_qualifiers = java_facade.getComponentByClassname('SourceMeterGUI', 'com.sourcemeter.gui.resources.SourceMeterQualifiers').class
     if (params[:snapshot_id])
-      @snapshot = Snapshot.find(:last, :conditions => ['id=?', params[:snapshot_id]], :order => 'created_at desc')
-      @resource = @snapshot.resource
+      @snapshot=Snapshot.find(:last, :conditions => ['id=?', params[:snapshot_id]], :order => 'created_at desc')
+      @resource=@snapshot.resource
     else
       @project = Project.find(:last, :conditions => ['id=?', params[:project_id]], :order => 'created_at desc')
       @snapshot = @project.last_snapshot
@@ -49,12 +49,12 @@ class SourcemeterDrilldownController < ApplicationController
 
   def load_metrics
     require 'json'
-    @metric = Metric.by_key(params[:metric])
-    @sourcemeter_qualifiers = Api::Utils.java_facade.getComponentByClassname('SourceMeterGUI', 'com.sourcemeter.gui.resources.SourceMeterQualifiers').class
+    @metric=Metric.by_key(params[:metric])
+    @sourcemeter_qualifiers = java_facade.getComponentByClassname('SourceMeterGUI', 'com.sourcemeter.gui.resources.SourceMeterQualifiers').class
 
     if (params[:snapshot_id])
-      @snapshot = Snapshot.find(:last, :conditions => ['id=?', params[:snapshot_id]], :order => 'created_at desc')
-      @resource = @snapshot.resource
+      @snapshot=Snapshot.find(:last, :conditions => ['id=?', params[:snapshot_id]], :order => 'created_at desc')
+      @resource=@snapshot.resource
     else
       @project = Project.find(:last, :conditions => ['id=?', params[:project_id]], :order => 'created_at desc')
       @snapshot = @project.last_snapshot
@@ -67,8 +67,8 @@ class SourcemeterDrilldownController < ApplicationController
   end
   
   def is_sm_resource_in_file
-    project = Project.by_key(URI.unescape(params[:data_key]))
-    snapshot = Snapshot.find(:last, :conditions => ['project_id=?', project.id], :order => 'created_at desc')
+    project=Project.by_key(URI.unescape(params[:data_key]))
+    snapshot=Snapshot.find(:last, :conditions => ['project_id=?', project.id], :order => 'created_at desc')
     sm_resource = snapshot.measure('SM:resource')
     if sm_resource == nil
       render :text => 'false'
@@ -81,32 +81,39 @@ class SourcemeterDrilldownController < ApplicationController
     table = ''
     metrics_list.each do |metric_obj|
       if(!metric_obj.nil?)
-        measure_obj = snapshot.measure(metric_obj.key)
-        mvalue = nil
+        measure_obj = snapshot.measure(metric_obj.key);
+        mvalue=nil;
         if(!measure_obj.nil? && metric_obj.numeric? && !measure_obj.value.nil?)
           mvalue = measure_obj.value;
         elsif(zero_if_missing == true)
           mvalue = 0;
         end
-
-        threshold_key = 'sm.' + @resource.language + '.' + @resource.description + '.baseline.' + metric_obj.key
-        baseline_def = Api::Utils.java_facade.propertyDefinitions.get(threshold_key)
-        if(baseline_def.nil?)
-          if(@resource.qualifier == @sourcemeter_qualifiers::BASE_CLASS_QUALIFIER)
-            threshold_key = 'sm.' + @resource.language + '.class.baseline.' + metric_obj.key
-          elsif(@resource.qualifier == @sourcemeter_qualifiers::BASE_FUNCTION_QUALIFIER)
-            threshold_key = 'sm.' + @resource.language + '.method.baseline.' + metric_obj.key
-          end
-        end
-
-        threshold = Api::Utils.java_facade.getConfigurationValue(threshold_key)
+                  
+        threshold=java_facade.getConfigurationValue('sm.' + @resource.language + '.' + @resource.description + '.baseline.' + metric_obj.key)
         if(threshold.nil?)
-          baseline_def = Api::Utils.java_facade.propertyDefinitions.get(threshold_key)
-          if(!baseline_def.nil?)
-            threshold = baseline_def.defaultValue
+          baseline_def=Api::Utils.java_facade.propertyDefinitions.get('sm.' + @resource.language + '.' + @resource.description + '.baseline.' + metric_obj.key)
+          if(baseline_def.nil?)
+            if(@resource.qualifier == @sourcemeter_qualifiers::BASE_CLASS_QUALIFIER)
+              threshold=java_facade.getConfigurationValue('sm.' + @resource.language + '.class.baseline.' + metric_obj.key)
+              if(threshold.nil?)
+                baseline_def=Api::Utils.java_facade.propertyDefinitions.get('sm.' + @resource.language + '.class.baseline.' + metric_obj.key)
+                if(!baseline_def.nil?)
+                  threshold=baseline_def.defaultValue
+                end
+              end
+            elsif(@resource.qualifier == @sourcemeter_qualifiers::BASE_METHOD_QUALIFIER || @resource.qualifier == @sourcemeter_qualifiers::BASE_FUNCTION_QUALIFIER)
+              threshold=java_facade.getConfigurationValue('sm.' + @resource.language + '.method.baseline.' + metric_obj.key)
+              if(threshold.nil?)
+                baseline_def=Api::Utils.java_facade.propertyDefinitions.get('sm.' + @resource.language + '.method.baseline.' + metric_obj.key)
+                if(!baseline_def.nil?)
+                  threshold=baseline_def.defaultValue
+                end
+              end
+            end
+          else
+            threshold=baseline_def.defaultValue
           end
         end
-
         if(!measure_obj.nil? || zero_if_missing)
           if(!threshold.blank?)
             if(metric_obj.direction <= 0)
@@ -171,7 +178,7 @@ class SourcemeterDrilldownController < ApplicationController
 
   # metrictables: [{title: 'title', domain: domain: 'domain', hide_key: true/false}]
   def metrics_header_column_by_domain(metrictables, zero_if_missing, method_qualifiers, class_qualifiers)
-    table = '<table><tbody>'
+    table  = '<table><tbody>'
     metrictables.each do |mtable|
       display_key = true unless mtable[:hide_key]
       help = true unless (mtable[:hasHelp] == false)

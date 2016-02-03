@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014-2015, FrontEndART Software Ltd.
+ * Copyright (c) 2014-2016, FrontEndART Software Ltd.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -32,9 +32,7 @@ package com.sourcemeter.analyzer.base.batch;
 import graphlib.Graph;
 import graphlib.GraphlibException;
 
-import java.util.List;
 import java.util.Map;
-import java.util.TreeMap;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -47,13 +45,10 @@ import org.sonar.api.measures.Measure;
 import org.sonar.api.measures.Metric;
 import org.sonar.api.profiles.RulesProfile;
 import org.sonar.api.resources.Project;
-import org.sonar.api.rule.Severity;
-import org.sonar.api.rules.ActiveRule;
 import org.sonar.api.scan.filesystem.ModuleFileSystem;
 
 import com.google.gson.Gson;
 import com.sourcemeter.analyzer.base.core.LicenseInformation;
-import com.sourcemeter.analyzer.base.profile.SourceMeterRuleRepository;
 
 public abstract class SourceMeterSensor implements Sensor {
 
@@ -67,11 +62,6 @@ public abstract class SourceMeterSensor implements Sensor {
     protected final ResourcePerspectives perspectives;
     protected final ModuleFileSystem moduleFileSystem;
     protected final FileSystem fileSystem;
-    private static final Map<String, String> activeInfoRules = new TreeMap<String, String>();
-
-    public static Map<String, String> getActiveInfoRules() {
-        return activeInfoRules;
-    }
 
     /**
      * Constructor: Use of IoC to get Settings
@@ -82,16 +72,6 @@ public abstract class SourceMeterSensor implements Sensor {
         this.fileSystem = fileSystem;
         this.perspectives = perspectives;
         this.settings = settings;
-
-        List<ActiveRule> activeRulesList = rulesProfile
-                .getActiveRulesByRepository(SourceMeterRuleRepository.getRepositoryKey());
-        if (activeRulesList != null) {
-            for (ActiveRule activeRule : activeRulesList) {
-                if (Severity.INFO.equals(activeRule.getSeverity().name())) {
-                    activeInfoRules.put(activeRule.getRuleKey(), "");
-                }
-            }
-        }
     }
 
     /**
@@ -124,8 +104,10 @@ public abstract class SourceMeterSensor implements Sensor {
         return getClass().getSimpleName();
     }
 
-    protected void saveLicense(Graph graph, SensorContext sensorContext,
-            Map<String, String> headerLicenseInformations, Metric targetMetric) {
+    protected void saveLicense(Graph graph,
+                               SensorContext sensorContext,
+                               Map<String, String> headerLicenseInformations,
+                               Metric targetMetric) {
         Gson gson = new Gson();
 
         LicenseInformation licenseInformation = new LicenseInformation();
@@ -140,7 +122,7 @@ public abstract class SourceMeterSensor implements Sensor {
             licenseInformation.addTool(entry.getValue(), value);
         }
 
-        sensorContext.saveMeasure(new Measure(targetMetric, gson.toJson(
-                licenseInformation).toString()));
+        sensorContext.saveMeasure(new Measure(targetMetric,
+                                              gson.toJson(licenseInformation).toString()));
     }
 }

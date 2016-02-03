@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014-2015, FrontEndART Software Ltd.
+ * Copyright (c) 2014-2016, FrontEndART Software Ltd.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -116,6 +116,7 @@ public class LogicalTreeLoaderVisitorCpp extends LogicalTreeLoaderVisitor {
         Resource file = null;
         Resource definitonFile = null;
         boolean hasDefinition = (RealizationLevel.DEFINITION == nodePosition.realizationLevel);
+        boolean alreadyIndexed = false;
 
         file = FileHelper.getIndexedFileForFilePath(this.fileSystem,
                 this.sensorContext, this.project, nodePosition.path);
@@ -149,7 +150,7 @@ public class LogicalTreeLoaderVisitorCpp extends LogicalTreeLoaderVisitor {
         String nodeTUID = GraphHelper.getNodeTUID(node);
 
         if (nodeTUID == null) {
-            String warningMessage = "A node has no TUID attribute: "
+            String warningMessage = "A " + nodeType + " node has no TUID attribute: "
                     + nodeLongName + ", UID: " + node.getUID();
 
             if (skipTUID) {
@@ -175,6 +176,7 @@ public class LogicalTreeLoaderVisitorCpp extends LogicalTreeLoaderVisitor {
                 }
             } else {
                 resource = indexedResource;
+                alreadyIndexed = true;
             }
 
             ClassData classData = new ClassData(resource.getId(), nodeName,
@@ -206,6 +208,7 @@ public class LogicalTreeLoaderVisitorCpp extends LogicalTreeLoaderVisitor {
                     }
                 } else {
                     resource = indexedResource;
+                    alreadyIndexed = true;
                 }
 
                 ClassData classData = new ClassData(resource.getId(), nodeName,
@@ -227,6 +230,7 @@ public class LogicalTreeLoaderVisitorCpp extends LogicalTreeLoaderVisitor {
                 }
             } else {
                 resource = indexedResource;
+                alreadyIndexed = true;
             }
             ClassData classData = new ClassData(resource.getId(), nodeName,
                     resource.getQualifier(), nodePosition.line,
@@ -234,7 +238,7 @@ public class LogicalTreeLoaderVisitorCpp extends LogicalTreeLoaderVisitor {
             storeFileForMethod(file, classData, resource);
         }
 
-        if (nodePosition.realizationLevel == RealizationLevel.DEFINITION || file == definitonFile) {
+        if (!alreadyIndexed) {
             uploadMetricsAndWarnings(node, resource, nodePosition, true);
             if ("Function".equals(nodeType) || "Method".equals(nodeType)) {
                 incFunctionToFile(file);

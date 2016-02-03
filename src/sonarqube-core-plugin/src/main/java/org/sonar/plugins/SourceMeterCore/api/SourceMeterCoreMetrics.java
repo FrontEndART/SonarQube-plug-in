@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014-2015, FrontEndART Software Ltd.
+ * Copyright (c) 2014-2016, FrontEndART Software Ltd.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -745,6 +745,7 @@ public class SourceMeterCoreMetrics implements Metrics {
     @Override
     public List<Metric> getMetrics() {
         return Arrays.asList(LICENSE, BEGIN_LINE, END_LINE, DPF, SM_RESOURCE,
+                             CLASSES_IN_FILE, METHODS_IN_FILE, FILE_PATHS,
                              // Size metrics
                              LOC, TLOC, LLOC, TLLOC, TNDI, TNFI, NPKG, TNPKG, NCL, TNCL, TNPCL,
                              NIN, TNIN, TNPIN, NEN, TNEN, TNPEN, NM, TNM, NPM, TNPM, NLM, TNLM,
@@ -785,7 +786,7 @@ public class SourceMeterCoreMetrics implements Metrics {
                              ISSUEGROUP_SECURITY_CODE_GUIDELINE, ISSUEGROUP_STRICT_EXCEPTION,
                              ISSUEGROUP_STRING_AND_STRINGBUFFER, ISSUEGROUP_TYPE_RESOLUTION,
                              ISSUEGROUP_UNNECESSARY_AND_UNUSED_CODE
-        );
+                     );
     }
 
     /**

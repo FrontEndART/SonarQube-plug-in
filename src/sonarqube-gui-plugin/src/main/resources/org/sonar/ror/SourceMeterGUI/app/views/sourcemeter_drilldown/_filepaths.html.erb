@@ -31,15 +31,14 @@ if filePathMeasureObject != nil
 %>
   <table class="spaced" id="source_selector">
 <%
-  first_selected_index = 0
   JSON.parse(filePathMeasureObject.data).each do |filePath|
     resource = Project.by_key(filePath['id'])
     if resource
       class_group = {
       :sm_resource_id => filePath['smResourceId'],
       :resource => resource,
-      :lines_count => (filePath['endLine'] - filePath['line'] + 1),
-      :from_line => filePath['line']
+      :from_line => filePath['line'],
+      :end_line => filePath['endLine']
       }
       class_groups << class_group
     end
@@ -48,12 +47,9 @@ if filePathMeasureObject != nil
   no_element_is_selected = true
 
   class_groups.each_with_index do |cl, index|
-    actual_class = class_groups[first_selected_index]
     resource = cl[:resource]
-    original_resource = actual_class[:resource]
-    lines_count = cl[:lines_count].to_i
     from_line = cl[:from_line].to_i
-    to_line = from_line + lines_count - 1
+    to_line = cl[:end_line].to_i
     row_id = "source_selector_row_#{from_line}_#{to_line}"
     selected = ''
     if no_element_is_selected

@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014-2015, FrontEndART Software Ltd.
+ * Copyright (c) 2014-2016, FrontEndART Software Ltd.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -29,8 +29,6 @@
  */
 package com.sourcemeter.analyzer.base.helper;
 
-import com.sourcemeter.analyzer.base.batch.SourceMeterInitializer;
-
 import java.io.File;
 import java.io.FilenameFilter;
 import java.util.Arrays;
@@ -45,6 +43,8 @@ import org.sonar.api.config.Settings;
 import org.sonar.api.resources.Project;
 import org.sonar.api.resources.Resource;
 import org.sonar.api.utils.SonarException;
+
+import com.sourcemeter.analyzer.base.batch.SourceMeterInitializer;
 
 /**
  * File helper methods for plugin.
@@ -70,8 +70,8 @@ public class FileHelper {
 
             while (fileIterator.hasNext()) {
                 File file = fileIterator.next();
-                if (file.getAbsolutePath().toLowerCase(Locale.ENGLISH)
-                        .contains(filePath.toLowerCase(Locale.ENGLISH))) {
+                if (file.getAbsolutePath().toLowerCase(Locale.ENGLISH).replace("\\", "/")
+                        .contains(filePath.toLowerCase(Locale.ENGLISH).replace("\\", "/"))) {
                     return org.sonar.api.resources.File.fromIOFile(file, project);
                 }
             }

@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014-2015, FrontEndART Software Ltd.
+ * Copyright (c) 2014-2016, FrontEndART Software Ltd.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -63,7 +63,7 @@ public class SourceMeterCppInitializer extends SourceMeterInitializer {
     private static final Logger LOG = LoggerFactory.getLogger(SourceMeterCppInitializer.class);
 
     /**
-     * Command and parameters for running SourceMeter C++ analyzer
+     * Command and parameters for running SourceMeter C/C++ analyzer
      */
     private final List<String> commands;
 
@@ -92,7 +92,7 @@ public class SourceMeterCppInitializer extends SourceMeterInitializer {
         this.settings.setProperty(CoreProperties.CPD_SKIP_PROPERTY, true); // Disable built in CPD plugin
 
         if (this.settings.getBoolean("sm.cpp.skipToolchain")) {
-            LOG.info("    SourceMeter toolchain is skipped for C++. Results will be uploaded from former results directory, if it exists.");
+            LOG.info("    SourceMeter toolchain is skipped for C/C++. Results will be uploaded from former results directory, if it exists.");
         } else {
             if (!checkProperties()) {
                 throw new SonarException("Cannot run SourceMeterPlugin!");
@@ -126,7 +126,7 @@ public class SourceMeterCppInitializer extends SourceMeterInitializer {
     private boolean checkProperties() {
         String pathToCA = this.settings.getString("sm.toolchaindir");
         if (pathToCA == null) {
-            LOG.error("C++ SourceMeter path must be set! Check it on the settings page of your SonarQube!");
+            LOG.error("C/C++ SourceMeter path must be set! Check it on the settings page of your SonarQube!");
             return false;
         }
 
@@ -184,7 +184,7 @@ public class SourceMeterCppInitializer extends SourceMeterInitializer {
             baseDir = this.fileSystem.baseDir().getAbsolutePath();
         }
 
-        // Setting command and parameters for SourceMeter C++ analyzer
+        // Setting command and parameters for SourceMeter C/C++ analyzer
         this.commands.add("-resultsDir=" + resultsDir);
         this.commands.add("-projectName=" + projectName);
         this.commands.add("-projectBaseDir=" + baseDir);
@@ -217,6 +217,14 @@ public class SourceMeterCppInitializer extends SourceMeterInitializer {
         List<MetricHunterCategory> categories = new ArrayList<MetricHunterCategory>();
 
         categories.add(new MetricHunterCategory("Class", SourceMeterCppMetrics
+                .getClassThresholdMetrics()));
+        categories.add(new MetricHunterCategory("Interface", "class", SourceMeterCppMetrics
+                .getClassThresholdMetrics()));
+        categories.add(new MetricHunterCategory("Structure", "class", SourceMeterCppMetrics
+                .getClassThresholdMetrics()));
+        categories.add(new MetricHunterCategory("Union", "class", SourceMeterCppMetrics
+                .getClassThresholdMetrics()));
+        categories.add(new MetricHunterCategory("Enum", "class", SourceMeterCppMetrics
                 .getClassThresholdMetrics()));
 
         categories.add(new MetricHunterCategory("Method",

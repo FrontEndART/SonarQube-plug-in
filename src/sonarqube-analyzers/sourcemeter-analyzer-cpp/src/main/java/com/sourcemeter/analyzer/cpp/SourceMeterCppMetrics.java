@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014-2015, FrontEndART Software Ltd.
+ * Copyright (c) 2014-2016, FrontEndART Software Ltd.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -45,7 +45,7 @@ public final class SourceMeterCppMetrics extends SourceMeterCoreMetrics {
 
     public static final String CPP_LICENSE_KEY = "SM:cpp_license";
     public static final Metric CPP_LICENSE = new Builder(
-            CPP_LICENSE_KEY, "C++ license",
+            CPP_LICENSE_KEY, "C/C++ license",
             ValueType.STRING)
             .setHidden(true)
             .create();
@@ -204,17 +204,17 @@ public final class SourceMeterCppMetrics extends SourceMeterCoreMetrics {
     // Sonar to retrieve the list of new metrics
     @Override
     public List<Metric> getMetrics() {
-        return Arrays.asList(
-                CLASSES_IN_FILE, METHODS_IN_FILE, FILE_PATHS, CPP_LICENSE,
+        return Arrays.asList(CPP_LICENSE,
 
-                // Rulesets metrics
-                ISSUEGROUP_API, ISSUEGROUP_BOOST_LIBRARY, ISSUEGROUP_BUFFER_OVERRUN, ISSUEGROUP_CONDITIONAL,
-                ISSUEGROUP_DIVISION, ISSUEGROUP_INITIALIZATION, ISSUEGROUP_INPUT_OUTPUT,
-                ISSUEGROUP_MEMORY_HANDLING, ISSUEGROUP_OBJECT_ORIENTEDNESS, ISSUEGROUP_PERFORMANCE,
-                ISSUEGROUP_PORTABILITY, ISSUEGROUP_PREPROCESSOR, ISSUEGROUP_READABILITY_AND_CONSISTENCY,
-                ISSUEGROUP_REENTRANCY, ISSUEGROUP_SIDE_EFFECT, ISSUEGROUP_SIMPLE_TYPE,
-                ISSUEGROUP_SIZEOF_OPERATOR, ISSUEGROUP_STL, ISSUEGROUP_SUSPICIOUS_CONSTRUCT,
-                ISSUEGROUP_UNREACHABLE_CODE, ISSUEGROUP_VARIABLE_ARGUMENT_RELATED
-        );
+                             // Rulesets metrics
+                             ISSUEGROUP_API, ISSUEGROUP_BOOST_LIBRARY, ISSUEGROUP_BUFFER_OVERRUN,
+                             ISSUEGROUP_CONDITIONAL,
+                             ISSUEGROUP_DIVISION, ISSUEGROUP_INITIALIZATION, ISSUEGROUP_INPUT_OUTPUT,
+                             ISSUEGROUP_MEMORY_HANDLING, ISSUEGROUP_OBJECT_ORIENTEDNESS, ISSUEGROUP_PERFORMANCE,
+                             ISSUEGROUP_PORTABILITY, ISSUEGROUP_PREPROCESSOR, ISSUEGROUP_READABILITY_AND_CONSISTENCY,
+                             ISSUEGROUP_REENTRANCY, ISSUEGROUP_SIDE_EFFECT, ISSUEGROUP_SIMPLE_TYPE,
+                             ISSUEGROUP_SIZEOF_OPERATOR, ISSUEGROUP_STL, ISSUEGROUP_SUSPICIOUS_CONSTRUCT,
+                             ISSUEGROUP_UNREACHABLE_CODE, ISSUEGROUP_VARIABLE_ARGUMENT_RELATED
+                     );
     }
 }

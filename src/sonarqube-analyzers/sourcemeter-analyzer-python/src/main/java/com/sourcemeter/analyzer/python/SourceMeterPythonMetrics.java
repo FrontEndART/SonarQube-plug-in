@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014-2015, FrontEndART Software Ltd.
+ * Copyright (c) 2014-2016, FrontEndART Software Ltd.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -163,13 +163,13 @@ public final class SourceMeterPythonMetrics extends SourceMeterCoreMetrics {
     public List<Metric> getMetrics() {
         return Arrays.asList(PYTHON_LICENSE,
 
-                // Rulesets metrics
-                ISSUEGROUP_CLASS, ISSUEGROUP_FORMAT, ISSUEGROUP_IMPORT,
-                ISSUEGROUP_LOGGING, ISSUEGROUP_MISCELLANEOUS,
-                ISSUEGROUP_NEWSTYLE, ISSUEGROUP_PYLINT_CHECKER,
-                ISSUEGROUP_PYTHON3,  ISSUEGROUP_SIMILARITY,
-                ISSUEGROUP_SPELLING, ISSUEGROUP_STDLIB, ISSUEGROUP_STRING,
-                ISSUEGROUP_STRING_CONSTANT, ISSUEGROUP_TYPECHECK, ISSUEGROUP_VARIABLE
-            );
+                             // Rulesets metrics
+                             ISSUEGROUP_CLASS, ISSUEGROUP_FORMAT, ISSUEGROUP_IMPORT,
+                             ISSUEGROUP_LOGGING, ISSUEGROUP_MISCELLANEOUS,
+                             ISSUEGROUP_NEWSTYLE, ISSUEGROUP_PYLINT_CHECKER,
+                             ISSUEGROUP_PYTHON3, ISSUEGROUP_SIMILARITY,
+                             ISSUEGROUP_SPELLING, ISSUEGROUP_STDLIB, ISSUEGROUP_STRING,
+                             ISSUEGROUP_STRING_CONSTANT, ISSUEGROUP_TYPECHECK, ISSUEGROUP_VARIABLE
+                     );
     }
 }

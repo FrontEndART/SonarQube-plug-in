@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014-2015, FrontEndART Software Ltd.
+ * Copyright (c) 2014-2016, FrontEndART Software Ltd.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -29,9 +29,6 @@
  */
 package com.sourcemeter.analyzer.base.batch.decorators;
 
-import com.sourcemeter.analyzer.base.batch.SourceMeterInitializer;
-import com.sourcemeter.analyzer.base.core.LicenseInformation;
-
 import java.util.Collection;
 
 import org.sonar.api.batch.Decorator;
@@ -44,6 +41,8 @@ import org.sonar.api.resources.Resource;
 import org.sonar.plugins.SourceMeterCore.api.SourceMeterCoreInitializer;
 
 import com.google.gson.Gson;
+import com.sourcemeter.analyzer.base.batch.SourceMeterInitializer;
+import com.sourcemeter.analyzer.base.core.LicenseInformation;
 
 public abstract class LicenseDecorator implements Decorator {
 
@@ -61,17 +60,20 @@ public abstract class LicenseDecorator implements Decorator {
 
     @Override
     public void decorate(Resource resource, DecoratorContext context) {
-        if (Qualifiers.isProject(resource, false)) {
+        if (Qualifiers.isProject(resource, true)) {
             Measure licenseMeasure = context.getMeasure(licenseMetric);
-            if (licenseMeasure == null) {
-                LicenseInformation licenseInformation = null;
-                Gson gson = new Gson();
 
+            if (licenseMeasure == null) {
+                Gson gson = new Gson();
+                LicenseInformation licenseInformation = null;
                 Collection<DecoratorContext> childContexts = context.getChildren();
+
                 for (DecoratorContext childContext : childContexts) {
                     Measure childLicenseMeasure = childContext.getMeasure(licenseMetric);
+
                     if (childLicenseMeasure != null) {
                         LicenseInformation childLicenses = gson.fromJson(childLicenseMeasure.getData(), LicenseInformation.class);
+
                         if (licenseInformation == null) {
                             licenseInformation = childLicenses;
                         } else {
@@ -79,8 +81,11 @@ public abstract class LicenseDecorator implements Decorator {
                         }
                     }
                 }
-                licenseMeasure = new Measure(licenseMetric, gson.toJson(licenseInformation).toString());
-                context.saveMeasure(licenseMeasure);
+
+                if (licenseInformation != null) {
+                    licenseMeasure = new Measure(licenseMetric, gson.toJson(licenseInformation).toString());
+                    context.saveMeasure(licenseMeasure);
+                }
             }
         }
     }

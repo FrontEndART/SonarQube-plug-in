@@ -200,9 +200,9 @@ function showAllLines(bline, eline) {
 
 function showHideSourceMeterDrilldown(data_key, refresh) {
     var expandedBar = $j(".component-viewer-header-expanded-bar");
+    highlightLines(0, 0);
     if (refresh || expandedBar.is(':empty')
             || $j("#source-meter-drilldown").length === 0) {
-        highlightLines(0, 0);
         $j(".sourcemeter-metrics-container").remove();
         $j("#sm_source_button").addClass('active');
         $j('.component-viewer-header-measures-expand').each(function() {

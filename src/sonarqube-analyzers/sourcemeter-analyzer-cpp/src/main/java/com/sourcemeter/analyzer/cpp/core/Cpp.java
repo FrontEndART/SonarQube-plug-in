@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014-2015, FrontEndART Software Ltd.
+ * Copyright (c) 2014-2016, FrontEndART Software Ltd.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -50,13 +50,13 @@ public class Cpp extends AbstractSMLanguage {
     /**
      * Cpp name
      */
-    public static final String NAME = "C++";
+    public static final String NAME = "C/C++";
 
     public static final String DEFAULT_SOURCE_SUFFIXES = ".cxx,.cpp,.cc,.c";
     public static final String DEFAULT_HEADER_SUFFIXES = ".hxx,.hpp,.hh,.h";
 
     /**
-     * C++ files suffixes
+     * C/C++ files suffixes
      */
     private static String[] fileSuffixes = { ".cxx", ".cpp", ".cc", ".c",
             ".hxx", ".hpp", ".hh", ".h" };

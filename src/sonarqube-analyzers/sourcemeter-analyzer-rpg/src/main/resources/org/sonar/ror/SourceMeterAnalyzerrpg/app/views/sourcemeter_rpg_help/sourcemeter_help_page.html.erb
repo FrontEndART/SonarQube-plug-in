@@ -33,7 +33,7 @@ code > span.er { color: #ff0000; font-weight: bold; }
 <body>
 <nav id="TOC">
 <ul>
-<li><a href="#sourcemeter-7.0-for-rpg">SourceMeter 7.0 for RPG</a></li>
+<li><a href="#sourcemeter-8.0-for-rpg">SourceMeter 8.0 for RPG</a></li>
 <li><a href="#introduction">Introduction</a><ul>
 <li><a href="#product-characteristics">Product characteristics</a></li>
 <li><a href="#background">Background</a></li>
@@ -79,7 +79,7 @@ code > span.er { color: #ff0000; font-weight: bold; }
 <li><a href="#footnotes">Footnotes</a></li>
 </ul>
 </nav>
-<h1 id="sourcemeter-7.0-for-rpg"><a href="#sourcemeter-7.0-for-rpg">SourceMeter 7.0 for RPG</a></h1>
+<h1 id="sourcemeter-8.0-for-rpg"><a href="#sourcemeter-8.0-for-rpg">SourceMeter 8.0 for RPG</a></h1>
 <h1 id="introduction"><a href="#introduction">Introduction</a></h1>
 <p>FrontEndART SourceMeter for RPG is a source code analyzer tool, which can perform deep static analysis of the source code of complex RPG systems (<a href="https://www.sourcemeter.com">https://www.sourcemeter.com</a>).</p>
 <p>The source code of a program is usually its only up-to-date documentation. At the same time, the source code is the exquisite bearer of knowledge, business processes and methodology, accumulated over a long period of time. Source code quality decrease, which happens due to many quick fixes and time pressure, results in the increase of development and testing costs, and operational risks. In spite of this, the source code usually receives hostile treatment and is merely considered as a tool.</p>
@@ -126,16 +126,15 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'">'+'support@frontendart.com'+'
 <h2 id="supported-platforms"><a href="#supported-platforms">Supported platforms</a></h2>
 <p>SourceMeter supports the following x86 and x86-64 platforms:</p>
 <ul>
-<li><p>Microsoft Windows 7, 8, and 8.1</p></li>
+<li><p>Microsoft Windows 7, 8, 8.1, and 10</p></li>
 <li><p>Microsoft Windows 2008 R2 Server</p></li>
 <li><p>Microsoft Windows 2012 Server</p></li>
 <li><p>GNU/Linux with kernel version 2.6.18 and GNU C library 2.11 or newer</p></li>
 </ul>
 <h2 id="requirements"><a href="#requirements">Requirements</a></h2>
-<p>In case of Windows, the appropriate Microsoft Visual C++ 2010 SP1 Redistributable Package must be installed. It can be downloaded from the following URL:</p>
+<p>In case of Windows, the appropriate Microsoft Visual C++ 2015 Redistributable Package must be installed. It can be downloaded from the following URL:</p>
 <ul>
-<li><p><a href="http://www.microsoft.com/en-us/download/details.aspx?id=8328">http://www.microsoft.com/en-us/download/details.aspx?id=8328</a> (x86)</p></li>
-<li><p><a href="http://www.microsoft.com/en-us/download/details.aspx?id=13523">http://www.microsoft.com/en-us/download/details.aspx?id=13523</a> (x64)</p></li>
+<li><a href="https://www.microsoft.com/en-us/download/details.aspx?id=48145">https://www.microsoft.com/en-us/download/details.aspx?id=48145</a> (x86/x64)</li>
 </ul>
 <p>The Linux package uses the code page conversion functions of the GNU C Library. If the conversion modules are not in the standard /usr/lib/gconv directory then the GCONV_PATH environment variable must be set according to the current installation of the GNU C Library.</p>
 <p>E.g.:</p>
@@ -233,7 +232,7 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'">'+'support@frontendart.com'+'
 <dd><p>Directory of the source code to be analyzed specified with relative or absolute path.</p>
 </dd>
 <dt><strong>-externalHardFilter</strong></dt>
-<dd><p>Filter file specified with relative or absolute path, to filter out certain files from the analysis based on their path names. Filtered files will not appear in the results. The filter file is a simple text file containing lines starting with ‘+’ or ‘-’ characters followed by a regular expression<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a>. During the analysis, each input file will be checked for these expressions. If the first character of the last matching expression is ‘-’, then the given file will be excluded from the analysis. If the first character of the last matching expression is ‘+’, or there is no matching expression, then the file will be analyzed. A line starting with a different character than ‘-’ or ‘+’ will be ignored. Example filter file content:</p>
+<dd><p>Filter file specified with relative or absolute path, to filter out certain files from the analysis based on their path names. Filtered files will not appear in the results. The filter file is a simple text file containing lines starting with ‘+’ or ‘-’ characters followed by a regular expression<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a>. Tip: you can use the and anchors to make a substring literal, reducing the need of escaping backslashes. During the analysis, each input file will be checked for these expressions. If the first character of the last matching expression is ‘-’, then the given file will be excluded from the analysis. If the first character of the last matching expression is ‘+’, or there is no matching expression, then the file will be analyzed. A line starting with a different character than ‘-’ or ‘+’ will be ignored. On Windows the checking is case-insensitive. Example filter file content:</p>
 <pre><code># Filter out all source files starting with &quot;test&quot;:
 -test[^\.]*.txt
 # But test576.txt is needed:
@@ -246,25 +245,34 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'">'+'support@frontendart.com'+'
 <dt><strong>-runMetricHunter</strong></dt>
 <dd><p>This parameter turns on or off the MetricHunter module. With this feature, SourceMeter lists metric threshold violations. Its value can be “true” (turn this feature on) or “false” (turn this feature off). The default value is “true”.</p>
 </dd>
+<dt><strong>-runFaultHunter</strong></dt>
+<dd><p>This parameter turns on or off the FaultHunter module. With this feature, SourceMeter identifies common RPG coding rule violations (so-called bad practices) in the code. Its value can be “true” (turn this feature on) or “false” (turn this feature off). The default value is “true”.</p>
+</dd>
+<dt><strong>-runDCF</strong></dt>
+<dd><p>This parameter turns on or off the DuplicatedCodeFinder module. With this feature, SourceMeter identifies copy-pasted code fragments. Its value can be “true” (turn this feature on) or “false” (turn this feature off). The default value is “true”.</p>
+</dd>
+<dt><strong>-runMET</strong></dt>
+<dd><p>This parameter turns on or off the Metric module. With this feature, SourceMeter computes source code metrics. Its value can be “true” (turn this feature on) or “false” (turn this feature off). The default value is “true”.</p>
+</dd>
 <dt><strong>-profileXML</strong></dt>
 <dd><p>Global configuration file for SourceMeter. Its <em>tool-options</em> tag can be used to override the default metric thresholds for the MetricHunter tool. Furthermore, its <em>rule-options</em> tag can enable/disable or modify the priorities of multiple rules. An example profile xml file is shown below:</p>
 </dd>
 </dl>
 <pre class="sourceCode xml"><code class="sourceCode xml">      <span class="kw">&lt;sourcemeter-profile&gt;</span>
         <span class="kw">&lt;tool-options&gt;</span>
-          <span class="kw">&lt;tool</span><span class="ot"> name</span> <span class="ot">=</span> <span class="st">'MetricHunter'</span><span class="ot"> enabled</span> <span class="ot">=</span> <span class="st">'true'</span><span class="kw">&gt;</span>
+          <span class="kw">&lt;tool</span><span class="ot"> name</span> <span class="ot">=</span> <span class="st">&quot;MetricHunter&quot;</span><span class="ot"> enabled</span> <span class="ot">=</span> <span class="st">&quot;true&quot;</span><span class="kw">&gt;</span>
               <span class="kw">&lt;metric-thresholds&gt;</span>
-                  <span class="kw">&lt;threshold</span><span class="ot"> metric-id=</span><span class="st">'LOC'</span><span class="ot"> relation=</span><span class="st">'gt'</span><span class="ot"> value=</span><span class="st">'100'</span><span class="ot"> entity=</span><span class="st">'Method'</span> <span class="kw">/&gt;</span>
-                  <span class="kw">&lt;threshold</span><span class="ot"> metric-id=</span><span class="st">'LLOC'</span><span class="ot"> relation=</span><span class="st">'gt'</span><span class="ot"> value=</span><span class="st">'none'</span><span class="ot"> entity=</span><span class="st">'Method'</span> <span class="kw">/&gt;</span>
-                  <span class="kw">&lt;threshold</span><span class="ot"> metric-id=</span><span class="st">'NUMPAR'</span><span class="ot"> relation=</span><span class="st">'gt'</span><span class="ot"> value=</span><span class="st">'43'</span><span class="ot"> entity=</span><span class="st">'Method'</span> <span class="kw">/&gt;</span>
-                  <span class="kw">&lt;threshold</span><span class="ot"> metric-id=</span><span class="st">'TLOC'</span><span class="ot"> relation=</span><span class="st">'gt'</span><span class="ot"> value=</span><span class="st">'-32'</span><span class="ot"> entity=</span><span class="st">'Method'</span> <span class="kw">/&gt;</span>
+                  <span class="kw">&lt;threshold</span><span class="ot"> metric-id=</span><span class="st">&quot;LOC&quot;</span><span class="ot"> relation=</span><span class="st">&quot;gt&quot;</span><span class="ot"> value=</span><span class="st">&quot;100&quot;</span><span class="ot"> entity=</span><span class="st">&quot;Method&quot;</span> <span class="kw">/&gt;</span>
+                  <span class="kw">&lt;threshold</span><span class="ot"> metric-id=</span><span class="st">&quot;LLOC&quot;</span><span class="ot"> relation=</span><span class="st">&quot;gt&quot;</span><span class="ot"> value=</span><span class="st">&quot;none&quot;</span><span class="ot"> entity=</span><span class="st">&quot;Method&quot;</span> <span class="kw">/&gt;</span>
+                  <span class="kw">&lt;threshold</span><span class="ot"> metric-id=</span><span class="st">&quot;NUMPAR&quot;</span><span class="ot"> relation=</span><span class="st">&quot;gt&quot;</span><span class="ot"> value=</span><span class="st">&quot;43&quot;</span><span class="ot"> entity=</span><span class="st">&quot;Method&quot;</span> <span class="kw">/&gt;</span>
+                  <span class="kw">&lt;threshold</span><span class="ot"> metric-id=</span><span class="st">&quot;TLOC&quot;</span><span class="ot"> relation=</span><span class="st">&quot;gt&quot;</span><span class="ot"> value=</span><span class="st">&quot;-32&quot;</span><span class="ot"> entity=</span><span class="st">&quot;Method&quot;</span> <span class="kw">/&gt;</span>
               <span class="kw">&lt;/metric-thresholds&gt;</span>
           <span class="kw">&lt;/tool&gt;</span>
         <span class="kw">&lt;/tool-options&gt;</span>
-      
+
         <span class="kw">&lt;rule-options&gt;</span>
-          <span class="kw">&lt;rule</span><span class="ot"> id=</span><span class="st">'ISNUI'</span><span class="ot"> name=</span><span class="st">'If Should Not Use Indicators'</span><span class="ot"> priority=</span><span class="st">'Major'</span><span class="ot"> enabled=</span><span class="st">'false'</span><span class="kw">/&gt;</span>
-          <span class="kw">&lt;rule</span><span class="ot"> id=</span><span class="st">'FPN'</span><span class="ot"> name=</span><span class="st">'File uses prefixed name'</span><span class="ot"> priority=</span><span class="st">'Critical'</span><span class="ot"> enabled=</span><span class="st">'true'</span><span class="kw">/&gt;</span>
+          <span class="kw">&lt;rule</span><span class="ot"> id=</span><span class="st">&quot;ISNUI&quot;</span><span class="ot"> name=</span><span class="st">&quot;If Should Not Use Indicators&quot;</span><span class="ot"> priority=</span><span class="st">&quot;Major&quot;</span><span class="ot"> enabled=</span><span class="st">&quot;false&quot;</span><span class="kw">/&gt;</span>
+          <span class="kw">&lt;rule</span><span class="ot"> id=</span><span class="st">&quot;FPN&quot;</span><span class="ot"> name=</span><span class="st">&quot;File uses prefixed name&quot;</span><span class="ot"> priority=</span><span class="st">&quot;Critical&quot;</span><span class="ot"> enabled=</span><span class="st">&quot;true&quot;</span><span class="kw">/&gt;</span>
         <span class="kw">&lt;/rule-options&gt;</span>
       <span class="kw">&lt;/sourcemeter-profile&gt;</span>
 </code></pre>
@@ -527,7 +535,7 @@ SourceMeterRPG
 <tr class="header">
 <th style="text-align: left;">Category</th>
 <th style="text-align: left;">Metric name</th>
-<th style="text-align: left;">Abbreviation</th>
+<th style="text-align: left;">Abbrev.</th>
 <th style="text-align: center;">Subroutine</th>
 <th style="text-align: center;">Procedure</th>
 <th style="text-align: center;">Program</th>
@@ -976,9 +984,9 @@ SourceMeterRPG
 <thead>
 <tr class="header">
 <th style="text-align: left;">Metric name</th>
-<th style="text-align: left;">Abbreviation</th>
-<th style="text-align: center;">CloneInstance</th>
-<th style="text-align: center;">CloneClass</th>
+<th style="text-align: left;">Abbrev.</th>
+<th style="text-align: center;">Clone Instance</th>
+<th style="text-align: center;">Clone Class</th>
 <th style="text-align: center;">Subroutine</th>
 <th style="text-align: center;">Procedure</th>
 <th style="text-align: center;">Program</th>
