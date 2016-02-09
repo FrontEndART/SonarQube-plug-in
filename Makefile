@@ -7,16 +7,16 @@ install-dependencies:
 	mvn install:install-file -DgroupId=com.frontendart.columbus -DartifactId=graphsupportlib -Dversion=1.0 -Dpackaging=jar -Dfile=lib/graphsupportlib-1.0.jar
 	mvn install:install-file -DgroupId=com.frontendart.columbus -DartifactId=graphlib -Dversion=1.0 -Dpackaging=jar -Dfile=lib/graphlib-1.0.jar
 
-sourcemeter-analyzer-base:
+sourcemeter-analyzer-base: install-dependencies sonarqube-core-plugin
 	mvn -f src/sonarqube-analyzers/$@/pom.xml clean install
 
-sonarqube-core-plugin: install-dependencies sourcemeter-analyzer-base
+sonarqube-core-plugin:
 	mvn -f src/sonarqube-core-plugin/pom.xml clean install
 
 sonarqube-gui-plugin: install-dependencies sourcemeter-analyzer-base
 	mvn -f src/sonarqube-gui-plugin/pom.xml clean install
 
-$(ANALYZERS): install-dependencies sonarqube-core-plugin
+$(ANALYZERS): install-dependencies sonarqube-core-plugin sourcemeter-analyzer-base
 	mvn -f src/sonarqube-analyzers/$@/pom.xml clean install
 
 sonarqube-plugin-package: sonarqube-core-plugin sonarqube-gui-plugin $(ANALYZERS)
