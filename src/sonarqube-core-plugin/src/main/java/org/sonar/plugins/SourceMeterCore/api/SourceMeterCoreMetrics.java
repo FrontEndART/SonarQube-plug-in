@@ -435,6 +435,70 @@ public class SourceMeterCoreMetrics implements Metrics {
     /* END of Documentation Metrics */
 
     /* Complexity Metrics */
+    public static final String HCPL_KEY = "HCPL";
+    public static final Metric HCPL = new Builder(HCPL_KEY, "Halstead Calculated Program Length", ValueType.FLOAT)
+            .setDomain(COLUMBUS_DOMAIN_COMPLEXITY)
+            .create();
+
+    public static final String HDIF_KEY = "HDIF";
+    public static final Metric HDIF = new Builder(HDIF_KEY, "Halstead Difficulty", ValueType.FLOAT)
+            .setDomain(COLUMBUS_DOMAIN_COMPLEXITY)
+            .create();
+
+    public static final String HEFF_KEY = "HEFF";
+    public static final Metric HEFF = new Builder(HEFF_KEY, "Halstead Effort", ValueType.FLOAT)
+            .setDomain(COLUMBUS_DOMAIN_COMPLEXITY)
+            .create();
+
+    public static final String HNDB_KEY = "HNDB";
+    public static final Metric HNDB = new Builder(HNDB_KEY, "Halstead Number of Delivered Bugs", ValueType.FLOAT)
+            .setDomain(COLUMBUS_DOMAIN_COMPLEXITY)
+            .create();
+
+    public static final String HPL_KEY = "HPL";
+    public static final Metric HPL = new Builder(HPL_KEY, "Halstead Program Length", ValueType.INT)
+            .setDomain(COLUMBUS_DOMAIN_COMPLEXITY)
+            .create();
+
+    public static final String HPV_KEY = "HPV";
+    public static final Metric HPV = new Builder(HPV_KEY, "Halstead Program Vocabulary", ValueType.INT)
+            .setDomain(COLUMBUS_DOMAIN_COMPLEXITY)
+            .create();
+
+    public static final String HTRP_KEY = "HTRP";
+    public static final Metric HTRP = new Builder(HTRP_KEY, "Halstead Time Required to Program", ValueType.FLOAT)
+            .setDomain(COLUMBUS_DOMAIN_COMPLEXITY)
+            .create();
+
+    public static final String HVOL_KEY = "HVOL";
+    public static final Metric HVOL = new Builder(HVOL_KEY, "Halstead Volume", ValueType.FLOAT)
+            .setDomain(COLUMBUS_DOMAIN_COMPLEXITY)
+            .create();
+
+    public static final String MIMS_KEY = "MIMS";
+    public static final Metric MIMS = new Builder(MIMS_KEY, "Maintainability Index (Microsoft version)", ValueType.FLOAT)
+            .setDirection(Metric.DIRECTION_BETTER)
+            .setDomain(COLUMBUS_DOMAIN_COMPLEXITY)
+            .create();
+
+    public static final String MI_KEY = "MI";
+    public static final Metric MI = new Builder(MI_KEY, "Maintainability Index (Original version)", ValueType.FLOAT)
+            .setDirection(Metric.DIRECTION_BETTER)
+            .setDomain(COLUMBUS_DOMAIN_COMPLEXITY)
+            .create();
+
+    public static final String MISEI_KEY = "MISEI";
+    public static final Metric MISEI = new Builder(MISEI_KEY, "Maintainability Index (SEI version)", ValueType.FLOAT)
+            .setDirection(Metric.DIRECTION_BETTER)
+            .setDomain(COLUMBUS_DOMAIN_COMPLEXITY)
+            .create();
+
+    public static final String MISM_KEY = "MISM";
+    public static final Metric MISM = new Builder(MISM_KEY, "Maintainability Index (SourceMeter version)", ValueType.FLOAT)
+            .setDirection(Metric.DIRECTION_BETTER)
+            .setDomain(COLUMBUS_DOMAIN_COMPLEXITY)
+            .create();
+
     public static final String McCC_KEY = "McCC";
     public static final Metric McCC = new Builder(McCC_KEY, "McCabe's Cyclomatic Complexity", ValueType.INT)
             .setDomain(COLUMBUS_DOMAIN_COMPLEXITY)
@@ -755,8 +819,8 @@ public class SourceMeterCoreMetrics implements Metrics {
                              // Documentation
                              DLOC, CLOC, TCLOC, CD, TCD, AD, TAD, PDA, TPDA, PUA, TPUA,
                              // Complexity
-                             McCC, NL, NLE,
-                             WMC,
+                             HCPL, HDIF, HEFF, HNDB, HPL, HPV, HTRP, HVOL, MIMS, MI, MISEI, MISM,
+                             McCC, NL, NLE, WMC,
                              // Coupling
                              CBO, CBOI, RFC, NOI,
                              NII,
@@ -809,10 +873,11 @@ public class SourceMeterCoreMetrics implements Metrics {
      * @return method threshold metrics
      */
     public static List<Metric> getMethodThresholdMetrics() {
-        return Arrays.asList(LOC, LLOC, NUMPAR, NOS, TLOC, TLLOC, TNOS, CD,
-                             CLOC, DLOC, TCLOC, TCD, McCC, NL, NLE, NII, NOI, CCL, CCO, CC,
-                             CI, CLC, CLLC, LDC, LLDC, WARNINGP0, WARNINGP1, WARNINGP2,
-                             WARNINGP3);
+        return Arrays.asList(LOC, LLOC, NUMPAR, NOS, TLOC, TLLOC, TNOS, CD, CLOC,
+                             DLOC, TCLOC, TCD, HCPL, HDIF, HEFF, HNDB, HPL, HPV,
+                             HTRP, HVOL, MIMS, MI, MISEI, MISM, McCC, NL, NLE, NII,
+                             NOI, CCL, CCO, CC, CI, CLC, CLLC, LDC, LLDC, WARNINGP0,
+                             WARNINGP1, WARNINGP2, WARNINGP3);
     }
 
     /**

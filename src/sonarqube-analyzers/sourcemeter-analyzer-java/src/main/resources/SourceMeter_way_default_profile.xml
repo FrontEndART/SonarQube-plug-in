@@ -230,6 +230,11 @@
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
+      <key>ASAML</key>
+      <priority>MINOR</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_java</repositoryKey>
       <key>ASBF</key>
       <priority>MINOR</priority>
     </rule>
@@ -966,6 +971,31 @@
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>DLNLISS</key>
+      <priority>MINOR</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_java</repositoryKey>
+      <key>DNCRE</key>
+      <priority>MINOR</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_java</repositoryKey>
+      <key>DNCTIEJB</key>
+      <priority>MINOR</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_java</repositoryKey>
+      <key>DNULFIEJB</key>
+      <priority>MINOR</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_java</repositoryKey>
+      <key>DNUNQA</key>
+      <priority>MINOR</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_java</repositoryKey>
+      <key>DNUSIEJB</key>
       <priority>MINOR</priority>
     </rule>
     <rule>
@@ -3133,6 +3163,26 @@
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>XXFB</key>
       <priority>CRITICAL</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_java</repositoryKey>
+      <key>DBZ</key>
+      <priority>BLOCKER</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_java</repositoryKey>
+      <key>IOB</key>
+      <priority>BLOCKER</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_java</repositoryKey>
+      <key>NAS</key>
+      <priority>BLOCKER</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_java</repositoryKey>
+      <key>NPE</key>
+      <priority>BLOCKER</priority>
     </rule>
   </rules>
 </profile>

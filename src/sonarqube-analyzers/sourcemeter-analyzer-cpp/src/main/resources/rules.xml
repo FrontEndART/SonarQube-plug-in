@@ -35,6 +35,46 @@
     <description>&lt;p&gt;&lt;strong&gt;Method, Function:&lt;/strong&gt; number of documentation code lines of the method.&lt;/p&gt;&#x0A;&lt;p&gt;&lt;strong&gt;Class, Structure, Union, Interface:&lt;/strong&gt; number of documentation code lines of the class, including its local methods and attributes; however, its nested, anonymous, and local classes are not included.&lt;/p&gt;&#x0A;&lt;p&gt;&lt;strong&gt;Enum:&lt;/strong&gt; number of documentation code lines of the enum, including its enumerators.&lt;/p&gt;&#x0A;</description>
     <priority>INFO</priority>
   </rule>
+  <rule key = "MET_HCPL">
+    <name>Halstead Calculated Program Length (HCPL) Metric Threshold Violation</name>
+    <description>&lt;p&gt;&lt;strong&gt;Method, Function:&lt;/strong&gt;&lt;/p&gt;&#x0A;&lt;ul&gt;&#x0A;&lt;li&gt;&lt;em&gt;n1&lt;/em&gt;: number of distinct operators (semantic meanings of the reserved keywords, semicolons, blocks, and identifiers except in their declarations)&lt;/li&gt;&#x0A;&lt;li&gt;&lt;em&gt;n2&lt;/em&gt;: number of distinct operands (literals - e.g. character, string, and integer literals, - and the identifiers in their declarations)&lt;/li&gt;&#x0A;&lt;/ul&gt;&#x0A;&lt;p&gt;The calculated program length is &lt;em&gt;n1 * log&lt;sub&gt;2&lt;/sub&gt;(n1) + n2 * log&lt;sub&gt;2&lt;/sub&gt;(n2)&lt;/em&gt;.&lt;/p&gt;&#x0A;</description>
+    <priority>INFO</priority>
+  </rule>
+  <rule key = "MET_HDIF">
+    <name>Halstead Difficulty (HDIF) Metric Threshold Violation</name>
+    <description>&lt;p&gt;&lt;strong&gt;Method, Function:&lt;/strong&gt;&lt;/p&gt;&#x0A;&lt;ul&gt;&#x0A;&lt;li&gt;&lt;em&gt;n1&lt;/em&gt;: number of distinct operators (semantic meanings of the reserved keywords, semicolons, blocks, and identifiers except in their declarations)&lt;/li&gt;&#x0A;&lt;li&gt;&lt;em&gt;n2&lt;/em&gt;: number of distinct operands (literals - e.g. character, string, and integer literals, - and the identifiers in their declarations)&lt;/li&gt;&#x0A;&lt;li&gt;&lt;em&gt;N2&lt;/em&gt;: total number of operands&lt;/li&gt;&#x0A;&lt;/ul&gt;&#x0A;&lt;p&gt;The Halstead difficulty is &lt;em&gt;n1/2 * N2/n2&lt;/em&gt;.&lt;/p&gt;&#x0A;</description>
+    <priority>INFO</priority>
+  </rule>
+  <rule key = "MET_HEFF">
+    <name>Halstead Effort (HEFF) Metric Threshold Violation</name>
+    <description>&lt;p&gt;&lt;strong&gt;Method, Function:&lt;/strong&gt;&lt;/p&gt;&#x0A;&lt;ul&gt;&#x0A;&lt;li&gt;&lt;em&gt;n1&lt;/em&gt;: number of distinct operators (semantic meanings of the reserved keywords, semicolons, blocks, and identifiers except in their declarations)&lt;/li&gt;&#x0A;&lt;li&gt;&lt;em&gt;n2&lt;/em&gt;: number of distinct operands (literals - e.g. character, string, and integer literals, - and the identifiers in their declarations)&lt;/li&gt;&#x0A;&lt;li&gt;&lt;em&gt;N1&lt;/em&gt;: total number of operators&lt;/li&gt;&#x0A;&lt;li&gt;&lt;em&gt;N2&lt;/em&gt;: total number of operands&lt;/li&gt;&#x0A;&lt;li&gt;&lt;em&gt;n : n1 + n2&lt;/em&gt; (program vocabulary)&lt;/li&gt;&#x0A;&lt;li&gt;&lt;em&gt;N : N1 + N2&lt;/em&gt; (program length)&lt;/li&gt;&#x0A;&lt;li&gt;&lt;em&gt;V : N * log&lt;sub&gt;2&lt;/sub&gt;(n)&lt;/em&gt; (volume)&lt;/li&gt;&#x0A;&lt;li&gt;&lt;em&gt;D : n1/2 * N2/n2&lt;/em&gt; (difficulty)&lt;/li&gt;&#x0A;&lt;/ul&gt;&#x0A;&lt;p&gt;The Halstead effort is &lt;em&gt;D * V&lt;/em&gt;.&lt;/p&gt;&#x0A;</description>
+    <priority>INFO</priority>
+  </rule>
+  <rule key = "MET_HNDB">
+    <name>Halstead Number of Delivered Bugs (HNDB) Metric Threshold Violation</name>
+    <description>&lt;p&gt;&lt;strong&gt;Method, Function:&lt;/strong&gt;&lt;/p&gt;&#x0A;&lt;ul&gt;&#x0A;&lt;li&gt;&lt;em&gt;n1&lt;/em&gt;: number of distinct operators (semantic meanings of the reserved keywords, semicolons, blocks, and identifiers except in their declarations)&lt;/li&gt;&#x0A;&lt;li&gt;&lt;em&gt;n2&lt;/em&gt;: number of distinct operands (literals - e.g. character, string, and integer literals, - and the identifiers in their declarations)&lt;/li&gt;&#x0A;&lt;li&gt;&lt;em&gt;N1&lt;/em&gt;: total number of operators&lt;/li&gt;&#x0A;&lt;li&gt;&lt;em&gt;N2&lt;/em&gt;: total number of operands&lt;/li&gt;&#x0A;&lt;li&gt;&lt;em&gt;n : n1 + n2&lt;/em&gt; (program vocabulary)&lt;/li&gt;&#x0A;&lt;li&gt;&lt;em&gt;N : N1 + N2&lt;/em&gt; (program length)&lt;/li&gt;&#x0A;&lt;li&gt;&lt;em&gt;V : N * log&lt;sub&gt;2&lt;/sub&gt;(n)&lt;/em&gt; (volume)&lt;/li&gt;&#x0A;&lt;li&gt;&lt;em&gt;D : n1/2 * N2/n2&lt;/em&gt; (difficulty)&lt;/li&gt;&#x0A;&lt;li&gt;&lt;em&gt;E : D * V&lt;/em&gt; (effort)&lt;/li&gt;&#x0A;&lt;/ul&gt;&#x0A;&lt;p&gt;Number of delivered bugs is &lt;em&gt;E&lt;sup&gt;2/3&lt;/sup&gt;/3000&lt;/em&gt;.&lt;/p&gt;&#x0A;</description>
+    <priority>INFO</priority>
+  </rule>
+  <rule key = "MET_HPL">
+    <name>Halstead Program Length (HPL) Metric Threshold Violation</name>
+    <description>&lt;p&gt;&lt;strong&gt;Method, Function:&lt;/strong&gt;&lt;/p&gt;&#x0A;&lt;ul&gt;&#x0A;&lt;li&gt;&lt;em&gt;N1&lt;/em&gt;: total number of operators (semantic meanings of the reserved keywords, semicolons, blocks, and identifiers except in their declarations)&lt;/li&gt;&#x0A;&lt;li&gt;&lt;em&gt;N2&lt;/em&gt;: total number of operands (literals - e.g. character, string, and integer literals, - and the identifiers in their declarations)&lt;/li&gt;&#x0A;&lt;/ul&gt;&#x0A;&lt;p&gt;Halstead program length is &lt;em&gt;N1 + N2&lt;/em&gt;.&lt;/p&gt;&#x0A;</description>
+    <priority>INFO</priority>
+  </rule>
+  <rule key = "MET_HPV">
+    <name>Halstead Program Vocabulary (HPV) Metric Threshold Violation</name>
+    <description>&lt;p&gt;&lt;strong&gt;Method, Function:&lt;/strong&gt;&lt;/p&gt;&#x0A;&lt;ul&gt;&#x0A;&lt;li&gt;&lt;em&gt;n1&lt;/em&gt;: number of distinct operators (semantic meanings of the reserved keywords, semicolons, blocks, and identifiers except in their declarations)&lt;/li&gt;&#x0A;&lt;li&gt;&lt;em&gt;n2&lt;/em&gt;: number of distinct operands (literals - e.g. character, string, and integer literals, - and the identifiers in their declarations)&lt;/li&gt;&#x0A;&lt;/ul&gt;&#x0A;&lt;p&gt;Halstead program vocabulary is &lt;em&gt;n1 + n2&lt;/em&gt;.&lt;/p&gt;&#x0A;</description>
+    <priority>INFO</priority>
+  </rule>
+  <rule key = "MET_HTRP">
+    <name>Halstead Time Required to Program (HTRP) Metric Threshold Violation</name>
+    <description>&lt;p&gt;&lt;strong&gt;Method, Function:&lt;/strong&gt;&lt;/p&gt;&#x0A;&lt;ul&gt;&#x0A;&lt;li&gt;&lt;em&gt;n1&lt;/em&gt;: number of distinct operators (semantic meanings of the reserved keywords, semicolons, blocks, and identifiers except in their declarations)&lt;/li&gt;&#x0A;&lt;li&gt;&lt;em&gt;n2&lt;/em&gt;: number of distinct operands (literals - e.g. character, string, and integer literals, - and the identifiers in their declarations)&lt;/li&gt;&#x0A;&lt;li&gt;&lt;em&gt;N1&lt;/em&gt;: total number of operators&lt;/li&gt;&#x0A;&lt;li&gt;&lt;em&gt;N2&lt;/em&gt;: total number of operands&lt;/li&gt;&#x0A;&lt;li&gt;&lt;em&gt;n : n1 + n2&lt;/em&gt; (program vocabulary)&lt;/li&gt;&#x0A;&lt;li&gt;&lt;em&gt;N : N1 + N2&lt;/em&gt; (program length)&lt;/li&gt;&#x0A;&lt;li&gt;&lt;em&gt;V : N * log&lt;sub&gt;2&lt;/sub&gt;(n)&lt;/em&gt; (volume)&lt;/li&gt;&#x0A;&lt;li&gt;&lt;em&gt;D : n1/2 * N2/n2&lt;/em&gt; (difficulty)&lt;/li&gt;&#x0A;&lt;li&gt;&lt;em&gt;E : D * V&lt;/em&gt; (effort)&lt;/li&gt;&#x0A;&lt;/ul&gt;&#x0A;&lt;p&gt;Halstead time required to program is &lt;em&gt;E/18&lt;/em&gt; seconds.&lt;/p&gt;&#x0A;</description>
+    <priority>INFO</priority>
+  </rule>
+  <rule key = "MET_HVOL">
+    <name>Halstead Volume (HVOL) Metric Threshold Violation</name>
+    <description>&lt;p&gt;&lt;strong&gt;Method, Function:&lt;/strong&gt;&lt;/p&gt;&#x0A;&lt;ul&gt;&#x0A;&lt;li&gt;&lt;em&gt;n1&lt;/em&gt;: number of distinct operators (semantic meanings of the reserved keywords, semicolons, blocks, and identifiers except in their declarations)&lt;/li&gt;&#x0A;&lt;li&gt;&lt;em&gt;n2&lt;/em&gt;: number of distinct operands (literals - e.g. character, string, and integer literals, - and the identifiers in their declarations)&lt;/li&gt;&#x0A;&lt;li&gt;&lt;em&gt;N1&lt;/em&gt;: total number of operators&lt;/li&gt;&#x0A;&lt;li&gt;&lt;em&gt;N2&lt;/em&gt;: total number of operands&lt;/li&gt;&#x0A;&lt;li&gt;&lt;em&gt;n : n1 + n2&lt;/em&gt; (program vocabulary)&lt;/li&gt;&#x0A;&lt;li&gt;&lt;em&gt;N : N1 + N2&lt;/em&gt; (program length)&lt;/li&gt;&#x0A;&lt;/ul&gt;&#x0A;&lt;p&gt;The Halstead volume is &lt;em&gt;N * log&lt;sub&gt;2&lt;/sub&gt;(n)&lt;/em&gt;.&lt;/p&gt;&#x0A;</description>
+    <priority>INFO</priority>
+  </rule>
   <rule key = "MET_LCOM5">
     <name>Lack of Cohesion in Methods 5 (LCOM5) Metric Threshold Violation</name>
     <description>&lt;p&gt;&lt;strong&gt;Class, Structure, Union:&lt;/strong&gt; number of functionalities of the class. One of the basic principles of object-oriented programming is encapsulation, meaning that attributes belonging together and the operations that use them should be organized into one class, and one class shall implement only one functionality, i.e. its attributes and methods should be coherent. This metric measures the lack of cohesion and computes into how many coherent classes the class could be split. It is calculated by taking a non-directed graph, where the nodes are the implemented local methods of the class and there is an edge between the two nodes if and only if a common (local or inherited) attribute or abstract method is used or a method invokes another. The value of the metric is the number of connected components in the graph not counting those, which contain only constructors, destructors, getters, or setters.&lt;/p&gt;&#x0A;</description>
@@ -48,6 +88,26 @@
   <rule key = "MET_LOC">
     <name>Lines of Code (LOC) Metric Threshold Violation</name>
     <description>&lt;p&gt;&lt;strong&gt;Method, Function:&lt;/strong&gt; number of code lines of the method, including empty and comment lines; however, its anonymous and local classes are not included.&lt;/p&gt;&#x0A;&lt;p&gt;&lt;strong&gt;Class, Structure, Union, Interface:&lt;/strong&gt; number of code lines of the class, including empty and comment lines, as well as its local methods; however, its nested, anonymous, and local classes are not included.&lt;/p&gt;&#x0A;&lt;p&gt;&lt;strong&gt;Enum:&lt;/strong&gt; number of code lines of the enum, including empty and comment lines.&lt;/p&gt;&#x0A;&lt;p&gt;&lt;strong&gt;Namespace:&lt;/strong&gt; number of code lines of the namespace, including empty and comment lines; however, its subnamespaces are not included.&lt;/p&gt;&#x0A;&lt;p&gt;&lt;strong&gt;File:&lt;/strong&gt; number of code lines of the file, including empty and comment lines.&lt;/p&gt;&#x0A;</description>
+    <priority>INFO</priority>
+  </rule>
+  <rule key = "MET_MI">
+    <name>Maintainability Index (Original version) (MI) Metric Threshold Violation</name>
+    <description>&lt;ul&gt;&#x0A;&lt;li&gt;&lt;em&gt;HVOL&lt;/em&gt;: Halstead Volume&lt;/li&gt;&#x0A;&lt;li&gt;&lt;em&gt;McCC&lt;/em&gt;: McCabe’s cyclomatic complexity&lt;/li&gt;&#x0A;&lt;li&gt;&lt;em&gt;LLOC&lt;/em&gt;: logical lines of code&lt;/li&gt;&#x0A;&lt;/ul&gt;&#x0A;&lt;p&gt;The original Maintainability Index is computed by the following formula:&lt;/p&gt;&#x0A;&lt;p&gt;&lt;em&gt;MI = 171 - 5.2 * ln(HVOL) - 0.23 * (McCC) - 16.2 * ln(LLOC)&lt;/em&gt;&lt;/p&gt;&#x0A;</description>
+    <priority>INFO</priority>
+  </rule>
+  <rule key = "MET_MIMS">
+    <name>Maintainability Index (Microsoft version) (MIMS) Metric Threshold Violation</name>
+    <description>&lt;ul&gt;&#x0A;&lt;li&gt;&lt;em&gt;HVOL&lt;/em&gt;: Halstead Volume&lt;/li&gt;&#x0A;&lt;li&gt;&lt;em&gt;McCC&lt;/em&gt;: McCabe’s cyclomatic complexity&lt;/li&gt;&#x0A;&lt;li&gt;&lt;em&gt;LLOC&lt;/em&gt;: logical lines of code&lt;/li&gt;&#x0A;&lt;/ul&gt;&#x0A;&lt;p&gt;The Maintainability Index used by Microsoft’s Visual Studio is computed by the following formula:&lt;/p&gt;&#x0A;&lt;p&gt;&lt;em&gt;MIMS = max(0,(171 - 5.2 * ln(HVOL) - 0.23 * (McCC) - 16.2 * ln(LLOC)) * 100 / 171)&lt;/em&gt;&lt;/p&gt;&#x0A;</description>
+    <priority>INFO</priority>
+  </rule>
+  <rule key = "MET_MISEI">
+    <name>Maintainability Index (SEI version) (MISEI) Metric Threshold Violation</name>
+    <description>&lt;ul&gt;&#x0A;&lt;li&gt;&lt;em&gt;HVOL&lt;/em&gt;: Halstead Volume&lt;/li&gt;&#x0A;&lt;li&gt;&lt;em&gt;McCC&lt;/em&gt;: McCabe’s cyclomatic complexity&lt;/li&gt;&#x0A;&lt;li&gt;&lt;em&gt;LLOC&lt;/em&gt;: logical lines of code&lt;/li&gt;&#x0A;&lt;li&gt;&lt;em&gt;CD&lt;/em&gt;: comment density&lt;/li&gt;&#x0A;&lt;/ul&gt;&#x0A;&lt;p&gt;The Maintainability Index derived by the Software Engineering Institute (SEI) is computed by the following formula:&lt;/p&gt;&#x0A;&lt;p&gt;&lt;em&gt;MISEI = 171 - 5.2 * log&lt;sub&gt;2&lt;/sub&gt;(HVOL) - 0.23 * McCC - 16.2 * log&lt;sub&gt;2&lt;/sub&gt;(LLOC) + 50 * sin(sqrt(2.4 * CD))&lt;/em&gt;&lt;/p&gt;&#x0A;</description>
+    <priority>INFO</priority>
+  </rule>
+  <rule key = "MET_MISM">
+    <name>Maintainability Index (SourceMeter version) (MISM) Metric Threshold Violation</name>
+    <description>&lt;ul&gt;&#x0A;&lt;li&gt;&lt;em&gt;HVOL&lt;/em&gt;: Halstead Volume&lt;/li&gt;&#x0A;&lt;li&gt;&lt;em&gt;McCC&lt;/em&gt;: McCabe’s cyclomatic complexity&lt;/li&gt;&#x0A;&lt;li&gt;&lt;em&gt;LLOC&lt;/em&gt;: logical lines of code&lt;/li&gt;&#x0A;&lt;li&gt;&lt;em&gt;CD&lt;/em&gt;: comment density&lt;/li&gt;&#x0A;&lt;/ul&gt;&#x0A;&lt;p&gt;The Maintainability Index proposed by SourceMeter combines the different scaling approach from Microsoft’s version with the inclusion of comment percentage from the Software Engineering Institute (SEI) version into the following formula:&lt;/p&gt;&#x0A;&lt;p&gt;&lt;em&gt;MISM = max(0, (171 - 5.2 * log&lt;sub&gt;2&lt;/sub&gt;(HVOL) - 0.23 * McCC - 16.2 * log&lt;sub&gt;2&lt;/sub&gt;(LLOC) + 50 * sin(sqrt(2.4 * CD))) * 100 / 171)&lt;/em&gt;&lt;/p&gt;&#x0A;</description>
     <priority>INFO</priority>
   </rule>
   <rule key = "MET_McCC">

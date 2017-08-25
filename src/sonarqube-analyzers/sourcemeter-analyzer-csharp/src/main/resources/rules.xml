@@ -490,11 +490,6 @@
     <description>&lt;h3&gt;FxCop&lt;/h3&gt;COM visible types that might be accessed from Microsoft Visual Basic 6 clients should not expose methods with long arguments.</description>
     <priority>MINOR</priority>
   </rule>
-  <rule key = "ALSTNIP">
-    <name>Avoid language specific type names in parameters</name>
-    <description>&lt;h3&gt;FxCop&lt;/h3&gt;Do not use language-specific type names to name parameters; use a generic name instead. Language-specific type names might not be intuitive for developers using other languages. Some examples of C#-specific type names are &apos;float&apos; (use &apos;Single&apos; if a generic name is not sufficient), and &apos;ulong&apos; (use &apos;UInt64&apos; if a generic name is not sufficient).</description>
-    <priority>CRITICAL</priority>
-  </rule>
   <rule key = "ALTSNBCV">
     <name>Auto layout types should not be COM visible</name>
     <description>&lt;h3&gt;FxCop&lt;/h3&gt;Types that are automatically ordered by the runtime should not be visible to COM. Types that are automatically laid out by the runtime do not have a guaranteed order between versions. This can break COM clients of those types. To ensure compatibility between versions, the type should be explicitly or sequentially ordered.</description>
@@ -705,11 +700,6 @@
     <description>&lt;h3&gt;FxCop&lt;/h3&gt;Delegate types and the methods that they bind to must have consistent transparency.  Transparent and safe-critical delegates may only bind to other transparent or safe-critical methods.  Similarly, critical delegates may only bind to critical methods.  These binding rules ensure that the only code which can invoke a method via a delegate could have also invoked the same method directly.  It prevents, for instance, transparent code from calling critical code directly via a transparent delegate.</description>
     <priority>BLOCKER</priority>
   </rule>
-  <rule key = "DMSCBCD">
-    <name>Dispose methods should call base class dispose</name>
-    <description>&lt;h3&gt;FxCop&lt;/h3&gt;If your base class implements Dispose, you should call it from your class&apos;s Dispose function.</description>
-    <priority>CRITICAL</priority>
-  </rule>
   <rule key = "DNCGET">
     <name>Do not catch general exception types</name>
     <description>&lt;h3&gt;FxCop&lt;/h3&gt;You should not catch Exception or SystemException. Catching generic exception types can hide run-time problems from the library user, and can complicate debugging. You should catch only those exceptions that you can handle gracefully.</description>
@@ -728,11 +718,6 @@
   <rule key = "DNDIMV">
     <name>Do not decrease inherited member visibility</name>
     <description>&lt;h3&gt;FxCop&lt;/h3&gt;It is incorrect to override a public method from an inherited class with a private implementation, unless the type is sealed or the method is marked final. It is considered bad form to hide a method signature halfway down an inheritance tree.</description>
-    <priority>CRITICAL</priority>
-  </rule>
-  <rule key = "DNDOMT">
-    <name>Do not dispose objects multiple times</name>
-    <description>&lt;h3&gt;FxCop&lt;/h3&gt;Incorrectly coded implementations of IDisposable cannot tolerate being called multiple times on the same object instance.</description>
     <priority>CRITICAL</priority>
   </rule>
   <rule key = "DNDPMIST">
@@ -820,11 +805,6 @@
     <description>&lt;h3&gt;FxCop&lt;/h3&gt;The individual values that make up an enumeration type should not be prefixed with the type name.</description>
     <priority>CRITICAL</priority>
   </rule>
-  <rule key = "DNPLALP">
-    <name>Do not pass literals as localized parameters</name>
-    <description>&lt;h3&gt;FxCop&lt;/h3&gt;String literals that are embedded in source code are difficult to localize. Avoid passing string literals as arguments in circumstances where a localized string is generally expected. Most localized applications, for example, should localize string arguments that are passed to exception constructors. When creating an Exception instance, therefore, a string argument retrieved from a string table is more appropriate than a string literal.</description>
-    <priority>CRITICAL</priority>
-  </rule>
   <rule key = "DNPTBR">
     <name>Do not pass types by reference</name>
     <description>&lt;h3&gt;FxCop&lt;/h3&gt;Although there are legitimate times to use reference parameters, such use frequently indicates a design that does not conform to the design guidelines for managed code.</description>
@@ -868,11 +848,6 @@
   <rule key = "DNUTTPPSC">
     <name>Do not use timers that prevent power state changes</name>
     <description>&lt;h3&gt;FxCop&lt;/h3&gt;Do not poll more often than or utilize timers that fire more frequently than once per second. Higher frequency periodic activity will keep the CPU busy and interfere with power-saving idle timers that turn off the display and hard disks.</description>
-    <priority>CRITICAL</priority>
-  </rule>
-  <rule key = "DOBLS">
-    <name>Dispose objects before losing scope</name>
-    <description>&lt;h3&gt;FxCop&lt;/h3&gt;If a disposable object is not disposed before all references to it are out of scope, the object will not be disposed until it is finalized. If the AppDomain is abruptly brought down, it is possible the object will not be finalized and therefore never disposed.</description>
     <priority>CRITICAL</priority>
   </rule>
   <rule key = "DPSNBU">
@@ -1104,11 +1079,6 @@
     <description>&lt;h3&gt;FxCop&lt;/h3&gt;IList implementations should also provide versions of the IList members that are strongly typed, namely they should specify types other than Object for method and property parameter and return types. Implement the interface members explicitly and make the strongly typed versions public. It is safe to ignore violations of this rule when you are implementing a new object-based collection, such as a linked list, where types based on your collection will determine what the strong type is. These types should expose strongly typed members.</description>
     <priority>CRITICAL</priority>
   </rule>
-  <rule key = "LSBSC">
-    <name>Literals should be spelled correctly</name>
-    <description>&lt;h3&gt;FxCop&lt;/h3&gt;Literals should consist of correctly spelled words.</description>
-    <priority>CRITICAL</priority>
-  </rule>
   <rule key = "MANSF">
     <name>Mark all non-serializable fields</name>
     <description>&lt;h3&gt;FxCop&lt;/h3&gt;All fields that cannot be serialized directly should have the NonSerializedAttribute. Types that have the SerializableAttribute should not have fields of types that do not have the SerializableAttribute unless the fields are marked with the NonSerializedAttribute.</description>
@@ -1269,11 +1239,6 @@
     <description>&lt;h3&gt;FxCop&lt;/h3&gt;Arithmetic operations should not be done without first validating the operands to prevent overflow.</description>
     <priority>MAJOR</priority>
   </rule>
-  <rule key = "PCATFM">
-    <name>Provide correct arguments to formatting methods</name>
-    <description>&lt;h3&gt;FxCop&lt;/h3&gt;Provide the correct number of arguments for calls to String.Format.</description>
-    <priority>BLOCKER</priority>
-  </rule>
   <rule key = "PDMFOF">
     <name>Provide deserialization methods for optional fields</name>
     <description>&lt;h3&gt;FxCop&lt;/h3&gt;If a type contains fields attributed as OptionalField, then it should implement the corresponding special deserialization methods.</description>
@@ -1417,11 +1382,6 @@
   <rule key = "RSCWSBCC">
     <name>Resource string compound words should be cased correctly</name>
     <description>&lt;h3&gt;FxCop&lt;/h3&gt;Avoid creating compound words from terms which exist in the dictionary as discrete terms. Do not create a compound word such as &apos;StopWatch&apos; or &apos;PopUp&apos;. These terms are recognized in the dictionary and should be cased as &apos;Stopwatch&apos; and &apos;Popup&apos;.</description>
-    <priority>CRITICAL</priority>
-  </rule>
-  <rule key = "RSQFSV">
-    <name>Review SQL queries for security vulnerabilities</name>
-    <description>&lt;h3&gt;FxCop&lt;/h3&gt;SQL queries built up from user input are potentially vulnerable to injection attacks. SQL Server as well as other database servers support parameterized SQL queries, a feature that will reduce the risk for injection attacks.</description>
     <priority>CRITICAL</priority>
   </rule>
   <rule key = "RSSBSC">
@@ -1671,7 +1631,7 @@
   </rule>
   <rule key = "UOAFTF">
     <name>Use only API from targeted framework</name>
-    <description>&lt;h3&gt;FxCop&lt;/h3&gt;New members and types were included in .NET Framework 2.0 Service Pack 1 and 2, .NET Framework 3.0 Service Pack 1 and 2, and .NET Framework 3.5 Service Pack 1. Projects that target the major versions of the .NET Framework can unintentionally take dependencies on these new APIs. To prevent this dependency, this rule fires on usages of any new members and types that were not included by default with the project&apos;s target framework.</description>
+    <description>&lt;h3&gt;FxCop&lt;/h3&gt;~~@RUL_EMPTY_STRING@~~</description>
     <priority>CRITICAL</priority>
   </rule>
   <rule key = "UOSC">
@@ -1713,11 +1673,6 @@
     <name>Use SafeHandle to encapsulate native resources</name>
     <description>&lt;h3&gt;FxCop&lt;/h3&gt;Use of IntPtr in managed code may indicate a potential security and reliability problem. All uses of IntPtr must be reviewed to determine whether use of a SafeHandle (or similar technology) is required in its place. Problems will occur if the IntPtr represents some native resource (memory, file handle, socket etc.) that managed code is considered to own. I.e. managed code is expected to in some way release the resource and failure to do so would cause resource leakage. In such scenarios security or reliability problems will also exist if multithreaded access is allowed to the IntPtr and a means of releasing the resource represented by the IntPtr. These problems involve recycling of the IntPtr value on resource release while simultaneous use of the resource is being made on another thread, leading to race conditions where one thread can read or write data associated with the wrong resource. For example, if your type stores an OS handle as an IntPtr and allows users to call both Close and any other method using that handle simultaneously (without some kind of synchronization), your code has a handle recycling problem, which causes data corruption and often a security vulnerability. SafeHandle (and its sibling class CriticalHandle) provide a mechanism for encapsulating a native handle to a resource so that such threading problems can be avoided (along with other issues such as the need to carefully control the lifetime of managed objects that contain a copy of the native handle over calls to native methods; ie, you can often remove calls to GC.KeepAlive). There are performance overheads implicit in using SafeHandle (and, to a lesser degree, CriticalHandle) which can often be mitigated through careful design.</description>
     <priority>MAJOR</priority>
-  </rule>
-  <rule key = "VAOPM">
-    <name>Validate arguments of public methods</name>
-    <description>&lt;h3&gt;FxCop&lt;/h3&gt;All reference arguments passed to public methods should be tested against null (Nothing in Visual Basic), as they can be provided by arbitrary callers.</description>
-    <priority>CRITICAL</priority>
   </rule>
   <rule key = "VNSNMFN">
     <name>Variable names should not match field names</name>

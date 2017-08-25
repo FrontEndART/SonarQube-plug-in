@@ -201,6 +201,9 @@ public class SourceMeterJavaInitializer extends SourceMeterInitializer {
         String vhTimeout = this.settings.getString("sm.java.vhTimeOut");
         String maxMem = this.settings.getString("sm.java.maxMem");
         String runVul = this.settings.getString("sm.java.runVulnerabilityHunter");
+        String runRTE = this.settings.getString("sm.java.runRTEHunter");
+        String rhMaxState = this.settings.getString("sm.java.RHMaxState");
+        String rhMaxDepth = this.settings.getString("sm.java.RHMaxDepth");
         String hardFilter = this.settings.getString("sm.java.hardFilter");
         String[] binaries = this.settings.getStringArray("sonar.java.binaries");
         String findBugsOptions = this.settings.getString("sm.java.fbOptions");
@@ -282,6 +285,15 @@ public class SourceMeterJavaInitializer extends SourceMeterInitializer {
         }
         if (runVul != null) {
             this.commands.add("-runVLH=" + runVul);
+        }
+        if (runRTE != null) {
+            this.commands.add("-runRTEHunter=" + runRTE);
+        }
+        if (rhMaxState != null) {
+            this.commands.add("-RHMaxState=" + rhMaxState);
+        }
+        if (rhMaxDepth != null) {
+            this.commands.add("-RHMaxDepth=" + rhMaxDepth);
         }
         if (pmdOptions != null) {
             this.commands.add("-pmdOptions=" + pmdOptions);

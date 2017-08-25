@@ -53,7 +53,30 @@ import com.sourcemeter.analyzer.java.profile.SourceMeterJavaRuleRepository;
 /**
  * This class is the entry point for all extensions
  */
-@Properties({
+@Properties({@Property(
+                 key = "sm.java.runRTEHunter",
+                 name = "Run RTEHunter",
+                 description = "If true, then run RTEHunter. This may cause performance issues. License needed to run.",
+                 category = SourceMeterAnalyzerJavaPlugin.JAVA_GENERAL_CATEGORY,
+                 project = true,
+                 type = PropertyType.BOOLEAN
+             ),
+             @Property(
+                 key = "sm.java.RHMaxState",
+                 name = "State number limit of RTEHunter",
+                 description = "Sets the maximum number of states for the RTEHunter module. The default value is 500.",
+                 category = SourceMeterAnalyzerJavaPlugin.JAVA_GENERAL_CATEGORY,
+                 project = true,
+                 type = PropertyType.INTEGER
+             ),
+             @Property(
+                 key = "sm.java.RHMaxDepth",
+                 name = "State tree depth limit of RTEHunter",
+                 description = "Sets the maximum depth limit of states in the RTEHunter module. The default value is 200.",
+                 category = SourceMeterAnalyzerJavaPlugin.JAVA_GENERAL_CATEGORY,
+                 project = true,
+                 type = PropertyType.INTEGER
+             ),
              @Property(
                  key = "sm.java.vhMaxDepth",
                  name = "Max depth for VulnerabilityHunter",
@@ -988,6 +1011,78 @@ public final class SourceMeterAnalyzerJavaPlugin extends SonarPlugin {
                                                .name("Total Comment Density")
                                                .type(PropertyType.INTEGER)
                                                .defaultValue("25")
+                                               .build(),
+                             PropertyDefinition.builder(METHOD_BASELINE_KEY + SourceMeterJavaMetrics.HCPL_KEY)
+                                               .category(METHOD_BASELINE_CATEGORY)
+                                               .subCategory(SourceMeterJavaMetrics.HCPL.getDomain())
+                                               .name("Halstead Calculated Program Length")
+                                               .type(PropertyType.FLOAT)
+                                               .build(),
+                             PropertyDefinition.builder(METHOD_BASELINE_KEY + SourceMeterJavaMetrics.HDIF_KEY)
+                                               .category(METHOD_BASELINE_CATEGORY)
+                                               .subCategory(SourceMeterJavaMetrics.HDIF.getDomain())
+                                               .name("Halstead Difficulty")
+                                               .type(PropertyType.FLOAT)
+                                               .build(),
+                             PropertyDefinition.builder(METHOD_BASELINE_KEY + SourceMeterJavaMetrics.HEFF_KEY)
+                                               .category(METHOD_BASELINE_CATEGORY)
+                                               .subCategory(SourceMeterJavaMetrics.HEFF.getDomain())
+                                               .name("Halstead Effort")
+                                               .type(PropertyType.FLOAT)
+                                               .build(),
+                             PropertyDefinition.builder(METHOD_BASELINE_KEY + SourceMeterJavaMetrics.HNDB_KEY)
+                                               .category(METHOD_BASELINE_CATEGORY)
+                                               .subCategory(SourceMeterJavaMetrics.HNDB.getDomain())
+                                               .name("Halstead Number of Delivered Bugs")
+                                               .type(PropertyType.FLOAT)
+                                               .build(),
+                             PropertyDefinition.builder(METHOD_BASELINE_KEY + SourceMeterJavaMetrics.HPL_KEY)
+                                               .category(METHOD_BASELINE_CATEGORY)
+                                               .subCategory(SourceMeterJavaMetrics.HPL.getDomain())
+                                               .name("Halstead Program Length")
+                                               .type(PropertyType.FLOAT)
+                                               .build(),
+                             PropertyDefinition.builder(METHOD_BASELINE_KEY + SourceMeterJavaMetrics.HPV_KEY)
+                                               .category(METHOD_BASELINE_CATEGORY)
+                                               .subCategory(SourceMeterJavaMetrics.HPV.getDomain())
+                                               .name("Halstead Program Vocabulary")
+                                               .type(PropertyType.FLOAT)
+                                               .build(),
+                             PropertyDefinition.builder(METHOD_BASELINE_KEY + SourceMeterJavaMetrics.HTRP_KEY)
+                                               .category(METHOD_BASELINE_CATEGORY)
+                                               .subCategory(SourceMeterJavaMetrics.HTRP.getDomain())
+                                               .name("Halstead Time Required to Program")
+                                               .type(PropertyType.FLOAT)
+                                               .build(),
+                             PropertyDefinition.builder(METHOD_BASELINE_KEY + SourceMeterJavaMetrics.HVOL_KEY)
+                                               .category(METHOD_BASELINE_CATEGORY)
+                                               .subCategory(SourceMeterJavaMetrics.HVOL.getDomain())
+                                               .name("Halstead Volume")
+                                               .type(PropertyType.FLOAT)
+                                               .build(),
+                             PropertyDefinition.builder(METHOD_BASELINE_KEY + SourceMeterJavaMetrics.MIMS_KEY)
+                                               .category(METHOD_BASELINE_CATEGORY)
+                                               .subCategory(SourceMeterJavaMetrics.MIMS.getDomain())
+                                               .name("Maintainability Index (Microsoft version)")
+                                               .type(PropertyType.FLOAT)
+                                               .build(),
+                             PropertyDefinition.builder(METHOD_BASELINE_KEY + SourceMeterJavaMetrics.MI_KEY)
+                                               .category(METHOD_BASELINE_CATEGORY)
+                                               .subCategory(SourceMeterJavaMetrics.MI.getDomain())
+                                               .name("Maintainability Index (Original version)")
+                                               .type(PropertyType.FLOAT)
+                                               .build(),
+                             PropertyDefinition.builder(METHOD_BASELINE_KEY + SourceMeterJavaMetrics.MISEI_KEY)
+                                               .category(METHOD_BASELINE_CATEGORY)
+                                               .subCategory(SourceMeterJavaMetrics.MISEI.getDomain())
+                                               .name("Maintainability Index (SEI version)")
+                                               .type(PropertyType.FLOAT)
+                                               .build(),
+                             PropertyDefinition.builder(METHOD_BASELINE_KEY + SourceMeterJavaMetrics.MISM_KEY)
+                                               .category(METHOD_BASELINE_CATEGORY)
+                                               .subCategory(SourceMeterJavaMetrics.MISM.getDomain())
+                                               .name("Maintainability Index (SourceMeter version)")
+                                               .type(PropertyType.FLOAT)
                                                .build(),
                              PropertyDefinition.builder(METHOD_BASELINE_KEY + SourceMeterJavaMetrics.McCC_KEY)
                                                .category(METHOD_BASELINE_CATEGORY)

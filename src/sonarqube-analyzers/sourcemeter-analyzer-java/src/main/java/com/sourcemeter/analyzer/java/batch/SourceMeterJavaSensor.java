@@ -125,6 +125,7 @@ public class SourceMeterJavaSensor extends SourceMeterSensor {
     private void saveLicense(Graph graph, SensorContext sensorContext) {
         Map<String, String> headerLicenseInformations = new HashMap<String, String>();
         headerLicenseInformations.put("FaultHunter", "FaultHunter");
+        headerLicenseInformations.put("RTEHunter", "RTEHunter");
         headerLicenseInformations.put("VulnerabilityHunter", "VulnerabilityHunter");
         headerLicenseInformations.put("MetricHunter", "MetricHunter");
         headerLicenseInformations.put("AndroidHunter", "AndroidHunter");

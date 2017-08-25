@@ -30,15 +30,20 @@ Additionally, the plug-in extends the SONARQUBE™ platform GUI with new features 
 
 - And many more...
 
-The plug-in is compatible with the latest LTS (long term support) version 4.5 of the SONARQUBE™ platform, which can be obtained from its [website]. (This version of the plug-in was successfully tested with versions 4.4, and 4.5.6.)
+The plug-in is compatible with the former LTS (long term support) version 4.5 of the SONARQUBE™ platform, which can be obtained from its [website]. (This version of the plug-in was successfully tested with versions 4.4, and 4.5.7.)
+
+**Download links to the compatible versions**
+
+ * [SONARQUBE™ Server 4.5.7](https://sonarsource.bintray.com/Distribution/sonarqube/sonarqube-4.5.7.zip)
+ * [SONARQUBE™ Runner 2.4](http://repo1.maven.org/maven2/org/codehaus/sonar/runner/sonar-runner-dist/2.4/sonar-runner-dist-2.4.zip)
 
 For more information about the plug-in please read the User's Guide.
 
 SONARQUBE™ is a trademark of SonarSource SA, Switzerland.
 
-February 3, 2016
+August 25, 2017
 
-(C) FrontEndART Software Ltd. 2001-2016
+(C) FrontEndART Software Ltd. 2001-2017
 
 
 [FrontEndART]:https://www.frontendart.com/

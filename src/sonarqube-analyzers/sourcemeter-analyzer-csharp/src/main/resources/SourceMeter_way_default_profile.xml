@@ -190,11 +190,6 @@
     </rule>
     <rule>
       <repositoryKey>SourceMeter_csharp</repositoryKey>
-      <key>ALSTNIP</key>
-      <priority>CRITICAL</priority>
-    </rule>
-    <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
       <key>ALTSNBCV</key>
       <priority>CRITICAL</priority>
     </rule>
@@ -405,11 +400,6 @@
     </rule>
     <rule>
       <repositoryKey>SourceMeter_csharp</repositoryKey>
-      <key>DMSCBCD</key>
-      <priority>CRITICAL</priority>
-    </rule>
-    <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
       <key>DNCGET</key>
       <priority>BLOCKER</priority>
     </rule>
@@ -426,11 +416,6 @@
     <rule>
       <repositoryKey>SourceMeter_csharp</repositoryKey>
       <key>DNDIMV</key>
-      <priority>CRITICAL</priority>
-    </rule>
-    <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
-      <key>DNDOMT</key>
       <priority>CRITICAL</priority>
     </rule>
     <rule>
@@ -520,11 +505,6 @@
     </rule>
     <rule>
       <repositoryKey>SourceMeter_csharp</repositoryKey>
-      <key>DNPLALP</key>
-      <priority>CRITICAL</priority>
-    </rule>
-    <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
       <key>DNPTBR</key>
       <priority>MINOR</priority>
     </rule>
@@ -566,11 +546,6 @@
     <rule>
       <repositoryKey>SourceMeter_csharp</repositoryKey>
       <key>DNUTTPPSC</key>
-      <priority>CRITICAL</priority>
-    </rule>
-    <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
-      <key>DOBLS</key>
       <priority>CRITICAL</priority>
     </rule>
     <rule>
@@ -804,11 +779,6 @@
     </rule>
     <rule>
       <repositoryKey>SourceMeter_csharp</repositoryKey>
-      <key>LSBSC</key>
-      <priority>CRITICAL</priority>
-    </rule>
-    <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
       <key>MANSF</key>
       <priority>CRITICAL</priority>
     </rule>
@@ -969,11 +939,6 @@
     </rule>
     <rule>
       <repositoryKey>SourceMeter_csharp</repositoryKey>
-      <key>PCATFM</key>
-      <priority>BLOCKER</priority>
-    </rule>
-    <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
       <key>PDMFOF</key>
       <priority>MINOR</priority>
     </rule>
@@ -1115,11 +1080,6 @@
     <rule>
       <repositoryKey>SourceMeter_csharp</repositoryKey>
       <key>RSCWSBCC</key>
-      <priority>CRITICAL</priority>
-    </rule>
-    <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
-      <key>RSQFSV</key>
       <priority>CRITICAL</priority>
     </rule>
     <rule>
@@ -1411,11 +1371,6 @@
       <repositoryKey>SourceMeter_csharp</repositoryKey>
       <key>USHTENR</key>
       <priority>MAJOR</priority>
-    </rule>
-    <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
-      <key>VAOPM</key>
-      <priority>CRITICAL</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_csharp</repositoryKey>

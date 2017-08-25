@@ -5,7 +5,7 @@
   <groupId>com.sourcemeter</groupId>
   <artifactId>sonar-sourcemeter-analyzer-java-plugin</artifactId>
   <packaging>sonar-plugin</packaging>
-  <version>8.0</version>
+  <version>8.2</version>
 
   <name>SourceMeter Java analyzer plugin</name>
   <description>SourceMeter Java analyzer plugin</description>
@@ -58,13 +58,13 @@
     <dependency>
       <groupId>com.sourcemeter</groupId>
       <artifactId>sonar-sourcemeter-core-plugin</artifactId>
-      <version>8.0</version>
+      <version>8.2</version>
     </dependency>
 
     <dependency>
       <groupId>com.sourcemeter</groupId>
       <artifactId>sonar-sourcemeter-analyzer-base</artifactId>
-      <version>8.0</version>
+      <version>8.2</version>
     </dependency>
   </dependencies>
 

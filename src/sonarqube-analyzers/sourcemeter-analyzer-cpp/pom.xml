@@ -4,7 +4,7 @@
 
   <groupId>com.sourcemeter</groupId>
   <artifactId>sonar-sourcemeter-analyzer-cpp-plugin</artifactId>
-  <version>8.0</version>
+  <version>8.2</version>
   <packaging>sonar-plugin</packaging>
 
   <name>SourceMeter C/C++ analyzer plugin</name>
@@ -57,13 +57,13 @@
     <dependency>
       <groupId>com.sourcemeter</groupId>
       <artifactId>sonar-sourcemeter-core-plugin</artifactId>
-      <version>8.0</version>
+      <version>8.2</version>
     </dependency>
 
     <dependency>
       <groupId>com.sourcemeter</groupId>
       <artifactId>sonar-sourcemeter-analyzer-base</artifactId>
-      <version>8.0</version>
+      <version>8.2</version>
     </dependency>
   </dependencies>
 

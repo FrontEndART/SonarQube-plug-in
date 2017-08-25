@@ -4,7 +4,7 @@
 
   <groupId>com.sourcemeter</groupId>
   <artifactId>sonar-sourcemeter-core-plugin</artifactId>
-  <version>8.0</version>
+  <version>8.2</version>
   <packaging>sonar-plugin</packaging>
 
   <name>SourceMeter core plugin</name>
