@@ -1,5 +1,5 @@
 ANALYZERS = sourcemeter-analyzer-cpp sourcemeter-analyzer-csharp sourcemeter-analyzer-java sourcemeter-analyzer-python sourcemeter-analyzer-rpg
-PACKAGENAME = sourcemeter-sonarqube-plugins-package-8.2
+PACKAGENAME = sourcemeter-8.2-plugins-for-sonarqube-6.7-v1.0.0
 
 all: sonarqube-plugin-package
 
@@ -13,13 +13,18 @@ sourcemeter-analyzer-base: install-dependencies sonarqube-core-plugin
 sonarqube-core-plugin:
 	mvn -f src/sonarqube-core-plugin/pom.xml clean install
 
-sonarqube-gui-plugin: install-dependencies sourcemeter-analyzer-base
+sonarqube-gui-plugin: install-dependencies sourcemeter-analyzer-base usersguide
+	@cp doc/UG.html src/sonarqube-gui-plugin/src/main/resources/static/help/usersguide.html
 	mvn -f src/sonarqube-gui-plugin/pom.xml clean install
 
 $(ANALYZERS): install-dependencies sonarqube-core-plugin sourcemeter-analyzer-base
 	mvn -f src/sonarqube-analyzers/$@/pom.xml clean install
 
-sonarqube-plugin-package: sonarqube-core-plugin sonarqube-gui-plugin $(ANALYZERS)
+usersguide:
+	@cd doc/usersguide && python3 generatedoc.py -css style/SourceMeter.css -html
+	@cp doc/usersguide/results/UG.html doc/UG.html
+
+sonarqube-plugin-package: usersguide sonarqube-core-plugin sonarqube-gui-plugin $(ANALYZERS)
 	mkdir $(PACKAGENAME)
 	mkdir $(PACKAGENAME)/doc
 	mkdir $(PACKAGENAME)/plugins
