@@ -1,0 +1,101 @@
+.sm-icon-clone-class {
+    background: url('/static/SourceMeterGUI/graphics/CloneClass.mini.png');
+}
+.sm-icon-clone-instance {
+    background: url('/static/SourceMeterGUI/graphics/CloneInstance.mini.png');
+}
+.sm-icon-cpp-namespace {
+    background: url('/static/SourceMeterAnalyzercpp/namespace.mini.png');
+}
+.sm-icon-cpp-class {
+    background: url('/static/SourceMeterAnalyzercpp/class.mini.png');
+}
+.sm-icon-cpp-enum {
+    background: url('/static/SourceMeterAnalyzercpp/enum.mini.png');
+}
+.sm-icon-cpp-function {
+    background: url('/static/SourceMeterAnalyzercpp/function.mini.png');
+}
+.sm-icon-cpp-interface {
+    background: url('/static/SourceMeterAnalyzercpp/interface.mini.png');
+}
+.sm-icon-cpp-lambda {
+    background: url('/static/SourceMeterAnalyzercpp/lambda.mini.png');
+}
+.sm-icon-cpp-method {
+    background: url('/static/SourceMeterAnalyzercpp/method.mini.png');
+}
+.sm-icon-cpp-struct {
+    background: url('/static/SourceMeterAnalyzercpp/structure.mini.png');
+}
+.sm-icon-cpp-union {
+    background: url('/static/SourceMeterAnalyzercpp/union.mini.png');
+}
+.sm-icon-java-package {
+    background: url('/static/SourceMeterAnalyzerjava/package.mini.png');
+}
+.sm-icon-java-annotation {
+    background: url('/static/SourceMeterAnalyzerjava/annotation.mini.png');
+}
+.sm-icon-java-class {
+    background: url('/static/SourceMeterAnalyzerjava/class.mini.png');
+}
+.sm-icon-java-enum {
+    background: url('/static/SourceMeterAnalyzerjava/enum.mini.png');
+}
+.sm-icon-java-interface {
+    background: url('/static/SourceMeterAnalyzerjava/interface.mini.png');
+}
+.sm-icon-java-method {
+    background: url('/static/SourceMeterAnalyzerjava/method.mini.png');
+}
+.sm-icon-rpg-system {
+  background: url('/static/SourceMeterAnalyzerrpg/system.mini.png');
+}
+.sm-icon-rpg-procedure {
+  background: url('/static/SourceMeterAnalyzerrpg/procedure.mini.png');
+}
+.sm-icon-rpg-program {
+  background: url('/static/SourceMeterAnalyzerrpg/program.mini.png');
+}
+.sm-icon-rpg-subroutine {
+  background: url('/static/SourceMeterAnalyzerrpg/subroutine.mini.png');
+}
+.sm-icon-python-class {
+  background: url('/static/SourceMeterAnalyzerpython/class.mini.png');
+}
+.sm-icon-python-function {
+  background: url('/static/SourceMeterAnalyzerpython/function.mini.png');
+}
+.sm-icon-python-lambda {
+  background: url('/static/SourceMeterAnalyzerpython/lambda.mini.png');
+}
+.sm-icon-python-method {
+  background: url('/static/SourceMeterAnalyzerpython/method.mini.png');
+}
+.sm-icon-python-package {
+  background: url('/static/SourceMeterAnalyzerpython/package.mini.png');
+}
+.sm-icon-csharp-namespace {
+    background: url('/static/SourceMeterAnalyzercsharp/namespace.mini.png');
+}
+.sm-icon-csharp-class {
+    background: url('/static/SourceMeterAnalyzercsharp/class.mini.png');
+}
+.sm-icon-csharp-method {
+    background: url('/static/SourceMeterAnalyzercsharp/method.mini.png');
+}
+.sm-icon-square{
+  height: 24px;
+  width: 24px;
+  background-size: 24px 24px;
+  background-repeat: no-repeat;
+  display: inline-block;
+}
+.sm-icon-rect{
+  height: 24px;
+  width: 36px;
+  background-size: 36px 24px;
+  background-repeat: no-repeat;
+  display: inline-block;
+}

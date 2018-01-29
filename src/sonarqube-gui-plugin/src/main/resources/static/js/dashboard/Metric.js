@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014-2015, FrontEndART Software Ltd.
+ * Copyright (c) 2014-2017, FrontEndART Software Ltd.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -28,21 +28,15 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.sourcemeter.gui;
+SM.Metric = function(mTitle, langID, scope) {
+  this.title = mTitle;
+  this.direction = -1; // -1: lesser=better && larger=worse; 1:lesser=worse && larger=better;
+  this.baseline = undefined;
+  this.langID = langID || undefined;
+  this.scope = scope || undefined;
+  this.helpText = "loading description...";
 
-import com.sourcemeter.gui.ui.page.SourceMeterPages;
-import org.sonar.api.Plugin;
-
-/**
- * This class is the entry point for all extensions
- */
-public class SourceMeterGUIPlugin implements Plugin {
-
-    @Override
-    public void define(Context context) {
-        context.addExtension(
-                // UI - Pages
-                SourceMeterPages.class
-        );
-    }
-}
+  this.getUniqueKey = function() {
+    return this.langID + "." + this.scope.toLowerCase() + "." + this.title;
+  };
+};

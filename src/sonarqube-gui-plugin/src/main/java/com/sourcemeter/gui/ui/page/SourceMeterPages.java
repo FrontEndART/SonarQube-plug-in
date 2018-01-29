@@ -28,21 +28,25 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.sourcemeter.gui;
+package com.sourcemeter.gui.ui.page;
 
-import com.sourcemeter.gui.ui.page.SourceMeterPages;
-import org.sonar.api.Plugin;
+import org.sonar.api.web.page.Context;
+import org.sonar.api.web.page.Page;
+import org.sonar.api.web.page.Page.Qualifier;
+import org.sonar.api.web.page.Page.Scope;
+import org.sonar.api.web.page.PageDefinition;
 
-/**
- * This class is the entry point for all extensions
- */
-public class SourceMeterGUIPlugin implements Plugin {
+public class SourceMeterPages implements PageDefinition {
 
     @Override
     public void define(Context context) {
-        context.addExtension(
-                // UI - Pages
-                SourceMeterPages.class
-        );
+        context.addPage(Page.builder("SourceMeterGUI/dashboard")
+                            .setName("SourceMeter Dashboard")
+                            .setScope(Scope.COMPONENT)
+                            .setComponentQualifiers(Qualifier.PROJECT)
+                            .build());
+        context.addPage(Page.builder("SourceMeterGUI/help")
+                            .setName("SourceMeter Help")
+                            .build());
     }
 }

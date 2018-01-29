@@ -1,0 +1,153 @@
+#sm-page-content {
+  background: #f5f5f5;
+}
+
+div.sm-widget {
+  background-color: #fff;
+  margin: 5px;
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #e2e2e2;
+  box-shadow: 0px 0px 5px 1px #c4c4c4;
+}
+
+div.sm-widget table {
+  font-size: 14px;
+}
+
+div.sm-widget .sm-widget-title {
+  font-size: 17px;
+  font-weight: bold;
+  text-align: center;
+  padding: 5px;
+  padding-bottom: 15px;
+}
+
+div.sm-widget .sm-widget-control-num-of-rows {
+  padding: 5px;
+}
+
+div.sm-widget table .sm-widget-row-name {
+  padding: 5px;
+  text-align: left;
+}
+
+div.sm-widget table .sm-widget-row-instance,
+div.sm-widget table sm-widget-row-class {
+  padding: 5px;
+  text-align: right;
+}
+
+div.sm-widget .sm-widget-metric-title {
+
+}
+
+div.sm-widget table th {
+  padding: 5px;
+  font-weight: bold;
+  text-align: center;
+  min-width: 30px;
+}
+
+div.sm-widget table {
+  text-align: center;
+}
+
+div.sm-widget .sm-widget-control {
+  margin: 5px;
+}
+
+div.sm-widget .sm-widget-control {
+  margin: 10px;
+  height: 24px;
+  display: flex;
+}
+div.sm-widget .sm-widget-control > div {
+  height: 24px;
+  margin-right: 10px;
+}
+
+div.sm-widget .sm-widget-control-arrows {
+  width: 75px;
+  margin-left: 10px;
+}
+
+div.sm-widget #control-right {
+    float: right;
+}
+div.sm-widget #control-left {
+    float: left;
+}
+
+div.sm-widget .control-filter-input {
+    width: 200px;
+}
+
+.sm-widget table tr:nth-child(2n) {
+    background-color: #f5f5f5;
+}
+
+/*row coloring for clone table*/
+.sm-widget table td.sm-widget-row-odd {
+    background-color: #f5f5f5;
+}
+.sm-widget table td.sm-widget-row-even {
+    background-color: #fff
+}
+
+div.sm-widget .sm-widget-title {
+  background-color: #dfe5ff
+}
+
+div.sm-widget table th#Name {
+    min-width: 300px;
+}
+
+div.sm-widget table th{
+    white-space: nowrap;
+}
+
+div.sm-widget table th.sm-widget-padding-row,
+div.sm-widget table td.sm-widget-padding-row {
+    width: 99%;
+}
+
+div.sm-widget.sm-widget-clone table th {
+  min-width: 30px;
+}
+
+div.sm-widget table tr th.sm-widget-metric-title {
+    white-space: nowrap;
+}
+
+div.sm-widget span.sm-widget-threshold-red {
+    color: #D4333F;
+}
+div.sm-widget span.sm-widget-threshold-green {
+    color: #00AA00;
+}
+div.sm-widget div.sm-widget-table-div {
+  overflow-x: auto;
+}
+
+div.sm-widget table th:not(#noOrdering):hover {
+  cursor: pointer;
+}
+.ui-tooltip{
+  color: #000000 !important;
+  background-color: #ffffff !important;
+  opacity: 1;
+}
+
+div.sm-widget .sm-widget-control-paging-state {
+  padding: 4px;
+  padding-right: 4px;
+  padding-left: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  min-width: 80px;
+}
+
+div.sm-widget .sm-widget-control-num-of-rows-wrapper {
+  min-width: 200px;
+}
