@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014-2016, FrontEndART Software Ltd.
+ * Copyright (c) 2014-2017, FrontEndART Software Ltd.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -27,21 +27,33 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+
 package com.sourcemeter.analyzer.base.visitor;
 
-import graphlib.Attribute;
-import graphlib.Node;
-import graphsupportlib.Metric.Position;
-
+import java.lang.reflect.Field;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.ListIterator;
 
-import org.sonar.api.batch.SensorContext;
-import org.sonar.api.component.ResourcePerspectives;
-import org.sonar.api.resources.Project;
-import org.sonar.api.resources.Qualifiers;
-import org.sonar.api.resources.Resource;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.sonar.api.batch.fs.FileSystem;
+import org.sonar.api.batch.fs.InputComponent;
+import org.sonar.api.batch.fs.InputFile;
+import org.sonar.api.batch.sensor.SensorContext;
+import org.sonar.api.config.Settings;
 
+import graphlib.Attribute;
+import graphlib.AttributeFloat;
+import graphlib.AttributeInt;
+import graphlib.AttributeString;
+import graphlib.Edge;
+import graphlib.Node;
+
+import com.sourcemeter.analyzer.base.batch.SourceMeterInitializer;
 import com.sourcemeter.analyzer.base.helper.VisitorHelper;
+import com.sourcemeter.analyzer.base.jsontree.Position;
+import com.sourcemeter.analyzer.base.jsontree.interfaces.MetricsInt;
 
 /**
  * Base class for visitors. Stores data that is needed by almost all visitor
@@ -49,28 +61,48 @@ import com.sourcemeter.analyzer.base.helper.VisitorHelper;
  */
 public abstract class BaseVisitor implements graphlib.Visitor {
 
-    public static final int DEFUALT_PRECISION = 3;
+    protected static final Logger LOG = LoggerFactory.getLogger(BaseVisitor.class);
 
-    protected final ResourcePerspectives perspectives;
-    protected final VisitorHelper visitorHelper;
+    private final VisitorHelper visitorHelper;
 
     protected SensorContext sensorContext;
-    protected Project project;
-
     protected boolean isDebugMode;
+    protected boolean uploadMethods;
 
-    public BaseVisitor(ResourcePerspectives p, VisitorHelper visitorHelper) {
-        this.perspectives = p;
+    public BaseVisitor(VisitorHelper visitorHelper, Settings settings) {
+        this.visitorHelper = visitorHelper;
+        this.isDebugMode = (System.getenv("COLUMBUS_SONAR_DEBUG") != null);
+
+        String pluginLanguageKey = SourceMeterInitializer.getPluginLanguage().getKey();
+
+        if ("py".equals(pluginLanguageKey)) {
+            pluginLanguageKey = "python";
+        } else if ("cs".equals(pluginLanguageKey)) {
+            pluginLanguageKey = "csharp";
+        }
+
+        this.uploadMethods = settings.getBoolean("sm." + pluginLanguageKey + ".uploadMethods");
+    }
+
+    public BaseVisitor(VisitorHelper visitorHelper) {
         this.visitorHelper = visitorHelper;
         this.isDebugMode = (System.getenv("COLUMBUS_SONAR_DEBUG") != null);
     }
 
     /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void edgeVisitorFunc(Edge e) {
+        // Do nothing
+    }
+
+    /**
      * Print progress bar and estimation time to the Console.
      *
-     * @param currentNumOfNodes
-     * @param allNumOfNodes
-     * @param currentTime
+     * @param currentNumOfNodes Current number of the nodes.
+     * @param allNumOfNodes Number of all nodes.
+     * @param currentTime Current time.
      */
     protected void printProgress(double currentNumOfNodes, double allNumOfNodes, long currentTime) {
         final int width = 30; // progress bar width in chars
@@ -98,50 +130,94 @@ public abstract class BaseVisitor implements graphlib.Visitor {
         }
     }
 
-
     /**
      * Upload metrics and warnings to Sonar database by Sonar API calls.
      *
-     * @param node
-     * @param resource
-     * @param nodePosition
+     * @param node Node of th result graph.
+     * @param inputComponent Component of the input.
      */
-    protected void uploadMetricsAndWarnings(Node node, Resource resource,
-            Position nodePosition, boolean uploadEmptyRulesetRules) {
+    protected void uploadMetrics(Node node, InputComponent inputComponent) {
         List<Attribute> attributes = node.getAttributes();
         for (Attribute attribute : attributes) {
             String context = attribute.getContext();
-            // Upload a Violation
-            if ("warning".equals(context)) {
-                visitorHelper.uploadWarnings(attribute, node, nodePosition);
-
-            } // Upload a metric
-            else if (resource != null && ("metric".equals(context) || "metricgroup".equals(context))) {
-                visitorHelper.uploadMetrics(attribute, resource);
+            if (inputComponent != null && ("metric".equals(context) || "metricgroup".equals(context))) {
+                visitorHelper.uploadMetrics(attribute, inputComponent);
             }
-        }
-
-        if (resource != null && !Qualifiers.isProject(resource, true)
-                && uploadEmptyRulesetRules) {
-            visitorHelper.uploadEmptyRulesetMetricsByZero(resource);
         }
     }
 
     /**
      * Upload warnings only to Sonar database by Sonar API calls.
      *
-     * @param node
-     * @param resource
-     * @param nodePosition
-     * @param countThresholdViolations
+     * @param node Node of the result graph.
      */
-    protected void uploadWarnings(Node node, Position nodePosition) {
+    protected void uploadWarnings(Node node) {
         List<Attribute> attributes = node.getAttributes();
         for (Attribute attribute : attributes) {
             String context = attribute.getContext();
             if ("warning".equals(context)) {
-                visitorHelper.uploadWarnings(attribute, node, nodePosition);
+                visitorHelper.uploadWarnings(attribute);
             }
         }
     }
+
+    /**
+     * Reads the metrics from the attribute and sets their values.
+     *
+     * @param attribute Contains metrics.
+     * @param metrics Metrics to be set.
+     */
+    protected void readMetrics(Attribute attribute, MetricsInt metrics) {
+        for (Field field : metrics.getClass().getFields()) {
+            if (!field.getName().equals(attribute.getName())) {
+                continue;
+            }
+            if (attribute.getType().equals(Attribute.aType.atInt)) {
+                int value = ((AttributeInt)attribute).getValue();
+                try {
+                    field.setInt(metrics, value);
+                } catch (IllegalAccessException e) {
+                    LOG.error("Error during reading metrics from graph!");
+                }
+            } else if (attribute.getType().equals(Attribute.aType.atFloat)) {
+                float value = ((AttributeFloat)attribute).getValue();
+                if (Double.isNaN(value)) {
+                    value = 0;
+                }
+                try {
+                    field.setFloat(metrics, value);
+                } catch (IllegalAccessException e) {
+                    LOG.error("Error during reading metrics from graph!");
+                }
+            }
+        }
+    }
+
+    /**
+     * Reads the positions from the attribute and sets their values.
+     *
+     * @param positionAttribute Contains positions.
+     * @param positionsList List of positions to be set.
+     */
+    protected void readPosition(Attribute positionAttribute, List positionsList) {
+        String path = "";
+        int line = 0;
+        List positionsListTemp = positionAttribute.getAttributes();
+        ListIterator posIter = positionsListTemp.listIterator();
+        while (posIter.hasNext()) {
+            Attribute tempPos = (Attribute) posIter.next();
+            if ("Path".equals(tempPos.getName())) {
+                path = ((AttributeString)tempPos).getValue();
+                FileSystem fs = visitorHelper.getFileSystem();
+                InputFile file = fs.inputFile(fs.predicates().hasPath(path));
+                if (file != null) {
+                    path = file.relativePath();
+                }
+            } else if ("Line".equals(tempPos.getName())) {
+                line = ((AttributeInt)tempPos).getValue();
+            }
+        }
+        positionsList.add(new Position(path, line));
+    }
+
 }

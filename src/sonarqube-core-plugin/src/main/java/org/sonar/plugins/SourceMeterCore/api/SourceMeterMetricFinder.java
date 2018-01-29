@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014-2015, FrontEndART Software Ltd.
+ * Copyright (c) 2014-2017, FrontEndART Software Ltd.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -27,31 +27,33 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+
 package org.sonar.plugins.SourceMeterCore.api;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
-import org.sonar.api.measures.Metric;
-import org.sonar.api.measures.MetricFinder;
+import org.sonar.api.batch.measure.Metric;
+import org.sonar.api.batch.measure.MetricFinder;
 
 /**
  * Metric finder class for get SourceMeter Metric objects
  */
 public abstract class SourceMeterMetricFinder implements MetricFinder {
 
-    protected final Map<String, Metric> metricMap = new TreeMap<String, Metric>();
+    protected final Map<String, Metric<Serializable>> metricMap = new TreeMap<String, Metric<Serializable>>();
 
     /**
      * Default Constructor
      */
     public SourceMeterMetricFinder() {
         SourceMeterCoreMetrics cm = new SourceMeterCoreMetrics();
-        List<Metric> metricList = cm.getMetrics();
-        for (Metric metric : metricList) {
+        List<org.sonar.api.measures.Metric> metricList = cm.getMetrics();
+        for (org.sonar.api.measures.Metric metric : metricList) {
             metricMap.put(metric.getKey(), metric);
         }
     }
@@ -61,24 +63,7 @@ public abstract class SourceMeterMetricFinder implements MetricFinder {
      * 
      * @return
      */
-    public abstract List<Metric> findLanguageSpecificRulesetMetrics();
-
-    /**
-     * Find a SourceMeter Metric by ID
-     * 
-     * @param id
-     * @return Metric
-     */
-    @Override
-    public Metric findById(int id) {
-        Collection<Metric> metrics = metricMap.values();
-        for (Metric metric : metrics) {
-            if (metric.getId() == id) {
-                return metric;
-            }
-        }
-        return null;
-    }
+    public abstract List<org.sonar.api.measures.Metric> findLanguageSpecificRulesetMetrics();
 
     /**
      * Find a SourceMeter Metric by key (example: "SM:LOC")
@@ -87,21 +72,21 @@ public abstract class SourceMeterMetricFinder implements MetricFinder {
      * @return Metric
      */
     @Override
-    public Metric findByKey(String key) {
+    public Metric<Serializable> findByKey(String key) {
         return metricMap.get(key);
     }
 
     /**
      * Find a list of SourceMeter metrics by keys
      * 
-     * @param List of metric keys
+     * @param metricKeys of metric keys
      * @return Collection of Metrics
      */
     @Override
-    public Collection<Metric> findAll(List<String> metricKeys) {
-        List<Metric> retValue = new ArrayList<Metric>();
+    public Collection<Metric<Serializable>> findAll(List<String> metricKeys) {
+        List<Metric<Serializable>> retValue = new ArrayList<Metric<Serializable>>();
         for (String key : metricKeys) {
-            Metric tmp = findByKey(key);
+            Metric<Serializable> tmp = findByKey(key);
             if (tmp != null) {
                 retValue.add(tmp);
             }
@@ -115,7 +100,7 @@ public abstract class SourceMeterMetricFinder implements MetricFinder {
      * @return Collection of Metrics
      */
     @Override
-    public Collection<Metric> findAll() {
+    public Collection<Metric<Serializable>> findAll() {
         return metricMap.values();
     }
 }

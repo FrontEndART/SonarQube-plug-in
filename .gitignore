@@ -6,3 +6,6 @@ src/sonarqube-analyzers/sourcemeter-analyzer-python/target/
 src/sonarqube-analyzers/sourcemeter-analyzer-rpg/target/
 src/sonarqube-core-plugin/target/
 src/sonarqube-gui-plugin/target/
+.classpath
+.project
+.settings

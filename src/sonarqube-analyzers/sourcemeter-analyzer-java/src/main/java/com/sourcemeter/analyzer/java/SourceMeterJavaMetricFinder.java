@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014-2015, FrontEndART Software Ltd.
+ * Copyright (c) 2014-2017, FrontEndART Software Ltd.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -27,9 +27,10 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+
 package com.sourcemeter.analyzer.java;
 
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import org.sonar.api.measures.Metric;
@@ -51,36 +52,11 @@ public class SourceMeterJavaMetricFinder extends SourceMeterMetricFinder {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public List<Metric> findLanguageSpecificRulesetMetrics() {
-        return Arrays.asList(
-                SourceMeterJavaMetrics.ISSUEGROUP_ANDROID,
-                SourceMeterJavaMetrics.ISSUEGROUP_BAD_PRACTICE,
-                SourceMeterJavaMetrics.ISSUEGROUP_BRACE,
-                SourceMeterJavaMetrics.ISSUEGROUP_CLONE_IMPLEMENTATION,
-                SourceMeterJavaMetrics.ISSUEGROUP_CODE_SIZE,
-                SourceMeterJavaMetrics.ISSUEGROUP_COMMENT,
-                SourceMeterJavaMetrics.ISSUEGROUP_CONTROVERSIAL,
-                SourceMeterJavaMetrics.ISSUEGROUP_CORRECTNESS,
-                SourceMeterJavaMetrics.ISSUEGROUP_COUPLING,
-                SourceMeterJavaMetrics.ISSUEGROUP_DODGY_CODE,
-                SourceMeterJavaMetrics.ISSUEGROUP_EMPTY_CODE,
-                SourceMeterJavaMetrics.ISSUEGROUP_EXPERIMENTAL,
-                SourceMeterJavaMetrics.ISSUEGROUP_FINALIZER,
-                SourceMeterJavaMetrics.ISSUEGROUP_IMPORT_STATEMENT,
-                SourceMeterJavaMetrics.ISSUEGROUP_INTERNATIONALIZATION,
-                SourceMeterJavaMetrics.ISSUEGROUP_J2EE,
-                SourceMeterJavaMetrics.ISSUEGROUP_JAKARTA_COMMONS_LOGGING,
-                SourceMeterJavaMetrics.ISSUEGROUP_JAVA_LOGGING,
-                SourceMeterJavaMetrics.ISSUEGROUP_JAVABEAN,
-                SourceMeterJavaMetrics.ISSUEGROUP_JUNIT,
-                SourceMeterJavaMetrics.ISSUEGROUP_MIGRATION,
-                SourceMeterJavaMetrics.ISSUEGROUP_MULTITHREADED_CORRECTNESS,
-                SourceMeterJavaMetrics.ISSUEGROUP_OPTIMIZATION,
-                SourceMeterJavaMetrics.ISSUEGROUP_SECURITY_CODE_GUIDELINE,
-                SourceMeterJavaMetrics.ISSUEGROUP_STRICT_EXCEPTION,
-                SourceMeterJavaMetrics.ISSUEGROUP_STRING_AND_STRINGBUFFER,
-                SourceMeterJavaMetrics.ISSUEGROUP_TYPE_RESOLUTION,
-                SourceMeterJavaMetrics.ISSUEGROUP_VULNERABILITY);
+        return Collections.emptyList();
     }
 }

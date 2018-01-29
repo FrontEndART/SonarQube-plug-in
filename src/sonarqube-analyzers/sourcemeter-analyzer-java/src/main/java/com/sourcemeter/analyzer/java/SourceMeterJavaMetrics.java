@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014-2015, FrontEndART Software Ltd.
+ * Copyright (c) 2014-2017, FrontEndART Software Ltd.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -27,6 +27,7 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+
 package com.sourcemeter.analyzer.java;
 
 import java.util.Arrays;
@@ -35,26 +36,12 @@ import java.util.List;
 import org.sonar.api.measures.Metric;
 import org.sonar.api.measures.Metric.Builder;
 import org.sonar.api.measures.Metric.ValueType;
-import org.sonar.api.measures.SumChildValuesFormula;
 import org.sonar.plugins.SourceMeterCore.api.SourceMeterCoreMetrics;
 
 /**
- * Class containing SourceMeter metrics definitions
+ * Class containing SourceMeter Metrics definitions
  */
 public final class SourceMeterJavaMetrics extends SourceMeterCoreMetrics {
-
-    /**
-     * Stacktrace is stored in JSON in the given format: "extrainfos" :
-     * "resource" : [resource_key], "trace" : [{ "line" : [line], "sourcelink" :
-     * [{ "resource" : [resource_key], "line" : [line] }, ... { "resource" :
-     * [resource_key], "line" : [line] }], "issue-key" : [issue-key] }, ... {
-     * ... }] }
-     */
-    public static final String TRACE_KEY = "SM:stacktrace";
-    public static final Metric TRACE = new Builder(TRACE_KEY, "Stacktrace",
-            ValueType.DATA)
-            .setHidden(true)
-            .create();
 
     /**
      * SourceMeter tools' license informations are stored in a JSON array in the
@@ -68,107 +55,42 @@ public final class SourceMeterJavaMetrics extends SourceMeterCoreMetrics {
             .setHidden(true)
             .create();
 
-    /* Rulesets metrics */
-    public static final String ISSUEGROUP_ANDROID_KEY = "Android Rules";
-    public static final Metric ISSUEGROUP_ANDROID = new Builder(
-        ISSUEGROUP_ANDROID_KEY, "Android", ValueType.INT)
-        .setDomain(COLUMBUS_DOMAIN_ISSUEGROUP)
-        .setFormula(new SumChildValuesFormula(false))
-        .create();
+    public static final String SM_JAVA_LOGICAL_LEVEL1_KEY = "SM_JAVA_LOGICAL_LEVEL1";
+    public static final Metric SM_JAVA_LOGICAL_LEVEL1 = new Builder(SM_JAVA_LOGICAL_LEVEL1_KEY, "SourceMeter level1 Logical Tree for Java language", ValueType.DATA)
+            .setDomain(COLUMBUS_DOMAIN)
+            .setDescription("Stores SM Logical Tree for Java in JSON format")
+            .setHidden(true)
+            .create();
 
-    public static final String ISSUEGROUP_BAD_PRACTICE_KEY = "Bad Practice Rules";
-    public static final Metric ISSUEGROUP_BAD_PRACTICE = new Builder(
-        ISSUEGROUP_BAD_PRACTICE_KEY, "Bad Practice", ValueType.INT)
-        .setDomain(COLUMBUS_DOMAIN_ISSUEGROUP)
-        .setFormula(new SumChildValuesFormula(false))
-        .create();
+    public static final String SM_JAVA_LOGICAL_LEVEL2_KEY = "SM_JAVA_LOGICAL_LEVEL2";
+    public static final Metric SM_JAVA_LOGICAL_LEVEL2 = new Builder(SM_JAVA_LOGICAL_LEVEL2_KEY, "SourceMeter level2 Logical Tree for Java language", ValueType.DATA)
+            .setDomain(COLUMBUS_DOMAIN)
+            .setDescription("Stores SM Logical Tree for Java in JSON format")
+            .setHidden(true)
+            .create();
 
-    public static final String ISSUEGROUP_CODE_SIZE_KEY = "Code Size Rules";
-    public static final Metric ISSUEGROUP_CODE_SIZE = new Builder(
-        ISSUEGROUP_CODE_SIZE_KEY, "Code Size", ValueType.INT)
-        .setDomain(COLUMBUS_DOMAIN_ISSUEGROUP)
-        .setFormula(new SumChildValuesFormula(false))
-        .create();
+    public static final String SM_JAVA_LOGICAL_LEVEL3_KEY = "SM_JAVA_LOGICAL_LEVEL3";
+    public static final Metric SM_JAVA_LOGICAL_LEVEL3 = new Builder(SM_JAVA_LOGICAL_LEVEL3_KEY, "SourceMeter level3 Logical Tree for Java language", ValueType.DATA)
+            .setDomain(COLUMBUS_DOMAIN)
+            .setDescription("Stores SM Logical Tree for Java in JSON format")
+            .setHidden(true)
+            .create();
 
-    public static final String ISSUEGROUP_COMMENT_KEY = "Comment Rules";
-    public static final Metric ISSUEGROUP_COMMENT = new Builder(
-        ISSUEGROUP_COMMENT_KEY, "Comment", ValueType.INT)
-        .setDomain(COLUMBUS_DOMAIN_ISSUEGROUP)
-        .setFormula(new SumChildValuesFormula(false))
-        .create();
+    public static final String SM_JAVA_CLONE_TREE_KEY = "SM_JAVA_CLONE_TREE";
+    public static final Metric SM_JAVA_CLONE_TREE = new Builder(SM_JAVA_CLONE_TREE_KEY, "SourceMeter Clone Tree for Java language", ValueType.DATA)
+            .setDomain(COLUMBUS_DOMAIN)
+            .setDescription("Stores SM Clone Tree for Java in JSON format")
+            .setHidden(true)
+            .create();
 
-    public static final String ISSUEGROUP_CORRECTNESS_KEY = "Correctness Rules";
-    public static final Metric ISSUEGROUP_CORRECTNESS = new Builder(
-        ISSUEGROUP_CORRECTNESS_KEY, "Correctness", ValueType.INT)
-        .setDomain(COLUMBUS_DOMAIN_ISSUEGROUP)
-        .setFormula(new SumChildValuesFormula(false))
-        .create();
-
-    public static final String ISSUEGROUP_COUPLING_KEY = "Coupling Rules";
-    public static final Metric ISSUEGROUP_COUPLING = new Builder(
-        ISSUEGROUP_COUPLING_KEY, "Coupling", ValueType.INT)
-        .setDomain(COLUMBUS_DOMAIN_ISSUEGROUP)
-        .setFormula(new SumChildValuesFormula(false))
-        .create();
-
-    public static final String ISSUEGROUP_DODGY_CODE_KEY = "Dodgy Code Rules";
-    public static final Metric ISSUEGROUP_DODGY_CODE = new Builder(
-        ISSUEGROUP_DODGY_CODE_KEY, "Dodgy Code", ValueType.INT)
-        .setDomain(COLUMBUS_DOMAIN_ISSUEGROUP)
-        .setFormula(new SumChildValuesFormula(false))
-        .create();
-
-    public static final String ISSUEGROUP_EXPERIMENTAL_KEY = "Experimental Rules";
-    public static final Metric ISSUEGROUP_EXPERIMENTAL = new Builder(
-        ISSUEGROUP_EXPERIMENTAL_KEY, "Experimental", ValueType.INT)
-        .setDomain(COLUMBUS_DOMAIN_ISSUEGROUP)
-        .setFormula(new SumChildValuesFormula(false))
-        .create();
-
-    public static final String ISSUEGROUP_INTERNATIONALIZATION_KEY = "Internationalization Rules";
-    public static final Metric ISSUEGROUP_INTERNATIONALIZATION = new Builder(
-        ISSUEGROUP_INTERNATIONALIZATION_KEY, "Internationalization", ValueType.INT)
-        .setDomain(COLUMBUS_DOMAIN_ISSUEGROUP)
-        .setFormula(new SumChildValuesFormula(false))
-        .create();
-
-    public static final String ISSUEGROUP_MIGRATION_KEY = "Migration Rules";
-    public static final Metric ISSUEGROUP_MIGRATION = new Builder(
-        ISSUEGROUP_MIGRATION_KEY, "Migration", ValueType.INT)
-        .setDomain(COLUMBUS_DOMAIN_ISSUEGROUP)
-        .setFormula(new SumChildValuesFormula(false))
-        .create();
-
-    public static final String ISSUEGROUP_MULTITHREADED_CORRECTNESS_KEY = "Multithreaded Correctness Rules";
-    public static final Metric ISSUEGROUP_MULTITHREADED_CORRECTNESS = new Builder(
-        ISSUEGROUP_MULTITHREADED_CORRECTNESS_KEY, "Multithreaded Correctness", ValueType.INT)
-        .setDomain(COLUMBUS_DOMAIN_ISSUEGROUP)
-        .setFormula(new SumChildValuesFormula(false))
-        .create();
-
-    public static final String ISSUEGROUP_VULNERABILITY_KEY = "Vulnerability Rules";
-    public static final Metric ISSUEGROUP_VULNERABILITY = new Builder(
-        ISSUEGROUP_VULNERABILITY_KEY, "Vulnerability", ValueType.INT)
-        .setDomain(COLUMBUS_DOMAIN_ISSUEGROUP)
-        .setFormula(new SumChildValuesFormula(false))
-        .create();
-
-
-    /* End of rulesets metrics */
-
+    /* getMetrics() method is defined in the ClassMetrics interface and
+     * it is used by SonarQube to retrieve the list of new ClassMetrics */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public List<Metric> getMetrics() {
-        return Arrays.asList(
-                TRACE,
-                JAVA_LICENSE,
-
-                // Rulesets metrics
-                ISSUEGROUP_ANDROID, ISSUEGROUP_BAD_PRACTICE,
-                ISSUEGROUP_CODE_SIZE, ISSUEGROUP_COMMENT,
-                ISSUEGROUP_CORRECTNESS, ISSUEGROUP_COUPLING,
-                ISSUEGROUP_DODGY_CODE, ISSUEGROUP_EXPERIMENTAL,
-                ISSUEGROUP_INTERNATIONALIZATION,
-                ISSUEGROUP_MIGRATION, ISSUEGROUP_MULTITHREADED_CORRECTNESS,
-                ISSUEGROUP_VULNERABILITY);
+        return Arrays.asList(JAVA_LICENSE, SM_JAVA_CLONE_TREE,
+                SM_JAVA_LOGICAL_LEVEL1, SM_JAVA_LOGICAL_LEVEL2, SM_JAVA_LOGICAL_LEVEL3);
     }
 }

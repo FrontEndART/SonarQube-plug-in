@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014-2016, FrontEndART Software Ltd.
+ * Copyright (c) 2014-2017, FrontEndART Software Ltd.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -27,22 +27,20 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+
 package com.sourcemeter.analyzer.base.helper;
 
 import java.io.File;
 import java.io.FilenameFilter;
+import java.io.IOException;
 import java.util.Arrays;
-import java.util.Iterator;
 import java.util.Locale;
 
 import org.apache.commons.lang.StringUtils;
-import org.sonar.api.batch.SensorContext;
-import org.sonar.api.batch.fs.FilePredicate;
 import org.sonar.api.batch.fs.FileSystem;
+import org.sonar.api.batch.sensor.SensorContext;
 import org.sonar.api.config.Settings;
-import org.sonar.api.resources.Project;
-import org.sonar.api.resources.Resource;
-import org.sonar.api.utils.SonarException;
+import org.sonar.api.measures.Metric;
 
 import com.sourcemeter.analyzer.base.batch.SourceMeterInitializer;
 
@@ -53,56 +51,38 @@ import com.sourcemeter.analyzer.base.batch.SourceMeterInitializer;
 public class FileHelper {
 
     /**
-     * Searches an indexed file for the given filePath in lowercase.
-     *
-     * @param fileSystem
-     * @param sensorContext
-     * @param project
-     * @param filePath
-     * @return the indexed resource
-     */
-    public static Resource getIndexedFileForFilePath(FileSystem fileSystem,
-            SensorContext sensorContext, Project project, String filePath) {
-        if (OSValidator.isWindows()) {
-            FilePredicate filePredicate = fileSystem.predicates().hasLanguage(
-                    SourceMeterInitializer.getPluginLanguage().getKey());
-            Iterator<File> fileIterator = fileSystem.files(filePredicate).iterator();
-
-            while (fileIterator.hasNext()) {
-                File file = fileIterator.next();
-                if (file.getAbsolutePath().toLowerCase(Locale.ENGLISH).replace("\\", "/")
-                        .contains(filePath.toLowerCase(Locale.ENGLISH).replace("\\", "/"))) {
-                    return org.sonar.api.resources.File.fromIOFile(file, project);
-                }
-            }
-        } else {
-            return org.sonar.api.resources.File.fromIOFile(new File(filePath), project);
-        }
-
-        return null;
-    }
-
-    /**
      * Returns the newest results directory for the actual language.
      *
-     * @param settings Sonar settings
-     * @param dateSeparator separator character between date and time in results directory
-     * @return results directory's relative path
+     * @param settings Sonar settings.
+     * @param dateSeparator Separator character between date and time in results directory.
+     * @return results Directory's relative path.
      */
-    public static String getSMSourcePath(Settings settings, FileSystem fileSystem, final char dateSeparator) {
+    public static String getSMSourcePath(Settings settings, FileSystem fileSystem, final char dateSeparator) throws IOException {
+        String pluginLanguage = SourceMeterInitializer.getPluginLanguage().getKey().toLowerCase(Locale.ENGLISH);
+        StringBuilder buffer = new StringBuilder("");
         String projectName = settings.getString("sonar.projectKey");
         projectName = StringUtils.replace(projectName, ":", "_");
         String resultsDir = settings.getString("sm.resultsdir")
-                + File.separator + projectName + File.separator
-                + SourceMeterInitializer.getPluginLanguage().getKey().toLowerCase(Locale.ENGLISH);
+                + File.separator + projectName + File.separator;
+
+        if ("cs".equals(pluginLanguage)) {
+            pluginLanguage = "csharp";
+        } else if ("py".equals(pluginLanguage)) {
+            pluginLanguage = "python";
+        }
+
+        resultsDir += pluginLanguage;
 
         File file = new File(resultsDir);
         if (!file.exists()) {
-            resultsDir = fileSystem.baseDir().getAbsolutePath()
-                    + File.separator + resultsDir;
+            resultsDir = buffer
+                    .append(fileSystem.baseDir().getAbsolutePath())
+                    .append(File.separator)
+                    .append(resultsDir)
+                    .toString();
             file = new File(resultsDir);
             if (!file.exists()) {
-                throw new SonarException("Could not load results directory: " + resultsDir);
+                throw new IOException("Could not load results directory: " + resultsDir);
             }
         }
         String[] directories = file.list(new FilenameFilter() {
@@ -121,5 +101,16 @@ public class FileHelper {
         Arrays.sort(directories);
 
         return resultsDir + File.separator + directories[directories.length - 1];
+    }
+
+    /**
+     * Saving the graph in a database, for a given metrics.
+     *
+     * @param sensorContext Context of the sensor.
+     * @param data In this case the graph in JSON format.
+     * @param metric Stores the data.
+     */
+    public static void saveGraphToDataBase(SensorContext sensorContext, String data, Metric metric) {
+        sensorContext.newMeasure().forMetric(metric).withValue(data).on(sensorContext.module()).save();
     }
 }

@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014-2015, FrontEndART Software Ltd.
+ * Copyright (c) 2014-2017, FrontEndART Software Ltd.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -27,56 +27,63 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+
 package com.sourcemeter.analyzer.base.profile;
 
-import com.sourcemeter.analyzer.base.batch.SourceMeterInitializer;
-
+import java.io.IOException;
 import java.io.InputStream;
-import java.util.List;
-import java.util.Locale;
 
-import org.apache.commons.io.IOUtils;
-import org.sonar.api.rules.Rule;
-import org.sonar.api.rules.RuleRepository;
-import org.sonar.api.rules.XMLRuleParser;
+import org.sonar.api.server.rule.RulesDefinition;
+import org.sonar.api.server.rule.RulesDefinitionXmlLoader;
 
-public abstract class SourceMeterRuleRepository extends RuleRepository {
+public abstract class SourceMeterRuleRepository implements RulesDefinition {
 
     public static final String BASE_REPOSITORY_KEY = "SourceMeter_";
+    private static final String PATH = "/rules.xml";
 
-    private final XMLRuleParser ruleParser;
+    private final String languageKey;
+    private final String languageName;
+    private final String repositoryKey;
+
+    private final RulesDefinitionXmlLoader xmlLoader;
 
     /**
      * Initializes a SourceMeterRuleRepository. Rules are parsed by an
-     * XMLRuleParser. Language is needed to determine which SourceMeter plugin's
+     * RulesDefinitionXmlLoader. Language is needed to determine which SourceMeter plugin's
      * rules are parsed.
-     * 
-     * @param ruleParser
-     * @param language
+     *
+     * @param xmlLoader Loads definitions of rules from a XML file.
+     * @param languageKey Key of the language.
+     * @param languageName Name of the language.
      */
-    public SourceMeterRuleRepository(XMLRuleParser ruleParser, String language) {
-        super(BASE_REPOSITORY_KEY + language, language
-                .toLowerCase(Locale.ENGLISH));
-        this.ruleParser = ruleParser;
+    public SourceMeterRuleRepository(RulesDefinitionXmlLoader xmlLoader, String languageKey, String languageName) {
+        this.xmlLoader = xmlLoader;
+        this.languageKey = languageKey;
+        this.languageName = languageName;
+        this.repositoryKey = BASE_REPOSITORY_KEY + languageKey;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public List<Rule> createRules() {
-        InputStream input = getClass().getResourceAsStream("/rules.xml");
-        try {
-            return this.ruleParser.parse(input);
-        } finally {
-            IOUtils.closeQuietly(input);
+    public void define(Context context) {
+        try (InputStream input = getClass().getResourceAsStream(PATH)) {
+            NewRepository repository = context.createRepository(repositoryKey, languageKey)
+                    .setName("SourceMeter " + languageName + " rules");
+            xmlLoader.load(repository, input, "UTF-8");
+            repository.done();
+        } catch (IOException e) {
+            throw new IllegalStateException(String.format("Fail to read file %s", PATH), e);
         }
     }
 
     /**
-     * Returns the repositoryKey of the current RuleRepository
-     * 
+     * Returns the repositoryKey of the current RuleRepository.
+     *
      * @return repositoryKey
      */
-    public static String getRepositoryKey() {
-        return BASE_REPOSITORY_KEY
-                + SourceMeterInitializer.getPluginLanguage().getKey();
+    public String getRepositoryKey() {
+        return repositoryKey;
     }
 }

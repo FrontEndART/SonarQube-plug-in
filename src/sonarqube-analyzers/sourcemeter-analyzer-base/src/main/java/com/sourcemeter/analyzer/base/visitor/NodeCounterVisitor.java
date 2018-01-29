@@ -27,6 +27,7 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+
 package com.sourcemeter.analyzer.base.visitor;
 
 import graphlib.Edge;
@@ -37,21 +38,35 @@ import graphlib.Node;
  */
 public class NodeCounterVisitor implements graphlib.Visitor {
 
-    private long numberOfNodes = 0;
+    private long numberOfNodes;
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void edgeVisitorFunc(Edge e) {
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void postNodeVisitorFunc(Node node) {
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void preNodeVisitorFunc(Node node) {
         this.numberOfNodes++;
     }
 
+    /**
+     * Returns the number of nodes in the result graph.
+     *
+     * @return Number of nodes in the result graph.
+     */
     public long getNumberOfNodes() {
         return this.numberOfNodes;
     }

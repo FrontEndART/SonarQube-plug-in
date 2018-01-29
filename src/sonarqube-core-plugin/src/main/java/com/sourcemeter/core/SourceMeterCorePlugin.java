@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014-2015, FrontEndART Software Ltd.
+ * Copyright (c) 2014-2017, FrontEndART Software Ltd.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -27,69 +27,76 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+
 package com.sourcemeter.core;
 
-import java.util.Arrays;
-import java.util.List;
-
+import org.sonar.api.Plugin;
 import org.sonar.api.Properties;
 import org.sonar.api.Property;
 import org.sonar.api.PropertyType;
-import org.sonar.api.SonarPlugin;
-import org.sonar.plugins.SourceMeterCore.api.SourceMeterCoreInitializer;
 import org.sonar.plugins.SourceMeterCore.api.SourceMeterCoreMetrics;
 
 @Properties({
-    @Property(
-            key = "sm.toolchaindir",
-            name = "SourceMeter location",
-            description = "Installation directory of the SourceMeter source code analyzer tool (example: /home/Somebody/Sonar/extensions/plugins/SourceMeter-RPG-0.5-x64-linux)",
-            category = SourceMeterCorePlugin.SM_GENERAL_CATEGORY
-    ),
-    @Property(
-            key = "sm.resultsdir",
-            name = "Results directory",
-            description = "Relative or absolute path name of the directory where the results of the analysis will be stored. The directory will be created automatically if it does not exist.",
-            category = SourceMeterCorePlugin.SM_GENERAL_CATEGORY,
-            defaultValue = "result"
-    ),
-    @Property(
-            key = "sm.cleanresults",
-            name = "Clean SourceMeter Results Directory",
-            description = "Keep the following number of SourceMeter analysis results in the results directory.",
-            category = SourceMeterCorePlugin.SM_GENERAL_CATEGORY,
-            type = PropertyType.INTEGER,
-            defaultValue = "5"
-    ),
-    @Property(
-            key = "sm.cloneGenealogy",
-            name = "Clone Genealogy",
-            description = "Run code duplication genealogy.",
-            category = SourceMeterCorePlugin.SM_GENERAL_CATEGORY,
-            type = PropertyType.BOOLEAN,
-            defaultValue = "false",
-            project = true
-    ),
-    @Property(
-            key = "sm.cloneMinLines",
-            name = "Clone min. lines",
-            description = "Minimum code duplication lines.",
-            category = SourceMeterCorePlugin.SM_GENERAL_CATEGORY,
-            type = PropertyType.INTEGER,
-            defaultValue = "10",
-            project = true
-    )
+        @Property(
+                key = "sm.toolchaindir",
+                name = "SourceMeter location",
+                description = "Installation directory of the SourceMeter source code analyzer tool (example: /home/Somebody/Sonar/extensions/plugins/SourceMeter-RPG-0.5-x64-linux)",
+                category = SourceMeterCorePlugin.SM_GENERAL_CATEGORY
+        ),
+        @Property(
+                key = "sm.resultsdir",
+                name = "Results directory",
+                description = "Relative or absolute path name of the directory where the results of the analysis will be stored. The directory will be created automatically if it does not exist.",
+                category = SourceMeterCorePlugin.SM_GENERAL_CATEGORY,
+                defaultValue = "result"
+        ),
+        @Property(
+                key = "sm.cleanresults",
+                name = "Clean SourceMeter Results Directory",
+                description = "Keep the following number of SourceMeter analysis results in the results directory.",
+                category = SourceMeterCorePlugin.SM_GENERAL_CATEGORY,
+                type = PropertyType.INTEGER,
+                defaultValue = "5"
+        ),
+        @Property(
+                key = "sm.cloneGenealogy",
+                name = "Clone Genealogy",
+                description = "Run code duplication genealogy.",
+                category = SourceMeterCorePlugin.SM_GENERAL_CATEGORY,
+                type = PropertyType.BOOLEAN,
+                defaultValue = "false",
+                project = true
+        ),
+        @Property(
+                key = "sm.cloneMinLines",
+                name = "Clone min. lines",
+                description = "Minimum code duplication lines.",
+                category = SourceMeterCorePlugin.SM_GENERAL_CATEGORY,
+                type = PropertyType.INTEGER,
+                defaultValue = "10",
+                project = true
+        ),
+        @Property(
+                key = "sm.uploadAllMetrics",
+                name = "Upload all metrics",
+                description = "The plug-in uploads only the most essential metrics by default. By turning this setting on (true), all calculated metrics are uploaded.",
+                category = SourceMeterCorePlugin.SM_GENERAL_CATEGORY,
+                type = PropertyType.BOOLEAN,
+                defaultValue = "false",
+                project = true
+        )
 })
-public class SourceMeterCorePlugin extends SonarPlugin{
+public class SourceMeterCorePlugin implements Plugin {
     public static final String SM_GENERAL_CATEGORY = "SourceMeter";
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public List getExtensions() {
-    	return Arrays.asList(
-
-    	        // Metrics
-                SourceMeterCoreMetrics.class,
-                SourceMeterCoreInitializer.class
+    public void define(Context context) {
+        context.addExtension(
+                // Metrics
+                SourceMeterCoreMetrics.class
         );
     }
 }

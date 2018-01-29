@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014-2015, FrontEndART Software Ltd.
+ * Copyright (c) 2014-2017, FrontEndART Software Ltd.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -27,6 +27,7 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+
 package com.sourcemeter.analyzer.base.core;
 
 import java.util.Set;
@@ -63,64 +64,23 @@ public class LicenseInformation {
      * A tool is added to the current license informations with the given
      * license
      *
-     * @param tool
-     * @param license
+     * @param tool A tool to be add to the current license.
+     * @param license A given license for the tool.
      */
     public void addTool(String tool, String license) {
         if (FULL.equals(license)) {
             full.add(tool);
         } else if (LIMITED.equals(license)) {
             limited.add(tool);
-        } else {
+        } else if (INACTIVE.equals(license)){
             inactive.add(tool);
-        }
-    }
-
-    /**
-     * A tool is updated with the given license. This method can only grant
-     * higher value for the given tool, to merge more license informations into
-     * one.
-     *
-     * @param tool
-     * @param license
-     */
-    public void updateTool(String tool, String license) {
-        if (FULL.equals(license)) {
-            full.add(tool);
-            limited.remove(tool);
-            inactive.remove(tool);
-        } else if (LIMITED.equals(tool) && !full.contains(tool)) {
-            limited.add(tool);
-            inactive.remove(tool);
-        } else if (!full.contains(tool) && !limited.contains(tool)) {
-            inactive.add(tool);
-        }
-    }
-
-    /**
-     * All tools in the given licenseInformation are updated with the given
-     * license. This method can only grant higher value for the given tools, to
-     * merge more license informations into one.
-     *
-     * @param tool
-     * @param license
-     */
-    public void updateLicenseInformations(LicenseInformation licenseInformation) {
-        for (String full : licenseInformation.getFull()) {
-            updateTool(full, LicenseInformation.FULL);
-        }
-        for (String limited : licenseInformation.getLimited()) {
-            updateTool(limited, LicenseInformation.LIMITED);
-        }
-        for (String inactive : licenseInformation.getInactive()) {
-            updateTool(inactive, LicenseInformation.INACTIVE);
         }
     }
 
     /**
      * Returns the Set of tools with full license.
      *
-     * @return full license tools
+     * @return Full license tools.
      */
     public Set<String> getFull() {
         return full;
@@ -129,7 +89,7 @@ public class LicenseInformation {
     /**
      * Returns a Set of tools with limited license.
      *
-     * @return limited license tools
+     * @return Limited license tools.
      */
     public Set<String> getLimited() {
         return limited;
@@ -138,7 +98,7 @@ public class LicenseInformation {
     /**
      * Returns the Set of tools which were inactive during the analyzis.
      *
-     * @return inactive tools
+     * @return Inactive tools.
      */
     public Set<String> getInactive() {
         return inactive;

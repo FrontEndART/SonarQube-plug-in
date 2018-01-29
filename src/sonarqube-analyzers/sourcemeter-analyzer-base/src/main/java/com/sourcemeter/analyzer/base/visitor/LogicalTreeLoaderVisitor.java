@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014-2015, FrontEndART Software Ltd.
+ * Copyright (c) 2014-2017, FrontEndART Software Ltd.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -27,23 +27,18 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package com.sourcemeter.analyzer.base.visitor;
 
-import graphlib.Node;
-import graphsupportlib.Metric.Position;
+package com.sourcemeter.analyzer.base.visitor;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.sonar.api.batch.SensorContext;
 import org.sonar.api.batch.fs.FilePredicate;
 import org.sonar.api.batch.fs.FileSystem;
 import org.sonar.api.batch.fs.InputFile;
-import org.sonar.api.component.ResourcePerspectives;
+import org.sonar.api.batch.sensor.SensorContext;
 import org.sonar.api.config.Settings;
-import org.sonar.api.measures.Measure;
-import org.sonar.api.resources.Project;
-import org.sonar.api.resources.Resource;
-import org.sonar.plugins.SourceMeterCore.api.SourceMeterCoreMetrics;
+
+import graphlib.Node;
 
 import com.sourcemeter.analyzer.base.batch.SourceMeterInitializer;
 import com.sourcemeter.analyzer.base.helper.VisitorHelper;
@@ -52,13 +47,11 @@ import com.sourcemeter.analyzer.base.helper.VisitorHelper;
  * Class for visiting and storing logical nodes from the result graph.
  */
 public abstract class LogicalTreeLoaderVisitor extends BaseVisitor {
-
-    final long numOfNodes;
+    private final long numOfNodes;
     private long numOfVisitedNodes;
 
     protected boolean emptyProject;
     protected long logicalTime;
-    protected final boolean uploadMethods;
     protected final FileSystem fileSystem;
     protected final Settings settings;
     protected final boolean skipTUID;
@@ -66,31 +59,31 @@ public abstract class LogicalTreeLoaderVisitor extends BaseVisitor {
     protected static final Logger LOG = LoggerFactory.getLogger(LogicalTreeLoaderVisitor.class);
 
     public LogicalTreeLoaderVisitor(FileSystem fileSystem, Settings settings,
-            ResourcePerspectives perspectives, Project project,
-            SensorContext sensorContext, long numOfNodes,
-            VisitorHelper visitorHelper) {
-        super(perspectives, visitorHelper);
-        this.project = project;
+                                    SensorContext sensorContext, long numOfNodes,
+                                    VisitorHelper visitorHelper) {
+        super(visitorHelper, settings);
+
+        String pluginLanguageKey = SourceMeterInitializer.getPluginLanguage().getKey();
+
         this.fileSystem = fileSystem;
         this.sensorContext = sensorContext;
         this.settings = settings;
 
-        this.logicalTime = 0;
         this.numOfNodes = numOfNodes;
-        this.numOfVisitedNodes = 0;
-        this.skipTUID = settings.getBoolean("sm." + SourceMeterInitializer.getPluginLanguage().getKey() + ".skipTUID");
+
+        this.skipTUID = settings.getBoolean("sm." + pluginLanguageKey + ".skipTUID");
 
         FilePredicate mainFilePredicate = fileSystem.predicates().hasType(InputFile.Type.MAIN);
 
         if (!fileSystem.hasFiles(mainFilePredicate)) {
             this.emptyProject = true;
         }
-
-        this.uploadMethods = settings.getBoolean("sm." + SourceMeterInitializer.getPluginLanguage().getKey() + ".uploadMethods");
     }
 
     /**
-     * @return execution time.
+     * Returns the time of processing the logical tree.
+     *
+     * @return Execution time.
      */
     public long getLogicalTime() {
         return this.logicalTime;
@@ -108,30 +101,19 @@ public abstract class LogicalTreeLoaderVisitor extends BaseVisitor {
     }
 
     /**
-     * Indexes a resource if it's not already indexed + saves metics and
-     * warnings
-     *
-     * @param resource
-     * @param parentResource
-     * @param nodePosition
-     */
-    protected boolean indexResource(Node node, Resource resource,Resource parentResource,
-            Position nodePosition) {
-        Resource indexedResource = this.sensorContext.getResource(resource);
-        if (null == indexedResource) {
-            if (!this.sensorContext.index(resource, parentResource)) {
-                return false;
-            }
-            this.sensorContext.saveMeasure(resource, new Measure(SourceMeterCoreMetrics.BEGIN_LINE, (double) nodePosition.line));
-            this.sensorContext.saveMeasure(resource, new Measure(SourceMeterCoreMetrics.END_LINE, (double) nodePosition.endline));
-        }
-
-        return true;
-    }
-
-    /**
      * {@inheritDoc}
      */
     @Override
-    public abstract void preNodeVisitorFunc(Node node);
+    public void preNodeVisitorFunc(Node node) {
+        if (this.emptyProject) {
+            return;
+        }
+
+        long startTime = System.currentTimeMillis();
+        if ("Method".equals(node.getType().getType()) && !super.uploadMethods) {
+            return;
+        }
+        uploadWarnings(node);
+        this.logicalTime += (System.currentTimeMillis() - startTime);
+    }
 }

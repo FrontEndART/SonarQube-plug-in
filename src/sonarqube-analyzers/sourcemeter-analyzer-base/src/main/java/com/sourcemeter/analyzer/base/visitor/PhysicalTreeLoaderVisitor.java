@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014-2016, FrontEndART Software Ltd.
+ * Copyright (c) 2014-2017, FrontEndART Software Ltd.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -27,20 +27,16 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+
 package com.sourcemeter.analyzer.base.visitor;
 
-import graphlib.Node;
-import graphsupportlib.Metric.Position;
-
-import org.sonar.api.batch.SensorContext;
 import org.sonar.api.batch.fs.FilePredicate;
 import org.sonar.api.batch.fs.FileSystem;
 import org.sonar.api.batch.fs.InputFile;
-import org.sonar.api.component.ResourcePerspectives;
-import org.sonar.api.resources.Project;
-import org.sonar.api.resources.Resource;
+import org.sonar.api.batch.sensor.SensorContext;
 
-import com.sourcemeter.analyzer.base.helper.FileHelper;
+import graphlib.Node;
+
 import com.sourcemeter.analyzer.base.helper.GraphHelper;
 import com.sourcemeter.analyzer.base.helper.VisitorHelper;
 
@@ -49,24 +45,20 @@ import com.sourcemeter.analyzer.base.helper.VisitorHelper;
  */
 public abstract class PhysicalTreeLoaderVisitor extends BaseVisitor {
 
-    protected long fileTime;
+    private long fileTime;
 
-    protected long numOfVisitedNodes;
+    private long numOfVisitedNodes;
     protected final long numOfNodes;
-    protected boolean emptyProject = false;
+    private boolean emptyProject;
     private final FileSystem fileSystem;
 
     public PhysicalTreeLoaderVisitor(FileSystem fileSystem,
-            ResourcePerspectives perspectives, Project project,
             SensorContext sensorContext, long numOfNodes,
             VisitorHelper visitorHelper) {
-        super(perspectives, visitorHelper);
-        this.project = project;
+        super(visitorHelper);
         this.sensorContext = sensorContext;
         this.fileSystem = fileSystem;
 
-        this.fileTime = 0;
-        this.numOfVisitedNodes = 0;
         this.numOfNodes = numOfNodes;
 
         FilePredicate mainFilePredicate = fileSystem.predicates().hasType(InputFile.Type.MAIN);
@@ -77,6 +69,8 @@ public abstract class PhysicalTreeLoaderVisitor extends BaseVisitor {
     }
 
     /**
+     * Returns the time of processing the physical tree.
+     *
      * @return execution time.
      */
     public long getFileTime() {
@@ -105,18 +99,17 @@ public abstract class PhysicalTreeLoaderVisitor extends BaseVisitor {
 
         long startTime = System.currentTimeMillis();
         String nodeLongName = GraphHelper.getNodeLongNameAttribute(node);
-        Position nodePosition = graphsupportlib.Metric.getFirstPositionAttribute(node);
 
-        Resource resource = null;
+        InputFile file = null;
         String nodeType = node.getType().getType();
 
         if ("File".equals(nodeType)) {
-            resource = FileHelper.getIndexedFileForFilePath(fileSystem, sensorContext, project, nodeLongName);
+            file = fileSystem.inputFile(fileSystem.predicates().hasPath(nodeLongName));
         } else {
             return;
         }
 
-        uploadMetricsAndWarnings(node, resource, nodePosition, false);
+        uploadMetrics(node, file);
         this.fileTime += (System.currentTimeMillis() - startTime);
     }
 }

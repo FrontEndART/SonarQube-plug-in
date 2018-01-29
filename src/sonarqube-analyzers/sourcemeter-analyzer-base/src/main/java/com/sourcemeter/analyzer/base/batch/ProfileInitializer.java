@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014-2016, FrontEndART Software Ltd.
+ * Copyright (c) 2014-2017, FrontEndART Software Ltd.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -27,6 +27,7 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+
 package com.sourcemeter.analyzer.base.batch;
 
 import java.io.BufferedWriter;
@@ -35,20 +36,22 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.nio.charset.Charset;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Set;
 
+import org.sonar.api.batch.rule.Rule;
+import org.sonar.api.batch.rule.Rules;
+import org.sonar.api.batch.rule.Severity;
 import org.sonar.api.config.Settings;
 import org.sonar.api.measures.Metric;
 import org.sonar.api.measures.Metric.ValueType;
 import org.sonar.api.profiles.RulesProfile;
 import org.sonar.api.rules.ActiveRule;
-import org.sonar.api.rules.Rule;
-import org.sonar.api.rules.RulePriority;
-import org.sonar.api.rules.RuleRepository;
-import org.sonar.api.utils.SonarException;
+
+import com.sourcemeter.analyzer.base.profile.SourceMeterRuleRepository;
 
 /**
  * Class for initializing MetricHunter\"s input file
@@ -58,23 +61,27 @@ public class ProfileInitializer {
     private final Settings settings;
     private final List<MetricHunterCategory> categories;
     private final Set<String> activeRuleKeys;
-    private final List<Rule> allRules;
+    private final Collection<Rule> allRules;
+
+    // private final Collection<org.sonar.api.batch.rule.Rule> allRules;
 
     /**
      * Sets the needed properties for generating a profile file for SourceMeter
      * toolchain.
      *
-     * @param settings for getting the metric threshold properties from SonarQube
-     * @param categories for setting which categories are passed to MetricHunter
-     * @param activeRules needed for the list of active rules passed to profile file
+     * @param settings For getting the metric threshold properties from SonarQube.
+     * @param categories For setting which categories are passed to MetricHunter.
+     * @param profile Needed for the list of active rules passed to profile file.
+     * @param ruleRepository Stores the rules.
+     * @param rules Needed for find rules from RuleRepository by key.
      */
     public ProfileInitializer(Settings settings,
             List<MetricHunterCategory> categories, RulesProfile profile,
-            RuleRepository ruleRepository) {
+            SourceMeterRuleRepository ruleRepository, Rules rules) {
         this.settings = settings;
         this.categories = categories;
-        this.allRules = ruleRepository.createRules();
-        String repositoryKey = ruleRepository.getKey();
+        String repositoryKey = ruleRepository.getRepositoryKey();
+        this.allRules = rules.findByRepository(repositoryKey);
         activeRuleKeys = new HashSet<String>();
         for (ActiveRule rule : profile.getActiveRulesByRepository(repositoryKey)) {
             activeRuleKeys.add(rule.getRuleKey());
@@ -84,73 +91,84 @@ public class ProfileInitializer {
     /**
      * Generates a profile file for sourceMeter toolchain.
      *
-     * @param path the generated profile file\"s path
-     * @throws IOException
+     * @param path The generated profile file\"s path.
+     * @throws IOException Thrown when the SM-Profile.xml file could not be created.
      */
     public void generatePofileFile(String path) throws IOException {
         File file = new File(path);
 
         if (!file.exists() && !file.createNewFile()) {
-            throw new SonarException("Profile file could not be created: "
+            throw new IOException("Profile file could not be created: "
                     + path);
         }
 
-        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(
-                new FileOutputStream(path), Charset.defaultCharset()));
-
-        bw.write("<sourcemeter-profile>\n");
-        bw.write("  <tool-options>\n");
-        bw.write(getMetricHunterThresholds());
-        bw.write("  </tool-options>\n");
-        bw.write(getRuleOptions());
-        bw.write("</sourcemeter-profile>\n");
-        bw.close();
+        try (BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(
+                new FileOutputStream(path), Charset.defaultCharset()))) {
+            bw.write("<sourcemeter-profile>\n");
+            bw.write("  <tool-options>\n");
+            bw.write(getMetricHunterThresholds());
+            bw.write("  </tool-options>\n");
+            bw.write(getRuleOptions());
+            bw.write("</sourcemeter-profile>\n");
+        }
     }
 
+    /**
+     * Returns the options for rules as XML tag in a String.
+     *
+     * @return The options for rules as XML tags in a String.
+     */
     private String getRuleOptions() {
         StringBuffer buffer = new StringBuffer();
         buffer.append("  <rule-options>\n");
 
         for (Rule rule : allRules) {
-            if (rule.getSeverity() == RulePriority.INFO) {
+            if (rule.severity().equals(Severity.INFO)) {
                 continue;
             }
 
-            String[] splittedKey = rule.getKey().split("_");
+            String[] splittedKey = rule.key().rule().split("_");
             String key = splittedKey[splittedKey.length - 1];
 
             String priority = "Blocker";
 
-            // have to check the value for setting priority, RulePriority enum's
+            // have to check the value for setting priority, Severity enum's
             // ordinal is not in order
-            if (rule.getSeverity() == RulePriority.CRITICAL) {
+            if (rule.severity().equals(Severity.CRITICAL)) {
                 priority = "Critical";
-            } else if (rule.getSeverity() == RulePriority.MAJOR) {
+            } else if (rule.severity().equals(Severity.MAJOR)) {
                 priority = "Major";
-            } else if (rule.getSeverity() == RulePriority.MINOR) {
+            } else if (rule.severity().equals(Severity.MINOR)) {
                 priority = "Minor";
             }
 
             buffer.append("    <rule id=\"").append(key).append("\"  enabled=\"");
-            if (activeRuleKeys.contains(rule.getKey())) {
+            if (activeRuleKeys.contains(rule.key().rule())) {
                 buffer.append("true");
             } else {
                 buffer.append("false");
             }
-            buffer.append("\" priority=\"").append(priority).append("\"");
-            buffer.append("/>\n");
+            buffer.append("\" priority=\"")
+                  .append(priority)
+                  .append("\"/>\n");
         }
 
         buffer.append("  </rule-options>\n");
 
         return buffer.toString();
+
     }
 
+    /**
+     * Returns the MetricHunter thresholds for sourceMeter profile.
+     *
+     * @return The MetricHunter thresholds.
+     * @throws IOException
+     */
     private String getMetricHunterThresholds() throws IOException {
         StringBuffer buffer = new StringBuffer();
 
-        buffer.append("    <tool name = \"MetricHunter\" enabled = \"true\">\n");
-        buffer.append("      <metric-thresholds>\n");
+        buffer.append("    <tool name = \"MetricHunter\" enabled = \"true\">\n      <metric-thresholds>\n");
 
         for (MetricHunterCategory category : categories) {
             List<Metric> metrics = category.getMetrics();
@@ -166,10 +184,18 @@ public class ProfileInitializer {
                         buffer.append(line);
                     }
                 } else {
+                    String relation = "gt";
+
+                    if (metric.getDirection() > 0) {
+                        relation = "lt";
+                    }
+
                     // Metric threshold rule is not active. Turn it off.
                     buffer.append("        <threshold metric-id=\"")
                           .append(metricKey)
-                          .append("\" relation=\"gt\" value=\"none\" entity=\"")
+                          .append("\" relation=\"")
+                          .append(relation)
+                          .append("\" value=\"none\" entity=\"")
                           .append(category.getCategoryName())
                           .append("\" />\n");
                 }
@@ -178,24 +204,29 @@ public class ProfileInitializer {
             buffer.append("\n");
         }
 
-        buffer.append("      </metric-thresholds>\n");
-        buffer.append("    </tool>\n");
+        buffer.append("      </metric-thresholds>\n    </tool>\n");
         return buffer.toString();
     }
 
+    /**
+     * Generate the threshold for a metric.
+     *
+     * @param metric Threshold for this metric.
+     * @param entity Entity of the threshold.
+     * @param property Property for the threshold.
+     * @return The threshold's relation, value, entity for specified metric in a String as an XML tag.
+     */
     private String getTresholdLine(Metric metric, String entity, String property) {
         StringBuffer baseline = new StringBuffer("sm.");
-        baseline.append(SourceMeterInitializer.getPluginLanguage().getKey().toLowerCase(Locale.ENGLISH));
-        baseline.append(".").append(property.toLowerCase(Locale.ENGLISH))
-                .append(".baseline.").append(metric.getKey());
+        baseline.append(SourceMeterInitializer.getPluginLanguage().getKey().toLowerCase(Locale.ENGLISH))
+                .append(".")
+                .append(property.toLowerCase(Locale.ENGLISH))
+                .append(".baseline.")
+                .append(metric.getKey());
         Double threshold = this.settings.getDouble(baseline.toString());
 
         if (threshold == null) {
             return "";
-        }
-
-        if (metric.getType() == ValueType.PERCENT) {
-            threshold /= 100;
         }
 
         String thresholdString = threshold.toString();
@@ -211,8 +242,15 @@ public class ProfileInitializer {
             relation = "lt";
         }
 
-        line.append("        <threshold metric-id=\"").append(metric.getKey()).append("\" relation=\"").append(relation);
-        line.append("\" value=\"").append(thresholdString).append("\" entity=\"").append(entity).append("\" />\n");
+        line.append("        <threshold metric-id=\"")
+            .append(metric.getKey())
+            .append("\" relation=\"")
+            .append(relation)
+            .append("\" value=\"")
+            .append(thresholdString)
+            .append("\" entity=\"")
+            .append(entity)
+            .append("\" />\n");
 
         return line.toString();
     }

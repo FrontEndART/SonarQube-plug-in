@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014-2016, FrontEndART Software Ltd.
+ * Copyright (c) 2014-2017, FrontEndART Software Ltd.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -27,103 +27,22 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+
 package com.sourcemeter.analyzer.java.visitor;
 
-import graphlib.Edge;
-import graphlib.Node;
-import graphsupportlib.Metric.Position;
-
-import java.io.File;
-import java.util.Locale;
-
-import org.sonar.api.batch.SensorContext;
 import org.sonar.api.batch.fs.FileSystem;
-import org.sonar.api.component.ResourcePerspectives;
+import org.sonar.api.batch.sensor.SensorContext;
 import org.sonar.api.config.Settings;
-import org.sonar.api.resources.Project;
-import org.sonar.api.resources.Resource;
-import org.sonar.api.utils.SonarException;
 
-import com.sourcemeter.analyzer.base.helper.GraphHelper;
 import com.sourcemeter.analyzer.base.visitor.LogicalTreeLoaderVisitor;
-import com.sourcemeter.analyzer.java.core.resources.JavaClass;
-import com.sourcemeter.analyzer.java.core.resources.JavaMethod;
 import com.sourcemeter.analyzer.java.helper.VisitorHelperJava;
 
 public class LogicalTreeLoaderVisitorJava extends LogicalTreeLoaderVisitor {
 
     public LogicalTreeLoaderVisitorJava(FileSystem fileSystem, Settings settings,
-            ResourcePerspectives perspectives, Project project, SensorContext sensorContext, long numOfNodes) {
+            SensorContext sensorContext, long numOfNodes) {
 
-        super(fileSystem, settings, perspectives, project, sensorContext, numOfNodes,
-                new VisitorHelperJava(project, sensorContext, perspectives, fileSystem));
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void edgeVisitorFunc(Edge e) {
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void preNodeVisitorFunc(Node node) {
-        if (this.emptyProject) {
-            return;
-        }
-
-        String nodeName = GraphHelper.getNodeNameAttribute(node);
-        if (nodeName == null || "__LogicalRoot__".equals(nodeName)) {
-            return;
-        }
-
-        long startLogicalTime = System.currentTimeMillis();
-        String nodeLongName = GraphHelper.getNodeLongNameAttribute(node);
-        Position nodePosition = graphsupportlib.Metric.getFirstPositionAttribute(node);
-
-        Resource resource = null;
-        Resource parentResource = null;
-        String nodeType = node.getType().getType();
-        String nodeTUID = GraphHelper.getNodeTUID(node);
-
-        if (nodeTUID == null) {
-            String warningMessage = "A " + nodeType + " node has no TUID attribute: "
-                    + nodeLongName + ", UID: " + node.getUID();
-
-            if (skipTUID) {
-                LOG.warn(warningMessage);
-                return;
-            } else {
-                throw new SonarException(warningMessage);
-            }
-        }
-
-        if (GraphHelper.isClass(node)) {
-            resource = new JavaClass(nodeTUID, nodeName, nodeLongName,
-                    nodeType.toLowerCase(Locale.ENGLISH));
-            parentResource = org.sonar.api.resources.File.fromIOFile(new File(nodePosition.path), this.project);
-
-            indexResource(node, resource, parentResource, nodePosition);
-        } else if (this.uploadMethods && "Method".equals(nodeType)) {
-            Node parentNode = GraphHelper.getParentNode(node);
-            if (GraphHelper.isClass(parentNode)) {
-                String parentNodeType = parentNode.getType().getType().toLowerCase(Locale.ENGLISH);
-                parentResource = new JavaClass(GraphHelper.getNodeTUID(parentNode),
-                        GraphHelper.getNodeNameAttribute(parentNode),
-                        GraphHelper.getNodeLongNameAttribute(parentNode),
-                        parentNodeType);
-                resource = new JavaMethod(nodeTUID, nodeName, nodeLongName)
-                        .setParent(parentResource);
-
-                indexResource(node, resource, parentResource, nodePosition);
-            }
-        }
-
-        uploadMetricsAndWarnings(node, resource, nodePosition, true);
-
-        this.logicalTime += (System.currentTimeMillis() - startLogicalTime);
+        super(fileSystem, settings, sensorContext, numOfNodes,
+              new VisitorHelperJava(sensorContext, fileSystem));
     }
 }

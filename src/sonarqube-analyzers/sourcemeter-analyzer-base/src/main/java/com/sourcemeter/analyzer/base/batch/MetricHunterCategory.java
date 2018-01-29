@@ -27,6 +27,7 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+
 package com.sourcemeter.analyzer.base.batch;
 
 import java.util.List;
@@ -57,8 +58,8 @@ public class MetricHunterCategory {
      * Creates a category with it's name and it's list of metrics. property's
      * name will be the same as the category's name.
      *
-     * @param metrics
-     * @param categoryName
+     * @param metrics List fo metrics.
+     * @param categoryName Name of the category.
      */
     public MetricHunterCategory(String categoryName, List<Metric> metrics) {
         this.metrics = metrics;
@@ -70,9 +71,9 @@ public class MetricHunterCategory {
      * Creates a category with it's name, it's list of metrics and the
      * property's name.
      *
-     * @param categoryName
-     * @param propertyName
-     * @param metrics
+     * @param categoryName Name of the category.
+     * @param propertyName Name of the property.
+     * @param metrics List of metrics.
      */
     public MetricHunterCategory(String categoryName, String propertyName,
             List<Metric> metrics) {
@@ -81,27 +82,39 @@ public class MetricHunterCategory {
         this.propertyName = propertyName;
     }
 
+    /**
+     * Returns list of metrics in this category.
+     *
+     * @return List of metrics in this category.
+     */
     public List<Metric> getMetrics() {
         return metrics;
     }
 
+    /**
+     * Sets the list of metrics in this category.
+     *
+     * @param metrics List of metrics to be set in this category.
+     */
     public void setMetrics(List<Metric> metrics) {
         this.metrics = metrics;
     }
 
+    /**
+     * Returns the name of this category.
+     *
+     * @return The name of this category.
+     */
     public String getCategoryName() {
         return categoryName;
     }
 
-    public void setCategoryName(String categoryName) {
-        this.categoryName = categoryName;
-    }
-
+    /**
+     * Returns the property name for this category.
+     *
+     * @return The property name for this category.
+     */
     public String getpropertyName() {
         return propertyName;
-    }
-
-    public void setpropertyName(String propertyName) {
-        this.propertyName = propertyName;
     }
 }
