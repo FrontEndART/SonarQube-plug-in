@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014-2016, FrontEndART Software Ltd.
+ * Copyright (c) 2014-2017, FrontEndART Software Ltd.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -27,16 +27,12 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+
 package com.sourcemeter.analyzer.cpp.core;
 
 import java.util.Arrays;
 
-import org.apache.commons.lang.ArrayUtils;
-import org.apache.commons.lang.StringUtils;
-import org.sonar.api.config.Settings;
-
 import com.sourcemeter.analyzer.base.core.AbstractSMLanguage;
-import com.sourcemeter.analyzer.cpp.SourceMeterAnalyzerCppPlugin;
 
 public class Cpp extends AbstractSMLanguage {
 
@@ -76,36 +72,5 @@ public class Cpp extends AbstractSMLanguage {
     @Override
     public String[] getFileSuffixes() {
         return Arrays.copyOf(fileSuffixes, fileSuffixes.length);
-    }
-
-    public static void removeSuffixesForCurrentAnalyze() {
-        fileSuffixes = new String[1];
-    }
-
-    @Override
-    public boolean isFileForCurrentLanguage(java.io.File file) {
-        String suffix = "."
-                + StringUtils.substringAfterLast(file.getName(), ".");
-        return ArrayUtils.contains(fileSuffixes, suffix);
-    }
-
-    public static void updateSuffixes(Settings settings) {
-        String[] headerSuffixes = createStringArray(settings.getStringArray(SourceMeterAnalyzerCppPlugin.HEADER_FILE_SUFFIXES_KEY), DEFAULT_HEADER_SUFFIXES);
-        String[] sourceSuffixes = createStringArray(settings.getStringArray(SourceMeterAnalyzerCppPlugin.SOURCE_FILE_SUFFIXES_KEY), DEFAULT_SOURCE_SUFFIXES);
-        fileSuffixes = mergeArrays(headerSuffixes, sourceSuffixes);
-    }
-
-    private static String[] createStringArray(String[] values, String defaultValues) {
-        if (values == null || values.length == 0) {
-            return StringUtils.split(defaultValues, ",");
-        }
-        return values;
-    }
-
-    private static String[] mergeArrays(String[] array1, String[] array2) {
-        String[] result = new String[array1.length + array2.length];
-        System.arraycopy(array1, 0, result, 0, array1.length);
-        System.arraycopy(array2, 0, result, array1.length, array2.length);
-        return result;
     }
 }

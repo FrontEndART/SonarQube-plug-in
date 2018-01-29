@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014-2015, FrontEndART Software Ltd.
+ * Copyright (c) 2014-2017, FrontEndART Software Ltd.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -27,39 +27,36 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+
 package com.sourcemeter.analyzer.rpg.profile;
 
 import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.nio.charset.Charset;
 
 import org.apache.commons.io.IOUtils;
-import org.sonar.api.profiles.ProfileDefinition;
 import org.sonar.api.profiles.RulesProfile;
 import org.sonar.api.profiles.XMLProfileParser;
 import org.sonar.api.utils.ValidationMessages;
 
-public class SourceMeterRPGProfile extends ProfileDefinition {
+import com.sourcemeter.analyzer.base.profile.SourceMeterProfile;
 
-    private final XMLProfileParser parser;
+public class SourceMeterRPGProfile extends SourceMeterProfile {
 
     public SourceMeterRPGProfile(XMLProfileParser parser) {
-        this.parser = parser;
+        super(parser);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public RulesProfile createProfile(ValidationMessages validationMessages) {
-        InputStream input = getClass().getResourceAsStream(
-                "/SourceMeter_way_default_profile.xml");
-        InputStreamReader reader = new InputStreamReader(input,
-                Charset.defaultCharset());
+        InputStream input = null;
         try {
-            RulesProfile profile = this.parser
-                    .parse(reader, validationMessages);
-            profile.setDefaultProfile(true);
-            return profile;
+            input = getClass().getResourceAsStream(
+                    "/SourceMeter_way_default_profile.xml");
+            return super.createProfile(input, ValidationMessages.create());
         } finally {
-            IOUtils.closeQuietly(reader);
+            IOUtils.closeQuietly(input);
         }
     }
 }

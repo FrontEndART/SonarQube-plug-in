@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014-2015, FrontEndART Software Ltd.
+ * Copyright (c) 2014-2017, FrontEndART Software Ltd.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -27,32 +27,19 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+
 package com.sourcemeter.analyzer.python.visitor;
 
-import graphlib.Edge;
-
-import org.sonar.api.batch.SensorContext;
 import org.sonar.api.batch.fs.FileSystem;
-import org.sonar.api.component.ResourcePerspectives;
-import org.sonar.api.resources.Project;
 
 import com.sourcemeter.analyzer.base.visitor.PhysicalTreeLoaderVisitor;
 import com.sourcemeter.analyzer.python.helper.VisitorHelperPython;
 
 public class PhysicalTreeLoaderVisitorPython extends PhysicalTreeLoaderVisitor {
     public PhysicalTreeLoaderVisitorPython(FileSystem fileSystem,
-            ResourcePerspectives perspectives, Project project,
-            SensorContext sensorContext, long numOfNodes) {
+            org.sonar.api.batch.sensor.SensorContext sensorContext, long numOfNodes) {
 
-        super(fileSystem, perspectives, project, sensorContext,
-                numOfNodes, new VisitorHelperPython(project, sensorContext,
-                perspectives, fileSystem));
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void edgeVisitorFunc(Edge e) {
+        super(fileSystem, sensorContext, numOfNodes,
+                new VisitorHelperPython(sensorContext, fileSystem));
     }
 }

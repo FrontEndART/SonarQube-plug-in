@@ -1,438 +1,728 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<rulset xmlns = "http://pmd.sourceforge.net/ruleset/2.0.0" xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation = "http://pmd.sourceforge.net/ruleset/2.0.0 http://pmd.sourceforge.net/ruleset_2_0_0.xsd">
-  <rule key = "MET_CD">
+<rules>
+  <rule>
+    <key>MET_CD</key>
     <name>Comment Density (CD) Metric Threshold Violation</name>
     <description>&lt;b&gt;Subroutine:&lt;/b&gt; ratio of the comment lines of the subroutine (CLOC) to the sum of its &#x09;comment (CLOC) and logical lines of code (LLOC).&lt;br&gt;&lt;b&gt;Procedure:&lt;/b&gt; ratio of the comment lines of the procedure (CLOC) to the sum of its comment (CLOC) and logical lines of code (LLOC).&lt;br&gt;&lt;b&gt;Program:&lt;/b&gt; ratio of the comment lines of the program (CLOC) to the sum of its comment (CLOC) and logical lines of code (LLOC)</description>
-    <priority>INFO</priority>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
   </rule>
-  <rule key = "MET_CLOC">
+  <rule>
+    <key>MET_CLOC</key>
     <name>Comment Lines of Code (CLOC) Metric Threshold Violation</name>
     <description>&#x0A;          &lt;b&gt;Subroutine:&lt;/b&gt; number of comment and documentation code lines of the subroutine;&lt;br&gt;&lt;b&gt;Procedure:&lt;/b&gt; number of comment and documentation code lines of the procedure; however, its nested subroutines are not included.&lt;br&gt;&lt;b&gt;Program:&lt;/b&gt; number of comment and documentation code lines of the program; however, its subroutines and procedures are not included.&#x0A;        </description>
-    <priority>INFO</priority>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
   </rule>
-  <rule key = "MET_DLOC">
+  <rule>
+    <key>MET_DLOC</key>
     <name>Documentation Lines of Code (DLOC) Metric Threshold Violation</name>
     <description>&#x0A;          &lt;b&gt;Subroutine:&lt;/b&gt; number of documentation code lines of the subroutine.&lt;br&gt;&lt;b&gt;Procedure:&lt;/b&gt; number of documentation code lines of the procedure, however, its local subroutines are not included.&lt;b&gt;Program:&lt;/b&gt; number of documentation code lines of the program, however, its subroutines and procedures are not included.&#x0A;        </description>
-    <priority>INFO</priority>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
   </rule>
-  <rule key = "MET_LLOC">
+  <rule>
+    <key>MET_LLOC</key>
     <name>Logical Lines of Code (LLOC) Metric Threshold Violation</name>
     <description>&#x0A;&#x09;&#x09;&#x09;&lt;b&gt;Subroutine:&lt;/b&gt; number of non-empty and non-comment code lines of the subroutine.&lt;br&gt;&lt;b&gt;Procedure:&lt;/b&gt; number of non-empty and non-comment code lines of the procedure, however, its local subroutines are not included.&lt;br&gt;&lt;b&gt;Program:&lt;/b&gt; number of non-empty and non-comment code lines of the program; however, its subroutines and procedures are not included.&#x0A;        </description>
-    <priority>INFO</priority>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
   </rule>
-  <rule key = "MET_LOC">
+  <rule>
+    <key>MET_LOC</key>
     <name>Lines of Code (LOC) Metric Threshold Violation</name>
     <description>&#x0A;          &lt;b&gt;Subroutine:&lt;/b&gt; number of code lines of the subroutine, including empty and comment lines. &lt;br&gt;&lt;b&gt;Procedure:&lt;/b&gt; number of code lines of the procedure, including empty and comment lines, however, its local subroutines are not included.&lt;br&gt;&lt;b&gt;Program:&lt;/b&gt; number of code lines of the program, including empty and comment lines; however, its subroutines and procedures are not included.&#x0A;        </description>
-    <priority>INFO</priority>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
   </rule>
-  <rule key = "MET_McCC">
+  <rule>
+    <key>MET_McCC</key>
     <name>McCabe&apos;s Cyclomatic Complexity (McCC) Metric Threshold Violation</name>
     <description>&#x0A;        &lt;b&gt;Subroutine:&lt;/b&gt; complexity of the subroutine expressed as the number of independent control flow paths in it. It represents a lower bound for the number of possible execution paths in the source code and at the same time it is an upper bound for the minimum number of test cases needed for achieving full branch test coverage. The value of the metric is calculated as the number of the following instructions plus 1: if, else-if, for, do, do-while, do-until, when, on-error. The following instructions are not included: else, select, monitor.&#x0A;&#x09;&#x09;&lt;b&gt;Procedure:&lt;/b&gt; complexity of the procedure expressed as the number of independent control flow paths in it. It represents a lower bound for the number of possible execution paths in the source code and at the same time it is an upper bound for the minimum number of test cases needed for achieving full branch test coverage. The value of the metric is calculated as the number of the following instructions plus 1: if, else-if, for, do, do-while, do-until, when, on-error. The following instructions are not included: else, select, monitor. Subroutines defined locally in the procedure are not included.&#x0A;        </description>
-    <priority>INFO</priority>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
   </rule>
-  <rule key = "MET_NDS">
+  <rule>
+    <key>MET_NDS</key>
     <name>Number of Data Structures (NDS) Metric Threshold Violation</name>
     <description>&#x0A;          &lt;b&gt;Procedure:&lt;/b&gt; number of datastructures declared in the procedure.&#x0A;          &lt;br&gt;&lt;b&gt;Program:&lt;/b&gt; number of datastructures declared in the program excluding the datastructures declared in procedures of the program.&#x0A;        </description>
-    <priority>INFO</priority>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
   </rule>
-  <rule key = "MET_NF">
+  <rule>
+    <key>MET_NF</key>
     <name>Number of Files (NF) Metric Threshold Violation</name>
     <description>&#x0A;          &lt;b&gt;Procedure:&lt;/b&gt; number of files defined in the procedure.&#x0A;          &lt;br&gt;&lt;b&gt;Program:&lt;/b&gt; number of files defined in the program, excluding the files defined in procedures of the program.&#x0A;        </description>
-    <priority>INFO</priority>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
   </rule>
-  <rule key = "MET_NII">
+  <rule>
+    <key>MET_NII</key>
     <name>Number of Incoming Invocations (NII) Metric Threshold Violation</name>
     <description>&#x0A;          &lt;b&gt;Subrouine:&lt;/b&gt; number of other subroutines, procedures, and programs which directly call the subroutine. If the subroutine is invoked several times from the same subroutine, procedure, or program, it is counted only once.&lt;br&gt;&lt;b&gt;Procedure:&lt;/b&gt; number of other subroutines, procedures, and programs which directly call the procedure. If a procedure is invoked several times from the same subroutine, procedure, or program, it is counted only once.&#x0A;&#x09;&#x09;  &lt;br&gt;&lt;b&gt;Program:&lt;/b&gt; number of other subroutines, procedures, and programs which directly call the program. If a program is invoked several times from the same subroutine, procedure, or program, it is counted only once.&#x0A;        </description>
-    <priority>INFO</priority>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
   </rule>
-  <rule key = "MET_NIR">
+  <rule>
+    <key>MET_NIR</key>
     <name>Number of Input Records (NIR) Metric Threshold Violation</name>
     <description>&#x0A;          &lt;b&gt;Program:&lt;/b&gt; number of input records(externally and program defined input records) declared in the program.&#x0A;        </description>
-    <priority>INFO</priority>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
   </rule>
-  <rule key = "MET_NL">
+  <rule>
+    <key>MET_NL</key>
     <name>Nesting Level (NL) Metric Threshold Violation</name>
     <description>&#x0A;        &lt;b&gt;Subroutine:&lt;/b&gt; complexity of the subroutine expressed as the depth of the maximum embeddedness of its conditional and iteration block scopes. The following instructions are taken into account: if, else-if, for, do, do-while, do-until, select, monitor. The following instructions do not increase the value by themselves; however, if additional embeddednesses can be found in their blocks, they are considered: else, when, other, and on-error.&#x0A;&#x09;&#x09;&lt;br&gt;&lt;b&gt;Procedure:&lt;/b&gt; complexity of the procedure expressed as the depth of the maximum embeddedness of its conditional and iteration block scopes. The following instructions are taken into account: if, else-if, for, do, do-while, do-until, select, monitor. The following instructions do not increase the value by themselves; however, if additional embeddednesses can be found in their blocks, they are considered: else, when, other, and on-error. Contained local subroutines are not included.&#x0A;&#x09;&#x09;&lt;br&gt;&lt;b&gt;Program:&lt;/b&gt; complexity of the program expressed as the depth of the maximum embeddedness of its conditional and iteration block scopes. The following instructions are taken into account: if, else-if, for, do, do-while, do-until, select, monitor. The following instructions do not increase the value by themselves; however, if additional embeddednesses can be found in their blocks, they are considered: else, when, other, and on-error. Contained local subroutines and procedures are not included.&#x0A;        </description>
-    <priority>INFO</priority>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
   </rule>
-  <rule key = "MET_NLE">
+  <rule>
+    <key>MET_NLE</key>
     <name>Nesting Level Else-If (NLE) Metric Threshold Violation</name>
     <description>&#x0A;        &lt;b&gt;Subroutine:&lt;/b&gt; complexity of the subroutine expressed as the depth of the maximum embeddedness of its conditional and iteration block scopes. The following instructions are taken into account: if, for, do, do-while, do-until, select, monitor. Only the first if statement will be taken into consideration of the if-elseif-else block. The following instructions do not increase the value by themselves; however, if additional embeddednesses can be found in their blocks, they are considered: else-if, else, when, other, and on-error.&#x0A;&#x09;&#x09;&lt;br&gt;&lt;b&gt;Procedure:&lt;/b&gt; complexity of the procedure expressed as the depth of the maximum embeddedness of its conditional and iteration block scopes. The following instructions are taken into account: if, for, do, do-while, do-until, select, monitor. Only the first if statement will be taken into consideration of the if-elseif-else block. The following instructions do not increase the value by themselves; however, if additional embeddednesses can be found in their blocks, they are considered: else-if, else, when, other, and on-error. Contained local subroutines are not included.&#x0A;&#x09;&#x09;&lt;br&gt;&lt;b&gt;Program:&lt;/b&gt; complexity of the program expressed as the depth of the maximum embeddedness of its conditional and iteration block scopes. The following instructions are taken into account: if, for, do, do-while, do-until, select, monitor. Only the first if statement will be taken into consideration of the if-elseif-else block. The following instructions do not increase the value by themselves; however, if additional embeddednesses can be found in their blocks, they are considered: else-if, else, when, other, and on-error. Contained local subroutines and procedures are not included.&#x0A;        </description>
-    <priority>INFO</priority>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
   </rule>
-  <rule key = "MET_NNC">
+  <rule>
+    <key>MET_NNC</key>
     <name>Number of Named Constants (NNC) Metric Threshold Violation</name>
     <description>&#x0A;          &lt;b&gt;Procedure:&lt;/b&gt; number of named constants in the procedure.&#x0A;          &lt;br&gt;&lt;b&gt;Program:&lt;/b&gt; number of named constants in the program, not including the constants declared in procedures.&#x0A;        </description>
-    <priority>INFO</priority>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
   </rule>
-  <rule key = "MET_NOI">
+  <rule>
+    <key>MET_NOI</key>
     <name>Number of Outgoing Invocations (NOI) Metric Threshold Violation</name>
     <description>&#x0A;          &lt;b&gt;Subroutine:&lt;/b&gt; number of directly called subroutines, procedures, or programs. If a subroutine, procedure, or program is invoked several times, it is counted only once.&#x0A;&#x09;&#x09;  &lt;b&gt;Procedure:&lt;/b&gt; number of directly called subroutines, procedures, or programs. If a subroutine, procedure, or program is invoked several times, it is counted only once. NOI of contained subroutines are not counted.&#x0A;&#x09;&#x09;  &lt;b&gt;Program:&lt;/b&gt; number of directly called subroutines, procedures, or programs. If a subroutine, procedure, or program is invoked several times, it is counted only once. NOI of contained subroutines, procedures are not counted.&#x0A;        </description>
-    <priority>INFO</priority>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
   </rule>
-  <rule key = "MET_NOR">
+  <rule>
+    <key>MET_NOR</key>
     <name>Number of Output Records (NOR) Metric Threshold Violation</name>
     <description>&#x0A;          &lt;b&gt;Program:&lt;/b&gt; number of output records(externally and program defined output records) declared in the program.&#x0A;&#x09;&#x09;</description>
-    <priority>INFO</priority>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
   </rule>
-  <rule key = "MET_NOS">
+  <rule>
+    <key>MET_NOS</key>
     <name>Number of Statements (NOS) Metric Threshold Violation</name>
     <description>&#x0A;          &lt;b&gt;Subroutine:&lt;/b&gt; number of statements in the subroutine.&#x0A;&#x09;&#x09;  &lt;br&gt;&lt;b&gt;Procedure:&lt;/b&gt; number of statements in the procedure; however, the statements of its local subroutines are not included.&#x0A;&#x09;&#x09;  &lt;br&gt;&lt;b&gt;Program:&lt;/b&gt; number of statements in the program; however, the statements of its local subroutines, procedures are not included.&#x0A;        </description>
-    <priority>INFO</priority>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
   </rule>
-  <rule key = "MET_NSF">
+  <rule>
+    <key>MET_NSF</key>
     <name>Number of Standalone Fields (NSF) Metric Threshold Violation</name>
     <description>&#x0A;          &lt;b&gt;Procedure:&lt;/b&gt; number of standalone fields declared in the procedure.&#x0A;          &lt;br&gt;&lt;b&gt;Program:&lt;/b&gt; number of standalone fields declared in the program, excluding the standalone fields declared in procedures of the program.&#x0A;        </description>
-    <priority>INFO</priority>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
   </rule>
-  <rule key = "MET_NUMPAR">
+  <rule>
+    <key>MET_NUMPAR</key>
     <name>Number of Parameters (NUMPAR) Metric Threshold Violation</name>
     <description>&#x0A;          &lt;b&gt;Procedure:&lt;/b&gt; number of the parameters of the procedure.&#x0A;&#x09;&#x09;  &lt;b&gt;Program:&lt;/b&gt; number of the parameters of the program.&#x0A;        </description>
-    <priority>INFO</priority>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
   </rule>
-  <rule key = "MET_PC">
+  <rule>
+    <key>MET_PC</key>
     <name>Program Complexity (PC) Metric Threshold Violation</name>
     <description>&#x0A;        &lt;b&gt;Program:&lt;/b&gt; The sum of the McCC complexity metrics of the contained subroutines and procedures plus the McCC of the main source section.&#x0A;        </description>
-    <priority>INFO</priority>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
   </rule>
-  <rule key = "MET_TCD">
+  <rule>
+    <key>MET_TCD</key>
     <name>Total Comment Density (TCD) Metric Threshold Violation</name>
     <description>&#x0A;          &lt;b&gt;Procedure:&lt;/b&gt; ratio of the total comment lines of the procedure (TCLOC) to the sum of its total comment (TCLOC) and total logical lines of code (TLLOC).&#x0A;&#x09;&#x09;  &lt;br&gt;&lt;b&gt;Program:&lt;/b&gt; ratio of the total comment lines of the program (TCLOC) to the sum of its total comment (TCLOC) and total logical lines of code (TLLOC).&#x0A;&#x09;&#x09;  &lt;br&gt;&lt;b&gt;System:&lt;/b&gt; ratio of the total comment lines of the system (TCLOC) to the sum of its total comment (TCLOC) and total logical lines of code (TLLOC).&#x0A;        </description>
-    <priority>INFO</priority>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
   </rule>
-  <rule key = "MET_TCLOC">
+  <rule>
+    <key>MET_TCLOC</key>
     <name>Total Comment Lines of Code (TCLOC) Metric Threshold Violation</name>
     <description>&#x0A;          &lt;b&gt;Procedure:&lt;/b&gt; number of comment and documentation code lines of the procedure, including its local subroutines&apos; CLOC metrics.&#x0A;&#x09;&#x09;  &lt;br&gt;&lt;b&gt;Program:&lt;/b&gt; number of comment and documentation code lines of the program, including its local subroutines&apos; CLOC metrics and its local procedures&apos; TCLOC metrics.&#x0A;&#x09;&#x09;  &lt;br&gt;&lt;b&gt;System:&lt;/b&gt; sum of the TCLOC metrics of programs.&#x0A;        </description>
-    <priority>INFO</priority>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
   </rule>
-  <rule key = "MET_TDLOC">
+  <rule>
+    <key>MET_TDLOC</key>
     <name>Total Documentation Lines of Code (TDLOC) Metric Threshold Violation</name>
     <description>&#x0A;        &lt;b&gt;Procedure:&lt;/b&gt; number of documentation code lines of the procedure, including the contained subroutines.&#x0A;&#x09;&#x09;&lt;br&gt;&lt;b&gt;Program:&lt;/b&gt; number of documentation code lines of the program, including its local subroutines and procedures.&#x0A;&#x09;&#x09;&lt;br&gt;&lt;b&gt;System:&lt;/b&gt; sum of the TDLOC values of the contained programs.&#x0A;        </description>
-    <priority>INFO</priority>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
   </rule>
-  <rule key = "MET_TLLOC">
+  <rule>
+    <key>MET_TLLOC</key>
     <name>Total Logical Lines of Code (TLLOC) Metric Threshold Violation</name>
     <description>&#x0A;          &lt;b&gt;Procedure:&lt;/b&gt; number of non-empty and non-comment code lines of the procedure, including its local subroutines.&#x0A;&#x09;&#x09;  &lt;br&gt;&lt;b&gt;Program:&lt;/b&gt; number of non-empty and non-comment code lines of the program, including the non-empty and non-comment code lines of its local subroutines, procedures.&#x0A;&#x09;&#x09;  &lt;br&gt;&lt;b&gt;System:&lt;/b&gt; number of non-empty and non-comment code lines of the system (sum of TLLOC values of programs).&#x0A;        </description>
-    <priority>INFO</priority>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
   </rule>
-  <rule key = "MET_TLOC">
+  <rule>
+    <key>MET_TLOC</key>
     <name>Total Lines of Code (TLOC) Metric Threshold Violation</name>
     <description>&#x0A;          &lt;b&gt;Procedure:&lt;/b&gt; number of code lines of the procedure, including empty and comment lines, as well as its local subroutines.&#x0A;&#x09;&#x09;  &lt;br&gt;&lt;b&gt;Program:&lt;/b&gt; number of code lines of the program, including empty and comment lines, as well as its local subroutines and procedures.&#x0A;&#x09;&#x09;  &lt;br&gt;&lt;b&gt;System:&lt;/b&gt; sum of the TLOC metrics of the programs.&#x0A;       </description>
-    <priority>INFO</priority>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
   </rule>
-  <rule key = "MET_TNDS">
+  <rule>
+    <key>MET_TNDS</key>
     <name>Total Number of Data Structures (TNDS) Metric Threshold Violation</name>
     <description>&#x0A;          &lt;b&gt;Program:&lt;/b&gt; number of datastructures declared in the program including the datastructures declared in procedures of the program.&#x0A;&#x09;&#x09;  &lt;br&gt;&lt;b&gt;System:&lt;/b&gt; number of all datastructures declared in the system.&#x0A;        </description>
-    <priority>INFO</priority>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
   </rule>
-  <rule key = "MET_TNF">
+  <rule>
+    <key>MET_TNF</key>
     <name>Total Number of Files (TNF) Metric Threshold Violation</name>
     <description>&#x0A;          &lt;b&gt;Program:&lt;/b&gt; number of files defined in the program, including the files defined in procedures of the program.&#x0A;&#x09;&#x09;  &lt;br&gt;&lt;b&gt;System:&lt;/b&gt; number of all files defined in the system.&#x0A;        </description>
-    <priority>INFO</priority>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
   </rule>
-  <rule key = "MET_TNNC">
+  <rule>
+    <key>MET_TNNC</key>
     <name>Total Number of Named Constants (TNNC) Metric Threshold Violation</name>
     <description>&#x0A;          &lt;b&gt;Program:&lt;/b&gt; number of named constants in the program, including the constants declared in procedures.&#x0A;&#x09;&#x09;  &lt;br&gt;&lt;b&gt;System:&lt;/b&gt; number of all named constants in the system.&#x0A;        </description>
-    <priority>INFO</priority>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
   </rule>
-  <rule key = "MET_TNOI">
+  <rule>
+    <key>MET_TNOI</key>
     <name>Total Number of Outgoing Invocations (TNOI) Metric Threshold Violation</name>
     <description>&#x0A;          &lt;b&gt;Procedure:&lt;/b&gt; number of directly called procedures, or programs. If a procedure, or program is invoked several times, it is counted only once. NOI of contained subroutines are included.&#x0A;&#x09;&#x09;  &lt;b&gt;Program:&lt;/b&gt; number of directly called procedures, or programs. If a subroutine, procedure, or program is invoked several times, it is counted only once. NOI of contained subroutines and TNOI of contained procedures are included.&#x0A;        </description>
-    <priority>INFO</priority>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
   </rule>
-  <rule key = "MET_TNOS">
+  <rule>
+    <key>MET_TNOS</key>
     <name>Total Number of Statements (TNOS) Metric Threshold Violation</name>
     <description>&#x0A;        &lt;b&gt;Procedure:&lt;/b&gt; number of statements in the procedure, including the statements of its subroutines.&#x0A;&#x09;&#x09;&lt;br&gt;&lt;b&gt;Program:&lt;/b&gt; number of statements in the program, including the statements of its subroutines and procedures.&#x0A;&#x09;&#x09;&lt;br&gt;&lt;b&gt;System:&lt;/b&gt; number of all statements in the system.&#x0A;        </description>
-    <priority>INFO</priority>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
   </rule>
-  <rule key = "MET_TNPC">
+  <rule>
+    <key>MET_TNPC</key>
     <name>Total Number of Procedures (TNPC) Metric Threshold Violation</name>
     <description>&#x0A;        &#x09;&lt;b&gt;Program:&lt;/b&gt; number of procedures located in the program.&#x0A;&#x09;&#x09;&#x09;&lt;br&gt;&lt;b&gt;System:&lt;/b&gt; number of procedures located in the system.&#x0A;        </description>
-    <priority>INFO</priority>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
   </rule>
-  <rule key = "MET_TNPG">
+  <rule>
+    <key>MET_TNPG</key>
     <name>Total Number of Programs (TNPG) Metric Threshold Violation</name>
     <description>&#x0A;          &lt;b&gt;System:&lt;/b&gt; number of programs located in the system.&#x0A;        </description>
-    <priority>INFO</priority>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
   </rule>
-  <rule key = "MET_TNSF">
+  <rule>
+    <key>MET_TNSF</key>
     <name>Total Number of Standalone Fields (TNSF) Metric Threshold Violation</name>
     <description>&#x0A;          &lt;b&gt;Program:&lt;/b&gt; number of standalone fields declared in the program, including the standalone fields declared in procedures of the program.&#x0A;&#x09;&#x09;  &lt;br&gt;&lt;b&gt;System:&lt;/b&gt; number of all standalone fields declared in the system.&#x0A;        </description>
-    <priority>INFO</priority>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
   </rule>
-  <rule key = "MET_TNSR">
+  <rule>
+    <key>MET_TNSR</key>
     <name>Total Number of Subroutines (TNSR) Metric Threshold Violation</name>
     <description>&#x0A;          &lt;b&gt;Procedure:&lt;/b&gt; number of subroutines located in the procedure.&#x0A;          &lt;br&gt;&lt;b&gt;Program:&lt;/b&gt; number of subroutines located in the program, including subroutines defined in a procedure.&#x0A;          &lt;br&gt;&lt;b&gt;System:&lt;/b&gt; number of all subroutines in the system.&#x0A;        </description>
-    <priority>INFO</priority>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
   </rule>
-  <rule key = "MET_CA">
+  <rule>
+    <key>MET_CA</key>
     <name>Clone Age (CA) Metric Threshold Violation</name>
     <description>&lt;b&gt;Clone class/clone instance:&lt;/b&gt; number of previously analyzed revisions in which the clone class/clone instance was present + 1.</description>
-    <priority>INFO</priority>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
   </rule>
-  <rule key = "MET_CC">
+  <rule>
+    <key>MET_CC</key>
     <name>Clone Coverage (CC) Metric Threshold Violation</name>
     <description>&lt;b&gt;Subroutine/procedure/program/system:&lt;/b&gt; ratio of code covered by code duplications in the source code element to the size of the source code element, expressed in terms of the number of syntactic entities (statements, expressions, etc.).&lt;br&gt;&lt;b&gt;Component:&lt;/b&gt; ratio of code covered by code duplications in the component to the size of the component, expressed in terms of the number of syntactic entities (statements, expressions, etc.).</description>
-    <priority>INFO</priority>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
   </rule>
-  <rule key = "MET_CCL">
+  <rule>
+    <key>MET_CCL</key>
     <name>Clone Classes (CCL) Metric Threshold Violation</name>
     <description>&lt;b&gt;Subroutine/procedure/program/system:&lt;/b&gt; number of clone classes having at least one clone instance in the source code element.&lt;br&gt;&lt;b&gt;Component:&lt;/b&gt; number of clone classes having at least one clone instance in the component.</description>
-    <priority>INFO</priority>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
   </rule>
-  <rule key = "MET_CCO">
+  <rule>
+    <key>MET_CCO</key>
     <name>Clone Complexity (CCO) Metric Threshold Violation</name>
     <description>&lt;b&gt;Clone instance:&lt;/b&gt; the McCabe complexity of the code fragment corresponding to the clone instance.&lt;br&gt;&lt;b&gt;Clone class:&lt;/b&gt; sum of CCO of clone instances in the clone class.&lt;br&gt;&lt;b&gt;Subroutine/procedure/program/system:&lt;/b&gt; sum of CCO of clone instances in the source code element.&lt;br&gt;&lt;b&gt;Component:&lt;/b&gt; sum of CCO of clone instances in the component.</description>
-    <priority>INFO</priority>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
   </rule>
-  <rule key = "MET_CE">
+  <rule>
+    <key>MET_CE</key>
     <name>Clone Embeddedness (CE) Metric Threshold Violation</name>
     <description>&lt;b&gt;Clone instance:&lt;/b&gt; sum of incoming and outgoing references (subroutine calls, procedure calls, variable references; different references to the same entity are counted only once) in the code fragment corresponding to the clone instance, weighted with the number of directory changes between the referenced code fragments.&lt;br&gt;&lt;b&gt;Clone class:&lt;/b&gt; sum of CE of the clone instances of the clone class + 1.</description>
-    <priority>INFO</priority>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
   </rule>
-  <rule key = "MET_CEE">
+  <rule>
+    <key>MET_CEE</key>
     <name>Clone Elimination Effort (CEE) Metric Threshold Violation</name>
     <description>&lt;b&gt;Clone class:&lt;/b&gt; index of the effort required to eliminate the clone class. It is computed as the product of CI, CE, and NCR.&lt;br&gt;&lt;b&gt;Component:&lt;/b&gt; index of the effort required to eliminate all clones from the component. It is computed as the sum of CEE of the clone classes in the component.</description>
-    <priority>INFO</priority>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
   </rule>
-  <rule key = "MET_CEG">
+  <rule>
+    <key>MET_CEG</key>
     <name>Clone Elimination Gain (CEG) Metric Threshold Violation</name>
     <description>&lt;b&gt;Clone class:&lt;/b&gt; index of the gain resulting from eliminating the clone class. It is computed as the ratio of CR to CEE.&lt;br&gt;&lt;b&gt;Component:&lt;/b&gt; index of the gain resulting from eliminating all clones from the component. It is computed as the logistic function of the ratio of CR to CEE.</description>
-    <priority>INFO</priority>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
   </rule>
-  <rule key = "MET_CI">
+  <rule>
+    <key>MET_CI</key>
     <name>Clone Instances (CI) Metric Threshold Violation</name>
     <description>&lt;b&gt;Subroutine/procedure/program/system:&lt;/b&gt; number of clone instances in the source code element.&lt;br&gt;&lt;b&gt;Component:&lt;/b&gt; number of clone instances in the component.&lt;br&gt;&lt;b&gt;Clone class:&lt;/b&gt; number of clone instances in the clone class.</description>
-    <priority>INFO</priority>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
   </rule>
-  <rule key = "MET_CLC">
+  <rule>
+    <key>MET_CLC</key>
     <name>Clone Line Coverage (CLC) Metric Threshold Violation</name>
     <description>&lt;b&gt;Subroutine/procedure/program/system:&lt;/b&gt; ratio of code covered by code duplications in the source code element to the size of the source code element, expressed in terms of lines of code.&lt;br&gt;&lt;b&gt;Component:&lt;/b&gt; ratio of code covered by code duplications in the component to the size of the component, expressed in terms of lines of code.</description>
-    <priority>INFO</priority>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
   </rule>
-  <rule key = "MET_CLLC">
+  <rule>
+    <key>MET_CLLC</key>
     <name>Clone Logical Line Coverage (CLLC) Metric Threshold Violation</name>
     <description>&lt;b&gt;Subroutine/procedure/program/system:&lt;/b&gt; ratio of code covered by code duplications in the source code element to the size of source code element, expressed in terms of logical lines of code (non-empty, non-comment lines).&lt;br&gt;&lt;b&gt;Component:&lt;/b&gt; ratio of code covered by code duplications in the component to the size of the component, expressed in terms of logical lines of code (non-empty, non-comment lines).</description>
-    <priority>INFO</priority>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
   </rule>
-  <rule key = "MET_CLLOC">
+  <rule>
+    <key>MET_CLLOC</key>
     <name>Clone Lines of Code (CLLOC) Metric Threshold Violation</name>
     <description>&lt;b&gt;Clone instance:&lt;/b&gt; length of the clone instance expressed in terms of lines of code.&lt;br&gt;&lt;b&gt;Clone class:&lt;/b&gt;  average of CLLOC of clone instances belonging to the clone class.</description>
-    <priority>INFO</priority>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
   </rule>
-  <rule key = "MET_CR">
+  <rule>
+    <key>MET_CR</key>
     <name>Clone Risk (CR) Metric Threshold Violation</name>
     <description>&lt;b&gt;Clone class:&lt;/b&gt; risk index of the existence of the clone class. It is computed as the product of CLLOC, CI, CCO, NCR, and CV.&lt;br&gt;&lt;b&gt;Component:&lt;/b&gt; relative risk index of the existence of code duplications in the component. It is computed as the sum of CR of the clone classes in the component, divided by the total logical lines of code (non-empty, non-comment lines) of the component. It expresses the risk index projected to a non-empty, non-comment line of code in the component.</description>
-    <priority>INFO</priority>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
   </rule>
-  <rule key = "MET_CV">
+  <rule>
+    <key>MET_CV</key>
     <name>Clone Variability (CV) Metric Threshold Violation</name>
     <description>&lt;b&gt;Clone instance:&lt;/b&gt; instability of the clone instance since it appeared. It is computed as the ratio of the number of previously analyzed revisions when the instance had been changed to its age (CA).&lt;br&gt;&lt;b&gt;Clone class:&lt;/b&gt; instability of the clone class since it appeared. It is computed as the ratio of the number of previously analyzed revisions when its contained instances were moved, deleted, or added, to its age (CA), plus the average CV of its clone instances.</description>
-    <priority>INFO</priority>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
   </rule>
-  <rule key = "MET_LDC">
+  <rule>
+    <key>MET_LDC</key>
     <name>Lines of Duplicated Code (LDC) Metric Threshold Violation</name>
     <description>&lt;b&gt;Subroutine/procedure/program/system:&lt;/b&gt; number of code lines covered by code duplications in the source code element.&lt;br&gt;&lt;b&gt;Component:&lt;/b&gt; number of code lines covered by code duplications in the component.</description>
-    <priority>INFO</priority>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
   </rule>
-  <rule key = "MET_LLDC">
+  <rule>
+    <key>MET_LLDC</key>
     <name>Logical Lines of Duplicated Code (LLDC) Metric Threshold Violation</name>
     <description>&lt;b&gt;Subroutine/procedure/program/system:&lt;/b&gt; number of logical code lines (non-empty, non-comment lines) covered by code duplications in the source code element.&lt;br&gt;&lt;b&gt;Component:&lt;/b&gt; The number of logical code lines (non-empty, non-comment lines) covered by code duplications in the component.</description>
-    <priority>INFO</priority>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
   </rule>
-  <rule key = "ADS">
+  <rule>
+    <key>ADS</key>
     <name>Avoid Debug Operations</name>
     <description>&lt;h3&gt;FaultHunterRPG&lt;/h3&gt;&#x0A;            During the developement process DEBUG(*YES) and DUMP operations provide useful information for tracking and finding bugs. So, a faster bug fixing phase can be achieved, however, debug operations are unwanted in production code.&#x0A;        </description>
-    <priority>MINOR</priority>
+    <type>BUG</type>
+    <severity>MINOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>10min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "AO">
+  <rule>
+    <key>AO</key>
     <name>Avoid Operation</name>
     <description>&lt;h3&gt;FaultHunterRPG&lt;/h3&gt;&#x0A;            An avoid operation can be found in the source code. In calculation specification avoid using these operations because they have a bad effect on quality index. The set of avoid operations is fully customizable for RPG III programs and also for source codes written in RPG IV. So, organization standards can be applied. Recommendation of how to replace avoid operations with code that has the same funcionality is the responsibility of the organization.&#x0A;        </description>
-    <priority>CRITICAL</priority>
+    <type>BUG</type>
+    <severity>CRITICAL</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>30min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "BNE">
+  <rule>
+    <key>BNE</key>
     <name>Conditional Expression Is Always False</name>
     <description>&lt;h3&gt;FaultHunterRPG&lt;/h3&gt;RPG contains many statements for specifying the control flow of a program upon a condition. If the given conditional expression only contains character literals, numeric literals and named constants we can evaluate these expressions and check whether the condition returns false. In this cases the conditional branch is unused and unnecessary, so the unrelevant branch can be removed from the conditional statement.</description>
-    <priority>CRITICAL</priority>
+    <type>BUG</type>
+    <severity>CRITICAL</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>5min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "CCO">
+  <rule>
+    <key>CCO</key>
     <name>Complete Conditional Operation Needed</name>
     <description>&lt;h3&gt;FaultHunterRPG&lt;/h3&gt;&#x0A;            In RPG IV user can specify conditions without explicitly writing out the equivalents of ‘true’ or ‘false’. Adding these constant values to conditions make them more understandable and readable. Adding true or false to a condition reflects the idea behind it.&#x0A;        </description>
-    <priority>MAJOR</priority>
+    <type>CODE_SMELL</type>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>1min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "COSURI">
+  <rule>
+    <key>COSURI</key>
     <name>CHAIN Operation Should Use Resulting Indicator</name>
     <description>&lt;h3&gt;FaultHunterRPG&lt;/h3&gt;&#x0A;            Resulting indicators should be used on CHAIN oparations (NOT located in free-form) to automatically handle “end of file” and “record not found” errors without specifying further error-handling procedures.&#x0A;        </description>
-    <priority>MAJOR</priority>
+    <type>CODE_SMELL</type>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>30min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "COV">
+  <rule>
+    <key>COV</key>
     <name>Call Operand Is A Variable</name>
     <description>&lt;h3&gt;FaultHunterRPG&lt;/h3&gt;A variable was given as call operand that can complicate the source code, its readability, and the tracking process. Using a character literal as call operand makes the program more readable and understandandable.</description>
-    <priority>MAJOR</priority>
+    <type>CODE_SMELL</type>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>5min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "CRS">
+  <rule>
+    <key>CRS</key>
     <name>Commented RPG Statement</name>
     <description>&lt;h3&gt;FaultHunterRPG&lt;/h3&gt;&#x0A;            A probable RPG operation is found in the specified comment line. Using comment lines in code aims to help the intelligibility. Undesired operations should be romeved from the code. In a native RPG environment these commented operations can be the source of misunderstanding because the programmers cannot see the asterisk at the beginning of the line. Highlighting a comment line containing RPG operations may worth some extra characters. So, predefined patterns can be applied for marking a commented RPG operation. The set of operations are different according to the program’s version.&#x0A;        </description>
-    <priority>CRITICAL</priority>
+    <type>CODE_SMELL</type>
+    <severity>CRITICAL</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>1min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "CSD">
+  <rule>
+    <key>CSD</key>
     <name>Copyright Keyword Should Be Defined In Control Specification</name>
     <description>&lt;h3&gt;FaultHunterRPG&lt;/h3&gt;&#x0A;            Granting exclusive rights to the creator of the original work for its use and distribution can be achieved by defining copyright keyword in Control Specification (works only in RPG IV environment). Copyright information is granted by a maximum 256 long string that can be displayed by the operations DSPMOD, DSPPGM, or DSPSRVPGM. &#x0A;        </description>
-    <priority>MINOR</priority>
+    <type>CODE_SMELL</type>
+    <severity>MINOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>5min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "CWLL">
+  <rule>
+    <key>CWLL</key>
     <name>Lower Case Letter In The Name Of Called Program Or Procedure</name>
     <description>&lt;h3&gt;FaultHunterRPG&lt;/h3&gt;&#x0A;            The compilation or execution can fail with an error when the operand of a call or callb operation is a literal that contains one ore more lower-case letters. Avoid this rule violation by using upper-case string literals.&#x0A;        </description>
-    <priority>CRITICAL</priority>
+    <type>BUG</type>
+    <severity>CRITICAL</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>1min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "DCI">
+  <rule>
+    <key>DCI</key>
     <name>Deep /COPY, /INCLUDE Embededdness</name>
     <description>&lt;h3&gt;FaultHunterRPG&lt;/h3&gt;&#x0A;            Too deep /COPY and/or /INCLUDE directives can be found in the code. In general, RPG programmers prefer using these directives only in single depth because the code remains readable and more maintainable. A program’s source can contain more than one /COPY or /INCLUDE operations, however included sources cannot contain further directives like these. This rule is only applied for RPG IV, because the compiler checks this property in RPG III. The maximal depth can be parameterized.&#x0A;        </description>
-    <priority>MAJOR</priority>
+    <type>CODE_SMELL</type>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>30min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "DHTMS">
+  <rule>
+    <key>DHTMS</key>
     <name>Do Block Has Too Many Statements</name>
     <description>&lt;h3&gt;FaultHunterRPG&lt;/h3&gt;&#x0A;            Do block contains too many statements that harms the readabilty and understandabilty. Consdier extracting relevant code logic to a new subroutine or procedure.&#x0A;        </description>
-    <priority>MAJOR</priority>
+    <type>CODE_SMELL</type>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>20min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "ESU">
+  <rule>
+    <key>ESU</key>
     <name>Use ENDxx Instead of END</name>
     <description>&lt;h3&gt;FaultHunterRPG&lt;/h3&gt;&#x0A;            In RPG, structured conrol operations can be used to group more statements into a block. These structures use the END statement to indicate the end of the block. Embedding numerous different blocks can be difficult to read. So, instead of END, ENDxx should be used to indicate the type of the structured operation wanted to be closed.&#x0A;        </description>
-    <priority>MAJOR</priority>
+    <type>CODE_SMELL</type>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>10min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "ESUAS">
+  <rule>
+    <key>ESUAS</key>
     <name>/Eject Should Used After Specifications (F,D,C)</name>
     <description>&lt;h3&gt;FaultHunterRPG&lt;/h3&gt;&#x0A;            After File Description, Calculation, and Definiton specifications an /EJECT compiler directive should be inserted that leads to a better formatted compiler listing. When a specification type is missing, no rule violation occurs.&#x0A;        </description>
-    <priority>MINOR</priority>
+    <type>CODE_SMELL</type>
+    <severity>MINOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>5min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "FCSU">
+  <rule>
+    <key>FCSU</key>
     <name>Figurative Constant Should Used</name>
     <description>&lt;h3&gt;FaultHunterRPG&lt;/h3&gt;&#x0A;            In assignments and in initializations ‘’, ‘0’, ‘1’ literals can be used. RPG provides figurative constants to avoid possible errors coming from using these literals. Replace the literals with *BLANK, *OFF, or *ON.&#x0A;        </description>
-    <priority>MAJOR</priority>
+    <type>CODE_SMELL</type>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>5min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "FO">
+  <rule>
+    <key>FO</key>
     <name>Forbidden Operation</name>
     <description>&lt;h3&gt;FaultHunterRPG&lt;/h3&gt;&#x0A;            A forbidden operation can be found in the source code. In calculation specification avoid using forbidden operations because they have a bad effect on quality index. The set of forbidden operations is fully customizable for RPG III programs and also for source codes written in RPG IV. So, organization standards can be applied. Recommendation of how to replace forbidden operations with code that has the same funcionality is the responsibility of the organization.&#x0A;        </description>
-    <priority>CRITICAL</priority>
+    <type>BUG</type>
+    <severity>CRITICAL</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>10min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "FPMK">
+  <rule>
+    <key>FPMK</key>
     <name>First Parameter Must Be KLIST</name>
     <description>&lt;h3&gt;FaultHunterRPG&lt;/h3&gt;First parameter must be KLIST when using a CHAIN, DELETE, READE, READPE, SETGT or SETLL operation.</description>
-    <priority>MAJOR</priority>
+    <type>BUG</type>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>30min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "FPN">
+  <rule>
+    <key>FPN</key>
     <name>File Uses Prefixed Name</name>
     <description>&lt;h3&gt;FaultHunterRPG&lt;/h3&gt;&#x0A;            Externally defined files declared in File Specification can use names with a given prefix. By specifying a prefix on a file, the contained fields can be referenced by the appropriate prefix and the desired field name. Using prefixed names in this way improves ubderstandability. However, prefix keyword supports the replacement of the beginning of the original names with the prefix name which is undesired because it decreases readability and debug processes can also be longer. Prefix keyword can only be used in RPG IV.&#x0A;        </description>
-    <priority>MAJOR</priority>
+    <type>CODE_SMELL</type>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>30min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "FSDE">
+  <rule>
+    <key>FSDE</key>
     <name>Files Should Be Defined Externally</name>
     <description>&lt;h3&gt;FaultHunterRPG&lt;/h3&gt;&#x0A;            To separate logic from data, it is a good strategy to use externally defined files in File Description Specification.&#x0A;        </description>
-    <priority>MINOR</priority>
+    <type>CODE_SMELL</type>
+    <severity>MINOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>30min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "IHTMS">
+  <rule>
+    <key>IHTMS</key>
     <name>If Block Has Too Many Statements</name>
     <description>&lt;h3&gt;FaultHunterRPG&lt;/h3&gt;&#x0A;            If block contains too many statements that harms the readabilty and understandabilty. Consdier extracting relevant code logic to a new subroutine or procedure.&#x0A;        </description>
-    <priority>MAJOR</priority>
+    <type>CODE_SMELL</type>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>20min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "IMO">
+  <rule>
+    <key>IMO</key>
     <name>Numeric Operands Of MOVE(L) Are Not Compatible</name>
     <description>&lt;h3&gt;FaultHunterRPG&lt;/h3&gt;&#x0A;            The operands of MOVE(L) are not compatible, thus precision problems may occur during assignment. The following numeric types will be checked:&#x0A;                •    Binary (B)&#x0A;                •    Float (F)&#x0A;                •    Integer (I)&#x0A;                •    Packed-Decimal (P)&#x0A;                •    Unsigned (U)&#x0A;                •    Zoned-Decimal (Z)&#x0A;            The compiler will not mark all the conversion and precision issues. In the business segment a little precision difference in decimal positions can be fatal. To avoid these kinds of errors, use numeric values with the right lenght and type.&#x0A;        </description>
-    <priority>MAJOR</priority>
+    <type>BUG</type>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>30min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "ISNUI">
+  <rule>
+    <key>ISNUI</key>
     <name>If Should Not Use Indicators</name>
     <description>&lt;h3&gt;FaultHunterRPG&lt;/h3&gt;&#x0A;            Besides using conditional expressions in IF statements, users can define dependencies on indicators. Using indicators as conditions results in poor logic and an intricate code, thus indicators should not be used in conditions.&#x0A;        </description>
-    <priority>MAJOR</priority>
+    <type>VULNERABILITY</type>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>20min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "ISTWE">
+  <rule>
+    <key>ISTWE</key>
     <name>IF-ELSEIF Should Terminated With ELSE</name>
     <description>&lt;h3&gt;FaultHunterRPG&lt;/h3&gt;&#x0A;            ELSE should be used after IF-ELSEIF structure as a defensive programming component. At least one ELSEIF have to occur in the strucutre.&#x0A;        </description>
-    <priority>MAJOR</priority>
+    <type>CODE_SMELL</type>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>5min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "LCSDI">
+  <rule>
+    <key>LCSDI</key>
     <name>Line Count Should Defined In INFDS</name>
     <description>&lt;h3&gt;FaultHunterRPG&lt;/h3&gt;&#x0A;            Line count information should be read from the data structure specified in the parameter of INFDS (in PRINTER files). Line count information can be read from positions 367-368.&#x0A;        </description>
-    <priority>MAJOR</priority>
+    <type>CODE_SMELL</type>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>30min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "LSA">
+  <rule>
+    <key>LSA</key>
     <name>Large Static Array</name>
     <description>&lt;h3&gt;FaultHunterRPG&lt;/h3&gt;&#x0A;            A too large static array is used in the program that consumes a lot of memory. In many cases the array can be splitted into smaller disjoint pieces. Size of an array is checked in three different ways. The dimension of the array and the size of its elements (in bytes) can be limited. The product of these values can be limited independently (max size).&#x0A;        </description>
-    <priority>MINOR</priority>
+    <type>CODE_SMELL</type>
+    <severity>MINOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>20min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "LVN">
+  <rule>
+    <key>LVN</key>
     <name>Too Long Name</name>
     <description>&lt;h3&gt;FaultHunterRPG&lt;/h3&gt;The declared variable name is too long. Using appropriate variable name length impoves the readability. In RPG III sources the variable name’s length is limited by the language syntax itself, but an additional upper limit can be added. In RPG IV one can use “unlimited” variable names in a definition or in a procedure specification. By defining different variable name lengths for different source code elements a fine-granularity can be achived in naming conventions. Naming groups are the following:&#x0A;                •    array and table names&#x0A;                •    datastructure names&#x0A;                •    datastructure subfield names&#x0A;                •    standalone field names&#x0A;                •    named constant names&#x0A;                •    prototype and procedure interface namas&#x0A;                •    prototype and procedure interface parameter names&#x0A;                •    procedure names</description>
-    <priority>MINOR</priority>
+    <type>BUG</type>
+    <severity>MINOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>5min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "MEHFS">
+  <rule>
+    <key>MEHFS</key>
     <name>Missing Error Handling In F Spec</name>
     <description>&lt;h3&gt;FaultHunterRPG&lt;/h3&gt;&#x0A;            During reading or writing files errors can occur. To handle such errors INFSR keyword should be added to File Description specification lines. INFSR specifies an error-handling subroutine by the given parameter (name of the subroutine). A default error-handling subroutine is *PSSR.&#x0A;        </description>
-    <priority>CRITICAL</priority>
+    <type>BUG</type>
+    <severity>CRITICAL</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>5min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "NFSUNL">
+  <rule>
+    <key>NFSUNL</key>
     <name>Non-Input Files Should Use No-Lock</name>
     <description>&lt;h3&gt;FaultHunterRPG&lt;/h3&gt;&#x0A;            When accessing the records in files opened for update and output, the records are locked. When a longer process follows the read operation, it is intolerable that other processes have to wait for the input locked by another process. So, no-lock option should be specified on READxx and CHAIN operations to prevent such cases.&#x0A;        </description>
-    <priority>CRITICAL</priority>
+    <type>BUG</type>
+    <severity>CRITICAL</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>10min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "ONFSU">
+  <rule>
+    <key>ONFSU</key>
     <name>Odd Numeric Fields Should Be Used</name>
     <description>&lt;h3&gt;FaultHunterRPG&lt;/h3&gt;&#x0A;            Lossless memory allocation can be a good reason for using odd length numeric fields. In this case the extra memory block is not used for storing the sign of the numbers.&#x0A;        </description>
-    <priority>MAJOR</priority>
+    <type>BUG</type>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>30min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "SCC">
+  <rule>
+    <key>SCC</key>
     <name>Circular Reference Between Subroutines</name>
     <description>&lt;h3&gt;FaultHunterRPG&lt;/h3&gt;&#x0A;            Subroutines can call other subroutines. There is no barrier that prevents the presence of a circular reference between subroutine calls that may result in a infinite loop.&#x0A;        </description>
-    <priority>CRITICAL</priority>
+    <type>VULNERABILITY</type>
+    <severity>CRITICAL</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>10min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "SHOSU">
+  <rule>
+    <key>SHOSU</key>
     <name>“*SRCSTMT, *NODEBUGIO” Header Option Should Be Used</name>
     <description>&lt;h3&gt;FaultHunterRPG&lt;/h3&gt;&#x0A;            Cannot found the option(*SRCSTMT: *NODEBUGIO) entry in Control Specification. Using *SRCSTMT imply that line numbers cited in error statements will correspond correctly to the code. *NODEBUGIO prevents debug operations from stopping on I/O.&#x0A;        </description>
-    <priority>MAJOR</priority>
+    <type>BUG</type>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>5min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "SNWNC">
+  <rule>
+    <key>SNWNC</key>
     <name>Subroutine Name Without Naming Convention</name>
     <description>&lt;h3&gt;FaultHunterRPG&lt;/h3&gt; It is a good approach to define a subroutine with an appropriate naming convention. By using naming conventions in the subroutines’ names we can add a grouping or mark identifiers referencing a subroutine’s name. Naming conventions can be controlled by using regular expression patterns.</description>
-    <priority>MINOR</priority>
+    <type>CODE_SMELL</type>
+    <severity>MINOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>10min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "SSD">
+  <rule>
+    <key>SSD</key>
     <name>Subroutines Should be Documented</name>
     <description>&lt;h3&gt;FaultHunterRPG&lt;/h3&gt;&#x0A;            Documentation on subroutines are strongly recommended to have an easy to understand code. It helps in performing later modification tasks. Documentation should be consistent with the subroutine’s functionality.&#x0A;        </description>
-    <priority>CRITICAL</priority>
+    <type>BUG</type>
+    <severity>CRITICAL</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>5min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "SVN">
+  <rule>
+    <key>SVN</key>
     <name>Too Short Name</name>
     <description>&lt;h3&gt;FaultHunterRPG&lt;/h3&gt;&#x0A;            The declared name is too short. In general, at least 3 character length variable names should be used. Using appropriate variable name length impoves the readability. In RPG sources the variable name’s length is limited by the language syntax itself, but an additional lower limit can be added. By defining different variable name lengths for different source code elements a fine-granularity can be achived in naming conventions. Naming groups are the following:&#x0A;                •    array and table names&#x0A;                •    datastructure names&#x0A;                •    datastructure subfield names&#x0A;                •    standalone field names&#x0A;                •    named constant names&#x0A;                •    prototype and procedure interface namas&#x0A;                •    prototype and procedure interface parameter names&#x0A;                •    procedure names&#x0A;        </description>
-    <priority>MINOR</priority>
+    <type>BUG</type>
+    <severity>MINOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>5min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "UFSEC">
+  <rule>
+    <key>UFSEC</key>
     <name>USROPN Files Should Explicitly Closed</name>
     <description>&lt;h3&gt;FaultHunterRPG&lt;/h3&gt;&#x0A;            A file defined in File Description Specification can be accessed many times from different places of the source code. Files can be used concurrently, thus a correct file handling mechanism is desired. After the OPEN operation is executed, users can read, update, and write files depending on how the file was specified in the File Description Specification. After a process is finished working with the file, it should close the file explicitly (in case of USROPN files).&#x0A;        </description>
-    <priority>CRITICAL</priority>
+    <type>VULNERABILITY</type>
+    <severity>CRITICAL</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>30min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "ULCF">
+  <rule>
+    <key>ULCF</key>
     <name>Uncommented Long Code Fragment</name>
     <description>&lt;h3&gt;FaultHunterRPG&lt;/h3&gt;&#x0A;            A massive coherent code block contains no comment lines. Code blocks with high LLOC metric are subservient to have explanatory comments for the sake of easier comprehension. Modification of this code becomes easier and the source code will have a better maintainability index as well. The rule is applied for RPG III, RPG IV, and also for free-form blocks.&#x0A;        </description>
-    <priority>MAJOR</priority>
+    <type>CODE_SMELL</type>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>1min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "US">
+  <rule>
+    <key>US</key>
     <name>Subroutine Is Never Called</name>
     <description>&lt;h3&gt;FaultHunterRPG&lt;/h3&gt;&#x0A;            The source code contains a subroutine that is never called. By eliminating unused subroutines the size of the code can be decreased, and the readability can be improved. The initialization subroutine is not taken into consideration since it is called implicitly.&#x0A;        </description>
-    <priority>CRITICAL</priority>
+    <type>CODE_SMELL</type>
+    <severity>CRITICAL</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>5min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "UV">
+  <rule>
+    <key>UV</key>
     <name>Unused Variable</name>
     <description>&lt;h3&gt;FaultHunterRPG&lt;/h3&gt;Variables are declared in the source code, but never used. Unused variables are unnecessary in the program. By removing such variables, the size of the code will decrease and the readability will improve as well. In RPG environment we consider the following source code elements as variables:&#x0A;            •    Data Structrue &#x0A;            •    Data Structure Subfield &#x0A;            •    Standalone Field &#x0A;            •    Named Constant &#x0A;            •    Variables defined by a Define &#x0A;            •    Arrays and Tables defined in Extension Specification&#x0A;        </description>
-    <priority>CRITICAL</priority>
+    <type>CODE_SMELL</type>
+    <severity>CRITICAL</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>5min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "VUIUS">
+  <rule>
+    <key>VUIUS</key>
     <name>Variable Only Referenced From An Unused Subroutine</name>
     <description>&lt;h3&gt;FaultHunterRPG&lt;/h3&gt;&#x0A;            The source code contains variables that are only referenced from a subroutine. However, the appropriate subroutine is never called from the program, so the variable’s value is never changed. Consider the elimination of the affected variable and subroutine. Variables only used in the initialization subroutine (*INZSR) are not cause a rule violation.&#x0A;        </description>
-    <priority>CRITICAL</priority>
+    <type>CODE_SMELL</type>
+    <severity>CRITICAL</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>5min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "WBWTMS">
+  <rule>
+    <key>WBWTMS</key>
     <name>WHEN Branch With Too Many Statements</name>
     <description>&lt;h3&gt;FaultHunterRPG&lt;/h3&gt;&#x0A;            In a WHEN branch of the SELECT statement, there are too many statements. By specifying many statements in such structures can easily cause the phenomenon called “Spaghetti Code”. Try to extract these statements into a subroutine or procedure.&#x0A;        </description>
-    <priority>MAJOR</priority>
+    <type>CODE_SMELL</type>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>5min</remediationFunctionBaseEffort>
   </rule>
-</rulset>
+</rules>

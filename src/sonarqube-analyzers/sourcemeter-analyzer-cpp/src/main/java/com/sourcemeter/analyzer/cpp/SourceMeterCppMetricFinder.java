@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014-2015, FrontEndART Software Ltd.
+ * Copyright (c) 2014-2017, FrontEndART Software Ltd.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -27,9 +27,10 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+
 package com.sourcemeter.analyzer.cpp;
 
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import org.sonar.api.measures.Metric;
@@ -51,31 +52,11 @@ public class SourceMeterCppMetricFinder extends SourceMeterMetricFinder {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public List<Metric> findLanguageSpecificRulesetMetrics() {
-        return Arrays.asList(SourceMeterCppMetrics.ISSUEGROUP_API,
-                             SourceMeterCppMetrics.ISSUEGROUP_BOOST_LIBRARY,
-                             SourceMeterCppMetrics.ISSUEGROUP_BUFFER_OVERRUN,
-                             SourceMeterCppMetrics.ISSUEGROUP_CONDITIONAL,
-                             SourceMeterCppMetrics.ISSUEGROUP_DIVISION,
-                             SourceMeterCppMetrics.ISSUEGROUP_EXCEPTION,
-                             SourceMeterCppMetrics.ISSUEGROUP_INITIALIZATION,
-                             SourceMeterCppMetrics.ISSUEGROUP_INPUT_OUTPUT,
-                             SourceMeterCppMetrics.ISSUEGROUP_MEMORY_HANDLING,
-                             SourceMeterCppMetrics.ISSUEGROUP_OBJECT_ORIENTEDNESS,
-                             SourceMeterCppMetrics.ISSUEGROUP_PERFORMANCE,
-                             SourceMeterCppMetrics.ISSUEGROUP_PORTABILITY,
-                             SourceMeterCppMetrics.ISSUEGROUP_PREPROCESSOR,
-                             SourceMeterCppMetrics.ISSUEGROUP_READABILITY_AND_CONSISTENCY,
-                             SourceMeterCppMetrics.ISSUEGROUP_REENTRANCY,
-                             SourceMeterCppMetrics.ISSUEGROUP_SIDE_EFFECT,
-                             SourceMeterCppMetrics.ISSUEGROUP_SIMPLE_TYPE,
-                             SourceMeterCppMetrics.ISSUEGROUP_SIZEOF_OPERATOR,
-                             SourceMeterCppMetrics.ISSUEGROUP_STL,
-                             SourceMeterCppMetrics.ISSUEGROUP_SUSPICIOUS_CONSTRUCT,
-                             SourceMeterCppMetrics.ISSUEGROUP_UNNECESSARY_AND_UNUSED_CODE,
-                             SourceMeterCppMetrics.ISSUEGROUP_UNREACHABLE_CODE,
-                             SourceMeterCppMetrics.ISSUEGROUP_VARIABLE_ARGUMENT_RELATED
-                     );
+        return Collections.emptyList();
     }
 }

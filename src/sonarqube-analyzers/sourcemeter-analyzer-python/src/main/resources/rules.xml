@@ -1,1398 +1,2624 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<rulset xmlns = "http://pmd.sourceforge.net/ruleset/2.0.0" xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation = "http://pmd.sourceforge.net/ruleset/2.0.0 http://pmd.sourceforge.net/ruleset_2_0_0.xsd">
-  <rule key = "MET_CBO">
+<rules>
+  <rule>
+    <key>MET_CBO</key>
     <name>Coupling Between Object classes (CBO) Metric Threshold Violation</name>
     <description>&lt;p&gt;&lt;strong&gt;Class:&lt;/strong&gt; number of directly used other classes (e.g. by inheritance, function call, type reference, attribute reference). Classes using many other classes highly depend on their environment, so it is difficult to test or reuse them; furthermore, they are very sensitive to the changes in the system.&lt;/p&gt;&#x0A;</description>
-    <priority>INFO</priority>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
   </rule>
-  <rule key = "MET_CBOI">
+  <rule>
+    <key>MET_CBOI</key>
     <name>Coupling Between Object classes Inverse (CBOI) Metric Threshold Violation</name>
     <description>&lt;p&gt;&lt;strong&gt;Class:&lt;/strong&gt; number of other classes, which directly use the class. Classes which are used by many other classes have a high impact on the behavior of the system, and should be modified very carefully and tested intensively.&lt;/p&gt;&#x0A;</description>
-    <priority>INFO</priority>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
   </rule>
-  <rule key = "MET_CD">
+  <rule>
+    <key>MET_CD</key>
     <name>Comment Density (CD) Metric Threshold Violation</name>
     <description>&lt;p&gt;&lt;strong&gt;Method/Function:&lt;/strong&gt; ratio of the comment lines of the method/function (CLOC) to the sum of its comment (CLOC) and logical lines of code (LLOC).&lt;/p&gt;&#x0A;&lt;p&gt;&lt;strong&gt;Class:&lt;/strong&gt; ratio of the comment lines of the class (CLOC) to the sum of its comment (CLOC) and logical lines of code (LLOC).&lt;/p&gt;&#x0A;&lt;p&gt;&lt;strong&gt;Module:&lt;/strong&gt; ratio of the comment lines of the module (CLOC) to the sum of its comment (CLOC) and logical lines of code (LLOC).&lt;/p&gt;&#x0A;</description>
-    <priority>INFO</priority>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
   </rule>
-  <rule key = "MET_CLOC">
+  <rule>
+    <key>MET_CLOC</key>
     <name>Comment Lines of Code (CLOC) Metric Threshold Violation</name>
     <description>&lt;p&gt;&lt;strong&gt;Method/Function:&lt;/strong&gt; number of comment and documentation code lines of the method/function; however, its local classes are not included.&lt;/p&gt;&#x0A;&lt;p&gt;&lt;strong&gt;Class:&lt;/strong&gt; number of comment and documentation code lines of the class, including its local methods and attributes; however, its nested and local classes are not included.&lt;/p&gt;&#x0A;&lt;p&gt;&lt;strong&gt;Module:&lt;/strong&gt; number of comment and documentation code lines of the module.&lt;/p&gt;&#x0A;&lt;p&gt;&lt;strong&gt;File:&lt;/strong&gt; number of comment and documentation code lines in the file.&lt;/p&gt;&#x0A;</description>
-    <priority>INFO</priority>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
   </rule>
-  <rule key = "MET_DIT">
+  <rule>
+    <key>MET_DIT</key>
     <name>Depth of Inheritance Tree (DIT) Metric Threshold Violation</name>
     <description>&lt;p&gt;&lt;strong&gt;Class:&lt;/strong&gt; length of the path that leads from the class to its farthest ancestor in the inheritance tree.&lt;/p&gt;&#x0A;</description>
-    <priority>INFO</priority>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
   </rule>
-  <rule key = "MET_DLOC">
+  <rule>
+    <key>MET_DLOC</key>
     <name>Documentation Lines of Code (DLOC) Metric Threshold Violation</name>
     <description>&lt;p&gt;&lt;strong&gt;Method/Function:&lt;/strong&gt; number of documentation code lines of the method/function.&lt;/p&gt;&#x0A;&lt;p&gt;&lt;strong&gt;Class:&lt;/strong&gt; number of documentation code lines of the class, including its local methods and attributes; however, its nested and local classes are not included.&lt;/p&gt;&#x0A;&lt;p&gt;&lt;strong&gt;Module:&lt;/strong&gt; number of documentation code lines of the modul.&lt;/p&gt;&#x0A;</description>
-    <priority>INFO</priority>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
   </rule>
-  <rule key = "MET_LCOM5">
+  <rule>
+    <key>MET_LCOM5</key>
     <name>Lack of Cohesion in Methods 5 (LCOM5) Metric Threshold Violation</name>
     <description>&lt;p&gt;&lt;strong&gt;Class:&lt;/strong&gt; number of functionalities of the class. One of the basic principles of object-oriented programming is encapsulation, meaning that attributes belonging together and the operations that use them should be organized into one class, and one class shall implement only one functionality, i.e. its attributes and methods should be coherent. This metric measures the lack of cohesion and computes into how many coherent classes the class could be split. It is calculated by taking a non-directed graph, where the nodes are the implemented local methods of the class and there is an edge between the two nodes if and only if a common (local or inherited) attribute or abstract method is used or a method invokes another. The value of the metric is the number of connected components in the graph not counting those, which contain only constructors.&lt;/p&gt;&#x0A;</description>
-    <priority>INFO</priority>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
   </rule>
-  <rule key = "MET_LLOC">
+  <rule>
+    <key>MET_LLOC</key>
     <name>Logical Lines of Code (LLOC) Metric Threshold Violation</name>
     <description>&lt;p&gt;&lt;strong&gt;Method / Function:&lt;/strong&gt; number of non-empty and non-comment code lines of the method/function; however, its nested functions are not included.&lt;/p&gt;&#x0A;&lt;p&gt;&lt;strong&gt;Class:&lt;/strong&gt; number of non-empty and non-comment code lines of the class, including the non-empty and non-comment lines of its local methods; however, its nested and local classes are not included.&lt;/p&gt;&#x0A;&lt;p&gt;&lt;strong&gt;Module:&lt;/strong&gt; number of non-empty and non-comment code lines of the module.&lt;/p&gt;&#x0A;&lt;p&gt;&lt;strong&gt;Package:&lt;/strong&gt; number of non-empty and non-comment code lines of the package; however, its subpackages are not included.&lt;/p&gt;&#x0A;&lt;p&gt;&lt;strong&gt;File:&lt;/strong&gt; number of non-empty and non-comment code lines in the file.&lt;/p&gt;&#x0A;</description>
-    <priority>INFO</priority>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
   </rule>
-  <rule key = "MET_LOC">
+  <rule>
+    <key>MET_LOC</key>
     <name>Lines of Code (LOC) Metric Threshold Violation</name>
     <description>&lt;p&gt;&lt;strong&gt;Method / Function:&lt;/strong&gt; number of code lines of the method/function, including empty and comment lines; however, its nested functions are not included.&lt;/p&gt;&#x0A;&lt;p&gt;&lt;strong&gt;Class:&lt;/strong&gt; number of code lines of the class, including empty and comment lines, as well as its local methods; however, its nested and local classes are not included.&lt;/p&gt;&#x0A;&lt;p&gt;&lt;strong&gt;Module:&lt;/strong&gt; number of code lines of the module, including empty and comment lines.&lt;/p&gt;&#x0A;&lt;p&gt;&lt;strong&gt;Package:&lt;/strong&gt; number of code lines of the package, including empty and comment lines; however, its subpackages are not included.&lt;/p&gt;&#x0A;&lt;p&gt;&lt;strong&gt;File:&lt;/strong&gt; number of code lines in the file, including empty and comment lines.&lt;/p&gt;&#x0A;</description>
-    <priority>INFO</priority>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
   </rule>
-  <rule key = "MET_McCC">
+  <rule>
+    <key>MET_McCC</key>
     <name>McCabe&apos;s Cyclomatic Complexity (McCC) Metric Threshold Violation</name>
     <description>&lt;p&gt;&lt;strong&gt;Method / Function:&lt;/strong&gt; complexity of the method/function expressed as the number of independent control flow paths in it. It represents a lower bound for the number of possible execution paths in the source code and at the same time it is an upper bound for the minimum number of test cases needed for achieving full branch test coverage. The value of the metric is calculated as the number of the following instructions plus 1: if, for, while, except and conditional expression. Moreover, logical “and” and logical “or” expressions also add 1 to the value because their short-circuit evaluation can cause branching depending on the first operand. The following instructions are not included: else, try, finally.&lt;/p&gt;&#x0A;&lt;p&gt;&lt;strong&gt;File:&lt;/strong&gt; complexity of the file expressed as the number of independent control flow paths in it. It represents a lower bound for the number of possible execution paths in the source code and at the same time it is an upper bound for the minimum number of test cases needed for achieving full branch test coverage. The value of the metric is calculated as the number of the following instructions plus 1: if, for, while, except and conditional expression. Moreover, logical “and” and logical “or” expressions also add 1 to the value because their short-circuit evaluation can cause branching depending on the first operand. The following instructions are not included: else, try, finally.&lt;/p&gt;&#x0A;</description>
-    <priority>INFO</priority>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
   </rule>
-  <rule key = "MET_NA">
+  <rule>
+    <key>MET_NA</key>
     <name>Number of Attributes (NA) Metric Threshold Violation</name>
     <description>&lt;p&gt;&lt;strong&gt;Class:&lt;/strong&gt; number of attributes in the class, including the inherited ones; however, the attributes of its nested and local classes are not included.&lt;/p&gt;&#x0A;&lt;p&gt;&lt;strong&gt;Module:&lt;/strong&gt; number of attributes in the module.&lt;/p&gt;&#x0A;&lt;p&gt;&lt;strong&gt;Package:&lt;/strong&gt; number of attributes in the package; however, attributes of its subpackages are not included.&lt;/p&gt;&#x0A;</description>
-    <priority>INFO</priority>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
   </rule>
-  <rule key = "MET_NCL">
+  <rule>
+    <key>MET_NCL</key>
     <name>Number of Classes (NCL) Metric Threshold Violation</name>
     <description>&lt;p&gt;&lt;strong&gt;Module:&lt;/strong&gt; number of classes in the module.&lt;/p&gt;&#x0A;&lt;p&gt;&lt;strong&gt;Package:&lt;/strong&gt; number of classes in the package; however, the classes of its subpackages are not included.&lt;/p&gt;&#x0A;</description>
-    <priority>INFO</priority>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
   </rule>
-  <rule key = "MET_NII">
+  <rule>
+    <key>MET_NII</key>
     <name>Number of Incoming Invocations (NII) Metric Threshold Violation</name>
     <description>&lt;p&gt;&lt;strong&gt;Method / Function:&lt;/strong&gt; number of other methods/functions and attribute initializations which directly call the method/function. If the method/function is invoked several times from the same method/function or attribute initialization, it is counted only once.&lt;/p&gt;&#x0A;&lt;p&gt;&lt;strong&gt;Class:&lt;/strong&gt; number of other methods and attribute initializations which directly call the local methods of the class. If a method is invoked several times from the same method or attribute initialization, it is counted only once.&lt;/p&gt;&#x0A;</description>
-    <priority>INFO</priority>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
   </rule>
-  <rule key = "MET_NL">
+  <rule>
+    <key>MET_NL</key>
     <name>Nesting Level (NL) Metric Threshold Violation</name>
     <description>&lt;p&gt;&lt;strong&gt;Method / Function:&lt;/strong&gt; complexity of the method/function expressed as the depth of the maximum embeddedness of its conditional, iteration and exception handling block scopes. The following instructions are taken into account: if, else-if, else, for, while, with, try, except, finally.&lt;/p&gt;&#x0A;&lt;p&gt;&lt;strong&gt;Class:&lt;/strong&gt; complexity of the class expressed as the depth of the maximum embeddedness of its conditional, iteration and exception handling block scopes. It is calculated as the maximum nesting level (NL) of its local methods.&lt;/p&gt;&#x0A;</description>
-    <priority>INFO</priority>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
   </rule>
-  <rule key = "MET_NLA">
+  <rule>
+    <key>MET_NLA</key>
     <name>Number of Local Attributes (NLA) Metric Threshold Violation</name>
     <description>&lt;p&gt;&lt;strong&gt;Class:&lt;/strong&gt; number of local (i.e. not inherited) attributes in the class; however, the attributes of nested and local classes are not included.&lt;/p&gt;&#x0A;</description>
-    <priority>INFO</priority>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
   </rule>
-  <rule key = "MET_NLE">
+  <rule>
+    <key>MET_NLE</key>
     <name>Nesting Level Else-If (NLE) Metric Threshold Violation</name>
     <description>&lt;p&gt;&lt;strong&gt;Method / Function:&lt;/strong&gt; complexity of the method/function expressed as the depth of the maximum embeddedness of its conditional, iteration and exception handling block scopes, where in the if-else-if construct only the first if instruction is considered. The following instructions are taken into account: if, else, for, while, with, try, except, finally. The following instructions do not increase the value by themselves; however, if additional embeddedness can be found in their blocks, they are considered: else-if (i.e. in the if-else-if construct the use of else-if does not increase the value of the metric).&lt;/p&gt;&#x0A;&lt;p&gt;&lt;strong&gt;Class:&lt;/strong&gt; complexity of the class expressed as the depth of the maximum embeddedness of its conditional, iteration and exception handling block scopes, where in the if-else-if construct only the first if instruction is considered. It is calculated as the maximum nesting level (NLE) of its local methods.&lt;/p&gt;&#x0A;</description>
-    <priority>INFO</priority>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
   </rule>
-  <rule key = "MET_NLM">
+  <rule>
+    <key>MET_NLM</key>
     <name>Number of Local Methods (NLM) Metric Threshold Violation</name>
     <description>&lt;p&gt;&lt;strong&gt;Class:&lt;/strong&gt; number of local (i.e. not inherited) methods in the class; however, the methods of nested and local classes are not included.&lt;/p&gt;&#x0A;</description>
-    <priority>INFO</priority>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
   </rule>
-  <rule key = "MET_NM">
+  <rule>
+    <key>MET_NM</key>
     <name>Number of Methods (NM) Metric Threshold Violation</name>
     <description>&lt;p&gt;&lt;strong&gt;Class:&lt;/strong&gt; number of methods/functions in the class, including the inherited ones; however, the methods of its nested and local classes are not included. Methods that override abstract methods are not counted.&lt;/p&gt;&#x0A;&lt;p&gt;&lt;strong&gt;Module:&lt;/strong&gt; number of methods in the module.&lt;/p&gt;&#x0A;&lt;p&gt;&lt;strong&gt;Package:&lt;/strong&gt; number of methods in the package; however, methods of its subpackages are not included.&lt;/p&gt;&#x0A;</description>
-    <priority>INFO</priority>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
   </rule>
-  <rule key = "MET_NOA">
+  <rule>
+    <key>MET_NOA</key>
     <name>Number of Ancestors (NOA) Metric Threshold Violation</name>
     <description>&lt;p&gt;&lt;strong&gt;Class:&lt;/strong&gt; number of classes from which the class is directly or indirectly inherited.&lt;/p&gt;&#x0A;</description>
-    <priority>INFO</priority>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
   </rule>
-  <rule key = "MET_NOC">
+  <rule>
+    <key>MET_NOC</key>
     <name>Number of Children (NOC) Metric Threshold Violation</name>
     <description>&lt;p&gt;&lt;strong&gt;Class:&lt;/strong&gt; number of classes which are directly derived from the class.&lt;/p&gt;&#x0A;</description>
-    <priority>INFO</priority>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
   </rule>
-  <rule key = "MET_NOD">
+  <rule>
+    <key>MET_NOD</key>
     <name>Number of Descendants (NOD) Metric Threshold Violation</name>
     <description>&lt;p&gt;&lt;strong&gt;Class:&lt;/strong&gt; number of classes, which are directly or indirectly derived from the class.&lt;/p&gt;&#x0A;</description>
-    <priority>INFO</priority>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
   </rule>
-  <rule key = "MET_NOI">
+  <rule>
+    <key>MET_NOI</key>
     <name>Number of Outgoing Invocations (NOI) Metric Threshold Violation</name>
     <description>&lt;p&gt;&lt;strong&gt;Method / Function:&lt;/strong&gt; number of directly called methods/functions. If a method/function is invoked several times, it is counted only once.&lt;/p&gt;&#x0A;&lt;p&gt;&lt;strong&gt;Class:&lt;/strong&gt; number of directly called methods of other classes, including method invocations from attribute initializations. If a method is invoked several times, it is counted only once.&lt;/p&gt;&#x0A;</description>
-    <priority>INFO</priority>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
   </rule>
-  <rule key = "MET_NOP">
+  <rule>
+    <key>MET_NOP</key>
     <name>Number of Parents (NOP) Metric Threshold Violation</name>
     <description>&lt;p&gt;&lt;strong&gt;Class:&lt;/strong&gt; number of classes from which the class is directly inherited.&lt;/p&gt;&#x0A;</description>
-    <priority>INFO</priority>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
   </rule>
-  <rule key = "MET_NOS">
+  <rule>
+    <key>MET_NOS</key>
     <name>Number of Statements (NOS) Metric Threshold Violation</name>
     <description>&lt;p&gt;&lt;strong&gt;Method / Function:&lt;/strong&gt; number of statements in the method/function; however, the statements of its nested functions are not included.&lt;/p&gt;&#x0A;&lt;p&gt;&lt;strong&gt;Class:&lt;/strong&gt; number of statements in the class; however, the statements of its nested and local classes are not included.&lt;/p&gt;&#x0A;&lt;p&gt;&lt;strong&gt;File:&lt;/strong&gt; number of statements in the file.&lt;/p&gt;&#x0A;</description>
-    <priority>INFO</priority>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
   </rule>
-  <rule key = "MET_NPKG">
+  <rule>
+    <key>MET_NPKG</key>
     <name>Number of Packages (NPKG) Metric Threshold Violation</name>
     <description>&lt;p&gt;&lt;strong&gt;Package:&lt;/strong&gt; number of directly contained subpackages of the package.&lt;/p&gt;&#x0A;</description>
-    <priority>INFO</priority>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
   </rule>
-  <rule key = "MET_NUMPAR">
+  <rule>
+    <key>MET_NUMPAR</key>
     <name>Number of Parameters (NUMPAR) Metric Threshold Violation</name>
     <description>&lt;p&gt;&lt;strong&gt;Method / Function:&lt;/strong&gt; number of the parameters of the method/function. The varargs and kwargs parameters counts as one.&lt;/p&gt;&#x0A;</description>
-    <priority>INFO</priority>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
   </rule>
-  <rule key = "MET_RFC">
+  <rule>
+    <key>MET_RFC</key>
     <name>Response set For Class (RFC) Metric Threshold Violation</name>
     <description>&lt;p&gt;&lt;strong&gt;Class:&lt;/strong&gt; number of local (i.e. not inherited) methods in the class (NLM) plus the number of directly invoked other methods by its methods or attribute initializations (NOI).&lt;/p&gt;&#x0A;</description>
-    <priority>INFO</priority>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
   </rule>
-  <rule key = "MET_TCD">
+  <rule>
+    <key>MET_TCD</key>
     <name>Total Comment Density (TCD) Metric Threshold Violation</name>
     <description>&lt;p&gt;&lt;strong&gt;Method/Function:&lt;/strong&gt; ratio of the total comment lines of the method/function (TCLOC) to the sum of its total comment (TCLOC) and total logical lines of code (TLLOC).&lt;/p&gt;&#x0A;&lt;p&gt;&lt;strong&gt;Class:&lt;/strong&gt; ratio of the total comment lines of the class (TCLOC) to the sum of its total comment (TCLOC) and total logical lines of code (TLLOC).&lt;/p&gt;&#x0A;&lt;p&gt;&lt;strong&gt;Module:&lt;/strong&gt; ratio of the total comment lines of the module (TCLOC) to the sum of its total comment (TCLOC) and total logical lines of code (TLLOC).&lt;/p&gt;&#x0A;&lt;p&gt;&lt;strong&gt;Package:&lt;/strong&gt; ratio of the total comment lines of the package (TCLOC) to the sum of its total comment (TCLOC) and total logical lines of code (TLLOC).&lt;/p&gt;&#x0A;&lt;p&gt;&lt;strong&gt;Component:&lt;/strong&gt; ratio of the total comment lines of the component (TCLOC) to the sum of its total comment (TCLOC) and total logical lines of code (TLLOC).&lt;/p&gt;&#x0A;</description>
-    <priority>INFO</priority>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
   </rule>
-  <rule key = "MET_TCLOC">
+  <rule>
+    <key>MET_TCLOC</key>
     <name>Total Comment Lines of Code (TCLOC) Metric Threshold Violation</name>
     <description>&lt;p&gt;&lt;strong&gt;Method/Function:&lt;/strong&gt; number of comment and documentation code lines of the method/function, including its local classes.&lt;/p&gt;&#x0A;&lt;p&gt;&lt;strong&gt;Class:&lt;/strong&gt; number of comment and documentation code lines of the class, including its local methods and attributes, as well as its nested and local classes.&lt;/p&gt;&#x0A;&lt;p&gt;&lt;strong&gt;Module:&lt;/strong&gt; number of comment and documentation code lines of the module.&lt;/p&gt;&#x0A;&lt;p&gt;&lt;strong&gt;Package:&lt;/strong&gt; number of comment and documentation code lines of the package, including its subpackages.&lt;/p&gt;&#x0A;&lt;p&gt;&lt;strong&gt;Component:&lt;/strong&gt; number of comment and documentation code lines of the component, including its subcomponents.&lt;/p&gt;&#x0A;</description>
-    <priority>INFO</priority>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
   </rule>
-  <rule key = "MET_TLLOC">
+  <rule>
+    <key>MET_TLLOC</key>
     <name>Total Logical Lines of Code (TLLOC) Metric Threshold Violation</name>
     <description>&lt;p&gt;&lt;strong&gt;Method / Function:&lt;/strong&gt; number of non-empty and non-comment code lines of the method/function, including the non-empty and non-comment lines of its nested functions.&lt;/p&gt;&#x0A;&lt;p&gt;&lt;strong&gt;Class:&lt;/strong&gt; number of non-empty and non-comment code lines of the class, including the non-empty and non-comment code lines of its nested and local classes.&lt;/p&gt;&#x0A;&lt;p&gt;&lt;strong&gt;Module:&lt;/strong&gt; number of non-empty and non-comment code lines of the module.&lt;/p&gt;&#x0A;&lt;p&gt;&lt;strong&gt;Package:&lt;/strong&gt; number of non-empty and non-comment code lines of the package, including its subpackages.&lt;/p&gt;&#x0A;&lt;p&gt;&lt;strong&gt;Component:&lt;/strong&gt; number of non-empty and non-comment code lines of the component, including its subcomponents.&lt;/p&gt;&#x0A;</description>
-    <priority>INFO</priority>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
   </rule>
-  <rule key = "MET_TLOC">
+  <rule>
+    <key>MET_TLOC</key>
     <name>Total Lines of Code (TLOC) Metric Threshold Violation</name>
     <description>&lt;p&gt;&lt;strong&gt;Method / Function:&lt;/strong&gt; number of code lines of the method/function, including empty and comment lines, as well as its nested functions.&lt;/p&gt;&#x0A;&lt;p&gt;&lt;strong&gt;Class:&lt;/strong&gt; number of code lines of the class, including empty and comment lines, as well as its nested and local classes.&lt;/p&gt;&#x0A;&lt;p&gt;&lt;strong&gt;Module:&lt;/strong&gt; number of code lines of the module, including empty and comment lines.&lt;/p&gt;&#x0A;&lt;p&gt;&lt;strong&gt;Package:&lt;/strong&gt; number of code lines of the package, including empty and comment lines, as well as its subpackages.&lt;/p&gt;&#x0A;&lt;p&gt;&lt;strong&gt;Component:&lt;/strong&gt; number of code lines of the component, including empty and comment lines, as well as its subcomponents.&lt;/p&gt;&#x0A;</description>
-    <priority>INFO</priority>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
   </rule>
-  <rule key = "MET_TNA">
+  <rule>
+    <key>MET_TNA</key>
     <name>Total Number of Attributes (TNA) Metric Threshold Violation</name>
     <description>&lt;p&gt;&lt;strong&gt;Class:&lt;/strong&gt; number of attributes in the class, including the inherited ones, as well as the inherited and local attributes of its nested and local classes.&lt;/p&gt;&#x0A;&lt;p&gt;&lt;strong&gt;Module:&lt;/strong&gt; number of attributes in the module.&lt;/p&gt;&#x0A;&lt;p&gt;&lt;strong&gt;Package:&lt;/strong&gt; number of attributes in the package, including the attributes of its subpackages.&lt;/p&gt;&#x0A;&lt;p&gt;&lt;strong&gt;Component:&lt;/strong&gt; number of attributes in the component, including the attributes of its subcomponents.&lt;/p&gt;&#x0A;</description>
-    <priority>INFO</priority>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
   </rule>
-  <rule key = "MET_TNCL">
+  <rule>
+    <key>MET_TNCL</key>
     <name>Total Number of Classes (TNCL) Metric Threshold Violation</name>
     <description>&lt;p&gt;&lt;strong&gt;Module:&lt;/strong&gt; number of classes in the module.&lt;/p&gt;&#x0A;&lt;p&gt;&lt;strong&gt;Package:&lt;/strong&gt; number of classes in the package, including the classes of its subpackages.&lt;/p&gt;&#x0A;&lt;p&gt;&lt;strong&gt;Component:&lt;/strong&gt; number of classes in the component, including the classes of its subcomponents.&lt;/p&gt;&#x0A;</description>
-    <priority>INFO</priority>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
   </rule>
-  <rule key = "MET_TNDI">
+  <rule>
+    <key>MET_TNDI</key>
     <name>Total Number of Directories (TNDI) Metric Threshold Violation</name>
     <description>&lt;p&gt;&lt;strong&gt;Package:&lt;/strong&gt; number of directories that belong to the package, including the directories of its subpackages.&lt;/p&gt;&#x0A;&lt;p&gt;&lt;strong&gt;Component:&lt;/strong&gt; number of directories that belong to the component, including its subcomponents.&lt;/p&gt;&#x0A;</description>
-    <priority>INFO</priority>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
   </rule>
-  <rule key = "MET_TNFI">
+  <rule>
+    <key>MET_TNFI</key>
     <name>Total Number of Files (TNFI) Metric Threshold Violation</name>
     <description>&lt;p&gt;&lt;strong&gt;Package:&lt;/strong&gt; number of files that belong to the package, including the files of its subpackages.&lt;/p&gt;&#x0A;&lt;p&gt;&lt;strong&gt;Component:&lt;/strong&gt; number of files that belong to the component, including its subcomponents.&lt;/p&gt;&#x0A;</description>
-    <priority>INFO</priority>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
   </rule>
-  <rule key = "MET_TNLA">
+  <rule>
+    <key>MET_TNLA</key>
     <name>Total Number of Local Attributes (TNLA) Metric Threshold Violation</name>
     <description>&lt;p&gt;&lt;strong&gt;Class:&lt;/strong&gt; number of local (i.e. not inherited) attributes in the class, including the attributes of its nested and local classes.&lt;/p&gt;&#x0A;</description>
-    <priority>INFO</priority>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
   </rule>
-  <rule key = "MET_TNLM">
+  <rule>
+    <key>MET_TNLM</key>
     <name>Total Number of Local Methods (TNLM) Metric Threshold Violation</name>
     <description>&lt;p&gt;&lt;strong&gt;Class:&lt;/strong&gt; number of local (i.e. not inherited) methods in the class, including the local methods of its nested and local classes.&lt;/p&gt;&#x0A;</description>
-    <priority>INFO</priority>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
   </rule>
-  <rule key = "MET_TNM">
+  <rule>
+    <key>MET_TNM</key>
     <name>Total Number of Methods (TNM) Metric Threshold Violation</name>
     <description>&lt;p&gt;&lt;strong&gt;Class:&lt;/strong&gt; number of methods/functions in the class, including the inherited ones, as well as the inherited and local methods of its nested and local classes. Methods that override abstract methods are not counted.&lt;/p&gt;&#x0A;&lt;p&gt;&lt;strong&gt;Package:&lt;/strong&gt; number of methods in the module.&lt;/p&gt;&#x0A;&lt;p&gt;&lt;strong&gt;Package:&lt;/strong&gt; number of methods in the package, including the methods of its subpackages.&lt;/p&gt;&#x0A;&lt;p&gt;&lt;strong&gt;Component:&lt;/strong&gt; number of methods in the component, including the methods of its subcomponents.&lt;/p&gt;&#x0A;</description>
-    <priority>INFO</priority>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
   </rule>
-  <rule key = "MET_TNOS">
+  <rule>
+    <key>MET_TNOS</key>
     <name>Total Number of Statements (TNOS) Metric Threshold Violation</name>
     <description>&lt;b&gt;Method/Function:&lt;/b&gt; number of statements in the method/function, including the statements of its nested functions.&lt;b&gt;Class:&lt;/b&gt; number of statements in the class, including the statements of its nested and local classes.&lt;b&gt;Module:&lt;/b&gt; number of statements in the module.&lt;b&gt;Package:&lt;/b&gt; number of statements in the package, including the statements of its subpackages.&lt;b&gt;Component:&lt;/b&gt; number of statements in the component, including the statements of its subcomponents.</description>
-    <priority>INFO</priority>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
   </rule>
-  <rule key = "MET_TNPKG">
+  <rule>
+    <key>MET_TNPKG</key>
     <name>Total Number of Packages (TNPKG) Metric Threshold Violation</name>
     <description>&lt;p&gt;&lt;strong&gt;Package:&lt;/strong&gt; number of subpackages in the package, including all directly or indirectly contained subpackages.&lt;/p&gt;&#x0A;&lt;p&gt;&lt;strong&gt;Component:&lt;/strong&gt; number of packages and subpackages that belong to the component, including its subcomponents.&lt;/p&gt;&#x0A;</description>
-    <priority>INFO</priority>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
   </rule>
-  <rule key = "MET_WMC">
+  <rule>
+    <key>MET_WMC</key>
     <name>Weighted Methods per Class (WMC) Metric Threshold Violation</name>
     <description>&lt;p&gt;&lt;strong&gt;Class:&lt;/strong&gt; complexity of the class expressed as the number of independent control flow paths in it. It is calculated as the sum of the McCabe’s Cyclomatic Complexity (McCC) values of its local methods.&lt;/p&gt;&#x0A;</description>
-    <priority>INFO</priority>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
   </rule>
-  <rule key = "MET_CA">
+  <rule>
+    <key>MET_CA</key>
     <name>Clone Age (CA) Metric Threshold Violation</name>
     <description>&lt;b&gt;Clone class/clone instance:&lt;/b&gt; number of previously analyzed revisions in which the clone class/clone instance was present + 1.</description>
-    <priority>INFO</priority>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
   </rule>
-  <rule key = "MET_CC">
+  <rule>
+    <key>MET_CC</key>
     <name>Clone Coverage (CC) Metric Threshold Violation</name>
     <description>&lt;b&gt;Function/method/class/module/package:&lt;/b&gt; ratio of code covered by code duplications in the source code element to the size of the source code element, expressed in terms of the number of syntactic entities (statements, expressions, etc.).&lt;br&gt;&lt;b&gt;Component:&lt;/b&gt; ratio of code covered by code duplications in the component to the size of the component, expressed in terms of the number of syntactic entities (statements, expressions, etc.).</description>
-    <priority>INFO</priority>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
   </rule>
-  <rule key = "MET_CCL">
+  <rule>
+    <key>MET_CCL</key>
     <name>Clone Classes (CCL) Metric Threshold Violation</name>
     <description>&lt;b&gt;Function/method/class/module/package:&lt;/b&gt; number of clone classes having at least one clone instance in the source code element.&lt;br&gt;&lt;b&gt;Component:&lt;/b&gt; number of clone classes having at least one clone instance in the component.</description>
-    <priority>INFO</priority>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
   </rule>
-  <rule key = "MET_CCO">
+  <rule>
+    <key>MET_CCO</key>
     <name>Clone Complexity (CCO) Metric Threshold Violation</name>
     <description>&lt;b&gt;Clone instance:&lt;/b&gt; the McCabe complexity of the code fragment corresponding to the clone instance.&lt;br&gt;&lt;b&gt;Clone class:&lt;/b&gt; sum of CCO of clone instances in the clone class.&lt;br&gt;&lt;b&gt;Function/method/class/module/package:&lt;/b&gt; sum of CCO of clone instances in the source code element.&lt;br&gt;&lt;b&gt;Component:&lt;/b&gt; sum of CCO of clone instances in the component.</description>
-    <priority>INFO</priority>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
   </rule>
-  <rule key = "MET_CE">
+  <rule>
+    <key>MET_CE</key>
     <name>Clone Embeddedness (CE) Metric Threshold Violation</name>
     <description>&lt;b&gt;Clone instance:&lt;/b&gt; sum of incoming and outgoing references (function calls, variable references, type references; different references to the same entity are counted only once) in the code fragment corresponding to the clone instance, weighted with the number of directory changes between the referenced code fragments.&lt;br&gt;&lt;b&gt;Clone class:&lt;/b&gt; sum of CE of the clone instances of the clone class + 1.</description>
-    <priority>INFO</priority>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
   </rule>
-  <rule key = "MET_CEE">
+  <rule>
+    <key>MET_CEE</key>
     <name>Clone Elimination Effort (CEE) Metric Threshold Violation</name>
     <description>&lt;b&gt;Clone class:&lt;/b&gt; index of the effort required to eliminate the clone class. It is computed as the product of CI, CE, and NCR.&lt;br&gt;&lt;b&gt;Component:&lt;/b&gt; index of the effort required to eliminate all clones from the component. It is computed as the sum of CEE of the clone classes in the component.</description>
-    <priority>INFO</priority>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
   </rule>
-  <rule key = "MET_CEG">
+  <rule>
+    <key>MET_CEG</key>
     <name>Clone Elimination Gain (CEG) Metric Threshold Violation</name>
     <description>&lt;b&gt;Clone class:&lt;/b&gt; index of the gain resulting from eliminating the clone class. It is computed as the ratio of CR to CEE.&lt;br&gt;&lt;b&gt;Component:&lt;/b&gt; index of the gain resulting from eliminating all clones from the component. It is computed as the logistic function of the ratio of CR to CEE.</description>
-    <priority>INFO</priority>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
   </rule>
-  <rule key = "MET_CI">
+  <rule>
+    <key>MET_CI</key>
     <name>Clone Instances (CI) Metric Threshold Violation</name>
     <description>&lt;b&gt;Function/method/class/module/package:&lt;/b&gt; number of clone instances in the source code element.&lt;br&gt;&lt;b&gt;Component:&lt;/b&gt; number of clone instances in the component.&lt;br&gt;&lt;b&gt;Clone class:&lt;/b&gt; number of clone instances in the clone class.</description>
-    <priority>INFO</priority>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
   </rule>
-  <rule key = "MET_CLC">
+  <rule>
+    <key>MET_CLC</key>
     <name>Clone Line Coverage (CLC) Metric Threshold Violation</name>
     <description>&lt;b&gt;Function/method/class/module/package:&lt;/b&gt; ratio of code covered by code duplications in the source code element to the size of the source code element, expressed in terms of lines of code.&lt;br&gt;&lt;b&gt;Component:&lt;/b&gt; ratio of code covered by code duplications in the component to the size of the component, expressed in terms of lines of code.</description>
-    <priority>INFO</priority>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
   </rule>
-  <rule key = "MET_CLLC">
+  <rule>
+    <key>MET_CLLC</key>
     <name>Clone Logical Line Coverage (CLLC) Metric Threshold Violation</name>
     <description>&lt;b&gt;Function/method/class/module/package:&lt;/b&gt; ratio of code covered by code duplications in the source code element to the size of source code element, expressed in terms of logical lines of code (non-empty, non-comment lines).&lt;br&gt;&lt;b&gt;Component:&lt;/b&gt; ratio of code covered by code duplications in the component to the size of the component, expressed in terms of logical lines of code (non-empty, non-comment lines).</description>
-    <priority>INFO</priority>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
   </rule>
-  <rule key = "MET_CLLOC">
+  <rule>
+    <key>MET_CLLOC</key>
     <name>Clone Lines of Code (CLLOC) Metric Threshold Violation</name>
-    <description>&lt;b&gt;Clone instance:&lt;/b&gt; length of the clone instance expressed in terms of lines of code.&lt;br&gt;&lt;b&gt;Clone class:&lt;/b&gt;  average of CLLOC of clone instances belonging to the clone class.</description>
-    <priority>INFO</priority>
+    <description>&lt;b&gt;Clone instance:&lt;/b&gt; length of the clone instance expressed in terms of lines of code.&lt;br&gt;&lt;b&gt;Clone class:&lt;/b&gt; average of CLLOC of clone instances belonging to the clone class.</description>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
   </rule>
-  <rule key = "MET_CR">
+  <rule>
+    <key>MET_CR</key>
     <name>Clone Risk (CR) Metric Threshold Violation</name>
     <description>&lt;b&gt;Clone class:&lt;/b&gt; risk index of the existence of the clone class. It is computed as the product of CLLOC, CI, CCO, NCR, and CV.&lt;br&gt;&lt;b&gt;Component:&lt;/b&gt; relative risk index of the existence of code duplications in the component. It is computed as the sum of CR of the clone classes in the component, divided by the total logical lines of code (non-empty, non-comment lines) of the component. It expresses the risk index projected to a non-empty, non-comment line of code in the component.</description>
-    <priority>INFO</priority>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
   </rule>
-  <rule key = "MET_CV">
+  <rule>
+    <key>MET_CV</key>
     <name>Clone Variability (CV) Metric Threshold Violation</name>
     <description>&lt;b&gt;Clone instance:&lt;/b&gt; instability of the clone instance since it appeared. It is computed as the ratio of the number of previously analyzed revisions when the instance had been changed to its age (CA).&lt;br&gt;&lt;b&gt;Clone class:&lt;/b&gt; instability of the clone class since it appeared. It is computed as the ratio of the number of previously analyzed revisions when its contained instances were moved, deleted, or added, to its age (CA), plus the average CV of its clone instances.</description>
-    <priority>INFO</priority>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
   </rule>
-  <rule key = "MET_LDC">
+  <rule>
+    <key>MET_LDC</key>
     <name>Lines of Duplicated Code (LDC) Metric Threshold Violation</name>
     <description>&lt;b&gt;Function/method/class/module/package:&lt;/b&gt; number of code lines covered by code duplications in the source code element.&lt;br&gt;&lt;b&gt;Component:&lt;/b&gt; number of code lines covered by code duplications in the component.</description>
-    <priority>INFO</priority>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
   </rule>
-  <rule key = "MET_LLDC">
+  <rule>
+    <key>MET_LLDC</key>
     <name>Logical Lines of Duplicated Code (LLDC) Metric Threshold Violation</name>
     <description>&lt;b&gt;Function/method/class/module/package:&lt;/b&gt; number of logical code lines (non-empty, non-comment lines) covered by code duplications in the source code element.&lt;br&gt;&lt;b&gt;Component:&lt;/b&gt; The number of logical code lines (non-empty, non-comment lines) covered by code duplications in the component.</description>
-    <priority>INFO</priority>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
   </rule>
-  <rule key = "AAI">
+  <rule>
+    <key>AAI</key>
     <name>__all__ After Imports</name>
     <description>&lt;h3&gt;FaultHunterPython&lt;/h3&gt;Put any relevant __all__ specification after the imports.</description>
-    <priority>MINOR</priority>
+    <type>CODE_SMELL</type>
+    <severity>MINOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>10min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "BE">
+  <rule>
+    <key>BE</key>
     <name>Bare Except</name>
     <description>&lt;h3&gt;FaultHunterPython&lt;/h3&gt;If you really want to catch all exceptions, then use &apos;except Exception:&apos;, but it is many times better to only trap exceptions that you expect. A bare &apos;except:&apos; clause will catch SystemExit and KeyboardInterrupt exceptions, making it harder to interrupt a program with Control-C, and can disguise other problems.&lt;hr/&gt;&lt;h3&gt;Pylint&lt;/h3&gt;Used when an except clause doesn&apos;t specify exceptions type to catch.</description>
-    <priority>MAJOR</priority>
+    <type>CODE_SMELL</type>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>15min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "BT">
+  <rule>
+    <key>BT</key>
     <name>Big Try</name>
     <description>&lt;h3&gt;FaultHunterPython&lt;/h3&gt;For all try/except clauses, limit the &apos;try&apos; clause to the absolute minimum amount of code necessary. This avoids masking bugs.</description>
-    <priority>MAJOR</priority>
+    <type>CODE_SMELL</type>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>20min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "BoC">
+  <rule>
+    <key>BoC</key>
     <name>Bool Compare</name>
     <description>&lt;h3&gt;FaultHunterPython&lt;/h3&gt;Don&apos;t compare boolean values to True or False using &apos;==&apos; or &apos;is&apos;</description>
-    <priority>MAJOR</priority>
+    <type>CODE_SMELL</type>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>5min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "DDV">
+  <rule>
+    <key>DDV</key>
     <name>Dangerous Default Value</name>
     <description>&lt;h3&gt;FaultHunterPython&lt;/h3&gt;Default arguments are created on parsing, not when a function/method is called. You mustn&apos;t use mutable objects (like dictionaries or lists) as default arguments.&lt;hr/&gt;&lt;h3&gt;Pylint&lt;/h3&gt;Used when a mutable value as list or dictionary is detected in a default value for an argument.</description>
-    <priority>MAJOR</priority>
+    <type>BUG</type>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>15min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "MS">
+  <rule>
+    <key>MS</key>
     <name>Multiple Statements</name>
     <description>&lt;h3&gt;FaultHunterPython&lt;/h3&gt;Multiple statements per line should be avoided.&lt;hr/&gt;&lt;h3&gt;Pylint&lt;/h3&gt;Used when more than on statement are found on the same line.</description>
-    <priority>MAJOR</priority>
+    <type>CODE_SMELL</type>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>5min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "MeN">
+  <rule>
+    <key>MeN</key>
     <name>Method Naming</name>
     <description>&lt;h3&gt;FaultHunterPython&lt;/h3&gt;Function/method names should also be lowercase with underscores to separate words.</description>
-    <priority>MINOR</priority>
+    <type>CODE_SMELL</type>
+    <severity>MINOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>10min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "MoN">
+  <rule>
+    <key>MoN</key>
     <name>Module Naming</name>
     <description>&lt;h3&gt;FaultHunterPython&lt;/h3&gt;Module names should be lowercase with underscores instead of spaces.</description>
-    <priority>MINOR</priority>
+    <type>CODE_SMELL</type>
+    <severity>MINOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>15min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "NoC">
+  <rule>
+    <key>NoC</key>
     <name>None Comparison</name>
-    <description>&lt;h3&gt;FaultHunterPython&lt;/h3&gt;Comparisons to singletons like None should always be done with &apos;is&apos; or &apos;is not&apos;, never the equality operators.  This is because None is a singleton and the identity test is more efficient than testing for equality.</description>
-    <priority>MAJOR</priority>
+    <description>&lt;h3&gt;FaultHunterPython&lt;/h3&gt;Comparisons to singletons like None should always be done with &apos;is&apos; or &apos;is not&apos;, never the equality operators. This is because None is a singleton and the identity test is more efficient than testing for equality.</description>
+    <type>BUG</type>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>5min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "OC">
+  <rule>
+    <key>OC</key>
     <name>Object Comparison</name>
     <description>&lt;h3&gt;FaultHunterPython&lt;/h3&gt;Object type comparisons should always use isinstance() instead of comparing types directly.</description>
-    <priority>MAJOR</priority>
+    <type>BUG</type>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>10min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "ORS">
+  <rule>
+    <key>ORS</key>
     <name>Old Raise Syntax</name>
     <description>&lt;h3&gt;FaultHunterPython&lt;/h3&gt;The parentheses-using form is preferred because when the exception arguments are long or include string formatting, you don&apos;t need to use line continuation characters thanks to the containing parentheses.&lt;hr/&gt;&lt;h3&gt;Pylint&lt;/h3&gt;Used when the alternate raise syntax &apos;raise foo, bar&apos; is used instead of &apos;raise foo(bar)&apos;. This message can&apos;t be emitted when using Python &gt;= 3.0.</description>
-    <priority>CRITICAL</priority>
+    <type>BUG</type>
+    <severity>CRITICAL</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>10min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "OSC">
+  <rule>
+    <key>OSC</key>
     <name>Old Style Class</name>
     <description>&lt;h3&gt;FaultHunterPython&lt;/h3&gt;If a class has no base classes, then it is better to make it a new style class by inheriting from object.&lt;hr/&gt;&lt;h3&gt;Pylint&lt;/h3&gt;Used when a class is defined that does not inherit from anotherclass and does not inherit explicitly from &quot;object&quot;. This message can&apos;t be emitted when using Python &gt;= 3.0.</description>
-    <priority>MAJOR</priority>
+    <type>CODE_SMELL</type>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>20min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "RI">
+  <rule>
+    <key>RI</key>
     <name>Relative Import</name>
     <description>&lt;h3&gt;FaultHunterPython&lt;/h3&gt;Relative imports for intra-package imports are highly discouraged. Always use the absolute package path for all imports.&lt;hr/&gt;&lt;h3&gt;Pylint&lt;/h3&gt;Used when an import relative to the package directory is detected. This message can&apos;t be emitted when using Python &gt;= 3.0.</description>
-    <priority>MINOR</priority>
+    <type>VULNERABILITY</type>
+    <severity>MINOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>15min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "RS">
+  <rule>
+    <key>RS</key>
     <name>Raising String</name>
     <description>&lt;h3&gt;FaultHunterPython&lt;/h3&gt;String exceptions in new code are forbidden, because this language feature is being removed in Python 2.6. Modules or packages should define their own domain-specific base exception class, which should be subclassed from the built-in Exception class.&lt;hr/&gt;&lt;h3&gt;Pylint&lt;/h3&gt;Used when a string exception is raised. This will not work on Python 3. This message can&apos;t be emitted when using Python &gt;= 3.0.</description>
-    <priority>CRITICAL</priority>
+    <type>BUG</type>
+    <severity>CRITICAL</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>10min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "SFC">
+  <rule>
+    <key>SFC</key>
     <name>Sequence False Checking</name>
     <description>&lt;h3&gt;FaultHunterPython&lt;/h3&gt;For sequences, (strings, lists, tuples), use the fact that empty sequences are false. Method of usage should be: if not seq: or if seq:</description>
-    <priority>MAJOR</priority>
+    <type>BUG</type>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>10min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "SI">
+  <rule>
+    <key>SI</key>
     <name>Single Import</name>
     <description>&lt;h3&gt;FaultHunterPython&lt;/h3&gt;Imports should usually be on separate lines.</description>
-    <priority>MINOR</priority>
+    <type>CODE_SMELL</type>
+    <severity>MINOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>5min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "SSP">
+  <rule>
+    <key>SSP</key>
     <name>String Slicing Prefix</name>
     <description>&lt;h3&gt;FaultHunterPython&lt;/h3&gt;Use &apos;&apos;.startswith() instead of string slicing to check for prefixes. The startswith() is cleaner and less error prone.</description>
-    <priority>MAJOR</priority>
+    <type>CODE_SMELL</type>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>10min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "SSS">
+  <rule>
+    <key>SSS</key>
     <name>String Slicing Suffix</name>
     <description>&lt;h3&gt;FaultHunterPython&lt;/h3&gt;Use &apos;&apos;.endswith() instead of string slicing to check for suffixes. The endswith() is cleaner and less error prone.</description>
-    <priority>MAJOR</priority>
+    <type>CODE_SMELL</type>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>10min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "TI">
+  <rule>
+    <key>TI</key>
     <name>Top Import</name>
     <description>&lt;h3&gt;FaultHunterPython&lt;/h3&gt;Imports are always put at the top of the file, just after any module comments and docstrings, and before module globals and constants.</description>
-    <priority>MAJOR</priority>
+    <type>CODE_SMELL</type>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>10min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "WI">
+  <rule>
+    <key>WI</key>
     <name>Wildcard Import</name>
     <description>&lt;h3&gt;FaultHunterPython&lt;/h3&gt;Even for importing a lot of names it is better to be able to see where your names come from. Tools like pylint and PyFlakes can help warn you about unused imports.&lt;hr/&gt;&lt;h3&gt;Pylint&lt;/h3&gt;Used when `from module import *` is detected.</description>
-    <priority>MAJOR</priority>
+    <type>CODE_SMELL</type>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>20min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "AB">
+  <rule>
+    <key>AB</key>
     <name>Apply Builtin</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when the apply built-in function is referenced (missing from Python 3) This message can&apos;t be emitted when using Python &gt;= 3.0.</description>
-    <priority>MAJOR</priority>
+    <type>BUG</type>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>10min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "ABIS">
+  <rule>
+    <key>ABIS</key>
     <name>Anomalous Backslash In String</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when a backslash is in a literal string but not as an escape.</description>
-    <priority>MAJOR</priority>
+    <type>BUG</type>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>10min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "ACI">
+  <rule>
+    <key>ACI</key>
     <name>Abstract Class Instantiated</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when an abstract class with `abc.ABCMeta` as metaclass has abstract methods and is instantiated.</description>
-    <priority>CRITICAL</priority>
+    <type>BUG</type>
+    <severity>CRITICAL</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>1h</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "ACLU">
+  <rule>
+    <key>ACLU</key>
     <name>Abstract Class Little Used</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when an abstract class is used less than X times as ancestor.</description>
-    <priority>MINOR</priority>
+    <type>CODE_SMELL</type>
+    <severity>MINOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>45min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "ACNU">
+  <rule>
+    <key>ACNU</key>
     <name>Abstract Class Not Used</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when an abstract class is not used as ancestor anywhere.</description>
-    <priority>MINOR</priority>
+    <type>CODE_SMELL</type>
+    <severity>MINOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>20min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "AD">
+  <rule>
+    <key>AD</key>
     <name>Arguments Differ</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when a method has a different number of arguments than in the implemented interface or in an overridden method.</description>
-    <priority>MAJOR</priority>
+    <type>BUG</type>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>15min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "ADOI">
+  <rule>
+    <key>ADOI</key>
     <name>Attribute Defined Outside Init</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when an instance attribute is defined outside the __init__ method.</description>
-    <priority>MAJOR</priority>
+    <type>BUG</type>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>20min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "AFN">
+  <rule>
+    <key>AFN</key>
     <name>Assignment From None</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when an assignment is done on a function call but the inferred function returns nothing but None.</description>
-    <priority>MAJOR</priority>
+    <type>BUG</type>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>15min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "AFNR">
+  <rule>
+    <key>AFNR</key>
     <name>Assignment From No Return</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when an assignment is done on a function call but the inferred function doesn&apos;t return anything.</description>
-    <priority>CRITICAL</priority>
+    <type>BUG</type>
+    <severity>CRITICAL</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>20min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "AM">
+  <rule>
+    <key>AM</key>
     <name>Abstract Method</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when an abstract method (i.e. raise NotImplementedError) is not overridden in concrete class.</description>
-    <priority>MAJOR</priority>
+    <type>CODE_SMELL</type>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>1h</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "AMBD">
+  <rule>
+    <key>AMBD</key>
     <name>Access Member Before Definition</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when an instance member is accessed before it&apos;s actually assigned.</description>
-    <priority>CRITICAL</priority>
+    <type>VULNERABILITY</type>
+    <severity>CRITICAL</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>15min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "ANS">
+  <rule>
+    <key>ANS</key>
     <name>Assigning Non Slot</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when assigning to an attribute not defined in the class slots.</description>
-    <priority>CRITICAL</priority>
+    <type>BUG</type>
+    <severity>CRITICAL</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>20min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "AOT">
+  <rule>
+    <key>AOT</key>
     <name>Assert On Tuple</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;A call of assert on a tuple will always evaluate to true if the tuple is not empty, and will always evaluate to false if it is.</description>
-    <priority>MAJOR</priority>
+    <type>BUG</type>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>5min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "AUEIS">
+  <rule>
+    <key>AUEIS</key>
     <name>Anomalous Unicode Escape In String</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when an escape like \u is encountered in a byte string where it has no effect.</description>
-    <priority>MAJOR</priority>
+    <type>BUG</type>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>15min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "B">
+  <rule>
+    <key>B</key>
     <name>Backtick</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when the deprecated &quot;``&quot; (backtick) operator is used instead of the str() function. This message can&apos;t be emitted when using Python &gt;= 3.0.</description>
-    <priority>CRITICAL</priority>
+    <type>BUG</type>
+    <severity>CRITICAL</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>10min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "BB">
+  <rule>
+    <key>BB</key>
     <name>Bad Builtin</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when a black listed builtin function is used (see the bad-function option). Usual black listed functions are the ones like map, or filter , where Python offers now some cleaner alternative like list comprehension.</description>
-    <priority>MAJOR</priority>
+    <type>CODE_SMELL</type>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>15min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "BC">
+  <rule>
+    <key>BC</key>
     <name>Bad Continuation</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;TODO</description>
-    <priority>MINOR</priority>
+    <type>CODE_SMELL</type>
+    <severity>MINOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>5min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "BCA">
+  <rule>
+    <key>BCA</key>
     <name>Bad Classmethod Argument</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when a class method has a first argument named differently than the value specified in valid-classmethod-first-arg option (default to &quot;cls&quot;), recommended to easily differentiate them from regular instance methods.</description>
-    <priority>MINOR</priority>
+    <type>CODE_SMELL</type>
+    <severity>MINOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>10min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "BCM">
+  <rule>
+    <key>BCM</key>
     <name>Bad Context Manager</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when the __exit__ special method, belonging to a context manager, does not accept 3 arguments (type, value, traceback).</description>
-    <priority>CRITICAL</priority>
+    <type>BUG</type>
+    <severity>CRITICAL</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>10min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "BD">
+  <rule>
+    <key>BD</key>
     <name>Boolean Datetime</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Using datetetime.time in a boolean context can hide subtle bugs when the time they represent matches midnight UTC. This behaviour was fixed in Python 3.5. See http://bugs.python.org/issue13936 for reference. This message can&apos;t be emitted when using Python &gt;= 3.5.</description>
-    <priority>MAJOR</priority>
+    <type>VULNERABILITY</type>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>20min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "BEC">
+  <rule>
+    <key>BEC</key>
     <name>Bad Exception Context</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when using the syntax &quot;raise ... from ...&quot;, where the exception context is not an exception, nor None. This message can&apos;t be emitted when using Python &lt; 3.0.</description>
-    <priority>CRITICAL</priority>
+    <type>BUG</type>
+    <severity>CRITICAL</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>30min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "BEO">
+  <rule>
+    <key>BEO</key>
     <name>Bad Except Order</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when except clauses are not in the correct order (from the more specific to the more generic). If you don&apos;t fix the order, some exceptions may not be catched by the most specific handler.</description>
-    <priority>CRITICAL</priority>
+    <type>BUG</type>
+    <severity>CRITICAL</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>30min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "BFC">
+  <rule>
+    <key>BFC</key>
     <name>Bad Format Character</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when a unsupported format character is used in a format string.</description>
-    <priority>CRITICAL</priority>
+    <type>BUG</type>
+    <severity>CRITICAL</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>10min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "BFS">
+  <rule>
+    <key>BFS</key>
     <name>Bad Format String</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when a PEP 3101 format string is invalid. This message can&apos;t be emitted when using Python &lt; 2.7.</description>
-    <priority>MAJOR</priority>
+    <type>BUG</type>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>20min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "BFSK">
+  <rule>
+    <key>BFSK</key>
     <name>Bad Format String Key</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when a format string that uses named conversion specifiers is used with a dictionary whose keys are not all strings.</description>
-    <priority>MAJOR</priority>
+    <type>BUG</type>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>15min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "BI">
+  <rule>
+    <key>BI</key>
     <name>Bad Indentation</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when an unexpected number of indentation&apos;s tabulations or spaces has been found.</description>
-    <priority>MAJOR</priority>
+    <type>BUG</type>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>1min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "BMCA">
+  <rule>
+    <key>BMCA</key>
     <name>Bad Mcs Classmethod Argument</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when a metaclass class method has a first argument named differently than the value specified in valid-metaclass-classmethod-first-arg option (default to &quot;mcs&quot;), recommended to easily differentiate them from regular instance methods.</description>
-    <priority>MINOR</priority>
+    <type>CODE_SMELL</type>
+    <severity>MINOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>20min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "BMMA">
+  <rule>
+    <key>BMMA</key>
     <name>Bad Mcs Method Argument</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when a metaclass method has a first agument named differently than the value specified in valid-classmethod-first-arg option (default to &quot;cls&quot;), recommended to easily differentiate them from regular instance methods.</description>
-    <priority>MINOR</priority>
+    <type>CODE_SMELL</type>
+    <severity>MINOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>10min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "BN">
+  <rule>
+    <key>BN</key>
     <name>Blacklisted Name</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when the name is listed in the black list (unauthorized names).</description>
-    <priority>MINOR</priority>
+    <type>BUG</type>
+    <severity>MINOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>1min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "BOE">
+  <rule>
+    <key>BOE</key>
     <name>Binary Op Exception</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when the exception to catch is of the form &quot;except A or B:&quot;. If intending to catch multiple, rewrite as &quot;except (A, B):&quot;</description>
-    <priority>MAJOR</priority>
+    <type>BUG</type>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>15min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "BOM">
+  <rule>
+    <key>BOM</key>
     <name>Bad Open Mode</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Python supports: r, w, a[, x] modes with b, +, and U (only with r) options. See http://docs.python.org/2/library/functions.html#open</description>
-    <priority>MAJOR</priority>
+    <type>BUG</type>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>15min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "BRS">
+  <rule>
+    <key>BRS</key>
     <name>Bad Reversed Sequence</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when the first argument to reversed() builtin isn&apos;t a sequence (does not implement __reversed__, nor __getitem__ and __len__</description>
-    <priority>CRITICAL</priority>
+    <type>BUG</type>
+    <severity>CRITICAL</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>10min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "BSA">
+  <rule>
+    <key>BSA</key>
     <name>Bad Staticmethod Argument</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when a static method has &quot;self&quot; or a value specified in valid-classmethod-first-arg option or valid-metaclass-classmethod-first-arg option as first argument.</description>
-    <priority>MAJOR</priority>
+    <type>CODE_SMELL</type>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>10min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "BSC">
+  <rule>
+    <key>BSC</key>
     <name>Bad Super Call</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when another argument than the current class is given as first argument of the super builtin.</description>
-    <priority>CRITICAL</priority>
+    <type>BUG</type>
+    <severity>CRITICAL</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>10min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "BSSC">
+  <rule>
+    <key>BSSC</key>
     <name>Bad Str Strip Call</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;The argument to a str.{l,r,}strip call contains a duplicate character,</description>
-    <priority>CRITICAL</priority>
+    <type>BUG</type>
+    <severity>CRITICAL</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>10min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "BW">
+  <rule>
+    <key>BW</key>
     <name>Bad Whitespace</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when a wrong number of spaces is used around an operator, bracket or block opener.</description>
-    <priority>MINOR</priority>
+    <type>CODE_SMELL</type>
+    <severity>MINOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>1min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "BaB">
+  <rule>
+    <key>BaB</key>
     <name>Basestring Builtin</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when the basestring built-in function is referenced (missing from Python 3) This message can&apos;t be emitted when using Python &gt;= 3.0.</description>
-    <priority>MAJOR</priority>
+    <type>BUG</type>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>10min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "BrE">
+  <rule>
+    <key>BrE</key>
     <name>Broad Except</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when an except catches a too general exception, possibly burying unrelated errors.</description>
-    <priority>MAJOR</priority>
+    <type>CODE_SMELL</type>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>20min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "BuB">
+  <rule>
+    <key>BuB</key>
     <name>Buffer Builtin</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when the buffer built-in function is referenced (missing from Python 3) This message can&apos;t be emitted when using Python &gt;= 3.0.</description>
-    <priority>MAJOR</priority>
+    <type>BUG</type>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>10min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "CB">
+  <rule>
+    <key>CB</key>
     <name>Cmp Builtin</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when the cmp built-in function is referenced (missing from Python 3) This message can&apos;t be emitted when using Python &gt;= 3.0.</description>
-    <priority>MAJOR</priority>
+    <type>BUG</type>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>10min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "CI">
+  <rule>
+    <key>CI</key>
     <name>Cyclic Import</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when a cyclic import between two or more modules is detected.</description>
-    <priority>MINOR</priority>
+    <type>BUG</type>
+    <severity>MINOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>2h</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "CM">
+  <rule>
+    <key>CM</key>
     <name>Cmp Method</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when a __cmp__ method is defined (method is not used by Python 3) This message can&apos;t be emitted when using Python &gt;= 3.0.</description>
-    <priority>MAJOR</priority>
+    <type>BUG</type>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>10min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "CNE">
+  <rule>
+    <key>CNE</key>
     <name>Catching Non Exception</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when a class which doesn&apos;t inherit from BaseException is used as an exception in an except clause.</description>
-    <priority>CRITICAL</priority>
+    <type>BUG</type>
+    <severity>CRITICAL</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>20min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "CVFL">
+  <rule>
+    <key>CVFL</key>
     <name>Cell Var From Loop</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;A variable used in a closure is defined in a loop. This will result in all closures using the same value for the closed-over variable.</description>
-    <priority>MAJOR</priority>
+    <type>CODE_SMELL</type>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>20min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "CoB">
+  <rule>
+    <key>CoB</key>
     <name>Coerce Builtin</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when the coerce built-in function is referenced (missing from Python 3) This message can&apos;t be emitted when using Python &gt;= 3.0.</description>
-    <priority>MAJOR</priority>
+    <type>BUG</type>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>10min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "CoM">
+  <rule>
+    <key>CoM</key>
     <name>Coerce Method</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when a __coerce__ method is defined (method is not used by Python 3) This message can&apos;t be emitted when using Python &gt;= 3.0.</description>
-    <priority>MAJOR</priority>
+    <type>BUG</type>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>10min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "DAN">
+  <rule>
+    <key>DAN</key>
     <name>Duplicate Argument Name</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Duplicate argument names in function definitions are syntax errors.</description>
-    <priority>CRITICAL</priority>
+    <type>BUG</type>
+    <severity>CRITICAL</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>5min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "DIM">
+  <rule>
+    <key>DIM</key>
     <name>Dict Iter Method</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used for calls to dict.iterkeys(), itervalues() or iteritems() (Python 3 lacks these methods) This message can&apos;t be emitted when using Python &gt;= 3.0.</description>
-    <priority>MAJOR</priority>
+    <type>BUG</type>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>10min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "DK">
+  <rule>
+    <key>DK</key>
     <name>Duplicate Key</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when a dictionary expression binds the same key multiple times.</description>
-    <priority>MAJOR</priority>
+    <type>BUG</type>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>10min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "DL">
+  <rule>
+    <key>DL</key>
     <name>Deprecated Lambda</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when a lambda is the first argument to &quot;map&quot; or &quot;filter&quot;. It could be clearer as a list comprehension or generator expression. This message can&apos;t be emitted when using Python &gt;= 3.0.</description>
-    <priority>MAJOR</priority>
+    <type>CODE_SMELL</type>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>15min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "DM">
+  <rule>
+    <key>DM</key>
     <name>Delslice Method</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when a __delslice__ method is defined (method is not used by Python 3) This message can&apos;t be emitted when using Python &gt;= 3.0.</description>
-    <priority>MAJOR</priority>
+    <type>BUG</type>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>10min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "DVM">
+  <rule>
+    <key>DVM</key>
     <name>Dict View Method</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used for calls to dict.viewkeys(), viewvalues() or viewitems() (Python 3 lacks these methods) This message can&apos;t be emitted when using Python &gt;= 3.0.</description>
-    <priority>MAJOR</priority>
+    <type>BUG</type>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>10min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "DeM">
+  <rule>
+    <key>DeM</key>
     <name>Deprecated Module</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used a module marked as deprecated is imported.</description>
-    <priority>MAJOR</priority>
+    <type>CODE_SMELL</type>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>1d</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "EB">
+  <rule>
+    <key>EB</key>
     <name>Execfile Builtin</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when the execfile built-in function is referenced (missing from Python 3) This message can&apos;t be emitted when using Python &gt;= 3.0.</description>
-    <priority>MAJOR</priority>
+    <type>BUG</type>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>10min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "ED">
+  <rule>
+    <key>ED</key>
     <name>Empty Docstring</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when a module, function, class or method has an empty docstring (it would be too easy ;).</description>
-    <priority>MINOR</priority>
+    <type>CODE_SMELL</type>
+    <severity>MINOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>5min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "ENA">
+  <rule>
+    <key>ENA</key>
     <name>Expression Not Assigned</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when an expression that is not a function call is assigned to nothing. Probably something else was intended.</description>
-    <priority>MAJOR</priority>
+    <type>CODE_SMELL</type>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>15min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "EU">
+  <rule>
+    <key>EU</key>
     <name>Eval Used</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when you use the &quot;eval&quot; function, to discourage its usage. Consider using `ast.literal_eval` for safely evaluating strings containing Python expressions from untrusted sources.</description>
-    <priority>MAJOR</priority>
+    <type>VULNERABILITY</type>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>30min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "ExU">
+  <rule>
+    <key>ExU</key>
     <name>Exec Used</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when you use the &quot;exec&quot; statement (function for Python 3), to discourage its usage. That doesn&apos;t mean you can not use it !</description>
-    <priority>MAJOR</priority>
+    <type>VULNERABILITY</type>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>30min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "FB">
+  <rule>
+    <key>FB</key>
     <name>File Builtin</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when the file built-in function is referenced (missing from Python 3) This message can&apos;t be emitted when using Python &gt;= 3.0.</description>
-    <priority>MAJOR</priority>
+    <type>BUG</type>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>10min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "FCS">
+  <rule>
+    <key>FCS</key>
     <name>Format Combined Specification</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Usen when a PEP 3101 format string contains both automatic field numbering (e.g. &apos;{}&apos;) and manual field specification (e.g. &apos;{0}&apos;). This message can&apos;t be emitted when using Python &lt; 2.7.</description>
-    <priority>MAJOR</priority>
+    <type>BUG</type>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>15min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "FNM">
+  <rule>
+    <key>FNM</key>
     <name>Format Needs Mapping</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when a format string that uses named conversion specifiers is used with an argument that is not a mapping.</description>
-    <priority>CRITICAL</priority>
+    <type>BUG</type>
+    <severity>CRITICAL</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>10min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "FR">
+  <rule>
+    <key>FR</key>
     <name>Function Redefined</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when a function / class / method is redefined.</description>
-    <priority>CRITICAL</priority>
+    <type>BUG</type>
+    <severity>CRITICAL</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>15min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "Fi">
+  <rule>
+    <key>Fi</key>
     <name>Fixme</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when a warning note as FIXME or XXX is detected.</description>
-    <priority>MAJOR</priority>
+    <type>CODE_SMELL</type>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>1h</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "GAML">
+  <rule>
+    <key>GAML</key>
     <name>Global At Module Level</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when you use the &quot;global&quot; statement at the module level since it has no effect</description>
-    <priority>MAJOR</priority>
+    <type>CODE_SMELL</type>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>1min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "GM">
+  <rule>
+    <key>GM</key>
     <name>Getslice Method</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when a __getslice__ method is defined (method is not used by Python 3) This message can&apos;t be emitted when using Python &gt;= 3.0.</description>
-    <priority>MAJOR</priority>
+    <type>BUG</type>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>10min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "GS">
+  <rule>
+    <key>GS</key>
     <name>Global Statement</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when you use the &quot;global&quot; statement to update a global variable. Pylint just try to discourage this usage. That doesn&apos;t mean you can not use it !</description>
-    <priority>MAJOR</priority>
+    <type>CODE_SMELL</type>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>1h</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "GVNA">
+  <rule>
+    <key>GVNA</key>
     <name>Global Variable Not Assigned</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when a variable is defined through the &quot;global&quot; statement but no assignment to this variable is done.</description>
-    <priority>MAJOR</priority>
+    <type>CODE_SMELL</type>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>15min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "GVU">
+  <rule>
+    <key>GVU</key>
     <name>Global Variable Undefined</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when a variable is defined through the &quot;global&quot; statement but the variable is not defined in the module scope.</description>
-    <priority>MAJOR</priority>
+    <type>CODE_SMELL</type>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>15min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "HM">
+  <rule>
+    <key>HM</key>
     <name>Hex Method</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when a __hex__ method is defined (method is not used by Python 3) This message can&apos;t be emitted when using Python &gt;= 3.0.</description>
-    <priority>MAJOR</priority>
+    <type>BUG</type>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>10min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "IAO">
+  <rule>
+    <key>IAO</key>
     <name>Invalid All Object</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when an invalid (non-string) object occurs in __all__.</description>
-    <priority>CRITICAL</priority>
+    <type>BUG</type>
+    <severity>CRITICAL</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>3min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "IB">
+  <rule>
+    <key>IB</key>
     <name>Input Builtin</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when the input built-in is referenced (backwards-incompatible semantics in Python 3) This message can&apos;t be emitted when using Python &gt;= 3.0.</description>
-    <priority>MAJOR</priority>
+    <type>BUG</type>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>10min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "IED">
+  <rule>
+    <key>IED</key>
     <name>Invalid Encoded Data</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when a source line cannot be decoded using the specified source file encoding. This message can&apos;t be emitted when using Python &gt;= 3.0.</description>
-    <priority>MAJOR</priority>
+    <type>BUG</type>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>15min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "IFI">
+  <rule>
+    <key>IFI</key>
     <name>Invalid Format Index</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when a PEP 3101 format string uses a lookup specifier ({a[1]}), but the argument passed for formatting doesn&apos;t contain or doesn&apos;t have that key as an attribute. This message can&apos;t be emitted when using Python &lt; 2.7.</description>
-    <priority>MAJOR</priority>
+    <type>BUG</type>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>15min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "IIG">
+  <rule>
+    <key>IIG</key>
     <name>Init Is Generator</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when the special class method __init__ is turned into a generator by a yield in its body.</description>
-    <priority>CRITICAL</priority>
+    <type>BUG</type>
+    <severity>CRITICAL</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>30min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "IINC">
+  <rule>
+    <key>IINC</key>
     <name>Interface Is Not Class</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when a class claims to implement an interface which is not a class.</description>
-    <priority>CRITICAL</priority>
+    <type>BUG</type>
+    <severity>CRITICAL</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>20min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "IME">
+  <rule>
+    <key>IME</key>
     <name>Implicit Map Evaluation</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when the map builtin is used as implicitly evaluated call, as in &quot;map(func, args)&quot; on a single line. This behaviour will not work in Python 3, where map is a generator and must be evaluated. Prefer a for-loop as alternative. This message can&apos;t be emitted when using Python &gt;= 3.0.</description>
-    <priority>MAJOR</priority>
+    <type>BUG</type>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>30min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "IN">
+  <rule>
+    <key>IN</key>
     <name>Invalid Name</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when the name doesn&apos;t match the regular expression associated to its type (constant, variable, class...).</description>
-    <priority>MINOR</priority>
+    <type>BUG</type>
+    <severity>MINOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>1min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "INC">
+  <rule>
+    <key>INC</key>
     <name>Inherit Non Class</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when a class inherits from something which is not a class.</description>
-    <priority>CRITICAL</priority>
+    <type>BUG</type>
+    <severity>CRITICAL</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>20min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "INI">
+  <rule>
+    <key>INI</key>
     <name>Interface Not Implemented</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when an interface class is not implemented anywhere.</description>
-    <priority>MINOR</priority>
+    <type>CODE_SMELL</type>
+    <severity>MINOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>20min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "IS">
+  <rule>
+    <key>IS</key>
     <name>Import Self</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when a module is importing itself.</description>
-    <priority>MAJOR</priority>
+    <type>BUG</type>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>15min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "ISI">
+  <rule>
+    <key>ISI</key>
     <name>Invalid Sequence Index</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when a sequence type is indexed with an invalid type. Valid types are ints, slices, and objects with an __index__ method.</description>
-    <priority>CRITICAL</priority>
+    <type>BUG</type>
+    <severity>CRITICAL</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>15min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "ISO">
+  <rule>
+    <key>ISO</key>
     <name>Invalid Slots Object</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when an invalid (non-string) object occurs in __slots__.</description>
-    <priority>CRITICAL</priority>
+    <type>BUG</type>
+    <severity>CRITICAL</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>10min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "InE">
+  <rule>
+    <key>InE</key>
     <name>Indexing Exception</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Indexing exceptions will not work on Python 3. Use `exception.args[index]` instead. This message can&apos;t be emitted when using Python &gt;= 3.0.</description>
-    <priority>MAJOR</priority>
+    <type>BUG</type>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>10min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "InS">
+  <rule>
+    <key>InS</key>
     <name>Invalid Slots</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when an invalid __slots__ is found in class. Only a string, an iterable or a sequence is permitted.</description>
-    <priority>CRITICAL</priority>
+    <type>BUG</type>
+    <severity>CRITICAL</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>20min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "InSI">
+  <rule>
+    <key>InSI</key>
     <name>Invalid Slice Index</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when a slice index is not an integer, None, or an object with an __index__ method.</description>
-    <priority>CRITICAL</priority>
+    <type>BUG</type>
+    <severity>CRITICAL</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>15min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "LB">
+  <rule>
+    <key>LB</key>
     <name>Long Builtin</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when the long built-in function is referenced (missing from Python 3) This message can&apos;t be emitted when using Python &gt;= 3.0.</description>
-    <priority>MAJOR</priority>
+    <type>BUG</type>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>10min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "LFI">
+  <rule>
+    <key>LFI</key>
     <name>Logging Format Interpolation</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when a logging statement has a call form of &quot;logging.&lt;logging method&gt;(format_string.format(format_args...))&quot;. Such calls should use % formatting instead, but leave interpolation to the logging function by passing the parameters as arguments.</description>
-    <priority>MAJOR</priority>
+    <type>CODE_SMELL</type>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>20min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "LFT">
+  <rule>
+    <key>LFT</key>
     <name>Logging Format Truncated</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when a logging statement format string terminates before the end of a conversion specifier.</description>
-    <priority>CRITICAL</priority>
+    <type>BUG</type>
+    <severity>CRITICAL</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>10min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "LLS">
+  <rule>
+    <key>LLS</key>
     <name>Lowercase L Suffix</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when a lower case &quot;l&quot; is used to mark a long integer. You should use a upper case &quot;L&quot; since the letter &quot;l&quot; looks too much like the digit &quot;1&quot; This message can&apos;t be emitted when using Python &gt;= 3.0.</description>
-    <priority>MAJOR</priority>
+    <type>BUG</type>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>1min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "LNL">
+  <rule>
+    <key>LNL</key>
     <name>Logging Not Lazy</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when a logging statement has a call form of &quot;logging.&lt;logging method&gt;(format_string % (format_args...))&quot;. Such calls should leave string interpolation to the logging method itself and be written &quot;logging.&lt;logging method&gt;(format_string, format_args...)&quot; so that the program may avoid incurring the cost of the interpolation in those cases in which no message will be logged. For more, see http://www.python.org/dev/peps/pep-0282/.</description>
-    <priority>MAJOR</priority>
+    <type>CODE_SMELL</type>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>5min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "LS">
+  <rule>
+    <key>LS</key>
     <name>Long Suffix</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when &quot;l&quot; or &quot;L&quot; is used to mark a long integer. This will not work in Python 3, since `int` and `long` types have merged. This message can&apos;t be emitted when using Python &gt;= 3.0.</description>
-    <priority>CRITICAL</priority>
+    <type>BUG</type>
+    <severity>CRITICAL</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>10min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "LTFA">
+  <rule>
+    <key>LTFA</key>
     <name>Logging Too Few Args</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when a logging format string is given too many arguments</description>
-    <priority>CRITICAL</priority>
+    <type>BUG</type>
+    <severity>CRITICAL</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>10min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "LTL">
+  <rule>
+    <key>LTL</key>
     <name>Line Too Long</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when a line is longer than a given number of characters.&lt;hr/&gt;&lt;h3&gt;FaultHunterPython&lt;/h3&gt;Limit all lines to a maximum of 79 characters.</description>
-    <priority>MINOR</priority>
+    <type>CODE_SMELL</type>
+    <severity>MINOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>1min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "LTMA">
+  <rule>
+    <key>LTMA</key>
     <name>Logging Too Many Args</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when a logging format string is given too few arguments.</description>
-    <priority>CRITICAL</priority>
+    <type>BUG</type>
+    <severity>CRITICAL</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>10min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "LUF">
+  <rule>
+    <key>LUF</key>
     <name>Logging Unsupported Format</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when an unsupported format character is used in a logging statement format string.</description>
-    <priority>CRITICAL</priority>
+    <type>BUG</type>
+    <severity>CRITICAL</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>10min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "LoE">
+  <rule>
+    <key>LoE</key>
     <name>Lost Exception</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when a break or a return statement is found inside the finally clause of a try...finally block: the exceptions raised in the try clause will be silently swallowed instead of being re-raised.</description>
-    <priority>MAJOR</priority>
+    <type>CODE_SMELL</type>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>20min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "MA">
+  <rule>
+    <key>MA</key>
     <name>Metaclass Assignment</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when a metaclass is specified by assigning to __metaclass__ (Python 3 specifies the metaclass as a class statement argument) This message can&apos;t be emitted when using Python &gt;= 3.0.</description>
-    <priority>MAJOR</priority>
+    <type>BUG</type>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>15min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "MD">
+  <rule>
+    <key>MD</key>
     <name>Missing Docstring</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when a module, function, class or method has no docstring.Some special methods like __init__ doesn&apos;t necessary require a docstring.</description>
-    <priority>MINOR</priority>
+    <type>CODE_SMELL</type>
+    <severity>MINOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>5min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "MF">
+  <rule>
+    <key>MF</key>
     <name>Misplaced Future</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Python 2.5 and greater require __future__ import to be the first non docstring statement in the module. This message can&apos;t be emitted when using Python &gt;= 3.0.</description>
-    <priority>MAJOR</priority>
+    <type>BUG</type>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>10min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "MFA">
+  <rule>
+    <key>MFA</key>
     <name>Missing Format Attribute</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when a PEP 3101 format string uses an attribute specifier ({0.length}), but the argument passed for formatting doesn&apos;t have that attribute. This message can&apos;t be emitted when using Python &lt; 2.7.</description>
-    <priority>MAJOR</priority>
+    <type>BUG</type>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>15min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "MFAK">
+  <rule>
+    <key>MFAK</key>
     <name>Missing Format Argument Key</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when a PEP 3101 format string that uses named fields doesn&apos;t receive one or more required keywords. This message can&apos;t be emitted when using Python &lt; 2.7.</description>
-    <priority>MAJOR</priority>
+    <type>BUG</type>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>15min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "MFN">
+  <rule>
+    <key>MFN</key>
     <name>Missing Final Newline</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when the last line in a file is missing a newline.</description>
-    <priority>MINOR</priority>
+    <type>CODE_SMELL</type>
+    <severity>MINOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>10min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "MFS">
+  <rule>
+    <key>MFS</key>
     <name>Mixed Format String</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when a format string contains both named (e.g. &apos;%(foo)d&apos;) and unnamed (e.g. &apos;%d&apos;) conversion specifiers. This is also used when a named conversion specifier contains * for the minimum field width and/or precision.</description>
-    <priority>CRITICAL</priority>
+    <type>BUG</type>
+    <severity>CRITICAL</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>5min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "MFSK">
+  <rule>
+    <key>MFSK</key>
     <name>Missing Format String Key</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when a format string that uses named conversion specifiers is used with a dictionary that doesn&apos;t contain all the keys required by the format string.</description>
-    <priority>CRITICAL</priority>
+    <type>BUG</type>
+    <severity>CRITICAL</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>10min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "MH">
+  <rule>
+    <key>MH</key>
     <name>Method Hidden</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when a class defines a method which is hidden by an instance attribute from an ancestor class or set by some client code.</description>
-    <priority>CRITICAL</priority>
+    <type>BUG</type>
+    <severity>CRITICAL</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>15min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "MI">
+  <rule>
+    <key>MI</key>
     <name>Mixed Indentation</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when there are some mixed tabs and spaces in a module.</description>
-    <priority>MAJOR</priority>
+    <type>BUG</type>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>1min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "MIM">
+  <rule>
+    <key>MIM</key>
     <name>Missing Interface Method</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when a method declared in an interface is missing from a class implementing this interface</description>
-    <priority>CRITICAL</priority>
+    <type>BUG</type>
+    <severity>CRITICAL</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>30min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "MK">
+  <rule>
+    <key>MK</key>
     <name>Missing Kwoa</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when a function call does not pass a mandatory keyword-only argument. This message can&apos;t be emitted when using Python &lt; 3.0.</description>
-    <priority>CRITICAL</priority>
+    <type>BUG</type>
+    <severity>CRITICAL</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>15min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "MLE">
+  <rule>
+    <key>MLE</key>
     <name>Mixed Line Endings</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when there are mixed (LF and CRLF) newline signs in a file.</description>
-    <priority>MINOR</priority>
+    <type>BUG</type>
+    <severity>MINOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>30min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "MMA">
+  <rule>
+    <key>MMA</key>
     <name>Missing Module Attribute</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when an attribute required for modules is missing.</description>
-    <priority>MINOR</priority>
+    <type>BUG</type>
+    <severity>MINOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>20min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "MRA">
+  <rule>
+    <key>MRA</key>
     <name>Missing Reversed Argument</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when reversed() builtin didn&apos;t receive an argument.</description>
-    <priority>CRITICAL</priority>
+    <type>BUG</type>
+    <severity>CRITICAL</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>10min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "MSA">
+  <rule>
+    <key>MSA</key>
     <name>Missing Super Argument</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when the super builtin didn&apos;t receive an argument. This message can&apos;t be emitted when using Python &gt;= 3.0.</description>
-    <priority>CRITICAL</priority>
+    <type>BUG</type>
+    <severity>CRITICAL</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>10min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "NAI">
+  <rule>
+    <key>NAI</key>
     <name>No Absolute Import</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when an import is not accompanied by `from __future__ import absolute_import` (default behaviour in Python 3) This message can&apos;t be emitted when using Python &gt;= 3.0.</description>
-    <priority>MAJOR</priority>
+    <type>BUG</type>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>20min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "NC">
+  <rule>
+    <key>NC</key>
     <name>Not Callable</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when an object being called has been inferred to a non callable object</description>
-    <priority>CRITICAL</priority>
+    <type>BUG</type>
+    <severity>CRITICAL</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>3min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "NE">
+  <rule>
+    <key>NE</key>
     <name>Nonstandard Exception</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when a custom exception class is raised but doesn&apos;t inherit from the builtin &quot;Exception&quot; class. This message can&apos;t be emitted when using Python &gt;= 3.0.</description>
-    <priority>MAJOR</priority>
+    <type>CODE_SMELL</type>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>15min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "NI">
+  <rule>
+    <key>NI</key>
     <name>No Init</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when a class has no __init__ method, neither its parent classes.</description>
-    <priority>MAJOR</priority>
+    <type>BUG</type>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>20min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "NIL">
+  <rule>
+    <key>NIL</key>
     <name>Not In Loop</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when break or continue keywords are used outside a loop.</description>
-    <priority>CRITICAL</priority>
+    <type>BUG</type>
+    <severity>CRITICAL</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>15min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "NIR">
+  <rule>
+    <key>NIR</key>
     <name>Non Iterator Returned</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when an __iter__ method returns something which is not an iterable (i.e. has no `next` method)</description>
-    <priority>MAJOR</priority>
+    <type>BUG</type>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>15min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "NM">
+  <rule>
+    <key>NM</key>
     <name>No Member</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when a variable is accessed for an unexistent member.</description>
-    <priority>CRITICAL</priority>
+    <type>BUG</type>
+    <severity>CRITICAL</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>10min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "NMA">
+  <rule>
+    <key>NMA</key>
     <name>No Method Argument</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when a method which should have the bound instance as first argument has no argument defined.</description>
-    <priority>CRITICAL</priority>
+    <type>BUG</type>
+    <severity>CRITICAL</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>10min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "NMC">
+  <rule>
+    <key>NMC</key>
     <name>Next Method Called</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when an object&apos;s next() method is called (Python 3 uses the next() built-in function) This message can&apos;t be emitted when using Python &gt;= 3.0.</description>
-    <priority>MAJOR</priority>
+    <type>BUG</type>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>10min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "NNIM">
+  <rule>
+    <key>NNIM</key>
     <name>No Name In Module</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when a name cannot be found in a module.</description>
-    <priority>CRITICAL</priority>
+    <type>BUG</type>
+    <severity>CRITICAL</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>10min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "NO">
+  <rule>
+    <key>NO</key>
     <name>Nonexistent Operator</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when you attempt to use the C-style pre-increment orpre-decrement operator -- and ++, which doesn&apos;t exist in Python.</description>
-    <priority>CRITICAL</priority>
+    <type>BUG</type>
+    <severity>CRITICAL</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>3min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "NPIC">
+  <rule>
+    <key>NPIC</key>
     <name>Non Parent Init Called</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when an __init__ method is called on a class which is not in the direct ancestors for the analysed class.</description>
-    <priority>MAJOR</priority>
+    <type>BUG</type>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>2h</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "NR">
+  <rule>
+    <key>NR</key>
     <name>Notimplemented Raised</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when NotImplemented is raised instead of NotImplementedError</description>
-    <priority>CRITICAL</priority>
+    <type>BUG</type>
+    <severity>CRITICAL</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>5min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "NSA">
+  <rule>
+    <key>NSA</key>
     <name>No Self Argument</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when a method has an attribute different the &quot;self&quot; as first argument. This is considered as an error since this is a so common convention that you shouldn&apos;t break it!</description>
-    <priority>CRITICAL</priority>
+    <type>BUG</type>
+    <severity>CRITICAL</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>5min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "NSU">
+  <rule>
+    <key>NSU</key>
     <name>No Self Use</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when a method doesn&apos;t use its bound instance, and so could be written as a function.</description>
-    <priority>MINOR</priority>
+    <type>CODE_SMELL</type>
+    <severity>MINOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>20min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "NVFP">
+  <rule>
+    <key>NVFP</key>
     <name>No Value For Parameter</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when a function call passes too few arguments.</description>
-    <priority>CRITICAL</priority>
+    <type>BUG</type>
+    <severity>CRITICAL</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>5min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "NoM">
+  <rule>
+    <key>NoM</key>
     <name>Nonzero Method</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when a __nonzero__ method is defined (method is not used by Python 3) This message can&apos;t be emitted when using Python &gt;= 3.0.</description>
-    <priority>MAJOR</priority>
+    <type>BUG</type>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>20min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "OD">
+  <rule>
+    <key>OD</key>
     <name>Old Division</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used for non-floor division w/o a float literal or ``from __future__ import division``(Python 3 returns a float for int division unconditionally) This message can&apos;t be emitted when using Python &gt;= 3.0.</description>
-    <priority>MAJOR</priority>
+    <type>BUG</type>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>15min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "OM">
+  <rule>
+    <key>OM</key>
     <name>Oct Method</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when a __oct__ method is defined (method is not used by Python 3) This message can&apos;t be emitted when using Python &gt;= 3.0.</description>
-    <priority>MAJOR</priority>
+    <type>BUG</type>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>20min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "ONO">
+  <rule>
+    <key>ONO</key>
     <name>Old Ne Operator</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when the deprecated &quot;&lt;&gt;&quot; operator is used instead of &quot;!=&quot;. This is removed in Python 3. This message can&apos;t be emitted when using Python &gt;= 3.0.</description>
-    <priority>CRITICAL</priority>
+    <type>BUG</type>
+    <severity>CRITICAL</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>10min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "OOL">
+  <rule>
+    <key>OOL</key>
     <name>Old Octal Literal</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Usen when encountering the old octal syntax, removed in Python 3. To use the new syntax, prepend 0o on the number. This message can&apos;t be emitted when using Python &gt;= 3.0.</description>
-    <priority>CRITICAL</priority>
+    <type>BUG</type>
+    <severity>CRITICAL</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>10min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "PA">
+  <rule>
+    <key>PA</key>
     <name>Protected Access</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when a protected member (i.e. class member with a name beginning with an underscore) is access outside the class or a descendant of the class where it&apos;s defined.</description>
-    <priority>MAJOR</priority>
+    <type>BUG</type>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>1h</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "POOC">
+  <rule>
+    <key>POOC</key>
     <name>Property On Old Class</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when Pylint detect the use of the builtin &quot;property&quot; on an old style class while this is relying on new style classes features. This message can&apos;t be emitted when using Python &gt;= 3.0.</description>
-    <priority>MAJOR</priority>
+    <type>BUG</type>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>20min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "PS">
+  <rule>
+    <key>PS</key>
     <name>Pointless Statement</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when a statement doesn&apos;t have (or at least seems to) any effect.</description>
-    <priority>MAJOR</priority>
+    <type>CODE_SMELL</type>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>15min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "PSS">
+  <rule>
+    <key>PSS</key>
     <name>Pointless String Statement</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when a string is used as a statement (which of course has no effect). This is a particular case of W0104 with its own message so you can easily disable it if you&apos;re using those strings as documentation, instead of comments.</description>
-    <priority>MAJOR</priority>
+    <type>CODE_SMELL</type>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>15min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "PU">
+  <rule>
+    <key>PU</key>
     <name>Parameter Unpacking</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when parameter unpacking is specified for a function(Python 3 doesn&apos;t allow it) This message can&apos;t be emitted when using Python &gt;= 3.0.</description>
-    <priority>CRITICAL</priority>
+    <type>BUG</type>
+    <severity>CRITICAL</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>30min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "PoE">
+  <rule>
+    <key>PoE</key>
     <name>Pointless Except</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when an except clause does nothing but &quot;pass&quot; and there is no &quot;else&quot; clause.</description>
-    <priority>MAJOR</priority>
+    <type>CODE_SMELL</type>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>15min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "PrS">
+  <rule>
+    <key>PrS</key>
     <name>Print Statement</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when a print statement is used (`print` is a function in Python 3) This message can&apos;t be emitted when using Python &gt;= 3.0.</description>
-    <priority>CRITICAL</priority>
+    <type>BUG</type>
+    <severity>CRITICAL</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>20min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "R">
+  <rule>
+    <key>R</key>
     <name>Reimported</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when a module is reimported multiple times.</description>
-    <priority>MAJOR</priority>
+    <type>BUG</type>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>1min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "RAIG">
+  <rule>
+    <key>RAIG</key>
     <name>Return Arg In Generator</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when a &quot;return&quot; statement with an argument is found outside in a generator function or method (e.g. with some &quot;yield&quot; statements). This message can&apos;t be emitted when using Python &gt;= 3.3.</description>
-    <priority>CRITICAL</priority>
+    <type>BUG</type>
+    <severity>CRITICAL</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>15min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "RB">
+  <rule>
+    <key>RB</key>
     <name>Raw_input Builtin</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when the raw_input built-in function is referenced (missing from Python 3) This message can&apos;t be emitted when using Python &gt;= 3.0.</description>
-    <priority>MAJOR</priority>
+    <type>BUG</type>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>10min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "RBT">
+  <rule>
+    <key>RBT</key>
     <name>Raising Bad Type</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when something which is neither a class, an instance or a string is raised (i.e. a `TypeError` will be raised).</description>
-    <priority>CRITICAL</priority>
+    <type>BUG</type>
+    <severity>CRITICAL</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>20min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "RIH">
+  <rule>
+    <key>RIH</key>
     <name>Redefine In Handler</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when an exception handler assigns the exception to an existing name</description>
-    <priority>MAJOR</priority>
+    <type>CODE_SMELL</type>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>20min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "RII">
+  <rule>
+    <key>RII</key>
     <name>Return In Init</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when the special class method __init__ has an explicit return value.</description>
-    <priority>CRITICAL</priority>
+    <type>BUG</type>
+    <severity>CRITICAL</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>5min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "RKA">
+  <rule>
+    <key>RKA</key>
     <name>Redundant Keyword Arg</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when a function call would result in assigning multiple values to a function parameter, one value from a positional argument and one from a keyword argument.</description>
-    <priority>CRITICAL</priority>
+    <type>BUG</type>
+    <severity>CRITICAL</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>5min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "RNE">
+  <rule>
+    <key>RNE</key>
     <name>Raising Non Exception</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when a new style class which doesn&apos;t inherit from BaseException is raised.</description>
-    <priority>CRITICAL</priority>
+    <type>BUG</type>
+    <severity>CRITICAL</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>15min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "ROF">
+  <rule>
+    <key>ROF</key>
     <name>Return Outside Function</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when a &quot;return&quot; statement is found outside a function or method.</description>
-    <priority>CRITICAL</priority>
+    <type>BUG</type>
+    <severity>CRITICAL</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>5min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "RON">
+  <rule>
+    <key>RON</key>
     <name>Redefined Outer Name</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when a variable&apos;s name hide a name defined in the outer scope.</description>
-    <priority>MAJOR</priority>
+    <type>CODE_SMELL</type>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>15min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "RUA">
+  <rule>
+    <key>RUA</key>
     <name>Redundant Unittest Assert</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;The first argument of assertTrue and assertFalse isa condition. If a constant is passed as parameter, thatcondition will be always true. In this case a warning should be emitted.</description>
-    <priority>MAJOR</priority>
+    <type>BUG</type>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>20min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "ReB">
+  <rule>
+    <key>ReB</key>
     <name>Redefined Builtin</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when a variable or function override a built-in.</description>
-    <priority>MAJOR</priority>
+    <type>CODE_SMELL</type>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>5min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "RedB">
+  <rule>
+    <key>RedB</key>
     <name>Reduce Builtin</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when the reduce built-in function is referenced (missing from Python 3) This message can&apos;t be emitted when using Python &gt;= 3.0.</description>
-    <priority>MAJOR</priority>
+    <type>BUG</type>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>10min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "RelB">
+  <rule>
+    <key>RelB</key>
     <name>Reload Builtin</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when the reload built-in function is referenced (missing from Python 3). You can use instead imp.reload or importlib.reload. This message can&apos;t be emitted when using Python &gt;= 3.0.</description>
-    <priority>MAJOR</priority>
+    <type>BUG</type>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>10min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "RoB">
+  <rule>
+    <key>RoB</key>
     <name>Round Builtin</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when the round built-in is referenced (backwards-incompatible semantics in Python 3) This message can&apos;t be emitted when using Python &gt;= 3.0.</description>
-    <priority>MAJOR</priority>
+    <type>BUG</type>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>10min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "SA">
+  <rule>
+    <key>SA</key>
     <name>Star Args</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when a function or method is called using `*args` or `**kwargs` to dispatch arguments. This doesn&apos;t improve readability and should be used with care.</description>
-    <priority>MAJOR</priority>
+    <type>CODE_SMELL</type>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>15min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "SB">
+  <rule>
+    <key>SB</key>
     <name>Standarderror Builtin</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when the StandardError built-in function is referenced (missing from Python 3) This message can&apos;t be emitted when using Python &gt;= 3.0.</description>
-    <priority>MAJOR</priority>
+    <type>BUG</type>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>10min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "SD">
+  <rule>
+    <key>SD</key>
     <name>Signature Differs</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when a method signature is different than in the implemented interface or in an overridden method.</description>
-    <priority>MAJOR</priority>
+    <type>BUG</type>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>20min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "SINC">
+  <rule>
+    <key>SINC</key>
     <name>Super Init Not Called</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when an ancestor class method has an __init__ method which is not called by a derived class.</description>
-    <priority>MAJOR</priority>
+    <type>BUG</type>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>20min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "SM">
+  <rule>
+    <key>SM</key>
     <name>Setslice Method</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when a __setslice__ method is defined (method is not used by Python 3) This message can&apos;t be emitted when using Python &gt;= 3.0.</description>
-    <priority>MAJOR</priority>
+    <type>BUG</type>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>20min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "SOOC">
+  <rule>
+    <key>SOOC</key>
     <name>Slots On Old Class</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when an old style class uses the __slots__ attribute. This message can&apos;t be emitted when using Python &gt;= 3.0.</description>
-    <priority>CRITICAL</priority>
+    <type>BUG</type>
+    <severity>CRITICAL</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>15min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "SP">
+  <rule>
+    <key>SP</key>
     <name>Superfluous Parens</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when a single item in parentheses follows an if, for, or other keyword.</description>
-    <priority>MINOR</priority>
+    <type>CODE_SMELL</type>
+    <severity>MINOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>5min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "SuOOC">
+  <rule>
+    <key>SuOOC</key>
     <name>Super On Old Class</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when an old style class uses the super builtin. This message can&apos;t be emitted when using Python &gt;= 3.0.</description>
-    <priority>CRITICAL</priority>
+    <type>BUG</type>
+    <severity>CRITICAL</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>15min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "TFFA">
+  <rule>
+    <key>TFFA</key>
     <name>Too Few Format Args</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when a format string that uses unnamed conversion specifiers is given too few arguments</description>
-    <priority>CRITICAL</priority>
+    <type>BUG</type>
+    <severity>CRITICAL</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>5min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "TFPM">
+  <rule>
+    <key>TFPM</key>
     <name>Too Few Public Methods</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when class has too few public methods, so be sure it&apos;s really worth it.</description>
-    <priority>MINOR</priority>
+    <type>CODE_SMELL</type>
+    <severity>MINOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>1h</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "TFS">
+  <rule>
+    <key>TFS</key>
     <name>Truncated Format String</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when a format string terminates before the end of a conversion specifier.</description>
-    <priority>CRITICAL</priority>
+    <type>BUG</type>
+    <severity>CRITICAL</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>3min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "TMA">
+  <rule>
+    <key>TMA</key>
     <name>Too Many Ancestors</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when class has too many parent classes, try to reduce this to get a simpler (and so easier to use) class.</description>
-    <priority>MINOR</priority>
+    <type>CODE_SMELL</type>
+    <severity>MINOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>3h</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "TMB">
+  <rule>
+    <key>TMB</key>
     <name>Too Many Branches</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when a function or method has too many branches, making it hard to follow.</description>
-    <priority>MINOR</priority>
+    <type>CODE_SMELL</type>
+    <severity>MINOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>2h</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "TMFA">
+  <rule>
+    <key>TMFA</key>
     <name>Too Many Format Args</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when a format string that uses unnamed conversion specifiers is given too many arguments.</description>
-    <priority>CRITICAL</priority>
+    <type>BUG</type>
+    <severity>CRITICAL</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>5min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "TMIA">
+  <rule>
+    <key>TMIA</key>
     <name>Too Many Instance Attributes</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when class has too many instance attributes, try to reduce this to get a simpler (and so easier to use) class.</description>
-    <priority>MINOR</priority>
+    <type>CODE_SMELL</type>
+    <severity>MINOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>2h</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "TML">
+  <rule>
+    <key>TML</key>
     <name>Too Many Lines</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when a module has too much lines, reducing its readability.</description>
-    <priority>MINOR</priority>
+    <type>CODE_SMELL</type>
+    <severity>MINOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>30min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "TMPM">
+  <rule>
+    <key>TMPM</key>
     <name>Too Many Public Methods</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when class has too many public methods, try to reduce this to get a simpler (and so easier to use) class.</description>
-    <priority>MINOR</priority>
+    <type>CODE_SMELL</type>
+    <severity>MINOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>2h</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "TMRS">
+  <rule>
+    <key>TMRS</key>
     <name>Too Many Return Statements</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when a function or method has too many return statement, making it hard to follow.</description>
-    <priority>MINOR</priority>
+    <type>CODE_SMELL</type>
+    <severity>MINOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>20min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "TMS">
+  <rule>
+    <key>TMS</key>
     <name>Too Many Statements</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when a function or method has too many statements. You should then split it in smaller functions / methods.</description>
-    <priority>MINOR</priority>
+    <type>CODE_SMELL</type>
+    <severity>MINOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>2h</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "TW">
+  <rule>
+    <key>TW</key>
     <name>Trailing Whitespace</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when there is whitespace between the end of a line and the newline.</description>
-    <priority>MINOR</priority>
+    <type>CODE_SMELL</type>
+    <severity>MINOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>1min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "ToMA">
+  <rule>
+    <key>ToMA</key>
     <name>Too Many Arguments</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when a function or method takes too many arguments.</description>
-    <priority>MINOR</priority>
+    <type>CODE_SMELL</type>
+    <severity>MINOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>30min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "ToMFA">
+  <rule>
+    <key>ToMFA</key>
     <name>Too Many Function Args</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when a function call passes too many positional arguments.</description>
-    <priority>CRITICAL</priority>
+    <type>BUG</type>
+    <severity>CRITICAL</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>5min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "ToML">
+  <rule>
+    <key>ToML</key>
     <name>Too Many Locals</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when a function or method has too many local variables.</description>
-    <priority>MINOR</priority>
+    <type>CODE_SMELL</type>
+    <severity>MINOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>20min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "U">
+  <rule>
+    <key>U</key>
     <name>Unreachable</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when there is some code behind a &quot;return&quot; or &quot;raise&quot; statement, which will never be accessed.</description>
-    <priority>MAJOR</priority>
+    <type>CODE_SMELL</type>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>15min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "UA">
+  <rule>
+    <key>UA</key>
     <name>Unused Argument</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when a function or method argument is not used.</description>
-    <priority>MAJOR</priority>
+    <type>CODE_SMELL</type>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>15min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "UAV">
+  <rule>
+    <key>UAV</key>
     <name>Undefined All Variable</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when an undefined variable name is referenced in __all__.</description>
-    <priority>CRITICAL</priority>
+    <type>BUG</type>
+    <severity>CRITICAL</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>3min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "UB">
+  <rule>
+    <key>UB</key>
     <name>Unicode Builtin</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when the unicode built-in function is referenced (missing from Python 3) This message can&apos;t be emitted when using Python &gt;= 3.0.</description>
-    <priority>MAJOR</priority>
+    <type>BUG</type>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>10min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "UBA">
+  <rule>
+    <key>UBA</key>
     <name>Used Before Assignment</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when a local variable is accessed before it&apos;s assignment.</description>
-    <priority>CRITICAL</priority>
+    <type>BUG</type>
+    <severity>CRITICAL</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>15min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "UEOL">
+  <rule>
+    <key>UEOL</key>
     <name>Useless Else On Loop</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Loops should only have an else clause if they can exit early with a break statement, otherwise the statements under else should be on the same scope as the loop itself.</description>
-    <priority>MAJOR</priority>
+    <type>BUG</type>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>20min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "UFSA">
+  <rule>
+    <key>UFSA</key>
     <name>Unused Format String Argument</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when a PEP 3101 format string that uses named fields is used with an argument that is not required by the format string. This message can&apos;t be emitted when using Python &lt; 2.7.</description>
-    <priority>MAJOR</priority>
+    <type>CODE_SMELL</type>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>10min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "UFSK">
+  <rule>
+    <key>UFSK</key>
     <name>Unused Format String Key</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when a format string that uses named conversion specifiers is used with a dictionary that conWtains keys not required by the format string.</description>
-    <priority>MAJOR</priority>
+    <type>CODE_SMELL</type>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>15min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "UIE">
+  <rule>
+    <key>UIE</key>
     <name>Unpacking In Except</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Python3 will not allow implicit unpacking of exceptions in except clauses. See http://www.python.org/dev/peps/pep-3110/ This message can&apos;t be emitted when using Python &gt;= 3.0.</description>
-    <priority>CRITICAL</priority>
+    <type>BUG</type>
+    <severity>CRITICAL</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>20min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "UKA">
+  <rule>
+    <key>UKA</key>
     <name>Unexpected Keyword Arg</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when a function call passes a keyword argument that doesn&apos;t correspond to one of the function&apos;s parameter names.</description>
-    <priority>CRITICAL</priority>
+    <type>BUG</type>
+    <severity>CRITICAL</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>3min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "UL">
+  <rule>
+    <key>UL</key>
     <name>Unnecessary Lambda</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when the body of a lambda expression is a function call on the same argument list as the lambda itself; such lambda expressions are in all but a few cases replaceable with the function being called in the body of the lambda.</description>
-    <priority>MAJOR</priority>
+    <type>CODE_SMELL</type>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>5min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "ULEF">
+  <rule>
+    <key>ULEF</key>
     <name>Unexpected Line Ending Format</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when there is different newline than expected.</description>
-    <priority>MINOR</priority>
+    <type>BUG</type>
+    <severity>MINOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>30min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "ULV">
+  <rule>
+    <key>ULV</key>
     <name>Undefined Loop Variable</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when an loop variable (i.e. defined by a for loop or a list comprehension or a generator expression) is used outside the loop.</description>
-    <priority>MAJOR</priority>
+    <type>BUG</type>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>15min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "UNS">
+  <rule>
+    <key>UNS</key>
     <name>Unpacking Non Sequence</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when something which is not a sequence is used in an unpack assignment</description>
-    <priority>MAJOR</priority>
+    <type>CODE_SMELL</type>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>15min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "UP">
+  <rule>
+    <key>UP</key>
     <name>Unnecessary Pass</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when a &quot;pass&quot; statement that can be avoided is encountered.</description>
-    <priority>MAJOR</priority>
+    <type>CODE_SMELL</type>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>1min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "US">
+  <rule>
+    <key>US</key>
     <name>Unnecessary Semicolon</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when a statement is ended by a semi-colon (&quot;;&quot;), which isn&apos;t necessary (that&apos;s python, not C ;).</description>
-    <priority>MAJOR</priority>
+    <type>CODE_SMELL</type>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>1min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "UTU">
+  <rule>
+    <key>UTU</key>
     <name>Unbalanced Tuple Unpacking</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when there is an unbalanced tuple unpacking in assignment</description>
-    <priority>MAJOR</priority>
+    <type>BUG</type>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>15min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "UV">
+  <rule>
+    <key>UV</key>
     <name>Undefined Variable</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when an undefined variable is accessed.</description>
-    <priority>CRITICAL</priority>
+    <type>BUG</type>
+    <severity>CRITICAL</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>10min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "UWI">
+  <rule>
+    <key>UWI</key>
     <name>Unused Wildcard Import</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when an imported module or variable is not used from a &apos;from X import *&apos; style import.</description>
-    <priority>MAJOR</priority>
+    <type>CODE_SMELL</type>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>20min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "UnI">
+  <rule>
+    <key>UnI</key>
     <name>Unused Import</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when an imported module or variable is not used.</description>
-    <priority>MAJOR</priority>
+    <type>CODE_SMELL</type>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>1min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "UnV">
+  <rule>
+    <key>UnV</key>
     <name>Unused Variable</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when a variable is defined but not used.</description>
-    <priority>MAJOR</priority>
+    <type>CODE_SMELL</type>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>5min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "WSIC">
+  <rule>
+    <key>WSIC</key>
     <name>Wrong Spelling In Comment</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when a word in comment is not spelled correctly.</description>
-    <priority>MINOR</priority>
+    <type>CODE_SMELL</type>
+    <severity>MINOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>15min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "WSID">
+  <rule>
+    <key>WSID</key>
     <name>Wrong Spelling In Docstring</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when a word in docstring is not spelled correctly.</description>
-    <priority>MINOR</priority>
+    <type>CODE_SMELL</type>
+    <severity>MINOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>15min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "XB">
+  <rule>
+    <key>XB</key>
     <name>Xrange Builtin</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when the xrange built-in function is referenced (missing from Python 3) This message can&apos;t be emitted when using Python &gt;= 3.0.</description>
-    <priority>MAJOR</priority>
+    <type>BUG</type>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>10min</remediationFunctionBaseEffort>
   </rule>
-  <rule key = "YOF">
+  <rule>
+    <key>YOF</key>
     <name>Yield Outside Function</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;Used when a &quot;yield&quot; statement is found outside a function or method.</description>
-    <priority>CRITICAL</priority>
+    <type>BUG</type>
+    <severity>CRITICAL</severity>
+    <tag>sourcemeter</tag>
+    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
+    <remediationFunctionBaseEffort>10min</remediationFunctionBaseEffort>
   </rule>
-</rulset>
+</rules>

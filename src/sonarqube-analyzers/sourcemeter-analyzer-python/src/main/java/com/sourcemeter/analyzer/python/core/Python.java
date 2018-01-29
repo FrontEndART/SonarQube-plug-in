@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014-2015, FrontEndART Software Ltd.
+ * Copyright (c) 2014-2017, FrontEndART Software Ltd.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -27,12 +27,10 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+
 package com.sourcemeter.analyzer.python.core;
 
 import java.util.Arrays;
-
-import org.apache.commons.lang.ArrayUtils;
-import org.apache.commons.lang.StringUtils;
 
 import com.sourcemeter.analyzer.base.core.AbstractSMLanguage;
 
@@ -43,7 +41,7 @@ public class Python extends AbstractSMLanguage {
     /**
      * Python key
      */
-    public static final String KEY = "python";
+    public static final String KEY = "py";
 
     /**
      * Python name
@@ -71,14 +69,4 @@ public class Python extends AbstractSMLanguage {
     public String[] getFileSuffixes() {
         return Arrays.copyOf(suffixes, suffixes.length);
     }
-
-    public boolean isFileForCurrentLanguage(java.io.File file) {
-        String suffix = "." + StringUtils.substringAfterLast(file.getName(), ".");
-        return ArrayUtils.contains(suffixes, suffix);
-    }
-
-    public static void removeSuffixesForCurrentAnalyze() {
-        suffixes = new String[1];
-    }
-
 }

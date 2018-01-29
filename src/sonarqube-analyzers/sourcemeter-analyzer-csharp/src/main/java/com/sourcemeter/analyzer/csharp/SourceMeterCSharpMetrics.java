@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014-2016, FrontEndART Software Ltd.
+ * Copyright (c) 2014-2017, FrontEndART Software Ltd.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -27,6 +27,7 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+
 package com.sourcemeter.analyzer.csharp;
 
 import java.util.Arrays;
@@ -35,7 +36,6 @@ import java.util.List;
 import org.sonar.api.measures.Metric;
 import org.sonar.api.measures.Metric.Builder;
 import org.sonar.api.measures.Metric.ValueType;
-import org.sonar.api.measures.SumChildValuesFormula;
 import org.sonar.plugins.SourceMeterCore.api.SourceMeterCoreMetrics;
 
 /**
@@ -50,100 +50,43 @@ public final class SourceMeterCSharpMetrics extends SourceMeterCoreMetrics {
             .setHidden(true)
             .create();
 
-    /* Rulesets metrics */
-    public static final String ISSUEGROUP_DESIGN_KEY = "Microsoft.Design Rules";
-    public static final Metric ISSUEGROUP_DESIGN = new Builder(
-            ISSUEGROUP_DESIGN_KEY, "Design", ValueType.INT)
-        .setDomain(COLUMBUS_DOMAIN_ISSUEGROUP)
-        .setFormula(new SumChildValuesFormula(false))
-        .create();
+    public static final String SM_CSHARP_LOGICAL_LEVEL1_KEY = "SM_CSHARP_LOGICAL_LEVEL1";
+    public static final Metric SM_CSHARP_LOGICAL_LEVEL1 = new Builder(SM_CSHARP_LOGICAL_LEVEL1_KEY, "SourceMeter level1 Logical Tree for C# language", ValueType.DATA)
+            .setDomain(COLUMBUS_DOMAIN)
+            .setDescription("Stores SM Logical Tree for C# in JSON format")
+            .setHidden(true)
+            .create();
 
-    public static final String ISSUEGROUP_GLOBALIZATION_KEY = "Microsoft.Globalization Rules";
-    public static final Metric ISSUEGROUP_GLOBALIZATION = new Builder(
-            ISSUEGROUP_GLOBALIZATION_KEY, "Globalization", ValueType.INT)
-        .setDomain(COLUMBUS_DOMAIN_ISSUEGROUP)
-        .setFormula(new SumChildValuesFormula(false))
-        .create();
+    public static final String SM_CSHARP_LOGICAL_LEVEL2_KEY = "SM_CSHARP_LOGICAL_LEVEL2";
+    public static final Metric SM_CSHARP_LOGICAL_LEVEL2 = new Builder(SM_CSHARP_LOGICAL_LEVEL2_KEY, "SourceMeter level2 Logical Tree for C# language", ValueType.DATA)
+            .setDomain(COLUMBUS_DOMAIN)
+            .setDescription("Stores SM Logical Tree for C# in JSON format")
+            .setHidden(true)
+            .create();
 
-    public static final String ISSUEGROUP_INTEROPERABILITY_KEY = "Microsoft.Interoperability Rules";
-    public static final Metric ISSUEGROUP_INTEROPERABILITY = new Builder(
-            ISSUEGROUP_INTEROPERABILITY_KEY, "Interoperability", ValueType.INT)
-        .setDomain(COLUMBUS_DOMAIN_ISSUEGROUP)
-        .setFormula(new SumChildValuesFormula(false))
-        .create();
+    public static final String SM_CSHARP_LOGICAL_LEVEL3_KEY = "SM_CSHARP_LOGICAL_LEVEL3";
+    public static final Metric SM_CSHARP_LOGICAL_LEVEL3 = new Builder(SM_CSHARP_LOGICAL_LEVEL3_KEY, "SourceMeter level3 Logical Tree for C# language", ValueType.DATA)
+            .setDomain(COLUMBUS_DOMAIN)
+            .setDescription("Stores SM Logical Tree for C# in JSON format")
+            .setHidden(true)
+            .create();
 
-    public static final String ISSUEGROUP_MAINTAINABILITY_KEY = "Microsoft.Maintainability Rules";
-    public static final Metric ISSUEGROUP_MAINTAINABILITY = new Builder(
-            ISSUEGROUP_MAINTAINABILITY_KEY, "Maintainability", ValueType.INT)
-        .setDomain(COLUMBUS_DOMAIN_ISSUEGROUP)
-        .setFormula(new SumChildValuesFormula(false))
-        .create();
+    public static final String SM_CSHARP_CLONE_TREE_KEY = "SM_CSHARP_CLONE_TREE";
+    public static final Metric SM_CSHARP_CLONE_TREE = new Builder(SM_CSHARP_CLONE_TREE_KEY, "SourceMeter Clone Tree for CSharp language", ValueType.DATA)
+            .setDomain(COLUMBUS_DOMAIN)
+            .setDescription("Stores SM Clone Tree for CSharp in JSON format")
+            .setHidden(true)
+            .create();
 
-    public static final String ISSUEGROUP_MOBILITY_KEY = "Microsoft.Mobility Rules";
-    public static final Metric ISSUEGROUP_MOBILITY = new Builder(
-            ISSUEGROUP_MOBILITY_KEY, "Mobility", ValueType.INT)
-        .setDomain(COLUMBUS_DOMAIN_ISSUEGROUP)
-        .setFormula(new SumChildValuesFormula(false))
-        .create();
+    /* getMetrics() method is defined in the ClassMetrics interface and
+     * it is used by SonarQube to retrieve the list of new ClassMetrics */
 
-    public static final String ISSUEGROUP_NAMING_KEY = "Microsoft.Naming Rules";
-    public static final Metric ISSUEGROUP_NAMING = new Builder(
-            ISSUEGROUP_NAMING_KEY, "Naming", ValueType.INT)
-        .setDomain(COLUMBUS_DOMAIN_ISSUEGROUP)
-        .setFormula(new SumChildValuesFormula(false))
-        .create();
-
-    public static final String ISSUEGROUP_PERFORMANCE_KEY = "Microsoft.Performance Rules";
-    public static final Metric ISSUEGROUP_PERFORMANCE = new Builder(
-            ISSUEGROUP_PERFORMANCE_KEY, "Performance", ValueType.INT)
-        .setDomain(COLUMBUS_DOMAIN_ISSUEGROUP)
-        .setFormula(new SumChildValuesFormula(false))
-        .create();
-
-    public static final String ISSUEGROUP_PORTABILITY_KEY = "Microsoft.Portability Rules";
-    public static final Metric ISSUEGROUP_PORTABILITY = new Builder(
-            ISSUEGROUP_PORTABILITY_KEY, "Portability", ValueType.INT)
-        .setDomain(COLUMBUS_DOMAIN_ISSUEGROUP)
-        .setFormula(new SumChildValuesFormula(false))
-        .create();
-
-    public static final String ISSUEGROUP_RELIABILITY_KEY = "Microsoft.Reliability Rules";
-    public static final Metric ISSUEGROUP_RELIABILITY = new Builder(
-            ISSUEGROUP_RELIABILITY_KEY, "Reliability", ValueType.INT)
-        .setDomain(COLUMBUS_DOMAIN_ISSUEGROUP)
-        .setFormula(new SumChildValuesFormula(false))
-        .create();
-
-    public static final String ISSUEGROUP_SECURITY_KEY = "Microsoft.Security Rules";
-    public static final Metric ISSUEGROUP_SECURITY = new Builder(
-            ISSUEGROUP_SECURITY_KEY, "Security", ValueType.INT)
-        .setDomain(COLUMBUS_DOMAIN_ISSUEGROUP)
-        .setFormula(new SumChildValuesFormula(false))
-        .create();
-
-    public static final String ISSUEGROUP_USAGE_KEY = "Microsoft.Usage Rules";
-    public static final Metric ISSUEGROUP_USAGE = new Builder(
-            ISSUEGROUP_USAGE_KEY, "Usage", ValueType.INT)
-        .setDomain(COLUMBUS_DOMAIN_ISSUEGROUP)
-        .setFormula(new SumChildValuesFormula(false))
-        .create();
-
-    /* End of Rulesets metrics */
-
-
-    // getMetrics() method is defined in the Metrics interface and is used by
-    // Sonar to retrieve the list of new metrics
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public List<Metric> getMetrics() {
-        return Arrays.asList(
-                CSHARP_LICENSE,
-
-                // Rulesets metrics
-                ISSUEGROUP_DESIGN, ISSUEGROUP_GLOBALIZATION,
-                ISSUEGROUP_INTEROPERABILITY, ISSUEGROUP_MAINTAINABILITY,
-                ISSUEGROUP_MOBILITY, ISSUEGROUP_NAMING, ISSUEGROUP_PERFORMANCE,
-                ISSUEGROUP_PORTABILITY, ISSUEGROUP_RELIABILITY,
-                ISSUEGROUP_SECURITY, ISSUEGROUP_USAGE
-        );
+        return Arrays.asList(CSHARP_LICENSE, SM_CSHARP_CLONE_TREE,
+                SM_CSHARP_LOGICAL_LEVEL1, SM_CSHARP_LOGICAL_LEVEL2, SM_CSHARP_LOGICAL_LEVEL3);
     }
 }

@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014-2016, FrontEndART Software Ltd.
+ * Copyright (c) 2014-2017, FrontEndART Software Ltd.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -27,16 +27,17 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+
 package com.sourcemeter.analyzer.csharp.profile;
 
-import org.sonar.api.rules.XMLRuleParser;
+import org.sonar.api.server.rule.RulesDefinitionXmlLoader;
 
 import com.sourcemeter.analyzer.base.profile.SourceMeterRuleRepository;
 import com.sourcemeter.analyzer.csharp.core.CSharp;
 
 public class SourceMeterCSharpRuleRepository extends SourceMeterRuleRepository {
 
-    public SourceMeterCSharpRuleRepository(XMLRuleParser ruleParser) {
-        super(ruleParser, CSharp.KEY);
+    public SourceMeterCSharpRuleRepository(RulesDefinitionXmlLoader xmlLoader) {
+        super(xmlLoader, CSharp.KEY, CSharp.NAME);
     }
 }

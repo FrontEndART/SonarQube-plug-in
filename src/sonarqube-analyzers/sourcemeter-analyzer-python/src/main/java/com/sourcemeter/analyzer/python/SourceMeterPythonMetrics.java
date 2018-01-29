@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014-2016, FrontEndART Software Ltd.
+ * Copyright (c) 2014-2017, FrontEndART Software Ltd.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -27,6 +27,7 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+
 package com.sourcemeter.analyzer.python;
 
 import java.util.Arrays;
@@ -35,7 +36,6 @@ import java.util.List;
 import org.sonar.api.measures.Metric;
 import org.sonar.api.measures.Metric.Builder;
 import org.sonar.api.measures.Metric.ValueType;
-import org.sonar.api.measures.SumChildValuesFormula;
 import org.sonar.plugins.SourceMeterCore.api.SourceMeterCoreMetrics;
 
 /**
@@ -50,126 +50,42 @@ public final class SourceMeterPythonMetrics extends SourceMeterCoreMetrics {
             .setHidden(true)
             .create();
 
-    /* Rulesets metrics */
-    public static final String ISSUEGROUP_CLASS_KEY = "Class Rules";
-    public static final Metric ISSUEGROUP_CLASS = new Builder(
-        ISSUEGROUP_CLASS_KEY, "Class", ValueType.INT)
-        .setDomain(COLUMBUS_DOMAIN_ISSUEGROUP)
-        .setFormula(new SumChildValuesFormula(false))
-        .create();
+    public static final String SM_PYTHON_LOGICAL_LEVEL1_KEY = "SM_PYTHON_LOGICAL_LEVEL1";
+    public static final Metric SM_PYTHON_LOGICAL_LEVEL1 = new Builder(SM_PYTHON_LOGICAL_LEVEL1_KEY, "SourceMeter level1 Logical Tree for Python language", ValueType.DATA)
+            .setDomain(COLUMBUS_DOMAIN)
+            .setDescription("Stores SM Logical Tree for Python in JSON format")
+            .setHidden(true)
+            .create();
 
-    public static final String ISSUEGROUP_FORMAT_KEY = "Format Rules";
-    public static final Metric ISSUEGROUP_FORMAT = new Builder(
-        ISSUEGROUP_FORMAT_KEY, "Format", ValueType.INT)
-        .setDomain(COLUMBUS_DOMAIN_ISSUEGROUP)
-        .setFormula(new SumChildValuesFormula(false))
-        .create();
+    public static final String SM_PYTHON_LOGICAL_LEVEL2_KEY = "SM_PYTHON_LOGICAL_LEVEL2";
+    public static final Metric SM_PYTHON_LOGICAL_LEVEL2 = new Builder(SM_PYTHON_LOGICAL_LEVEL2_KEY, "SourceMeter level2 Logical Tree for Python language", ValueType.DATA)
+            .setDomain(COLUMBUS_DOMAIN)
+            .setDescription("Stores SM Logical Tree for Python in JSON format")
+            .setHidden(true)
+            .create();
 
-    public static final String ISSUEGROUP_IMPORT_KEY = "Import Rules";
-    public static final Metric ISSUEGROUP_IMPORT = new Builder(
-        ISSUEGROUP_IMPORT_KEY, "Import", ValueType.INT)
-        .setDomain(COLUMBUS_DOMAIN_ISSUEGROUP)
-        .setFormula(new SumChildValuesFormula(false))
-        .create();
+    public static final String SM_PYTHON_LOGICAL_LEVEL3_KEY = "SM_PYTHON_LOGICAL_LEVEL3";
+    public static final Metric SM_PYTHON_LOGICAL_LEVEL3 = new Builder(SM_PYTHON_LOGICAL_LEVEL3_KEY, "SourceMeter level3 Logical Tree for Python language", ValueType.DATA)
+            .setDomain(COLUMBUS_DOMAIN)
+            .setDescription("Stores SM Logical Tree for Python in JSON format")
+            .setHidden(true)
+            .create();
 
-    public static final String ISSUEGROUP_LOGGING_KEY = "Logging Rules";
-    public static final Metric ISSUEGROUP_LOGGING = new Builder(
-        ISSUEGROUP_LOGGING_KEY, "Logging", ValueType.INT)
-        .setDomain(COLUMBUS_DOMAIN_ISSUEGROUP)
-        .setFormula(new SumChildValuesFormula(false))
-        .create();
+    public static final String SM_PYTHON_CLONE_TREE_KEY = "SM_PYTHON_CLONE_TREE";
+    public static final Metric SM_PYTHON_CLONE_TREE = new Builder(SM_PYTHON_CLONE_TREE_KEY, "SourceMeter Clone Tree for Python language", ValueType.DATA)
+            .setDomain(COLUMBUS_DOMAIN)
+            .setDescription("Stores SM Clone Tree for Python in JSON format")
+            .setHidden(true)
+            .create();
 
-    public static final String ISSUEGROUP_MISCELLANEOUS_KEY = "Miscellaneous Rules";
-    public static final Metric ISSUEGROUP_MISCELLANEOUS = new Builder(
-        ISSUEGROUP_MISCELLANEOUS_KEY, "Miscellaneous", ValueType.INT)
-        .setDomain(COLUMBUS_DOMAIN_ISSUEGROUP)
-        .setFormula(new SumChildValuesFormula(false))
-        .create();
-
-    public static final String ISSUEGROUP_NEWSTYLE_KEY = "Newstyle Rules";
-    public static final Metric ISSUEGROUP_NEWSTYLE = new Builder(
-        ISSUEGROUP_NEWSTYLE_KEY, "Newstyle", ValueType.INT)
-        .setDomain(COLUMBUS_DOMAIN_ISSUEGROUP)
-        .setFormula(new SumChildValuesFormula(false))
-        .create();
-
-    public static final String ISSUEGROUP_PYLINT_CHECKER_KEY = "Pylint Checker Rules";
-    public static final Metric ISSUEGROUP_PYLINT_CHECKER = new Builder(
-        ISSUEGROUP_PYLINT_CHECKER_KEY, "Pylint Checker", ValueType.INT)
-        .setDomain(COLUMBUS_DOMAIN_ISSUEGROUP)
-        .setFormula(new SumChildValuesFormula(false))
-        .create();
-
-    public static final String ISSUEGROUP_PYTHON3_KEY = "Python3 Rules";
-    public static final Metric ISSUEGROUP_PYTHON3 = new Builder(
-        ISSUEGROUP_PYTHON3_KEY, "Python3", ValueType.INT)
-        .setDomain(COLUMBUS_DOMAIN_ISSUEGROUP)
-        .setFormula(new SumChildValuesFormula(false))
-        .create();
-
-    public static final String ISSUEGROUP_SIMILARITY_KEY = "Similarity Rules";
-    public static final Metric ISSUEGROUP_SIMILARITY = new Builder(
-        ISSUEGROUP_SIMILARITY_KEY, "Similarity", ValueType.INT)
-        .setDomain(COLUMBUS_DOMAIN_ISSUEGROUP)
-        .setFormula(new SumChildValuesFormula(false))
-        .create();
-
-    public static final String ISSUEGROUP_SPELLING_KEY = "Spelling Rules";
-    public static final Metric ISSUEGROUP_SPELLING = new Builder(
-        ISSUEGROUP_SPELLING_KEY, "Spelling", ValueType.INT)
-        .setDomain(COLUMBUS_DOMAIN_ISSUEGROUP)
-        .setFormula(new SumChildValuesFormula(false))
-        .create();
-
-    public static final String ISSUEGROUP_STDLIB_KEY = "Stdlib Rules";
-    public static final Metric ISSUEGROUP_STDLIB = new Builder(
-        ISSUEGROUP_STDLIB_KEY, "Stdlib", ValueType.INT)
-        .setDomain(COLUMBUS_DOMAIN_ISSUEGROUP)
-        .setFormula(new SumChildValuesFormula(false))
-        .create();
-
-    public static final String ISSUEGROUP_STRING_CONSTANT_KEY = "String Constant Rules";
-    public static final Metric ISSUEGROUP_STRING_CONSTANT = new Builder(
-        ISSUEGROUP_STRING_CONSTANT_KEY, "String Constant", ValueType.INT)
-        .setDomain(COLUMBUS_DOMAIN_ISSUEGROUP)
-        .setFormula(new SumChildValuesFormula(false))
-        .create();
-
-    public static final String ISSUEGROUP_STRING_KEY = "String Rules";
-    public static final Metric ISSUEGROUP_STRING = new Builder(
-        ISSUEGROUP_STRING_KEY, "String", ValueType.INT)
-        .setDomain(COLUMBUS_DOMAIN_ISSUEGROUP)
-        .setFormula(new SumChildValuesFormula(false))
-        .create();
-
-    public static final String ISSUEGROUP_TYPECHECK_KEY = "Typecheck Rules";
-    public static final Metric ISSUEGROUP_TYPECHECK = new Builder(
-        ISSUEGROUP_TYPECHECK_KEY, "Typecheck", ValueType.INT)
-        .setDomain(COLUMBUS_DOMAIN_ISSUEGROUP)
-        .setFormula(new SumChildValuesFormula(false))
-        .create();
-
-    public static final String ISSUEGROUP_VARIABLE_KEY = "Variable Rules";
-    public static final Metric ISSUEGROUP_VARIABLE = new Builder(
-        ISSUEGROUP_VARIABLE_KEY, "Variable", ValueType.INT)
-        .setDomain(COLUMBUS_DOMAIN_ISSUEGROUP)
-        .setFormula(new SumChildValuesFormula(false))
-        .create();
-
-
-    /* End of Rulesets metrics */
-
+    /* getMetrics() method is defined in the ClassMetrics interface and
+     * it is used by SonarQube to retrieve the list of new ClassMetrics */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public List<Metric> getMetrics() {
-        return Arrays.asList(PYTHON_LICENSE,
-
-                             // Rulesets metrics
-                             ISSUEGROUP_CLASS, ISSUEGROUP_FORMAT, ISSUEGROUP_IMPORT,
-                             ISSUEGROUP_LOGGING, ISSUEGROUP_MISCELLANEOUS,
-                             ISSUEGROUP_NEWSTYLE, ISSUEGROUP_PYLINT_CHECKER,
-                             ISSUEGROUP_PYTHON3, ISSUEGROUP_SIMILARITY,
-                             ISSUEGROUP_SPELLING, ISSUEGROUP_STDLIB, ISSUEGROUP_STRING,
-                             ISSUEGROUP_STRING_CONSTANT, ISSUEGROUP_TYPECHECK, ISSUEGROUP_VARIABLE
-                     );
+        return Arrays.asList(PYTHON_LICENSE, SM_PYTHON_CLONE_TREE,
+                SM_PYTHON_LOGICAL_LEVEL1, SM_PYTHON_LOGICAL_LEVEL2, SM_PYTHON_LOGICAL_LEVEL3);
     }
 }

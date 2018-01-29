@@ -3,8 +3,8 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.sourcemeter</groupId>
-  <artifactId>sonar-sourcemeter-analyzer-csharp-plugin</artifactId>
-  <version>8.2</version>
+  <artifactId>sourcemeter-analyzer-csharp-plugin</artifactId>
+  <version>1.0.0</version>
   <packaging>sonar-plugin</packaging>
 
   <name>SourceMeter C# analyzer plugin</name>
@@ -12,34 +12,16 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <sonar.buildVersion>4.2</sonar.buildVersion>
+    <sonar.buildVersion>6.3</sonar.buildVersion>
     <jdk.min.version>1.7</jdk.min.version>
   </properties>
 
   <dependencies>
     <dependency>
-      <groupId>org.codehaus.sonar</groupId>
+      <groupId>org.sonarsource.sonarqube</groupId>
       <artifactId>sonar-plugin-api</artifactId>
       <version>${sonar.buildVersion}</version>
       <scope>provided</scope>
-    </dependency>
-
-    <dependency>
-      <groupId>org.codehaus.sonar.sslr-squid-bridge</groupId>
-      <artifactId>sslr-squid-bridge</artifactId>
-      <version>2.3</version>
-    </dependency>
-
-    <dependency>
-        <groupId>org.apache.maven.artifact</groupId>
-        <artifactId>maven-artifact</artifactId>
-        <version>3.0-alpha-1</version>
-    </dependency>
-
-    <dependency>
-        <groupId>org.apache.maven.shared</groupId>
-        <artifactId>maven-dependency-tree</artifactId>
-        <version>2.1</version>
     </dependency>
 
     <dependency>
@@ -56,23 +38,23 @@
 
     <dependency>
       <groupId>com.sourcemeter</groupId>
-      <artifactId>sonar-sourcemeter-core-plugin</artifactId>
-      <version>8.2</version>
+      <artifactId>sourcemeter-core-plugin</artifactId>
+      <version>1.0.0</version>
     </dependency>
 
     <dependency>
       <groupId>com.sourcemeter</groupId>
-      <artifactId>sonar-sourcemeter-analyzer-base</artifactId>
-      <version>8.2</version>
+      <artifactId>sourcemeter-analyzer-base</artifactId>
+      <version>1.0.0</version>
     </dependency>
   </dependencies>
 
    <build>
     <plugins>
       <plugin>
-        <groupId>org.codehaus.sonar</groupId>
+        <groupId>org.sonarsource.sonar-packaging-maven-plugin</groupId>
         <artifactId>sonar-packaging-maven-plugin</artifactId>
-        <version>1.9</version>
+        <version>1.16</version>
         <extensions>true</extensions>
         <configuration>
           <pluginClass>com.sourcemeter.analyzer.csharp.SourceMeterAnalyzerCSharpPlugin</pluginClass>
@@ -83,7 +65,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
-        <version>2.5.1</version>
+        <version>3.5.1</version>
         <configuration>
           <source>${jdk.min.version}</source>
           <target>${jdk.min.version}</target>

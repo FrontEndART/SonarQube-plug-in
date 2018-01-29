@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014-2016, FrontEndART Software Ltd.
+ * Copyright (c) 2014-2017, FrontEndART Software Ltd.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -27,12 +27,10 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+
 package com.sourcemeter.analyzer.csharp.core;
 
 import java.util.Arrays;
-
-import org.apache.commons.lang.ArrayUtils;
-import org.apache.commons.lang.StringUtils;
 
 import com.sourcemeter.analyzer.base.core.AbstractSMLanguage;
 
@@ -43,7 +41,7 @@ public class CSharp extends AbstractSMLanguage {
     /**
      * C# key
      */
-    public static final String KEY = "csharp";
+    public static final String KEY = "cs";
 
     /**
      * C# name
@@ -70,16 +68,5 @@ public class CSharp extends AbstractSMLanguage {
     @Override
     public String[] getFileSuffixes() {
         return Arrays.copyOf(fileSuffixes, fileSuffixes.length);
-    }
-
-    public static void removeSuffixesForCurrentAnalyze() {
-        fileSuffixes = new String[1];
-    }
-
-    @Override
-    public boolean isFileForCurrentLanguage(java.io.File file) {
-        String suffix = "."
-                + StringUtils.substringAfterLast(file.getName(), ".");
-        return ArrayUtils.contains(fileSuffixes, suffix);
     }
 }

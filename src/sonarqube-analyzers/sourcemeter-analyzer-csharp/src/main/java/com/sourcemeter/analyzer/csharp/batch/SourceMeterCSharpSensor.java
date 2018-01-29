@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014-2016, FrontEndART Software Ltd.
+ * Copyright (c) 2014-2017, FrontEndART Software Ltd.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -27,7 +27,47 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+
 package com.sourcemeter.analyzer.csharp.batch;
+
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+
+import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.sonar.api.batch.bootstrap.ProjectDefinition;
+import org.sonar.api.batch.fs.FileSystem;
+import org.sonar.api.batch.fs.InputModule;
+import org.sonar.api.batch.rule.Rules;
+import org.sonar.api.batch.sensor.SensorContext;
+import org.sonar.api.batch.sensor.SensorDescriptor;
+import org.sonar.api.config.Settings;
+import org.sonar.api.profiles.RulesProfile;
+import org.sonar.api.scan.filesystem.FileExclusions;
+import org.sonar.api.server.rule.RulesDefinitionXmlLoader;
+
+import com.sourcemeter.analyzer.base.batch.MetricHunterCategory;
+import com.sourcemeter.analyzer.base.batch.ProfileInitializer;
+import com.sourcemeter.analyzer.base.batch.SourceMeterSensor;
+import com.sourcemeter.analyzer.base.helper.FileHelper;
+import com.sourcemeter.analyzer.base.helper.GraphHelper;
+import com.sourcemeter.analyzer.base.helper.ThresholdPropertiesHelper;
+import com.sourcemeter.analyzer.base.visitor.NodeCounterVisitor;
+import com.sourcemeter.analyzer.csharp.SourceMeterCSharpMetrics;
+import com.sourcemeter.analyzer.csharp.core.CSharp;
+import com.sourcemeter.analyzer.csharp.profile.SourceMeterCSharpRuleRepository;
+import com.sourcemeter.analyzer.csharp.visitor.CloneTreeSaverVisitorCSharp;
+import com.sourcemeter.analyzer.csharp.visitor.LogicalTreeLoaderVisitorCSharp;
+import com.sourcemeter.analyzer.csharp.visitor.LogicalTreeSaverVisitorCSharp;
+import com.sourcemeter.analyzer.csharp.visitor.PhysicalTreeLoaderVisitorCSharp;
 
 import graphlib.Graph;
 import graphlib.GraphlibException;
@@ -35,100 +75,114 @@ import graphlib.Node;
 import graphlib.Node.NodeType;
 import graphlib.VisitorException;
 
-import java.io.File;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Set;
-
-import org.apache.commons.lang.StringUtils;
-import org.sonar.api.batch.SensorContext;
-import org.sonar.api.batch.fs.FileSystem;
-import org.sonar.api.component.ResourcePerspectives;
-import org.sonar.api.config.Settings;
-import org.sonar.api.measures.CoreMetrics;
-import org.sonar.api.measures.Measure;
-import org.sonar.api.measures.Metric;
-import org.sonar.api.profiles.RulesProfile;
-import org.sonar.api.resources.Project;
-import org.sonar.api.resources.Resource;
-import org.sonar.api.scan.filesystem.ModuleFileSystem;
-import org.sonar.api.utils.SonarException;
-import org.sonar.plugins.SourceMeterCore.api.SourceMeterCoreMetrics;
-
-import com.google.gson.Gson;
-import com.sourcemeter.analyzer.base.batch.SourceMeterSensor;
-import com.sourcemeter.analyzer.base.core.resources.ClassData;
-import com.sourcemeter.analyzer.base.helper.FileHelper;
-import com.sourcemeter.analyzer.base.helper.GraphHelper;
-import com.sourcemeter.analyzer.base.visitor.NodeCounterVisitor;
-import com.sourcemeter.analyzer.csharp.SourceMeterCSharpMetrics;
-import com.sourcemeter.analyzer.csharp.visitor.CloneTreeLoaderVisitorCSharp;
-import com.sourcemeter.analyzer.csharp.visitor.ComponentTreeLoaderVisitorCSharp;
-import com.sourcemeter.analyzer.csharp.visitor.LogicalTreeLoaderVisitorCSharp;
-import com.sourcemeter.analyzer.csharp.visitor.PhysicalTreeLoaderVisitorCSharp;
+import static com.sourcemeter.analyzer.csharp.SourceMeterCSharpMetrics.SM_CSHARP_CLONE_TREE;
+import static com.sourcemeter.analyzer.csharp.SourceMeterCSharpMetrics.SM_CSHARP_LOGICAL_LEVEL1;
+import static com.sourcemeter.analyzer.csharp.SourceMeterCSharpMetrics.SM_CSHARP_LOGICAL_LEVEL2;
+import static com.sourcemeter.analyzer.csharp.SourceMeterCSharpMetrics.SM_CSHARP_LOGICAL_LEVEL3;
 
 public class SourceMeterCSharpSensor extends SourceMeterSensor {
 
-    private final Project project;
-    private final SensorContext sensorContext;
+    /**
+     * Command and parameters for running SourceMeter C# analyzer
+     */
+    private final List<String> commands;
+    private final Rules rules;
+    private final FileSystem fileSystem;
 
-    public SourceMeterCSharpSensor(ModuleFileSystem moduleFileSystem,
-            FileSystem fileSystem, ResourcePerspectives perspectives,
-            Project project, SensorContext sensorContext, Settings settings,
-            RulesProfile rulesProfile) {
+    private static final Logger LOG = LoggerFactory.getLogger(SourceMeterCSharpSensor.class);
+    private static final String THRESHOLD_PROPERTIES_PATH = "/threshold_properties.xml";
+    private static final String LOGICAL_ROOT = "__LogicalRoot__";
 
-        super(moduleFileSystem, fileSystem, settings, perspectives, rulesProfile);
+    public SourceMeterCSharpSensor(FileExclusions fileExclusions, FileSystem fileSystem,
+            ProjectDefinition projectDefinition, Rules rules, RulesProfile profile,
+            Settings settings) {
 
-        this.project = project;
-        this.sensorContext = sensorContext;
+        super(fileExclusions, fileSystem, projectDefinition, profile, settings);
+
+        this.commands = new ArrayList<String>();
+        this.rules = rules;
+        this.fileSystem = fileSystem;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public void analyse(Project module, SensorContext context) {
+    public void execute(SensorContext sensorContext) {
+        boolean skipCsharp = this.settings.getBoolean("sm.csharp.skipToolchain");
+        if (skipCsharp) {
+            LOG.info("SourceMeter toolchain is skipped for C#. Results will be uploaded from former results directory, if it exists.");
+        } else {
+            if (!checkProperties()) {
+                throw new RuntimeException("Failed to initialize the SourceMeter plugin. Some mandatory properties are not set properly.");
+            }
+            runSourceMeter(commands);
+        }
+
+        this.projectName = this.settings.getString("sonar.projectKey");
+        this.projectName = StringUtils.replace(this.projectName, ":", "_");
         String analyseMode = this.settings.getString("sonar.analysis.mode");
-        this.projectName = settings.getString("sonar.projectKey");
-        this.projectName = StringUtils.replace(projectName, ":", "_");
 
         if ("incremental".equals(analyseMode)) {
             LOG.warn("Incremental mode is on. There are no metric based (INFO level) issues in this mode.");
             this.isIncrementalMode = true;
         }
-
-        this.resultGraph = FileHelper.getSMSourcePath(settings, fileSystem, '-')
-                + File.separator + projectName + ".graph";
+        try {
+            this.resultGraph = FileHelper.getSMSourcePath(settings, fileSystem, '-')
+                    + File.separator + this.projectName + ".graph";
+        } catch (IOException e) {
+            LOG.error("Error during loading result graph path!", e);
+        }
 
         long startTime = System.currentTimeMillis();
         LOG.info("      Graph: " + resultGraph);
 
         try {
-            loadDataFromGraphBin(this.resultGraph, project, sensorContext);
+            loadDataFromGraphBin(this.resultGraph, sensorContext.module(), sensorContext);
         } catch (GraphlibException e) {
-            throw new SonarException("Error during graph loading!", e);
+            LOG.error("Error during loading graph!", e);
         }
 
         LOG.info("    Load data from graph bin and save resources and metrics done: " + (System.currentTimeMillis() - startTime) + MS);
     }
 
     /**
-     * Load result graph binary
-     *
-     * @param filename
-     * @param project
-     * @param sensorContext
-     * @throws GraphlibException
+     * {@inheritDoc}
      */
     @Override
-    protected void loadDataFromGraphBin(String filename, Project project, SensorContext sensorContext) throws GraphlibException {
+    public String toString() {
+        return getClass().getSimpleName();
+    }
+
+    /**
+     * Collects the license information from result graph's header in a list,
+     * and saves it to a special metric.
+     *
+     * @param graph Result graph.
+     * @param sensorContext Context of the sensor.
+     */
+    private void saveLicense(Graph graph, SensorContext sensorContext) {
+        Map<String, String> headerLicenseInformations = new HashMap<String, String>();
+        headerLicenseInformations.put("MetricHunter", "MetricHunter");
+        headerLicenseInformations.put("DuplicatedCodeFinder", "Duplicated Code");
+        headerLicenseInformations.put("LIM2Metrics", "Metrics");
+        headerLicenseInformations.put("FxCop2Graph", "FxCop");
+
+        super.saveLicense(graph, sensorContext, headerLicenseInformations,
+                SourceMeterCSharpMetrics.CSHARP_LICENSE);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected void loadDataFromGraphBin(String filename, InputModule module, SensorContext sensorContext) throws GraphlibException {
         Graph graph = new Graph();
         graph.loadBinary(filename);
 
         saveLicense(graph, sensorContext);
 
         Node componentRoot = null;
-        ComponentTreeLoaderVisitorCSharp componentVisitor = null;
         NodeCounterVisitor nodeCounter = null;
 
         List<Node> components = graph.findNodes(new NodeType("Component"));
@@ -147,35 +201,31 @@ public class SourceMeterCSharpSensor extends SourceMeterSensor {
             if (componentRoot != null) {
                 nodeCounter = new NodeCounterVisitor();
                 GraphHelper.processGraph(graph, componentRoot, "ComponentTree", nodeCounter);
-                componentVisitor = new ComponentTreeLoaderVisitorCSharp(
-                        this.perspectives, this.project, this.sensorContext,
-                        this.fileSystem, nodeCounter.getNumberOfNodes());
             }
 
             nodeCounter = new NodeCounterVisitor();
-            GraphHelper.processGraph(graph, "__LogicalRoot__", "LogicalTree", nodeCounter);
+            GraphHelper.processGraph(graph, LOGICAL_ROOT, "LogicalTree", nodeCounter);
             LogicalTreeLoaderVisitorCSharp logicalVisitor = new LogicalTreeLoaderVisitorCSharp(
-                    this.fileSystem, this.settings, this.perspectives, project,
+                    this.fileSystem, this.settings,
                     sensorContext, nodeCounter.getNumberOfNodes());
 
             nodeCounter = new NodeCounterVisitor();
             GraphHelper.processGraph(graph, "__PhysicalRoot__", "PhysicalTree", nodeCounter);
             PhysicalTreeLoaderVisitorCSharp physicalVisitor = new PhysicalTreeLoaderVisitorCSharp(
-                    fileSystem, this.perspectives, this.project,
-                    this.sensorContext, nodeCounter.getNumberOfNodes());
+                    fileSystem, sensorContext, nodeCounter.getNumberOfNodes());
+
+            nodeCounter = new NodeCounterVisitor();
+            GraphHelper.processGraph(graph, LOGICAL_ROOT, "logicalTree", nodeCounter);
+            LogicalTreeSaverVisitorCSharp logicalSaver = new LogicalTreeSaverVisitorCSharp(sensorContext, this.fileSystem, settings);
+
+            nodeCounter = new NodeCounterVisitor();
+            GraphHelper.processGraph(graph, "__CloneRoot__", "CloneTree", nodeCounter);
+            CloneTreeSaverVisitorCSharp cloneSaver = new CloneTreeSaverVisitorCSharp(sensorContext, this.fileSystem);
 
             LOG.info("      * Initialization done: " + (System.currentTimeMillis() - startTime) + MS);
 
-            if (componentVisitor != null) {
-                LOG.info("      * Start processing ComponentTree...");
-                GraphHelper.processGraph(graph, componentRoot, "ComponentTree", componentVisitor);
-                LOG.info("      * ComponentTree processing time: " + componentVisitor.getComponentTime() + MS);
-                componentVisitor = null;
-            }
-
             LOG.info("      * Processing LogicalTree...");
-            GraphHelper.processGraph(graph, "__LogicalRoot__", "LogicalTree", logicalVisitor);
-            saveClassesInFilesMetric(logicalVisitor.getFilePathsForClasses(), SourceMeterCoreMetrics.FILE_PATHS);
+            GraphHelper.processGraph(graph, LOGICAL_ROOT, "LogicalTree", logicalVisitor);
             LOG.info("      * Processing LogicalTree done: " + logicalVisitor.getLogicalTime() + MS);
             logicalVisitor = null;
 
@@ -184,72 +234,174 @@ public class SourceMeterCSharpSensor extends SourceMeterSensor {
             LOG.info("      * Processing PhysicalTree done: " + physicalVisitor.getFileTime() + MS);
             physicalVisitor = null;
 
-            CloneTreeLoaderVisitorCSharp cloneVisitor = null;
-            if (!this.isIncrementalMode) {
-                nodeCounter = new NodeCounterVisitor();
-                GraphHelper.processGraph(graph, "__CloneRoot__", "CloneTree", nodeCounter);
-                cloneVisitor = new CloneTreeLoaderVisitorCSharp(
-                        this.fileSystem, this.perspectives, project,
-                        sensorContext, nodeCounter.getNumberOfNodes());
-            }
+            LOG.info("      * Saving LogicalTree...");
+            GraphHelper.processGraph(graph, LOGICAL_ROOT, "LogicalTree", logicalSaver);
+            logicalSaver.saveLogicalTreeToDatabase(SM_CSHARP_LOGICAL_LEVEL1, SM_CSHARP_LOGICAL_LEVEL2, SM_CSHARP_LOGICAL_LEVEL3);
+            LOG.info("      * Saving LogicalTree done: " + logicalSaver.getLogicalTime() + MS);
+            logicalSaver = null;
 
-            if (!this.isIncrementalMode) {
-                LOG.info("      * Start processing CloneTree...");
-                GraphHelper.processGraph(graph, "__CloneRoot__", "CloneTree", cloneVisitor);
-                LOG.info("      * CloneTree processing time: " + cloneVisitor.getCloneTime() + MS);
+            LOG.info("      * Saving CloneTree...");
+            GraphHelper.processGraph(graph, "__CloneRoot__", "CloneTree", cloneSaver);
+            cloneSaver.saveCloneTreeToDatabase(SM_CSHARP_CLONE_TREE);
+            LOG.info("      * Saving CloneTree done: " + cloneSaver.getFileTime() + MS);
+            cloneSaver = null;
 
-                // Save duplications
-                startTime = System.currentTimeMillis();
-                LOG.info("    Save duplications...");
-
-                Iterator<Entry<Resource, Set<String>>> dupIt = cloneVisitor.getDuplicationsMap().entrySet().iterator();
-                while (dupIt.hasNext()) {
-                    Map.Entry<Resource, Set<String>> pairs = dupIt.next();
-                    Set<String> set = pairs.getValue();
-                    StringBuffer tmp = new StringBuffer("<duplications>");
-                    for (String cloneClass : set) {
-                        tmp.append(cloneClass);
-                    }
-                    tmp.append("</duplications>");
-                    sensorContext.saveMeasure(pairs.getKey(), new Measure(CoreMetrics.DUPLICATIONS_DATA, tmp.toString()));
-                    dupIt.remove(); // avoids a ConcurrentModificationException
-                }
-                LOG.info("    Save duplications done: " + (System.currentTimeMillis() - startTime) + MS);
-                cloneVisitor = null;
-            }
         } catch (VisitorException e) {
-            throw (SonarException) new SonarException(e.getMessage()).initCause(e);
+            LOG.error("Error during loading data from graph!", e);
         } finally {
             graph = null;
         }
     }
 
-    private void saveLicense(Graph graph, SensorContext sensorContext) {
-        Map<String, String> headerLicenseInformations = new HashMap<String, String>();
-        headerLicenseInformations.put("MetricHunter", "MetricHunter");
-        headerLicenseInformations.put("DuplicatedCodeFinder", "Duplicated Code");
-        headerLicenseInformations.put("LIM2Metrics", "Metrics");
-        headerLicenseInformations.put("FxCop2Graph", "FxCop");
-
-        super.saveLicense(graph, sensorContext, headerLicenseInformations,
-                SourceMeterCSharpMetrics.CSHARP_LICENSE);
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void describe(SensorDescriptor descriptor) {
+        descriptor.onlyOnLanguage(CSharp.KEY);
     }
 
     /**
-     * Saves ClassData list for resources to the given metric.
+     * Checks the correctness of sourceMeter's properties.
      *
-     * @param classData
-     * @param metric
+     * @return True if the properties were set correctly.
      */
-    private void saveClassesInFilesMetric(Map<Resource, List<ClassData>> classData, Metric metric) {
-        Gson gson = new Gson();
-        Iterator<Entry<Resource, List<ClassData>>> iterator = classData.entrySet().iterator();
-        while (iterator.hasNext()) {
-            Entry<Resource, List<ClassData>> entry = iterator.next();
-            String jsonClassesList = gson.toJson(entry.getValue()).toString();
-            Measure measure = new Measure(metric);
-            measure.setData(jsonClassesList);
-            this.sensorContext.saveMeasure(entry.getKey(), measure);
+    private boolean checkProperties() {
+        String pathToCA = this.settings.getString("sm.toolchaindir");
+        if (pathToCA == null) {
+            LOG.error("SourceMeter path must be set! Check it on the settings page of your SonarQube!");
+            return false;
         }
+
+        String resultsDir = this.settings.getString("sm.resultsdir");
+        if (resultsDir == null) {
+            LOG.error("Results directory must be set! Check it on the settings page of your SonarQube!");
+            return false;
+        }
+
+        String inputFile = this.settings.getString("sm.csharp.input");
+        if (inputFile == null) {
+            LOG.error("Input solution file's path must be set in properties! Key: sm.csharp.input");
+            return false;
+        }
+
+        String configuration = this.settings.getString("sm.csharp.configuration");
+        if (configuration == null) {
+            LOG.error("Project configuration must be set! Check it on the settings page of your SonarQube!");
+            return false;
+        }
+
+        String platform = this.settings.getString("sm.csharp.platform");
+        if (platform == null) {
+            LOG.error("Target platform must be set! Check it on the settings page of your SonarQube!");
+            return false;
+        }
+
+        String projectName = this.settings.getString("sonar.projectKey");
+        projectName = StringUtils.replace(projectName, ":", "_");
+
+        String softFilter = "";
+        String softFilterFilePath = null;
+
+        try {
+            softFilter = getFilterContent();
+            softFilterFilePath = writeSoftFilterToFile(softFilter);
+        } catch (IOException e) {
+            LOG.warn("Cannot create softFilter file for toolchain! No softFilter is used during analyzis.", e);
+        }
+
+        ProfileInitializer profileInitializer = new ProfileInitializer(
+                this.settings, getMetricHunterCategories(), this.profile,
+                new SourceMeterCSharpRuleRepository(new RulesDefinitionXmlLoader()), rules);
+
+        String profilePath = this.fileSystem.workDir() + File.separator
+                + "SM-Profile.xml";
+
+        String csharpKey = CSharp.KEY.toUpperCase(Locale.ENGLISH);
+        if ("CS".equals(csharpKey)) {
+            csharpKey = "CSHARP";
+        }
+
+        this.commands.add(pathToCA + File.separator
+                + csharpKey + File.separator
+                + "SourceMeterCSharp");
+
+        try {
+            profileInitializer.generatePofileFile(profilePath);
+            this.commands.add("-profileXML=" + profilePath);
+        } catch (IOException e) {
+            LOG.warn("An error occured while creating SourceMeter profile file. Default profile is used!!", e);
+        }
+
+        // Setting command and parameters for SourceMeter C# analyzer
+        String runFxCop = this.settings.getString("sm.csharp.runFxCop");
+        if (runFxCop != null) {
+            this.commands.add("-runFxCop=" + runFxCop);
+        }
+
+        String pathToFxCop = this.settings.getString("sm.csharp.fxCopPath");
+        if (pathToFxCop != null) {
+            this.commands.add("-FxCopPath=" + pathToFxCop);
+        }
+
+        String cleanResults = this.settings.getString("sm.cleanresults");
+        this.commands.add("-cleanResults=" + cleanResults);
+        this.commands.add("-input=" + inputFile);
+        this.commands.add("-resultsDir=" + resultsDir);
+        this.commands.add("-projectName=" + projectName);
+        this.commands.add("-configuration=" + configuration);
+        this.commands.add("-platform=" + platform);
+        this.commands.add("-runChangeTracker=true");
+
+        String cloneGenealogy = this.settings.getString("sm.cloneGenealogy");
+        String cloneMinLines = this.settings.getString("sm.cloneMinLines");
+        this.commands.add("-cloneGenealogy=" + cloneGenealogy);
+        this.commands.add("-cloneMinLines=" + cloneMinLines);
+
+        if (null != softFilterFilePath) {
+            this.commands.add("-externalSoftFilter=" + softFilterFilePath);
+        }
+
+        String hardFilter = this.settings.getString("sm.csharp.hardFilter");
+        if (null != hardFilter) {
+            this.commands.add("-externalHardFilter=" + hardFilter);
+        }
+
+        String additionalParameters = this.settings.getString("sm.csharp.toolchainOptions");
+        if (null != additionalParameters) {
+            this.commands.add(additionalParameters);
+        }
+
+        return true;
+    }
+
+    /**
+     * Generate MetricHunterCategories, stored in XML file.
+     *
+     * @return List of MetricHunterCategories
+     */
+    protected List<MetricHunterCategory> getMetricHunterCategories() {
+        List<MetricHunterCategory> categories = new ArrayList<MetricHunterCategory>();
+
+        InputStream xmlFile = null;
+        try {
+            xmlFile = getClass().getResourceAsStream(THRESHOLD_PROPERTIES_PATH);
+            categories.add(new MetricHunterCategory("Class",
+                    ThresholdPropertiesHelper.getClassThresholdMetrics(xmlFile)));
+
+            xmlFile = getClass().getResourceAsStream(THRESHOLD_PROPERTIES_PATH);
+            categories.add(new MetricHunterCategory("Method",
+                    ThresholdPropertiesHelper.getMethodThresholdMetrics(xmlFile)));
+
+            xmlFile = getClass().getResourceAsStream(THRESHOLD_PROPERTIES_PATH);
+            categories.add(new MetricHunterCategory("CloneClass",
+                    ThresholdPropertiesHelper.getCloneClassThresholdMetrics(xmlFile)));
+            xmlFile = getClass().getResourceAsStream(THRESHOLD_PROPERTIES_PATH);
+            categories.add(new MetricHunterCategory("CloneInstance",
+                    ThresholdPropertiesHelper.getCloneInstanceThresholdMetrics(xmlFile)));
+        } finally {
+            IOUtils.closeQuietly(xmlFile);
+        }
+        return categories;
     }
 }

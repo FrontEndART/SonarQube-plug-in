@@ -1,1404 +1,1404 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <profile>
   <name>SourceMeter way</name>
-  <language>csharp</language>
+  <language>cs</language>
   <rules>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>MET_AD</key>
       <priority>INFO</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>MET_CBO</key>
       <priority>INFO</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>MET_CLOC</key>
       <priority>INFO</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>MET_DLOC</key>
       <priority>INFO</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>MET_LCOM5</key>
       <priority>INFO</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>MET_LLOC</key>
       <priority>INFO</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>MET_LOC</key>
       <priority>INFO</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>MET_McCC</key>
       <priority>INFO</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>MET_NII</key>
       <priority>INFO</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>MET_NLA</key>
       <priority>INFO</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>MET_NLE</key>
       <priority>INFO</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>MET_NLM</key>
       <priority>INFO</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>MET_NLPM</key>
       <priority>INFO</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>MET_NOC</key>
       <priority>INFO</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>MET_NOI</key>
       <priority>INFO</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>MET_NOS</key>
       <priority>INFO</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>MET_NUMPAR</key>
       <priority>INFO</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>MET_RFC</key>
       <priority>INFO</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>MET_TLLOC</key>
       <priority>INFO</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>MET_TLOC</key>
       <priority>INFO</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>MET_TNOS</key>
       <priority>INFO</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>MET_WMC</key>
       <priority>INFO</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>MET_CCO</key>
       <priority>INFO</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>MET_CE</key>
       <priority>INFO</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>MET_CI</key>
       <priority>INFO</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>MET_CLLC</key>
       <priority>INFO</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>MET_CLLOC</key>
       <priority>INFO</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>AAIE</key>
       <priority>MINOR</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>ACPM</key>
       <priority>CRITICAL</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>ADA</key>
       <priority>CRITICAL</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>AEC</key>
       <priority>MINOR</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>AECC</key>
       <priority>MINOR</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>AEI</key>
       <priority>MINOR</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>AEL</key>
       <priority>MINOR</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>AEPOGT</key>
       <priority>CRITICAL</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>AFSNBRO</key>
       <priority>MAJOR</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>AIF</key>
       <priority>MINOR</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>ALTSNBCV</key>
       <priority>CRITICAL</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>AMSOCAM</key>
       <priority>BLOCKER</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>ANFICVVT</key>
       <priority>MINOR</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>ANWFT</key>
       <priority>MINOR</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>AOICVI</key>
       <priority>MAJOR</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>AOP</key>
       <priority>MINOR</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>ASHVSN</key>
       <priority>BLOCKER</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>ASLSPC</key>
       <priority>MINOR</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>ASMICVT</key>
       <priority>MINOR</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>ATSNHC</key>
       <priority>MAJOR</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>ATSOEABT</key>
       <priority>BLOCKER</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>AUA</key>
       <priority>MINOR</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>AUC</key>
       <priority>MINOR</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>AUIC</key>
       <priority>MINOR</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>AUPC</key>
       <priority>MINOR</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>AUPF</key>
       <priority>MINOR</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>AVEXIN</key>
       <priority>MINOR</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>CASVI</key>
       <priority>MAJOR</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>CAWUNR</key>
       <priority>MINOR</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>CBCMOT</key>
       <priority>CRITICAL</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>CEMSBO</key>
       <priority>MAJOR</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>CEPSBS</key>
       <priority>MAJOR</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>CFC</key>
       <priority>MAJOR</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>CGLEIA</key>
       <priority>CRITICAL</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>CNCCEIGH</key>
       <priority>CRITICAL</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>CPBTAP</key>
       <priority>CRITICAL</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>CPSBRO</key>
       <priority>MINOR</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>CRMSBM</key>
       <priority>MAJOR</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>CRMSNBV</key>
       <priority>MAJOR</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>CSBT</key>
       <priority>MINOR</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>CSIGI</key>
       <priority>CRITICAL</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>CTMNPITE</key>
       <priority>BLOCKER</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>CVTBTSBCV</key>
       <priority>CRITICAL</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>CVTSBC</key>
       <priority>CRITICAL</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>CWSBCC</key>
       <priority>CRITICAL</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>DAFAA</key>
       <priority>CRITICAL</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>DC</key>
       <priority>BLOCKER</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>DCMBD</key>
       <priority>BLOCKER</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>DCMHCT</key>
       <priority>BLOCKER</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>DEHC</key>
       <priority>CRITICAL</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>DFSBD</key>
       <priority>MINOR</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>DMBWCT</key>
       <priority>BLOCKER</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>DNCGET</key>
       <priority>BLOCKER</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>DNCOMIC</key>
       <priority>MAJOR</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>DNCU</key>
       <priority>MINOR</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>DNDIMV</key>
       <priority>CRITICAL</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>DNDPMIST</key>
       <priority>CRITICAL</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>DNDROMRT</key>
       <priority>CRITICAL</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>DNDSMOGT</key>
       <priority>CRITICAL</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>DNDVIF</key>
       <priority>CRITICAL</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>DNDVMIST</key>
       <priority>CRITICAL</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>DNEGL</key>
       <priority>CRITICAL</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>DNHBCM</key>
       <priority>MAJOR</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>DNHLSS</key>
       <priority>CRITICAL</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>DNIEMWLD</key>
       <priority>BLOCKER</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>DNIMR</key>
       <priority>MINOR</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>DNLOOWWI</key>
       <priority>BLOCKER</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>DNMEWF</key>
       <priority>CRITICAL</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>DNMSCWWM</key>
       <priority>MAJOR</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>DNNEVR</key>
       <priority>CRITICAL</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>DNNGTIMS</key>
       <priority>BLOCKER</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>DNOOEORT</key>
       <priority>MINOR</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>DNPEVWTN</key>
       <priority>CRITICAL</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>DNPTBR</key>
       <priority>MINOR</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>DNREIEC</key>
       <priority>CRITICAL</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>DNREIUL</key>
       <priority>CRITICAL</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>DNRRET</key>
       <priority>CRITICAL</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>DNSURF</key>
       <priority>CRITICAL</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>DNTFAT</key>
       <priority>CRITICAL</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>DNUADCIT</key>
       <priority>BLOCKER</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>DNUIPP</key>
       <priority>CRITICAL</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>DNUTTPPSC</key>
       <priority>CRITICAL</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>DPSNBU</key>
       <priority>CRITICAL</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>DTIN</key>
       <priority>CRITICAL</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>DTSDF</key>
       <priority>CRITICAL</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>ECARSBT</key>
       <priority>MINOR</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>EEVSBT</key>
       <priority>MAJOR</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>ESBP</key>
       <priority>MINOR</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>ESBST</key>
       <priority>CRITICAL</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>ESHZV</key>
       <priority>BLOCKER</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>ESNHBOAP</key>
       <priority>CRITICAL</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>ESSBI</key>
       <priority>MINOR</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>EVSMSBT</key>
       <priority>MAJOR</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>EVSSBT</key>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>FAPSBA</key>
       <priority>MAJOR</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>FARBT</key>
       <priority>MAJOR</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>FASESBF</key>
       <priority>MINOR</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>FASNCFAC</key>
       <priority>BLOCKER</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>FESHPN</key>
       <priority>CRITICAL</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>FSBP</key>
       <priority>BLOCKER</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>FSCBCF</key>
       <priority>BLOCKER</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>FWCTSBC</key>
       <priority>MINOR</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>GMSPTP</key>
       <priority>MINOR</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>HCHOCSBT</key>
       <priority>MAJOR</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>HCRBT</key>
       <priority>MAJOR</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>HREHCSBT</key>
       <priority>MAJOR</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>IAEC</key>
       <priority>BLOCKER</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>IC</key>
       <priority>CRITICAL</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>IIHSTM</key>
       <priority>CRITICAL</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>IMCO</key>
       <priority>CRITICAL</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>IMSBCBCT</key>
       <priority>CRITICAL</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>IRTSFI</key>
       <priority>MAJOR</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>ISBCC</key>
       <priority>CRITICAL</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>ISBSC</key>
       <priority>MAJOR</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>ISC</key>
       <priority>CRITICAL</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>ISDBMTC</key>
       <priority>CRITICAL</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>ISEC</key>
       <priority>CRITICAL</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>ISHCP</key>
       <priority>CRITICAL</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>ISHCS</key>
       <priority>CRITICAL</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>ISMC</key>
       <priority>CRITICAL</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>ISNBM</key>
       <priority>MINOR</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>ISNCTN</key>
       <priority>CRITICAL</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>ISNCU</key>
       <priority>CRITICAL</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>ISNHIP</key>
       <priority>CRITICAL</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>ISNHIS</key>
       <priority>BLOCKER</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>ISNMK</key>
       <priority>CRITICAL</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>IVTSFI</key>
       <priority>BLOCKER</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>LAST</key>
       <priority>CRITICAL</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>MANSF</key>
       <priority>CRITICAL</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>MAWAU</key>
       <priority>CRITICAL</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>MAWAV</key>
       <priority>CRITICAL</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>MAWCC</key>
       <priority>CRITICAL</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>MAWCV</key>
       <priority>BLOCKER</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>MAWNRL</key>
       <priority>MINOR</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>MBAWMA</key>
       <priority>MINOR</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>MCSIA</key>
       <priority>CRITICAL</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>MEWF</key>
       <priority>MINOR</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>MMAS</key>
       <priority>MINOR</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>MMOWCT</key>
       <priority>BLOCKER</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>MSDBMTRT</key>
       <priority>CRITICAL</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>MSNECCT</key>
       <priority>CRITICAL</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>MSSBOT</key>
       <priority>BLOCKER</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>MTNMC</key>
       <priority>MAJOR</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>MTWS</key>
       <priority>MINOR</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>MVHWVAT</key>
       <priority>MAJOR</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>MWFEPWST</key>
       <priority>CRITICAL</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>NCFSNBV</key>
       <priority>MINOR</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>NSTU</key>
       <priority>CRITICAL</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>NTSNBV</key>
       <priority>CRITICAL</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>OEAOEOVT</key>
       <priority>MINOR</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>OEOOOE</key>
       <priority>CRITICAL</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>OFESHPN</key>
       <priority>CRITICAL</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>OGHCOOE</key>
       <priority>CRITICAL</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>OLDSBITB</key>
       <priority>BLOCKER</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>OMOCT</key>
       <priority>CRITICAL</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>OOEOOAAS</key>
       <priority>CRITICAL</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>OOEOOVTE</key>
       <priority>MINOR</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>OOHNA</key>
       <priority>CRITICAL</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>OSHSO</key>
       <priority>BLOCKER</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>OSNO</key>
       <priority>MAJOR</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>PDMFOF</key>
       <priority>MINOR</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>PDSBP</key>
       <priority>CRITICAL</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>PEEVMBT</key>
       <priority>MAJOR</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>PEPSE</key>
       <priority>MAJOR</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>PEVSMSBT</key>
       <priority>MAJOR</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>PJAOM</key>
       <priority>MINOR</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>PNSMBD</key>
       <priority>CRITICAL</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>PNSNMGM</key>
       <priority>CRITICAL</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>PNSNMMN</key>
       <priority>CRITICAL</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>POAM</key>
       <priority>CRITICAL</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>POSHNOBEVI</key>
       <priority>BLOCKER</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>PSNBSC</key>
       <priority>MINOR</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>PSNBV</key>
       <priority>BLOCKER</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>PSNBWO</key>
       <priority>CRITICAL</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>PSNRA</key>
       <priority>MINOR</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>PSUOIOS</key>
       <priority>MINOR</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>PVRSBE</key>
       <priority>MAJOR</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>PVSEMSBA</key>
       <priority>CRITICAL</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>RCTA</key>
       <priority>MAJOR</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>RDAPOU</key>
       <priority>MAJOR</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>RDSOVT</key>
       <priority>CRITICAL</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>REF</key>
       <priority>MINOR</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>RIS</key>
       <priority>BLOCKER</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>RMCPSBA</key>
       <priority>MAJOR</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>RMCRBT</key>
       <priority>MAJOR</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>RMCSESBF</key>
       <priority>MINOR</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>RMFN</key>
       <priority>MINOR</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>RRAWPA</key>
       <priority>MINOR</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>RSCWSBCC</key>
       <priority>CRITICAL</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>RSSBSC</key>
       <priority>MAJOR</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>RSUCSU</key>
       <priority>BLOCKER</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>RTPSD</key>
       <priority>CRITICAL</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>RUL</key>
       <priority>MINOR</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>RUP</key>
       <priority>MINOR</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>RVEH</key>
       <priority>BLOCKER</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>SA</key>
       <priority>BLOCKER</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>SCI</key>
       <priority>CRITICAL</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>SCSBP</key>
       <priority>CRITICAL</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>SESECO</key>
       <priority>BLOCKER</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>SHTSBS</key>
       <priority>MAJOR</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>SHTSNHC</key>
       <priority>CRITICAL</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>SLFDT</key>
       <priority>CRITICAL</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>SMBO</key>
       <priority>CRITICAL</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>SMFSA</key>
       <priority>CRITICAL</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>SMTSPI</key>
       <priority>CRITICAL</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>SP</key>
       <priority>CRITICAL</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>SRSLSNBPWLD</key>
       <priority>MAJOR</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>SSC</key>
       <priority>CRITICAL</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>STSNEF</key>
       <priority>BLOCKER</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>SUOCSUO</key>
       <priority>CRITICAL</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>TASNC</key>
       <priority>MINOR</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>TCMNUCA</key>
       <priority>CRITICAL</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>TFESUSL</key>
       <priority>MINOR</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>TFN</key>
       <priority>BLOCKER</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>TLDRID</key>
       <priority>BLOCKER</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>TMBALACABT</key>
       <priority>BLOCKER</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>TMMBV</key>
       <priority>CRITICAL</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>TMMNCNC</key>
       <priority>CRITICAL</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>TMMNCSUCSM</key>
       <priority>CRITICAL</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>TMMNHPCE</key>
       <priority>CRITICAL</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>TMMNRCC</key>
       <priority>BLOCKER</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>TMMNSLD</key>
       <priority>CRITICAL</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>TMMNUSA</key>
       <priority>BLOCKER</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>TMSNBPWLD</key>
       <priority>MINOR</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>TMSND</key>
       <priority>MAJOR</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>TMSNLAFBA</key>
       <priority>MINOR</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>TMSNUSUCS</key>
       <priority>MINOR</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>TNSNMN</key>
       <priority>CRITICAL</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>TSBD</key>
       <priority>MAJOR</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>TSNECBT</key>
       <priority>CRITICAL</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>TTODFSBD</key>
       <priority>BLOCKER</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>TTONRSBD</key>
       <priority>BLOCKER</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>UEWA</key>
       <priority>MINOR</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>UGEHI</key>
       <priority>CRITICAL</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>UGWA</key>
       <priority>BLOCKER</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>UIOSAFI</key>
       <priority>CRITICAL</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>ULWA</key>
       <priority>MINOR</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>UMEOW</key>
       <priority>CRITICAL</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>UOAFTF</key>
       <priority>CRITICAL</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>UOSC</key>
       <priority>CRITICAL</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>UPFVA</key>
       <priority>CRITICAL</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>UPSNBS</key>
       <priority>CRITICAL</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>UPT</key>
       <priority>CRITICAL</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>UPWA</key>
       <priority>MINOR</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>URPRSHNOBEST</key>
       <priority>CRITICAL</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>URVSNBS</key>
       <priority>CRITICAL</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>USHTENR</key>
       <priority>MAJOR</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>VNSNMFN</key>
       <priority>CRITICAL</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>VRSBE</key>
       <priority>MAJOR</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>VSEMSBA</key>
       <priority>MAJOR</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>VSUKSBS</key>
       <priority>MAJOR</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>VTFSBP</key>
       <priority>BLOCKER</priority>
     </rule>
     <rule>
-      <repositoryKey>SourceMeter_csharp</repositoryKey>
+      <repositoryKey>SourceMeter_cs</repositoryKey>
       <key>WVFCIOT</key>
       <priority>CRITICAL</priority>
     </rule>

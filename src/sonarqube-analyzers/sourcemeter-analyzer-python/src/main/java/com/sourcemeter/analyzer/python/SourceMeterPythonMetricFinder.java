@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014-2015, FrontEndART Software Ltd.
+ * Copyright (c) 2014-2017, FrontEndART Software Ltd.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -27,9 +27,10 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+
 package com.sourcemeter.analyzer.python;
 
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import org.sonar.api.measures.Metric;
@@ -45,32 +46,17 @@ public class SourceMeterPythonMetricFinder extends SourceMeterMetricFinder {
      */
     public SourceMeterPythonMetricFinder() {
         super();
-        SourceMeterPythonMetrics PythonMetrics = new SourceMeterPythonMetrics();
-        for (Metric metric : PythonMetrics.getMetrics()) {
+        SourceMeterPythonMetrics pythonMetrics = new SourceMeterPythonMetrics();
+        for (Metric metric : pythonMetrics.getMetrics()) {
             this.metricMap.put(metric.getKey(), metric);
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public List<Metric> findLanguageSpecificRulesetMetrics() {
-        return Arrays.asList(
-                SourceMeterPythonMetrics.ISSUEGROUP_BASIC,
-                SourceMeterPythonMetrics.ISSUEGROUP_CLASS,
-                SourceMeterPythonMetrics.ISSUEGROUP_DESIGN,
-                SourceMeterPythonMetrics.ISSUEGROUP_EXCEPTION,
-                SourceMeterPythonMetrics.ISSUEGROUP_FORMAT,
-                SourceMeterPythonMetrics.ISSUEGROUP_IMPORT,
-                SourceMeterPythonMetrics.ISSUEGROUP_LOGGING,
-                SourceMeterPythonMetrics.ISSUEGROUP_MISCELLANEOUS,
-                SourceMeterPythonMetrics.ISSUEGROUP_NEWSTYLE,
-                SourceMeterPythonMetrics.ISSUEGROUP_PYLINT_CHECKER,
-                SourceMeterPythonMetrics.ISSUEGROUP_PYTHON3,
-                SourceMeterPythonMetrics.ISSUEGROUP_SIMILARITY,
-                SourceMeterPythonMetrics.ISSUEGROUP_SPELLING,
-                SourceMeterPythonMetrics.ISSUEGROUP_STDLIB,
-                SourceMeterPythonMetrics.ISSUEGROUP_STRING,
-                SourceMeterPythonMetrics.ISSUEGROUP_STRING_CONSTANT,
-                SourceMeterPythonMetrics.ISSUEGROUP_TYPECHECK,
-                SourceMeterPythonMetrics.ISSUEGROUP_VARIABLE);
+        return Collections.emptyList();
     }
 }

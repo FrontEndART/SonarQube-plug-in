@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014-2015, FrontEndART Software Ltd.
+ * Copyright (c) 2014-2017, FrontEndART Software Ltd.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -27,81 +27,20 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+
 package com.sourcemeter.analyzer.rpg.visitor;
 
-import graphlib.Edge;
-import graphlib.Node;
-import graphlib.VisitorException;
-import graphsupportlib.Metric.Position;
-import com.sourcemeter.analyzer.base.helper.VisitorHelper;
-import com.sourcemeter.analyzer.base.visitor.PhysicalTreeLoaderVisitor;
-import com.sourcemeter.analyzer.rpg.helper.FileHelperRPG;
-import com.sourcemeter.analyzer.rpg.helper.GraphHelperRPG;
-
-import java.io.File;
-
-import org.sonar.api.batch.SensorContext;
 import org.sonar.api.batch.fs.FileSystem;
-import org.sonar.api.component.ResourcePerspectives;
-import org.sonar.api.config.Settings;
-import org.sonar.api.resources.Project;
-import org.sonar.api.resources.Resource;
+import org.sonar.api.batch.sensor.SensorContext;
+
+import com.sourcemeter.analyzer.base.visitor.PhysicalTreeLoaderVisitor;
+import com.sourcemeter.analyzer.rpg.helper.VisitorHelperRPG;
 
 public class PhysicalTreeLoaderVisitorRPG extends PhysicalTreeLoaderVisitor {
+    public PhysicalTreeLoaderVisitorRPG(FileSystem fileSystem,
+            SensorContext sensorContext, long numOfNodes) {
 
-    private final FileSystem fileSystem;
-
-    public PhysicalTreeLoaderVisitorRPG(FileSystem fileSystem, Settings settings,
-            ResourcePerspectives perspectives, Project project,
-            SensorContext sensorContext, long numOfNodes,
-            VisitorHelper visitorHelper) {
-
-        super(fileSystem, perspectives, project, sensorContext, numOfNodes,
-                visitorHelper);
-
-        this.fileSystem = fileSystem;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void preNodeVisitorFunc(Node node) {
-        if (this.emptyProject) {
-            return;
-        }
-
-        long startTime = System.currentTimeMillis();
-        Position nodePosition = graphsupportlib.Metric.getFirstPositionAttribute(node);
-
-        if (nodePosition == null) {
-            return;
-        }
-
-        String spoolFile = GraphHelperRPG.getSpoolFile(node);
-        if (spoolFile != null) {
-            String filePath = FileHelperRPG.getCorrectedFilePath(nodePosition.path, this.fileSystem);
-            if (filePath == null) {
-                return;
-            }
-            nodePosition.path = filePath;
-        }
-
-        Resource resource = null;
-        String nodeType = node.getType().getType();
-
-        if (!this.emptyProject && "Program".equals(nodeType)) {
-            resource = org.sonar.api.resources.File.fromIOFile(new File(
-                    nodePosition.path), this.project);
-        } else {
-            return;
-        }
-
-        uploadMetricsAndWarnings(node, resource, nodePosition, false);
-        this.fileTime += (System.currentTimeMillis() - startTime);
-    }
-
-    @Override
-    public void edgeVisitorFunc(Edge e) throws VisitorException {
+        super(fileSystem, sensorContext, numOfNodes,
+                new VisitorHelperRPG(sensorContext, fileSystem));
     }
 }

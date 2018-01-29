@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014-2015, FrontEndART Software Ltd.
+ * Copyright (c) 2014-2017, FrontEndART Software Ltd.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -27,30 +27,35 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+
 package com.sourcemeter.analyzer.cpp.helper;
 
-import org.sonar.api.batch.SensorContext;
 import org.sonar.api.batch.fs.FileSystem;
-import org.sonar.api.component.ResourcePerspectives;
-import org.sonar.api.resources.Project;
+import org.sonar.api.batch.sensor.SensorContext;
 
+import com.sourcemeter.analyzer.base.batch.SourceMeterInitializer;
 import com.sourcemeter.analyzer.base.helper.VisitorHelper;
 import com.sourcemeter.analyzer.cpp.SourceMeterCppMetricFinder;
 import com.sourcemeter.analyzer.cpp.profile.SourceMeterCppRuleRepository;
 
 public class VisitorHelperCpp extends VisitorHelper {
 
-    public VisitorHelperCpp(Project project, SensorContext sensorContext,
-            ResourcePerspectives perspectives, FileSystem fileSystem) {
-        super(project, sensorContext, perspectives, fileSystem,
-                new SourceMeterCppMetricFinder());
+    public VisitorHelperCpp(SensorContext sensorContext, FileSystem fileSystem) {
+        super(sensorContext, fileSystem, new SourceMeterCppMetricFinder());
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getRuleKey() {
-        return SourceMeterCppRuleRepository.getRepositoryKey();
+        return SourceMeterCppRuleRepository.BASE_REPOSITORY_KEY
+                + SourceMeterInitializer.getPluginLanguage().getKey();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getWarningTextWithPrefix(String ruleKey, String warningText) {
         if (ruleKey.startsWith("CPPCHECK_")) {

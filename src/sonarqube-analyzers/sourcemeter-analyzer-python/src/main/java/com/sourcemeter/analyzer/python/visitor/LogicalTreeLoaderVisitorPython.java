@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014-2016, FrontEndART Software Ltd.
+ * Copyright (c) 2014-2017, FrontEndART Software Ltd.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -27,140 +27,22 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+
 package com.sourcemeter.analyzer.python.visitor;
 
-import graphlib.Edge;
-import graphlib.Node;
-import graphsupportlib.Metric.Position;
-
-import java.io.File;
-import java.util.HashMap;
-import java.util.Locale;
-import java.util.Map;
-
-import org.sonar.api.batch.SensorContext;
 import org.sonar.api.batch.fs.FileSystem;
-import org.sonar.api.component.ResourcePerspectives;
+import org.sonar.api.batch.sensor.SensorContext;
 import org.sonar.api.config.Settings;
-import org.sonar.api.resources.Project;
-import org.sonar.api.resources.Resource;
-import org.sonar.api.utils.SonarException;
 
-import com.sourcemeter.analyzer.base.helper.GraphHelper;
 import com.sourcemeter.analyzer.base.visitor.LogicalTreeLoaderVisitor;
-import com.sourcemeter.analyzer.python.core.resources.PythonClass;
-import com.sourcemeter.analyzer.python.core.resources.PythonFunction;
-import com.sourcemeter.analyzer.python.core.resources.PythonMethod;
 import com.sourcemeter.analyzer.python.helper.VisitorHelperPython;
 
 public class LogicalTreeLoaderVisitorPython extends LogicalTreeLoaderVisitor {
 
-    public static final Map<Resource, Integer> FUNCTIONS_FOR_FILES = new HashMap<Resource, Integer>();
-
-    public LogicalTreeLoaderVisitorPython(FileSystem fileSystem, Settings settings, ResourcePerspectives perspectives, Project project,
+    public LogicalTreeLoaderVisitorPython(FileSystem fileSystem, Settings settings,
             SensorContext sensorContext, long numOfNodes) {
 
-        super(fileSystem, settings, perspectives, project, sensorContext,
-                numOfNodes, new VisitorHelperPython(project, sensorContext,
-                perspectives, fileSystem));
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void edgeVisitorFunc(Edge e) {
-    }
-
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void preNodeVisitorFunc(Node node) {
-        if (this.emptyProject) {
-            return;
-        }
-
-        String nodeName = GraphHelper.getNodeNameAttribute(node);
-        if (nodeName == null || "__LogicalRoot__".equals(nodeName)) {
-            return;
-        }
-
-        long startLogicalTime = System.currentTimeMillis();
-        Position nodePosition = graphsupportlib.Metric.getFirstPositionAttribute(node);
-        if (nodePosition == null) {
-            return;
-        }
-
-        String nodeLongName = GraphHelper.getNodeLongNameAttribute(node);
-
-        Resource resource = null;
-        Resource parentResource = null;
-        Resource file = org.sonar.api.resources.File.fromIOFile(new File(nodePosition.path), this.project);
-        String nodeType = node.getType().getType();
-        String nodeTUID = GraphHelper.getNodeTUID(node);
-
-        if (nodeTUID == null) {
-            String warningMessage = "A " + nodeType + " node has no TUID attribute: "
-                    + nodeLongName + ", UID: " + node.getUID();
-
-            if (skipTUID) {
-                LOG.warn(warningMessage);
-                return;
-            } else {
-                throw new SonarException(warningMessage);
-            }
-        }
-
-        if (GraphHelper.isClass(node)) {
-            resource = new PythonClass(nodeTUID, nodeName, nodeLongName,
-                    nodeType.toLowerCase(Locale.ENGLISH)).setParent(file);
-            Resource indexedResource = this.sensorContext.getResource(resource);
-
-            if (null == indexedResource) {
-                indexResource(node, resource, file, nodePosition);
-            } else {
-                resource = indexedResource;
-            }
-        } else if ("Method".equals(nodeType)) {
-            if (this.uploadMethods) {
-                Node parentNode = GraphHelper.getParentNode(node);
-                if (GraphHelper.isClass(parentNode)) {
-                    String parentNodeName = GraphHelper
-                            .getNodeNameAttribute(parentNode);
-                    String parentNodeType = parentNode.getType().getType()
-                            .toLowerCase(Locale.ENGLISH);
-                    parentResource = new PythonClass(
-                            GraphHelper.getNodeTUID(parentNode),
-                            parentNodeName,
-                            GraphHelper.getNodeLongNameAttribute(parentNode),
-                            parentNodeType);
-                    resource = new PythonMethod(nodeTUID,
-                            nodeName, nodeLongName).setParent(parentResource);
-
-                    indexResource(node, resource, parentResource, nodePosition);
-                }
-            }
-            incFunctionToFile(file);
-        } else if ("Function".equals(nodeType)) {
-            if (this.uploadMethods) {
-                resource = new PythonFunction(nodeTUID,
-                        nodeName, nodeLongName).setParent(file);
-                indexResource(node, resource, file, nodePosition);
-            }
-            incFunctionToFile(file);
-        }
-
-        uploadMetricsAndWarnings(node, resource, nodePosition, true);
-        this.logicalTime += (System.currentTimeMillis() - startLogicalTime);
-    }
-
-    private void incFunctionToFile(Resource file) {
-        if (FUNCTIONS_FOR_FILES.containsKey(file)) {
-            FUNCTIONS_FOR_FILES.put(file, FUNCTIONS_FOR_FILES.get(file) + 1);
-        } else {
-            FUNCTIONS_FOR_FILES.put(file, 1);
-        }
+        super(fileSystem, settings, sensorContext, numOfNodes,
+              new VisitorHelperPython(sensorContext, fileSystem));
     }
 }
