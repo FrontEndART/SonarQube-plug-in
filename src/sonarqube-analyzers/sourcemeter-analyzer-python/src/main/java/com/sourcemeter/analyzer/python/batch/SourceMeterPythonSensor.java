@@ -48,7 +48,7 @@ import org.sonar.api.batch.fs.InputModule;
 import org.sonar.api.batch.rule.Rules;
 import org.sonar.api.batch.sensor.SensorContext;
 import org.sonar.api.batch.sensor.SensorDescriptor;
-import org.sonar.api.config.Settings;
+import org.sonar.api.config.Configuration;
 import org.sonar.api.profiles.RulesProfile;
 import org.sonar.api.scan.filesystem.FileExclusions;
 import org.sonar.api.server.rule.RulesDefinitionXmlLoader;
@@ -94,9 +94,9 @@ public class SourceMeterPythonSensor extends SourceMeterSensor {
 
     public SourceMeterPythonSensor(FileExclusions fileExclusions, FileSystem fileSystem,
             ProjectDefinition projectDefinition, Rules rules, RulesProfile profile,
-            Settings settings) {
+            Configuration configuration) {
 
-        super(fileExclusions, fileSystem, projectDefinition, profile, settings);
+        super(fileExclusions, fileSystem, projectDefinition, profile, configuration);
 
         this.commands = new ArrayList<String>();
         this.rules = rules;
@@ -108,7 +108,7 @@ public class SourceMeterPythonSensor extends SourceMeterSensor {
      */
     @Override
     public void execute(SensorContext sensorContext) {
-        boolean skipPython = this.settings.getBoolean("sm.python.skipToolchain");
+        boolean skipPython = FileHelper.getBooleanFromConfiguration(this.configuration, "sm.python.skipToolchain");
         if (skipPython) {
             LOG.info("SourceMeter toolchain is skipped for Python. Results will be uploaded from former results directory, if it exists.");
         } else {
@@ -118,16 +118,16 @@ public class SourceMeterPythonSensor extends SourceMeterSensor {
             runSourceMeter(commands);
         }
 
-        this.projectName = this.settings.getString("sonar.projectKey");
+        this.projectName = FileHelper.getStringFromConfiguration(this.configuration, "sonar.projectKey");
         this.projectName = StringUtils.replace(this.projectName, ":", "_");
-        String analyseMode = this.settings.getString("sonar.analysis.mode");
+        String analyseMode = FileHelper.getStringFromConfiguration(this.configuration, "sonar.analysis.mode");
 
         if ("incremental".equals(analyseMode)) {
             LOG.warn("Incremental mode is on. There are no metric based (INFO level) issues in this mode.");
             this.isIncrementalMode = true;
         }
         try {
-            this.resultGraph = FileHelper.getSMSourcePath(settings, fileSystem, '_')
+            this.resultGraph = FileHelper.getSMSourcePath(configuration, fileSystem, '_', new Python())
                     + File.separator + this.projectName + ".graph";
         } catch (IOException e) {
             LOG.error("Error during loading result graph path!", e);
@@ -205,7 +205,7 @@ public class SourceMeterPythonSensor extends SourceMeterSensor {
             nodeCounter = new NodeCounterVisitor();
             GraphHelper.processGraph(graph, LOGICAL_ROOT, "LogicalTree", nodeCounter);
             LogicalTreeLoaderVisitorPython logicalVisitor = new LogicalTreeLoaderVisitorPython(
-                    this.fileSystem, this.settings, sensorContext,
+                    this.fileSystem, this.configuration, sensorContext,
                     nodeCounter.getNumberOfNodes());
 
             nodeCounter = new NodeCounterVisitor();
@@ -215,7 +215,7 @@ public class SourceMeterPythonSensor extends SourceMeterSensor {
 
             nodeCounter = new NodeCounterVisitor();
             GraphHelper.processGraph(graph, LOGICAL_ROOT, "logicalTree", nodeCounter);
-            LogicalTreeSaverVisitorPython logicalSaver = new LogicalTreeSaverVisitorPython(sensorContext, this.fileSystem, settings);
+            LogicalTreeSaverVisitorPython logicalSaver = new LogicalTreeSaverVisitorPython(sensorContext, this.fileSystem, configuration);
 
             nodeCounter = new NodeCounterVisitor();
             GraphHelper.processGraph(graph, "__CloneRoot__", "CloneTree", nodeCounter);
@@ -266,25 +266,25 @@ public class SourceMeterPythonSensor extends SourceMeterSensor {
      * @return True if the properties were set correctly.
      */
     private boolean checkProperties() {
-        String pathToCA = this.settings.getString("sm.toolchaindir");
+        String pathToCA = FileHelper.getStringFromConfiguration(this.configuration, "sm.toolchaindir");
         if (pathToCA == null) {
             LOG.error("Python SourceMeter path must be set! Check it on the settings page of your SonarQube!");
             return false;
         }
 
-        String resultsDir = this.settings.getString("sm.resultsdir");
+        String resultsDir = FileHelper.getStringFromConfiguration(this.configuration, "sm.resultsdir");
         if (resultsDir == null) {
             LOG.error("Results directory must be set! Check it on the settings page of your SonarQube!");
             return false;
         }
 
-        String pythonBinary = this.settings.getString("sm.python.binary");
+        String pythonBinary = FileHelper.getStringFromConfiguration(this.configuration, "sm.python.binary");
         if (pythonBinary == null) {
             LOG.error("Python 2.7 binary path must be set! Check it on the settings page of your SonarQube!");
             return false;
         }
 
-        String projectName = this.settings.getString("sonar.projectKey");
+        String projectName = FileHelper.getStringFromConfiguration(this.configuration, "sonar.projectKey");
         projectName = StringUtils.replace(projectName, ":", "_");
 
         String filter = "";
@@ -301,8 +301,8 @@ public class SourceMeterPythonSensor extends SourceMeterSensor {
                 + Python.NAME + File.separator + "SourceMeterPython");
 
         ProfileInitializer profileInitializer = new ProfileInitializer(
-                this.settings, getMetricHunterCategories(), this.profile,
-                new SourceMeterPythonRuleRepository(new RulesDefinitionXmlLoader()), rules);
+                this.configuration, getMetricHunterCategories(), this.profile,
+                new SourceMeterPythonRuleRepository(new RulesDefinitionXmlLoader()), rules, new Python());
 
         String profilePath = this.fileSystem.workDir() + File.separator
                 + "SM-Profile.xml";
@@ -322,15 +322,15 @@ public class SourceMeterPythonSensor extends SourceMeterSensor {
             baseDir = this.fileSystem.baseDir().getAbsolutePath();
         }
 
-        String cleanResults = this.settings.getString("sm.cleanresults");
+        String cleanResults = FileHelper.getStringFromConfiguration(this.configuration, "sm.cleanresults");
         this.commands.add("-cleanResults=" + cleanResults);
         this.commands.add("-projectBaseDir=" + baseDir);
         this.commands.add("-resultsDir=" + resultsDir);
         this.commands.add("-projectName=" + projectName);
         this.commands.add("-python27binary=" + pythonBinary);
 
-        String cloneGenealogy = this.settings.getString("sm.cloneGenealogy");
-        String cloneMinLines = this.settings.getString("sm.cloneMinLines");
+        String cloneGenealogy = FileHelper.getStringFromConfiguration(this.configuration, "sm.cloneGenealogy");
+        String cloneMinLines = FileHelper.getStringFromConfiguration(this.configuration, "sm.cloneMinLines");
         this.commands.add("-cloneGenealogy=" + cloneGenealogy);
         this.commands.add("-cloneMinLines=" + cloneMinLines);
 
@@ -338,7 +338,7 @@ public class SourceMeterPythonSensor extends SourceMeterSensor {
             this.commands.add("-externalHardFilter=" + filterFilePath);
         }
 
-        String additionalParameters = this.settings.getString("sm.python.toolchainOptions");
+        String additionalParameters = FileHelper.getStringFromConfiguration(this.configuration, "sm.python.toolchainOptions");
         if (additionalParameters != null) {
             this.commands.add(additionalParameters);
         }

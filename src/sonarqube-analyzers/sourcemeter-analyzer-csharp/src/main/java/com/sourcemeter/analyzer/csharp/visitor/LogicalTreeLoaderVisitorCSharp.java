@@ -32,17 +32,18 @@ package com.sourcemeter.analyzer.csharp.visitor;
 
 import org.sonar.api.batch.fs.FileSystem;
 import org.sonar.api.batch.sensor.SensorContext;
-import org.sonar.api.config.Settings;
+import org.sonar.api.config.Configuration;
 
 import com.sourcemeter.analyzer.base.visitor.LogicalTreeLoaderVisitor;
+import com.sourcemeter.analyzer.csharp.core.CSharp;
 import com.sourcemeter.analyzer.csharp.helper.VisitorHelperCSharp;
 
 public class LogicalTreeLoaderVisitorCSharp extends LogicalTreeLoaderVisitor {
 
-    public LogicalTreeLoaderVisitorCSharp(FileSystem fileSystem, Settings settings,
+    public LogicalTreeLoaderVisitorCSharp(FileSystem fileSystem, Configuration configuration,
             SensorContext sensorContext, long numOfNodes) {
 
-        super(fileSystem, settings, sensorContext, numOfNodes,
-              new VisitorHelperCSharp(sensorContext, fileSystem));
+        super(fileSystem, configuration, sensorContext, numOfNodes,
+              new VisitorHelperCSharp(sensorContext, fileSystem), new CSharp());
     }
 }

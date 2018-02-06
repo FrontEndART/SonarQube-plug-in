@@ -33,9 +33,9 @@ package com.sourcemeter.analyzer.rpg.helper;
 import org.sonar.api.batch.fs.FileSystem;
 import org.sonar.api.batch.sensor.SensorContext;
 
-import com.sourcemeter.analyzer.base.batch.SourceMeterInitializer;
 import com.sourcemeter.analyzer.base.helper.VisitorHelper;
 import com.sourcemeter.analyzer.rpg.SourceMeterRPGMetricFinder;
+import com.sourcemeter.analyzer.rpg.core.RPG;
 import com.sourcemeter.analyzer.rpg.profile.SourceMeterRPGRuleRepository;
 
 public class VisitorHelperRPG extends VisitorHelper {
@@ -51,7 +51,7 @@ public class VisitorHelperRPG extends VisitorHelper {
     @Override
     public String getRuleKey() {
         return SourceMeterRPGRuleRepository.BASE_REPOSITORY_KEY
-                + SourceMeterInitializer.getPluginLanguage().getKey();
+                + RPG.INSTANCE.getKey();
     }
 
     /**

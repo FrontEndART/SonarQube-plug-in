@@ -49,7 +49,7 @@ import org.sonar.api.batch.fs.InputModule;
 import org.sonar.api.batch.rule.Rules;
 import org.sonar.api.batch.sensor.SensorContext;
 import org.sonar.api.batch.sensor.SensorDescriptor;
-import org.sonar.api.config.Settings;
+import org.sonar.api.config.Configuration;
 import org.sonar.api.profiles.RulesProfile;
 import org.sonar.api.scan.filesystem.FileExclusions;
 import org.sonar.api.server.rule.RulesDefinitionXmlLoader;
@@ -95,9 +95,9 @@ public class SourceMeterCSharpSensor extends SourceMeterSensor {
 
     public SourceMeterCSharpSensor(FileExclusions fileExclusions, FileSystem fileSystem,
             ProjectDefinition projectDefinition, Rules rules, RulesProfile profile,
-            Settings settings) {
+            Configuration configuration) {
 
-        super(fileExclusions, fileSystem, projectDefinition, profile, settings);
+        super(fileExclusions, fileSystem, projectDefinition, profile, configuration);
 
         this.commands = new ArrayList<String>();
         this.rules = rules;
@@ -109,7 +109,7 @@ public class SourceMeterCSharpSensor extends SourceMeterSensor {
      */
     @Override
     public void execute(SensorContext sensorContext) {
-        boolean skipCsharp = this.settings.getBoolean("sm.csharp.skipToolchain");
+        boolean skipCsharp = FileHelper.getBooleanFromConfiguration(configuration, "sm.csharp.skipToolchain");
         if (skipCsharp) {
             LOG.info("SourceMeter toolchain is skipped for C#. Results will be uploaded from former results directory, if it exists.");
         } else {
@@ -119,16 +119,16 @@ public class SourceMeterCSharpSensor extends SourceMeterSensor {
             runSourceMeter(commands);
         }
 
-        this.projectName = this.settings.getString("sonar.projectKey");
+        this.projectName = FileHelper.getStringFromConfiguration(configuration, "sonar.projectKey");
         this.projectName = StringUtils.replace(this.projectName, ":", "_");
-        String analyseMode = this.settings.getString("sonar.analysis.mode");
+        String analyseMode = FileHelper.getStringFromConfiguration(configuration, "sonar.analysis.mode");
 
         if ("incremental".equals(analyseMode)) {
             LOG.warn("Incremental mode is on. There are no metric based (INFO level) issues in this mode.");
             this.isIncrementalMode = true;
         }
         try {
-            this.resultGraph = FileHelper.getSMSourcePath(settings, fileSystem, '-')
+            this.resultGraph = FileHelper.getSMSourcePath(configuration, fileSystem, '-', new CSharp())
                     + File.separator + this.projectName + ".graph";
         } catch (IOException e) {
             LOG.error("Error during loading result graph path!", e);
@@ -206,7 +206,7 @@ public class SourceMeterCSharpSensor extends SourceMeterSensor {
             nodeCounter = new NodeCounterVisitor();
             GraphHelper.processGraph(graph, LOGICAL_ROOT, "LogicalTree", nodeCounter);
             LogicalTreeLoaderVisitorCSharp logicalVisitor = new LogicalTreeLoaderVisitorCSharp(
-                    this.fileSystem, this.settings,
+                    this.fileSystem, configuration,
                     sensorContext, nodeCounter.getNumberOfNodes());
 
             nodeCounter = new NodeCounterVisitor();
@@ -216,7 +216,7 @@ public class SourceMeterCSharpSensor extends SourceMeterSensor {
 
             nodeCounter = new NodeCounterVisitor();
             GraphHelper.processGraph(graph, LOGICAL_ROOT, "logicalTree", nodeCounter);
-            LogicalTreeSaverVisitorCSharp logicalSaver = new LogicalTreeSaverVisitorCSharp(sensorContext, this.fileSystem, settings);
+            LogicalTreeSaverVisitorCSharp logicalSaver = new LogicalTreeSaverVisitorCSharp(sensorContext, this.fileSystem, configuration);
 
             nodeCounter = new NodeCounterVisitor();
             GraphHelper.processGraph(graph, "__CloneRoot__", "CloneTree", nodeCounter);
@@ -267,37 +267,37 @@ public class SourceMeterCSharpSensor extends SourceMeterSensor {
      * @return True if the properties were set correctly.
      */
     private boolean checkProperties() {
-        String pathToCA = this.settings.getString("sm.toolchaindir");
+        String pathToCA = FileHelper.getStringFromConfiguration(this.configuration, "sm.toolchaindir");
         if (pathToCA == null) {
             LOG.error("SourceMeter path must be set! Check it on the settings page of your SonarQube!");
             return false;
         }
 
-        String resultsDir = this.settings.getString("sm.resultsdir");
+        String resultsDir = FileHelper.getStringFromConfiguration(this.configuration, "sm.resultsdir");
         if (resultsDir == null) {
             LOG.error("Results directory must be set! Check it on the settings page of your SonarQube!");
             return false;
         }
 
-        String inputFile = this.settings.getString("sm.csharp.input");
+        String inputFile = FileHelper.getStringFromConfiguration(this.configuration, "sm.csharp.input");
         if (inputFile == null) {
             LOG.error("Input solution file's path must be set in properties! Key: sm.csharp.input");
             return false;
         }
 
-        String configuration = this.settings.getString("sm.csharp.configuration");
+        String configuration = FileHelper.getStringFromConfiguration(this.configuration, "sm.csharp.configuration");
         if (configuration == null) {
             LOG.error("Project configuration must be set! Check it on the settings page of your SonarQube!");
             return false;
         }
 
-        String platform = this.settings.getString("sm.csharp.platform");
+        String platform = FileHelper.getStringFromConfiguration(this.configuration, "sm.csharp.platform");
         if (platform == null) {
             LOG.error("Target platform must be set! Check it on the settings page of your SonarQube!");
             return false;
         }
 
-        String projectName = this.settings.getString("sonar.projectKey");
+        String projectName = FileHelper.getStringFromConfiguration(this.configuration, "sonar.projectKey");
         projectName = StringUtils.replace(projectName, ":", "_");
 
         String softFilter = "";
@@ -311,8 +311,8 @@ public class SourceMeterCSharpSensor extends SourceMeterSensor {
         }
 
         ProfileInitializer profileInitializer = new ProfileInitializer(
-                this.settings, getMetricHunterCategories(), this.profile,
-                new SourceMeterCSharpRuleRepository(new RulesDefinitionXmlLoader()), rules);
+                this.configuration, getMetricHunterCategories(), this.profile,
+                new SourceMeterCSharpRuleRepository(new RulesDefinitionXmlLoader()), rules, new CSharp());
 
         String profilePath = this.fileSystem.workDir() + File.separator
                 + "SM-Profile.xml";
@@ -334,17 +334,17 @@ public class SourceMeterCSharpSensor extends SourceMeterSensor {
         }
 
         // Setting command and parameters for SourceMeter C# analyzer
-        String runFxCop = this.settings.getString("sm.csharp.runFxCop");
+        String runFxCop = FileHelper.getStringFromConfiguration(this.configuration, "sm.csharp.runFxCop");
         if (runFxCop != null) {
             this.commands.add("-runFxCop=" + runFxCop);
         }
 
-        String pathToFxCop = this.settings.getString("sm.csharp.fxCopPath");
+        String pathToFxCop = FileHelper.getStringFromConfiguration(this.configuration, "sm.csharp.fxCopPath");
         if (pathToFxCop != null) {
             this.commands.add("-FxCopPath=" + pathToFxCop);
         }
 
-        String cleanResults = this.settings.getString("sm.cleanresults");
+        String cleanResults = FileHelper.getStringFromConfiguration(this.configuration, "sm.cleanresults");
         this.commands.add("-cleanResults=" + cleanResults);
         this.commands.add("-input=" + inputFile);
         this.commands.add("-resultsDir=" + resultsDir);
@@ -352,8 +352,8 @@ public class SourceMeterCSharpSensor extends SourceMeterSensor {
         this.commands.add("-configuration=" + configuration);
         this.commands.add("-platform=" + platform);
 
-        String cloneGenealogy = this.settings.getString("sm.cloneGenealogy");
-        String cloneMinLines = this.settings.getString("sm.cloneMinLines");
+        String cloneGenealogy = FileHelper.getStringFromConfiguration(this.configuration, "sm.cloneGenealogy");
+        String cloneMinLines = FileHelper.getStringFromConfiguration(this.configuration, "sm.cloneMinLines");
         this.commands.add("-cloneGenealogy=" + cloneGenealogy);
         this.commands.add("-cloneMinLines=" + cloneMinLines);
 
@@ -361,12 +361,12 @@ public class SourceMeterCSharpSensor extends SourceMeterSensor {
             this.commands.add("-externalSoftFilter=" + softFilterFilePath);
         }
 
-        String hardFilter = this.settings.getString("sm.csharp.hardFilter");
+        String hardFilter = FileHelper.getStringFromConfiguration(this.configuration, "sm.csharp.hardFilter");
         if (null != hardFilter) {
             this.commands.add("-externalHardFilter=" + hardFilter);
         }
 
-        String additionalParameters = this.settings.getString("sm.csharp.toolchainOptions");
+        String additionalParameters = FileHelper.getStringFromConfiguration(this.configuration, "sm.csharp.toolchainOptions");
         if (null != additionalParameters) {
             this.commands.add(additionalParameters);
         }

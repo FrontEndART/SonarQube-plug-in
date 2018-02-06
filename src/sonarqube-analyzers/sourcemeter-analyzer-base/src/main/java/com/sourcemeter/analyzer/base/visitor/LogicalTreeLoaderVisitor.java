@@ -36,11 +36,12 @@ import org.sonar.api.batch.fs.FilePredicate;
 import org.sonar.api.batch.fs.FileSystem;
 import org.sonar.api.batch.fs.InputFile;
 import org.sonar.api.batch.sensor.SensorContext;
-import org.sonar.api.config.Settings;
+import org.sonar.api.config.Configuration;
+import org.sonar.api.resources.AbstractLanguage;
 
 import graphlib.Node;
 
-import com.sourcemeter.analyzer.base.batch.SourceMeterInitializer;
+import com.sourcemeter.analyzer.base.helper.FileHelper;
 import com.sourcemeter.analyzer.base.helper.VisitorHelper;
 
 /**
@@ -53,20 +54,27 @@ public abstract class LogicalTreeLoaderVisitor extends BaseVisitor {
     protected boolean emptyProject;
     protected long logicalTime;
     protected final FileSystem fileSystem;
-    protected final Settings settings;
+    protected final Configuration configuration;
 
     protected static final Logger LOG = LoggerFactory.getLogger(LogicalTreeLoaderVisitor.class);
 
-    public LogicalTreeLoaderVisitor(FileSystem fileSystem, Settings settings,
-                                    SensorContext sensorContext, long numOfNodes,
-                                    VisitorHelper visitorHelper) {
-        super(visitorHelper, settings);
+    public LogicalTreeLoaderVisitor(FileSystem fileSystem, Configuration configuration,
+            SensorContext sensorContext, long numOfNodes,
+            VisitorHelper visitorHelper, AbstractLanguage language) {
+        super(visitorHelper, configuration, language);
 
-        String pluginLanguageKey = SourceMeterInitializer.getPluginLanguage().getKey();
+        String pluginLanguageKey = pluginLanguage.getKey();
+
+        // Change the language keys, because previous solution of another problem.
+        if ("cs".equals(pluginLanguageKey)) {
+            pluginLanguageKey = "csharp";
+        } else if ("py".equals(pluginLanguageKey)) {
+            pluginLanguageKey = "python";
+        }
 
         this.fileSystem = fileSystem;
         this.sensorContext = sensorContext;
-        this.settings = settings;
+        this.configuration = configuration;
 
         this.numOfNodes = numOfNodes;
 

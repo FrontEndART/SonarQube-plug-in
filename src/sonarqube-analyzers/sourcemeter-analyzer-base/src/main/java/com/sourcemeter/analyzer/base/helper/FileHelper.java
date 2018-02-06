@@ -39,10 +39,9 @@ import java.util.Locale;
 import org.apache.commons.lang.StringUtils;
 import org.sonar.api.batch.fs.FileSystem;
 import org.sonar.api.batch.sensor.SensorContext;
-import org.sonar.api.config.Settings;
+import org.sonar.api.config.Configuration;
 import org.sonar.api.measures.Metric;
-
-import com.sourcemeter.analyzer.base.batch.SourceMeterInitializer;
+import org.sonar.api.resources.AbstractLanguage;
 
 /**
  * File helper methods for plugin.
@@ -53,25 +52,26 @@ public class FileHelper {
     /**
      * Returns the newest results directory for the actual language.
      *
-     * @param settings Sonar settings.
+     * @param configuration Sonar configuration.
      * @param dateSeparator Separator character between date and time in results directory.
      * @return results Directory's relative path.
      */
-    public static String getSMSourcePath(Settings settings, FileSystem fileSystem, final char dateSeparator) throws IOException {
-        String pluginLanguage = SourceMeterInitializer.getPluginLanguage().getKey().toLowerCase(Locale.ENGLISH);
+    public static String getSMSourcePath(Configuration configuration, FileSystem fileSystem,
+                          final char dateSeparator, AbstractLanguage language) throws IOException {
+        String pluginLanguageKey = language.getKey().toLowerCase(Locale.ENGLISH);
         StringBuilder buffer = new StringBuilder("");
-        String projectName = settings.getString("sonar.projectKey");
+        String projectName = getStringFromConfiguration(configuration, "sonar.projectKey");
         projectName = StringUtils.replace(projectName, ":", "_");
-        String resultsDir = settings.getString("sm.resultsdir")
+        String resultsDir = FileHelper.getStringFromConfiguration(configuration, "sm.resultsdir")
                 + File.separator + projectName + File.separator;
 
-        if ("cs".equals(pluginLanguage)) {
-            pluginLanguage = "csharp";
-        } else if ("py".equals(pluginLanguage)) {
-            pluginLanguage = "python";
+        if ("cs".equals(pluginLanguageKey)) {
+            pluginLanguageKey = "csharp";
+        } else if ("py".equals(pluginLanguageKey)) {
+            pluginLanguageKey = "python";
         }
 
-        resultsDir += pluginLanguage;
+        resultsDir += pluginLanguageKey;
 
         File file = new File(resultsDir);
         if (!file.exists()) {
@@ -112,5 +112,50 @@ public class FileHelper {
      */
     public static void saveGraphToDataBase(SensorContext sensorContext, String data, Metric metric) {
         sensorContext.newMeasure().forMetric(metric).withValue(data).on(sensorContext.module()).save();
+    }
+
+    /**
+     * Helper function for get SourceMeter properties from Configuration.
+     *
+     * @param configuration Contains SourceMeter's properties.
+     * @param configurationKey Properties' key.
+     * @return boolean value of the given property or throws RuntimeException if the property isn't set.
+     */
+    public static boolean getBooleanFromConfiguration(Configuration configuration, String configurationKey) {
+        if (!configuration.getBoolean(configurationKey).isPresent()) {
+            throw new RuntimeException("ERROR: '" + configurationKey + "' is not set!");
+        } else {
+            return configuration.getBoolean(configurationKey).get();
+        }
+    }
+
+    /**
+     * Helper function for get SourceMeter properties from Configuration.
+     *
+     * @param configuration Contains SourceMeter's properties.
+     * @param configurationKey Properties' key.
+     * @return String value of the given property or null if the property isn't set.
+     */
+    public static String getStringFromConfiguration(Configuration configuration, String configurationKey) {
+        if (!configuration.get(configurationKey).isPresent()) {
+            return null;
+        } else {
+            return configuration.get(configurationKey).get();
+        }
+    }
+
+    /**
+     * Helper function for get SourceMeter properties from Configuration.
+     *
+     * @param configuration Contains SourceMeter's properties.
+     * @param configurationKey Properties' key.
+     * @return Wrapper class for double of the given property or null if the property isn't set.
+     */
+    public static Double getDoubleFromConfiguration(Configuration configuration, String configurationKey) {
+        if (!configuration.getDouble(configurationKey).isPresent()) {
+            return null;
+        } else {
+            return configuration.getDouble(configurationKey).get();
+        }
     }
 }

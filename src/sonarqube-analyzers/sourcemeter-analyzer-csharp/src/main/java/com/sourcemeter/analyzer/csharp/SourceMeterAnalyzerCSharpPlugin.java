@@ -42,7 +42,6 @@ import org.sonar.api.PropertyType;
 
 import com.sourcemeter.analyzer.base.core.VersionChecker;
 import com.sourcemeter.analyzer.base.helper.ThresholdPropertiesHelper;
-import com.sourcemeter.analyzer.csharp.batch.SourceMeterCSharpInitializer;
 import com.sourcemeter.analyzer.csharp.batch.SourceMeterCSharpSensor;
 import com.sourcemeter.analyzer.csharp.profile.SourceMeterCSharpProfile;
 import com.sourcemeter.analyzer.csharp.profile.SourceMeterCSharpRuleRepository;
@@ -142,9 +141,8 @@ public class SourceMeterAnalyzerCSharpPlugin implements Plugin {
                 SourceMeterCSharpMetrics.class,
                 VersionChecker.class
         );
-        context.addExtensions(
+        context.addExtension(
                 // batch
-                SourceMeterCSharpInitializer.class,
                 SourceMeterCSharpSensor.class
         );
 

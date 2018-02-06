@@ -32,17 +32,18 @@ package com.sourcemeter.analyzer.java.visitor;
 
 import org.sonar.api.batch.fs.FileSystem;
 import org.sonar.api.batch.sensor.SensorContext;
-import org.sonar.api.config.Settings;
+import org.sonar.api.config.Configuration;
 
 import com.sourcemeter.analyzer.base.visitor.LogicalTreeLoaderVisitor;
+import com.sourcemeter.analyzer.java.core.Java;
 import com.sourcemeter.analyzer.java.helper.VisitorHelperJava;
 
 public class LogicalTreeLoaderVisitorJava extends LogicalTreeLoaderVisitor {
 
-    public LogicalTreeLoaderVisitorJava(FileSystem fileSystem, Settings settings,
+    public LogicalTreeLoaderVisitorJava(FileSystem fileSystem, Configuration  configuration,
             SensorContext sensorContext, long numOfNodes) {
 
-        super(fileSystem, settings, sensorContext, numOfNodes,
-              new VisitorHelperJava(sensorContext, fileSystem));
+        super(fileSystem, configuration, sensorContext, numOfNodes,
+              new VisitorHelperJava(sensorContext, fileSystem), new Java());
     }
 }

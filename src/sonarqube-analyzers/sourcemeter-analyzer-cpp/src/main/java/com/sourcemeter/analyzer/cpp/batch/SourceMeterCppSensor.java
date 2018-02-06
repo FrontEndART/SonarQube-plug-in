@@ -49,7 +49,7 @@ import org.sonar.api.batch.fs.InputModule;
 import org.sonar.api.batch.rule.Rules;
 import org.sonar.api.batch.sensor.SensorContext;
 import org.sonar.api.batch.sensor.SensorDescriptor;
-import org.sonar.api.config.Settings;
+import org.sonar.api.config.Configuration;
 import org.sonar.api.profiles.RulesProfile;
 import org.sonar.api.scan.filesystem.FileExclusions;
 import org.sonar.api.server.rule.RulesDefinitionXmlLoader;
@@ -95,9 +95,9 @@ public class SourceMeterCppSensor extends SourceMeterSensor {
 
     public SourceMeterCppSensor(FileExclusions fileExclusions, FileSystem fileSystem,
             ProjectDefinition projectDefinition, Rules rules, RulesProfile profile,
-            Settings settings) {
+            Configuration configuration) {
 
-        super(fileExclusions, fileSystem, projectDefinition, profile, settings);
+        super(fileExclusions, fileSystem, projectDefinition, profile, configuration);
 
         this.commands = new ArrayList<String>();
         this.rules = rules;
@@ -109,7 +109,7 @@ public class SourceMeterCppSensor extends SourceMeterSensor {
      */
     @Override
     public void execute(SensorContext sensorContext) {
-        boolean skipCpp = this.settings.getBoolean("sm.cpp.skipToolchain");
+        boolean skipCpp = FileHelper.getBooleanFromConfiguration(this.configuration, "sm.cpp.skipToolchain");
         if (skipCpp) {
             LOG.info("SourceMeter toolchain is skipped for C/C++. Results will be uploaded from former results directory, if it exists.");
         } else {
@@ -119,8 +119,8 @@ public class SourceMeterCppSensor extends SourceMeterSensor {
             runSourceMeter(commands);
         }
 
-        String analyseMode = this.settings.getString("sonar.analysis.mode");
-        this.projectName = settings.getString("sonar.projectKey");
+        String analyseMode = FileHelper.getStringFromConfiguration(this.configuration, "sonar.analysis.mode");
+        this.projectName = FileHelper.getStringFromConfiguration(this.configuration, "sonar.projectKey");
         this.projectName = StringUtils.replace(projectName, ":", "_");
 
         if ("incremental".equals(analyseMode)) {
@@ -128,7 +128,7 @@ public class SourceMeterCppSensor extends SourceMeterSensor {
             this.isIncrementalMode = true;
         }
         try {
-            this.resultGraph = FileHelper.getSMSourcePath(settings, fileSystem, '-')
+            this.resultGraph = FileHelper.getSMSourcePath(configuration, fileSystem, '-', new Cpp())
                     + File.separator + this.projectName + ".graph";
         } catch (IOException e) {
             LOG.error("Error during loading result graph path!", e);
@@ -207,7 +207,7 @@ public class SourceMeterCppSensor extends SourceMeterSensor {
             nodeCounter = new NodeCounterVisitor();
             GraphHelper.processGraph(graph, LOGICAL_ROOT, "LogicalTree", nodeCounter);
             LogicalTreeLoaderVisitorCpp logicalVisitor = new LogicalTreeLoaderVisitorCpp(
-                    this.fileSystem, this.settings, sensorContext,
+                    this.fileSystem, this.configuration, sensorContext,
                     nodeCounter.getNumberOfNodes());
 
             nodeCounter = new NodeCounterVisitor();
@@ -217,7 +217,7 @@ public class SourceMeterCppSensor extends SourceMeterSensor {
 
             nodeCounter = new NodeCounterVisitor();
             GraphHelper.processGraph(graph, LOGICAL_ROOT, "logicalTree", nodeCounter);
-            LogicalTreeSaverVisitorCpp logicalSaver = new LogicalTreeSaverVisitorCpp(sensorContext, this.fileSystem, settings);
+            LogicalTreeSaverVisitorCpp logicalSaver = new LogicalTreeSaverVisitorCpp(sensorContext, this.fileSystem, configuration);
 
             nodeCounter = new NodeCounterVisitor();
             GraphHelper.processGraph(graph, "__CloneRoot__", "CloneTree", nodeCounter);
@@ -268,25 +268,25 @@ public class SourceMeterCppSensor extends SourceMeterSensor {
      * @return True if the properties were set correctly.
      */
     private boolean checkProperties() {
-        String pathToCA = this.settings.getString("sm.toolchaindir");
+        String pathToCA = FileHelper.getStringFromConfiguration(this.configuration, "sm.toolchaindir");
         if (pathToCA == null) {
             LOG.error("C/C++ SourceMeter path must be set! Check it on the settings page of your SonarQube!");
             return false;
         }
 
-        String pathToBuild = this.settings.getString("sm.cpp.buildfile");
+        String pathToBuild = FileHelper.getStringFromConfiguration(configuration, "sm.cpp.buildfile");
         if (pathToBuild == null) {
             LOG.error("Build script path must be set! (sm.cpp.buildfile)");
             return false;
         }
 
-        String resultsDir = this.settings.getString("sm.resultsdir");
+        String resultsDir = FileHelper.getStringFromConfiguration(configuration, "sm.resultsdir");
         if (resultsDir == null) {
             LOG.error("Results directory must be set! Check it on the settings page of your SonarQube!");
             return false;
         }
 
-        String projectName = this.settings.getString("sonar.projectKey");
+        String projectName = FileHelper.getStringFromConfiguration(configuration, "sonar.projectKey");
         projectName = StringUtils.replace(projectName, ":", "_");
 
         String softFilter = "";
@@ -300,8 +300,8 @@ public class SourceMeterCppSensor extends SourceMeterSensor {
         }
 
         ProfileInitializer profileInitializer = new ProfileInitializer(
-                this.settings, getMetricHunterCategories(), profile,
-                new SourceMeterCppRuleRepository(new RulesDefinitionXmlLoader()), rules);
+                this.configuration, getMetricHunterCategories(), profile,
+                new SourceMeterCppRuleRepository(new RulesDefinitionXmlLoader()), rules, new Cpp());
 
         String profilePath = this.fileSystem.workDir() + File.separator
                 + "SM-Profile.xml";
@@ -326,15 +326,15 @@ public class SourceMeterCppSensor extends SourceMeterSensor {
         }
 
         // Setting command and parameters for SourceMeter C/C++ analyzer
-        String cleanResults = this.settings.getString("sm.cleanresults");
+        String cleanResults = FileHelper.getStringFromConfiguration(configuration, "sm.cleanresults");
         this.commands.add("-cleanResults=" + cleanResults);
         this.commands.add("-resultsDir=" + resultsDir);
         this.commands.add("-projectName=" + projectName);
         this.commands.add("-projectBaseDir=" + baseDir);
         this.commands.add("-buildScript=" + pathToBuild);
 
-        String cloneGenealogy = this.settings.getString("sm.cloneGenealogy");
-        String cloneMinLines = this.settings.getString("sm.cloneMinLines");
+        String cloneGenealogy = FileHelper.getStringFromConfiguration(configuration, "sm.cloneGenealogy");
+        String cloneMinLines = FileHelper.getStringFromConfiguration(configuration, "sm.cloneMinLines");
         this.commands.add("-cloneGenealogy=" + cloneGenealogy);
         this.commands.add("-cloneMinLines=" + cloneMinLines);
 
@@ -342,12 +342,12 @@ public class SourceMeterCppSensor extends SourceMeterSensor {
             this.commands.add("-externalSoftFilter=" + softFilterFilePath);
         }
 
-        String hardFilter = this.settings.getString("sm.cpp.hardFilter");
+        String hardFilter = FileHelper.getStringFromConfiguration(configuration, "sm.cpp.hardFilter");
         if (null != hardFilter) {
             this.commands.add("-externalHardFilter=" + hardFilter);
         }
 
-        String additionalParameters = this.settings.getString("sm.cpp.toolchainOptions");
+        String additionalParameters = FileHelper.getStringFromConfiguration(configuration, "sm.cpp.toolchainOptions");
         if (null != additionalParameters) {
             this.commands.add(additionalParameters);
         }

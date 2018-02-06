@@ -42,7 +42,6 @@ import org.sonar.api.PropertyType;
 
 import com.sourcemeter.analyzer.base.core.VersionChecker;
 import com.sourcemeter.analyzer.base.helper.ThresholdPropertiesHelper;
-import com.sourcemeter.analyzer.java.batch.SourceMeterJavaInitializer;
 import com.sourcemeter.analyzer.java.batch.SourceMeterJavaSensor;
 import com.sourcemeter.analyzer.java.profile.SourceMeterJavaProfile;
 import com.sourcemeter.analyzer.java.profile.SourceMeterJavaRuleRepository;
@@ -200,8 +199,7 @@ public final class SourceMeterAnalyzerJavaPlugin implements Plugin {
         );
 
         // Batch
-        context.addExtensions(
-                SourceMeterJavaInitializer.class,
+        context.addExtension(
                 SourceMeterJavaSensor.class
         );
 

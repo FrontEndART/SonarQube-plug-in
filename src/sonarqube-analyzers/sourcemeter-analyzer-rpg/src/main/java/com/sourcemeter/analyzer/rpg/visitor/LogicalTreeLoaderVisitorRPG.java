@@ -32,17 +32,18 @@ package com.sourcemeter.analyzer.rpg.visitor;
 
 import org.sonar.api.batch.fs.FileSystem;
 import org.sonar.api.batch.sensor.SensorContext;
-import org.sonar.api.config.Settings;
+import org.sonar.api.config.Configuration;
 
 import com.sourcemeter.analyzer.base.visitor.LogicalTreeLoaderVisitor;
+import com.sourcemeter.analyzer.rpg.core.RPG;
 import com.sourcemeter.analyzer.rpg.helper.VisitorHelperRPG;
 
 public class LogicalTreeLoaderVisitorRPG extends LogicalTreeLoaderVisitor {
 
-    public LogicalTreeLoaderVisitorRPG(FileSystem fileSystem, Settings settings,
+    public LogicalTreeLoaderVisitorRPG(FileSystem fileSystem, Configuration configuration,
             SensorContext sensorContext, long numOfNodes) {
 
-        super(fileSystem, settings, sensorContext, numOfNodes,
-                new VisitorHelperRPG(sensorContext, fileSystem));
+        super(fileSystem, configuration, sensorContext, numOfNodes,
+                new VisitorHelperRPG(sensorContext, fileSystem), new RPG());
     }
 }

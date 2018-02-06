@@ -32,9 +32,9 @@ package com.sourcemeter.analyzer.csharp.helper;
 
 import org.sonar.api.batch.fs.FileSystem;
 
-import com.sourcemeter.analyzer.base.batch.SourceMeterInitializer;
 import com.sourcemeter.analyzer.base.helper.VisitorHelper;
 import com.sourcemeter.analyzer.csharp.SourceMeterCSharpMetricFinder;
+import com.sourcemeter.analyzer.csharp.core.CSharp;
 import com.sourcemeter.analyzer.csharp.profile.SourceMeterCSharpRuleRepository;
 
 public class VisitorHelperCSharp extends VisitorHelper {
@@ -49,7 +49,7 @@ public class VisitorHelperCSharp extends VisitorHelper {
     @Override
     public String getRuleKey() {
         return SourceMeterCSharpRuleRepository.BASE_REPOSITORY_KEY
-                + SourceMeterInitializer.getPluginLanguage().getKey();
+                + CSharp.INSTANCE.getKey();
     }
 
     /**

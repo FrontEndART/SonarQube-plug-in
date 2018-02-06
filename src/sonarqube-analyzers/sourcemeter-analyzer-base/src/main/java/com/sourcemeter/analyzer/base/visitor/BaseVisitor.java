@@ -31,7 +31,6 @@
 package com.sourcemeter.analyzer.base.visitor;
 
 import java.lang.reflect.Field;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.ListIterator;
 
@@ -41,7 +40,8 @@ import org.sonar.api.batch.fs.FileSystem;
 import org.sonar.api.batch.fs.InputComponent;
 import org.sonar.api.batch.fs.InputFile;
 import org.sonar.api.batch.sensor.SensorContext;
-import org.sonar.api.config.Settings;
+import org.sonar.api.config.Configuration;
+import org.sonar.api.resources.AbstractLanguage;
 
 import graphlib.Attribute;
 import graphlib.AttributeFloat;
@@ -50,7 +50,7 @@ import graphlib.AttributeString;
 import graphlib.Edge;
 import graphlib.Node;
 
-import com.sourcemeter.analyzer.base.batch.SourceMeterInitializer;
+import com.sourcemeter.analyzer.base.helper.FileHelper;
 import com.sourcemeter.analyzer.base.helper.VisitorHelper;
 import com.sourcemeter.analyzer.base.jsontree.Position;
 import com.sourcemeter.analyzer.base.jsontree.interfaces.MetricsInt;
@@ -66,14 +66,17 @@ public abstract class BaseVisitor implements graphlib.Visitor {
     private final VisitorHelper visitorHelper;
 
     protected SensorContext sensorContext;
+    protected AbstractLanguage pluginLanguage;
     protected boolean isDebugMode;
     protected boolean uploadMethods;
 
-    public BaseVisitor(VisitorHelper visitorHelper, Settings settings) {
+    public BaseVisitor(VisitorHelper visitorHelper, Configuration configuration, AbstractLanguage pluginLanguage) {
         this.visitorHelper = visitorHelper;
         this.isDebugMode = (System.getenv("COLUMBUS_SONAR_DEBUG") != null);
 
-        String pluginLanguageKey = SourceMeterInitializer.getPluginLanguage().getKey();
+        this.pluginLanguage = pluginLanguage;
+
+        String pluginLanguageKey = pluginLanguage.getKey();
 
         if ("py".equals(pluginLanguageKey)) {
             pluginLanguageKey = "python";
@@ -81,7 +84,7 @@ public abstract class BaseVisitor implements graphlib.Visitor {
             pluginLanguageKey = "csharp";
         }
 
-        this.uploadMethods = settings.getBoolean("sm." + pluginLanguageKey + ".uploadMethods");
+        this.uploadMethods = FileHelper.getBooleanFromConfiguration(configuration, "sm." + pluginLanguageKey + ".uploadMethods");
     }
 
     public BaseVisitor(VisitorHelper visitorHelper) {

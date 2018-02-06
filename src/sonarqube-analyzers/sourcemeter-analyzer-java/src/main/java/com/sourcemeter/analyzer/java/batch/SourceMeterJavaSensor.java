@@ -44,7 +44,6 @@ import java.util.Map;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
-import org.apache.commons.lang.ArrayUtils;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -54,7 +53,7 @@ import org.sonar.api.batch.fs.InputModule;
 import org.sonar.api.batch.rule.Rules;
 import org.sonar.api.batch.sensor.SensorContext;
 import org.sonar.api.batch.sensor.SensorDescriptor;
-import org.sonar.api.config.Settings;
+import org.sonar.api.config.Configuration;
 import org.sonar.api.profiles.RulesProfile;
 import org.sonar.api.scan.filesystem.FileExclusions;
 import org.sonar.api.server.rule.RulesDefinitionXmlLoader;
@@ -103,9 +102,9 @@ public class SourceMeterJavaSensor extends SourceMeterSensor {
      */
     public SourceMeterJavaSensor(FileExclusions fileExclusions, FileSystem fileSystem,
             ProjectDefinition projectDefinition, Rules rules, RulesProfile profile,
-            Settings settings) {
+            Configuration configuration) {
 
-        super(fileExclusions, fileSystem, projectDefinition, profile, settings);
+        super(fileExclusions, fileSystem, projectDefinition, profile, configuration);
 
         this.commands = new ArrayList<String>();
         this.rules = rules;
@@ -117,7 +116,7 @@ public class SourceMeterJavaSensor extends SourceMeterSensor {
      */
     @Override
     public void execute(SensorContext sensorContext) {
-        boolean skipJava = this.settings.getBoolean("sm.java.skipToolchain");
+        boolean skipJava = FileHelper.getBooleanFromConfiguration(this.configuration, "sm.java.skipToolchain");
         if (skipJava) {
             LOG.info("SourceMeter toolchain is skipped for Java. Results will be uploaded from former results directory, if it exists.");
         } else {
@@ -127,16 +126,16 @@ public class SourceMeterJavaSensor extends SourceMeterSensor {
             runSourceMeter(commands);
         }
 
-        this.projectName = this.settings.getString("sonar.projectKey");
+        this.projectName = FileHelper.getStringFromConfiguration(this.configuration, "sonar.projectKey");
         this.projectName = StringUtils.replace(this.projectName, ":", "_");
-        String analyseMode = this.settings.getString("sonar.analysis.mode");
+        String analyseMode = FileHelper.getStringFromConfiguration(this.configuration, "sonar.analysis.mode");
 
         if ("incremental".equals(analyseMode)) {
             LOG.warn("Incremental mode is on. There are no metric based (INFO level) issues in this mode.");
             this.isIncrementalMode = true;
         }
         try {
-            this.resultGraph = FileHelper.getSMSourcePath(settings, fileSystem, '-')
+            this.resultGraph = FileHelper.getSMSourcePath(configuration, fileSystem, '-', new Java())
                     + File.separator + this.projectName + ".graph";
         } catch (IOException e) {
             LOG.error("Error during loading result graph path!", e);
@@ -218,7 +217,7 @@ public class SourceMeterJavaSensor extends SourceMeterSensor {
             nodeCounter = new NodeCounterVisitor();
             GraphHelper.processGraph(graph, LOGICAL_ROOT, "LogicalTree", nodeCounter);
             LogicalTreeLoaderVisitorJava logicalVisitor = new LogicalTreeLoaderVisitorJava(
-                    this.fileSystem, this.settings, sensorContext,
+                    this.fileSystem, this.configuration, sensorContext,
                     nodeCounter.getNumberOfNodes());
 
             nodeCounter = new NodeCounterVisitor();
@@ -228,7 +227,7 @@ public class SourceMeterJavaSensor extends SourceMeterSensor {
 
             nodeCounter = new NodeCounterVisitor();
             GraphHelper.processGraph(graph, LOGICAL_ROOT, "logicalTree", nodeCounter);
-            LogicalTreeSaverVisitorJava logicalSaver = new LogicalTreeSaverVisitorJava(sensorContext, this.fileSystem, settings);
+            LogicalTreeSaverVisitorJava logicalSaver = new LogicalTreeSaverVisitorJava(sensorContext, this.fileSystem, configuration);
 
             nodeCounter = new NodeCounterVisitor();
             GraphHelper.processGraph(graph, "__CloneRoot__", "CloneTree", nodeCounter);
@@ -280,28 +279,28 @@ public class SourceMeterJavaSensor extends SourceMeterSensor {
      * @return True if the properties were set correctly.
      */
     protected boolean checkProperties() {
-        String cleanResults = this.settings.getString("sm.cleanresults");
+        String cleanResults = FileHelper.getStringFromConfiguration(configuration, "sm.cleanresults");
         if (cleanResults == null) {
             LOG.error("sonar.sourcemeter.cleanresults property cannot be null!");
             return false;
         }
 
-        String pathToCA = this.settings.getString("sm.toolchaindir");
+        String pathToCA = FileHelper.getStringFromConfiguration(this.configuration, "sm.toolchaindir");
         if (pathToCA == null) {
             LOG.error("JAVA SourceMeter path must be set! Check it on the settings page of your SonarQube!");
             return false;
         }
 
-        String resultsDir = this.settings.getString("sm.resultsdir");
+        String resultsDir = FileHelper.getStringFromConfiguration(this.configuration, "sm.resultsdir");
         if (resultsDir == null) {
             LOG.error("Results directory must be set! Check it on the settings page of your SonarQube!");
             return false;
         }
 
-        String projectName = this.settings.getString("sonar.projectKey");
+        String projectName = FileHelper.getStringFromConfiguration(this.configuration, "sonar.projectKey");
         projectName = StringUtils.replace(projectName, ":", "_");
 
-        String analyseMode = this.settings.getString("sonar.analysis.mode");
+        String analyseMode = FileHelper.getStringFromConfiguration(this.configuration, "sonar.analysis.mode");
         String projectNameSuffix = "";
         if ("incremental".equals(analyseMode)) {
             LOG.warn("Incremental mode is on. There are no metric based (INFO level) issues in this mode.");
@@ -338,10 +337,10 @@ public class SourceMeterJavaSensor extends SourceMeterSensor {
             LOG.warn("Cannot create filter file for toolchain! No filter is used during analysis.", e);
         }
 
-        String[] binaries = this.settings.getStringArray("sonar.java.binaries");
+        String binaries = FileHelper.getStringFromConfiguration(this.configuration, "sonar.java.binaries");
         String fbFile = null;
 
-        if (binaries != null && !ArrayUtils.isEmpty(binaries)) {
+        if (binaries != null) {
             try {
                 fbFile = generateFindBugsFile(binaries);
             } catch (IOException e) {
@@ -357,8 +356,8 @@ public class SourceMeterJavaSensor extends SourceMeterSensor {
 
 
         ProfileInitializer profileInitializer = new ProfileInitializer(
-                this.settings, getMetricHunterCategories(), this.profile,
-                new SourceMeterJavaRuleRepository(new RulesDefinitionXmlLoader()), rules);
+                this.configuration, getMetricHunterCategories(), this.profile,
+                new SourceMeterJavaRuleRepository(new RulesDefinitionXmlLoader()), rules, new Java());
 
         String profilePath = this.fileSystem.workDir() + File.separator
                 + "SM-Profile.xml";
@@ -377,7 +376,7 @@ public class SourceMeterJavaSensor extends SourceMeterSensor {
             baseDir = this.fileSystem.baseDir().getAbsolutePath();
         }
 
-        String buildScript = this.settings.getString("sm.java.buildscript");
+        String buildScript = FileHelper.getStringFromConfiguration(this.configuration, "sm.java.buildscript");
         if (buildScript != null) {
             this.commands.add("-buildScript=" + buildScript);
         }
@@ -388,13 +387,13 @@ public class SourceMeterJavaSensor extends SourceMeterSensor {
             this.commands.add("-externalSoftFilter=" + softFilterFilePath);
         }
 
-        String hardFilter = this.settings.getString("sm.java.hardFilter");
+        String hardFilter = FileHelper.getStringFromConfiguration(this.configuration, "sm.java.hardFilter");
         if (hardFilter != null) {
             this.commands.add("-externalHardFilter=" + hardFilter);
         }
 
-        String javacOptions = this.settings.getString("sm.java.javacOptions");
-        String externalLibraries = this.settings.getString("sonar.java.libraries");
+        String javacOptions = FileHelper.getStringFromConfiguration(this.configuration, "sm.java.javacOptions");
+        String externalLibraries = FileHelper.getStringFromConfiguration(this.configuration, "sonar.java.libraries");
         if (externalLibraries != null && !externalLibraries.isEmpty()) {
             externalLibraries = StringUtils.replace(externalLibraries, ",",
                     File.pathSeparator);
@@ -407,53 +406,53 @@ public class SourceMeterJavaSensor extends SourceMeterSensor {
             this.commands.add("-javacOptions=" + javacOptions);
         }
 
-        String vhMaxDepth = this.settings.getString("sm.java.vhMaxDepth");
+        String vhMaxDepth = FileHelper.getStringFromConfiguration(this.configuration, "sm.java.vhMaxDepth");
         if (vhMaxDepth != null) {
             this.commands.add("-VHMaxDepth=" + vhMaxDepth);
         }
 
-        String maxMem = this.settings.getString("sm.java.maxMem");
+        String maxMem = FileHelper.getStringFromConfiguration(this.configuration, "sm.java.maxMem");
         if (maxMem != null) {
             this.commands.add("-JVMOptions=" + "-Xmx" + maxMem + "M");
         }
 
-        String vhTimeout = this.settings.getString("sm.java.vhTimeOut");
+        String vhTimeout = FileHelper.getStringFromConfiguration(this.configuration, "sm.java.vhTimeOut");
         if (vhTimeout != null) {
             this.commands.add("-VHTimeout=" + vhTimeout);
         }
 
-        String runVul = this.settings.getString("sm.java.runVulnerabilityHunter");
+        String runVul = FileHelper.getStringFromConfiguration(this.configuration, "sm.java.runVulnerabilityHunter");
         if (runVul != null) {
             this.commands.add("-runVLH=" + runVul);
         }
 
-        String runRTE = this.settings.getString("sm.java.runRTEHunter");
+        String runRTE = FileHelper.getStringFromConfiguration(this.configuration, "sm.java.runRTEHunter");
         if (runRTE != null) {
             this.commands.add("-runRTEHunter=" + runRTE);
         }
 
-        String rhMaxState = this.settings.getString("sm.java.RHMaxState");
+        String rhMaxState = FileHelper.getStringFromConfiguration(this.configuration, "sm.java.RHMaxState");
         if (rhMaxState != null) {
             this.commands.add("-RHMaxState=" + rhMaxState);
         }
 
-        String rhMaxDepth = this.settings.getString("sm.java.RHMaxDepth");
+        String rhMaxDepth = FileHelper.getStringFromConfiguration(this.configuration, "sm.java.RHMaxDepth");
         if (rhMaxDepth != null) {
             this.commands.add("-RHMaxDepth=" + rhMaxDepth);
         }
 
-        String pmdOptions = this.settings.getString("sm.java.pmdOptions");
+        String pmdOptions = FileHelper.getStringFromConfiguration(this.configuration, "sm.java.pmdOptions");
         if (pmdOptions != null) {
             this.commands.add("-pmdOptions=" + pmdOptions);
         }
 
-        String csvSeparator = this.settings.getString("sm.java.csvSeparator");
+        String csvSeparator = FileHelper.getStringFromConfiguration(this.configuration, "sm.java.csvSeparator");
         if (csvSeparator != null) {
             this.commands.add("-csvSeparator=" + csvSeparator);
         }
 
-        String cloneGenealogy = this.settings.getString("sm.cloneGenealogy");
-        String cloneMinLines = this.settings.getString("sm.cloneMinLines");
+        String cloneGenealogy = FileHelper.getStringFromConfiguration(this.configuration, "sm.cloneGenealogy");
+        String cloneMinLines = FileHelper.getStringFromConfiguration(this.configuration, "sm.cloneMinLines");
         this.commands.add("-cloneGenealogy=" + cloneGenealogy);
         this.commands.add("-cloneMinLines=" + cloneMinLines);
 
@@ -470,12 +469,12 @@ public class SourceMeterJavaSensor extends SourceMeterSensor {
             this.commands.add("-runFB=true");
         }
 
-        String findBugsOptions = this.settings.getString("sm.java.fbOptions");
+        String findBugsOptions = FileHelper.getStringFromConfiguration(this.configuration, "sm.java.fbOptions");
         if (findBugsOptions != null) {
             this.commands.add("-FBOptions=" + findBugsOptions);
         }
 
-        String additionalParameters = this.settings.getString("sm.java.toolchainOptions");
+        String additionalParameters = FileHelper.getStringFromConfiguration(this.configuration, "sm.java.toolchainOptions");
         if (additionalParameters != null) {
             this.commands.add(additionalParameters);
         }

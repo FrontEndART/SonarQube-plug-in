@@ -45,7 +45,6 @@ import org.sonar.api.resources.Qualifiers;
 
 import com.sourcemeter.analyzer.base.core.VersionChecker;
 import com.sourcemeter.analyzer.base.helper.ThresholdPropertiesHelper;
-import com.sourcemeter.analyzer.cpp.batch.SourceMeterCppInitializer;
 import com.sourcemeter.analyzer.cpp.batch.SourceMeterCppSensor;
 import com.sourcemeter.analyzer.cpp.core.Cpp;
 import com.sourcemeter.analyzer.cpp.profile.SourceMeterCppProfile;
@@ -117,9 +116,8 @@ public class SourceMeterAnalyzerCppPlugin implements Plugin {
                 SourceMeterCppRuleRepository.class,
                 VersionChecker.class
         );
-        context.addExtensions(
+        context.addExtension(
                 // Batch
-                SourceMeterCppInitializer.class,
                 SourceMeterCppSensor.class
         );
 

@@ -36,6 +36,7 @@ import java.util.ListIterator;
 
 import org.sonar.api.batch.sensor.SensorContext;
 import org.sonar.api.measures.Metric;
+import org.sonar.api.resources.AbstractLanguage;
 
 import graphlib.Attribute;
 import graphlib.AttributeString;
@@ -72,8 +73,8 @@ public abstract class LogicalTreeSaverVisitor extends BaseVisitor {
     public LogicalTreeSaverVisitor(List<Node.NodeType> levelOneTypes,
             List<Node.NodeType> levelTwoTypes,
             List<Node.NodeType> levelThreeTypes,
-            SensorContext sensorContext, VisitorHelper visitorHelper) {
-        super(visitorHelper, sensorContext.settings());
+            SensorContext sensorContext, VisitorHelper visitorHelper, AbstractLanguage pluginLnaguage) {
+        super(visitorHelper, sensorContext.config(), pluginLnaguage);
 
         this.sensorContext = sensorContext;
         positionsList = new ArrayList<Position>();
