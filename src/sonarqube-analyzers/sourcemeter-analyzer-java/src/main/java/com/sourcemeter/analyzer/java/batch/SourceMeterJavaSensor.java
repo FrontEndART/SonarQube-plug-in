@@ -470,8 +470,6 @@ public class SourceMeterJavaSensor extends SourceMeterSensor {
             this.commands.add("-runFB=true");
         }
 
-        this.commands.add("-runChangeTracker=true");
-
         String findBugsOptions = this.settings.getString("sm.java.fbOptions");
         if (findBugsOptions != null) {
             this.commands.add("-FBOptions=" + findBugsOptions);

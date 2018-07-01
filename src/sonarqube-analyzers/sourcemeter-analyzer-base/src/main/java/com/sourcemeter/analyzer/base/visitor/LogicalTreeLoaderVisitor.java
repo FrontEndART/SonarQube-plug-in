@@ -54,7 +54,6 @@ public abstract class LogicalTreeLoaderVisitor extends BaseVisitor {
     protected long logicalTime;
     protected final FileSystem fileSystem;
     protected final Settings settings;
-    protected final boolean skipTUID;
 
     protected static final Logger LOG = LoggerFactory.getLogger(LogicalTreeLoaderVisitor.class);
 
@@ -70,8 +69,6 @@ public abstract class LogicalTreeLoaderVisitor extends BaseVisitor {
         this.settings = settings;
 
         this.numOfNodes = numOfNodes;
-
-        this.skipTUID = settings.getBoolean("sm." + pluginLanguageKey + ".skipTUID");
 
         FilePredicate mainFilePredicate = fileSystem.predicates().hasType(InputFile.Type.MAIN);
 

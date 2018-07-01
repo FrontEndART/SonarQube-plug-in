@@ -328,7 +328,6 @@ public class SourceMeterPythonSensor extends SourceMeterSensor {
         this.commands.add("-resultsDir=" + resultsDir);
         this.commands.add("-projectName=" + projectName);
         this.commands.add("-python27binary=" + pythonBinary);
-        this.commands.add("-runChangeTracker=true");
 
         String cloneGenealogy = this.settings.getString("sm.cloneGenealogy");
         String cloneMinLines = this.settings.getString("sm.cloneMinLines");

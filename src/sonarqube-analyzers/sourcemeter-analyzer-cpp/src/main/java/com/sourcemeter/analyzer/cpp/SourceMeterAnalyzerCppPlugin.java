@@ -84,14 +84,6 @@ import com.sourcemeter.analyzer.cpp.profile.SourceMeterCppRuleRepository;
                  defaultValue = SourceMeterAnalyzerCppPlugin.FALSE
              ),
              @Property(
-                 key = "sm.cpp.skipTUID",
-                 name = "Skip elements which does not have a TUID in result graph.",
-                 global = false,
-                 project = false,
-                 type = PropertyType.BOOLEAN,
-                 defaultValue = SourceMeterAnalyzerCppPlugin.TRUE
-             ),
-             @Property(
                  key = "sm.cpp.toolchainOptions",
                  name = "Add additional parameters for running SourceMeter C/C++ toolchain.",
                  global = false,

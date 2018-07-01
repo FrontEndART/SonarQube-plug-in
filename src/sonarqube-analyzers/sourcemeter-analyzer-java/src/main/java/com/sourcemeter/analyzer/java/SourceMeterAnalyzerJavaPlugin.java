@@ -169,14 +169,6 @@ import com.sourcemeter.analyzer.java.profile.SourceMeterJavaRuleRepository;
                  project = false,
                  type = PropertyType.STRING
              ),
-             @Property(
-                 key = "sm.java.skipTUID",
-                 name = "Skip elements which does not have a TUID in result graph.",
-                 global = false,
-                 project = false,
-                 type = PropertyType.BOOLEAN,
-                 defaultValue = SourceMeterAnalyzerJavaPlugin.TRUE
-             )
 })
 public final class SourceMeterAnalyzerJavaPlugin implements Plugin {
 

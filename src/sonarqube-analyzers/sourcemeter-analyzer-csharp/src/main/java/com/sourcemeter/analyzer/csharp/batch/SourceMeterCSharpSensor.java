@@ -351,7 +351,6 @@ public class SourceMeterCSharpSensor extends SourceMeterSensor {
         this.commands.add("-projectName=" + projectName);
         this.commands.add("-configuration=" + configuration);
         this.commands.add("-platform=" + platform);
-        this.commands.add("-runChangeTracker=true");
 
         String cloneGenealogy = this.settings.getString("sm.cloneGenealogy");
         String cloneMinLines = this.settings.getString("sm.cloneMinLines");

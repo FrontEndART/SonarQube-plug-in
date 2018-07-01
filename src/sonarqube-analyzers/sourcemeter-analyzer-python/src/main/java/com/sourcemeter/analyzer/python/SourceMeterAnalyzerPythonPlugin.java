@@ -80,14 +80,6 @@ import com.sourcemeter.analyzer.python.profile.SourceMeterPythonRuleRepository;
                  project = false,
                  type = PropertyType.STRING
              ),
-             @Property(
-                 key = "sm.python.skipTUID",
-                 name = "Skip elements which does not have a TUID in result graph.",
-                 global = false,
-                 project = false,
-                 type = PropertyType.BOOLEAN,
-                 defaultValue = SourceMeterAnalyzerPythonPlugin.TRUE
-             )
 })
 public class SourceMeterAnalyzerPythonPlugin implements Plugin {
 
