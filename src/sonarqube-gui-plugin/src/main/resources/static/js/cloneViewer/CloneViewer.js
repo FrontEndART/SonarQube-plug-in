@@ -147,3 +147,4 @@ SM.CloneViewer = function() {
   SM.bindFunctions(this);
   this.init();
 };
+
