@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014-2017, FrontEndART Software Ltd.
+ * Copyright (c) 2014-2018, FrontEndART Software Ltd.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -28,7 +28,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-window.registerExtension('SourceMeterGUI/help', function(options) {
+window.registerExtension('SourceMeterGUI/cloneViewer', function(options) {
   /**
    * init - This function manages the plugin PAGE initialization. If you need to add a
    * new page, aside from adding it to SonarQube, to load the SM gui plugin
@@ -41,8 +41,8 @@ window.registerExtension('SourceMeterGUI/help', function(options) {
    * @returns {undefined} undefined
    */
   var init = function() {
-    SM.help.main();
-  };
+    SM.cloneViewer.main();
+  }
   /** the statekey identifies somethings state in SM.state. use SM.state[stateKey]
    *  to store information, and reload it when the your page is loaded again*.
    *  This can make page loads happen faster for example data retrieval from
@@ -51,11 +51,7 @@ window.registerExtension('SourceMeterGUI/help', function(options) {
    *  *: information will stay there until an explicit page load occures, for more
    *  info see how react works, sonarQube uses react.
    */
-   var stateKey = 'help';
-
-   options.el.textContent = '';
-   options.el.id = 'sm-page-content';
-   options.el.className = 'page sm-help';
+  var stateKey = options.component.key;
 
   /*  DO NOT EDIT BELOW THIS LINE (you can, but should not have to) */
 
@@ -79,29 +75,6 @@ window.registerExtension('SourceMeterGUI/help', function(options) {
     }, time);
   };
 
-
-  /**
-   *  Loads a script into the DOM with src="url".
-   *  if 'basePath' is defined, it gets prepended to 'url'
-   *  Only loads the script if it hasn't been appended to the document before
-   *
-   *  Copied from loader.js
-   */
-  loadScript = function(url, isAsync, basePath) {
-    basePath = basePath ? basePath : "";
-    isAsync = isAsync ? isAsync : false; //false by default
-    if (document.getElementById(basePath + url) === null){ //checks if the script is already loaded
-      var script = document.createElement('script');
-
-      script.type = 'text/javascript';
-      script.async = isAsync;
-      script.src = basePath + url;
-      script.setAttribute("id", basePath + url)
-
-      document.head.append(script);
-    }
-  };
-
   /**
    * load - Manages the loading of the SM-gui-plugin itself. Ensures loading
    * happens only once. Assumes SM exists.
@@ -114,9 +87,9 @@ window.registerExtension('SourceMeterGUI/help', function(options) {
     if (!SM.state.hasOwnProperty(stateKey)) {
       SM.state[stateKey] = {}; // create it the first time
     }
-    SM.state[stateKey].cleanup = []; // create/reset the cleanup task list
     SM.state[stateKey].isDisplayed = true;
 
+    SM.state[stateKey].cleanup = [];
     SM.state[stateKey].cleanup.push(function() {
       SM.state[stateKey].isDisplayed = false;
     });
@@ -126,10 +99,15 @@ window.registerExtension('SourceMeterGUI/help', function(options) {
     if (SM.SmGuiExtensionAlreadyLoaded) {
       init();
       return;
-    }
+    } // else {...
 
-    // load script loader.js, from then loader loads everything.
-    loadScript("/static/SourceMeterGUI/loader.js", true);
+    // load script loader.js, after the loader loads everything else.
+    var scriptLoad = document.createElement('script');
+    scriptLoad.type = 'text/javascript';
+    scriptLoad.async = true;
+    scriptLoad.src = "/static/SourceMeterGUI/loader.js";
+
+    document.head.appendChild(scriptLoad);
 
     waitForNDo(
       function() {
@@ -140,11 +118,16 @@ window.registerExtension('SourceMeterGUI/help', function(options) {
     );
   };
 
+  options.el.textContent = '';
+  options.el.id = 'sm-page-content';
+  options.el.className = 'page';
 
   // load global vars into global scope
-  loadScript("/static/SourceMeterGUI/globals.js");
+  var scriptGlob = document.createElement('script');
+  scriptGlob.type = 'text/javascript';
+  scriptGlob.src = "/static/SourceMeterGUI/globals.js";
 
-
+  document.head.appendChild(scriptGlob);
   waitForNDo(
     function() {
       return (typeof SM !== 'undefined') && SM.globalsInitialized;
@@ -155,7 +138,7 @@ window.registerExtension('SourceMeterGUI/help', function(options) {
 
   return function() {
     SM.state[stateKey].cleanup.forEach(function(task) {
-      task(); // execute the cleanup tasks
+      task();
     });
   };
 });

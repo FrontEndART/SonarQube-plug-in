@@ -120,11 +120,12 @@ div.sm-widget table tr th.sm-widget-metric-title {
     white-space: nowrap;
 }
 
-div.sm-widget span.sm-widget-threshold-red {
+.sm-widget-threshold-red {
     color: #D4333F;
 }
-div.sm-widget span.sm-widget-threshold-green {
-    color: #00AA00;
+.sm-widget-threshold-green {
+    /*color: #00AA00;*/
+    color: green;
 }
 div.sm-widget div.sm-widget-table-div {
   overflow-x: auto;

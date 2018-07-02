@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014-2017, FrontEndART Software Ltd.
+ * Copyright (c) 2014-2018, FrontEndART Software Ltd.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -206,8 +206,18 @@ SM.dashboard.loadCloneWidget = function(lang, key) {
 SM.dashboard.reInit = function() { // for fast debug/test reasons
   // clear view
   SM.pageBuilder.dashboard.build();
+  SM.dashboard.fetch();
+};
 
-  // clear cached state
+SM.dashboard.buildPage = function() {
+  SM.pageBuilder.dashboard.build();
+}
+/**
+ * Fetch/refresh data from the back end.
+ * @return {void}
+ */
+SM.dashboard.fetch = function() {
+  // clear cached state. nescessary, otherwise duplications appear due to merging
   SM.state[SM.options.component.key].initialized = false;
   SM.state[SM.options.component.key].level1     = undefined;
   SM.state[SM.options.component.key].level2     = undefined;
@@ -215,42 +225,6 @@ SM.dashboard.reInit = function() { // for fast debug/test reasons
   SM.state[SM.options.component.key].clone      = undefined;
   SM.state[SM.options.component.key].license    = undefined;
   SM.state[SM.options.component.key].components = undefined;
-
-  SM.dashboard.main();
-};
-
-/**
- * Main entrypoint for the SM-gui-plugin.
- * Gets data from the web api, and displays it on the page.
- */
-SM.dashboard.main = function() {
-  SM.pageBuilder.dashboard.build();
-
-  if (SM.state[SM.options.component.key].initialized) {
-    // reinitialize page
-    if (SM.state[SM.options.component.key].level1) {
-      SM.state[SM.options.component.key].level1.bindElement($("#div1"));
-    }
-    if (SM.state[SM.options.component.key].level2) {
-      SM.state[SM.options.component.key].level2.bindElement($("#div2"));
-    }
-    if (SM.state[SM.options.component.key].level3) {
-      SM.state[SM.options.component.key].level3.bindElement($("#div3"));
-    }
-    if (SM.state[SM.options.component.key].clone) {
-      SM.state[SM.options.component.key].clone.bindElement($("#div4"));
-    }
-    if (SM.state[SM.options.component.key].license) {
-      Object.keys(SM.state[SM.options.component.key].license).forEach(function(lang) {
-        lic = SM.state[SM.options.component.key].license[lang];
-        SM.pageBuilder.dashboard.appendToLicenseTable({
-          lang: lang,
-          json: lic
-        });
-      });
-    }
-    return;
-  }
 
   // get list of subcomponents:
   window.SonarRequest.getJSON(location.origin + '/api/components/tree', {
@@ -307,5 +281,40 @@ SM.dashboard.main = function() {
         });
       });
     });
+} // END OF function fetch
 
-}; // END OF function main
+/**
+ * Main entrypoint for the SM-gui-plugin.
+ * Gets data from the web api, and displays it on the page.
+ */
+SM.dashboard.main = function() {
+  SM.dashboard.buildPage();
+
+  if (SM.state[SM.options.component.key].initialized) {
+    // reinitialize page
+    if (SM.state[SM.options.component.key].level1) {
+      SM.state[SM.options.component.key].level1.bindElement($("#div1"));
+    }
+    if (SM.state[SM.options.component.key].level2) {
+      SM.state[SM.options.component.key].level2.bindElement($("#div2"));
+    }
+    if (SM.state[SM.options.component.key].level3) {
+      SM.state[SM.options.component.key].level3.bindElement($("#div3"));
+    }
+    if (SM.state[SM.options.component.key].clone) {
+      SM.state[SM.options.component.key].clone.bindElement($("#div4"));
+    }
+    if (SM.state[SM.options.component.key].license) {
+      Object.keys(SM.state[SM.options.component.key].license).forEach(function(lang) {
+        lic = SM.state[SM.options.component.key].license[lang];
+        SM.pageBuilder.dashboard.appendToLicenseTable({
+          lang: lang,
+          json: lic
+        });
+      });
+    }
+    return;
+  }
+
+  SM.dashboard.fetch();
+};

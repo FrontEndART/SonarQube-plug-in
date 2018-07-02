@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014-2017, FrontEndART Software Ltd.
+ * Copyright (c) 2014-2018, FrontEndART Software Ltd.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -35,6 +35,7 @@ SM.Metric = function(mTitle, langID, scope) {
   this.langID = langID || undefined;
   this.scope = scope || undefined;
   this.helpText = "loading description...";
+  this.longName = "";
 
   this.getUniqueKey = function() {
     return this.langID + "." + this.scope.toLowerCase() + "." + this.title;

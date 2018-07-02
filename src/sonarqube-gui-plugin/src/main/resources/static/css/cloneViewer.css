@@ -1,0 +1,36 @@
+.sm-cloneviewer-metric-container, .sm-cloneviewer-metric-container div{
+  display:inline-block;
+}
+.sm-cloneviewer-metric-container{
+  min-width: 240px;
+}
+.sm-cloneviewer-metric-value-container{
+  min-width: 30px;
+  text-align: left;
+}
+.sm-cloneviewer-metric-container div{
+  margin:5px;
+}
+.sm-cloneviewer-metric-container .sm-cloneviewer-metric-icon-container{
+  margin: 0px;
+}
+.sm-cloneInstanceSelector{
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-gap: 10px;
+
+}
+#cloneInstanceSelectorContainer{
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-gap: 10px;
+}
+#cloneClassSelectorContainer{
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-gap: 10px;
+  margin-bottom: 10px;
+}
+#cloneInstanceLinkContainer{
+  grid-column: 1 / 3
+}

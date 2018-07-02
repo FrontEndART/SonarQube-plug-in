@@ -42,19 +42,32 @@ SM.loader.src = {
       "https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.4/lodash.min.js"
     ],
     styles: [ // these stylesheets will be loaded
-      "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+      "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css",
+      "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css"
     ]
   },
   local: { // these get baseUrl prepended automatically
     scripts: [
+      'lib/highlightjs/highlight.pack.js',
+      'lib/diff2html/diff2html.min.js',
+      'lib/diff2html/diff2html-ui.min.js',
+      'lib/jsdiff/diff.min.js',
+      'js/tools/Subscribable.js',
+      'js/dashboard/Metric.js',
+      'js/dashboard/MetricLoader.js',
       'js/dashboard/pageBuilder.js',
       'js/dashboard/SM-clone-widget.js',
       'js/dashboard/SM-logic-widget.js',
-      'js/dashboard/Metric.js',
-      'js/dashboard/MetricLoader.js',
       'js/dashboard/main.js',
       'js/help/pageBuilder.js',
       'js/help/main.js',
+      'js/cloneViewer/pageBuilder.js',
+      'js/cloneViewer/main.js',
+      'js/cloneViewer/RawFileLoader.js',
+      'js/cloneViewer/CloneClassSelector.js',
+      'js/cloneViewer/CloneInstanceSelector.js',
+      'js/cloneViewer/CloneViewer.js',
+      'js/cloneViewer/SideBySideDiffer.js',
       'last.js'
     ],
     styles: [
@@ -65,6 +78,8 @@ SM.loader.src = {
       'css/jquery-ui/jquery-ui.min.css',
       'css/jquery-ui/jquery-ui.structure.min.css',
       'css/jquery-ui/jquery-ui.theme.min.css',
+      'lib/diff2html/diff2html.min.css',
+      'css/cloneViewer.css'
     ]
   }
 };
@@ -72,29 +87,40 @@ SM.loader.src = {
 /**
  *  Loads a script into the DOM with src="url".
  *  if 'basePath' is defined, it gets prepended to 'url'
+ *  Only loads the script if it hasn't been appended to the document before
+ *
+ *  Copied to help.js
  */
 SM.loader.loadScript = function(url, basePath) {
   basePath = basePath ? basePath : "";
+  if (document.getElementById(basePath + url) === null) { //checks if the script is already loaded
+    var script = document.createElement('script');
 
-  var script = document.createElement('script');
-  script.type = 'text/javascript';
-  script.async = false;
-  script.src = basePath + url;
+    script.type = 'text/javascript';
+    script.async = false;
+    script.src = basePath + url;
+    script.setAttribute("id", basePath + url);
 
-  document.head.append(script);
+    document.head.append(script);
+  }
 };
+
 /**
- *  Loads a stylesheet into the DOM with src="url".
- *  if 'basePath' is defined, it gets prepended to 'url'
+ *  Loads a stylesheet into the DOM with href="url".
+ *  if 'base' is defined, it gets prepended to 'url'
+ *  Only loads the stylesheet if it hasn't been appended to the document before
  */
 SM.loader.loadStyle = function(url, base) {
   base = base ? base : "";
+  if (document.getElementById(base + url) === null) { // checks if the stylesheet is already loaded
+    var style = document.createElement('link');
 
-  var style = document.createElement('link');
-  style.rel = "stylesheet";
-  style.href = base + url;
+    style.rel = "stylesheet";
+    style.href = base + url;
+    style.setAttribute("id", base + url);
 
-  document.head.append(style);
+    document.head.append(style);
+  }
 };
 
 /**

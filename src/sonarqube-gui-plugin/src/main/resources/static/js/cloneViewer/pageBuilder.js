@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014-2015, FrontEndART Software Ltd.
+ * Copyright (c) 2014-2018, FrontEndART Software Ltd.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -28,30 +28,25 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.sourcemeter.gui.ui.page;
+/*
+*  This file schould contain all simple DOM creation code.
+*  So to say this file replaces the index.html file of the plugin,
+*  it will (, well it should!) be loaded first before all the other
+*  scripts execute.
+*/
+SM.pageBuilder.cloneViewer = {};
 
-import org.sonar.api.web.page.Context;
-import org.sonar.api.web.page.Page;
-import org.sonar.api.web.page.Page.Qualifier;
-import org.sonar.api.web.page.Page.Scope;
-import org.sonar.api.web.page.PageDefinition;
-
-public class SourceMeterPages implements PageDefinition {
-
-    @Override
-    public void define(Context context) {
-        context.addPage(Page.builder("SourceMeterGUI/dashboard")
-                            .setName("SourceMeter Dashboard")
-                            .setScope(Scope.COMPONENT)
-                            .setComponentQualifiers(Qualifier.PROJECT)
-                            .build());
-        context.addPage(Page.builder("SourceMeterGUI/help")
-                            .setName("SourceMeter Help")
-                            .build());
-        context.addPage(Page.builder("SourceMeterGUI/cloneViewer")
-                            .setName("SourceMeter cloneViewer")
-                            .setScope(Scope.COMPONENT)
-                            .setComponentQualifiers(Qualifier.PROJECT)
-                            .build());
-    }
-}
+SM.pageBuilder.cloneViewer.build = function() {
+    SM.getRoot().html([
+        '<div class="sm-page-header">',
+          '<img id="sm-logo" height="36px" src="/static/SourceMeterGUI/graphics/MainLogo.png">',
+          '<h1 class="sm-page-title">Clone Viewer</h1>',
+        '</div>',
+        '<hr>',
+        '<div id="cloneClassSelectorContainer"></div>',
+        '<hr>',
+        '<div id="cloneInstanceSelectorContainer"></div>',
+        '<hr>',
+        '<div id="cloneViewerConatiner"></div>',
+    ].join(""));
+};

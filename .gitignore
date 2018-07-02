@@ -11,3 +11,5 @@ src/sonarqube-gui-plugin/target/
 .classpath
 .project
 .settings
+sourcemeter-*.tar.gz
+**/.scannerwork
