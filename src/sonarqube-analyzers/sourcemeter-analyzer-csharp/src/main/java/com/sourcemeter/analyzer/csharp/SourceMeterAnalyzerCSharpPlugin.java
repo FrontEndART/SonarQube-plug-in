@@ -106,14 +106,6 @@ import com.sourcemeter.analyzer.csharp.profile.SourceMeterCSharpRuleRepository;
                  defaultValue = SourceMeterAnalyzerCSharpPlugin.FALSE
              ),
              @Property(
-                 key = "sm.csharp.skipTUID",
-                 name = "Skip elements which does not have a TUID in result graph.",
-                 global = false,
-                 project = false,
-                 type = PropertyType.BOOLEAN,
-                 defaultValue = SourceMeterAnalyzerCSharpPlugin.TRUE
-             ),
-             @Property(
                  key = "sm.csharp.toolchainOptions",
                  name = "Add additional parameters for running SourceMeter C# toolchain.",
                  global = false,

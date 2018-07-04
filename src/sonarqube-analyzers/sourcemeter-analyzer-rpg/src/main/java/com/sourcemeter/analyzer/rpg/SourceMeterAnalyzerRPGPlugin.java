@@ -90,14 +90,6 @@ import com.sourcemeter.analyzer.rpg.profile.SourceMeterRPGRuleRepository;
                      defaultValue = "false"
              ),
              @Property(
-                 key = "sm.python.skipTUID",
-                 name = "Skip elements which does not have a TUID in result graph.",
-                 global = false,
-                 project = false,
-                 type = PropertyType.BOOLEAN,
-                 defaultValue = SourceMeterAnalyzerRPGPlugin.TRUE
-             ),
-             @Property(
                      key = "sm.rpg.toolchainOptions",
                      name = "Add additional parameters for running SourceMeter RPG toolchain.",
                      global = false,

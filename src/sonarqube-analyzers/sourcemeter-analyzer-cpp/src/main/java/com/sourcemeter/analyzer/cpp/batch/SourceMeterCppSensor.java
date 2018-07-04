@@ -332,7 +332,6 @@ public class SourceMeterCppSensor extends SourceMeterSensor {
         this.commands.add("-projectName=" + projectName);
         this.commands.add("-projectBaseDir=" + baseDir);
         this.commands.add("-buildScript=" + pathToBuild);
-        this.commands.add("-runChangeTracker=true");
 
         String cloneGenealogy = this.settings.getString("sm.cloneGenealogy");
         String cloneMinLines = this.settings.getString("sm.cloneMinLines");
