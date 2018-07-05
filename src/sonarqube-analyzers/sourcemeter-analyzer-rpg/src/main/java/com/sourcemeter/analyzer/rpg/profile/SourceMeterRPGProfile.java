@@ -30,33 +30,32 @@
 
 package com.sourcemeter.analyzer.rpg.profile;
 
+import java.io.IOException;
 import java.io.InputStream;
 
-import org.apache.commons.io.IOUtils;
-import org.sonar.api.profiles.RulesProfile;
-import org.sonar.api.profiles.XMLProfileParser;
-import org.sonar.api.utils.ValidationMessages;
-
 import com.sourcemeter.analyzer.base.profile.SourceMeterProfile;
+import com.sourcemeter.analyzer.rpg.core.RPG;
 
 public class SourceMeterRPGProfile extends SourceMeterProfile {
-
-    public SourceMeterRPGProfile(XMLProfileParser parser) {
-        super(parser);
-    }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public RulesProfile createProfile(ValidationMessages validationMessages) {
-        InputStream input = null;
+    public void define(Context context) {
+        NewBuiltInQualityProfile qualityProfile = context.createBuiltInQualityProfile("SourceMeter Way", RPG.KEY);
+        InputStream qualityProfileXml = getClass().getResourceAsStream("/SourceMeter_way_default_profile.xml" );
+
+        super.parseXml(qualityProfile, qualityProfileXml);
+
         try {
-            input = getClass().getResourceAsStream(
-                    "/SourceMeter_way_default_profile.xml");
-            return super.createProfile(input, ValidationMessages.create());
-        } finally {
-            IOUtils.closeQuietly(input);
+            if (qualityProfileXml != null) {
+                qualityProfileXml.close();
+            }
+        } catch (IOException e) {
+            LOG.error("ERROR: Can not close QualityProfile's XML file!");
         }
+        qualityProfile.setDefault(true);
+        qualityProfile.done();
     }
 }

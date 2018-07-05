@@ -33,9 +33,9 @@ package com.sourcemeter.analyzer.java.helper;
 import org.sonar.api.batch.fs.FileSystem;
 import org.sonar.api.batch.sensor.SensorContext;
 
-import com.sourcemeter.analyzer.base.batch.SourceMeterInitializer;
 import com.sourcemeter.analyzer.base.helper.VisitorHelper;
 import com.sourcemeter.analyzer.java.SourceMeterJavaMetricFinder;
+import com.sourcemeter.analyzer.java.core.Java;
 import com.sourcemeter.analyzer.java.profile.SourceMeterJavaRuleRepository;
 
 public class VisitorHelperJava extends VisitorHelper {
@@ -50,7 +50,7 @@ public class VisitorHelperJava extends VisitorHelper {
     @Override
     public String getRuleKey() {
         return SourceMeterJavaRuleRepository.BASE_REPOSITORY_KEY
-                + SourceMeterInitializer.getPluginLanguage().getKey();
+                + Java.INSTANCE.getKey();
     }
 
     /**

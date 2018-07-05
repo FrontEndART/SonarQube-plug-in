@@ -45,12 +45,13 @@ import java.util.Set;
 import org.sonar.api.batch.rule.Rule;
 import org.sonar.api.batch.rule.Rules;
 import org.sonar.api.batch.rule.Severity;
-import org.sonar.api.config.Settings;
+import org.sonar.api.config.Configuration;
 import org.sonar.api.measures.Metric;
-import org.sonar.api.measures.Metric.ValueType;
 import org.sonar.api.profiles.RulesProfile;
+import org.sonar.api.resources.AbstractLanguage;
 import org.sonar.api.rules.ActiveRule;
 
+import com.sourcemeter.analyzer.base.helper.FileHelper;
 import com.sourcemeter.analyzer.base.profile.SourceMeterRuleRepository;
 
 /**
@@ -58,7 +59,8 @@ import com.sourcemeter.analyzer.base.profile.SourceMeterRuleRepository;
  */
 public class ProfileInitializer {
 
-    private final Settings settings;
+    private final Configuration configuration;
+    private final AbstractLanguage language;
     private final List<MetricHunterCategory> categories;
     private final Set<String> activeRuleKeys;
     private final Collection<Rule> allRules;
@@ -69,16 +71,17 @@ public class ProfileInitializer {
      * Sets the needed properties for generating a profile file for SourceMeter
      * toolchain.
      *
-     * @param settings For getting the metric threshold properties from SonarQube.
+     * @param configuration For getting the metric threshold properties from SonarQube.
      * @param categories For setting which categories are passed to MetricHunter.
      * @param profile Needed for the list of active rules passed to profile file.
      * @param ruleRepository Stores the rules.
      * @param rules Needed for find rules from RuleRepository by key.
+     * @param pluginLanguage Current analyzed language.
      */
-    public ProfileInitializer(Settings settings,
+    public ProfileInitializer(Configuration configuration,
             List<MetricHunterCategory> categories, RulesProfile profile,
-            SourceMeterRuleRepository ruleRepository, Rules rules) {
-        this.settings = settings;
+            SourceMeterRuleRepository ruleRepository, Rules rules, AbstractLanguage pluginLanguage) {
+        this.configuration = configuration;
         this.categories = categories;
         String repositoryKey = ruleRepository.getRepositoryKey();
         this.allRules = rules.findByRepository(repositoryKey);
@@ -86,6 +89,7 @@ public class ProfileInitializer {
         for (ActiveRule rule : profile.getActiveRulesByRepository(repositoryKey)) {
             activeRuleKeys.add(rule.getRuleKey());
         }
+        this.language = pluginLanguage;
     }
 
     /**
@@ -218,12 +222,12 @@ public class ProfileInitializer {
      */
     private String getTresholdLine(Metric metric, String entity, String property) {
         StringBuffer baseline = new StringBuffer("sm.");
-        baseline.append(SourceMeterInitializer.getPluginLanguage().getKey().toLowerCase(Locale.ENGLISH))
+        baseline.append(language.getKey().toLowerCase(Locale.ENGLISH))
                 .append(".")
                 .append(property.toLowerCase(Locale.ENGLISH))
                 .append(".baseline.")
                 .append(metric.getKey());
-        Double threshold = this.settings.getDouble(baseline.toString());
+        Double threshold = FileHelper.getDoubleFromConfiguration(this.configuration, baseline.toString());
 
         if (threshold == null) {
             return "";

@@ -33,9 +33,9 @@ package com.sourcemeter.analyzer.python.helper;
 import org.sonar.api.batch.fs.FileSystem;
 import org.sonar.api.batch.sensor.SensorContext;
 
-import com.sourcemeter.analyzer.base.batch.SourceMeterInitializer;
 import com.sourcemeter.analyzer.base.helper.VisitorHelper;
 import com.sourcemeter.analyzer.python.SourceMeterPythonMetricFinder;
+import com.sourcemeter.analyzer.python.core.Python;
 import com.sourcemeter.analyzer.python.profile.SourceMeterPythonRuleRepository;
 
 public class VisitorHelperPython extends VisitorHelper {
@@ -50,7 +50,7 @@ public class VisitorHelperPython extends VisitorHelper {
     @Override
     public String getRuleKey() {
         return SourceMeterPythonRuleRepository.BASE_REPOSITORY_KEY
-                + SourceMeterInitializer.getPluginLanguage().getKey();
+                + Python.INSTANCE.getKey();
     }
 
     /**

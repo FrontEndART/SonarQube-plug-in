@@ -42,7 +42,6 @@ import org.sonar.api.PropertyType;
 
 import com.sourcemeter.analyzer.base.core.VersionChecker;
 import com.sourcemeter.analyzer.base.helper.ThresholdPropertiesHelper;
-import com.sourcemeter.analyzer.python.batch.SourceMeterPythonInitializer;
 import com.sourcemeter.analyzer.python.batch.SourceMeterPythonSensor;
 import com.sourcemeter.analyzer.python.profile.SourceMeterPythonProfile;
 import com.sourcemeter.analyzer.python.profile.SourceMeterPythonRuleRepository;
@@ -106,9 +105,8 @@ public class SourceMeterAnalyzerPythonPlugin implements Plugin {
                 SourceMeterPythonRuleRepository.class
         );
 
-        context.addExtensions(
+        context.addExtension(
                 // Batch
-                SourceMeterPythonInitializer.class,
                 SourceMeterPythonSensor.class
         );
 

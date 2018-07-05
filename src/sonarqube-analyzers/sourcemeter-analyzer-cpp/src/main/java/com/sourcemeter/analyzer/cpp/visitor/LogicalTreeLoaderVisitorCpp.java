@@ -32,17 +32,18 @@ package com.sourcemeter.analyzer.cpp.visitor;
 
 import org.sonar.api.batch.fs.FileSystem;
 import org.sonar.api.batch.sensor.SensorContext;
-import org.sonar.api.config.Settings;
+import org.sonar.api.config.Configuration;
 
 import com.sourcemeter.analyzer.base.visitor.LogicalTreeLoaderVisitor;
+import com.sourcemeter.analyzer.cpp.core.Cpp;
 import com.sourcemeter.analyzer.cpp.helper.VisitorHelperCpp;
 
 public class LogicalTreeLoaderVisitorCpp extends LogicalTreeLoaderVisitor {
 
-    public LogicalTreeLoaderVisitorCpp(FileSystem fileSystem, Settings settings,
+    public LogicalTreeLoaderVisitorCpp(FileSystem fileSystem, Configuration configuration,
             SensorContext sensorContext, long numOfNodes) {
 
-        super(fileSystem, settings, sensorContext, numOfNodes,
-                new VisitorHelperCpp(sensorContext, fileSystem));
+        super(fileSystem, configuration, sensorContext, numOfNodes,
+                new VisitorHelperCpp(sensorContext, fileSystem), new Cpp());
     }
 }

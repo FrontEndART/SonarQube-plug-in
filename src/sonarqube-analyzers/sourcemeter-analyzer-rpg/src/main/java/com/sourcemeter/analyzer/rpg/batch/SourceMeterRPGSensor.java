@@ -49,7 +49,7 @@ import org.sonar.api.batch.fs.InputModule;
 import org.sonar.api.batch.rule.Rules;
 import org.sonar.api.batch.sensor.SensorContext;
 import org.sonar.api.batch.sensor.SensorDescriptor;
-import org.sonar.api.config.Settings;
+import org.sonar.api.config.Configuration;
 import org.sonar.api.profiles.RulesProfile;
 import org.sonar.api.scan.filesystem.FileExclusions;
 import org.sonar.api.server.rule.RulesDefinitionXmlLoader;
@@ -98,9 +98,9 @@ public class SourceMeterRPGSensor extends SourceMeterSensor {
 
     public SourceMeterRPGSensor(FileExclusions fileExclusions, FileSystem fileSystem,
             ProjectDefinition projectDefinition, Rules rules, RulesProfile profile,
-            Settings settings) {
+            Configuration configuration) {
 
-        super(fileExclusions, fileSystem, projectDefinition, profile, settings);
+        super(fileExclusions, fileSystem, projectDefinition, profile, configuration);
 
         this.commands = new ArrayList<String>();
         this.rules = rules;
@@ -113,7 +113,7 @@ public class SourceMeterRPGSensor extends SourceMeterSensor {
      */
     @Override
     public void execute(SensorContext sensorContext) {
-        boolean skipRpg = this.settings.getBoolean("sm.rpg.skipToolchain");
+        boolean skipRpg = FileHelper.getBooleanFromConfiguration(configuration, "sm.rpg.skipToolchain");
         if (skipRpg) {
             LOG.info("SourceMeter toolchain is skipped for RPG. Results will be uploaded from former results directory, if it exists.");
         } else {
@@ -123,14 +123,14 @@ public class SourceMeterRPGSensor extends SourceMeterSensor {
             runSourceMeter(commands);
         }
 
-        String analyseMode = this.settings.getString("sonar.analysis.mode");
+        String analyseMode = FileHelper.getStringFromConfiguration(configuration, "sonar.analysis.mode");
         if ("incremental".equals(analyseMode)) {
             LOG.warn("Incremental mode is on. There are no metric based (INFO level) issues in this mode.");
             this.isIncrementalMode = true;
         }
 
         try {
-            this.resultGraph = FileHelper.getSMSourcePath(settings, fileSystem, '_')
+            this.resultGraph = FileHelper.getSMSourcePath(configuration, fileSystem, '_', new RPG())
                     + File.separator + this.projectName + ".graph";
         } catch (IOException e) {
             LOG.error("Error during loading result graph path!", e);
@@ -208,7 +208,7 @@ public class SourceMeterRPGSensor extends SourceMeterSensor {
             nodeCounter = new NodeCounterVisitor();
             GraphHelper.processGraph(graph, LOGICAL_ROOT, "LogicalTree", nodeCounter);
             LogicalTreeLoaderVisitorRPG logicalVisitor = new LogicalTreeLoaderVisitorRPG(
-                    this.fileSystem, this.settings, sensorContext,
+                    this.fileSystem, this.configuration, sensorContext,
                     nodeCounter.getNumberOfNodes());
 
             nodeCounter = new NodeCounterVisitor();
@@ -218,7 +218,7 @@ public class SourceMeterRPGSensor extends SourceMeterSensor {
 
             nodeCounter = new NodeCounterVisitor();
             GraphHelper.processGraph(graph, LOGICAL_ROOT, "logicalTree", nodeCounter);
-            LogicalTreeSaverVisitorRPG logicalSaver = new LogicalTreeSaverVisitorRPG(sensorContext, this.fileSystem, settings);
+            LogicalTreeSaverVisitorRPG logicalSaver = new LogicalTreeSaverVisitorRPG(sensorContext, this.fileSystem, configuration);
 
             nodeCounter = new NodeCounterVisitor();
             GraphHelper.processGraph(graph, "__CloneRoot__", "CloneTree", nodeCounter);
@@ -269,7 +269,7 @@ public class SourceMeterRPGSensor extends SourceMeterSensor {
      * @return True if the properties were set correctly.
      */
     private boolean checkProperties() {
-        String pathToCA = this.settings.getString("sm.toolchaindir");
+        String pathToCA = FileHelper.getStringFromConfiguration(configuration, "sm.toolchaindir");
         if (pathToCA == null) {
             LOG.error("RPG SourceMeter path must be set! Check it on the settings page of your SonarQube!");
             return false;
@@ -305,24 +305,24 @@ public class SourceMeterRPGSensor extends SourceMeterSensor {
         this.commands.add("-resultsDir=" + this.resultsDir);
         this.commands.add("-projectName=" + this.projectName);
 
-        String cleanResults = this.settings.getString("sm.cleanresults");
+        String cleanResults = FileHelper.getStringFromConfiguration(configuration, "sm.cleanresults");
         this.commands.add("-cleanResults=" + cleanResults);
 
-        String spoolPattern = this.settings.getString("sm.rpg.spoolPattern");
+        String spoolPattern = FileHelper.getStringFromConfiguration(configuration, "sm.rpg.spoolPattern");
         this.commands.add("-spoolFileNamePattern=" + spoolPattern);
 
-        String rpg3Pattern = this.settings.getString("sm.rpg.rpg3Pattern");
+        String rpg3Pattern = FileHelper.getStringFromConfiguration(configuration, "sm.rpg.rpg3Pattern");
         this.commands.add("-rpg3FileNamePattern=" + rpg3Pattern);
 
-        String rpg4Pattern = this.settings.getString("sm.rpg.rpg4Pattern");
+        String rpg4Pattern = FileHelper.getStringFromConfiguration(configuration, "sm.rpg.rpg4Pattern");
         this.commands.add("-rpg4FileNamePattern=" + rpg4Pattern);
 
-        String cloneGenealogy = this.settings.getString("sm.cloneGenealogy");
-        String cloneMinLines = this.settings.getString("sm.cloneMinLines");
+        String cloneGenealogy = FileHelper.getStringFromConfiguration(configuration, "sm.cloneGenealogy");
+        String cloneMinLines = FileHelper.getStringFromConfiguration(configuration, "sm.cloneMinLines");
         this.commands.add("-cloneGenealogy=" + cloneGenealogy);
         this.commands.add("-cloneMinLines=" + cloneMinLines);
 
-        String additionalParameters = this.settings.getString("sm.rpg.toolchainOptions");
+        String additionalParameters = FileHelper.getStringFromConfiguration(configuration, "sm.rpg.toolchainOptions");
         if (additionalParameters != null) {
             this.commands.add(additionalParameters);
         }
@@ -344,8 +344,8 @@ public class SourceMeterRPGSensor extends SourceMeterSensor {
         }
 
         ProfileInitializer profileInitializer = new ProfileInitializer(
-                this.settings, getMetricHunterCategories(), this.profile,
-                new SourceMeterRPGRuleRepository(new RulesDefinitionXmlLoader()), rules);
+                this.configuration, getMetricHunterCategories(), this.profile,
+                new SourceMeterRPGRuleRepository(new RulesDefinitionXmlLoader()), rules, new RPG());
 
         String thresholdPath = this.fileSystem.workDir() + File.separator
                 + "SM-Profile.xml";
@@ -399,7 +399,7 @@ public class SourceMeterRPGSensor extends SourceMeterSensor {
      * @return True, if the "sm.resultsdir" property were set correctly, false otherwise.
      */
     private boolean checkResultsDir() {
-        this.resultsDir = this.settings.getString("sm.resultsdir");
+        this.resultsDir = FileHelper.getStringFromConfiguration(configuration, "sm.resultsdir");
         if (resultsDir == null) {
             LOG.error("Results directory must be set! Check it on the settings page of your SonarQube!");
             return false;
@@ -414,7 +414,7 @@ public class SourceMeterRPGSensor extends SourceMeterSensor {
      * @return True, if the "sonar.projectKey" property were set correctly, false otherwise.
      */
     private boolean checkProjectName() {
-        this.projectName = this.settings.getString("sonar.projectKey");
+        this.projectName = FileHelper.getStringFromConfiguration(configuration, "sonar.projectKey");
         if (projectName == null) {
             LOG.error("Project key must be set! Key: sonar.projectKey");
             return false;

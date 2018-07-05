@@ -33,9 +33,9 @@ package com.sourcemeter.analyzer.cpp.helper;
 import org.sonar.api.batch.fs.FileSystem;
 import org.sonar.api.batch.sensor.SensorContext;
 
-import com.sourcemeter.analyzer.base.batch.SourceMeterInitializer;
 import com.sourcemeter.analyzer.base.helper.VisitorHelper;
 import com.sourcemeter.analyzer.cpp.SourceMeterCppMetricFinder;
+import com.sourcemeter.analyzer.cpp.core.Cpp;
 import com.sourcemeter.analyzer.cpp.profile.SourceMeterCppRuleRepository;
 
 public class VisitorHelperCpp extends VisitorHelper {
@@ -50,7 +50,7 @@ public class VisitorHelperCpp extends VisitorHelper {
     @Override
     public String getRuleKey() {
         return SourceMeterCppRuleRepository.BASE_REPOSITORY_KEY
-                + SourceMeterInitializer.getPluginLanguage().getKey();
+                + Cpp.INSTANCE.getKey();
     }
 
     /**

@@ -32,17 +32,18 @@ package com.sourcemeter.analyzer.python.visitor;
 
 import org.sonar.api.batch.fs.FileSystem;
 import org.sonar.api.batch.sensor.SensorContext;
-import org.sonar.api.config.Settings;
+import org.sonar.api.config.Configuration;
 
 import com.sourcemeter.analyzer.base.visitor.LogicalTreeLoaderVisitor;
+import com.sourcemeter.analyzer.python.core.Python;
 import com.sourcemeter.analyzer.python.helper.VisitorHelperPython;
 
 public class LogicalTreeLoaderVisitorPython extends LogicalTreeLoaderVisitor {
 
-    public LogicalTreeLoaderVisitorPython(FileSystem fileSystem, Settings settings,
+    public LogicalTreeLoaderVisitorPython(FileSystem fileSystem, Configuration configuration,
             SensorContext sensorContext, long numOfNodes) {
 
-        super(fileSystem, settings, sensorContext, numOfNodes,
-              new VisitorHelperPython(sensorContext, fileSystem));
+        super(fileSystem, configuration, sensorContext, numOfNodes,
+              new VisitorHelperPython(sensorContext, fileSystem), new Python());
     }
 }

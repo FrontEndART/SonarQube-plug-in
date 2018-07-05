@@ -30,35 +30,61 @@
 
 package com.sourcemeter.analyzer.base.profile;
 
+import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.nio.charset.Charset;
 
-import org.apache.commons.io.IOUtils;
-import org.sonar.api.profiles.ProfileDefinition;
-import org.sonar.api.profiles.RulesProfile;
-import org.sonar.api.profiles.XMLProfileParser;
-import org.sonar.api.utils.ValidationMessages;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 
-public abstract class SourceMeterProfile extends ProfileDefinition{
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.sonar.api.server.profile.BuiltInQualityProfilesDefinition;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
 
-    private final XMLProfileParser parser;
+public abstract class SourceMeterProfile implements BuiltInQualityProfilesDefinition {
 
-    public SourceMeterProfile(XMLProfileParser parser) {
-        this.parser = parser;
-    }
+    protected static final Logger LOG = LoggerFactory.getLogger(SourceMeterProfile.class);
 
-    public RulesProfile createProfile(InputStream qualityProfileResource, ValidationMessages validationMessages) {
-        InputStreamReader reader = null;
+    /**
+     * Read the repository keys and the rule keys for the new QualityProfile from XML file.
+     *
+     * @param qualityProfile New QualityProfile.
+     * @param qpXml Resource of the repository keys and the rule keys in XML format.
+     */
+    protected void parseXml(NewBuiltInQualityProfile qualityProfile, InputStream qpXml) {
+
         try {
-            reader = new InputStreamReader(qualityProfileResource,
-                    Charset.defaultCharset());
-            RulesProfile profile = this.parser
-                    .parse(reader, validationMessages);
-            profile.setDefaultProfile(true);
-            return profile;
-        } finally {
-            IOUtils.closeQuietly(reader);
+            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+            Document doc = dBuilder.parse(qpXml);
+
+            doc.getDocumentElement().normalize();
+
+            NodeList ruleNodes = doc.getElementsByTagName("rule");
+
+            for (int i = 0; i < ruleNodes.getLength(); i++) {
+                Node ruleNode = ruleNodes.item(i);
+                if (ruleNode.getNodeType() == Node.ELEMENT_NODE) {
+                    Element ruleElement = (Element) ruleNode;
+
+                    String repoKey = ruleElement.getElementsByTagName("repositoryKey").item(0).getTextContent();
+                    String ruleKey = ruleElement.getElementsByTagName("key").item(0).getTextContent();
+
+                    qualityProfile.activateRule(repoKey, ruleKey);
+                }
+            }
+
+        } catch (ParserConfigurationException e) {
+            LOG.error("ERROR: Can not parse QualityProfile's XML file!");
+        } catch (SAXException e) {
+            LOG.error("ERROR: Can not parse QualityProfile's XML file!");
+        } catch (IOException e) {
+            LOG.error("ERROR: Can not parse QualityProfile's XML file!");
         }
     }
 }

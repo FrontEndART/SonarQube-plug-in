@@ -35,13 +35,15 @@ import java.util.List;
 
 import org.sonar.api.batch.fs.FileSystem;
 import org.sonar.api.batch.sensor.SensorContext;
-import org.sonar.api.config.Settings;
+import org.sonar.api.config.Configuration;
 
 import graphlib.Node;
 import graphlib.VisitorException;
 
+import com.sourcemeter.analyzer.base.helper.FileHelper;
 import com.sourcemeter.analyzer.base.jsontree.interfaces.MetricsInt;
 import com.sourcemeter.analyzer.base.visitor.LogicalTreeSaverVisitor;
+import com.sourcemeter.analyzer.python.core.Python;
 import com.sourcemeter.analyzer.python.helper.VisitorHelperPython;
 import com.sourcemeter.analyzer.python.jsontree.logical.base.LevelOneMetrics;
 import com.sourcemeter.analyzer.python.jsontree.logical.base.LevelThreeMetrics;
@@ -57,11 +59,11 @@ public class LogicalTreeSaverVisitorPython extends LogicalTreeSaverVisitor {
     private static final List<Node.NodeType> levelThreeTypes =  Arrays.asList(new Node.NodeType("Function"),
                                                                               new Node.NodeType("Method"));
 
-    public LogicalTreeSaverVisitorPython(SensorContext sensorContext, FileSystem fileSystem, Settings settings) {
+    public LogicalTreeSaverVisitorPython(SensorContext sensorContext, FileSystem fileSystem, Configuration configuration) {
         super(levelOneTypes, levelTwoTypes, levelThreeTypes,
-               sensorContext, new VisitorHelperPython(sensorContext, fileSystem));
+               sensorContext, new VisitorHelperPython(sensorContext, fileSystem), new Python());
 
-        super.extendedMetrics = !"false".equals(settings.getString("sm.uploadAllMetrics"));
+        super.extendedMetrics = !"false".equals(FileHelper.getStringFromConfiguration(configuration, "sm.uploadAllMetrics"));
     }
 
     /**

@@ -42,7 +42,6 @@ import org.sonar.api.PropertyType;
 
 import com.sourcemeter.analyzer.base.core.VersionChecker;
 import com.sourcemeter.analyzer.base.helper.ThresholdPropertiesHelper;
-import com.sourcemeter.analyzer.rpg.batch.SourceMeterRPGInitializer;
 import com.sourcemeter.analyzer.rpg.batch.SourceMeterRPGSensor;
 import com.sourcemeter.analyzer.rpg.core.RPG;
 import com.sourcemeter.analyzer.rpg.profile.SourceMeterRPGProfile;
@@ -121,9 +120,8 @@ public class SourceMeterAnalyzerRPGPlugin implements Plugin {
                 SourceMeterRPGProfile.class,
                 SourceMeterRPGRuleRepository.class
         );
-        context.addExtensions(
+        context.addExtension(
                 // Batch
-                SourceMeterRPGInitializer.class,
                 SourceMeterRPGSensor.class
         );
 
