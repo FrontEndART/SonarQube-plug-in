@@ -1,3 +1,4 @@
+build
 doc/usersguide/html.log
 doc/usersguide/results/
 src/sonarqube-analyzers/sourcemeter-analyzer-base/target/
