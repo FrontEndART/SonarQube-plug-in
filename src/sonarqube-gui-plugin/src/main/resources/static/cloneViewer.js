@@ -30,13 +30,11 @@
 
 window.registerExtension('SourceMeterGUI/cloneViewer', function(options) {
   /**
-   * init - This function manages the plugin PAGE initialization. If you need to add a
-   * new page, aside from adding it to SonarQube, to load the SM gui plugin
-   * accordingly, the js the page loads schould be a copy of this file,
-   * (with the name changed accordingly), and then you place the initialization
-   * code of the page into this function. It will be called at the end page
-   * loading. You can assume, that globals.js and loader.js has loaded & executed
-   * at that point.
+   *  Manages the 'page' initialization of the plugin. The content of this file
+   *  must be copied and modified if it is needed to add a new page to load the
+   *  SM GUI plugin. The page initialization code must be placed into the body
+   *  of this function. This function will be called after 'global.js' and 'loader.js'
+   *  files has been loaded and executed.
    *
    * @returns {undefined} undefined
    */
@@ -57,10 +55,10 @@ window.registerExtension('SourceMeterGUI/cloneViewer', function(options) {
 
   /**
   * waitForNDo - Uses setInterval to test for function {test}. When test returns
-  * true the first time exe will be executed, and the intervall will be cleared.
+  * true the first time exe will be executed, and the interval will be cleared.
   *
   * @param {function} test the tester function, returns logical value.
-  * @param {function} exe  the taskj function, executed after test() gets true
+  * @param {function} exe  the task function, executed after test() gets true
   * @param {int} time milliseconds to pass between subsequent tests. default = 100
   *
   * @returns {undefined} undefined
@@ -94,14 +92,14 @@ window.registerExtension('SourceMeterGUI/cloneViewer', function(options) {
       SM.state[stateKey].isDisplayed = false;
     });
 
-    // dont load everything twice, since SQ uses react, and never loads a page from scratch.
-    // might need to change js loading to a more modular solution, but it seems to work so far.
+    // Don't load everything twice, since SQ uses react, and never loads a page from scratch.
+    // Might need to change js loading to a more modular solution, but it seems to work so far.
     if (SM.SmGuiExtensionAlreadyLoaded) {
       init();
       return;
     } // else {...
 
-    // load script loader.js, after the loader loads everything else.
+    // Load the 'loader.js' script after the loader loaded everything.
     var scriptLoad = document.createElement('script');
     scriptLoad.type = 'text/javascript';
     scriptLoad.async = true;
@@ -122,7 +120,7 @@ window.registerExtension('SourceMeterGUI/cloneViewer', function(options) {
   options.el.id = 'sm-page-content';
   options.el.className = 'page';
 
-  // load global vars into global scope
+  // Load global vars into global scope.
   var scriptGlob = document.createElement('script');
   scriptGlob.type = 'text/javascript';
   scriptGlob.src = "/static/SourceMeterGUI/globals.js";

@@ -30,6 +30,7 @@
 
 /**
  * The object handling visual representation of the code
+ *
  * @param {[type]} HTMLelem [description]
  * @param {[type]} options  [description]
  */
@@ -84,7 +85,8 @@ SM.CloneViewer = function() {
   /**
    * Generates HTML of dependant of the current state of the object.
    * Then overwrites the HTML in the visible webpage as well.
-   * @return {void}
+   *
+   * @return {undefined}
    */
   this.renderAll = function() {
     this.cloneClassSelector.renderAll();
@@ -94,7 +96,8 @@ SM.CloneViewer = function() {
 
   /**
    * is called by CloneClassSelector
-   * @return {void}
+   *
+   * @return {undefined}
    */
   this.handleCloneClassChange = function(selection) {
     this.selectedCloneClass = selection;
@@ -108,7 +111,8 @@ SM.CloneViewer = function() {
   /**
    * is called by CloneInstanceSelector
    * @param  {int} id    id of the cloneInstanceSelector
-   * @return {void}
+   *
+   * @return {undefined}
    */
   this.handleCloneInstanceChange = function(id) {
     var instanceSelector = this.cloneInstanceSelectors[id];
@@ -143,4 +147,3 @@ SM.CloneViewer = function() {
   SM.bindFunctions(this);
   this.init();
 };
-

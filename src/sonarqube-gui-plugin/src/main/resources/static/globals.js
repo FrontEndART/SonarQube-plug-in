@@ -79,7 +79,7 @@ if (typeof SM === 'undefined') { // ensure this only runs once
   };
 
   /**
-   * binds an objects functions this scope to itself, so it doesnt matter from
+   * Binds an objects functions this scope to itself, so it does not matter from
    * where a function is called, this is always going to be the object the
    * function belongs to.
    * @param  {object} self the object we wish to do the binding on

@@ -30,6 +30,7 @@
 
 /**
  * The object handling visual representation of the code
+ *
  * @param {[type]} HTMLelem [description]
  * @param {[type]} options  [description]
  */
@@ -48,7 +49,8 @@ SM.SideBySideDiffer = function(HTMLelem, options) {
   /**
    * Generates HTML of dependant of the current state of the object.
    * Then overwrites the HTML in the visible webpage as well.
-   * @return {void}
+   *
+   * @return {undefined}
    */
   this.renderAll = function() {
     var isMatch = (this.text[1].txt === this.text[2].txt);
@@ -91,10 +93,10 @@ SM.SideBySideDiffer = function(HTMLelem, options) {
     for (var i = 1; i <= 2; i++) {
       var index = this.text[i].startLine;
       $($(".d2h-diff-tbody")[i-1])
-        .find(".d2h-code-side-linenumber")
-        .each(function(node) {
-          $(this).html(index++)
-        });
+          .find(".d2h-code-side-linenumber")
+          .each(function(node) {
+            $(this).html(index++)
+          });
     }
   };
 

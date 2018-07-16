@@ -80,10 +80,11 @@ SM.cloneViewer.generatePositionAnchorPopup = function(instance) {
   return anchor;
 };
 /**
- * Entry point for the cloneViewer. this function is guaranteed to be executed
+ * Entry point for the cloneViewer. This function is guaranteed to be executed
  * after loading of all dependency scripts and styles. It will be executed every
  * time when the user opens the codeViewer page.
- * @return {void}
+ *
+ * @return {undefined}
  */
 SM.cloneViewer.init = function() {
   SM.pageBuilder.cloneViewer.build();
@@ -118,7 +119,7 @@ SM.cloneViewer.main = function() {
       100
     );
     return;
-  } else {// dashboard or cloneViewer WAS visited and loaded before
+  } else { // dashboard or cloneViewer WAS visited and loaded before
     SM.cloneViewer.init();
   }
 

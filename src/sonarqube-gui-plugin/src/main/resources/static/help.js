@@ -89,8 +89,8 @@ window.registerExtension('SourceMeterGUI/help', function(options) {
    */
   loadScript = function(url, isAsync, basePath) {
     basePath = basePath ? basePath : "";
-    isAsync = isAsync ? isAsync : false; //false by default
-    if (document.getElementById(basePath + url) === null){ //checks if the script is already loaded
+    isAsync = isAsync ? isAsync : false; // false by default
+    if (document.getElementById(basePath + url) === null){ // checks if the script is already loaded
       var script = document.createElement('script');
 
       script.type = 'text/javascript';

@@ -35,9 +35,11 @@ SM.RawFileLoader = new (function() { // Singleton object
 
   /**
    * Gets raw file data
+   *
    * @param  {string}   fileUrl  url of the file
    * @param  {Function} callback is called with the raw data passed as argument (string)
-   * @return {void}
+   *
+   * @return {undefined}
    */
    this.requestRawFile = function(filePath, callback) {
     if (storeValue && filePath in this.cache) {
@@ -56,28 +58,30 @@ SM.RawFileLoader = new (function() { // Singleton object
 
   /**
    * Gets raw file data, only returns lines fromLine toLine
+   *
    * @param  {string}   filePath  url of the file
    * @param  {Function} callback is called with the raw data passed as argument (string)
    * @param  {Number}   fromLine starting default is 0
    * @param  {Number}   toLine   ending line default is file length, truncated if longer
-   * @return {void}
+   *
+   * @return {undefined}
    */
     this.requestSliceOfRawFile = function(callback, filePath, fromLine, toLine) {
-        this.requestRawFile(filePath, function(rawFile) {
-            var temp = [];
-            var x = rawFile.split("\n");
+      this.requestRawFile(filePath, function(rawFile) {
+        var temp = [];
+        var x = rawFile.split("\n");
 
-            if (fromLine === undefined) {
-                fromLine = 0;
-            }
-            if (toLine === undefined || toLine > x.length) {
-                toLine = x.length;
-            }
+        if (fromLine === undefined) {
+          fromLine = 0;
+        }
+        if (toLine === undefined || toLine > x.length) {
+          toLine = x.length;
+        }
 
-            for (var i = fromLine-1; i < toLine-1; i++) {
-                temp.push(x[i]);
-            }
-            callback(temp);
-        });
+        for (var i = fromLine - 1; i < toLine - 1; i++) {
+          temp.push(x[i]);
+        }
+        callback(temp);
+      });
     };
 })();

@@ -214,10 +214,11 @@ SM.dashboard.buildPage = function() {
 }
 /**
  * Fetch/refresh data from the back end.
- * @return {void}
+ *
+ * @return {undefined}
  */
 SM.dashboard.fetch = function() {
-  // clear cached state. nescessary, otherwise duplications appear due to merging
+  // Clear cached state to avoid duplication after the merge.
   SM.state[SM.options.component.key].initialized = false;
   SM.state[SM.options.component.key].level1     = undefined;
   SM.state[SM.options.component.key].level2     = undefined;

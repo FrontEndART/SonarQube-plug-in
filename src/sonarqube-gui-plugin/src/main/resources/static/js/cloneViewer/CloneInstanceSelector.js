@@ -32,7 +32,7 @@ SM.CloneInstanceSelector = function(HTMLelem, options) {
   SM.Subscribable.call(this); // inherit from SM.Subscribable
 
   this.elem = null; // :DOMElement
-  this.id; // : int (sorszám)
+  this.id; // : int (line number)
   this.cloneInstanceList; // :CloneClass[]
   this.selected; // :int
   this.codeBrowser; // :CodeBrowser (manages the diffs)
@@ -61,7 +61,8 @@ SM.CloneInstanceSelector = function(HTMLelem, options) {
   /**
    * Generates HTML of dependant of the current state of the object.
    * Then overwrites the HTML in the visible webpage as well.
-   * @return {void}
+   *
+   * @return {undefined}
    */
   this.renderAll = function() {
     this.elem.html("");
@@ -75,7 +76,7 @@ SM.CloneInstanceSelector = function(HTMLelem, options) {
     html.push('<div>');
       html.push('<select id="selectmenu">');
       this.cloneInstanceList.forEach(function(cloneInstance, i) {
-          html.push("<option value=" + i + "> " + cloneInstance.name + "</option>");
+        html.push("<option value=" + i + "> " + cloneInstance.name + "</option>");
       });
       html.push('</select>');
     html.push('</div>');
@@ -109,7 +110,8 @@ SM.CloneInstanceSelector = function(HTMLelem, options) {
   /**
    * selects a CloneClass, and calls everything that needs to update its state.
    * @param  {int} choice    the id of the cloneclass in the this.CloneClassList
-   * @return {void}
+   *
+   * @return {undefined}
    */
   this.select = function (choice) {
     this.selected = choice;

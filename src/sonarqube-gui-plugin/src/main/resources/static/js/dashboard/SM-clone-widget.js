@@ -273,7 +273,7 @@ SM.CloneWidget = function(elem, options) {
    * the right hand side instance.
    *
    * @param  {CloneInstance} pack  cloneInstance
-   * @param  {index}         i     index  of the parent clonClass
+   * @param  {index}         i     index  of the parent cloneClass
    * @param  {index}         j     index  of the current cloneInstace inside the parent cloneClass
    * @return {String}              an HTML <li> element
    */
@@ -479,7 +479,7 @@ SM.CloneWidget = function(elem, options) {
   this.bindElement = this.bindElement.bind(this);
 
   this.init = function() {
-    if(typeof SM.state[SM.options.component.key].cloneViewer === "undefined") {
+    if (typeof SM.state[SM.options.component.key].cloneViewer === "undefined") {
       SM.state[SM.options.component.key].cloneViewer = {};
     }
 

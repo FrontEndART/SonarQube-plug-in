@@ -122,7 +122,7 @@ SM.MetricLoader = new (function() { // Singleton object
     }
 
     var queriedMetrics = this.metricsToGet;
-    this.metricsToGet = {}; // if another request arrives, dont mix two batches
+    this.metricsToGet = {}; // Do not mix two batches if another request arrives.
 
     var helper = {};
     var parsedHTML = {};

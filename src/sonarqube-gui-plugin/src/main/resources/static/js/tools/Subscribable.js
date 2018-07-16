@@ -82,7 +82,8 @@ SM.Subscribable = function () {
   /**
    * Remove a subscription
    * @param  {index} index  the subscriptionID returned at the time of subscription by `subscribe()`
-   * @return {void}
+   *
+   * @return {undefined}
    */
   this.removeSubscription = function(index) {
     var keys = Object.keys(this.subscriptions);
