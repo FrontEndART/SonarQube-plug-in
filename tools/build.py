@@ -41,6 +41,8 @@ import shutil
 import subprocess
 import tarfile
 
+import common
+
 PACKAGENAME = 'sourcemeter-8.2-plugins-for-sonarqube-6.7-v1.0.0'
 
 TOOLS_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -75,50 +77,25 @@ def get_arguments():
 
     return parser.parse_args()
 
-
-def run_cmd(cmd, args=[], quiet=False, work_dir=None):
-    if not quiet:
-        print(cmd, args)
-    try:
-        ret_code = 0
-        if platform.system() == 'Windows':
-            ret_code = subprocess.call([cmd] + args, cwd=work_dir, shell=True)
-        else:
-            ret_code = subprocess.call([cmd] + args, cwd=work_dir)
-        if ret_code != 0:
-            print("[Failed - command exited with %s]" % ret_code)
-            exit(ret_code)
-    except OSError as e:
-        print("[Failed - %s] %s" % (cmd, e.strerror))
-        exit(1)
-
-def mkdir(directory):
-    if not os.path.exists(directory):
-        os.makedirs(directory)
-
-def rmdir(directory):
-    if os.path.exists(directory):
-        shutil.rmtree(directory)
-
 def clean():
-    rmdir('src/sonarqube-core-plugin/target')
-    rmdir('src/sonarqube-gui-plugin/target')
-    rmdir('src/sonarqube-analyzers/sourcemeter-analyzer-base/target')
-    rmdir('src/sonarqube-analyzers/sourcemeter-analyzer-cpp/target')
-    rmdir('src/sonarqube-analyzers/sourcemeter-analyzer-csharp/target')
-    rmdir('src/sonarqube-analyzers/sourcemeter-analyzer-java/target')
-    rmdir('src/sonarqube-analyzers/sourcemeter-analyzer-python/target')
-    rmdir('src/sonarqube-analyzers/sourcemeter-analyzer-rpg/target')
+    common.rmdir('src/sonarqube-core-plugin/target')
+    common.rmdir('src/sonarqube-gui-plugin/target')
+    common.rmdir('src/sonarqube-analyzers/sourcemeter-analyzer-base/target')
+    common.rmdir('src/sonarqube-analyzers/sourcemeter-analyzer-cpp/target')
+    common.rmdir('src/sonarqube-analyzers/sourcemeter-analyzer-csharp/target')
+    common.rmdir('src/sonarqube-analyzers/sourcemeter-analyzer-java/target')
+    common.rmdir('src/sonarqube-analyzers/sourcemeter-analyzer-python/target')
+    common.rmdir('src/sonarqube-analyzers/sourcemeter-analyzer-rpg/target')
 
 def mvn_install(target):
-    run_cmd('mvn', ['-f', ('src/%s/pom.xml' % target), 'clean', 'install'])
+    common.run_cmd('mvn', ['-f', ('src/%s/pom.xml' % target), 'clean', 'install'])
 
 def usersguide():
     if platform.system() == 'Windows':
-        run_cmd('py', ['-3', 'generatedoc.py', '-css', 'style\\SourceMeter.css', '-html'],
+        common.run_cmd('py', ['-3', 'generatedoc.py', '-css', 'style\\SourceMeter.css', '-html'],
                 False, 'doc/usersguide')
     else:
-        run_cmd('python3', ['generatedoc.py', '-css', 'style/SourceMeter.css', '-html'],
+        common.run_cmd('python3', ['generatedoc.py', '-css', 'style/SourceMeter.css', '-html'],
                 False, 'doc/usersguide')
     try:
         shutil.copy('doc/usersguide/results/UG.html', 'doc/UG.html')
@@ -140,9 +117,9 @@ def main(options):
 
     if options.clean:
         clean()
-        rmdir(options.builddir)
+        common.rmdir(options.builddir)
 
-    mkdir(options.builddir)
+    common.mkdir(options.builddir)
 
     if options.all or options.dist:
         options.cpp = True
@@ -153,10 +130,10 @@ def main(options):
         options.rpg = True
 
     # install dependencies
-    run_cmd('mvn', ['install:install-file', '-DgroupId=com.frontendart.columbus',
+    common.run_cmd('mvn', ['install:install-file', '-DgroupId=com.frontendart.columbus',
                     '-DartifactId=graphsupportlib', '-Dversion=1.0',
                     '-Dpackaging=jar', '-Dfile=lib/graphsupportlib-1.0.jar'])
-    run_cmd('mvn', ['install:install-file', '-DgroupId=com.frontendart.columbus',
+    common.run_cmd('mvn', ['install:install-file', '-DgroupId=com.frontendart.columbus',
                     '-DartifactId=graphlib', '-Dversion=1.0', '-Dpackaging=jar',
                     '-Dfile=lib/graphlib-1.0.jar'])
 
@@ -184,9 +161,9 @@ def main(options):
         mvn_install('sonarqube-analyzers/sourcemeter-analyzer-rpg')
 
     target_dir = os.path.join(options.builddir, PACKAGENAME)
-    mkdir(target_dir)
-    mkdir('%s/doc' % target_dir)
-    mkdir('%s/plugins' % target_dir)
+    common.mkdir(target_dir)
+    common.mkdir('%s/doc' % target_dir)
+    common.mkdir('%s/plugins' % target_dir)
     try:
         shutil.copy('doc/UG.html', '%s/doc' % target_dir)
         shutil.copy('README.md', target_dir)
