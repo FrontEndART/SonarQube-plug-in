@@ -73,26 +73,26 @@ div.sm-widget .sm-widget-control-arrows {
 }
 
 div.sm-widget #control-right {
-    float: right;
+  float: right;
 }
 div.sm-widget #control-left {
-    float: left;
+  float: left;
 }
 
 div.sm-widget .control-filter-input {
-    width: 200px;
+  width: 200px;
 }
 
 .sm-widget table tr:nth-child(2n) {
-    background-color: #f5f5f5;
+  background-color: #f5f5f5;
 }
 
 /*row coloring for clone table*/
 .sm-widget table td.sm-widget-row-odd {
-    background-color: #f5f5f5;
+  background-color: #f5f5f5;
 }
 .sm-widget table td.sm-widget-row-even {
-    background-color: #fff
+  background-color: #fff
 }
 
 div.sm-widget .sm-widget-title {
@@ -100,16 +100,16 @@ div.sm-widget .sm-widget-title {
 }
 
 div.sm-widget table th#Name {
-    min-width: 300px;
+  min-width: 300px;
 }
 
-div.sm-widget table th{
-    white-space: nowrap;
+div.sm-widget table th {
+  white-space: nowrap;
 }
 
 div.sm-widget table th.sm-widget-padding-row,
 div.sm-widget table td.sm-widget-padding-row {
-    width: 99%;
+  width: 99%;
 }
 
 div.sm-widget.sm-widget-clone table th {
@@ -117,14 +117,15 @@ div.sm-widget.sm-widget-clone table th {
 }
 
 div.sm-widget table tr th.sm-widget-metric-title {
-    white-space: nowrap;
+  white-space: nowrap;
 }
 
-div.sm-widget span.sm-widget-threshold-red {
-    color: #D4333F;
+.sm-widget-threshold-red {
+  color: #D4333F;
 }
-div.sm-widget span.sm-widget-threshold-green {
-    color: #00AA00;
+.sm-widget-threshold-green {
+  /*color: #00AA00;*/
+  color: green;
 }
 div.sm-widget div.sm-widget-table-div {
   overflow-x: auto;
@@ -133,7 +134,7 @@ div.sm-widget div.sm-widget-table-div {
 div.sm-widget table th:not(#noOrdering):hover {
   cursor: pointer;
 }
-.ui-tooltip{
+.ui-tooltip {
   color: #000000 !important;
   background-color: #ffffff !important;
   opacity: 1;

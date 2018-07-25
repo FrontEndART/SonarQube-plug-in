@@ -48,5 +48,10 @@ public class SourceMeterPages implements PageDefinition {
         context.addPage(Page.builder("SourceMeterGUI/help")
                             .setName("SourceMeter Help")
                             .build());
+        context.addPage(Page.builder("SourceMeterGUI/cloneViewer")
+                            .setName("SourceMeter Clone Viewer")
+                            .setScope(Scope.COMPONENT)
+                            .setComponentQualifiers(Qualifier.PROJECT)
+                            .build());
     }
 }

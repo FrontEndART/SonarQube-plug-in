@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014-2017, FrontEndART Software Ltd.
+ * Copyright (c) 2014-2018, FrontEndART Software Ltd.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -149,7 +149,7 @@ SM.CloneWidget = function(elem, options) {
       // there sould always be at least 2 instances per class
       var cloneInstance = cloneClass.cloneInstances[0];
       row += '<td class="sm-widget-line-icons"><i class="sm-icon-square sm-icon-clone-instance"></i></td>';
-      row += '<td class="sm-widget-row-instance">' + this.generatePositionAnchorPopup(cloneInstance) + '</td>';
+      row += '<td class="sm-widget-row-instance">' + this.generateCloneViewerLink(cloneInstance, cloneClass.index, 0) + '</td>';
       this.instanceMetrics.forEach(function(metric) {
         row += '<td>';
         row += SM.formatMetric(cloneClass.cloneInstances[0].cloneInstanceMetrics[metric.title], metric);
@@ -164,7 +164,7 @@ SM.CloneWidget = function(elem, options) {
         cloneInstance = cloneClass.cloneInstances[j];
         row = '<tr>';
         row += '<td class="sm-widget-line-icons"><i class="sm-icon-square sm-icon-clone-instance"></i></td>';
-        row += '<td class="sm-widget-row-instance">' + this.generatePositionAnchorPopup(cloneInstance) + '</td>';
+        row += '<td class="sm-widget-row-instance">' + this.generateCloneViewerLink(cloneInstance, cloneClass.index, j) + '</td>';
         this.instanceMetrics.forEach(function(metric) {
           // there sould always be at least 2 instances per class
           row += '<td>' + SM.formatMetric(cloneInstance.cloneInstanceMetrics[metric.title], metric) + '</td>';
@@ -265,6 +265,36 @@ SM.CloneWidget = function(elem, options) {
   }
   this.setRowsStartOffset = this.setRowsStartOffset.bind(this);
 
+  /**
+   * Generates a link that points to the CloneViewer interface. When clicked the browser is
+   * redirected to show the CloneViewer with the clicked Instance selected on the left pane
+   * and another Instance from the same class on the right pane. The other instance is
+   * instance-#2 if instance-#1 was clicked, in any other case instance-#1 is selected as
+   * the right hand side instance.
+   *
+   * @param  {CloneInstance} pack  cloneInstance
+   * @param  {index}         i     index  of the parent cloneClass
+   * @param  {index}         j     index  of the current cloneInstace inside the parent cloneClass
+   * @return {String}              an HTML <li> element
+   */
+  this.generateCloneViewerLink = function(pack, i, j) {
+    var anchor = pack.name;
+    if (pack.positions[0]) {
+      var url = 'http://' + window.location.host + '/project/extension/SourceMeterGUI/cloneViewer?id='
+      + SM.options.component.key;
+      var href = 'javascript:(function() {'
+      + 'var stateData = SM.state[SM.options.component.key];'
+      + 'stateData.cloneViewer.selectedCloneClass = ' + i + ';'
+      + 'stateData.cloneViewer.selectedInstances = [' + j + ', ' + ((j===0) ? 1 : 0) + '];'
+      + 'SM.options.router.push(\'' + url + '\');'
+      + '})()';
+      anchor = '<a href="' + href + '">' + pack.name + '</a>';
+    }
+
+    return anchor;
+  };
+  this.generateCloneViewerLink = this.generateCloneViewerLink.bind(this);
+
   this.generatePositionAnchorTab = function(pack) {
     var anchor = pack.name;
     if (pack.positions[0]) {
@@ -291,6 +321,7 @@ SM.CloneWidget = function(elem, options) {
   this.generatePositionAnchorPopup = this.generatePositionAnchorPopup.bind(this);
 
   var self = this;
+
 
   var consts = {
     TEXT_NAME:'Name',
@@ -448,24 +479,13 @@ SM.CloneWidget = function(elem, options) {
   this.bindElement = this.bindElement.bind(this);
 
   this.init = function() {
-    var redraw = function() {
-      if (self.elem !== null && jQuery.contains(document, self.elem[0])) {
-        self.renderTable();
-      }
-    };
-
-    var cooldown = false;
-
-    var batchRedraw = function() {
-      // collapse frequent requests into a single one
-      if (!cooldown) {
-        clearTimeout(cooldown);
-      }
-      cooldown = setTimeout(redraw, 1000);
-    };
+    if (typeof SM.state[SM.options.component.key].cloneViewer === "undefined") {
+      SM.state[SM.options.component.key].cloneViewer = {};
+    }
 
     // set code path properly (important when there are submodules)
-    self.data.forEach(function(obj) {
+    self.data.forEach(function(obj, index) {
+      obj.index = index;
       obj.cloneInstances.forEach(function(inst) {
         if (inst.positions.length > 0) {
           inst.displayedPath = self.projectId + ':' + inst.positions[0].path;
@@ -478,18 +498,20 @@ SM.CloneWidget = function(elem, options) {
       this.renderAll();
       this.registerEvents();
     }
+    SM.MetricLoader.subscribe("finishedAllRequests", function() {
+      if (self.elem !== null && jQuery.contains(document, self.elem[0])) {
+        self.renderTable();
+      }
+    });
     // loading metric thresholds one by one
-    this.instanceMetrics.forEach(function(metric, j) {
-      SM.MetricLoader.requestMetric(metric, batchRedraw);
-    });
-    this.classMetrics.forEach(function(metric, j) {
-      SM.MetricLoader.requestMetric(metric, batchRedraw);
-    });
+    this.instanceMetrics.forEach(SM.MetricLoader.requestMetric);
+    this.classMetrics.forEach(SM.MetricLoader.requestMetric);
   };
 
   this.merge = function(other) {
     // merge the data
     other.data.forEach(function(obj) {
+      obj.index = self.data.length;
       self.data.push(obj);
     });
 

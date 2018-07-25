@@ -28,16 +28,25 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-SM.Metric = function(mTitle, langID, scope) {
-  this.title = mTitle;
-  this.direction = -1; // -1: lesser=better && larger=worse; 1:lesser=worse && larger=better;
-  this.baseline = undefined;
-  this.langID = langID || undefined;
-  this.scope = scope || undefined;
-  this.helpText = "loading description...";
-  this.longName = "";
+/*
+*  This file schould contain all simple DOM creation code.
+*  So to say this file replaces the index.html file of the plugin,
+*  it will (, well it should!) be loaded first before all the other
+*  scripts execute.
+*/
+SM.pageBuilder.cloneViewer = {};
 
-  this.getUniqueKey = function() {
-    return this.langID + "." + this.scope.toLowerCase() + "." + this.title;
-  };
+SM.pageBuilder.cloneViewer.build = function() {
+  SM.getRoot().html([
+    '<div class="sm-page-header">',
+      '<img id="sm-logo" height="36px" src="/static/SourceMeterGUI/graphics/MainLogo.png">',
+      '<h1 class="sm-page-title">Clone Viewer</h1>',
+    '</div>',
+    '<hr>',
+    '<div id="cloneClassSelectorContainer"></div>',
+    '<hr>',
+    '<div id="cloneInstanceSelectorContainer"></div>',
+    '<hr>',
+    '<div id="cloneViewerConatiner"></div>',
+  ].join(""));
 };
