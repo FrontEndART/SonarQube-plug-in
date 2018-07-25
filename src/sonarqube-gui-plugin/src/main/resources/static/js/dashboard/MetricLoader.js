@@ -56,7 +56,7 @@ SM.MetricLoader = new (function() { // Singleton object
    */
   this.requestMetric = function(metric, callback) {
     // sanitize inputs
-    if(!metric instanceof SM.Metric) {
+    if (!metric instanceof SM.Metric) {
       console.log("bad Arguments in MetricLoader.requestMetric");
     }
     callback = (callback && callback instanceof Function)? callback : undefined;

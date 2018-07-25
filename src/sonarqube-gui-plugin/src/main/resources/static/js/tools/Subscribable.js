@@ -66,7 +66,8 @@ SM.Subscribable = function () {
    *
    * @param  {String}       event the event id
    * @param  {any} param    parameters passed to the callbacks
-   * @return {void}
+   *
+   * @return {undefined}
    */
   this.emit = function(event, param) {
     if (typeof this.subscriptions[event] === "undefined") {
@@ -96,5 +97,4 @@ SM.Subscribable = function () {
       }
     }
   };
-
 };

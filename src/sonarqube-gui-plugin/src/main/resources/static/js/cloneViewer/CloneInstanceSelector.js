@@ -71,7 +71,7 @@ SM.CloneInstanceSelector = function(HTMLelem, options) {
     var html = [];
 
     html.push('<div id="cloneInstanceLinkContainer">');
-      html.push(SM.cloneViewer.generatePositionAnchorPopup(this.cloneInstanceList[this.selected]));
+    html.push(SM.cloneViewer.generatePositionAnchorPopup(this.cloneInstanceList[this.selected]));
     html.push('</div>');
     html.push('<div>');
     html.push('<select id="selectmenu">');
