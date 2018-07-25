@@ -60,15 +60,15 @@ window.registerExtension('SourceMeterGUI/help', function(options) {
   /*  DO NOT EDIT BELOW THIS LINE (you can, but should not have to) */
 
   /**
-  * waitForNDo - Uses setInterval to test for function {test}. When test returns
-  * true the first time exe will be executed, and the intervall will be cleared.
-  *
-  * @param {function} test the tester function, returns logical value.
-  * @param {function} exe  the taskj function, executed after test() gets true
-  * @param {int} time milliseconds to pass between subsequent tests. default = 100
-  *
-  * @returns {undefined} undefined
-  */
+   * waitForNDo - Uses setInterval to test for function {test}. When test returns
+   * true the first time exe will be executed, and the intervall will be cleared.
+   *
+   * @param {function} test the tester function, returns logical value.
+   * @param {function} exe  the taskj function, executed after test() gets true
+   * @param {int} time milliseconds to pass between subsequent tests. default = 100
+   *
+   * @returns {undefined} undefined
+   */
   var waitForNDo = function(test, exe, time) {
     time = time || 100;
     var tester = setInterval(function() {
@@ -90,7 +90,7 @@ window.registerExtension('SourceMeterGUI/help', function(options) {
   loadScript = function(url, isAsync, basePath) {
     basePath = basePath ? basePath : "";
     isAsync = isAsync ? isAsync : false; // false by default
-    if (document.getElementById(basePath + url) === null){ // checks if the script is already loaded
+    if (document.getElementById(basePath + url) === null) { // checks if the script is already loaded
       var script = document.createElement('script');
 
       script.type = 'text/javascript';

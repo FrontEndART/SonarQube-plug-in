@@ -81,6 +81,7 @@ SM.Subscribable = function () {
 
   /**
    * Remove a subscription
+   *
    * @param  {index} index  the subscriptionID returned at the time of subscription by `subscribe()`
    *
    * @return {undefined}

@@ -74,11 +74,11 @@ SM.CloneInstanceSelector = function(HTMLelem, options) {
       html.push(SM.cloneViewer.generatePositionAnchorPopup(this.cloneInstanceList[this.selected]));
     html.push('</div>');
     html.push('<div>');
-      html.push('<select id="selectmenu">');
-      this.cloneInstanceList.forEach(function(cloneInstance, i) {
-        html.push("<option value=" + i + "> " + cloneInstance.name + "</option>");
-      });
-      html.push('</select>');
+    html.push('<select id="selectmenu">');
+    this.cloneInstanceList.forEach(function(cloneInstance, i) {
+      html.push("<option value=" + i + "> " + cloneInstance.name + "</option>");
+    });
+    html.push('</select>');
     html.push('</div>');
     html.push('<div id="cloneInstanceMetricsContainer'+this.id+'"></div>');
 
@@ -108,7 +108,8 @@ SM.CloneInstanceSelector = function(HTMLelem, options) {
   };
 
   /**
-   * selects a CloneClass, and calls everything that needs to update its state.
+   * Selects a CloneClass, and calls everything that needs to update its state.
+   *
    * @param  {int} choice    the id of the cloneclass in the this.CloneClassList
    *
    * @return {undefined}

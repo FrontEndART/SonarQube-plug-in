@@ -76,7 +76,6 @@ SM.CloneClassSelector = function(HTMLelem, options) {
     // make selectmenu
     $("#cloneClassSelector").selectmenu();
     $("#cloneClassSelector").val(this.selected).selectmenu("refresh");
-
   };
 
   this.renderMetrics = function() {
@@ -97,6 +96,7 @@ SM.CloneClassSelector = function(HTMLelem, options) {
 
   /**
    * Selects a CloneClass, and calls everything that needs to update its state.
+   *
    * @param  {int} choice    the id of the cloneclass in the this.CloneClassList
    *
    * @return {undefined}

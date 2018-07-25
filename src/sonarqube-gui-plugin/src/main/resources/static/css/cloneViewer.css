@@ -1,5 +1,5 @@
 .sm-cloneviewer-metric-container, .sm-cloneviewer-metric-container div {
-  display:inline-block;
+  display: inline-block;
 }
 .sm-cloneviewer-metric-container {
   min-width: 240px;
@@ -9,7 +9,7 @@
   text-align: left;
 }
 .sm-cloneviewer-metric-container div {
-  margin:5px;
+  margin: 5px;
 }
 .sm-cloneviewer-metric-container .sm-cloneviewer-metric-icon-container {
   margin: 0px;

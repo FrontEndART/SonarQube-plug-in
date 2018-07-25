@@ -49,7 +49,7 @@ public class SourceMeterPages implements PageDefinition {
                             .setName("SourceMeter Help")
                             .build());
         context.addPage(Page.builder("SourceMeterGUI/cloneViewer")
-                            .setName("SourceMeter CloneViewer")
+                            .setName("SourceMeter Clone Viewer")
                             .setScope(Scope.COMPONENT)
                             .setComponentQualifiers(Qualifier.PROJECT)
                             .build());
