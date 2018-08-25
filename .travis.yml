@@ -7,7 +7,10 @@ sudo: false
 
 # Default dependency installation step: nop intentionally.
 # Jobs can add their own dependencies by redefinig the 'install' stage in the matrix below.
-install: true
+install:
+  - wget https://github.com/jgm/pandoc/releases/download/2.2.3.2/pandoc-2.2.3.2-linux.tar.gz -O /tmp/pandoc.tar.gz
+  - tar -xzf /tmp/pandoc.tar.gz
+  - export PATH="$PWD/pandoc-2.2.3.2/bin:$PATH"
 
 # Default job task: run tests as defined in the $OPT environment variable.
 # Jobs can redefine the 'script' stage in the matrix below.
@@ -19,7 +22,4 @@ matrix:
     - env:
         - JOBNAME="Build test"
       script: tools/build.py --dist
-      addons:
-        apt:
-          packages: [pandoc]
   fast_finish: true

@@ -23,10 +23,10 @@ PARSER.add_argument('-docx',  help='Generate docx output', action='store_true')
 PARSER.add_argument('-css',  help='CSS style file', dest='css')
 
 
-COMMON_OPTIONS = ['pandoc', '-S', '--toc', '--normalize', '-f',  'markdown']
+COMMON_OPTIONS = ['pandoc', '--toc', '-f', 'markdown-smart']
 
 # END of Commandline arguments
-  
+
 def safedircreate(filename, parent=None):
   try:
     if parent:
@@ -36,12 +36,12 @@ def safedircreate(filename, parent=None):
   except OSError:
     return False
   return True
-  
+
 
 def run_program(logfileName, programName, command):
   try:
     with open(logfileName, 'a') as logfile:
-      subprocess.check_call(list(filter(None, command)) , stderr=subprocess.STDOUT, stdout=logfile)
+      subprocess.check_call(list(filter(None, command)), stderr=subprocess.STDOUT, stdout=logfile)
       logfile.write(programName + ' Succeeded\n')
   except subprocess.CalledProcessError as cmderror:
     print('    %s Failed' % (programName))
