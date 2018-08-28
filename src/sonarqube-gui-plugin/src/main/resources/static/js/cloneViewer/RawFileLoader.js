@@ -59,9 +59,9 @@ SM.RawFileLoader = new (function() { // Singleton object
   /**
    * Gets raw file data, only returns lines fromLine toLine
    *
-   * @param  {string}   filePath  url of the file
    * @param  {Function} callback is called with the raw data passed as argument (string)
-   * @param  {Number}   fromLine starting default is 0
+   * @param  {string}   filePath  url of the file
+   * @param  {Number}   fromLine starting default is 1
    * @param  {Number}   toLine   ending line default is file length, truncated if longer
    *
    * @return {undefined}
@@ -71,8 +71,8 @@ SM.RawFileLoader = new (function() { // Singleton object
         var temp = [];
         var x = rawFile.split("\n");
 
-        if (fromLine === undefined) {
-          fromLine = 0;
+        if (fromLine === undefined || fromLine < 1) {
+          fromLine = 1;
         }
         if (toLine === undefined || toLine > x.length) {
           toLine = x.length;
