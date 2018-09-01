@@ -43,7 +43,8 @@ SM.loader.src = {
     ],
     styles: [ // these stylesheets will be loaded
       "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css",
-      "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css"
+      "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css",
+      "https://cdnjs.cloudflare.com/ajax/libs/octicons/4.4.0/font/octicons.css"
     ]
   },
   local: { // these get baseUrl prepended automatically

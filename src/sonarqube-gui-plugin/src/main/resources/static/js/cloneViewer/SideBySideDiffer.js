@@ -35,13 +35,38 @@
  * @param {[type]} options  [description]
  */
 SM.SideBySideDiffer = function(HTMLelem, options) {
+  var self = this;
   this.elem = null; // :DOMElement
-  this.text = []; // :string[]
+  /**
+   * Array of objects describing text on the left and right instance.
+   * Object structure:
+   *   startLine {Number}    the starting line number of the instance
+   *                         (not the context!), numbering starts with 1
+   *   ctxBefore {String}    how many lines of context should be prepended
+   *   ctxAfter  {String}    how many lines of context should be appended
+   *   txt       {String[]}  array of lines. text of the instance with context before and after
+   *
+   * @type {Array}
+   */
+  this.text = []; // :obj[]
+  this.instance = []; // :Instance[]
 
-  this.init = function(HTMLelem,options) {
+  this.init = function(HTMLelem, options) {
     options = (options) ? options:  {};
-    this.text[1] = options.text1 ? options.text1 : {start: 0, txt: ""};
-    this.text[2] = options.text2 ? options.text2 : {start: 0, txt: ""};
+    defaultval = {
+      startLine: 1,
+      ctxBefore: 0,
+      ctxAfter: 0,
+      txt: []
+    };
+    this.text[0] = options.text0 ? options.text0 : defaultval;
+    this.text[1] = options.text1 ? options.text1 : defaultval;
+    if (options.instance0) {
+      this.setInstance(options.instance0);
+    }
+    if (options.instance1) {
+      this.setInstance(options.instance1);
+    }
 
     this.bindElement(HTMLelem);
   };
@@ -53,60 +78,294 @@ SM.SideBySideDiffer = function(HTMLelem, options) {
    * @return {undefined}
    */
   this.renderAll = function() {
-    var isMatch = (this.text[1].txt === this.text[2].txt);
-
+    var txtA = this.getTextNoCtx(0).join("\n");
+    var txtB = this.getTextNoCtx(1).join("\n");
+    var isMatch = (txtA === txtB);
+    var diff;
     if (!isMatch) {
-      var diff = JsDiff.createPatch('fileName', this.text[1].txt, this.text[2].txt, 'oldHeader', 'newHeader',{context:100000});
+      diff = JsDiff.createPatch('fileName', txtA, txtB, 'oldHeader', 'newHeader', {context:100000});
     } else {
-      var diff = [
+      // manually put together a diff with no changes, only context
+      diff = [
         "Index: fileName",
         "===================================================================",
         "--- fileName  oldHeader",
         "+++ fileName  newHeader",
         "@@ -1 +1 @@",
       ].join("\n");
-      txt = this.text[1].txt.split("\n");
-      txt = txt.map(function(s) {return " " + s});
-      txt = txt.join("\n");
-      diff = [diff, txt].join("\n");
+      diff = [diff, txtA.split("\n").map(function(s) {return " " + s;}).join("\n")].join("\n");
     }
+
+    // Prepend, append lines here. (gets added to both sides, postprocessing fixes this later)
+    // Add empty space before every line, to conform with diff format!
+    // Prepend both contexts, left goes first.
+    var preLeft = this.getTextCopy(0);
+    preLeft.splice(this.text[0].ctxBefore, preLeft.length);
+    var preRight = this.getTextCopy(1);
+    preRight.splice(this.text[1].ctxBefore, preRight.length);
+    var pre = preLeft.concat(preRight)
+                .map(function(s) { return " " + s; })
+                .join("\n");
+    // append both contexts, left first
+    var postLeft = this.getTextCopy(0);
+    postLeft.splice(0, postLeft.length - this.text[0].ctxAfter);
+    var postRight = this.getTextCopy(1);
+    postRight.splice(0, postRight.length - this.text[1].ctxAfter);
+    var post = postLeft.concat(postRight)
+                .map(function(s) { return " " + s; })
+                .join("\n");
+    diffSplit = diff.split("\n");
+    diff = [diffSplit.slice(0, 5).join("\n"), pre, diffSplit.slice(5, diffSplit.length).join("\n"), post].join("\n");
 
     var diff2htmlUi = new Diff2HtmlUI({diff: diff});
     diff2htmlUi.draw(this.elem, {
       inputFormat: 'diff',
-      showFiles: false, matching:
-      'lines',outputFormat: 'side-by-side',
-      synchronisedScroll:true
+      showFiles: false,
+      matching: 'lines',
+      outputFormat: 'side-by-side',
+      synchronisedScroll: true
     });
+
+    // Fix bad language recognition in highlightjs:
+    var lang;
+    switch (SM.state[SM.options.component.key].clone.instanceMetrics[0].langID) {
+      case 'JAVA': lang = "java"; break;
+      case 'CPP': lang = "cpp"; break;
+      case 'CSHARP': lang = "cs"; break;
+      case 'PYTHON': lang = "python"; break;
+      case 'RPG': lang = ""; break;
+    }
+    $('.d2h-file-wrapper').data('lang', lang);
     diff2htmlUi.highlightCode(this.elem);
 
+    // --- post processing ---
+    // Handle matching instances
     if (isMatch) {
-      $(".d2h-file-header").html("The instances are identical! (the left instance is shown)");
-      $(".d2h-files-diff").children()[1].remove(); // remove the right hand size panel
-      $($(".d2h-files-diff").children()[0]).css({width:"100%"}); // stretch the left hand panel
+      $(".d2h-file-header").html("The instances are identical!");
     } else {
       $(".d2h-file-header").html("Diff:");
     }
-    $(".d2h-diff-tbody tr:first-child").remove() // remove the annotation line (eg. "@@ -1 +1 @@")
+
+    $(".d2h-diff-tbody tr:first-child").remove(); // remove the annotation line (eg. "@@ -1 +1 @@")
+
+    var rowsLeft = $(".d2h-file-side-diff:nth-child(1) tr");
+    var rowsRight = $(".d2h-file-side-diff:nth-child(2) tr");
+
+    // remove context lines, that dont belong to the current instance (left/right)
+    this.deleteLines(rowsLeft,  this.text[0].ctxBefore, this.text[1].ctxBefore)
+    this.deleteLines(rowsRight, 0, this.text[0].ctxBefore)
+    this.deleteLines(rowsLeft,  rowsLeft.length - this.text[1].ctxAfter, this.text[1].ctxAfter)
+    this.deleteLines(rowsRight, rowsRight.length - (this.text[0].ctxAfter + this.text[1].ctxAfter), this.text[0].ctxAfter)
+
+    // highlight lines of the belonging to the cloneinstances
+    rowsLeft = $(".d2h-file-side-diff:nth-child(1) tr");
+    rowsRight = $(".d2h-file-side-diff:nth-child(2) tr");
+    this.highlightLines(rowsLeft,  this.text[0].ctxBefore, this.getTextNoCtx(0).length);
+    this.highlightLines(rowsRight, this.text[1].ctxBefore, this.getTextNoCtx(1).length);
 
     // overwrite line numbers to match line numbers of the original file
-    for (var i = 1; i <= 2; i++) {
-      var index = this.text[i].startLine;
-      $($(".d2h-diff-tbody")[i-1])
-          .find(".d2h-code-side-linenumber")
-          .each(function(node) {
-            $(this).html(index++)
-          });
+    for (var i = 0; i <= 1; i++) {
+      var index = this.text[i].startLine - this.text[i].ctxBefore;
+      var number = new RegExp("[0-9]+");
+      $($(".d2h-diff-tbody")[i])
+        .find(".d2h-code-side-linenumber")
+        .each(function(node) {
+          if ($(this).text().match(number)) {
+            $(this).html(index++);
+          }
+        });
+    }
+    this.renderCtxBeforeBtns();
+    this.renderCtxAfterBtns();
+  };
+
+  /**
+   * Removes html nodes from the dom, specified by an array of nodes, a starting index and number items to be removed.
+   * Used to delete lines from the left/right panels
+   *
+   * @param  {JQuery}  rows   jquery result object array
+   * @param  {index}   start  starting index, deletion starts here
+   * @param  {integer} stop   number of items to be deleted
+   */
+  this.deleteLines = function(rows, delStart, delStop) {
+    for (var i = delStart; i < delStart + delStop; i++) {
+      $(rows[i]).remove();
     }
   };
 
-  this.setText = function (id, obj) {
+  /**
+   * Adds the highlighting css class to the objects in the provided array
+   *
+   * @param  {JQuery}  rows            jquery result object array
+   * @param  {index}   highlightStart  starting index, highlighting starts at thin index
+   * @param  {integer} highlightStop   number of items to be highlighted
+   */
+  this.highlightLines = function(rows, highlightStart, highlightStop) {
+    var num = 0;
+    var i = highlightStart;
+    while (num < highlightStop && typeof rows[i] !== "undefined"){
+      var number = new RegExp("[0-9]+");
+      if ($(rows[i]).find(".d2h-code-side-linenumber").text().match(number)) {
+        $(rows[i]).addClass('sm-cloneviewer-cloneinstance-highlight');
+        num++;
+      }
+      i++;
+    }
+  };
+
+  /**
+   * Renders the buttons that adds context BEFORE the instances
+   *
+   * @return {undefined}
+   */
+  this.renderCtxBeforeBtns = function() {
+    // Creating a button that will always be prepended to the table
+    var button1 = [
+      '<button id = "leftBeforeButton">',
+        '<i class = "octicon octicon-unfold"></i>',
+      '</button>'
+    ].join("");
+
+    $(".d2h-file-header").after($(button1));
+  };
+
+  /**
+   * Renders the buttons that adds context AFTER the instances
+   *
+   * @return {undefined}
+   */
+  this.renderCtxAfterBtns = function() {
+    // Creating the first button that will always be appended to the table
+    var button1 = [
+      '<button id = "leftAfterButton">',
+        '<i class = "octicon octicon-unfold"></i>',
+      '</button>'
+    ].join("");
+
+    $(".d2h-files-diff").after($(button1));
+  };
+
+  /**
+   * Adds SM.cloneViewer.ctxUnit number of lines to the context BEFORE
+   * updates the text[id] object accordingly.
+   *
+   * @param {index} id 0 for left, 1 for right side
+   */
+  this.addContextBefore = function(id) {
     if (id >= this.text.length) {
       throw "IndexOutOfBoundsException";
       return;
     }
-    this.text[id] = obj;
-    this.renderAll();
+    // Increasing the number of lines to be shown by SM.cloneViewer.ctxUnit and adjusts the variables accordingly
+    var contextAfter = self.text[id].ctxAfter;
+    var contextBefore = self.text[id].ctxBefore + SM.cloneViewer.ctxUnit;
+    var start = this.text[id].startLine - contextBefore;
+    // When reaching the start of the file, contextBefore doesnt point to a negative starting line
+    if (start < 1) {
+      contextBefore += start - 1;
+      start = 1; // Default starting value
+    }
+    var stop = start + contextBefore + this.instance[id].cloneInstanceMetrics.CLLOC + contextAfter;
+    var func = function(text) {
+      self.text[id].txt = text;
+      self.text[id].ctxBefore = contextBefore;
+      self.renderAll();
+    };
+    SM.RawFileLoader.requestSliceOfRawFile(
+      func,
+      this.instance[id].displayedPath,
+      start,
+      stop
+    );
+
+  };
+
+  /**
+   * Adds SM.cloneViewer.ctxUnit number of lines to the context AFTER
+   * updates the text[id] object accordingly.
+   *
+   * @param {index} id 0 for left, 1 for right side
+   */
+  this.addContextAfter = function(id) {
+    if (id >= this.text.length) {
+      throw "IndexOutOfBoundsException";
+      return;
+    }
+    // Increasing the number of lines to be shown by SM.cloneViewer.ctxUnit and adjusts the variables accordingly
+    var contextAfter = self.text[id].ctxAfter + SM.cloneViewer.ctxUnit;
+    var contextBefore = self.text[id].ctxBefore;
+    var start = this.text[id].startLine - contextBefore;
+    var stop = start + contextBefore + this.instance[id].cloneInstanceMetrics.CLLOC + contextAfter;
+    var func = function(text) {
+      // When reaching the end of the file, contextAfter shouldn't point beyond the length of the file
+      contextAfter -= (stop - (start + text.length));
+      self.text[id].txt = text;
+      self.text[id].ctxAfter = contextAfter;
+      self.renderAll();
+    };
+    SM.RawFileLoader.requestSliceOfRawFile(
+      func,
+      this.instance[id].displayedPath,
+      start,
+      stop
+    );
+  };
+
+  /**
+   * Sets the instance displayed in the left or right pane.
+   *
+   * @param {index} id  id==0 for the left, id==1 for the right pane
+   * @param {CloneInstance} selectedInstance the cloneinstance object that is displayed in the pane
+   */
+  this.setInstance = function (id, selectedInstance) {
+    if (id >= this.text.length) {
+      throw "IndexOutOfBoundsException";
+      return;
+    }
+    this.instance[id] = selectedInstance;
+
+    var start = selectedInstance.positions[0].line;
+    var stop = start + selectedInstance.cloneInstanceMetrics.CLLOC;
+    var func = function(text) {
+      self.text[id] = {
+        startLine: start,
+        txt: text,
+        ctxBefore: 0,
+        ctxAfter: 0
+      };
+      self.renderAll();
+    };
+    SM.RawFileLoader.requestSliceOfRawFile(
+      func,
+      selectedInstance.displayedPath,
+      start,
+      stop
+    );
+  };
+
+  /**
+   * Gets a copy of the text array (whole text, with context)
+   *
+   * @param {index} id   id==0 for the left, id==1 for the right pane
+   */
+  this.getTextCopy = function(id) {
+    var txtarr = this.text[id].txt;
+    var txt = txtarr.slice(0, txtarr.length);
+    return txt;
+  };
+
+  /**
+   * Calculates the array of lines that belong to the cloneclass in the specified
+   * panel, without the context lines.
+   *
+   * @param  {index}         id               id==0 for the left, id==1 for the right pane
+   */
+  this.getTextNoCtx = function(id) {
+    if (this.text[id].txt.length === 0) return [];
+    var txt = this.getTextCopy(id);
+    txt.splice(0, this.text[id].ctxBefore); // remove context before
+    txt.splice(txt.length - this.text[id].ctxAfter, txt.length); // remove context after
+    return txt;
   };
 
   this.bindElement = function(elem) {
@@ -121,6 +380,14 @@ SM.SideBySideDiffer = function(HTMLelem, options) {
   };
 
   this.registerEvents = function() {
+    this.elem.on("click", "#leftBeforeButton", function() {
+      self.addContextBefore(0);
+      self.addContextBefore(1);
+    });
+    this.elem.on("click", "#leftAfterButton", function() {
+      self.addContextAfter(0);
+      self.addContextAfter(1);
+    });
   };
 
   SM.bindFunctions(this);

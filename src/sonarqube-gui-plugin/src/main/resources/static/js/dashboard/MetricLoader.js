@@ -221,3 +221,4 @@ SM.MetricLoader = new (function() { // Singleton object
     );
   SM.bindFunctions(this);
 })();
+

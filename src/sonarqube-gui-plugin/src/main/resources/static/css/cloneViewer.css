@@ -14,11 +14,29 @@
 .sm-cloneviewer-metric-container .sm-cloneviewer-metric-icon-container {
   margin: 0px;
 }
+.sm-cloneviewer-cloneinstance-highlight {
+  background-color: #FFF8B2;
+}
 .sm-cloneInstanceSelector {
   display: grid;
   grid-template-columns: auto auto;
   grid-gap: 10px;
-
+}
+.octicon {
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 2;
+  grid-row-end: 3;
+}
+#leftAfterButton {
+  width: 56px;
+  text-align: center;
+  line-height: 50%;
+}
+#leftBeforeButton {
+  width: 56px;
+  text-align: center;
+  line-height: 50%;
 }
 #cloneInstanceSelectorContainer {
   display: grid;

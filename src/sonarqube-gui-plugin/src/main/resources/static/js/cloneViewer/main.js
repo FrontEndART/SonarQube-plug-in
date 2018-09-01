@@ -29,6 +29,7 @@
  */
 
 SM.cloneViewer = {};
+SM.cloneViewer.ctxUnit = 10; // the number of lines appended/prepended when the context button is used
 
 SM.cloneViewer.getFormatedMetric = function(val, metric) {
   if (val === undefined) {
@@ -55,12 +56,12 @@ SM.cloneViewer.getFormatedMetric = function(val, metric) {
   }
 
   return [
-    '<div class="sm-cloneviewer-metric-container">',
+    '<div class="sm-cloneviewer-metric-container ' + valueClass + '">',
       '<i class="sm-cloneviewer-metric-icon ' + iconClass + '" style="' + iconStyle + '"></i>',
       '<div class="sm-cloneviewer-metric-title-container" title=\'' + metric.helpText + '\'">',
         metric.longName + ' (' + metric.title + ', ' + ((metric.baseline !== undefined)? metric.baseline : "-") + '):',
       '</div>',
-      '<div class="sm-cloneviewer-metric-value-container ' + valueClass + '">',
+      '<div class="sm-cloneviewer-metric-value-container">',
         '<b>' + (Math.round(val * 100) / 100) + '</b>',
       '</div>',
     '</div>'
@@ -124,3 +125,4 @@ SM.cloneViewer.main = function() {
   }
 
 }; // END OF function main
+
