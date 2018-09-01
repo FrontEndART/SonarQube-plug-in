@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-# Copyright (c) 2014-2016, FrontEndART Software Ltd.
+# Copyright (c) 2014-2018, FrontEndART Software Ltd.
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
@@ -28,9 +28,15 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
+# Requirements:
+#    * Maven
+#    * Python3
+#    * Pandoc 2.2.3.0+
+
 import argparse
 import glob
 import os
+import platform
 import shutil
 import subprocess
 import tarfile
@@ -53,8 +59,6 @@ def get_arguments():
                         help='Build everything and create a distribution package.')
 
     group = parser.add_argument_group('Build Options')
-    group.add_argument('--core', action='store_true',
-                        help='Build Core Plugin')
     group.add_argument('--cpp', action='store_true',
                         help='Build C/C++ Analyzer')
     group.add_argument('--csharp', action='store_true',
@@ -76,9 +80,14 @@ def run_cmd(cmd, args=[], quiet=False, work_dir=None):
     if not quiet:
         print(cmd, args)
     try:
-        ret_code = subprocess.call([cmd] + args, cwd=work_dir)
+        ret_code = 0
+        if platform.system() == 'Windows':
+            ret_code = subprocess.call([cmd] + args, cwd=work_dir, shell=True)
+        else:
+            ret_code = subprocess.call([cmd] + args, cwd=work_dir)
         if ret_code != 0:
-            exit (ret_code)
+            print("[Failed - command exited with %s]" % ret_code)
+            exit(ret_code)
     except OSError as e:
         print("[Failed - %s] %s" % (cmd, e.strerror))
         exit(1)
@@ -105,8 +114,12 @@ def mvn_install(target):
     run_cmd('mvn', ['-f', ('src/%s/pom.xml' % target), 'clean', 'install'])
 
 def usersguide():
-    run_cmd('python3', ['generatedoc.py', '-css', 'style/SourceMeter.css', '-html'],
-            False, 'doc/usersguide')
+    if platform.system() == 'Windows':
+        run_cmd('py', ['-3', 'generatedoc.py', '-css', 'style\\SourceMeter.css', '-html'],
+                False, 'doc/usersguide')
+    else:
+        run_cmd('python3', ['generatedoc.py', '-css', 'style/SourceMeter.css', '-html'],
+                False, 'doc/usersguide')
     try:
         shutil.copy('doc/usersguide/results/UG.html', 'doc/UG.html')
     except OSError:
@@ -133,7 +146,6 @@ def main(options):
 
     if options.all or options.dist:
         options.cpp = True
-        options.core = True
         options.csharp = True
         options.gui = True
         options.java = True
@@ -149,8 +161,7 @@ def main(options):
                     '-Dfile=lib/graphlib-1.0.jar'])
 
     # sonarqube-core-plugin
-    if options.core:
-        mvn_install('sonarqube-core-plugin')
+    mvn_install('sonarqube-core-plugin')
 
     # sourcemeter-analyzer-base
     mvn_install('sonarqube-analyzers/sourcemeter-analyzer-base')
@@ -201,5 +212,6 @@ def main(options):
         tar.add(target_dir, arcname=PACKAGENAME)
         tar.close()
 
+    print('\nBUILD SUCCESS\n')
 if __name__ == "__main__":
     main(get_arguments())
