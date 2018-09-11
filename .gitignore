@@ -14,3 +14,4 @@ src/sonarqube-gui-plugin/target/
 .settings
 sourcemeter-*.tar.gz
 **/.scannerwork
+.vscode
