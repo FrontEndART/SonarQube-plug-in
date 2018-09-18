@@ -111,7 +111,10 @@ window.registerExtension('SourceMeterGUI/cloneViewer', function(options) {
       function() {
         return SM.SmGuiExtensionAlreadyLoaded;
       },
-      init,
+      function(){
+        SM.globalinit();
+        init();
+      },
       10
     );
   };

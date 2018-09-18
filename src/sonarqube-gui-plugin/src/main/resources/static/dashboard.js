@@ -113,7 +113,10 @@ window.registerExtension('SourceMeterGUI/dashboard', function(options) {
       function() {
         return SM.SmGuiExtensionAlreadyLoaded;
       },
-      init,
+      function(){
+        SM.globalinit();
+        init();
+      },
       10
     );
   };

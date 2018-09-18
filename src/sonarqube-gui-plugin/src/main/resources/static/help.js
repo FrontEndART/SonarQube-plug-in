@@ -135,7 +135,10 @@ window.registerExtension('SourceMeterGUI/help', function(options) {
       function() {
         return SM.SmGuiExtensionAlreadyLoaded;
       },
-      init,
+      function(){
+        SM.globalinit();
+        init();
+      },
       10
     );
   };
