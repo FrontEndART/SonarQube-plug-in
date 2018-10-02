@@ -22,4 +22,7 @@ matrix:
     - env:
         - JOBNAME="Build test"
       script: tools/build.py --dist
+    - env:
+        - JOBNAME="Regression test"
+      script: python3 tools/run-test.py --init --print-log
   fast_finish: true
