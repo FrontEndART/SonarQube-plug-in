@@ -74,7 +74,7 @@ def run_check(runnable):
 
 def download_sq_server(version, dst):
     print('Downloading: SonarQube server (version %s)...' % version)
-    sq = urlopen('https://sonarsource.bintray.com/Distribution/'
+    sq = urlopen('https://binaries.sonarsource.com/Distribution/'
                          'sonarqube/sonarqube-%s.zip' % version)
     dl = sq.read()
     path = os.path.join(dst, 'sonarqube-%s.zip' % version)
@@ -85,7 +85,7 @@ def download_sq_server(version, dst):
 def download_sq_scanner(version, system, dst):
     system = system.lower()
     print('Downloading: SonarQube scanner (version %s)...' % version)
-    sq = urlopen('https://sonarsource.bintray.com/Distribution/'
+    sq = urlopen('https://binaries.sonarsource.com/Distribution/'
                          'sonar-scanner-cli/sonar-scanner-cli-%s-%s.zip' % (version, system))
     dl = sq.read()
     path = os.path.join(dst, 'sonar-scanner-cli-%s-%s.zip' % (version, system))
