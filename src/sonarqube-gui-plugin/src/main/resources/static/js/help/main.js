@@ -69,7 +69,7 @@ SM.help.main = function() {
           '<div class="ui-state-error ui-state-highlight ui-corner-all" style="padding:10px"> ',
           '  In order to see the users guide for the SourceMeter ' + lang.symbol + ' ',
           '  scanner plugin, please put the ',
-          '  sourcemeter-analyzer-' + lang.id.toLowerCase() + '-plugin-1.0.0.jar',
+          '  sourcemeter-analyzer-' + lang.id.toLowerCase() + '-plugin-1.1.0.jar',
           '  into the extensions/plugins directory of your SonarQube instance. ',
           '</div>'
         ].join('/n');
