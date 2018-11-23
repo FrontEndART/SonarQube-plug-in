@@ -31,6 +31,7 @@
 import platform
 import subprocess
 import os
+import shutil
 
 def run_cmd(cmd, args=[], quiet=False, work_dir=None):
     if not quiet:
