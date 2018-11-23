@@ -4,7 +4,7 @@
 
   <groupId>com.sourcemeter</groupId>
   <artifactId>sourcemeter-analyzer-base</artifactId>
-  <version>1.0.0</version>
+  <version>1.1.0</version>
 
   <name>SourceMeter base analyzer</name>
   <description>SourceMeter base analyzer</description>
@@ -44,7 +44,7 @@
     <dependency>
       <groupId>com.sourcemeter</groupId>
       <artifactId>sourcemeter-core-plugin</artifactId>
-      <version>1.0.0</version>
+      <version>1.1.0</version>
     </dependency>
 
     <dependency>

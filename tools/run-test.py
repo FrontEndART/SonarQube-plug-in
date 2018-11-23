@@ -110,13 +110,13 @@ def copy_all_files_from_folder(src, dst):
     else:
         plugins = ['core', 'gui']
         for plugin in plugins:
-            path = ['src', 'sonarqube-%s-plugin' % plugin, 'target', 'sourcemeter-%s-plugin-1.0.0.jar' % plugin]
+            path = ['src', 'sonarqube-%s-plugin' % plugin, 'target', 'sourcemeter-%s-plugin-1.1.0.jar' % plugin]
             path  = os.path.join(*path)
             shutil.copy(path, dst)
 
         languages = ['cpp', 'csharp', 'java', 'python', 'rpg']
         for language in languages:
-            path = ['src', 'sonarqube-analyzers', 'sourcemeter-analyzer-%s' % language, 'target', 'sourcemeter-analyzer-%s-plugin-1.0.0.jar' % language]
+            path = ['src', 'sonarqube-analyzers', 'sourcemeter-analyzer-%s' % language, 'target', 'sourcemeter-analyzer-%s-plugin-1.1.0.jar' % language]
             path  = os.path.join(*path)
             shutil.copy(path, dst)
     print('Copy finished!')

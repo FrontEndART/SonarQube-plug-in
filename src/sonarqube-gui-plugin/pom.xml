@@ -5,7 +5,7 @@
   <groupId>com.sourcemeter</groupId>
   <artifactId>sourcemeter-gui-plugin</artifactId>
   <packaging>sonar-plugin</packaging>
-  <version>1.0.0</version>
+  <version>1.1.0</version>
 
   <name>SourceMeter GUI plugin</name>
   <description>SourceMeter GUI plugin</description>
@@ -39,13 +39,13 @@
     <dependency>
       <groupId>com.sourcemeter</groupId>
       <artifactId>sourcemeter-analyzer-base</artifactId>
-      <version>1.0.0</version>
+      <version>1.1.0</version>
     </dependency>
 
     <dependency>
       <groupId>com.sourcemeter</groupId>
       <artifactId>sourcemeter-core-plugin</artifactId>
-      <version>1.0.0</version>
+      <version>1.1.0</version>
     </dependency>
   </dependencies>
 
