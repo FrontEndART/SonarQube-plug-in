@@ -22,9 +22,11 @@ Additionally, the plug-in extends the platform's GUI with a SourceMeter dashboar
 
 - Custom dashboard for packages, classes, methods and clone classes/instances
 
+- CloneViewer for comparing and managing code duplications
+
 - And many more...
 
-The plug-in is compatible with the latest version 6.7[^1] of the platform, which can be obtained from its [website].
+The plug-in is compatible with the latest version 7.4 and the latest LTS 6.7[^1] of the platform, which can be obtained from its [website].
 
 [SONARQUBE]™ is a trademark of [SonarSource] SA, Switzerland.
 
@@ -42,13 +44,13 @@ Before starting with the installation of the plug-in, make sure that you have a 
 
 [platform]:http://docs.sonarqube.org/display/SONAR/Setup+and+Upgrade
 
-The installation of the plug-in is as simple as copying the `sourcemeter-gui-plugin-1.0.0.jar` and `sourcemeter-core-plugin-1.0.0.jar` files and the corresponding language analyzer plugins into the destination folder `extensions/plugins` of the platform installation:
+The installation of the plug-in is as simple as copying the `sourcemeter-gui-plugin-1.1.0.jar` and `sourcemeter-core-plugin-1.1.0.jar` files and the corresponding language analyzer plugins into the destination folder `extensions/plugins` of the platform installation:
 
-- C/C++: `sourcemeter-analyzer-cpp-plugin-1.0.0.jar`
-- C#: `sourcemeter-analyzer-csharp-plugin-1.0.0.jar`
-- Java: `sourcemeter-analyzer-java-plugin-1.0.0.jar`
-- Python: `sourcemeter-analyzer-python-plugin-1.0.0.jar`
-- RPG: `sourcemeter-analyzer-rpg-plugin-1.0.0.jar`
+- C/C++: `sourcemeter-analyzer-cpp-plugin-1.1.0.jar`
+- C#: `sourcemeter-analyzer-csharp-plugin-1.1.0.jar`
+- Java: `sourcemeter-analyzer-java-plugin-1.1.0.jar`
+- Python: `sourcemeter-analyzer-python-plugin-1.1.0.jar`
+- RPG: `sourcemeter-analyzer-rpg-plugin-1.1.0.jar`
 
 Since there is an independent sensor plug-in for each language, it is enough to install (copy to the destination folder) the sensor plug-in(s) of the required language(s).
 
@@ -71,12 +73,11 @@ Since an arbitrary number of different projects can be monitored and for the pro
 - Analyzers executed with full functionality can be found in the *Full functionality* column (green).
 - Analyzers that were available only with limited functionality are listed in the *Limited functionality* column (yellow).
 - *Not executed* column contains those analyzers that are part of the SourceMeter toolchain but were not executed (red) for some reason (e.g. because of a missing commercial license for SourceMeter).
-
 ![](img/sm-execution-table.png)
 
 ## Plug-in uninstallation
 
-To uninstall the plug-in, first delete the *SourceMeter way* quality profile and then remove the installed plug-in files (`sourcemeter-*-plugin-1.0.0.jar`)  from the folder `/extensions/plugins`.
+To uninstall the plug-in, first delete the *SourceMeter way* quality profile and then remove the installed plug-in files (`sourcemeter-*-plugin-1.1.0.jar`)  from the folder `/extensions/plugins`.
 
 # Code Analysis
 
@@ -110,7 +111,7 @@ It is sufficient to set the source directory of the project to be analyzed.
 The results will be created regardless of the possible import errors of the Python modules, but for providing precise results the analyzed system must be complete and all external references must be available.
 
 ### Code Analysis: RPG
-SourceMeter can analyze source code conforming to RPG III and RPG IV versions (including free-form as well). Two kinds of inputs are supported: It can be specified either as raw source code or as compiler listing. In case of using raw source code as input, the analyzer might not be able to calculate some code metrics or detect various rule violations because the raw source contains less information than the compiler listing. For instance, cross references are detected with the help of compiler listing entries. So, it is highly recommended to use compiler listings as input to get fully detailed analysis results. For constructing RPG compiler listing files, use the RPG compiler version V6R1M0. 
+SourceMeter can analyze source code conforming to RPG III and RPG IV versions (including free-form as well). Two kinds of inputs are supported: It can be specified either as raw source code or as compiler listing. In case of using raw source code as input, the analyzer might not be able to calculate some code metrics or detect various rule violations because the raw source contains less information than the compiler listing. For instance, cross references are detected with the help of compiler listing entries. So, it is highly recommended to use compiler listings as input to get fully detailed analysis results. For constructing RPG compiler listing files, use the RPG compiler version V6R1M0.
 
 ## Settings
 
@@ -160,7 +161,7 @@ The following parameters are supported:
 - RPG parameters (*SourceMeter RPG* setting page)
     - **RPG3 pattern:** File name pattern for RPG/400 files. Key: `sm.rpg.rpg3Pattern`
     - **RPG4 pattern:** File name pattern for ILE RPG files. Key: `sm.rpg.rpg4Pattern`
-    - **Spool pattern:** File name pattern for spool (compiler listing) files. (E.g. ".*\\.txt") Key: `sm.rpg.rpg4Pattern`
+    - **Spool pattern:** File name pattern for spool (compiler listing) files. (E.g. ".\*\\.txt") Key: `sm.rpg.rpg4Pattern`
 
 - Threshold pages (for all supported languages) allow to change the thresholds of all metrical values calculated by SourceMeter (see screenshot below). By default all metrics have a predefined value except the ones that cannot be characterized with an absolute value (for example, comment lines of a class). Since there are different kinds of source code elements (Class, Method, Program, Procedure, Subroutine, Clone), threshold pages are organized according to them and furthermore, there are many sections within each setting page.
 
@@ -228,7 +229,7 @@ On the dashboard there are four widgets which present the results of the SourceM
 
 ### Widgets
 
-On each widget, there is a table that presents the elements in the rows. In each row, the first column is the name of the element and the further columns show the metric values (except for Clone class widget which is described in Section [Clone Class Widget]). The metrics can have one of the following three colors: red means that the metric violates the preset threshold, while green shows that the value is right; finally, those metrics that do not naturally have a threshold value are shown in black. (The threshold values can be set on the [Settings] page.) Hovering over a metric name shows its description in an information bubble, clicking on the metric name orders the dataset according to that metrics value. Smaller values are shown first. Clicking again sorts the dataset in reverse order. The arrow appearing next to the column header name indicates the direction of ordering.
+On each widget, there is a table that presents the elements in the rows. In each row, the first column is the name of the element and the further columns show the metric values (except for Clone class widget which is described in Section [Clone Class Widget]). The metrics can have one of the following three colors: red means that the metric violates the preset threshold, while green shows that the value is right; finally, those metrics that do not naturally have a threshold value are shown in black. (The threshold values can be set on the [Settings] page.) When hovering over a metric name its description is shown in an information bubble, by clicking on the metric name orders the dataset according to that metrics value. Smaller values are shown first. Clicking again sorts the dataset in reverse order. The arrow appearing next to the column header name indicates the direction of ordering.
 
 **Number of rows** limits how many rows the table shows on one page. The **arrow buttons** can be used to move forward or backward among the pages. The dataset can be filtered by the name of the elements using the **Filter** (where the filtering is case-insensitive). The columns can also be filtered by their names using the **Column filter**[^3]. Clicking on the name of a class or method level element opens the source-code of that element in a new popup-window and it will be highlighted. (In order to use this feature you have to allow popup windows on the page for your Browser.)
 
@@ -237,7 +238,17 @@ On each widget, there is a table that presents the elements in the rows. In each
 SourceMeter has a sophisticated Type-2 clone detection engine (detects syntactically identical source code fragments except for variations in identifier names, literals, type references, whitespace, layout, and comments) where the plug-in takes into account the syntactic structure of the source code; hence no broken code fragments without syntactic structure will be reported.
 
 
-The *Clone class* widget is very similar to the other widgets but there is no *Column filter* because there are only a few columns for clone classes and clone instances. Besides, the table is different as well. Alhouth the first columns (the name of the clone class and its metric values) are the same, the second part of each row is split up into the clone intances belonging to the given clone class and their metrics. Due to this construction, the data in this table can be ordered by clone class and clone class metrics only. Clicking on a clone instance will open up a source-code browser in a popup similar to the other widgets, highlighting the starting line of the clone-instance. Since the results of the platform's built-in clone detector cannot be overwritten, **the clone instance detected by SourceMeter cannot be browsed in the platform's way**.
+The *Clone class* widget is very similar to the other widgets but there is no *Column filter* because there are only a few columns for clone classes and clone instances. Besides, the table is different as well. Alhouth the first columns (the name of the clone class and its metric values) are the same, the second part of each row is split up into the clone intances belonging to the given clone class and their metrics. Due to this construction, the data in this table can be ordered by clone class and clone class metrics only. Clicking on a clone instance will open up the [SourceMeter CloneViewer](#sourcemeter-cloneviewer) page, highlighting the starting line of the clone-instance. Since the results of the platform's built-in clone detector cannot be overwritten, **the clone instance detected by SourceMeter cannot be browsed in the platform's way**.
+
+## SourceMeter CloneViewer
+
+The SourceMeter CloneViewer can be shown in two ways. The first one is by clicking on a *CloneClass* or *CloneInstance* of the [Clone Class Widget](#clone-class-widget). The second way is similar to the SourceMeter Dashboard. After selecting a project, the SourceMeter CloneViewer is available under the *More* menu of the project menubar (next to the SourceMeter Dashboard).
+
+This page shows a side by side difference view, which works as a regular diff tool. The *CloneClass* and *CloneInstance* are modifiable with a dropdown select menu. The metrics of the chosen *CloneClass* and *CloneInstance* are displayed at the top of the page. Similarly to the [SourceMeter Dashboard Widget](#widgets), the metrics can have one of the following three colors: red means that the metric violates the pre-set threshold, while green shows that the value is right; finally, those metrics that do not naturally have a threshold value are shown in black. (The threshold values can be set on the [Settings] page.) When hovering over a metric name its description is shown in an information bubble.
+
+Clones can be slightly different, e.g.: variable names can be different in each instance, so the identical lines are marked with yellow while the differences with red and green (see screenshot below). The CloneViewer shows only the necessary lines by default, but the context of the clone instance can be changed with the buttons on the left column, which helps better understand the actual clone instance. By clicking on these context buttons ten more lines from the source code are shown.
+
+![](img/sm-cloneviewer.png)
 
 ## Original Dashboard
 
@@ -284,7 +295,7 @@ Known bugs and deficiencies of the plug-in.
 
 - The platform's [issues workflow] helps users to manage the issues, which means that the users can perform several different *tasks on them* (e.g. writing a comment or assigning them to somebody). The platform recognizes those issues that already existed in the previous analyzed version and their *task settings* will be available in the next versions as well. SourceMeter FaultHunter module replaces many rule violations of the free checkers with its own implementation (or vice versa if, for example, the license key expires) but it hides this change from the platform, more precisely, the platform does not notice the difference and the *task settings* of an issue reported by one checker will be available on the corresponding issue reported by another checker. However, in some cases, the different implementations of the same rule differ so much that it is not possible to hide this change, and in these cases the *task settings* on the given issue might get lost or goes to a wrong place. For example, in case of *Missing Brake In Switch* rule FaultHunter warns for each branch where the break (or continue, etc.) is missing while PMD gives only one warning for the line of the switch keyword. In this case, it is possible that FaultHunter provides more rule violations instead of the earlier one and the *task settings* cannot be transferred automatically to all of them.
 
-- TODO: Although the different kinds of C and C++ elements have different sets of metrics (e.g. C++ struct has inheritance metrics while C struct does not) their coding rule violation groups are common in spite of the fact that several category (e.g. Object Orientedness) cannot be applied for C elements.
+- Although the different kinds of C and C++ elements have different sets of metrics (e.g. C++ struct has inheritance metrics while C struct does not) their coding rule violation groups are common in spite of the fact that several category (e.g. Object Orientedness) cannot be applied for C elements.
 
 - In case of C/C++ and Python, SourceMeter calculates metrics for declarations and the definition separately. The plug-in uploads only the metric values of the definition (if it exists) or the first declaration (if there is no definition in the code). This can lead to imprecisions in some cases.
 
@@ -295,12 +306,12 @@ Known bugs and deficiencies of the plug-in.
 Frequently Asked Questions regarding the plug-in.
 
 - Problem: After installing the SourceMeter plug-in it does not work.
-    
+
     Solution: Check if the necessary installation steps have been carried out properly (see Section "Plug-in installation"):
 
     - Check whether the installation package corresponds to the host operating system.
 
-    - Check whether the plug-in supports your platform version. 
+    - Check whether the plug-in supports your platform version.
 
     - Check whether the plug-in is copied to the proper folder.
 
@@ -335,3 +346,11 @@ Frequently Asked Questions regarding the plug-in.
 - Problem: Although the thresholds are set for the metrics all of them are black on the SourceMeter Dashboard.
 
     Solution: Sometimes the SourceMeter Dashboard is not reloaded properly. In this case, *force refresh* likely solves the problem.
+
+- Problem: The SourceMeter CloneViewer page shows an empty page.
+
+    Reason: This is an expected behavior when there are no clones in the project.
+
+- Problem: There are name conflicts on the SourceMeter CloneViewer page in multilingual projects, e.g.: `CloneClass~0` is presented twice.
+
+    Reason: This is an expected behavior in multilingual analyzes. The SourceMeter toolchain runs the analyzes independently from each other, which causes the reuse of the indices of the clones.

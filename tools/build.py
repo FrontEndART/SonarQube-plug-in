@@ -99,6 +99,7 @@ def usersguide():
                 False, 'doc/usersguide')
     try:
         shutil.copy('doc/usersguide/results/UG.html', 'doc/UG.html')
+        shutil.copy('doc/UG.html', 'src/sonarqube-gui-plugin/src/main/resources/static/help/usersguide.html')
     except OSError:
         print('Cannot copy usersguide. Please check if it was generated successfully.')
 
