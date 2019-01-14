@@ -22,6 +22,8 @@ Additionally, the plug-in extends the platform's GUI with a SourceMeter dashboar
 
 - Custom dashboard for packages, classes, methods and clone classes/instances
 
+- CloneViewer for comparing and managing code duplications
+
 - And many more...
 
 The plug-in is compatible with the latest LTS version 6.7[^1] and the latest version 7.5 of the platform, which can be obtained from its [website].
