@@ -24,7 +24,7 @@ Additionally, the plug-in extends the platform's GUI with a SourceMeter dashboar
 
 - And many more...
 
-The plug-in is compatible with the latest version 6.7[^1] of the platform, which can be obtained from its [website].
+The plug-in is compatible with the latest LTS version 6.7[^1] and the latest version 7.5 of the platform, which can be obtained from its [website].
 
 [Online demo].
 
@@ -32,9 +32,9 @@ The plug-in is compatible with the latest version 6.7[^1] of the platform, which
 
 SONARQUBE™ is a trademark of SonarSource SA, Switzerland.
 
-January 30, 2018
+January 15, 2019
 
-(C) FrontEndART Software Ltd. 2001-2018
+(C) FrontEndART Software Ltd. 2001-2019
 
 
 [FrontEndART]:https://www.frontendart.com/
