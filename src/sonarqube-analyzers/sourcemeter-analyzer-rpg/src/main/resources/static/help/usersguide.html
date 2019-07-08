@@ -6,52 +6,34 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <title></title>
   <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
   <style type="text/css">
-div.sourceCode { overflow-x: auto; }
 table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
   margin: 0; padding: 0; vertical-align: baseline; border: none; }
 table.sourceCode { width: 100%; line-height: 100%; }
 td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
 td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code > span.kw { color: #007020; font-weight: bold; }
+code > span.dt { color: #902000; }
+code > span.dv { color: #40a070; }
+code > span.bn { color: #40a070; }
+code > span.fl { color: #40a070; }
+code > span.ch { color: #4070a0; }
+code > span.st { color: #4070a0; }
+code > span.co { color: #60a0b0; font-style: italic; }
+code > span.ot { color: #007020; }
+code > span.al { color: #ff0000; font-weight: bold; }
+code > span.fu { color: #06287e; }
+code > span.er { color: #ff0000; font-weight: bold; }
   </style>
-  <link href="data:text/css;charset=utf-8,%40import%20url%28data%3Atext%2Fcss%3B%20charset%3Dutf%2D8%2C%2540font%252Dface%2520%257B%250A%2520%2520font%252Dfamily%253A%2520%2527Open%2520Sans%2527%253B%250A%2520%2520font%252Dstyle%253A%2520normal%253B%250A%2520%2520font%252Dweight%253A%2520300%253B%250A%2520%2520src%253A%2520local%2528%2527Open%2520Sans%2520Light%2527%2529%252C%2520local%2528%2527OpenSans%252DLight%2527%2529%252C%2520url%2528http%253A%252F%252Ffonts%252Egstatic%252Ecom%252Fs%252Fopensans%252Fv13%252FDXI1ORHCpsQm3Vp6mXoaTYnF5uFdDttMLvmWuJdhhgs%252Ettf%2529%2520format%2528%2527truetype%2527%2529%253B%250A%257D%250A%2540font%252Dface%2520%257B%250A%2520%2520font%252Dfamily%253A%2520%2527Open%2520Sans%2527%253B%250A%2520%2520font%252Dstyle%253A%2520normal%253B%250A%2520%2520font%252Dweight%253A%2520400%253B%250A%2520%2520src%253A%2520local%2528%2527Open%2520Sans%2527%2529%252C%2520local%2528%2527OpenSans%2527%2529%252C%2520url%2528http%253A%252F%252Ffonts%252Egstatic%252Ecom%252Fs%252Fopensans%252Fv13%252FcJZKeOuBrn4kERxqtaUH3aCWcynf%255FcDxXwCLxiixG1c%252Ettf%2529%2520format%2528%2527truetype%2527%2529%253B%250A%257D%250A%2540font%252Dface%2520%257B%250A%2520%2520font%252Dfamily%253A%2520%2527Open%2520Sans%2527%253B%250A%2520%2520font%252Dstyle%253A%2520normal%253B%250A%2520%2520font%252Dweight%253A%2520600%253B%250A%2520%2520src%253A%2520local%2528%2527Open%2520Sans%2520Semibold%2527%2529%252C%2520local%2528%2527OpenSans%252DSemibold%2527%2529%252C%2520url%2528http%253A%252F%252Ffonts%252Egstatic%252Ecom%252Fs%252Fopensans%252Fv13%252FMTP%255FySUJH%255Fbn48VBG8sNSonF5uFdDttMLvmWuJdhhgs%252Ettf%2529%2520format%2528%2527truetype%2527%2529%253B%250A%257D%250A%2540font%252Dface%2520%257B%250A%2520%2520font%252Dfamily%253A%2520%2527Open%2520Sans%2527%253B%250A%2520%2520font%252Dstyle%253A%2520normal%253B%250A%2520%2520font%252Dweight%253A%2520700%253B%250A%2520%2520src%253A%2520local%2528%2527Open%2520Sans%2520Bold%2527%2529%252C%2520local%2528%2527OpenSans%252DBold%2527%2529%252C%2520url%2528http%253A%252F%252Ffonts%252Egstatic%252Ecom%252Fs%252Fopensans%252Fv13%252Fk3k702ZOKiLJc3WVjuplzInF5uFdDttMLvmWuJdhhgs%252Ettf%2529%2520format%2528%2527truetype%2527%2529%253B%250A%257D%250A%2540font%252Dface%2520%257B%250A%2520%2520font%252Dfamily%253A%2520%2527Open%2520Sans%2527%253B%250A%2520%2520font%252Dstyle%253A%2520normal%253B%250A%2520%2520font%252Dweight%253A%2520800%253B%250A%2520%2520src%253A%2520local%2528%2527Open%2520Sans%2520Extrabold%2527%2529%252C%2520local%2528%2527OpenSans%252DExtrabold%2527%2529%252C%2520url%2528http%253A%252F%252Ffonts%252Egstatic%252Ecom%252Fs%252Fopensans%252Fv13%252FEInbV5DfGHOiMmvb1Xr%252DhonF5uFdDttMLvmWuJdhhgs%252Ettf%2529%2520format%2528%2527truetype%2527%2529%253B%250A%257D%250A%2540font%252Dface%2520%257B%250A%2520%2520font%252Dfamily%253A%2520%2527Open%2520Sans%2527%253B%250A%2520%2520font%252Dstyle%253A%2520italic%253B%250A%2520%2520font%252Dweight%253A%2520300%253B%250A%2520%2520src%253A%2520local%2528%2527Open%2520Sans%2520Light%2520Italic%2527%2529%252C%2520local%2528%2527OpenSansLight%252DItalic%2527%2529%252C%2520url%2528http%253A%252F%252Ffonts%252Egstatic%252Ecom%252Fs%252Fopensans%252Fv13%252FPRmiXeptR36kaC0GEAetxrfB31yxOzP%252Dczbf6AAKCVo%252Ettf%2529%2520format%2528%2527truetype%2527%2529%253B%250A%257D%250A%2540font%252Dface%2520%257B%250A%2520%2520font%252Dfamily%253A%2520%2527Open%2520Sans%2527%253B%250A%2520%2520font%252Dstyle%253A%2520italic%253B%250A%2520%2520font%252Dweight%253A%2520400%253B%250A%2520%2520src%253A%2520local%2528%2527Open%2520Sans%2520Italic%2527%2529%252C%2520local%2528%2527OpenSans%252DItalic%2527%2529%252C%2520url%2528http%253A%252F%252Ffonts%252Egstatic%252Ecom%252Fs%252Fopensans%252Fv13%252FxjAJXh38I15wypJXxuGMBp0EAVxt0G0biEntp43Qt6E%252Ettf%2529%2520format%2528%2527truetype%2527%2529%253B%250A%257D%250A%2540font%252Dface%2520%257B%250A%2520%2520font%252Dfamily%253A%2520%2527Open%2520Sans%2527%253B%250A%2520%2520font%252Dstyle%253A%2520italic%253B%250A%2520%2520font%252Dweight%253A%2520600%253B%250A%2520%2520src%253A%2520local%2528%2527Open%2520Sans%2520Semibold%2520Italic%2527%2529%252C%2520local%2528%2527OpenSans%252DSemiboldItalic%2527%2529%252C%2520url%2528http%253A%252F%252Ffonts%252Egstatic%252Ecom%252Fs%252Fopensans%252Fv13%252FPRmiXeptR36kaC0GEAetxi8cqLH4MEiSE0ROcU%252DqHOA%252Ettf%2529%2520format%2528%2527truetype%2527%2529%253B%250A%257D%250A%2540font%252Dface%2520%257B%250A%2520%2520font%252Dfamily%253A%2520%2527Open%2520Sans%2527%253B%250A%2520%2520font%252Dstyle%253A%2520italic%253B%250A%2520%2520font%252Dweight%253A%2520700%253B%250A%2520%2520src%253A%2520local%2528%2527Open%2520Sans%2520Bold%2520Italic%2527%2529%252C%2520local%2528%2527OpenSans%252DBoldItalic%2527%2529%252C%2520url%2528http%253A%252F%252Ffonts%252Egstatic%252Ecom%252Fs%252Fopensans%252Fv13%252FPRmiXeptR36kaC0GEAetxp%255FTkvowlIOtbR7ePgFOpF4%252Ettf%2529%2520format%2528%2527truetype%2527%2529%253B%250A%257D%250A%2540font%252Dface%2520%257B%250A%2520%2520font%252Dfamily%253A%2520%2527Open%2520Sans%2527%253B%250A%2520%2520font%252Dstyle%253A%2520italic%253B%250A%2520%2520font%252Dweight%253A%2520800%253B%250A%2520%2520src%253A%2520local%2528%2527Open%2520Sans%2520Extrabold%2520Italic%2527%2529%252C%2520local%2528%2527OpenSans%252DExtraboldItalic%2527%2529%252C%2520url%2528http%253A%252F%252Ffonts%252Egstatic%252Ecom%252Fs%252Fopensans%252Fv13%252FPRmiXeptR36kaC0GEAetxlDMrAYtoOisqqMDW9M%255FMqc%252Ettf%2529%2520format%2528%2527truetype%2527%2529%253B%250A%257D%250A%29%3B%0A%2A%20%7B%0Aoutline%3A%20none%20%21important%3B%0Amargin%3A%200%3B%0Apadding%3A%200%3B%0Aborder%3A%200px%20solid%3B%0A%7D%0Ahtml%20%7B%0Aborder%3A%200%3B%0Afont%2Dfamily%3A%20open%5Fsansregular%2C%20Arial%2C%20sans%2Dserif%3B%0Afont%2Dsize%3A%2013px%3B%0Acolor%3A%20%23666%3B%0Amargin%3A%200%3B%0Apadding%3A%201em%3B%0Abackground%3A%20%23e8eaec%3B%0A%7D%0Abody%20%7B%0Abackground%3A%20%23f9fbfc%3B%0Awidth%3A%201180px%3B%0Amargin%3A%20auto%3B%0Apadding%3A%202em%3B%0A%2Dmoz%2Dborder%2Dradius%3A%205px%3B%0A%2Dwebkit%2Dborder%2Dradius%3A%205px%3B%0Aborder%2Dradius%3A%205px%3B%0A%2Dwebkit%2Dbox%2Dshadow%3A%203px%203px%2010px%200px%20rgba%2889%2C%2089%2C%2089%2C%200%2E34%29%3B%0A%2Dmoz%2Dbox%2Dshadow%3A%203px%203px%2010px%200px%20rgba%2889%2C%2089%2C%2089%2C%200%2E34%29%3B%0Abox%2Dshadow%3A%203px%203px%2010px%200px%20rgba%2889%2C%2089%2C%2089%2C%200%2E34%29%3B%0A%7D%0Ah1%2C%20h2%2C%20h3%2C%20h4%2C%20h5%2C%20h6%20%7B%0Afont%2Dfamily%3A%20open%5Fsanssemibold%3B%0Amargin%3A%20%2E5em%200%3B%0Apadding%3A%200%3B%0A%0A%7D%0Ah3%20%7B%0Afont%2Dsize%3A%20150%25%3B%0A%7D%0Ah3%2C%20h4%2C%20h5%2C%20h6%20%7B%0Amargin%3A%20%2E5em%200%200%200%3B%0A%7D%0Ah4%2C%20h5%2C%20h6%20%7B%0Afont%2Dfamily%3A%20%22Open%20Sans%22%3B%0Afont%2Dsize%3A%20105%25%3B%0Acolor%3A%20%236DAB66%3B%0Aborder%2Dbottom%3Adotted%202px%20%2324a700%3B%0Adisplay%3A%20inline%2Dblock%3B%0A%7D%0Ah4%3Aafter%2C%20h5%3Aafter%2C%20h6%3Aafter%20%7B%0Acontent%3A%20%22%5CA%22%3B%0Awhite%2Dspace%3A%20pre%3B%0A%7D%0Aa%20%7B%0Atext%2Ddecoration%3A%20none%3B%0Acolor%3A%20%2324a700%3B%0A%7D%0Ainput%2C%20select%20%7B%0Afont%2Dfamily%3A%20open%5Fsanslight%5Fitalic%2C%20Arial%2C%20sans%2Dserif%3B%0Afont%2Dsize%3A%2012px%3B%0Aoutline%3A%200%20none%3B%0Aresize%3A%20none%3B%0Amargin%3A%200%3B%0A%7D%0Aul%20%7B%0Alist%2Dstyle%2Dtype%3A%20none%3B%0Apadding%2Dleft%3A%202em%3B%0A%7D%0Ali%20%7B%0Avertical%2Dalign%3A%20middle%3B%0Aline%2Dheight%3A%20150%25%3B%0A%7D%0Anav%23TOC%20%7B%0A%0A%7D%0Anav%23TOC%20%3E%20ul%20%7B%0A%0Atext%2Dalign%3A%20left%3B%0Afont%2Dsize%3A%201%2E5em%3B%0A%7D%0Anav%23TOC%20ul%20%7B%0Amargin%3A%200%3B%0A%7D%0Anav%23TOC%20%3E%20ul%20ul%20%7B%0Afont%2Dsize%3A%2075%25%3B%0A%7D%0Anav%23TOC%20%3E%20ul%20li%20a%20%7B%0Aborder%2Dbottom%3A%20dotted%20%236DAB66%201px%3B%0Aline%2Dheight%3A%20150%25%3B%0A%7D%0Anav%23TOC%20%3E%20ul%20ul%20ul%20li%20a%20%7B%0Aline%2Dheight%3A%20190%25%3B%0A%7D%0Anav%23TOC%20%3E%20ul%20ul%20ul%20ul%20%7B%0Afont%2Dsize%3A%20100%25%3B%0A%7D%0Anav%23TOC%20%3E%20ul%20ul%20ul%20ul%20li%20a%20%7B%0Aline%2Dheight%3A%20110%25%3B%0A%7D%0A%2Ered%20%7B%0Acolor%3A%20red%3B%0A%7D%0A%2Egreen%20%7B%0Acolor%3A%20green%3B%0A%7D%0Atable%2Efill%20%7B%0Awidth%3A%2095%25%3B%0A%7D%0A%23container%20%7B%0Abackground%3A%20%23f9fbfc%3B%0Awidth%3A%20930px%3B%0Amargin%3A%20auto%3B%0Apadding%3A%202em%3B%0A%2Dmoz%2Dborder%2Dradius%3A%205px%3B%0A%2Dwebkit%2Dborder%2Dradius%3A%205px%3B%0Aborder%2Dradius%3A%205px%0A%7D%0Atable%20%7B%0Abackground%3A%20%23ccc%3B%0Amargin%3A%2020px%3B%0Aborder%3A%20%23ccc%201px%20solid%3B%0A%2Dmoz%2Dborder%2Dradius%3A%2010px%3B%0A%2Dwebkit%2Dborder%2Dradius%3A%2010px%3B%0Aborder%2Dradius%3A%2010px%0A%7D%0Atable%20th%20%7B%0Apadding%3A%204px%2010px%3B%0Atext%2Dalign%3A%20center%3B%0Avertical%2Dalign%3A%20middle%3B%0A%0Acolor%3A%20%23233%3B%0A%7D%0Atable%2C%20tbody%2C%20tr%2C%20td%20%7B%0Avertical%2Dalign%3A%20inherit%3B%0Atext%2Dalign%3A%20inherit%3B%0A%7D%0Atable%20td%20%7B%0Abackground%3A%20%23F4F4F5%3B%0Apadding%3A%204px%2010px%204px%2010px%3B%0Avertical%2Dalign%3A%20inherit%3B%0A%7D%0A%2Emiddle%20%7B%0Avertical%2Dalign%3A%20middle%3B%0A%7D%0A%2Ecenter%20%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0Atd%2Ename%20%7B%0Atext%2Dalign%3A%20left%3B%0A%7D%0Atd%2Epath%20%7B%0Atext%2Dalign%3A%20left%3B%0A%7D%0Atable%20tr%2Eeven%20td%20%7B%0Abackground%3A%20%23eee%0A%7D%0Atable%20a%20%7B%0Adisplay%3A%20block%3B%0A%7D%0Atable%20tr%3Afirst%2Dchild%20td%3Afirst%2Dchild%20%7B%0A%2Dmoz%2Dborder%2Dradius%2Dtopleft%3A%205px%3B%0A%2Dwebkit%2Dborder%2Dtop%2Dleft%2Dradius%3A%205px%3B%0Aborder%2Dtop%2Dleft%2Dradius%3A%205px%3B%0A%7D%0Atable%20tr%3Afirst%2Dchild%20td%3Alast%2Dchild%20%7B%0A%2Dmoz%2Dborder%2Dradius%2Dtopright%3A%205px%3B%0A%2Dwebkit%2Dborder%2Dtop%2Dright%2Dradius%3A%205px%3B%0Aborder%2Dtop%2Dright%2Dradius%3A%205px%3B%0A%7D%0Atable%20tr%3Alast%2Dchild%20td%3Afirst%2Dchild%20%7B%0A%2Dmoz%2Dborder%2Dradius%2Dbottomleft%3A%205px%3B%0A%2Dwebkit%2Dborder%2Dbottom%2Dleft%2Dradius%3A%205px%3B%0Aborder%2Dbottom%2Dleft%2Dradius%3A%205px%3B%0A%7D%0Atable%20tr%3Alast%2Dchild%20td%3Alast%2Dchild%20%7B%0A%2Dmoz%2Dborder%2Dradius%2Dbottomright%3A%205px%3B%0A%2Dwebkit%2Dborder%2Dbottom%2Dright%2Dradius%3A%205px%3B%0Aborder%2Dbottom%2Dright%2Dradius%3A%205px%3B%0A%7D%0Atable%2Ecollapsed%20%7B%0Aborder%2Dcollapse%3A%20collapse%0A%7D%0Aul%20%7B%0Alist%2Dstyle%3Adisc%20outside%3B%0A%7D%0Aol%5Btype%3D1%5D%20%7B%0Alist%2Dstyle%2Dtype%3Adecimal%3B%0A%7D%0Aol%5Btype%3Da%5D%20%7B%0Alist%2Dstyle%2Dtype%3Alower%2Dalpha%3B%0A%7D%0Aol%5Btype%3DA%5D%20%7B%0Alist%2Dstyle%2Dtype%3Aupper%2Dalpha%3B%0A%7D%0Aol%5Btype%3DI%5D%20%7B%0Alist%2Dstyle%2Dtype%3Aupper%2Droman%3B%0A%7D%0Aol%5Btype%3Di%5D%20%7B%0Alist%2Dstyle%2Dtype%3Alower%2Droman%3B%0A%7D%0Ap%20%7B%0Amargin%3A%201em%200%3B%0A%7D%0Ali%20p%3Aonly%2Dof%2Dtype%20%7B%0Amargin%3A%200%3B%0A%7D%0Ablockquote%2Cul%2Col%2Cdl%20%7B%0Amargin%3A1em%202em%3B%0A%7D%0Adl%20dd%20%7B%0Amargin%2Dleft%3A1em%3B%0A%7D%0Acaption%20%7B%0Amargin%2Dbottom%3A%2E5em%3B%0Atext%2Dalign%3Acenter%3B%0A%7D%0Afieldset%2Cpre%20%7B%0Amargin%2Dtop%3A%2E5em%3B%0Amargin%2Dbottom%3A%2E5em%3B%0A%7D%0Apre%2Ccode%2Ctt%20%7B%0Afont%2Dfamily%3Amonospace%3B%0Afont%2Dsize%3A108%25%3B%0Aline%2Dheight%3A100%25%3B%0A%7D%0Adl%20%7B%0Amargin%3A0%200%201%2E125em%3B%0A%7D%0Adt%20%7B%0Afont%2Dweight%3A700%3B%0Aline%2Dheight%3A1%2E125em%3B%0Afont%2Dfamily%3A%20%22Open%20Sans%22%3B%0A%7D%0Add%20%7B%0Amargin%2Dleft%3A1em%3B%0Aline%2Dheight%3A1%2E125em%3B%0A%7D%0Add%20p%20%7B%0Amargin%2Dtop%3A%20%2E3em%3B%0A%7D%0Apre%20%7B%0Aborder%3A%202px%20dotted%20%23ddd%3B%0A%2Dwebkit%2Dborder%2Dradius%3A%204px%3B%0A%2Dmoz%2Dborder%2Dradius%3A%204px%3B%0Aborder%2Dradius%3A%204px%3B%0Apadding%3A%201%2E5em%3B%0A%7D%0Ahr%20%7B%0Aborder%2Dtop%3A%20%23ddd%20dotted%205px%3B%0A%7D%0Aimg%20%7B%0Amargin%2Dleft%3A%20auto%3B%0Amargin%2Dright%3A%20auto%3B%0Amax%2Dwidth%3A%20100%25%3B%0Aborder%2Dstyle%3A%20solid%3B%0Aborder%2Dwidth%3A%202px%3B%0A%7D" rel="stylesheet">
-  <!--[if lt IE 9]>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
-  <![endif]-->
+  <link href="data:text/css,%40import%20url%28data%3Atext%2Fcss%3B%20charset%3Dutf%2D8%3Bbase64%2CQGZvbnQtZmFjZSB7CiAgZm9udC1mYW1pbHk6ICdPcGVuIFNhbnMnOwogIGZvbnQtc3R5bGU6IGl0YWxpYzsKICBmb250LXdlaWdodDogMzAwOwogIHNyYzogbG9jYWwoJ09wZW4gU2FucyBMaWdodCBJdGFsaWMnKSwgbG9jYWwoJ09wZW5TYW5zLUxpZ2h0SXRhbGljJyksIHVybChodHRwOi8vZm9udHMuZ3N0YXRpYy5jb20vcy9vcGVuc2Fucy92MTcvbWVtbllhR3MxMjZNaVpwQkEtVUZVS1d5VjlocklxWS50dGYpIGZvcm1hdCgndHJ1ZXR5cGUnKTsKfQpAZm9udC1mYWNlIHsKICBmb250LWZhbWlseTogJ09wZW4gU2Fucyc7CiAgZm9udC1zdHlsZTogaXRhbGljOwogIGZvbnQtd2VpZ2h0OiA0MDA7CiAgc3JjOiBsb2NhbCgnT3BlbiBTYW5zIEl0YWxpYycpLCBsb2NhbCgnT3BlblNhbnMtSXRhbGljJyksIHVybChodHRwOi8vZm9udHMuZ3N0YXRpYy5jb20vcy9vcGVuc2Fucy92MTcvbWVtNllhR3MxMjZNaVpwQkEtVUZVSzBaZGNnLnR0ZikgZm9ybWF0KCd0cnVldHlwZScpOwp9CkBmb250LWZhY2UgewogIGZvbnQtZmFtaWx5OiAnT3BlbiBTYW5zJzsKICBmb250LXN0eWxlOiBpdGFsaWM7CiAgZm9udC13ZWlnaHQ6IDYwMDsKICBzcmM6IGxvY2FsKCdPcGVuIFNhbnMgU2VtaUJvbGQgSXRhbGljJyksIGxvY2FsKCdPcGVuU2Fucy1TZW1pQm9sZEl0YWxpYycpLCB1cmwoaHR0cDovL2ZvbnRzLmdzdGF0aWMuY29tL3Mvb3BlbnNhbnMvdjE3L21lbW5ZYUdzMTI2TWlacEJBLVVGVUtYR1VkaHJJcVkudHRmKSBmb3JtYXQoJ3RydWV0eXBlJyk7Cn0KQGZvbnQtZmFjZSB7CiAgZm9udC1mYW1pbHk6ICdPcGVuIFNhbnMnOwogIGZvbnQtc3R5bGU6IGl0YWxpYzsKICBmb250LXdlaWdodDogNzAwOwogIHNyYzogbG9jYWwoJ09wZW4gU2FucyBCb2xkIEl0YWxpYycpLCBsb2NhbCgnT3BlblNhbnMtQm9sZEl0YWxpYycpLCB1cmwoaHR0cDovL2ZvbnRzLmdzdGF0aWMuY29tL3Mvb3BlbnNhbnMvdjE3L21lbW5ZYUdzMTI2TWlacEJBLVVGVUtXaVVOaHJJcVkudHRmKSBmb3JtYXQoJ3RydWV0eXBlJyk7Cn0KQGZvbnQtZmFjZSB7CiAgZm9udC1mYW1pbHk6ICdPcGVuIFNhbnMnOwogIGZvbnQtc3R5bGU6IGl0YWxpYzsKICBmb250LXdlaWdodDogODAwOwogIHNyYzogbG9jYWwoJ09wZW4gU2FucyBFeHRyYUJvbGQgSXRhbGljJyksIGxvY2FsKCdPcGVuU2Fucy1FeHRyYUJvbGRJdGFsaWMnKSwgdXJsKGh0dHA6Ly9mb250cy5nc3RhdGljLmNvbS9zL29wZW5zYW5zL3YxNy9tZW1uWWFHczEyNk1pWnBCQS1VRlVLVy1VOWhySXFZLnR0ZikgZm9ybWF0KCd0cnVldHlwZScpOwp9CkBmb250LWZhY2UgewogIGZvbnQtZmFtaWx5OiAnT3BlbiBTYW5zJzsKICBmb250LXN0eWxlOiBub3JtYWw7CiAgZm9udC13ZWlnaHQ6IDMwMDsKICBzcmM6IGxvY2FsKCdPcGVuIFNhbnMgTGlnaHQnKSwgbG9jYWwoJ09wZW5TYW5zLUxpZ2h0JyksIHVybChodHRwOi8vZm9udHMuZ3N0YXRpYy5jb20vcy9vcGVuc2Fucy92MTcvbWVtNVlhR3MxMjZNaVpwQkEtVU5fcjhPVXVocy50dGYpIGZvcm1hdCgndHJ1ZXR5cGUnKTsKfQpAZm9udC1mYWNlIHsKICBmb250LWZhbWlseTogJ09wZW4gU2Fucyc7CiAgZm9udC1zdHlsZTogbm9ybWFsOwogIGZvbnQtd2VpZ2h0OiA0MDA7CiAgc3JjOiBsb2NhbCgnT3BlbiBTYW5zIFJlZ3VsYXInKSwgbG9jYWwoJ09wZW5TYW5zLVJlZ3VsYXInKSwgdXJsKGh0dHA6Ly9mb250cy5nc3RhdGljLmNvbS9zL29wZW5zYW5zL3YxNy9tZW04WWFHczEyNk1pWnBCQS1VRlZaMGUudHRmKSBmb3JtYXQoJ3RydWV0eXBlJyk7Cn0KQGZvbnQtZmFjZSB7CiAgZm9udC1mYW1pbHk6ICdPcGVuIFNhbnMnOwogIGZvbnQtc3R5bGU6IG5vcm1hbDsKICBmb250LXdlaWdodDogNjAwOwogIHNyYzogbG9jYWwoJ09wZW4gU2FucyBTZW1pQm9sZCcpLCBsb2NhbCgnT3BlblNhbnMtU2VtaUJvbGQnKSwgdXJsKGh0dHA6Ly9mb250cy5nc3RhdGljLmNvbS9zL29wZW5zYW5zL3YxNy9tZW01WWFHczEyNk1pWnBCQS1VTmlya09VdWhzLnR0ZikgZm9ybWF0KCd0cnVldHlwZScpOwp9CkBmb250LWZhY2UgewogIGZvbnQtZmFtaWx5OiAnT3BlbiBTYW5zJzsKICBmb250LXN0eWxlOiBub3JtYWw7CiAgZm9udC13ZWlnaHQ6IDcwMDsKICBzcmM6IGxvY2FsKCdPcGVuIFNhbnMgQm9sZCcpLCBsb2NhbCgnT3BlblNhbnMtQm9sZCcpLCB1cmwoaHR0cDovL2ZvbnRzLmdzdGF0aWMuY29tL3Mvb3BlbnNhbnMvdjE3L21lbTVZYUdzMTI2TWlacEJBLVVON3JnT1V1aHMudHRmKSBmb3JtYXQoJ3RydWV0eXBlJyk7Cn0KQGZvbnQtZmFjZSB7CiAgZm9udC1mYW1pbHk6ICdPcGVuIFNhbnMnOwogIGZvbnQtc3R5bGU6IG5vcm1hbDsKICBmb250LXdlaWdodDogODAwOwogIHNyYzogbG9jYWwoJ09wZW4gU2FucyBFeHRyYUJvbGQnKSwgbG9jYWwoJ09wZW5TYW5zLUV4dHJhQm9sZCcpLCB1cmwoaHR0cDovL2ZvbnRzLmdzdGF0aWMuY29tL3Mvb3BlbnNhbnMvdjE3L21lbTVZYUdzMTI2TWlacEJBLVVOOHJzT1V1aHMudHRmKSBmb3JtYXQoJ3RydWV0eXBlJyk7Cn0K%29%3B%0A%0A%2A%20%7B%0A%09outline%3A%20none%20%21important%3B%0A%09margin%3A%200%3B%0A%09padding%3A%200%3B%0A%09border%3A%200px%20solid%3B%0A%7D%0A%0Ahtml%20%7B%0A%09border%3A%200%3B%0A%09font%2Dfamily%3A%20open%5Fsansregular%2C%20Arial%2C%20sans%2Dserif%3B%0A%09font%2Dsize%3A%2013px%3B%0A%09color%3A%20%23666%3B%0A%09margin%3A%200%3B%0A%09padding%3A%201em%3B%0A%09background%3A%20%23e8eaec%3B%0A%7D%0A%0Abody%20%7B%0A%09background%3A%20%23f9fbfc%3B%0A%09width%3A%201180px%3B%0A%09margin%3A%20auto%3B%0A%09padding%3A%202em%3B%0A%09%2Dmoz%2Dborder%2Dradius%3A%205px%3B%0A%09%2Dwebkit%2Dborder%2Dradius%3A%205px%3B%0A%09border%2Dradius%3A%205px%3B%0A%20%20%2Dwebkit%2Dbox%2Dshadow%3A%20%203px%203px%2010px%200px%20rgba%2889%2C%2089%2C%2089%2C%200%2E34%29%3B%0A%20%20%2Dmoz%2Dbox%2Dshadow%3A%20%20%20%20%203px%203px%2010px%200px%20rgba%2889%2C%2089%2C%2089%2C%200%2E34%29%3B%0A%20%20box%2Dshadow%3A%20%20%20%20%20%20%20%20%20%203px%203px%2010px%200px%20rgba%2889%2C%2089%2C%2089%2C%200%2E34%29%3B%0A%7D%0A%0Ah1%2C%20h2%2C%20h3%2C%20h4%2C%20h5%2C%20h6%20%7B%0A%09font%2Dfamily%3A%20open%5Fsanssemibold%3B%0A%09margin%3A%20%2E5em%200%3B%0A%09padding%3A%200%3B%0A%09%2F%2Acolor%3A%20%236DAB66%3B%2A%2F%0A%7D%0A%0Ah3%20%7B%0A%20%20font%2Dsize%3A%20150%25%3B%0A%7D%0A%0Ah3%2C%20h4%2C%20h5%2C%20h6%20%7B%0A%09margin%3A%20%2E5em%200%200%200%3B%0A%7D%0A%0Ah4%2C%20h5%2C%20h6%20%7B%0A%09font%2Dfamily%3A%20%22Open%20Sans%22%3B%0A%20%20font%2Dsize%3A%20105%25%3B%0A%20%20color%3A%20%236DAB66%3B%0A%20%20border%2Dbottom%3Adotted%202px%20%2324a700%3B%0A%20%20display%3A%20inline%2Dblock%3B%0A%7D%0A%0Ah4%3Aafter%2C%20h5%3Aafter%2C%20h6%3Aafter%20%7B%0A%20%20content%3A%20%22%5CA%22%3B%0A%20%20white%2Dspace%3A%20pre%3B%0A%7D%0A%0Aa%20%7B%0A%09text%2Ddecoration%3A%20none%3B%0A%09color%3A%20%2324a700%3B%0A%7D%0A%0Ainput%2C%20select%20%7B%0A%09font%2Dfamily%3A%20open%5Fsanslight%5Fitalic%2C%20Arial%2C%20sans%2Dserif%3B%0A%09font%2Dsize%3A%2012px%3B%0A%09outline%3A%200%20none%3B%0A%09resize%3A%20none%3B%0A%09margin%3A%200%3B%0A%7D%0A%0Aul%20%7B%0A%09list%2Dstyle%2Dtype%3A%20none%3B%0A%09padding%2Dleft%3A%202em%3B%0A%7D%0A%0Ali%20%7B%0A%09vertical%2Dalign%3A%20middle%3B%0A%09line%2Dheight%3A%20150%25%3B%0A%7D%0A%0Anav%23TOC%20%7B%0A%20%20%2F%2Atext%2Dalign%3A%20center%3B%2A%2F%0A%7D%0A%0Anav%23TOC%20%3E%20ul%20%7B%0A%20%20%2F%2Adisplay%3A%20inline%2Dblock%3B%2A%2F%0A%20%20text%2Dalign%3A%20left%3B%0A%20%20font%2Dsize%3A%201%2E5em%3B%0A%7D%0A%0Anav%23TOC%20ul%20%7B%0A%20%20margin%3A%200%3B%0A%7D%0A%0Anav%23TOC%20%3E%20ul%20ul%20%7B%0A%20%20font%2Dsize%3A%2075%25%3B%0A%7D%0A%0Anav%23TOC%20%3E%20ul%20li%20a%20%7B%0A%20%20border%2Dbottom%3A%20dotted%20%236DAB66%201px%3B%0A%20%20line%2Dheight%3A%20150%25%3B%0A%7D%0A%0Anav%23TOC%20%3E%20ul%20ul%20ul%20li%20a%20%7B%0A%20%20line%2Dheight%3A%20190%25%3B%0A%7D%0A%0Anav%23TOC%20%3E%20ul%20ul%20ul%20ul%20%7B%0A%20%20font%2Dsize%3A%20100%25%3B%0A%7D%0A%0Anav%23TOC%20%3E%20ul%20ul%20ul%20ul%20li%20a%20%7B%0A%20%20line%2Dheight%3A%20110%25%3B%0A%7D%0A%0A%0A%2Ered%20%7B%0A%09color%3A%20red%3B%0A%7D%0A%0A%2Egreen%20%7B%0A%09color%3A%20green%3B%0A%7D%0A%0Atable%2Efill%20%7B%0A%09width%3A%2095%25%3B%0A%7D%0A%0A%23container%20%7B%0A%09background%3A%20%23f9fbfc%3B%0A%09width%3A%20930px%3B%0A%09margin%3A%20auto%3B%0A%09padding%3A%202em%3B%0A%09%2Dmoz%2Dborder%2Dradius%3A%205px%3B%0A%09%2Dwebkit%2Dborder%2Dradius%3A%205px%3B%0A%09border%2Dradius%3A%205px%0A%7D%0A%0Atable%20%7B%0A%09background%3A%20%23ccc%3B%0A%09margin%3A%2020px%3B%0A%09border%3A%20%23ccc%201px%20solid%3B%0A%09%2Dmoz%2Dborder%2Dradius%3A%2010px%3B%0A%09%2Dwebkit%2Dborder%2Dradius%3A%2010px%3B%0A%09border%2Dradius%3A%2010px%0A%7D%0A%0Atable%20th%20%7B%0A%09padding%3A%204px%2010px%3B%0A%20%20text%2Dalign%3A%20center%3B%0A%09vertical%2Dalign%3A%20middle%3B%0A%09%2F%2Acolor%3A%23f9fcfc%3B%2A%2F%0A%09color%3A%20%23233%3B%0A%7D%0A%0Atable%2C%20tbody%2C%20tr%2C%20td%20%7B%0A%09vertical%2Dalign%3A%20inherit%3B%0A%09text%2Dalign%3A%20inherit%3B%0A%7D%0A%0Atable%20td%20%7B%0A%09background%3A%20%23F4F4F5%3B%0A%09padding%3A%204px%2010px%204px%2010px%3B%0A%09vertical%2Dalign%3A%20inherit%3B%0A%7D%0A%0A%2Emiddle%20%7B%0A%09vertical%2Dalign%3A%20middle%3B%0A%7D%0A%0A%2Ecenter%20%7B%0A%09text%2Dalign%3A%20center%3B%0A%7D%0A%0Atd%2Ename%20%7B%0A%09text%2Dalign%3A%20left%3B%0A%7D%0A%0Atd%2Epath%20%7B%0A%09text%2Dalign%3A%20left%3B%0A%7D%0A%0Atable%20tr%2Eeven%20td%20%7B%0A%09background%3A%20%23eee%0A%7D%0A%0Atable%20a%20%7B%0A%09display%3A%20block%3B%0A%7D%0A%0Atable%20tr%3Afirst%2Dchild%20td%3Afirst%2Dchild%20%7B%0A%09%2Dmoz%2Dborder%2Dradius%2Dtopleft%3A%205px%3B%0A%09%2Dwebkit%2Dborder%2Dtop%2Dleft%2Dradius%3A%205px%3B%0A%09border%2Dtop%2Dleft%2Dradius%3A%205px%3B%0A%7D%0A%0Atable%20tr%3Afirst%2Dchild%20td%3Alast%2Dchild%20%7B%0A%09%2Dmoz%2Dborder%2Dradius%2Dtopright%3A%205px%3B%0A%09%2Dwebkit%2Dborder%2Dtop%2Dright%2Dradius%3A%205px%3B%0A%09border%2Dtop%2Dright%2Dradius%3A%205px%3B%0A%7D%0A%0Atable%20tr%3Alast%2Dchild%20td%3Afirst%2Dchild%20%7B%0A%09%2Dmoz%2Dborder%2Dradius%2Dbottomleft%3A%205px%3B%0A%09%2Dwebkit%2Dborder%2Dbottom%2Dleft%2Dradius%3A%205px%3B%0A%09border%2Dbottom%2Dleft%2Dradius%3A%205px%3B%0A%7D%0A%0Atable%20tr%3Alast%2Dchild%20td%3Alast%2Dchild%20%7B%0A%09%2Dmoz%2Dborder%2Dradius%2Dbottomright%3A%205px%3B%0A%09%2Dwebkit%2Dborder%2Dbottom%2Dright%2Dradius%3A%205px%3B%0A%09border%2Dbottom%2Dright%2Dradius%3A%205px%3B%0A%7D%0A%0Atable%2Ecollapsed%20%7B%0A%09border%2Dcollapse%3A%20collapse%0A%7D%0A%0Aul%20%7B%0A%20%20%20%20list%2Dstyle%3Adisc%20outside%3B%0A%7D%0A%0Aol%5Btype%3D1%5D%20%7B%0A%20%20%20%20list%2Dstyle%2Dtype%3Adecimal%3B%0A%7D%0A%0Aol%5Btype%3Da%5D%20%7B%0A%20%20%20%20list%2Dstyle%2Dtype%3Alower%2Dalpha%3B%0A%7D%0A%0Aol%5Btype%3DA%5D%20%7B%0A%20%20%20%20list%2Dstyle%2Dtype%3Aupper%2Dalpha%3B%0A%7D%0A%0Aol%5Btype%3DI%5D%20%7B%0A%20%20%20%20list%2Dstyle%2Dtype%3Aupper%2Droman%3B%0A%7D%0A%0Aol%5Btype%3Di%5D%20%7B%0A%20%20%20%20list%2Dstyle%2Dtype%3Alower%2Droman%3B%0A%7D%0A%0Ap%20%7B%0A%20%20margin%3A%201em%200%3B%0A%7D%0A%0Ali%20p%3Aonly%2Dof%2Dtype%20%7B%0A%20%20margin%3A%200%3B%0A%7D%0A%0Ablockquote%2Cul%2Col%2Cdl%20%7B%0A%20%20%20%20margin%3A1em%202em%3B%0A%7D%0A%0Adl%20dd%20%7B%0A%20%20%20%20margin%2Dleft%3A1em%3B%0A%7D%0A%0Acaption%20%7B%0A%20%20%20%20margin%2Dbottom%3A%2E5em%3B%0A%20%20%20%20text%2Dalign%3Acenter%3B%0A%7D%0A%0Afieldset%2Cpre%20%7B%0A%20%20%20%20margin%2Dtop%3A%2E5em%3B%0A%20%20%20%20margin%2Dbottom%3A%2E5em%3B%0A%7D%0A%0Apre%2Ccode%2Ctt%20%7B%0A%20%20%20%20font%2Dfamily%3Amonospace%3B%0A%20%20%20%20font%2Dsize%3A108%25%3B%0A%20%20%20%20line%2Dheight%3A100%25%3B%0A%7D%0A%0Adl%20%7B%0A%20%20%20%20margin%3A0%200%201%2E125em%3B%0A%7D%0A%0Adt%20%7B%0A%20%20%20%20font%2Dweight%3A700%3B%0A%20%20%20%20line%2Dheight%3A1%2E125em%3B%0A%20%20%20%20font%2Dfamily%3A%20%22Open%20Sans%22%3B%0A%7D%0A%0Add%20%7B%0A%20%20%20%20margin%2Dleft%3A1em%3B%0A%20%20%20%20line%2Dheight%3A1%2E125em%3B%0A%7D%0A%0Add%20p%20%7B%0A%20%20margin%2Dtop%3A%20%2E3em%3B%0A%7D%0A%0Apre%20%7B%0A%20%20border%3A%202px%20dotted%20%23ddd%3B%0A%20%20%2Dwebkit%2Dborder%2Dradius%3A%204px%3B%0A%20%20%2Dmoz%2Dborder%2Dradius%3A%204px%3B%0A%20%20border%2Dradius%3A%204px%3B%0A%20%20padding%3A%201%2E5em%3B%0A%7D%0A%0Ahr%20%7B%0A%20%20border%2Dtop%3A%20%23ddd%20dotted%205px%3B%0A%0A%7D%0A%0Aimg%20%7B%0A%20%20margin%2Dleft%3A%20auto%3B%0A%20%20margin%2Dright%3A%20auto%3B%0A%20%20max%2Dwidth%3A%20%20100%25%3B%0A%20%20border%2Dstyle%3A%20solid%3B%0A%20%20border%2Dwidth%3A%202px%3B%0A%7D" rel="stylesheet">
 </head>
 <body>
 <nav id="TOC">
 <ul>
-<li><a href="#sourcemeter-8.2-for-rpg">SourceMeter 8.2 for RPG</a></li>
+<li><a href="#sourcemeter-9.1-for-rpg">SourceMeter 9.1 for RPG</a></li>
 <li><a href="#introduction">Introduction</a><ul>
 <li><a href="#product-characteristics">Product characteristics</a></li>
 <li><a href="#background">Background</a></li>
@@ -93,11 +75,15 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li><a href="#type-rules">Type Rules</a></li>
 <li><a href="#unnecessary-and-unused-code-rules">Unnecessary and Unused Code Rules</a></li>
 </ul></li>
+<li><a href="#the-userdefinedmetrics-module">The UserDefinedMetrics module</a><ul>
+<li><a href="#defining-a-metric">Defining a metric</a></li>
+<li><a href="#example-profile.xml">Example profile.xml</a></li>
+</ul></li>
 </ul></li>
 <li><a href="#footnotes">Footnotes</a></li>
 </ul>
 </nav>
-<h1 id="sourcemeter-8.2-for-rpg">SourceMeter 8.2 for RPG</h1>
+<h1 id="sourcemeter-9.1-for-rpg">SourceMeter 9.1 for RPG</h1>
 <h1 id="introduction">Introduction</h1>
 <p>FrontEndART SourceMeter for RPG is a source code analyzer tool, which can perform deep static analysis of the source code of complex RPG systems (<a href="https://www.sourcemeter.com" class="uri">https://www.sourcemeter.com</a>).</p>
 <p>The source code of a program is usually its only up-to-date documentation. At the same time, the source code is the exquisite bearer of knowledge, business processes and methodology, accumulated over a long period of time. Source code quality decrease, which happens due to many quick fixes and time pressure, results in the increase of development and testing costs, and operational risks. In spite of this, the source code usually receives hostile treatment and is merely considered as a tool.</p>
@@ -113,6 +99,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <ul>
 <li><p>Common programming mistakes (FaultHunter module)</p></li>
 <li><p>Metric threshold violations (MetricHunter module)</p></li>
+<li><p><a href="https://www.sonarqube.org">SONARQUBE™</a> platform 8.0 (“SonarQube” in the following) coding rule violations</p></li>
 </ul></li>
 <li><p>Clone detection (copy-pasted source code fragments) extended with clone tracking and “clone smells”</p>
 <ul>
@@ -135,14 +122,14 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>Visit our corporate website at <a href="http://www.frontendart.com" class="uri">http://www.frontendart.com</a> to find the latest information about SourceMeter and read more about related products and services. Note, that if you are using only the free features of SourceMeter, we do not provide any free support for it. However, FrontEndART offers support services, so please feel free to search for solutions to your problems on our website and contact us with any questions you might have. We welcome feedback about the usability and eventual issues of the tool and further development suggestions at <script type="text/javascript">
 <!--
 h='&#102;&#114;&#x6f;&#110;&#116;&#x65;&#110;&#100;&#x61;&#114;&#116;&#46;&#x63;&#x6f;&#x6d;&#x3f;&#x73;&#x75;&#98;&#106;&#x65;&#x63;&#116;&#x3d;&#x53;&#x6f;&#x75;&#114;&#x63;&#x65;&#x4d;&#x65;&#116;&#x65;&#114;';a='&#64;';n='&#x73;&#x75;&#112;&#112;&#x6f;&#114;&#116;';e=n+a+h;
-document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail">'+'&#x73;&#x75;&#112;&#112;&#x6f;&#114;&#116;&#64;&#102;&#114;&#x6f;&#110;&#116;&#x65;&#110;&#100;&#x61;&#114;&#116;&#46;&#x63;&#x6f;&#x6d;'+'<\/'+'a'+'>');
+document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail">'+'support@frontendart.com'+'<\/'+'a'+'>');
 // -->
 </script><noscript>support@frontendart.com (support at frontendart dot com?subject=SourceMeter)</noscript>.</p>
 <h2 id="background">Background</h2>
 <p>During the static analysis, an Abstract Semantic Graph (ASG) is constructed from the language elements of the source code. This ASG is then processed by the different tools in the package to calculate product metrics, identify copy-pasted code (clones), coding rule violations, etc.</p>
 <h1 id="installation">Installation</h1>
 <h2 id="supported-platforms">Supported platforms</h2>
-<p>SourceMeter supports the following x86 and x86-64 platforms:</p>
+<p>SourceMeter supports the following x64 platforms:</p>
 <ul>
 <li><p>Microsoft Windows 7, 8, 8.1, and 10</p></li>
 <li><p>Microsoft Windows 2008 R2 Server</p></li>
@@ -150,13 +137,13 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail">'+'&#x7
 <li><p>GNU/Linux with kernel version 2.6.18 and GNU C library 2.11 or newer</p></li>
 </ul>
 <h2 id="requirements">Requirements</h2>
-<p>In case of Windows, the appropriate Microsoft Visual C++ 2015 Redistributable Package must be installed. It can be downloaded from the following URL:</p>
+<p>In case of Windows, the Microsoft Visual C++ 2017 Redistributable Package must be installed. It can be downloaded from the following URL:</p>
 <ul>
-<li><a href="https://www.microsoft.com/en-us/download/details.aspx?id=48145" class="uri">https://www.microsoft.com/en-us/download/details.aspx?id=48145</a> (x86/x64)</li>
+<li><a href="https://aka.ms/vs/15/release/vc_redist.x64.exe" class="uri">https://aka.ms/vs/15/release/vc_redist.x64.exe</a> (x64)</li>
 </ul>
 <p>The Linux package uses the code page conversion functions of the GNU C Library. If the conversion modules are not in the standard /usr/lib/gconv directory then the GCONV_PATH environment variable must be set according to the current installation of the GNU C Library.</p>
 <p>E.g.:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">export</span> <span class="st">&quot;GCONV_PATH=/usr/lib/x86_64-linux-gnu/gconv&quot;</span></code></pre></div>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">export</span> <span class="st">&quot;GCONV_PATH=/usr/lib/x86_64-linux-gnu/gconv&quot;</span></code></pre>
 <h2 id="installation-package">Installation package</h2>
 <p>The SourceMeter installation package can be extracted into any folder and used from that location. It can be executed with the command line program SourceMeterRPG.</p>
 <p>The SourceMeter for RPG package contains the following directories and files:</p>
@@ -273,10 +260,10 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail">'+'&#x7
 <dd><p>This parameter turns on or off the Metric module. With this feature, SourceMeter computes source code metrics. Its value can be “true” (turn this feature on) or “false” (turn this feature off). The default value is “true”.</p>
 </dd>
 <dt><strong>-profileXML</strong></dt>
-<dd><p>Global configuration file for SourceMeter. Its <em>tool-options</em> tag can be used to override the default metric thresholds for the MetricHunter tool. Furthermore, its <em>rule-options</em> tag can enable/disable or modify the priorities of multiple rules. An example profile xml file is shown below:</p>
+<dd><p>Global configuration file for SourceMeter. Its <em>tool-options</em> tag can be used to override the default metric thresholds for the MetricHunter tool or define custom metric formulas for the UserDefinedMetrics tool. Furthermore, its <em>rule-options</em> tag can enable/disable or modify the priorities of multiple rules. An example profile xml file is shown below:</p>
 </dd>
 </dl>
-<div class="sourceCode"><pre class="sourceCode xml"><code class="sourceCode xml">      <span class="kw">&lt;sourcemeter-profile&gt;</span>
+<pre class="sourceCode xml"><code class="sourceCode xml">      <span class="kw">&lt;sourcemeter-profile&gt;</span>
         <span class="kw">&lt;tool-options&gt;</span>
           <span class="kw">&lt;tool</span><span class="ot"> name</span> <span class="ot">=</span> <span class="st">&quot;MetricHunter&quot;</span><span class="ot"> enabled</span> <span class="ot">=</span> <span class="st">&quot;true&quot;</span><span class="kw">&gt;</span>
               <span class="kw">&lt;metric-thresholds&gt;</span>
@@ -293,8 +280,11 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail">'+'&#x7
           <span class="kw">&lt;rule</span><span class="ot"> id=</span><span class="st">&quot;FPN&quot;</span><span class="ot"> name=</span><span class="st">&quot;File uses prefixed name&quot;</span><span class="ot"> priority=</span><span class="st">&quot;Critical&quot;</span><span class="ot"> enabled=</span><span class="st">&quot;true&quot;</span><span class="kw">/&gt;</span>
         <span class="kw">&lt;/rule-options&gt;</span>
       <span class="kw">&lt;/sourcemeter-profile&gt;</span>
-</code></pre></div>
+</code></pre>
 <dl>
+<dt><strong>-runUDM</strong></dt>
+<dd><p>This parameter turns on or off the UserDefinedMetrics module. With this feature, SourceMeter computes custom source code metrics based on other, previously computed metrics. Its value can be “true” (turn this feature on) or “false” (turn this feature off). The default value is dependent on the presence of custom metric definitions in the profile xml.</p>
+</dd>
 <dt><strong>-cloneGenealogy</strong></dt>
 <dd><p>This parameter turns on or off the tracking of code clones (copy-pasted source code fragments) through the consecutive revisions of the software system. It is required that during the analysis of the different revisions, the values set to projectName and resultsDir remain the same, so SourceMeter will handle them as different revisions of the same system. Its value can be “true” (turn this feature on) or “false” (turn this feature off). The default value is “false”.</p>
 </dd>
@@ -306,6 +296,9 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail">'+'&#x7
 </dd>
 <dt><strong>-csvDecimalMark</strong></dt>
 <dd><p>This parameter sets the decimal mark character in the CSV outputs. The default is value is the dot (“.”). The character set here must be placed in quotation marks (e.g. -csvDecimalMark=“,”).</p>
+</dd>
+<dt><strong>-sarifseverity</strong></dt>
+<dd><p>This parameter sets the severity levels to be saved in the SARIF output. (1 - Info, 2 - Minor, 3 - Major, 4 - Critical, 5 - Blocker, c/C - CloneClass). The value should not be placed in quotation marks (e.g. -sarifseverity=2345c). The default value is 2345c.</p>
 </dd>
 <dt><strong>-maximumThreads</strong></dt>
 <dd><p>This parameter sets the maximum number of parallel tasks the controller can start. The default value is the number of available CPU cores on the current system.</p>
@@ -324,6 +317,30 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail">'+'&#x7
 </dd>
 <dt><strong>-rpg4FileNamePattern</strong></dt>
 <dd><p>File name pattern for ILE RPG files containing raw source code. (E.g. “.*\.rpgle“)</p>
+</dd>
+<dt><strong>-runSQ</strong></dt>
+<dd><p>Import issues from SonarQube server.</p>
+</dd>
+<dt><strong>-SQHost</strong></dt>
+<dd><p>The URL address of the SonarQube server.</p>
+</dd>
+<dt><strong>-SQPort</strong></dt>
+<dd><p>The port of the SonarQube server.</p>
+</dd>
+<dt><strong>-SQProjectKey</strong></dt>
+<dd><p>The key of the project in the SonarQube server.</p>
+</dd>
+<dt><strong>-SQProjectPrefix</strong></dt>
+<dd><p>Prefix path of the project’s base directory (the path of the sonar-project.properties file).</p>
+</dd>
+<dt><strong>-SQUserName</strong></dt>
+<dd><p>The user name for the SonarQube server.</p>
+</dd>
+<dt><strong>-SQPassword</strong></dt>
+<dd><p>The password for the SonarQube server.</p>
+</dd>
+<dt><strong>-SQLanguageKey</strong></dt>
+<dd><p>The key of the language in SonarQube.</p>
 </dd>
 </dl>
 <h1 id="usage">Usage</h1>
@@ -369,6 +386,8 @@ SourceMeterRPG
 <p>XML representation of the result graph containing all the metrics, code clones and coding rule violations.</p></li>
 <li><p>$(projectName)\rpg\$(projectName).gsi</p>
 <p>Binary data file containing information for tracking the code clones through the consecutive revisions of the analyzed software system.</p></li>
+<li><p>$(projectName)\rpg\$(DATE)\$(projectName).sarif</p>
+<p>List of code rule warnings, errors, represented in json.</p></li>
 </ul></li>
 <li><p>Other files and directories created in the results directory:</p>
 <ul>
@@ -432,10 +451,10 @@ SourceMeterRPG
 <pre class="rpg"><code>     DEnvRecLen        S              9B 0 INZ(1024)                             NOSM</code></pre>
 <p>In this example a simple RPG IV Definition Specification line is given. The “EnvRecLen” variable name is too long. The inserted NOSM prevents this warning to be risen.</p>
 <p>Example (RPG IV free-form):</p>
-<pre class="rpg"><code>    /free                 
-           acq foo;     //NOSM  
-           return result; 
-    /end-free             </code></pre>
+<pre class="rpg"><code>    /free
+           acq foo;     //NOSM
+           return result;
+    /end-free</code></pre>
 <p>In this example “acq” is a forbidden operation that would have risen a warning if the “NOSM” comment has not been added.</p>
 <p>The warnings of the MetricHunter module cannot be suppressed at the moment.</p>
 <h1 id="demo">Demo</h1>
@@ -547,27 +566,135 @@ SourceMeterRPG
 <li><p><strong>Size metrics:</strong> measure the basic properties of the analyzed system in terms of different cardinalities (e.g. number of code lines, number of subroutines or data structures).</p></li>
 </ul>
 <p>In the case of the documentation metrics all the comments found immediately before a source code element are considered as its documentation, while the comments contained inside the source code element are considered as its comments.</p>
-<p>The following table summarizes the metrics, their abbreviations and their correspondence to different source code element kinds. Note that in the <strong>free version</strong> only the following 10 metrics are available (all other metrics will get the value 0): CLOC, LLOC, LOC, McCC, NOI, PC, TCLOC, TLLOC, TLOC, TNOI.</p>
+<p>The following table summarizes the metrics, their abbreviations and their correspondence to different source code element kinds. Note that in the <strong>free version</strong> only the following 12 metrics are available (all other metrics will get the value 0): CLOC, HPV, HPL, LLOC, LOC, McCC, NOI, PC, TCLOC, TLLOC, TLOC, TNOI.</p>
 <table>
 <thead>
 <tr class="header">
 <th style="text-align: left;">Category</th>
 <th style="text-align: left;">Metric name</th>
-<th style="text-align: left;">Abbrev.</th>
-<th style="text-align: center;">Subroutine</th>
+<th style="text-align: left;">Abbreviation</th>
 <th style="text-align: center;">Procedure</th>
 <th style="text-align: center;">Program</th>
+<th style="text-align: center;">Subroutine</th>
 <th style="text-align: center;">System</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">Complexity metrics</td>
-<td style="text-align: left;">McCabe’s Cyclomatic Complexity</td>
-<td style="text-align: left;">McCC</td>
+<td style="text-align: left;">Halstead Calculated Program Length</td>
+<td style="text-align: left;">HCPL</td>
+<td style="text-align: center;">X</td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Halstead Difficulty</td>
+<td style="text-align: left;">HDIF</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Halstead Effort</td>
+<td style="text-align: left;">HEFF</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Halstead Number of Delivered bugs</td>
+<td style="text-align: left;">HNDB</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Halstead Program Length</td>
+<td style="text-align: left;">HPL</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Halstead Program Vocabulary</td>
+<td style="text-align: left;">HPV</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Halstead Time required to program</td>
+<td style="text-align: left;">HTRP</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Halstead Volume</td>
+<td style="text-align: left;">HVOL</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Maintainability Index (Microsoft version)</td>
+<td style="text-align: left;">MIMS</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Maintainability Index (Original version)</td>
+<td style="text-align: left;">MI</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Maintainability Index (SEI version)</td>
+<td style="text-align: left;">MISEI</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Maintainability Index (SourceMeter version)</td>
+<td style="text-align: left;">MISM</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">McCabe’s Cyclomatic Complexity</td>
+<td style="text-align: left;">McCC</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
 </tr>
 <tr class="even">
@@ -593,26 +720,26 @@ SourceMeterRPG
 <td style="text-align: left;">Program Complexity</td>
 <td style="text-align: left;">PC</td>
 <td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Coupling metrics</td>
 <td style="text-align: left;">Number of Files</td>
 <td style="text-align: left;">NF</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
-<td style="text-align: center;">X</td>
-<td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"></td>
 <td style="text-align: left;">Number of Incoming Invocations</td>
 <td style="text-align: left;">NII</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 </tr>
 <tr class="odd">
@@ -620,8 +747,8 @@ SourceMeterRPG
 <td style="text-align: left;">Number of Input Records</td>
 <td style="text-align: left;">NIR</td>
 <td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 </tr>
 <tr class="even">
@@ -638,8 +765,8 @@ SourceMeterRPG
 <td style="text-align: left;">Number of Output Records</td>
 <td style="text-align: left;">NOR</td>
 <td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 </tr>
 <tr class="even">
@@ -647,17 +774,17 @@ SourceMeterRPG
 <td style="text-align: left;">Total Number of Files</td>
 <td style="text-align: left;">TNF</td>
 <td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"></td>
 <td style="text-align: left;">Total Number of Outgoing Invocations</td>
 <td style="text-align: left;">TNOI</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
-<td style="text-align: center;">X</td>
-<td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
 </tr>
 <tr class="even">
@@ -691,27 +818,27 @@ SourceMeterRPG
 <td style="text-align: left;"></td>
 <td style="text-align: left;">Total Comment Density</td>
 <td style="text-align: left;">TCD</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
-<td style="text-align: center;">X</td>
-<td style="text-align: center;">X</td>
 <td style="text-align: center;">X</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"></td>
 <td style="text-align: left;">Total Comment Lines of Code</td>
 <td style="text-align: left;">TCLOC</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
-<td style="text-align: center;">X</td>
-<td style="text-align: center;">X</td>
 <td style="text-align: center;">X</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"></td>
 <td style="text-align: left;">Total Documentation Lines of Code</td>
 <td style="text-align: left;">TDLOC</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
-<td style="text-align: center;">X</td>
-<td style="text-align: center;">X</td>
 <td style="text-align: center;">X</td>
 </tr>
 <tr class="even">
@@ -736,36 +863,36 @@ SourceMeterRPG
 <td style="text-align: left;"></td>
 <td style="text-align: left;">Number of Data Structures</td>
 <td style="text-align: left;">NDS</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
-<td style="text-align: center;">X</td>
-<td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"></td>
 <td style="text-align: left;">Number of Named Constants</td>
 <td style="text-align: left;">NNC</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
-<td style="text-align: center;">X</td>
-<td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"></td>
 <td style="text-align: left;">Number of Parameters</td>
 <td style="text-align: left;">NUMPAR</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
-<td style="text-align: center;">X</td>
-<td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"></td>
 <td style="text-align: left;">Number of Standalone Fields</td>
 <td style="text-align: left;">NSF</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
-<td style="text-align: center;">X</td>
-<td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
 </tr>
 <tr class="even">
@@ -773,26 +900,26 @@ SourceMeterRPG
 <td style="text-align: left;">Number of Statements</td>
 <td style="text-align: left;">NOS</td>
 <td style="text-align: center;">X</td>
-<td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"></td>
 <td style="text-align: left;">Total Lines of Code</td>
 <td style="text-align: left;">TLOC</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
-<td style="text-align: center;">X</td>
-<td style="text-align: center;">X</td>
 <td style="text-align: center;">X</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"></td>
 <td style="text-align: left;">Total Logical Lines of Code</td>
 <td style="text-align: left;">TLLOC</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
-<td style="text-align: center;">X</td>
-<td style="text-align: center;">X</td>
 <td style="text-align: center;">X</td>
 </tr>
 <tr class="odd">
@@ -800,8 +927,8 @@ SourceMeterRPG
 <td style="text-align: left;">Total Number of Data Structures</td>
 <td style="text-align: left;">TNDS</td>
 <td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
 </tr>
 <tr class="even">
@@ -809,8 +936,8 @@ SourceMeterRPG
 <td style="text-align: left;">Total Number of Named Constants</td>
 <td style="text-align: left;">TNNC</td>
 <td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
 </tr>
 <tr class="odd">
@@ -818,8 +945,8 @@ SourceMeterRPG
 <td style="text-align: left;">Total Number of Procedures</td>
 <td style="text-align: left;">TNPC</td>
 <td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
 </tr>
 <tr class="even">
@@ -836,31 +963,146 @@ SourceMeterRPG
 <td style="text-align: left;">Total Number of Standalone Fields</td>
 <td style="text-align: left;">TNSF</td>
 <td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"></td>
 <td style="text-align: left;">Total Number of Statements</td>
 <td style="text-align: left;">TNOS</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
-<td style="text-align: center;">X</td>
-<td style="text-align: center;">X</td>
 <td style="text-align: center;">X</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"></td>
 <td style="text-align: left;">Total Number of Subroutines</td>
 <td style="text-align: left;">TNSR</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
-<td style="text-align: center;">X</td>
-<td style="text-align: center;">X</td>
 <td style="text-align: center;">X</td>
 </tr>
 </tbody>
 </table>
 <h3 id="complexity-metrics">Complexity metrics</h3>
+<h4 id="HCPL">Halstead Calculated Program Length (HCPL)</h4>
+<p><strong>Subroutine, Procedure, Program:</strong></p>
+<ul>
+<li><em>n1</em>: number of distinct operators (semantic meanings of the reserved keywords, semicolons, blocks, and identifiers except in their declarations)</li>
+<li><em>n2</em>: number of distinct operands (literals - e.g. character, string, and integer literals, - and the identifiers in their declarations)</li>
+</ul>
+<p>The calculated program length is <em>n1 * log<sub>2</sub>(n1) + n2 * log<sub>2</sub>(n2)</em>.</p>
+<h4 id="HDIF">Halstead Difficulty (HDIF)</h4>
+<p><strong>Subroutine, Procedure, Program:</strong></p>
+<ul>
+<li><em>n1</em>: number of distinct operators (semantic meanings of the reserved keywords, semicolons, blocks, and identifiers except in their declarations)</li>
+<li><em>n2</em>: number of distinct operands (literals - e.g. character, string, and integer literals, - and the identifiers in their declarations)</li>
+<li><em>N2</em>: total number of operands</li>
+</ul>
+<p>The Halstead difficulty is <em>n1/2 * N2/n2</em>.</p>
+<h4 id="HEFF">Halstead Effort (HEFF)</h4>
+<p><strong>Subroutine, Procedure, Program:</strong></p>
+<ul>
+<li><em>n1</em>: number of distinct operators (semantic meanings of the reserved keywords, semicolons, blocks, and identifiers except in their declarations)</li>
+<li><em>n2</em>: number of distinct operands (literals - e.g. character, string, and integer literals, - and the identifiers in their declarations)</li>
+<li><em>N1</em>: total number of operators</li>
+<li><em>N2</em>: total number of operands</li>
+<li><em>n : n1 + n2</em> (program vocabulary)</li>
+<li><em>N : N1 + N2</em> (program length)</li>
+<li><em>V : N * log<sub>2</sub>(n)</em> (volume)</li>
+<li><em>D : n1/2 * N2/n2</em> (difficulty)</li>
+</ul>
+<p>The Halstead effort is <em>D * V</em>.</p>
+<h4 id="HNDB">Halstead Number of Delivered bugs (HNDB)</h4>
+<p><strong>Subroutine, Procedure, Program:</strong></p>
+<ul>
+<li><em>n1</em>: number of distinct operators (semantic meanings of the reserved keywords, semicolons, blocks, and identifiers except in their declarations)</li>
+<li><em>n2</em>: number of distinct operands (literals - e.g. character, string, and integer literals, - and the identifiers in their declarations)</li>
+<li><em>N1</em>: total number of operators</li>
+<li><em>N2</em>: total number of operands</li>
+<li><em>n : n1 + n2</em> (program vocabulary)</li>
+<li><em>N : N1 + N2</em> (program length)</li>
+<li><em>V : N * log<sub>2</sub>(n)</em> (volume)</li>
+<li><em>D : n1/2 * N2/n2</em> (difficulty)</li>
+<li><em>E : D * V</em> (effort)</li>
+</ul>
+<p>Number of delivered bugs is <em>E<sup>2/3</sup>/3000</em>.</p>
+<h4 id="HPL">Halstead Program Length (HPL)</h4>
+<p><strong>Subroutine, Procedure, Program:</strong></p>
+<ul>
+<li><em>N1</em>: total number of operators (semantic meanings of the reserved keywords, semicolons, blocks, and identifiers except in their declarations)</li>
+<li><em>N2</em>: total number of operands (literals - e.g. character, string, and integer literals, - and the identifiers in their declarations)</li>
+</ul>
+<p>Halstead program length is <em>N1 + N2</em>.</p>
+<h4 id="HPV">Halstead Program Vocabulary (HPV)</h4>
+<p><strong>Subroutine, Procedure, Program:</strong></p>
+<ul>
+<li><em>n1</em>: number of distinct operators (semantic meanings of the reserved keywords, semicolons, blocks, and identifiers except in their declarations)</li>
+<li><em>n2</em>: number of distinct operands (literals - e.g. character, string, and integer literals, - and the identifiers in their declarations)</li>
+</ul>
+<p>Halstead program vocabulary is <em>n1 + n2</em>.</p>
+<h4 id="HTRP">Halstead Time required to program (HTRP)</h4>
+<p><strong>Subroutine, Procedure, Program:</strong></p>
+<ul>
+<li><em>n1</em>: number of distinct operators (semantic meanings of the reserved keywords, semicolons, blocks, and identifiers except in their declarations)</li>
+<li><em>n2</em>: number of distinct operands (literals - e.g. character, string, and integer literals, - and the identifiers in their declarations)</li>
+<li><em>N1</em>: total number of operators</li>
+<li><em>N2</em>: total number of operands</li>
+<li><em>n : n1 + n2</em> (program vocabulary)</li>
+<li><em>N : N1 + N2</em> (program length)</li>
+<li><em>V : N * log<sub>2</sub>(n)</em> (volume)</li>
+<li><em>D : n1/2 * N2/n2</em> (difficulty)</li>
+<li><em>E : D * V</em> (effort)</li>
+</ul>
+<p>Halstead time required to program is <em>E/18</em> seconds.</p>
+<h4 id="HVOL">Halstead Volume (HVOL)</h4>
+<p><strong>Subroutine, Procedure, Program:</strong></p>
+<ul>
+<li><em>n1</em>: number of distinct operators (semantic meanings of the reserved keywords, semicolons, blocks, and identifiers except in their declarations)</li>
+<li><em>n2</em>: number of distinct operands (literals - e.g. character, string, and integer literals, - and the identifiers in their declarations)</li>
+<li><em>N1</em>: total number of operators</li>
+<li><em>N2</em>: total number of operands</li>
+<li><em>n : n1 + n2</em> (program vocabulary)</li>
+<li><em>N : N1 + N2</em> (program length)</li>
+</ul>
+<p>The Halstead volume is <em>N * log<sub>2</sub>(n)</em>.</p>
+<h4 id="MIMS">Maintainability Index (Microsoft version) (MIMS)</h4>
+<ul>
+<li><em>HVOL</em>: Halstead Volume</li>
+<li><em>McCC</em>: McCabe’s cyclomatic complexity</li>
+<li><em>LLOC</em>: logical lines of code</li>
+</ul>
+<p>The Maintainability Index used by Microsoft’s Visual Studio is computed by the following formula:</p>
+<p><em>MIMS = max(0,(171 - 5.2 * ln(HVOL) - 0.23 * (McCC) - 16.2 * ln(LLOC)) * 100 / 171)</em></p>
+<h4 id="MI">Maintainability Index (Original version) (MI)</h4>
+<ul>
+<li><em>HVOL</em>: Halstead Volume</li>
+<li><em>McCC</em>: McCabe’s cyclomatic complexity</li>
+<li><em>LLOC</em>: logical lines of code</li>
+</ul>
+<p>The original Maintainability Index is computed by the following formula:</p>
+<p><em>MI = 171 - 5.2 * ln(HVOL) - 0.23 * (McCC) - 16.2 * ln(LLOC)</em></p>
+<h4 id="MISEI">Maintainability Index (SEI version) (MISEI)</h4>
+<ul>
+<li><em>HVOL</em>: Halstead Volume</li>
+<li><em>McCC</em>: McCabe’s cyclomatic complexity</li>
+<li><em>LLOC</em>: logical lines of code</li>
+<li><em>CD</em>: comment density</li>
+</ul>
+<p>The Maintainability Index derived by the Software Engineering Institute (SEI) is computed by the following formula:</p>
+<p><em>MISEI = 171 - 5.2 * log<sub>2</sub>(HVOL) - 0.23 * McCC - 16.2 * log<sub>2</sub>(LLOC) + 50 * sin(sqrt(2.4 * CD))</em></p>
+<h4 id="MISM">Maintainability Index (SourceMeter version) (MISM)</h4>
+<ul>
+<li><em>HVOL</em>: Halstead Volume</li>
+<li><em>McCC</em>: McCabe’s cyclomatic complexity</li>
+<li><em>LLOC</em>: logical lines of code</li>
+<li><em>CD</em>: comment density</li>
+</ul>
+<p>The Maintainability Index proposed by SourceMeter combines the different scaling approach from Microsoft’s version with the inclusion of comment percentage from the Software Engineering Institute (SEI) version into the following formula:</p>
+<p><em>MISM = max(0, (171 - 5.2 * log<sub>2</sub>(HVOL) - 0.23 * McCC - 16.2 * log<sub>2</sub>(LLOC) + 50 * sin(sqrt(2.4 * CD))) * 100 / 171)</em></p>
 <h4 id="McCC">McCabe’s Cyclomatic Complexity (McCC)</h4>
 <p><strong>Subroutine:</strong> complexity of the subroutine expressed as the number of independent control flow paths in it. It represents a lower bound for the number of possible execution paths in the source code and at the same time it is an upper bound for the minimum number of test cases needed for achieving full branch test coverage. The value of the metric is calculated as the number of the following instructions plus 1: if (including or, and), else-if, for, do, do-while, do-until, when, on-error. The following instructions are not included: else, select, monitor.</p>
 <p><strong>Procedure:</strong> complexity of the procedure expressed as the number of independent control flow paths in it. It represents a lower bound for the number of possible execution paths in the source code and at the same time it is an upper bound for the minimum number of test cases needed for achieving full branch test coverage. The value of the metric is calculated as the number of the following instructions plus 1: if (including or, and), else-if, for, do, do-while, do-until, when, on-error. The following instructions are not included: else, select, monitor. Subroutines defined locally in the procedure are not included.</p>
@@ -1202,9 +1444,9 @@ SourceMeterRPG
 <p><strong>Subroutine/procedure/program/system:</strong> sum of CCO of clone instances in the source code element.</p>
 <h4 id="CC">Clone Coverage (CC)</h4>
 <p><strong>Subroutine/procedure/program/system:</strong> ratio of code covered by code duplications in the source code element to the size of the source code element.</p>
-<h4 id="CEE">Clone Elimination Effort<a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a> (CEE)</h4>
+<h4 id="CEE">Clone Elimination Effort (CEE)</h4>
 <p><strong>Clone class:</strong> index of the effort required to eliminate the clone class. It is computed as the product of CI, CE, and NCR.</p>
-<h4 id="CEG">Clone Elimination Gain<a href="#fn3" class="footnoteRef" id="fnref3"><sup>3</sup></a> (CEG)</h4>
+<h4 id="CEG">Clone Elimination Gain (CEG)</h4>
 <p><strong>Clone class:</strong> index of the gain resulting from eliminating the clone class. It is computed as the ratio of CR to CEE.</p>
 <h4 id="CE">Clone Embeddedness (CE)</h4>
 <p><strong>Clone instance:</strong> sum of incoming and outgoing references (subroutine calls, procedure calls, and variable references) in the code fragment corresponding to the clone instance.</p>
@@ -1219,7 +1461,7 @@ SourceMeterRPG
 <p><strong>Clone class:</strong> average of CLLOC of clone instances belonging to the clone class.</p>
 <h4 id="CLLC">Clone Logical Line Coverage (CLLC)</h4>
 <p><strong>Subroutine/procedure/program/system:</strong> ratio of code covered by code duplications in the source code element to the size of source code element, expressed in terms of logical lines of code (non-empty, non-comment lines).</p>
-<h4 id="CR">Clone Risk (CR)<a href="#fn4" class="footnoteRef" id="fnref4"><sup>4</sup></a></h4>
+<h4 id="CR">Clone Risk (CR)</h4>
 <p><strong>Clone class:</strong> risk index of the existence of the clone class. It is computed as the product of CLLOC, CI, CCO, NCR, and CV.</p>
 <h4 id="CV">Clone Variability (CV)</h4>
 <p><strong>Clone instance:</strong> instability of the clone instance since it appeared. It is computed as the ratio of the number of previously analyzed revisions when the instance had been changed to its age (CA).</p>
@@ -2064,14 +2306,63 @@ SourceMeterRPG
             *inlr = *on;                
           endsr;                        
       /end-free                         </code></pre>
+<h2 id="the-userdefinedmetrics-module">The UserDefinedMetrics module</h2>
+<p>In addition to the built-in metrics, users can create their own metrics by using the UserDefinedMetrics (UDM) module. These new metrics can be established with a formula that can use any previous SourceMeter metric and can even depend on other custom user-defined metrics.</p>
+<h3 id="defining-a-metric">Defining a metric</h3>
+<ul>
+<li>Metric definitions are surrounded by a <code>&lt;tool name = &quot;UDM&quot; enabled = &quot;true&quot;&gt;&lt;/tool&gt;</code> tag.</li>
+<li>Metrics are defined using a <code>&lt;udm id = &quot;NAME&quot;&gt;&lt;/udm&gt;</code> tag.
+<ul>
+<li><code>NAME</code> follows standard identifier conventions (starts with a letter or an underscore, followed by any number of letters, numbers, or underscores).</li>
+<li><code>pi</code>, <code>epsilon</code>, and <code>inf</code> are occupied names (in a case-insensitive manner, so <code>Pi</code>, <code>pI</code>, <code>Epsilon</code>, <code>epSiloN</code>, etc. are occupied as well).</li>
+</ul></li>
+<li>Each metric definition can contain multiple configurations using a <code>&lt;configuration name = &quot;ConfigName&quot;&gt;&lt;/configuration&gt;</code> tag.
+<ul>
+<li>The <code>Default</code> configuration is mandatory, while the language-specific “overrides” are optional.</li>
+<li>Each “override” inherits its starting setting values from the <code>Default</code> configuration.</li>
+<li>The valid language-specific configuration values (at the moment) are <code>cpp</code>, <code>csharp</code>, <code>java</code>, <code>javascript</code>, <code>python</code>, and <code>rpg</code>.</li>
+</ul></li>
+<li>Each configuration can contain the following settings:
+<ul>
+<li><code>description</code>: The description of the metric (default: “”).</li>
+<li><code>display-name</code>: An optional name, if something other than the ID should be used for display (default: “”).</li>
+<li><code>group-member</code>: The group of metrics this metric belongs to (valid values: “Cohesion”, “Complexity”, “Coupling”, “Documentation”, “Inheritance”, “Size”, “UserDefinedMetrics”; default: “UserDefinedMetrics”)</li>
+<li><code>help-text</code>: Additional help text for the metric (default: “”).</li>
+<li><code>formula</code>: The formula used to calculate the value of the metric. It can be any valid expression supported by the <a href="https://exprtk.codeplex.com/">ExprTk library</a> and contain references to any previously computed metrics (e.g., LLOC, NOS, CBO, etc.).</li>
+<li><code>type</code>: The desired output type of the formula (valid values: “Integer”, “Float”; default: “Float”).</li>
+<li><code>calculated</code>: This field contains a list of syntactic element types (e.g., Class, Method, etc.) the metric is calculated for inside <code>&lt;calculated-for&gt;</code> tags. See the example below.
+<ul>
+<li>Note that every (both built-in and user-defined) metric has a unique set of elements it is computed for. Therefore, if a metric is dependent on another, its <code>&lt;calculated-for&gt;</code> set should be a subset of the dependency’s for it to be universally computable.</li>
+</ul></li>
+</ul></li>
+</ul>
+<h3 id="example-profile.xml">Example profile.xml</h3>
+<pre class="sourceCode xml"><code class="sourceCode xml"><span class="kw">&lt;?xml</span> version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;<span class="kw">?&gt;</span>
+<span class="kw">&lt;sourcemeter-profile&gt;</span>
+  <span class="kw">&lt;tool-options&gt;</span>
+    <span class="kw">&lt;tool</span><span class="ot"> name</span> <span class="ot">=</span> <span class="st">&quot;UDM&quot;</span><span class="ot"> enabled</span> <span class="ot">=</span> <span class="st">&quot;true&quot;</span><span class="kw">&gt;</span>
+      <span class="kw">&lt;udm</span><span class="ot"> id</span> <span class="ot">=</span> <span class="st">&quot;UDM_test_metric&quot;</span><span class="kw">&gt;</span>
+        <span class="kw">&lt;configuration</span><span class="ot"> name</span> <span class="ot">=</span> <span class="st">&quot;Default&quot;</span><span class="kw">&gt;</span>
+          <span class="kw">&lt;description&gt;</span>Blablabla<span class="kw">&lt;/description&gt;</span>
+          <span class="kw">&lt;display-name&gt;</span>UDM Test Metric<span class="kw">&lt;/display-name&gt;</span>
+          <span class="kw">&lt;group-member&gt;</span>UserDefinedMetrics<span class="kw">&lt;/group-member&gt;</span>
+          <span class="kw">&lt;help-text&gt;</span>A helpful comment<span class="kw">&lt;/help-text&gt;</span>
+          <span class="kw">&lt;formula&gt;</span>LLOC + 1 + sin(pi)^3<span class="kw">&lt;/formula&gt;</span>
+          <span class="kw">&lt;type&gt;</span>Integer<span class="kw">&lt;/type&gt;</span>
+          <span class="kw">&lt;calculated&gt;</span>
+            <span class="kw">&lt;calculated-for&gt;</span>Class<span class="kw">&lt;/calculated-for&gt;</span>
+            <span class="kw">&lt;calculated-for&gt;</span>Method<span class="kw">&lt;/calculated-for&gt;</span>
+          <span class="kw">&lt;/calculated&gt;</span>
+        <span class="kw">&lt;/configuration&gt;</span>
+      <span class="kw">&lt;/udm&gt;</span>
+    <span class="kw">&lt;/tool&gt;</span>
+  <span class="kw">&lt;/tool-options&gt;</span>
+<span class="kw">&lt;/sourcemeter-profile&gt;</span></code></pre>
 <h1 id="footnotes">Footnotes</h1>
 <section class="footnotes">
 <hr />
 <ol>
 <li id="fn1"><p>POSIX Extended Regular Expressions<a href="#fnref1">↩</a></p></li>
-<li id="fn2"><p>Only available in other products of FrontEndART<a href="#fnref2">↩</a></p></li>
-<li id="fn3"><p>Only available in other products of FrontEndART<a href="#fnref3">↩</a></p></li>
-<li id="fn4"><p>Only available in other products of FrontEndART<a href="#fnref4">↩</a></p></li>
 </ol>
 </section>
 </body>
