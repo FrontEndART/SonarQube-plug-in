@@ -47,9 +47,9 @@ import org.sonar.api.batch.rule.Rules;
 import org.sonar.api.batch.rule.Severity;
 import org.sonar.api.config.Configuration;
 import org.sonar.api.measures.Metric;
-import org.sonar.api.profiles.RulesProfile;
+import org.sonar.api.batch.rule.ActiveRules;
 import org.sonar.api.resources.AbstractLanguage;
-import org.sonar.api.rules.ActiveRule;
+import org.sonar.api.batch.rule.ActiveRule;
 
 import com.sourcemeter.analyzer.base.helper.FileHelper;
 import com.sourcemeter.analyzer.base.profile.SourceMeterRuleRepository;
@@ -73,21 +73,21 @@ public class ProfileInitializer {
      *
      * @param configuration For getting the metric threshold properties from SonarQube.
      * @param categories For setting which categories are passed to MetricHunter.
-     * @param profile Needed for the list of active rules passed to profile file.
+     * @param activeRules Needed for the list of active rules passed to profile file.
      * @param ruleRepository Stores the rules.
      * @param rules Needed for find rules from RuleRepository by key.
      * @param pluginLanguage Current analyzed language.
      */
     public ProfileInitializer(Configuration configuration,
-            List<MetricHunterCategory> categories, RulesProfile profile,
+            List<MetricHunterCategory> categories, ActiveRules activeRules,
             SourceMeterRuleRepository ruleRepository, Rules rules, AbstractLanguage pluginLanguage) {
         this.configuration = configuration;
         this.categories = categories;
         String repositoryKey = ruleRepository.getRepositoryKey();
         this.allRules = rules.findByRepository(repositoryKey);
         activeRuleKeys = new HashSet<String>();
-        for (ActiveRule rule : profile.getActiveRulesByRepository(repositoryKey)) {
-            activeRuleKeys.add(rule.getRuleKey());
+        for (ActiveRule rule : activeRules.findByRepository(repositoryKey)) {
+            activeRuleKeys.add(rule.ruleKey().rule());
         }
         this.language = pluginLanguage;
     }

@@ -55,7 +55,7 @@ import org.sonar.api.batch.sensor.Sensor;
 import org.sonar.api.batch.sensor.SensorContext;
 import org.sonar.api.config.Configuration;
 import org.sonar.api.measures.Metric;
-import org.sonar.api.profiles.RulesProfile;
+import org.sonar.api.batch.rule.ActiveRules;
 import org.sonar.api.scan.filesystem.FileExclusions;
 
 import com.google.gson.Gson;
@@ -76,20 +76,20 @@ public abstract class SourceMeterSensor implements Sensor {
     protected final FileExclusions fileExclusions;
     protected final FileSystem fileSystem;
     protected final ProjectDefinition projectDefinition;
-    protected final RulesProfile profile;
+    protected final ActiveRules activeRules;
     protected final Configuration configuration;
 
     /**
      * Constructor: Use of IoC to get Settings.
      */
     public SourceMeterSensor(FileExclusions fileExclusions, FileSystem fileSystem,
-            ProjectDefinition projectDefinition, RulesProfile profile,
+            ProjectDefinition projectDefinition, ActiveRules activeRules,
             Configuration configuration) {
 
         this.fileSystem = fileSystem;
         this.fileExclusions = fileExclusions;
         this.projectDefinition = projectDefinition;
-        this.profile = profile;
+        this.activeRules = activeRules;
         this.configuration = configuration;
     }
 
