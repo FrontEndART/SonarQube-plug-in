@@ -50,7 +50,7 @@ import org.sonar.api.batch.rule.Rules;
 import org.sonar.api.batch.sensor.SensorContext;
 import org.sonar.api.batch.sensor.SensorDescriptor;
 import org.sonar.api.config.Configuration;
-import org.sonar.api.profiles.RulesProfile;
+import org.sonar.api.batch.rule.ActiveRules;
 import org.sonar.api.scan.filesystem.FileExclusions;
 import org.sonar.api.server.rule.RulesDefinitionXmlLoader;
 
@@ -94,10 +94,10 @@ public class SourceMeterCppSensor extends SourceMeterSensor {
     private static final String LOGICAL_ROOT = "__LogicalRoot__";
 
     public SourceMeterCppSensor(FileExclusions fileExclusions, FileSystem fileSystem,
-            ProjectDefinition projectDefinition, Rules rules, RulesProfile profile,
+            ProjectDefinition projectDefinition, Rules rules, ActiveRules activeRules,
             Configuration configuration) {
 
-        super(fileExclusions, fileSystem, projectDefinition, profile, configuration);
+        super(fileExclusions, fileSystem, projectDefinition, activeRules, configuration);
 
         this.commands = new ArrayList<String>();
         this.rules = rules;
@@ -300,7 +300,7 @@ public class SourceMeterCppSensor extends SourceMeterSensor {
         }
 
         ProfileInitializer profileInitializer = new ProfileInitializer(
-                this.configuration, getMetricHunterCategories(), profile,
+                this.configuration, getMetricHunterCategories(), this.activeRules,
                 new SourceMeterCppRuleRepository(new RulesDefinitionXmlLoader()), rules, new Cpp());
 
         String profilePath = this.fileSystem.workDir() + File.separator
