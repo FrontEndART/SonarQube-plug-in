@@ -1,0 +1,37 @@
+      * Subprocedure Interface
+     D SUBPROC         PR            10I 0
+      * Interface parameters
+     D    TERM1                       5I 0 VALUE
+     D    TERM2                       5I 0 VALUE
+     D    TERM3                       5I 0 VALUE
+      * Beginning of Subroutine
+     C     SUBRTA        BEGSR
+     C                   EXSR      SUBRTC
+      * Move between Date fields. DATE_EUR will contain 24.03.1992
+     C                   MOVE      DATE_YMD      DATE_EUR
+     C                   MOVE      'E'           IN11
+     C                   ENDSR
+      *calculation in main section
+     C                   MOVE      'A'           *IN52
+
+      * Beginning of Subprocedure
+     P SUBPROC         B
+     D SUBPROC         PI            10I 0
+     D    Term1                       5I 0 VALUE
+     D    Term2                       5I 0 VALUE
+     D    Term3                       5I 0 VALUE
+     D Result          S             10I 0
+
+      * Beginning of Subroutine
+     C     SUBRTA        BEGSR
+     C                   EXSR      SUBRTC
+     C     CENTR         IFEQ      'Y'           IN12
+     C                   MOVE      'A'           *IN52
+     C                   ELSE
+      * Move between Date fields.
+      * DATE_EUR will contain 24.03.1992
+     C                   MOVE      DATE_YMD      DATE_EUR
+     C                   MOVE      'E'           IN11
+     C                   END
+     C                   ENDSR
+     P                 E

@@ -1,0 +1,29 @@
+ LLOC es TLLOC az alabbi esetben csak 3, nem ismeri fel a public, static kulcsszókat, valamint a () zárójelpárost 
+	public 
+    static
+    void goo
+    (
+    ) 
+    {
+    }
+	
+	Az alábbi height valtozot 3 sornak veszi, meghozza az = 10 erteket egy sornak
+    private int height
+    =
+    10
+    ;
+
+Commentsorok számítása nem egységes a c++al. A megelõzõ komment nincs bekötve mint hasComment
+
+
+3nak számolja az alábbi részt, pedig nem tartoznak szorosan össze (c++nal ez nem igy van ? )
+	// just another comment inside of class CLOCTest. 
+
+	// doc comment
+	void bar () {
+		// comment line
+		
+	}
+
+
+COMMENT NODEK HIANYOZNAK, ÍGY NEM VALIDAK A COMMENT METRIKA ÉRTÉKEI

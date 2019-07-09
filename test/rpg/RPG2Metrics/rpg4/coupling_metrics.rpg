@@ -1,0 +1,58 @@
+     C* The purpose of this subroutine is to call SUBRTC
+     C     SUBRTA        BEGSR
+     C*
+     C*  One subroutine can call another subroutine.
+     C*
+     C                   EXSR      SUBRTC
+     C                   EXSR      SUBRTC
+     C                   ENDSR
+     C* This subroutine calls SUBRTC
+     C     SUBRTB        BEGSR
+     C                   EXSR      SUBRTC
+     C* End of SUBRTB
+     C                   ENDSR
+     C* Calling SUBRTC
+     C* outside of any subroutine
+     C                   EXSR      SUBRTC
+      * Subroutine SUBRTC
+     C     SUBRTC        BEGSR
+     C     'Text'        DSPLY
+     C                   ENDSR
+
+      * Subprocedure Interface
+     D SUBPROC         PR            10I 0
+      * Interface parameters
+     D    TERM1                       5I 0 VALUE
+     D    TERM2                       5I 0 VALUE
+     D    TERM3                       5I 0 VALUE
+
+      * Beginning of Subprocedure
+     P SUBPROC         B
+     D SUBPROC         PI            10I 0
+     D    Term1                       5I 0 VALUE
+     D    Term2                       5I 0 VALUE
+     D    Term3                       5I 0 VALUE
+     D Result          S             10I 0
+      * Subroutine SUBRTB
+     C     SUBRTB        BEGSR
+     C                   EXSR      SUBRTC
+     C                   EXSR      SUBRTX
+     C                   ENDSR
+      * Subroutine SUBRTC
+     C     SUBRTC        BEGSR
+     C     'Text'        DSPLY
+     C                   ENDSR
+      * Subroutine SUBRTX
+     C     SUBRTX        BEGSR
+     C     'Text2'       DSPLY
+     C                   EXSR      SUBRTC
+     C                   ENDSR
+     C* Calling SUBRTC outside of any subroutine
+     C                   EXSR      SUBRTC
+     C                   EXSR      SUBRTC
+     C                   EXSR      NONEXISTING
+      * CAS
+     C     Term1         CASGE     Term2         SUBRTB
+     C                   CAS                     SUBRTX
+     C                   ENDCS
+     P                 E

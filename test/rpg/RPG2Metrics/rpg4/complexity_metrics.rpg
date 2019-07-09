@@ -1,0 +1,74 @@
+      * Subprocedure Interface
+     D SUBPROC         PR            10I 0
+      * Interface parameters
+     D    TERM1                       5I 0 VALUE
+     D    TERM2                       5I 0 VALUE
+     D    TERM3                       5I 0 VALUEC
+     C* calculation
+     C     NextRecord    BegSr
+     C                   Eval      *in90  = *off
+     C                   ExFmt     SCR1
+     C                   Eval      ERRLIN = *blanks
+     C                   EndSr
+      * end of subr NextRecord
+     C                   DoW       *in03 = *off
+     C                   If        *in03 = *off
+     C                   Select
+     C                   When      Action = 'A'
+     C                   ExSr      AddRecord
+     C                   When      Action = 'D'
+     C                   ExSr      DltRecord
+     C                   When      Action = 'I'
+     C                   ExSr      InqRecord
+     C                   When      Action = 'N'
+     C                   ExSr      NextRecord
+     C                   When      Action = 'U'
+     C                   ExSr      UpdRecord
+     C                   Other
+     C                   Eval      ERRLIN = Err7
+     C                   Eval      *in90  = *on
+     C                   EndSl
+     C                   ElseIf    *in04 = *off
+     C                   If        *in05 = *on
+     C                   ExSr      DoSomething
+     C                   Else
+     C                   If        *in06 = *on
+     C                   ExSr      DoOther
+     C                   EndIf
+     C                   EndIf
+     C                   EndIf
+     C                   EndDo
+     C
+     C                   Eval      *inlr = *on
+     C                   Return
+
+      * Beginning of Subprocedure
+     P SUBPROC         B
+     D SUBPROC         PI            10I 0
+     D    Term1                       5I 0 VALUE
+     D    Term2                       5I 0 VALUE
+     D    Term3                       5I 0 VALUE
+     D Result          S             10I 0
+     C*---------------------------------------------------------------------
+     C     AddScreen     BegSr
+     C
+     C* Clear all fields except the key field
+     C     *NOKEY        Clear                   CSREC
+     C                   Eval      RecOK = 'n'
+     C* Stay on this screen until user gets it right or hits F3
+     C                   Dow       RecOK = 'n'    and
+     C                             *in03 = *off
+     C                   ExFmt     SCR2
+     C                   If        *in03 = *off
+     C                   ExSr      EditRecord
+     C                   If        recOK = 'y'
+     C                   Write     CSREC
+     C                   Eval      ERRLIN = Msg9
+     C                   EndIf
+     C                   Else
+     C                   Eval      ERRLIN = Msg9
+     C                   EndIf
+     C                   EndDo
+     C                   Eval      *in03  = *off
+     C                   EndSr
+     P                 E

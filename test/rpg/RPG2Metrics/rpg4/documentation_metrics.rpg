@@ -1,0 +1,44 @@
+     C* The purpose of this subroutine
+     C* is to call SUBRTC
+     C     SUBRTA        BEGSR
+     C*
+     C*  One subroutine can call another subroutine.
+     C*
+     C                   EXSR      SUBRTC
+     C                   ENDSR
+     C* This subroutine calls SUBRTC
+     C     SUBRTB        BEGSR
+     C                   EXSR      SUBRTC
+     C* End of SUBRTB
+     C                   ENDSR
+     C* Calling SUBRTC
+     C* outside of any subroutine
+     C                   EXSR      SUBRTC
+      * Subprocedure Interface
+     D SUBPROC         PR            10I 0
+      * Interface parameters
+     D    TERM1                       5I 0 VALUE
+     D    TERM2                       5I 0 VALUE
+     D    TERM3                       5I 0 VALUE
+
+      * Beginning of Subprocedure
+     P SUBPROC         B
+     D SUBPROC         PI            10I 0
+     D    Term1                       5I 0 VALUE
+     D    Term2                       5I 0 VALUE
+     D    Term3                       5I 0 VALUE
+     D Result          S             10I 0
+     C*---------------------------------------------------------------------
+     C     AddScreen     BegSr
+     C
+     C* Clear all fields except the key field
+     C     *NOKEY        Clear                   CSREC
+     C                   Eval      RecOK = 'n'
+     C* Stay on this screen until user gets it right or hits F3
+     C                   Dow       RecOK = 'n'    and
+     C                             *in03 = *off
+     C                   ExFmt     SCR2
+     C                   EndDo
+     C                   Eval      *in03  = *off
+     C                   EndSr
+     P                 E
