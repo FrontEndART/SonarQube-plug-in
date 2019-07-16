@@ -26,7 +26,7 @@ Additionally, the plug-in extends the platform's GUI with a SourceMeter dashboar
 
 - And many more...
 
-The plug-in is compatible with the latest version 7.4 and the latest LTS 6.7[^1] of the platform, which can be obtained from its [website].
+The plug-in is compatible with the latest version 7.5 and the latest LTS 6.7[^1] of the platform, which can be obtained from its [website].
 
 [SONARQUBE]™ is a trademark of [SonarSource] SA, Switzerland.
 
