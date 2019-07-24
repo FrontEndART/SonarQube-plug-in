@@ -170,7 +170,7 @@ def analyze(scanner_version, project_folder, system, dst):
         cmd = cwd + '/' + dst + '/sonar-scanner-%s-linux/bin/sonar-scanner' % scanner_version
         common.run_cmd('chmod', ['-R', '+x', cwd + '/' + dst + '/sonar-scanner-%s-linux' % scanner_version])
         os.chdir(project_folder)
-        common.run_cmd(cmd, ['--define', 'sonar.login=admin', '--define', 'sonar.password=admin'])
+        common.run_cmd(cmd, ['-X', '--define', 'sonar.login=admin', '--define', 'sonar.password=admin', '--define', 'localhost:9000'])
     os.chdir('..')
 
 def recursive_analyze(scanner_version, root_of_the_projects, system, dst):

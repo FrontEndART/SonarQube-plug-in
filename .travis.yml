@@ -28,5 +28,5 @@ matrix:
       script: tools/build.py --dist
     - env:
         - JOBNAME="Regression test"
-      script: python3 tools/run-test.py --init --print-log -sv 7.5 -ra -cf client -prjf test
+      script: python3 tools/run-test.py --init --print-log -sv 7.5 -ra -cf client -prjf test -scv 4.0.0.1744
   fast_finish: true
