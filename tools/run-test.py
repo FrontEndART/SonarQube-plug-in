@@ -170,7 +170,7 @@ def analyze(scanner_version, project_folder, system, dst):
         cmd = cwd + '/' + dst + '/sonar-scanner-%s-linux/bin/sonar-scanner' % scanner_version
         common.run_cmd('chmod', ['-R', '+x', cwd + '/' + dst + '/sonar-scanner-%s-linux' % scanner_version])
         os.chdir(project_folder)
-        common.run_cmd(cmd, ['-X', '--define', 'sonar.login=admin', '--define', 'sonar.password=admin', '--define', 'localhost:9000'])
+        common.run_cmd(cmd, ['-X', '-Dsonar.login=admin', '-Dsonar.password=admin', '-Dsonar.host.url=http://localhost:9000'])
     os.chdir('..')
 
 def recursive_analyze(scanner_version, root_of_the_projects, system, dst):
@@ -283,7 +283,7 @@ def main(options):
     # 0, a) Try to build the plugins with 'build.py'
 
     if system == 'Windows':
-        common.run_cmd('py', ['-3', 'build.py', '--all'])
+        common.run_cmd('py', ['-3', 'tools\\build.py', '--all'])
     elif system == 'Linux':
         common.run_cmd('python3', ['tools/build.py', '--all'])
 
@@ -322,6 +322,7 @@ def main(options):
     sleep(60)
     if validate_running_of_sq_server(server_version, noa, wait):
         print('SonarQube started properly!')
+        sleep(120)
         if not ra:
             analyze(scanner_version, src_of_the_project, system, dst)
         elif ra:
