@@ -171,7 +171,7 @@ def analyze(scanner_version, project_folder, system, dst):
         common.run_cmd('chmod', ['-R', '+x', cwd + '/' + dst + '/sonar-scanner-%s-linux' % scanner_version])
         os.chdir(project_folder)
         common.run_cmd(cmd, ['-X', '-Dsonar.login=admin', '-Dsonar.password=admin', '-Dsonar.host.url=http://localhost:9000'])
-    os.chdir('..')
+    os.chdir(cwd)
 
 def recursive_analyze(scanner_version, root_of_the_projects, system, dst):
     list = []
@@ -192,7 +192,7 @@ def validate_dashboard(root, ra):
             language = get_language_from_source_files(dirpath)
             print(project_key)
             json_names = ['SM_%s_LOGICAL_LEVEL1' % language, 'SM_%s_LOGICAL_LEVEL2' % language, 'SM_%s_LOGICAL_LEVEL3' % language, 'SM_%s_CLONE_TREE' % language]
-            
+
             api_call_result = []
             for i, temp in enumerate(json_names):
                 url = 'http://localhost:9000/api/measures/component?componentKey=%s&metricKeys=%s' % (project_key, temp)
@@ -200,23 +200,23 @@ def validate_dashboard(root, ra):
                 page = urlopen(url).read()
                 print(page)
                 api_call_result.append(page);
-            
+
             tables = api_call_result
             expected = []
-            
+
             for i, temp in enumerate(json_names):
                 expected.append(os.path.join(dirpath, 'expected', temp + ".json"))
 
             for table, expected_json in zip(tables, expected):
-                
+
                 json1_api = json.loads(table)
                 json2_api = json.loads(json1_api['component']['measures'][0]['value'])
-                    
+
                 with open(expected_json, 'r') as f:
                     json1 = json.load(f)
                 # Extracting the nested jsons
                 json2 = json.loads(json1['component']['measures'][0]['value'])
-                
+
                 if 'level' in json2_api.keys() and 'level' in json2.keys():
                     for json_api_temp, json_temp in zip(json2_api['level'], json2['level']):
                         for key, value in json_temp['metrics'].items():
@@ -238,7 +238,7 @@ def validate_dashboard(root, ra):
                 else:
                     print('No key: level')
     return is_succeeded
-    
+
 def get_projet_key_from_property_file(dirpath):
     with open(os.path.join(dirpath, 'sonar-project.properties'), 'r') as f:
         property_file = f.readlines()
@@ -289,15 +289,15 @@ def main(options):
 
     if options.init == True:
         # 0, b) download sonar-server'
-    
+
         download_sq_server(server_version, dst)
-    
+
         # 1) download sonar-scanner
-    
+
         download_sq_scanner(scanner_version, system, dst)
-    
+
         # 2) unzip both server and scanner
-    
+
         src = os.path.join(dst, 'sonarqube-%s.zip' % server_version)
         unzip(src, dst)
         if 'Windows' == system:
@@ -305,20 +305,20 @@ def main(options):
         elif 'Linux' == system:
             src = os.path.join(dst, 'sonar-scanner-cli-%s-linux.zip' % scanner_version)
         unzip(src, dst)
-    
+
     # 3) copy the plugins into the server dir
-    
+
     path = [dst, 'sonarqube-%s' % server_version, 'extensions', 'plugins']
     path = os.path.join(*path)
     copy_all_files_from_folder(src_of_the_plugins, path)
-    
+
     # 4) start the server with the defult config
-    
+
     start_sq_server(server_version, system, dst)
-    
+
     # 5) Validate the server is started succesfully
     # 6) Analyze the given project
-    
+
     sleep(60)
     if validate_running_of_sq_server(server_version, noa, wait):
         print('SonarQube started properly!')
