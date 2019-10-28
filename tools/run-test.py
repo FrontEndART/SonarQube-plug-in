@@ -65,6 +65,8 @@ def get_arguments():
                         help='Prints the SQ log files to the screen')
     parser.add_argument('-ra', '--recursive-analyzation', action='store_true',
                         help='Analyze projects recursively (default=true)')
+    parser.add_argument('-l', '--language', default='java',
+                        help='Name of the programing language to run tests for (default=%(default)s)')
 
     return parser.parse_args()
 
@@ -173,21 +175,20 @@ def analyze(scanner_version, project_folder, system, dst):
         common.run_cmd(cmd, ['-X', '-Dsonar.login=admin', '-Dsonar.password=admin', '-Dsonar.host.url=http://localhost:9000'])
     os.chdir(cwd)
 
-def recursive_analyze(scanner_version, root_of_the_projects, system, dst):
-    list = []
+def recursive_analyze(scanner_version, root_of_the_projects, system, dst, language):
     cwd = os.getcwd()
     for root, dirs, files in os.walk(root_of_the_projects, topdown=False):
         for name in files:
             if ('sonar-project.properties' in name):
                 print(os.path.join(root, name))
-                list.append(root)
-                analyze(scanner_version, root, system, dst)
+                if language in root:
+                    analyze(scanner_version, root, system, dst)
 
-def validate_dashboard(root, ra):
+def validate_dashboard(root, ra, language):
     is_succeeded = True
     for dirpath, dirs, files in os.walk(root):
         project_key = ''
-        if 'sonar-project.properties' in files:
+        if 'sonar-project.properties' in files and language in dirpath:
             project_key = get_projet_key_from_property_file(dirpath)
             language = get_language_from_source_files(dirpath)
             print(project_key)
@@ -278,6 +279,7 @@ def main(options):
     dst                = options.client_folder
     print_log_files    = options.print_log
     ra                 = options.recursive_analyzation
+    language           = options.language
     common.mkdir(dst)
 
     # 0, a) Try to build the plugins with 'build.py'
@@ -327,7 +329,7 @@ def main(options):
             analyze(scanner_version, src_of_the_project, system, dst)
         elif ra:
             print('Start recursive analyze.')
-            recursive_analyze(scanner_version, src_of_the_project, system, dst)
+            recursive_analyze(scanner_version, src_of_the_project, system, dst, language)
     else:
         print(('SonarQube did not start in time (-noa=%s (number of attempts))' % (noa)))
         if print_log_files:
@@ -336,7 +338,7 @@ def main(options):
 
     # 7) Dashboard validation
 
-    if not validate_dashboard(src_of_the_project, ra):
+    if not validate_dashboard(src_of_the_project, ra, language):
         print('Validation of the dashboard has been failed!')
         exit(1)
     else:

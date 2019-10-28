@@ -27,6 +27,18 @@ matrix:
         - JOBNAME="Build test"
       script: tools/build.py --dist
     - env:
-        - JOBNAME="Regression test"
-      script: python3 tools/run-test.py --init --print-log -sv 7.5 -ra -cf client -prjf test -scv 4.0.0.1744
+        - JOBNAME="Regression test cpp"
+      script: python3 tools/run-test.py --init --print-log -sv 7.5 -ra -cf client -prjf test -scv 4.0.0.1744 -l cpp
+    - env:
+        - JOBNAME="Regression test csharp"
+      script: python3 tools/run-test.py --init --print-log -sv 7.5 -ra -cf client -prjf test -scv 4.0.0.1744 -l csharp
+    - env:
+        - JOBNAME="Regression test java"
+      script: python3 tools/run-test.py --init --print-log -sv 7.5 -ra -cf client -prjf test -scv 4.0.0.1744 -l java
+    - env:
+        - JOBNAME="Regression test python"
+      script: python3 tools/run-test.py --init --print-log -sv 7.5 -ra -cf client -prjf test -scv 4.0.0.1744 -l python
+    - env:
+        - JOBNAME="Regression test rpg"
+      script: python3 tools/run-test.py --init --print-log -sv 7.5 -ra -cf client -prjf test -scv 4.0.0.1744 -l rpg
   fast_finish: true
