@@ -123,8 +123,8 @@ def copy_all_files_from_folder(src, dst):
             shutil.copy(path, dst)
 
         languages = ['cpp', 'csharp', 'java', 'python', 'rpg']
-        for language in languages:
-            path = ['src', 'sonarqube-analyzers', 'sourcemeter-analyzer-%s' % language, 'target', 'sourcemeter-analyzer-%s-plugin-1.1.0.jar' % language]
+        for language_key in languages:
+            path = ['src', 'sonarqube-analyzers', 'sourcemeter-analyzer-%s' % language_key, 'target', 'sourcemeter-analyzer-%s-plugin-1.1.0.jar' % language_key]
             path  = os.path.join(*path)
             shutil.copy(path, dst)
     print('Copy finished!')
@@ -151,10 +151,20 @@ def start_sq_server(version, system, dst):
 def validate_running_of_sq_server(version, number_of_attempts, wait):
     number_of_attempts = int(number_of_attempts)
     while not number_of_attempts == 0:
+
         try:
-            contents = urlopen('http://localhost:9000/api/system/ping').read()
-            return True
-        except:
+            response = requests.get('http://localhost:9000/api/system/health', auth=('admin', 'admin'))
+            health_json = response.json()
+
+            health = health_json['health']
+            print('SonarQube\'s health is ' + health)
+            if health == 'GREEN':
+                return True
+            else:
+                number_of_attempts -= 1
+                sleep(float(wait))
+        except Exception as e:
+            print('Exception occured! Message: ' + str(e))
             print('SonarQube is not started yet, rechecking...' + ' (%d attempt(s) left)' % number_of_attempts)
             number_of_attempts -= 1
             sleep(float(wait))
@@ -190,17 +200,29 @@ def validate_dashboard(root, ra, language):
         project_key = ''
         if 'sonar-project.properties' in files and language in dirpath:
             project_key = get_projet_key_from_property_file(dirpath)
-            language = get_language_from_source_files(dirpath)
+            language_key = get_language_from_source_files(dirpath)
             print(project_key)
-            json_names = ['SM_%s_LOGICAL_LEVEL1' % language, 'SM_%s_LOGICAL_LEVEL2' % language, 'SM_%s_LOGICAL_LEVEL3' % language, 'SM_%s_CLONE_TREE' % language]
+            json_names = ['SM_%s_LOGICAL_LEVEL1' % language_key, 'SM_%s_LOGICAL_LEVEL2' % language_key, 'SM_%s_LOGICAL_LEVEL3' % language_key, 'SM_%s_CLONE_TREE' % language_key]
 
-            api_call_result = []
-            for i, temp in enumerate(json_names):
-                url = 'http://localhost:9000/api/measures/component?componentKey=%s&metricKeys=%s' % (project_key, temp)
-                print(url)
-                page = urlopen(url).read()
-                print(page)
-                api_call_result.append(page);
+            retry_api_call = 10
+            while not retry_api_call == 0:
+                api_call_result = []
+                for i, temp in enumerate(json_names):
+                    url = 'http://localhost:9000/api/measures/component?componentKey=%s&metricKeys=%s' % (project_key, temp)
+                    print(url)
+                    page = urlopen(url).read()
+                    # print(page)
+                    api_call_result.append(page);
+                # Check if the .graph has been uploaded
+                temp = api_call_result[0]
+                json1_api = json.loads(temp)
+                if len(json1_api['component']['measures']) != 0:
+                    json2_api = json.loads(json1_api['component']['measures'][0]['value'])
+                    break;
+                else:
+                    print('Result from the .graph file hasn\'t been uploaded yet. Retrying after 10 seconds.')
+                    retry_api_call -= 1
+                    sleep(10)
 
             tables = api_call_result
             expected = []
@@ -324,7 +346,6 @@ def main(options):
     sleep(60)
     if validate_running_of_sq_server(server_version, noa, wait):
         print('SonarQube started properly!')
-        sleep(120)
         if not ra:
             analyze(scanner_version, src_of_the_project, system, dst)
         elif ra:

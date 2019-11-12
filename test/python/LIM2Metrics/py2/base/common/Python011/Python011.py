@@ -1,1 +1,0 @@
-from . import fibo as valami
