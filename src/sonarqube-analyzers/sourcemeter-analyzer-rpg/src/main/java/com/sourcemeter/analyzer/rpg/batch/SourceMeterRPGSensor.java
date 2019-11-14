@@ -123,6 +123,8 @@ public class SourceMeterRPGSensor extends SourceMeterSensor {
             runSourceMeter(commands);
         }
 
+        this.projectName = FileHelper.getStringFromConfiguration(this.configuration, "sonar.projectKey");
+        this.projectName = StringUtils.replace(this.projectName, ":", "_");
         String analyseMode = FileHelper.getStringFromConfiguration(configuration, "sonar.analysis.mode");
         if ("incremental".equals(analyseMode)) {
             LOG.warn("Incremental mode is on. There are no metric based (INFO level) issues in this mode.");
