@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" ?>
 <profile>
   <name>SourceMeter way</name>
   <language>py</language>
@@ -245,16 +245,6 @@
     </rule>
     <rule>
       <repositoryKey>SourceMeter_py</repositoryKey>
-      <key>ACLU</key>
-      <priority>MINOR</priority>
-    </rule>
-    <rule>
-      <repositoryKey>SourceMeter_py</repositoryKey>
-      <key>ACNU</key>
-      <priority>MINOR</priority>
-    </rule>
-    <rule>
-      <repositoryKey>SourceMeter_py</repositoryKey>
       <key>AD</key>
       <priority>MAJOR</priority>
     </rule>
@@ -266,7 +256,7 @@
     <rule>
       <repositoryKey>SourceMeter_py</repositoryKey>
       <key>AFN</key>
-      <priority>MAJOR</priority>
+      <priority>CRITICAL</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_py</repositoryKey>
@@ -295,6 +285,11 @@
     </rule>
     <rule>
       <repositoryKey>SourceMeter_py</repositoryKey>
+      <key>ATNK</key>
+      <priority>MAJOR</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_py</repositoryKey>
       <key>AUEIS</key>
       <priority>MAJOR</priority>
     </rule>
@@ -305,11 +300,6 @@
     </rule>
     <rule>
       <repositoryKey>SourceMeter_py</repositoryKey>
-      <key>BB</key>
-      <priority>MAJOR</priority>
-    </rule>
-    <rule>
-      <repositoryKey>SourceMeter_py</repositoryKey>
       <key>BC</key>
       <priority>MINOR</priority>
     </rule>
@@ -317,11 +307,6 @@
       <repositoryKey>SourceMeter_py</repositoryKey>
       <key>BCA</key>
       <priority>MINOR</priority>
-    </rule>
-    <rule>
-      <repositoryKey>SourceMeter_py</repositoryKey>
-      <key>BCM</key>
-      <priority>CRITICAL</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_py</repositoryKey>
@@ -385,6 +370,11 @@
     </rule>
     <rule>
       <repositoryKey>SourceMeter_py</repositoryKey>
+      <key>BP3I</key>
+      <priority>MAJOR</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_py</repositoryKey>
       <key>BRS</key>
       <priority>CRITICAL</priority>
     </rule>
@@ -400,8 +390,18 @@
     </rule>
     <rule>
       <repositoryKey>SourceMeter_py</repositoryKey>
+      <key>BSFT</key>
+      <priority>CRITICAL</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_py</repositoryKey>
       <key>BSSC</key>
       <priority>CRITICAL</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_py</repositoryKey>
+      <key>BTI</key>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_py</repositoryKey>
@@ -430,8 +430,33 @@
     </rule>
     <rule>
       <repositoryKey>SourceMeter_py</repositoryKey>
+      <key>CC</key>
+      <priority>MINOR</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_py</repositoryKey>
+      <key>CE</key>
+      <priority>MAJOR</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_py</repositoryKey>
+      <key>CENM</key>
+      <priority>MINOR</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_py</repositoryKey>
       <key>CI</key>
       <priority>MINOR</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_py</repositoryKey>
+      <key>CID</key>
+      <priority>MINOR</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_py</repositoryKey>
+      <key>CIF</key>
+      <priority>CRITICAL</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_py</repositoryKey>
@@ -440,12 +465,72 @@
     </rule>
     <rule>
       <repositoryKey>SourceMeter_py</repositoryKey>
+      <key>CMI</key>
+      <priority>MINOR</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_py</repositoryKey>
       <key>CNE</key>
       <priority>CRITICAL</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_py</repositoryKey>
+      <key>CSV</key>
+      <priority>MINOR</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_py</repositoryKey>
+      <key>CUDC</key>
+      <priority>MINOR</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_py</repositoryKey>
+      <key>CUE</key>
+      <priority>MINOR</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_py</repositoryKey>
+      <key>CUG</key>
+      <priority>MINOR</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_py</repositoryKey>
+      <key>CUI</key>
+      <priority>MINOR</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_py</repositoryKey>
+      <key>CUJ</key>
+      <priority>MINOR</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_py</repositoryKey>
+      <key>CUSC</key>
+      <priority>MINOR</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_py</repositoryKey>
+      <key>CUT</key>
+      <priority>MINOR</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_py</repositoryKey>
       <key>CVFL</key>
+      <priority>MAJOR</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_py</repositoryKey>
+      <key>CWC</key>
+      <priority>MAJOR</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_py</repositoryKey>
+      <key>CWI</key>
+      <priority>MINOR</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_py</repositoryKey>
+      <key>CWS</key>
       <priority>MAJOR</priority>
     </rule>
     <rule>
@@ -465,7 +550,27 @@
     </rule>
     <rule>
       <repositoryKey>SourceMeter_py</repositoryKey>
+      <key>DB</key>
+      <priority>CRITICAL</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_py</repositoryKey>
+      <key>DE</key>
+      <priority>MAJOR</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_py</repositoryKey>
+      <key>DIF</key>
+      <priority>MAJOR</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_py</repositoryKey>
       <key>DIM</key>
+      <priority>MAJOR</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_py</repositoryKey>
+      <key>DINI</key>
       <priority>MAJOR</priority>
     </rule>
     <rule>
@@ -475,7 +580,7 @@
     </rule>
     <rule>
       <repositoryKey>SourceMeter_py</repositoryKey>
-      <key>DL</key>
+      <key>DKNI</key>
       <priority>MAJOR</priority>
     </rule>
     <rule>
@@ -485,12 +590,62 @@
     </rule>
     <rule>
       <repositoryKey>SourceMeter_py</repositoryKey>
+      <key>DOF</key>
+      <priority>MAJOR</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_py</repositoryKey>
+      <key>DSF</key>
+      <priority>MAJOR</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_py</repositoryKey>
+      <key>DSFA</key>
+      <priority>MAJOR</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_py</repositoryKey>
+      <key>DSTC</key>
+      <priority>MAJOR</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_py</repositoryKey>
+      <key>DTF</key>
+      <priority>MAJOR</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_py</repositoryKey>
+      <key>DUF</key>
+      <priority>MAJOR</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_py</repositoryKey>
       <key>DVM</key>
       <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_py</repositoryKey>
+      <key>DVNI</key>
+      <priority>MAJOR</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_py</repositoryKey>
       <key>DeM</key>
+      <priority>MAJOR</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_py</repositoryKey>
+      <key>DeSF</key>
+      <priority>MAJOR</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_py</repositoryKey>
+      <key>DepM</key>
+      <priority>MAJOR</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_py</repositoryKey>
+      <key>DiM</key>
       <priority>MAJOR</priority>
     </rule>
     <rule>
@@ -505,6 +660,16 @@
     </rule>
     <rule>
       <repositoryKey>SourceMeter_py</repositoryKey>
+      <key>EE</key>
+      <priority>MAJOR</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_py</repositoryKey>
+      <key>EMA</key>
+      <priority>MAJOR</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_py</repositoryKey>
       <key>ENA</key>
       <priority>MAJOR</priority>
     </rule>
@@ -515,12 +680,22 @@
     </rule>
     <rule>
       <repositoryKey>SourceMeter_py</repositoryKey>
+      <key>EWH</key>
+      <priority>MAJOR</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_py</repositoryKey>
       <key>ExU</key>
       <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_py</repositoryKey>
       <key>FB</key>
+      <priority>MAJOR</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_py</repositoryKey>
+      <key>FBNI</key>
       <priority>MAJOR</priority>
     </rule>
     <rule>
@@ -585,8 +760,18 @@
     </rule>
     <rule>
       <repositoryKey>SourceMeter_py</repositoryKey>
+      <key>ICID</key>
+      <priority>MINOR</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_py</repositoryKey>
       <key>IED</key>
       <priority>MAJOR</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_py</repositoryKey>
+      <key>IEV</key>
+      <priority>CRITICAL</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_py</repositoryKey>
@@ -600,13 +785,13 @@
     </rule>
     <rule>
       <repositoryKey>SourceMeter_py</repositoryKey>
-      <key>IINC</key>
+      <key>ILR</key>
       <priority>CRITICAL</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_py</repositoryKey>
-      <key>IME</key>
-      <priority>MAJOR</priority>
+      <key>IM</key>
+      <priority>CRITICAL</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_py</repositoryKey>
@@ -620,7 +805,7 @@
     </rule>
     <rule>
       <repositoryKey>SourceMeter_py</repositoryKey>
-      <key>INI</key>
+      <key>IRS</key>
       <priority>MINOR</priority>
     </rule>
     <rule>
@@ -630,7 +815,27 @@
     </rule>
     <rule>
       <repositoryKey>SourceMeter_py</repositoryKey>
+      <key>ISAT</key>
+      <priority>CRITICAL</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_py</repositoryKey>
+      <key>ISC</key>
+      <priority>MAJOR</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_py</repositoryKey>
+      <key>ISCIS</key>
+      <priority>MAJOR</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_py</repositoryKey>
       <key>ISI</key>
+      <priority>CRITICAL</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_py</repositoryKey>
+      <key>ISML</key>
       <priority>CRITICAL</priority>
     </rule>
     <rule>
@@ -640,8 +845,33 @@
     </rule>
     <rule>
       <repositoryKey>SourceMeter_py</repositoryKey>
+      <key>IUOT</key>
+      <priority>CRITICAL</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_py</repositoryKey>
+      <key>IdM</key>
+      <priority>MAJOR</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_py</repositoryKey>
+      <key>InB</key>
+      <priority>MAJOR</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_py</repositoryKey>
       <key>InE</key>
       <priority>MAJOR</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_py</repositoryKey>
+      <key>InED</key>
+      <priority>MAJOR</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_py</repositoryKey>
+      <key>InM</key>
+      <priority>CRITICAL</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_py</repositoryKey>
@@ -655,8 +885,23 @@
     </rule>
     <rule>
       <repositoryKey>SourceMeter_py</repositoryKey>
+      <key>KABV</key>
+      <priority>MAJOR</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_py</repositoryKey>
+      <key>LAC</key>
+      <priority>MINOR</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_py</repositoryKey>
       <key>LB</key>
       <priority>MAJOR</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_py</repositoryKey>
+      <key>LC</key>
+      <priority>MINOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_py</repositoryKey>
@@ -667,11 +912,6 @@
       <repositoryKey>SourceMeter_py</repositoryKey>
       <key>LFT</key>
       <priority>CRITICAL</priority>
-    </rule>
-    <rule>
-      <repositoryKey>SourceMeter_py</repositoryKey>
-      <key>LLS</key>
-      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_py</repositoryKey>
@@ -710,8 +950,28 @@
     </rule>
     <rule>
       <repositoryKey>SourceMeter_py</repositoryKey>
+      <key>LoFI</key>
+      <priority>MAJOR</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_py</repositoryKey>
       <key>MA</key>
       <priority>MAJOR</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_py</repositoryKey>
+      <key>MBNI</key>
+      <priority>MAJOR</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_py</repositoryKey>
+      <key>MBR</key>
+      <priority>CRITICAL</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_py</repositoryKey>
+      <key>MCC</key>
+      <priority>MINOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_py</repositoryKey>
@@ -732,6 +992,11 @@
       <repositoryKey>SourceMeter_py</repositoryKey>
       <key>MFAK</key>
       <priority>MAJOR</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_py</repositoryKey>
+      <key>MFF</key>
+      <priority>CRITICAL</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_py</repositoryKey>
@@ -760,11 +1025,6 @@
     </rule>
     <rule>
       <repositoryKey>SourceMeter_py</repositoryKey>
-      <key>MIM</key>
-      <priority>CRITICAL</priority>
-    </rule>
-    <rule>
-      <repositoryKey>SourceMeter_py</repositoryKey>
       <key>MK</key>
       <priority>CRITICAL</priority>
     </rule>
@@ -775,17 +1035,27 @@
     </rule>
     <rule>
       <repositoryKey>SourceMeter_py</repositoryKey>
-      <key>MMA</key>
-      <priority>MINOR</priority>
-    </rule>
-    <rule>
-      <repositoryKey>SourceMeter_py</repositoryKey>
-      <key>MRA</key>
+      <key>MSA</key>
       <priority>CRITICAL</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_py</repositoryKey>
-      <key>MSA</key>
+      <key>MuI</key>
+      <priority>MINOR</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_py</repositoryKey>
+      <key>NABL</key>
+      <priority>CRITICAL</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_py</repositoryKey>
+      <key>NACM</key>
+      <priority>CRITICAL</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_py</repositoryKey>
+      <key>NAG</key>
       <priority>CRITICAL</priority>
     </rule>
     <rule>
@@ -795,13 +1065,28 @@
     </rule>
     <rule>
       <repositoryKey>SourceMeter_py</repositoryKey>
+      <key>NAM</key>
+      <priority>CRITICAL</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_py</repositoryKey>
       <key>NC</key>
       <priority>CRITICAL</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_py</repositoryKey>
-      <key>NE</key>
-      <priority>MAJOR</priority>
+      <key>NCD</key>
+      <priority>MINOR</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_py</repositoryKey>
+      <key>NCM</key>
+      <priority>CRITICAL</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_py</repositoryKey>
+      <key>NER</key>
+      <priority>MINOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_py</repositoryKey>
@@ -816,7 +1101,7 @@
     <rule>
       <repositoryKey>SourceMeter_py</repositoryKey>
       <key>NIR</key>
-      <priority>MAJOR</priority>
+      <priority>CRITICAL</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_py</repositoryKey>
@@ -831,6 +1116,11 @@
     <rule>
       <repositoryKey>SourceMeter_py</repositoryKey>
       <key>NMC</key>
+      <priority>MAJOR</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_py</repositoryKey>
+      <key>NMD</key>
       <priority>MAJOR</priority>
     </rule>
     <rule>
@@ -860,6 +1150,11 @@
     </rule>
     <rule>
       <repositoryKey>SourceMeter_py</repositoryKey>
+      <key>NSD</key>
+      <priority>MINOR</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_py</repositoryKey>
       <key>NSU</key>
       <priority>MINOR</priority>
     </rule>
@@ -867,6 +1162,21 @@
       <repositoryKey>SourceMeter_py</repositoryKey>
       <key>NVFP</key>
       <priority>CRITICAL</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_py</repositoryKey>
+      <key>NWB</key>
+      <priority>CRITICAL</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_py</repositoryKey>
+      <key>NoAI</key>
+      <priority>CRITICAL</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_py</repositoryKey>
+      <key>NoER</key>
+      <priority>MINOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_py</repositoryKey>
@@ -900,11 +1210,6 @@
     </rule>
     <rule>
       <repositoryKey>SourceMeter_py</repositoryKey>
-      <key>POOC</key>
-      <priority>MAJOR</priority>
-    </rule>
-    <rule>
-      <repositoryKey>SourceMeter_py</repositoryKey>
       <key>PS</key>
       <priority>MAJOR</priority>
     </rule>
@@ -920,7 +1225,7 @@
     </rule>
     <rule>
       <repositoryKey>SourceMeter_py</repositoryKey>
-      <key>PoE</key>
+      <key>PUV</key>
       <priority>MAJOR</priority>
     </rule>
     <rule>
@@ -935,6 +1240,11 @@
     </rule>
     <rule>
       <repositoryKey>SourceMeter_py</repositoryKey>
+      <key>RAFL</key>
+      <priority>MINOR</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_py</repositoryKey>
       <key>RAIG</key>
       <priority>CRITICAL</priority>
     </rule>
@@ -945,8 +1255,23 @@
     </rule>
     <rule>
       <repositoryKey>SourceMeter_py</repositoryKey>
+      <key>RBNI</key>
+      <priority>MAJOR</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_py</repositoryKey>
       <key>RBT</key>
       <priority>CRITICAL</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_py</repositoryKey>
+      <key>RBTL</key>
+      <priority>CRITICAL</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_py</repositoryKey>
+      <key>RFT</key>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_py</repositoryKey>
@@ -960,8 +1285,18 @@
     </rule>
     <rule>
       <repositoryKey>SourceMeter_py</repositoryKey>
+      <key>RK</key>
+      <priority>CRITICAL</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_py</repositoryKey>
       <key>RKA</key>
       <priority>CRITICAL</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_py</repositoryKey>
+      <key>RM</key>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_py</repositoryKey>
@@ -1005,12 +1340,27 @@
     </rule>
     <rule>
       <repositoryKey>SourceMeter_py</repositoryKey>
-      <key>SA</key>
+      <key>SB</key>
       <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_py</repositoryKey>
-      <key>SB</key>
+      <key>SBE</key>
+      <priority>MINOR</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_py</repositoryKey>
+      <key>SC</key>
+      <priority>MINOR</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_py</repositoryKey>
+      <key>SCA</key>
+      <priority>MAJOR</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_py</repositoryKey>
+      <key>SCE</key>
       <priority>MAJOR</priority>
     </rule>
     <rule>
@@ -1020,8 +1370,23 @@
     </rule>
     <rule>
       <repositoryKey>SourceMeter_py</repositoryKey>
+      <key>SIE</key>
+      <priority>MINOR</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_py</repositoryKey>
       <key>SINC</key>
       <priority>MAJOR</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_py</repositoryKey>
+      <key>SIR</key>
+      <priority>MINOR</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_py</repositoryKey>
+      <key>SIS</key>
+      <priority>MINOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_py</repositoryKey>
@@ -1030,7 +1395,12 @@
     </rule>
     <rule>
       <repositoryKey>SourceMeter_py</repositoryKey>
-      <key>SOOC</key>
+      <key>SMI</key>
+      <priority>MAJOR</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_py</repositoryKey>
+      <key>SNAT</key>
       <priority>CRITICAL</priority>
     </rule>
     <rule>
@@ -1040,8 +1410,23 @@
     </rule>
     <rule>
       <repositoryKey>SourceMeter_py</repositoryKey>
-      <key>SuOOC</key>
-      <priority>CRITICAL</priority>
+      <key>SPPF</key>
+      <priority>MAJOR</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_py</repositoryKey>
+      <key>SSUFS</key>
+      <priority>MINOR</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_py</repositoryKey>
+      <key>TCT</key>
+      <priority>MINOR</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_py</repositoryKey>
+      <key>TER</key>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_py</repositoryKey>
@@ -1070,6 +1455,11 @@
     </rule>
     <rule>
       <repositoryKey>SourceMeter_py</repositoryKey>
+      <key>TMBE</key>
+      <priority>MINOR</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_py</repositoryKey>
       <key>TMFA</key>
       <priority>CRITICAL</priority>
     </rule>
@@ -1085,6 +1475,11 @@
     </rule>
     <rule>
       <repositoryKey>SourceMeter_py</repositoryKey>
+      <key>TMNB</key>
+      <priority>MINOR</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_py</repositoryKey>
       <key>TMPM</key>
       <priority>MINOR</priority>
     </rule>
@@ -1096,6 +1491,16 @@
     <rule>
       <repositoryKey>SourceMeter_py</repositoryKey>
       <key>TMS</key>
+      <priority>MINOR</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_py</repositoryKey>
+      <key>TMSE</key>
+      <priority>CRITICAL</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_py</repositoryKey>
+      <key>TN</key>
       <priority>MINOR</priority>
     </rule>
     <rule>
@@ -1130,6 +1535,11 @@
     </rule>
     <rule>
       <repositoryKey>SourceMeter_py</repositoryKey>
+      <key>UAO</key>
+      <priority>CRITICAL</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_py</repositoryKey>
       <key>UAV</key>
       <priority>CRITICAL</priority>
     </rule>
@@ -1141,6 +1551,31 @@
     <rule>
       <repositoryKey>SourceMeter_py</repositoryKey>
       <key>UBA</key>
+      <priority>CRITICAL</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_py</repositoryKey>
+      <key>UBO</key>
+      <priority>CRITICAL</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_py</repositoryKey>
+      <key>UCA</key>
+      <priority>MAJOR</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_py</repositoryKey>
+      <key>UCT</key>
+      <priority>MAJOR</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_py</repositoryKey>
+      <key>UDK</key>
+      <priority>CRITICAL</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_py</repositoryKey>
+      <key>UDO</key>
       <priority>CRITICAL</priority>
     </rule>
     <rule>
@@ -1157,6 +1592,11 @@
       <repositoryKey>SourceMeter_py</repositoryKey>
       <key>UFSK</key>
       <priority>MAJOR</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_py</repositoryKey>
+      <key>UIA</key>
+      <priority>MINOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_py</repositoryKey>
@@ -1185,8 +1625,28 @@
     </rule>
     <rule>
       <repositoryKey>SourceMeter_py</repositoryKey>
+      <key>UMT</key>
+      <priority>CRITICAL</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_py</repositoryKey>
+      <key>UN</key>
+      <priority>MINOR</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_py</repositoryKey>
       <key>UNS</key>
-      <priority>MAJOR</priority>
+      <priority>CRITICAL</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_py</repositoryKey>
+      <key>UO</key>
+      <priority>CRITICAL</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_py</repositoryKey>
+      <key>UOI</key>
+      <priority>MINOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_py</repositoryKey>
@@ -1195,8 +1655,38 @@
     </rule>
     <rule>
       <repositoryKey>SourceMeter_py</repositoryKey>
+      <key>UPGD</key>
+      <priority>CRITICAL</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_py</repositoryKey>
+      <key>UR</key>
+      <priority>MINOR</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_py</repositoryKey>
       <key>US</key>
       <priority>MAJOR</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_py</repositoryKey>
+      <key>USD</key>
+      <priority>MAJOR</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_py</repositoryKey>
+      <key>USMI</key>
+      <priority>MINOR</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_py</repositoryKey>
+      <key>USMS</key>
+      <priority>CRITICAL</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_py</repositoryKey>
+      <key>UT</key>
+      <priority>MINOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_py</repositoryKey>
@@ -1215,6 +1705,11 @@
     </rule>
     <rule>
       <repositoryKey>SourceMeter_py</repositoryKey>
+      <key>UnB</key>
+      <priority>MAJOR</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_py</repositoryKey>
       <key>UnI</key>
       <priority>MAJOR</priority>
     </rule>
@@ -1222,6 +1717,26 @@
       <repositoryKey>SourceMeter_py</repositoryKey>
       <key>UnV</key>
       <priority>MAJOR</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_py</repositoryKey>
+      <key>UngI</key>
+      <priority>MINOR</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_py</repositoryKey>
+      <key>WEO</key>
+      <priority>MAJOR</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_py</repositoryKey>
+      <key>WIO</key>
+      <priority>MINOR</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_py</repositoryKey>
+      <key>WIP</key>
+      <priority>MINOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_py</repositoryKey>
@@ -1235,13 +1750,28 @@
     </rule>
     <rule>
       <repositoryKey>SourceMeter_py</repositoryKey>
+      <key>XA</key>
+      <priority>MAJOR</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_py</repositoryKey>
       <key>XB</key>
       <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_py</repositoryKey>
+      <key>YIAF</key>
+      <priority>CRITICAL</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_py</repositoryKey>
       <key>YOF</key>
       <priority>CRITICAL</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_py</repositoryKey>
+      <key>ZBNI</key>
+      <priority>MAJOR</priority>
     </rule>
   </rules>
 </profile>

@@ -1,0 +1,255 @@
+Reference of FxCop coding rule violations,,,,
+Category,Name,Abbreviation,,Prio.
+ASP.NET.MVC.Security Rules,ControllerActionShouldValidateInput,FXCOP_CASVI,VULNERABILITY,Major
+,MarkVerbHandlersWithValidateAntiforgeryToken,FXCOP_MVHWVAT,VULNERABILITY,Major
+ASP.NET.Security Rules,EnableEventValidationShouldBeTrue,FXCOP_EEVSBT,VULNERABILITY,Major
+,EnableViewStateMacShouldBeTrue,FXCOP_EVSMSBT,VULNERABILITY,Major
+,EnableViewStateShouldBeTrue,FXCOP_EVSSBT,VULNERABILITY,Info
+,ValidateRequestShouldBeEnabled,FXCOP_VRSBE,VULNERABILITY,Major
+,ViewStateEncryptionModeShouldBeAlways,FXCOP_VSEMSBA,VULNERABILITY,Major
+,ViewStateUserKeyShouldBeSet,FXCOP_VSUKSBS,VULNERABILITY,Major
+ASP.NET.Security.Configuration Rules,AnonymousAccessIsEnabled,FXCOP_AAIE,VULNERABILITY,Minor
+,CustomErrorPageShouldBeSpecified,FXCOP_CEPSBS,VULNERABILITY,Major
+,CustomErrorsModeShouldBeOn,FXCOP_CEMSBO,VULNERABILITY,Major
+,DebugCompilationMustBeDisabled,FXCOP_DCMBD,VULNERABILITY,Blocker
+,EnableCrossAppRedirectsShouldBeTrue,FXCOP_ECARSBT,VULNERABILITY,Minor
+,FormAuthenticationProtectionShouldBeAll,FXCOP_FAPSBA,VULNERABILITY,Major
+,FormAuthenticationRequireSSLShouldBeTrue,FXCOP_FARBT,VULNERABILITY,Major
+,FormAuthenticationShouldNotContainFormAuthenticationCredentials,FXCOP_FASNCFAC,VULNERABILITY,Blocker
+,FormAuthenticationSlidingExpirationShouldBeFalse,FXCOP_FASESBF,VULNERABILITY,Minor
+,HttpCookiesHttpOnlyCookiesShouldBeTrue,FXCOP_HCHOCSBT,VULNERABILITY,Major
+,HttpCookiesRequireSSLShouldBeTrue,FXCOP_HCRBT,VULNERABILITY,Major
+,HttpRuntimeEnableHeaderCheckingShouldBeTrue,FXCOP_HREHCSBT,VULNERABILITY,Major
+,PagesEnableEventValidationMustBeTrue,FXCOP_PEEVMBT,VULNERABILITY,Major
+,PagesEnableViewStateMacShouldBeTrue,FXCOP_PEVSMSBT,VULNERABILITY,Major
+,PagesValidateRequestShouldBeEnabled,FXCOP_PVRSBE,VULNERABILITY,Major
+,PagesViewStateEncryptionModeShouldBeAlways,FXCOP_PVSEMSBA,VULNERABILITY,Critical
+,RoleManagerCookieProtectionShouldBeAll,FXCOP_RMCPSBA,VULNERABILITY,Major
+,RoleManagerCookieRequireSSLShouldBeTrue,FXCOP_RMCRBT,VULNERABILITY,Major
+,RoleManagerCookieSlidingExpirationShouldBeTrue,FXCOP_RMCSESBF,VULNERABILITY,Minor
+,TraceShouldBeDisabled,FXCOP_TSBD,VULNERABILITY,Major
+Microsoft.Design Rules,Abstract types should not have constructors,FXCOP_ATSNHC,BUG,Major
+,Assemblies should have valid strong names,FXCOP_ASHVSN,BUG,Blocker
+,Avoid empty interfaces,FXCOP_AEI,BUG,Minor
+,Avoid excessive parameters on generic types,FXCOP_AEPOGT,CODE_SMELL,Critical
+,Avoid namespaces with few types,FXCOP_ANWFT,CODE_SMELL,Minor
+,Avoid out parameters,FXCOP_AOP,CODE_SMELL,Minor
+,Collections should implement generic interface,FXCOP_CSIGI,CODE_SMELL,Critical
+,Consider passing base types as parameters,FXCOP_CPBTAP,CODE_SMELL,Critical
+,Declare event handlers correctly,FXCOP_DEHC,BUG,Critical
+,Declare types in namespaces,FXCOP_DTIN,BUG,Critical
+,Default parameters should not be used,FXCOP_DPSNBU,BUG,Critical
+,Define accessors for attribute arguments,FXCOP_DAFAA,BUG,Critical
+,Do not catch general exception types,FXCOP_DNCGET,BUG,Blocker
+,Do not declare protected members in sealed types,FXCOP_DNDPMIST,BUG,Critical
+,Do not declare static members on generic types,FXCOP_DNDSMOGT,BUG,Critical
+,Do not declare virtual members in sealed types,FXCOP_DNDVMIST,BUG,Critical
+,Do not declare visible instance fields,FXCOP_DNDVIF,BUG,Critical
+,Do not expose generic lists,FXCOP_DNEGL,BUG,Critical
+,Do not hide base class methods,FXCOP_DNHBCM,BUG,Major
+,Do not nest generic types in member signatures,FXCOP_DNNGTIMS,BUG,Blocker
+,Do not overload operator equals on reference types,FXCOP_DNOOEORT,CODE_SMELL,Minor
+,Do not pass types by reference,FXCOP_DNPTBR,CODE_SMELL,Minor
+,Do not raise exceptions in unexpected locations,FXCOP_DNREIUL,BUG,Critical
+,Enum storage should be Int32,FXCOP_ESSBI,CODE_SMELL,Minor
+,Enumerators should be strongly typed,FXCOP_ESBST,BUG,Critical
+,Enums should have zero value,FXCOP_ESHZV,VULNERABILITY,Blocker
+,Exceptions should be public,FXCOP_ESBP,BUG,Minor
+,Generic methods should provide type parameter,FXCOP_GMSPTP,BUG,Minor
+,ICollection implementations have strongly typed members,FXCOP_IIHSTM,BUG,Critical
+,Implement IDisposable correctly,FXCOP_IC,BUG,Critical
+,Implement standard exception constructors,FXCOP_ISEC,BUG,Critical
+,Indexers should not be multidimensional,FXCOP_ISNBM,CODE_SMELL,Minor
+,Interface methods should be callable by child types,FXCOP_IMSBCBCT,BUG,Critical
+,Lists are strongly typed,FXCOP_LAST,BUG,Critical
+,Mark assemblies with AssemblyVersionAttribute,FXCOP_MAWAV,VULNERABILITY,Critical
+,Mark assemblies with CLSCompliantAttribute,FXCOP_MAWCC,BUG,Critical
+,Mark assemblies with ComVisibleAttribute,FXCOP_MAWCV,VULNERABILITY,Blocker
+,Mark attributes with AttributeUsageAttribute,FXCOP_MAWAU,BUG,Critical
+,Mark enums with FlagsAttribute,FXCOP_MEWF,CODE_SMELL,Minor
+,Members should not expose certain concrete types,FXCOP_MSNECCT,BUG,Critical
+,Move P/Invokes to NativeMethods class,FXCOP_MTNMC,BUG,Major
+,Nested types should not be visible,FXCOP_NTSNBV,BUG,Critical
+,Overload operator equals on overloading add and subtract,FXCOP_OOEOOAAS,BUG,Critical
+,Override methods on comparable types,FXCOP_OMOCT,BUG,Critical
+,Properties should not be write only,FXCOP_PSNBWO,BUG,Critical
+,Provide ObsoleteAttribute message,FXCOP_POAM,BUG,Critical
+,Replace repetitive arguments with params array,FXCOP_RRAWPA,CODE_SMELL,Minor
+,Static holder types should be sealed,FXCOP_SHTSBS,CODE_SMELL,Major
+,Static holder types should not have constructors,FXCOP_SHTSNHC,BUG,Critical
+,String URI overloads call System.Uri overloads,FXCOP_SUOCSUO,BUG,Critical
+,Types should not extend certain base types,FXCOP_TSNECBT,BUG,Critical
+,Types that own disposable fields should be disposable,FXCOP_TTODFSBD,BUG,Blocker
+,Types that own native resources should be disposable,FXCOP_TTONRSBD,BUG,Blocker
+,URI parameters should not be strings,FXCOP_UPSNBS,BUG,Critical
+,URI properties should not be strings,FXCOP_URPRSHNOBEST,BUG,Critical
+,URI return values should not be strings,FXCOP_URVSNBS,BUG,Critical
+,Use events where appropriate,FXCOP_UEWA,CODE_SMELL,Minor
+,Use generic event handler instances,FXCOP_UGEHI,BUG,Critical
+,Use generics where appropriate,FXCOP_UGWA,CODE_SMELL,Blocker
+,Use integral or string argument for indexers,FXCOP_UIOSAFI,CODE_SMELL,Critical
+,Use properties where appropriate,FXCOP_UPWA,CODE_SMELL,Minor
+Microsoft.Globalization Rules,Avoid duplicate accelerators,FXCOP_ADA,BUG,Critical
+,Do not hardcode locale specific strings,FXCOP_DNHLSS,BUG,Critical
+,Normalize strings to uppercase,FXCOP_NSTU,CODE_SMELL,Critical
+,Set locale for data types,FXCOP_SLFDT,BUG,Critical
+,Specify CultureInfo,FXCOP_SCI,BUG,Critical
+,Specify IFormatProvider,FXCOP_SP,BUG,Critical
+,Specify marshaling for P/Invoke string arguments,FXCOP_SMFSA,BUG,Critical
+,Specify MessageBoxOptions,FXCOP_SMBO,VULNERABILITY,Critical
+,Specify StringComparison,FXCOP_SSC,BUG,Critical
+,Use ordinal StringComparison,FXCOP_UOSC,BUG,Critical
+Microsoft.Interoperability Rules,Auto layout types should not be COM visible,FXCOP_ALTSNBCV,BUG,Critical
+,Avoid Int64 arguments for Visual Basic 6 clients,FXCOP_AIF,CODE_SMELL,Minor
+,Avoid non-public fields in COM visible value types,FXCOP_ANFICVVT,CODE_SMELL,Minor
+,Avoid overloads in COM visible interfaces,FXCOP_AOICVI,CODE_SMELL,Major
+,Avoid static members in COM visible types,FXCOP_ASMICVT,CODE_SMELL,Minor
+,Call GetLastError immediately after P/Invoke,FXCOP_CGLEIA,BUG,Critical
+,COM registration methods should be matched,FXCOP_CRMSBM,BUG,Major
+,COM registration methods should not be visible,FXCOP_CRMSNBV,VULNERABILITY,Major
+,COM visible type base types should be COM visible,FXCOP_CVTBTSBCV,BUG,Critical
+,COM visible types should be creatable,FXCOP_CVTSBC,BUG,Critical
+,Declare P/Invokes correctly,FXCOP_DC,BUG,Blocker
+,Do not use AutoDual ClassInterfaceType,FXCOP_DNUADCIT,BUG,Blocker
+,Mark boolean P/Invoke arguments with MarshalAs,FXCOP_MBAWMA,BUG,Minor
+,Mark ComSource interfaces as IDispatch,FXCOP_MCSIA,BUG,Critical
+,P/Invoke entry points should exist,FXCOP_PEPSE,BUG,Major
+,P/Invokes should not be visible,FXCOP_PSNBV,VULNERABILITY,Blocker
+Microsoft.Maintainability Rules,Avoid excessive class coupling,FXCOP_AECC,CODE_SMELL,Minor
+,Avoid excessive complexity,FXCOP_AEC,CODE_SMELL,Minor
+,Avoid excessive inheritance,FXCOP_AVEXIN,CODE_SMELL,Minor
+,Avoid unmaintainable code,FXCOP_AUC,CODE_SMELL,Minor
+,Review misleading field names,FXCOP_RMFN,CODE_SMELL,Minor
+,Variable names should not match field names,FXCOP_VNSNMFN,BUG,Critical
+Microsoft.Mobility Rules,Do not use idle process priority,FXCOP_DNUIPP,BUG,Critical
+,Do not use timers that prevent power state changes,FXCOP_DNUTTPPSC,BUG,Critical
+Microsoft.Naming Rules,Compound words should be cased correctly,FXCOP_CWSBCC,CODE_SMELL,Critical
+,Do not name enum values ‘Reserved’,FXCOP_DNNEVR,CODE_SMELL,Critical
+,Do not prefix enum values with type name,FXCOP_DNPEVWTN,CODE_SMELL,Critical
+,Events should not have before or after prefix,FXCOP_ESNHBOAP,CODE_SMELL,Critical
+,Flags enums should have plural names,FXCOP_FESHPN,CODE_SMELL,Critical
+,Identifiers should be cased correctly,FXCOP_ISBCC,CODE_SMELL,Critical
+,Identifiers should be spelled correctly,FXCOP_ISBSC,CODE_SMELL,Major
+,Identifiers should differ by more than case,FXCOP_ISDBMTC,BUG,Critical
+,Identifiers should have correct prefix,FXCOP_ISHCP,CODE_SMELL,Critical
+,Identifiers should have correct suffix,FXCOP_ISHCS,CODE_SMELL,Critical
+,Identifiers should not contain type names,FXCOP_ISNCTN,CODE_SMELL,Critical
+,Identifiers should not contain underscores,FXCOP_ISNCU,CODE_SMELL,Critical
+,Identifiers should not have incorrect prefix,FXCOP_ISNHIP,BUG,Critical
+,Identifiers should not have incorrect suffix,FXCOP_ISNHIS,BUG,Blocker
+,Identifiers should not match keywords,FXCOP_ISNMK,BUG,Critical
+,Only FlagsAttribute enums should have plural names,FXCOP_OFESHPN,CODE_SMELL,Critical
+,Parameter names should match base declaration,FXCOP_PNSMBD,BUG,Critical
+,Parameter names should not match member names,FXCOP_PNSNMMN,BUG,Critical
+,Property names should not match get methods,FXCOP_PNSNMGM,BUG,Critical
+,Resource string compound words should be cased correctly,FXCOP_RSCWSBCC,CODE_SMELL,Critical
+,Resource strings should be spelled correctly,FXCOP_RSSBSC,CODE_SMELL,Major
+,Type names should not match namespaces,FXCOP_TNSNMN,BUG,Critical
+,Use preferred terms,FXCOP_UPT,CODE_SMELL,Critical
+Microsoft.Performance Rules,Avoid excessive locals,FXCOP_AEL,CODE_SMELL,Minor
+,Avoid uncalled private code,FXCOP_AUPC,CODE_SMELL,Minor
+,Avoid uninstantiated internal classes,FXCOP_AUIC,CODE_SMELL,Minor
+,Avoid unsealed attributes,FXCOP_AUA,CODE_SMELL,Minor
+,Avoid unused private fields,FXCOP_AUPF,CODE_SMELL,Minor
+,Do not cast unnecessarily,FXCOP_DNCU,CODE_SMELL,Minor
+,Initialize reference type static fields inline,FXCOP_IRTSFI,CODE_SMELL,Major
+,Mark assemblies with NeutralResourcesLanguageAttribute,FXCOP_MAWNRL,CODE_SMELL,Minor
+,Mark members as static,FXCOP_MMAS,CODE_SMELL,Minor
+,Override equals and operator equals on value types,FXCOP_OEAOEOVT,CODE_SMELL,Minor
+,Prefer jagged arrays over multidimensional,FXCOP_PJAOM,CODE_SMELL,Minor
+,Properties should not return arrays,FXCOP_PSNRA,CODE_SMELL,Minor
+,Remove empty finalizers,FXCOP_REF,CODE_SMELL,Minor
+,Remove unused locals,FXCOP_RUL,CODE_SMELL,Minor
+,Test for empty strings using string length,FXCOP_TFESUSL,BUG,Minor
+,Use literals where appropriate,FXCOP_ULWA,CODE_SMELL,Minor
+Microsoft.Portability Rules,P/Invoke declarations should be portable,FXCOP_PDSBP,BUG,Critical
+,Use only API from targeted framework,FXCOP_UOAFTF,BUG,Critical
+,Value type fields should be portable,FXCOP_VTFSBP,BUG,Blocker
+Microsoft.Reliability Rules,Avoid calling problematic methods,FXCOP_ACPM,BUG,Critical
+,Do not lock on objects with weak identity,FXCOP_DNLOOWWI,VULNERABILITY,Blocker
+,Do not treat fibers as threads,FXCOP_DNTFAT,BUG,Critical
+,Remove calls to GC.KeepAlive,FXCOP_RCTA,BUG,Major
+,Use SafeHandle to encapsulate native resources,FXCOP_USHTENR,VULNERABILITY,Major
+Microsoft.Security Rules,APTCA methods should only call APTCA methods,FXCOP_AMSOCAM,VULNERABILITY,Blocker
+,APTCA types should only extend APTCA base types,FXCOP_ATSOEABT,VULNERABILITY,Blocker
+,Array fields should not be read only,FXCOP_AFSNBRO,VULNERABILITY,Major
+,Call GC.KeepAlive when using native resources,FXCOP_CAWUNR,VULNERABILITY,Minor
+,Catch non-CLSCompliant exceptions in general handlers,FXCOP_CNCCEIGH,VULNERABILITY,Critical
+,Default constructors must be at least as critical as base type default constructors,FXCOP_DCMHCT,BUG,Blocker
+,Delegates must bind to methods with consistent transparency,FXCOP_DMBWCT,BUG,Blocker
+,Do not declare read only mutable reference types,FXCOP_DNDROMRT,BUG,Critical
+,Do not indirectly expose methods with link demands,FXCOP_DNIEMWLD,VULNERABILITY,Blocker
+,Fields with critical types should be security critical.,FXCOP_FWCTSBC,VULNERABILITY,Minor
+,Level 2 assemblies should not contain LinkDemands,FXCOP_SRSLSNBPWLD,VULNERABILITY,Major
+,Members should not have conflicting transparency annotations,FXCOP_TASNC,VULNERABILITY,Minor
+,Method security should be a superset of type,FXCOP_MSSBOT,VULNERABILITY,Blocker
+,Methods must keep consistent transparency when overriding base methods,FXCOP_MMOWCT,BUG,Blocker
+,Override link demands should be identical to base,FXCOP_OLDSBITB,VULNERABILITY,Blocker
+,P/Invoke declarations should not be safe-critical.,FXCOP_PSNBSC,BUG,Minor
+,Pointers should not be visible,FXCOP_POSHNOBEVI,VULNERABILITY,Blocker
+,Review declarative security on value types,FXCOP_RDSOVT,VULNERABILITY,Critical
+,Review deny and permit only usage,FXCOP_RDAPOU,VULNERABILITY,Major
+,Review imperative security,FXCOP_RIS,VULNERABILITY,Blocker
+,Review SuppressUnmanagedCodeSecurityAttribute usage,FXCOP_RSUCSU,VULNERABILITY,Blocker
+,Review visible event handlers,FXCOP_RVEH,VULNERABILITY,Blocker
+,Seal methods that satisfy private interfaces,FXCOP_SMTSPI,VULNERABILITY,Critical
+,Secure asserts,FXCOP_SA,VULNERABILITY,Blocker
+,Secure serialization constructors,FXCOP_SESECO,VULNERABILITY,Blocker
+,Secured types should not expose fields,FXCOP_STSNEF,VULNERABILITY,Blocker
+,Security critical constants should be transparent,FXCOP_CSBT,BUG,Minor
+,Security critical types may not participate in type equivalence,FXCOP_CTMNPITE,BUG,Blocker
+,Static constructors should be private,FXCOP_SCSBP,BUG,Critical
+,Transparent code may not use security asserts,FXCOP_TMMNUSA,BUG,Blocker
+,Transparent code may not use security critical attributes,FXCOP_TCMNUCA,BUG,Critical
+,Transparent code must not reference security critical items,FXCOP_TMMNRCC,BUG,Blocker
+,Transparent code should not be protected with LinkDemands,FXCOP_TMSNBPWLD,BUG,Minor
+,Transparent code should not load assemblies from byte arrays,FXCOP_TMSNLAFBA,VULNERABILITY,Minor
+,Transparent methods may not use the HandleProcessCorruptingExceptions attribute,FXCOP_TMMNHPCE,BUG,Critical
+,Transparent methods must contain only verifiable IL,FXCOP_TMMBV,VULNERABILITY,Critical
+,Transparent methods must not call into native code,FXCOP_TMMNCNC,VULNERABILITY,Critical
+,Transparent methods must not call methods with the SuppressUnmanagedCodeSecurity attribute,FXCOP_TMMNCSUCSM,VULNERABILITY,Critical
+,Transparent methods must not satisfy LinkDemands,FXCOP_TMMNSLD,VULNERABILITY,Critical
+,Transparent methods should not be decorated with the SuppressUnmanagedCodeSecurityAttribute,FXCOP_TMSNUSUCS,VULNERABILITY,Minor
+,Transparent methods should not use security demands,FXCOP_TMSND,VULNERABILITY,Major
+,Type link demands require inheritance demands,FXCOP_TLDRID,VULNERABILITY,Blocker
+,Types must be at least as critical as their base types and interfaces,FXCOP_TMBALACABT,VULNERABILITY,Blocker
+,Wrap vulnerable finally clauses in outer try,FXCOP_WVFCIOT,VULNERABILITY,Critical
+Microsoft.Usage Rules,Attribute string literals should parse correctly,FXCOP_ASLSPC,BUG,Minor
+,Call base class methods on ISerializable types,FXCOP_CBCMOT,BUG,Critical
+,Call GC.SuppressFinalize correctly,FXCOP_CFC,BUG,Major
+,Collection properties should be read only,FXCOP_CPSBRO,BUG,Minor
+,Disposable fields should be disposed,FXCOP_DFSBD,VULNERABILITY,Minor
+,Disposable types should declare finalizer,FXCOP_DTSDF,BUG,Critical
+,Do not call overridable methods in constructors,FXCOP_DNCOMIC,BUG,Major
+,Do not decrease inherited member visibility,FXCOP_DNDIMV,BUG,Critical
+,Do not ignore method results,FXCOP_DNIMR,BUG,Minor
+,Do not mark enums with FlagsAttribute,FXCOP_DNMEWF,BUG,Critical
+,Do not mark serviced components with WebMethod,FXCOP_DNMSCWWM,BUG,Major
+,Do not raise exceptions in exception clauses,FXCOP_DNREIEC,BUG,Critical
+,Do not raise reserved exception types,FXCOP_DNRRET,BUG,Critical
+,Do not ship unreleased resource formats,FXCOP_DNSURF,VULNERABILITY,Critical
+,Finalizers should be protected,FXCOP_FSBP,BUG,Blocker
+,Finalizers should call base class finalizer,FXCOP_FSCBCF,BUG,Blocker
+,Implement ISerializable correctly,FXCOP_IMCO,BUG,Critical
+,Implement serialization constructors,FXCOP_ISC,BUG,Critical
+,Implement serialization methods correctly,FXCOP_ISMC,BUG,Critical
+,Initialize value type static fields inline,FXCOP_IVTSFI,BUG,Blocker
+,Instantiate argument exceptions correctly,FXCOP_IAEC,BUG,Blocker
+,Mark all non-serializable fields,FXCOP_MANSF,BUG,Critical
+,Mark ISerializable types with SerializableAttribute,FXCOP_MTWS,BUG,Minor
+,Mark Windows Forms entry points with STAThread,FXCOP_MWFEPWST,BUG,Critical
+,Members should differ by more than return type,FXCOP_MSDBMTRT,BUG,Critical
+,Non-constant fields should not be visible,FXCOP_NCFSNBV,BUG,Minor
+,Operations should not overflow,FXCOP_OSNO,VULNERABILITY,Major
+,Operator overloads have named alternates,FXCOP_OOHNA,BUG,Critical
+,Operators should have symmetrical overloads,FXCOP_OSHSO,BUG,Blocker
+,Overload operator equals on overriding ValueType.Equals,FXCOP_OOEOOVTE,BUG,Minor
+,Override Equals on overloading operator equals,FXCOP_OEOOOE,BUG,Critical
+,Override GetHashCode on overriding Equals,FXCOP_OGHCOOE,BUG,Critical
+,Pass System.Uri objects instead of strings,FXCOP_PSUOIOS,BUG,Minor
+,Provide deserialization methods for optional fields,FXCOP_PDMFOF,BUG,Minor
+,Rethrow to preserve stack details,FXCOP_RTPSD,BUG,Critical
+,Review unused parameters,FXCOP_RUP,CODE_SMELL,Minor
+,Test for NaN correctly,FXCOP_TFN,BUG,Blocker
+,Use managed equivalents of Win32 API,FXCOP_UMEOW,BUG,Critical
+,Use params for variable arguments,FXCOP_UPFVA,BUG,Critical

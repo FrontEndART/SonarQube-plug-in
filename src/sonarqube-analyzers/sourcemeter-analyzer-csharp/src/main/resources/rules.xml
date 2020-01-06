@@ -1,484 +1,617 @@
+<?xml version="1.0" ?>
 <rules>
   <rule>
     <key>MET_AD</key>
     <name>API Documentation (AD) Metric Threshold Violation</name>
-    <description>&lt;p&gt;&lt;strong&gt;Class, Structure:&lt;/strong&gt; ratio of the number of documented public methods in the class +1 if the class itself is documented to the number of all public methods in the class + 1 (the class itself); however, the nested and anonymous classes are not included.&lt;/p&gt;&#x0A;&lt;p&gt;&lt;strong&gt;Namespace:&lt;/strong&gt; ratio of the number of documented public classes and methods in the namespace to the number of all of its public classes and methods; however, the classes and methods of its subnamespaces are not included.&lt;/p&gt;&#x0A;</description>
+    <description>&lt;p&gt;&lt;strong&gt;Class, Structure:&lt;/strong&gt; ratio of the number of documented public methods in the class +1 if the class itself is documented to the number of all public methods in the class + 1 (the class itself); however, the nested and anonymous classes are not included.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Namespace:&lt;/strong&gt; ratio of the number of documented public classes and methods in the namespace to the number of all of its public classes and methods; however, the classes and methods of its subnamespaces are not included.&lt;/p&gt;
+</description>
     <severity>INFO</severity>
     <tag>sourcemeter</tag>
   </rule>
   <rule>
     <key>MET_CBO</key>
     <name>Coupling Between Object classes (CBO) Metric Threshold Violation</name>
-    <description>&lt;p&gt;&lt;strong&gt;Class, Structure:&lt;/strong&gt; number of directly used other classes (e.g. by inheritance, function call, type reference, attribute reference). Classes using many other classes highly depend on their environment, so it is difficult to test or reuse them; furthermore, they are very sensitive to the changes in the system.&lt;/p&gt;&#x0A;</description>
+    <description>&lt;p&gt;&lt;strong&gt;Class, Structure:&lt;/strong&gt; number of directly used other classes (e.g. by inheritance, function call, type reference, attribute reference). Classes using many other classes highly depend on their environment, so it is difficult to test or reuse them; furthermore, they are very sensitive to the changes in the system.&lt;/p&gt;
+</description>
     <severity>INFO</severity>
     <tag>sourcemeter</tag>
   </rule>
   <rule>
     <key>MET_CBOI</key>
     <name>Coupling Between Object classes Inverse (CBOI) Metric Threshold Violation</name>
-    <description>&lt;p&gt;&lt;strong&gt;Class, Structure:&lt;/strong&gt; number of other classes, which directly use the class. Classes which are used by many other classes have a high impact on the behavior of the system, and should be modified very carefully and tested intensively.&lt;/p&gt;&#x0A;</description>
+    <description>&lt;p&gt;&lt;strong&gt;Class, Structure:&lt;/strong&gt; number of other classes, which directly use the class. Classes which are used by many other classes have a high impact on the behavior of the system, and should be modified very carefully and tested intensively.&lt;/p&gt;
+</description>
     <severity>INFO</severity>
     <tag>sourcemeter</tag>
   </rule>
   <rule>
     <key>MET_CD</key>
     <name>Comment Density (CD) Metric Threshold Violation</name>
-    <description>&lt;p&gt;&lt;strong&gt;Method:&lt;/strong&gt; ratio of the comment lines of the method (CLOC) to the sum of its comment (CLOC) and logical lines of code (LLOC).&lt;/p&gt;&#x0A;&lt;p&gt;&lt;strong&gt;Class, Structure:&lt;/strong&gt; ratio of the comment lines of the class (CLOC) to the sum of its comment (CLOC) and logical lines of code (LLOC).&lt;/p&gt;&#x0A;&lt;p&gt;&lt;strong&gt;Namespace:&lt;/strong&gt; ratio of the comment lines of the namespace (CLOC) to the sum of its comment (CLOC) and logical lines of code (LLOC).&lt;/p&gt;&#x0A;</description>
+    <description>&lt;p&gt;&lt;strong&gt;Method:&lt;/strong&gt; ratio of the comment lines of the method (CLOC) to the sum of its comment (CLOC) and logical lines of code (LLOC).&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Class, Structure:&lt;/strong&gt; ratio of the comment lines of the class (CLOC) to the sum of its comment (CLOC) and logical lines of code (LLOC).&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Namespace:&lt;/strong&gt; ratio of the comment lines of the namespace (CLOC) to the sum of its comment (CLOC) and logical lines of code (LLOC).&lt;/p&gt;
+</description>
     <severity>INFO</severity>
     <tag>sourcemeter</tag>
   </rule>
   <rule>
     <key>MET_CLOC</key>
     <name>Comment Lines of Code (CLOC) Metric Threshold Violation</name>
-    <description>&lt;p&gt;&lt;strong&gt;Method:&lt;/strong&gt; number of comment and documentation code lines of the method; however, its anonymous classes are not included.&lt;/p&gt;&#x0A;&lt;p&gt;&lt;strong&gt;Class, Structure:&lt;/strong&gt; number of comment and documentation code lines of the class, including its local methods and attributes; however, its nested and anonymous classes are not included.&lt;/p&gt;&#x0A;&lt;p&gt;&lt;strong&gt;Namespace:&lt;/strong&gt; number of comment and documentation code lines of the namespace; however, its subnamespaces are not included.&lt;/p&gt;&#x0A;</description>
+    <description>&lt;p&gt;&lt;strong&gt;Method:&lt;/strong&gt; number of comment and documentation code lines of the method; however, its anonymous classes are not included.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Class, Structure:&lt;/strong&gt; number of comment and documentation code lines of the class, including its local methods and attributes; however, its nested and anonymous classes are not included.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Namespace:&lt;/strong&gt; number of comment and documentation code lines of the namespace; however, its subnamespaces are not included.&lt;/p&gt;
+</description>
     <severity>INFO</severity>
     <tag>sourcemeter</tag>
   </rule>
   <rule>
     <key>MET_DIT</key>
     <name>Depth of Inheritance Tree (DIT) Metric Threshold Violation</name>
-    <description>&lt;p&gt;&lt;strong&gt;Class, Structure:&lt;/strong&gt; length of the path that leads from the class to its farthest ancestor in the inheritance tree.&lt;/p&gt;&#x0A;</description>
+    <description>&lt;p&gt;&lt;strong&gt;Class, Structure:&lt;/strong&gt; length of the path that leads from the class to its farthest ancestor in the inheritance tree.&lt;/p&gt;
+</description>
     <severity>INFO</severity>
     <tag>sourcemeter</tag>
   </rule>
   <rule>
     <key>MET_DLOC</key>
     <name>Documentation Lines of Code (DLOC) Metric Threshold Violation</name>
-    <description>&lt;p&gt;&lt;strong&gt;Method:&lt;/strong&gt; number of documentation code lines of the method.&lt;/p&gt;&#x0A;&lt;p&gt;&lt;strong&gt;Class, Structure:&lt;/strong&gt; number of documentation code lines of the class, including its local methods and attributes; however, its nested and anonymous classes are not included.&lt;/p&gt;&#x0A;</description>
+    <description>&lt;p&gt;&lt;strong&gt;Method:&lt;/strong&gt; number of documentation code lines of the method.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Class, Structure:&lt;/strong&gt; number of documentation code lines of the class, including its local methods and attributes; however, its nested and anonymous classes are not included.&lt;/p&gt;
+</description>
     <severity>INFO</severity>
     <tag>sourcemeter</tag>
   </rule>
   <rule>
     <key>MET_LCOM5</key>
     <name>Lack of Cohesion in Methods 5 (LCOM5) Metric Threshold Violation</name>
-    <description>&lt;p&gt;&lt;strong&gt;Class, Structure:&lt;/strong&gt; number of functionalities of the class. One of the basic principles of object-oriented programming is encapsulation, meaning that attributes belonging together and the operations that use them should be organized into one class, and one class shall implement only one functionality, i.e. its attributes and methods should be coherent. This metric measures the lack of cohesion and computes into how many coherent classes the class could be split. It is calculated by taking a non-directed graph, where the nodes are the implemented local methods of the class and there is an edge between the two nodes if and only if a common (local or inherited) attribute or abstract method is used or a method invokes another. The value of the metric is the number of connected components in the graph except the ones that contain only constructors, destructors, getters or setters – as they are integral parts of the class.&lt;/p&gt;&#x0A;</description>
+    <description>&lt;p&gt;&lt;strong&gt;Class, Structure:&lt;/strong&gt; number of functionalities of the class. One of the basic principles of object-oriented programming is encapsulation, meaning that attributes belonging together and the operations that use them should be organized into one class, and one class shall implement only one functionality, i.e. its attributes and methods should be coherent. This metric measures the lack of cohesion and computes into how many coherent classes the class could be split. It is calculated by taking a non-directed graph, where the nodes are the implemented local methods of the class and there is an edge between the two nodes if and only if a common (local or inherited) attribute or abstract method is used or a method invokes another. The value of the metric is the number of connected components in the graph except the ones that contain only constructors, destructors, getters or setters – as they are integral parts of the class.&lt;/p&gt;
+</description>
     <severity>INFO</severity>
     <tag>sourcemeter</tag>
   </rule>
   <rule>
     <key>MET_LLOC</key>
     <name>Logical Lines of Code (LLOC) Metric Threshold Violation</name>
-    <description>&lt;p&gt;&lt;strong&gt;Method:&lt;/strong&gt; number of non-empty and non-comment code lines of the method; however, its anonymous classes are not included.&lt;/p&gt;&#x0A;&lt;p&gt;&lt;strong&gt;Class, Structure:&lt;/strong&gt; number of non-empty and non-comment code lines of the class, including the non-empty and non-comment lines of its local methods; however, its nested and anonymous classes are not included.&lt;/p&gt;&#x0A;&lt;p&gt;&lt;strong&gt;Namespace:&lt;/strong&gt; number of non-empty and non-comment code lines of the namespace; however, its subnamespaces are not included.&lt;/p&gt;&#x0A;&lt;p&gt;&lt;strong&gt;File:&lt;/strong&gt; number of non-empty and non-comment code lines of the file.&lt;/p&gt;&#x0A;</description>
+    <description>&lt;p&gt;&lt;strong&gt;Method:&lt;/strong&gt; number of non-empty and non-comment code lines of the method; however, its anonymous classes are not included.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Class, Structure:&lt;/strong&gt; number of non-empty and non-comment code lines of the class, including the non-empty and non-comment lines of its local methods; however, its nested and anonymous classes are not included.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Namespace:&lt;/strong&gt; number of non-empty and non-comment code lines of the namespace; however, its subnamespaces are not included.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;File:&lt;/strong&gt; number of non-empty and non-comment code lines of the file.&lt;/p&gt;
+</description>
     <severity>INFO</severity>
     <tag>sourcemeter</tag>
   </rule>
   <rule>
     <key>MET_LOC</key>
     <name>Lines of Code (LOC) Metric Threshold Violation</name>
-    <description>&lt;p&gt;&lt;strong&gt;Method:&lt;/strong&gt; number of code lines of the method, including empty and comment lines; however, its anonymous classes are not included.&lt;/p&gt;&#x0A;&lt;p&gt;&lt;strong&gt;Class, Structure:&lt;/strong&gt; number of code lines of the class, including empty and comment lines, as well as its local methods; however, its nested and anonymous classes are not included.&lt;/p&gt;&#x0A;&lt;p&gt;&lt;strong&gt;Namespace:&lt;/strong&gt; number of code lines of the namespace, including empty and comment lines; however, its subnamespaces are not included.&lt;/p&gt;&#x0A;</description>
+    <description>&lt;p&gt;&lt;strong&gt;Method:&lt;/strong&gt; number of code lines of the method, including empty and comment lines; however, its anonymous classes are not included.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Class, Structure:&lt;/strong&gt; number of code lines of the class, including empty and comment lines, as well as its local methods; however, its nested and anonymous classes are not included.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Namespace:&lt;/strong&gt; number of code lines of the namespace, including empty and comment lines; however, its subnamespaces are not included.&lt;/p&gt;
+</description>
     <severity>INFO</severity>
     <tag>sourcemeter</tag>
   </rule>
   <rule>
     <key>MET_McCC</key>
-    <name>McCabe&apos;s Cyclomatic Complexity (McCC) Metric Threshold Violation</name>
-    <description>&lt;p&gt;&lt;strong&gt;Method:&lt;/strong&gt; complexity of the method expressed as the number of independent control flow paths in it. It represents a lower bound for the number of possible execution paths in the source code and at the same time it is an upper bound for the minimum number of test cases needed for achieving full branch test coverage. The value of the metric is initially 1 which increases by 1 for each occurence of the following instructions: if, for, foreach, while, do-while, case label (label that belongs to a switch instruction), catch (handler that belongs to a try block), conditional statement (?:) and conditional access operators (?. and ?[]). Moreover, logical and (&amp;amp;&amp;amp;), logical or (||) and null coalescing (??) expressions also add to the final value because their short-circuit evalutaion can cause branching depending on the first operand. The following language elements do not increase the value: else, try, switch, default label (default label that belongs to a switch instruction), finally.&lt;/p&gt;&#x0A;</description>
+    <name>McCabe's Cyclomatic Complexity (McCC) Metric Threshold Violation</name>
+    <description>&lt;p&gt;&lt;strong&gt;Method:&lt;/strong&gt; complexity of the method expressed as the number of independent control flow paths in it. It represents a lower bound for the number of possible execution paths in the source code and at the same time it is an upper bound for the minimum number of test cases needed for achieving full branch test coverage. The value of the metric is initially 1 which increases by 1 for each occurence of the following instructions: if, for, foreach, while, do-while, case label (label that belongs to a switch instruction), catch (handler that belongs to a try block), conditional statement (?:) and conditional access operators (?. and ?[]). Moreover, logical and (&amp;&amp;), logical or (||) and null coalescing (??) expressions also add to the final value because their short-circuit evalutaion can cause branching depending on the first operand. The following language elements do not increase the value: else, try, switch, default label (default label that belongs to a switch instruction), finally.&lt;/p&gt;
+</description>
     <severity>INFO</severity>
     <tag>sourcemeter</tag>
   </rule>
   <rule>
     <key>MET_NA</key>
     <name>Number of Attributes (NA) Metric Threshold Violation</name>
-    <description>&lt;p&gt;&lt;strong&gt;Class, Structure:&lt;/strong&gt; number of attributes in the class, including the inherited ones and generated ones backing auto properties; however, the attributes of its nested and anonymous classes are not included.&lt;/p&gt;&#x0A;&lt;p&gt;&lt;strong&gt;Namespace:&lt;/strong&gt; number of attributes in the namespace; however, attributes of its subnamespaces are not included.&lt;/p&gt;&#x0A;</description>
+    <description>&lt;p&gt;&lt;strong&gt;Class, Structure:&lt;/strong&gt; number of attributes in the class, including the inherited ones and generated ones backing auto properties; however, the attributes of its nested and anonymous classes are not included.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Namespace:&lt;/strong&gt; number of attributes in the namespace; however, attributes of its subnamespaces are not included.&lt;/p&gt;
+</description>
+    <type>BUG</type>
     <severity>INFO</severity>
     <tag>sourcemeter</tag>
   </rule>
   <rule>
     <key>MET_NCL</key>
     <name>Number of Classes (NCL) Metric Threshold Violation</name>
-    <description>&lt;p&gt;&lt;strong&gt;Namespace:&lt;/strong&gt; number of classes in the namespace; however, the classes of its subnamespaces are not included.&lt;/p&gt;&#x0A;</description>
+    <description>&lt;p&gt;&lt;strong&gt;Namespace:&lt;/strong&gt; number of classes in the namespace; however, the classes of its subnamespaces are not included.&lt;/p&gt;
+</description>
     <severity>INFO</severity>
     <tag>sourcemeter</tag>
   </rule>
   <rule>
     <key>MET_NEN</key>
     <name>Number of Enums (NEN) Metric Threshold Violation</name>
-    <description>&lt;p&gt;&lt;strong&gt;Namespace:&lt;/strong&gt; number of enums in the namespace; however, the enums of its subnamespaces are not included.&lt;/p&gt;&#x0A;</description>
+    <description>&lt;p&gt;&lt;strong&gt;Namespace:&lt;/strong&gt; number of enums in the namespace; however, the enums of its subnamespaces are not included.&lt;/p&gt;
+</description>
     <severity>INFO</severity>
     <tag>sourcemeter</tag>
   </rule>
   <rule>
     <key>MET_NG</key>
     <name>Number of Getters (NG) Metric Threshold Violation</name>
-    <description>&lt;p&gt;&lt;strong&gt;Class, Structure:&lt;/strong&gt; number of getter methods in the class, including the inherited ones; however, the getter methods of its nested and anonymous classes are not included. Methods that override abstract methods are not counted.&lt;/p&gt;&#x0A;&lt;p&gt;&lt;strong&gt;Namespace:&lt;/strong&gt; number of getter methods in the namespace; however, getter methods of its subnamespaces are not included.&lt;/p&gt;&#x0A;</description>
+    <description>&lt;p&gt;&lt;strong&gt;Class, Structure:&lt;/strong&gt; number of getter methods in the class, including the inherited ones; however, the getter methods of its nested and anonymous classes are not included. Methods that override abstract methods are not counted.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Namespace:&lt;/strong&gt; number of getter methods in the namespace; however, getter methods of its subnamespaces are not included.&lt;/p&gt;
+</description>
     <severity>INFO</severity>
     <tag>sourcemeter</tag>
   </rule>
   <rule>
     <key>MET_NII</key>
     <name>Number of Incoming Invocations (NII) Metric Threshold Violation</name>
-    <description>&lt;p&gt;&lt;strong&gt;Method:&lt;/strong&gt; number of other methods and attribute initializations which directly call the method. If the method is invoked several times from the same method or attribute initialization, it is counted only once.&lt;/p&gt;&#x0A;&lt;p&gt;&lt;strong&gt;Class, Structure:&lt;/strong&gt; number of other methods and attribute initializations which directly call the local methods of the class. If a method is invoked several times from the same method or attribute initialization, it is counted only once.&lt;/p&gt;&#x0A;</description>
+    <description>&lt;p&gt;&lt;strong&gt;Method:&lt;/strong&gt; number of other methods and attribute initializations which directly call the method. If the method is invoked several times from the same method or attribute initialization, it is counted only once.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Class, Structure:&lt;/strong&gt; number of other methods and attribute initializations which directly call the local methods of the class. If a method is invoked several times from the same method or attribute initialization, it is counted only once.&lt;/p&gt;
+</description>
     <severity>INFO</severity>
     <tag>sourcemeter</tag>
   </rule>
   <rule>
     <key>MET_NIN</key>
     <name>Number of Interfaces (NIN) Metric Threshold Violation</name>
-    <description>&lt;p&gt;&lt;strong&gt;Namespace:&lt;/strong&gt; number of interfaces in the namespace; however, the interfaces of its subnamespaces are not included.&lt;/p&gt;&#x0A;</description>
+    <description>&lt;p&gt;&lt;strong&gt;Namespace:&lt;/strong&gt; number of interfaces in the namespace; however, the interfaces of its subnamespaces are not included.&lt;/p&gt;
+</description>
     <severity>INFO</severity>
     <tag>sourcemeter</tag>
   </rule>
   <rule>
     <key>MET_NL</key>
     <name>Nesting Level (NL) Metric Threshold Violation</name>
-    <description>&lt;p&gt;&lt;strong&gt;Method:&lt;/strong&gt; complexity of the method expressed as the depth of the maximum embeddedness of its conditional, iteration and exception handling block scopes. The following instructions are taken into account: if, else-if, else, for, foreach, while, do-while, switch, try, catch, finally, lock, checked, unchecked, fixed, using statement, conditional statement (?:) and block statements that are directly inside another block statement. The following instructions do not increase the value by themselves; however, if additional embeddednesses can be found in their blocks, they are considered: case and default label.&lt;/p&gt;&#x0A;&lt;p&gt;&lt;strong&gt;Class, Structure:&lt;/strong&gt; complexity of the class expressed as the depth of the maximum embeddedness of its conditional, iteration and exception handling block scopes. It is calculated as the maximum nesting level (NL) of its local methods.&lt;/p&gt;&#x0A;</description>
+    <description>&lt;p&gt;&lt;strong&gt;Method:&lt;/strong&gt; complexity of the method expressed as the depth of the maximum embeddedness of its conditional, iteration and exception handling block scopes. The following instructions are taken into account: if, else-if, else, for, foreach, while, do-while, switch, try, catch, finally, lock, checked, unchecked, fixed, using statement, conditional statement (?:) and block statements that are directly inside another block statement. The following instructions do not increase the value by themselves; however, if additional embeddednesses can be found in their blocks, they are considered: case and default label.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Class, Structure:&lt;/strong&gt; complexity of the class expressed as the depth of the maximum embeddedness of its conditional, iteration and exception handling block scopes. It is calculated as the maximum nesting level (NL) of its local methods.&lt;/p&gt;
+</description>
     <severity>INFO</severity>
     <tag>sourcemeter</tag>
   </rule>
   <rule>
     <key>MET_NLA</key>
     <name>Number of Local Attributes (NLA) Metric Threshold Violation</name>
-    <description>&lt;p&gt;&lt;strong&gt;Class, Structure:&lt;/strong&gt; number of local (i.e. not inherited) attributes in the class, including generated ones backing auto properties; however, the attributes of nested and anonymous classes are not included.&lt;/p&gt;&#x0A;</description>
+    <description>&lt;p&gt;&lt;strong&gt;Class, Structure:&lt;/strong&gt; number of local (i.e. not inherited) attributes in the class, including generated ones backing auto properties; however, the attributes of nested and anonymous classes are not included.&lt;/p&gt;
+</description>
     <severity>INFO</severity>
     <tag>sourcemeter</tag>
   </rule>
   <rule>
     <key>MET_NLE</key>
     <name>Nesting Level Else-If (NLE) Metric Threshold Violation</name>
-    <description>&lt;p&gt;&lt;strong&gt;Method:&lt;/strong&gt; complexity of the method expressed as the depth of the maximum embeddedness of its conditional, iteration and exception handling block scopes, where in the if-else-if construct only the first if instruction is considered. The following instructions are taken into account: if, for, foreach, while, do-while, switch, try, catch, finally, lock, checked, unchecked, fixed, using statement, conditional statement (?:) and block statements that are directly inside another block statement. The following instructions do not increase the value by themselves; however, if additional embeddednesses can be found in their blocks, they are considered: else, else-if (i.e. in the if-else-if construct the use of else-if does not increase the value of the metric), case and default label.&lt;/p&gt;&#x0A;&lt;p&gt;&lt;strong&gt;Class, Structure:&lt;/strong&gt; complexity of the class expressed as the depth of the maximum embeddedness of its conditional, iteration and exception handling block scopes, where in the if-else-if construct only the first if instruction is considered. It is calculated as the maximum nesting level (NLE) of its local methods.&lt;/p&gt;&#x0A;</description>
+    <description>&lt;p&gt;&lt;strong&gt;Method:&lt;/strong&gt; complexity of the method expressed as the depth of the maximum embeddedness of its conditional, iteration and exception handling block scopes, where in the if-else-if construct only the first if instruction is considered. The following instructions are taken into account: if, for, foreach, while, do-while, switch, try, catch, finally, lock, checked, unchecked, fixed, using statement, conditional statement (?:) and block statements that are directly inside another block statement. The following instructions do not increase the value by themselves; however, if additional embeddednesses can be found in their blocks, they are considered: else, else-if (i.e. in the if-else-if construct the use of else-if does not increase the value of the metric), case and default label.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Class, Structure:&lt;/strong&gt; complexity of the class expressed as the depth of the maximum embeddedness of its conditional, iteration and exception handling block scopes, where in the if-else-if construct only the first if instruction is considered. It is calculated as the maximum nesting level (NLE) of its local methods.&lt;/p&gt;
+</description>
     <severity>INFO</severity>
     <tag>sourcemeter</tag>
   </rule>
   <rule>
     <key>MET_NLG</key>
     <name>Number of Local Getters (NLG) Metric Threshold Violation</name>
-    <description>&lt;p&gt;&lt;strong&gt;Class, Structure:&lt;/strong&gt; number of local (i.e. not inherited) getter methods in the class; however, the getter methods of its nested and anonymous classes are not included. Methods that override abstract methods are not counted.&lt;/p&gt;&#x0A;</description>
+    <description>&lt;p&gt;&lt;strong&gt;Class, Structure:&lt;/strong&gt; number of local (i.e. not inherited) getter methods in the class; however, the getter methods of its nested and anonymous classes are not included. Methods that override abstract methods are not counted.&lt;/p&gt;
+</description>
     <severity>INFO</severity>
     <tag>sourcemeter</tag>
   </rule>
   <rule>
     <key>MET_NLM</key>
     <name>Number of Local Methods (NLM) Metric Threshold Violation</name>
-    <description>&lt;p&gt;&lt;strong&gt;Class, Structure:&lt;/strong&gt; number of local (i.e. not inherited) methods in the class; however, the methods of nested and anonymous classes are not included.&lt;/p&gt;&#x0A;</description>
+    <description>&lt;p&gt;&lt;strong&gt;Class, Structure:&lt;/strong&gt; number of local (i.e. not inherited) methods in the class; however, the methods of nested and anonymous classes are not included.&lt;/p&gt;
+</description>
     <severity>INFO</severity>
     <tag>sourcemeter</tag>
   </rule>
   <rule>
     <key>MET_NLPA</key>
     <name>Number of Local Public Attributes (NLPA) Metric Threshold Violation</name>
-    <description>&lt;p&gt;&lt;strong&gt;Class, Structure:&lt;/strong&gt; number of local (i.e. not inherited) public attributes in the class, including generated ones backing public auto properties; however, the attributes of nested and anonymous classes are not included.&lt;/p&gt;&#x0A;</description>
+    <description>&lt;p&gt;&lt;strong&gt;Class, Structure:&lt;/strong&gt; number of local (i.e. not inherited) public attributes in the class, including generated ones backing public auto properties; however, the attributes of nested and anonymous classes are not included.&lt;/p&gt;
+</description>
     <severity>INFO</severity>
     <tag>sourcemeter</tag>
   </rule>
   <rule>
     <key>MET_NLPM</key>
     <name>Number of Local Public Methods (NLPM) Metric Threshold Violation</name>
-    <description>&lt;p&gt;&lt;strong&gt;Class, Structure:&lt;/strong&gt; number of local (i.e. not inherited) public methods in the class; however, the methods of nested and anonymous classes are not included.&lt;/p&gt;&#x0A;</description>
+    <description>&lt;p&gt;&lt;strong&gt;Class, Structure:&lt;/strong&gt; number of local (i.e. not inherited) public methods in the class; however, the methods of nested and anonymous classes are not included.&lt;/p&gt;
+</description>
     <severity>INFO</severity>
     <tag>sourcemeter</tag>
   </rule>
   <rule>
     <key>MET_NLS</key>
     <name>Number of Local Setters (NLS) Metric Threshold Violation</name>
-    <description>&lt;p&gt;&lt;strong&gt;Class, Structure:&lt;/strong&gt; number of local (i.e. not inherited) setter methods in the class; however, the setter methods of its nested and anonymous classes are not included. Methods that override abstract methods are not counted.&lt;/p&gt;&#x0A;</description>
+    <description>&lt;p&gt;&lt;strong&gt;Class, Structure:&lt;/strong&gt; number of local (i.e. not inherited) setter methods in the class; however, the setter methods of its nested and anonymous classes are not included. Methods that override abstract methods are not counted.&lt;/p&gt;
+</description>
     <severity>INFO</severity>
     <tag>sourcemeter</tag>
   </rule>
   <rule>
     <key>MET_NM</key>
     <name>Number of Methods (NM) Metric Threshold Violation</name>
-    <description>&lt;p&gt;&lt;strong&gt;Class, Structure:&lt;/strong&gt; number of methods in the class, including the inherited ones; however, the methods of its nested and anonymous classes are not included. Methods that override abstract methods are not counted.&lt;/p&gt;&#x0A;&lt;p&gt;&lt;strong&gt;Namespace:&lt;/strong&gt; number of methods in the namespace; however, methods of its subnamespaces are not included.&lt;/p&gt;&#x0A;</description>
+    <description>&lt;p&gt;&lt;strong&gt;Class, Structure:&lt;/strong&gt; number of methods in the class, including the inherited ones; however, the methods of its nested and anonymous classes are not included. Methods that override abstract methods are not counted.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Namespace:&lt;/strong&gt; number of methods in the namespace; however, methods of its subnamespaces are not included.&lt;/p&gt;
+</description>
     <severity>INFO</severity>
     <tag>sourcemeter</tag>
   </rule>
   <rule>
     <key>MET_NOA</key>
     <name>Number of Ancestors (NOA) Metric Threshold Violation</name>
-    <description>&lt;p&gt;&lt;strong&gt;Class, Structure:&lt;/strong&gt; number of classes and interfaces from which the class is directly or indirectly inherited.&lt;/p&gt;&#x0A;</description>
+    <description>&lt;p&gt;&lt;strong&gt;Class, Structure:&lt;/strong&gt; number of classes and interfaces from which the class is directly or indirectly inherited.&lt;/p&gt;
+</description>
     <severity>INFO</severity>
     <tag>sourcemeter</tag>
   </rule>
   <rule>
     <key>MET_NOC</key>
     <name>Number of Children (NOC) Metric Threshold Violation</name>
-    <description>&lt;p&gt;&lt;strong&gt;Class, Structure:&lt;/strong&gt; number of classes and interfaces which are directly derived from the class.&lt;/p&gt;&#x0A;</description>
+    <description>&lt;p&gt;&lt;strong&gt;Class, Structure:&lt;/strong&gt; number of classes and interfaces which are directly derived from the class.&lt;/p&gt;
+</description>
     <severity>INFO</severity>
     <tag>sourcemeter</tag>
   </rule>
   <rule>
     <key>MET_NOD</key>
     <name>Number of Descendants (NOD) Metric Threshold Violation</name>
-    <description>&lt;p&gt;&lt;strong&gt;Class, Structure:&lt;/strong&gt; number of classes and interfaces which are directly or indirectly derived from the class.&lt;/p&gt;&#x0A;</description>
+    <description>&lt;p&gt;&lt;strong&gt;Class, Structure:&lt;/strong&gt; number of classes and interfaces which are directly or indirectly derived from the class.&lt;/p&gt;
+</description>
     <severity>INFO</severity>
     <tag>sourcemeter</tag>
   </rule>
   <rule>
     <key>MET_NOI</key>
     <name>Number of Outgoing Invocations (NOI) Metric Threshold Violation</name>
-    <description>&lt;p&gt;&lt;strong&gt;Method:&lt;/strong&gt; number of directly called methods. If a method is invoked several times, it is counted only once.&lt;/p&gt;&#x0A;&lt;p&gt;&lt;strong&gt;Class, Structure:&lt;/strong&gt; number of directly called methods of other classes, including method invocations from attribute initializations. If a method is invoked several times, it is counted only once.&lt;/p&gt;&#x0A;</description>
+    <description>&lt;p&gt;&lt;strong&gt;Method:&lt;/strong&gt; number of directly called methods. If a method is invoked several times, it is counted only once.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Class, Structure:&lt;/strong&gt; number of directly called methods of other classes, including method invocations from attribute initializations. If a method is invoked several times, it is counted only once.&lt;/p&gt;
+</description>
     <severity>INFO</severity>
     <tag>sourcemeter</tag>
   </rule>
   <rule>
     <key>MET_NOP</key>
     <name>Number of Parents (NOP) Metric Threshold Violation</name>
-    <description>&lt;p&gt;&lt;strong&gt;Class, Structure:&lt;/strong&gt; number of classes and interfaces from which the class is directly inherited.&lt;/p&gt;&#x0A;</description>
+    <description>&lt;p&gt;&lt;strong&gt;Class, Structure:&lt;/strong&gt; number of classes and interfaces from which the class is directly inherited.&lt;/p&gt;
+</description>
     <severity>INFO</severity>
     <tag>sourcemeter</tag>
   </rule>
   <rule>
     <key>MET_NOS</key>
     <name>Number of Statements (NOS) Metric Threshold Violation</name>
-    <description>&lt;p&gt;&lt;strong&gt;Method:&lt;/strong&gt; number of statements in the method; however, the statements of its anonymous classes are not included.&lt;/p&gt;&#x0A;&lt;p&gt;&lt;strong&gt;Class, Structure:&lt;/strong&gt; number of statements in the class; however, the statements of its nested and anonymous classes are not included.&lt;/p&gt;&#x0A;</description>
+    <description>&lt;p&gt;&lt;strong&gt;Method:&lt;/strong&gt; number of statements in the method; however, the statements of its anonymous classes are not included.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Class, Structure:&lt;/strong&gt; number of statements in the class; however, the statements of its nested and anonymous classes are not included.&lt;/p&gt;
+</description>
     <severity>INFO</severity>
     <tag>sourcemeter</tag>
   </rule>
   <rule>
     <key>MET_NPA</key>
     <name>Number of Public Attributes (NPA) Metric Threshold Violation</name>
-    <description>&lt;p&gt;&lt;strong&gt;Class, Structure:&lt;/strong&gt; number of public attributes in the class, including the inherited ones and generated ones backing public auto properties; however, the public attributes of its nested and anonymous classes are not included.&lt;/p&gt;&#x0A;&lt;p&gt;&lt;strong&gt;Namespace:&lt;/strong&gt; number of public attributes in the namespace; however, the public attributes of its subnamespaces are not included.&lt;/p&gt;&#x0A;</description>
+    <description>&lt;p&gt;&lt;strong&gt;Class, Structure:&lt;/strong&gt; number of public attributes in the class, including the inherited ones and generated ones backing public auto properties; however, the public attributes of its nested and anonymous classes are not included.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Namespace:&lt;/strong&gt; number of public attributes in the namespace; however, the public attributes of its subnamespaces are not included.&lt;/p&gt;
+</description>
     <severity>INFO</severity>
     <tag>sourcemeter</tag>
   </rule>
   <rule>
     <key>MET_NPKG</key>
     <name>Number of Packages (NPKG) Metric Threshold Violation</name>
-    <description>&lt;p&gt;&lt;strong&gt;Namespace:&lt;/strong&gt; number of directly contained subnamespaces of the namespace.&lt;/p&gt;&#x0A;</description>
+    <description>&lt;p&gt;&lt;strong&gt;Namespace:&lt;/strong&gt; number of directly contained subnamespaces of the namespace.&lt;/p&gt;
+</description>
     <severity>INFO</severity>
     <tag>sourcemeter</tag>
   </rule>
   <rule>
     <key>MET_NPM</key>
     <name>Number of Public Methods (NPM) Metric Threshold Violation</name>
-    <description>&lt;p&gt;&lt;strong&gt;Class, Structure:&lt;/strong&gt; number of public methods in the class, including the inherited ones; however, the public methods of nested and anonymous classes are not included. Methods that override abstract methods are not counted.&lt;/p&gt;&#x0A;&lt;p&gt;&lt;strong&gt;Namespace:&lt;/strong&gt; number of public methods in the namespace; however, the public methods of its subnamespaces are not included.&lt;/p&gt;&#x0A;</description>
+    <description>&lt;p&gt;&lt;strong&gt;Class, Structure:&lt;/strong&gt; number of public methods in the class, including the inherited ones; however, the public methods of nested and anonymous classes are not included. Methods that override abstract methods are not counted.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Namespace:&lt;/strong&gt; number of public methods in the namespace; however, the public methods of its subnamespaces are not included.&lt;/p&gt;
+</description>
     <severity>INFO</severity>
     <tag>sourcemeter</tag>
   </rule>
   <rule>
     <key>MET_NS</key>
     <name>Number of Setters (NS) Metric Threshold Violation</name>
-    <description>&lt;p&gt;&lt;strong&gt;Class, Structure:&lt;/strong&gt; number of setter methods in the class, including the inherited ones; however, the setter methods of its nested and anonymous classes are not included. Methods that override abstract methods are not counted.&lt;/p&gt;&#x0A;&lt;p&gt;&lt;strong&gt;Namespace:&lt;/strong&gt; number of setter methods in the namespace; however, setter methods of its subnamespaces are not included.&lt;/p&gt;&#x0A;</description>
+    <description>&lt;p&gt;&lt;strong&gt;Class, Structure:&lt;/strong&gt; number of setter methods in the class, including the inherited ones; however, the setter methods of its nested and anonymous classes are not included. Methods that override abstract methods are not counted.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Namespace:&lt;/strong&gt; number of setter methods in the namespace; however, setter methods of its subnamespaces are not included.&lt;/p&gt;
+</description>
     <severity>INFO</severity>
     <tag>sourcemeter</tag>
   </rule>
   <rule>
     <key>MET_NST</key>
     <name>Number of Structures (NST) Metric Threshold Violation</name>
-    <description>&lt;p&gt;&lt;strong&gt;Namespace:&lt;/strong&gt; number of structures in the namespace; however, the structures of its subnamespaces are not included.&lt;/p&gt;&#x0A;</description>
+    <description>&lt;p&gt;&lt;strong&gt;Namespace:&lt;/strong&gt; number of structures in the namespace; however, the structures of its subnamespaces are not included.&lt;/p&gt;
+</description>
     <severity>INFO</severity>
     <tag>sourcemeter</tag>
   </rule>
   <rule>
     <key>MET_NUMPAR</key>
     <name>Number of Parameters (NUMPAR) Metric Threshold Violation</name>
-    <description>&lt;p&gt;&lt;strong&gt;Method:&lt;/strong&gt; number of the parameters of the method. The varargs parameter counts as one.&lt;/p&gt;&#x0A;</description>
+    <description>&lt;p&gt;&lt;strong&gt;Method:&lt;/strong&gt; number of the parameters of the method. The varargs parameter counts as one.&lt;/p&gt;
+</description>
     <severity>INFO</severity>
     <tag>sourcemeter</tag>
   </rule>
   <rule>
     <key>MET_PDA</key>
     <name>Public Documented API (PDA) Metric Threshold Violation</name>
-    <description>&lt;p&gt;&lt;strong&gt;Class, Structure:&lt;/strong&gt; the number of the documented public methods of the class (+1 if the class itself is documented). When calculating the metrics the nested, anonymous or local classes found in the class and their methods are not calculated.&lt;/p&gt;&#x0A;&lt;p&gt;&lt;strong&gt;Namespace:&lt;/strong&gt; the number of the documented public classes and public documented methods found in the namespace. When calculating the metric, classes and methods found in the subnamespaces of the namespace are not taken into account.&lt;/p&gt;&#x0A;</description>
+    <description>&lt;p&gt;&lt;strong&gt;Class, Structure:&lt;/strong&gt; the number of the documented public methods of the class (+1 if the class itself is documented). When calculating the metrics the nested, anonymous or local classes found in the class and their methods are not calculated.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Namespace:&lt;/strong&gt; the number of the documented public classes and public documented methods found in the namespace. When calculating the metric, classes and methods found in the subnamespaces of the namespace are not taken into account.&lt;/p&gt;
+</description>
     <severity>INFO</severity>
     <tag>sourcemeter</tag>
   </rule>
   <rule>
     <key>MET_PUA</key>
     <name>Public Undocumented API (PUA) Metric Threshold Violation</name>
-    <description>&lt;p&gt;&lt;strong&gt;Class, Structure:&lt;/strong&gt; the number of the undocumented public methods of the class (+1 if the class itself is undocumented). When calculating the metrics the nested, anonymous or local classes to be found in the class and their methods are not calculated.&lt;/p&gt;&#x0A;&lt;p&gt;&lt;strong&gt;Namespace:&lt;/strong&gt; the number of the undocumented public classes and undocumented public methods to be found in the namespace. When calculating the metric, classes and methods to be found in the subnamespaces of the namespace are not taken into account.&lt;/p&gt;&#x0A;</description>
+    <description>&lt;p&gt;&lt;strong&gt;Class, Structure:&lt;/strong&gt; the number of the undocumented public methods of the class (+1 if the class itself is undocumented). When calculating the metrics the nested, anonymous or local classes to be found in the class and their methods are not calculated.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Namespace:&lt;/strong&gt; the number of the undocumented public classes and undocumented public methods to be found in the namespace. When calculating the metric, classes and methods to be found in the subnamespaces of the namespace are not taken into account.&lt;/p&gt;
+</description>
     <severity>INFO</severity>
     <tag>sourcemeter</tag>
   </rule>
   <rule>
     <key>MET_RFC</key>
     <name>Response set For Class (RFC) Metric Threshold Violation</name>
-    <description>&lt;p&gt;&lt;strong&gt;Class, Structure:&lt;/strong&gt; number of local (i.e. not inherited) methods in the class (NLM) plus the number of directly invoked other methods by its methods or attribute initializations (NOI).&lt;/p&gt;&#x0A;</description>
+    <description>&lt;p&gt;&lt;strong&gt;Class, Structure:&lt;/strong&gt; number of local (i.e. not inherited) methods in the class (NLM) plus the number of directly invoked other methods by its methods or attribute initializations (NOI).&lt;/p&gt;
+</description>
     <severity>INFO</severity>
     <tag>sourcemeter</tag>
   </rule>
   <rule>
     <key>MET_TAD</key>
     <name>Total API Documentation (TAD) Metric Threshold Violation</name>
-    <description>&lt;p&gt;&lt;strong&gt;Namespace:&lt;/strong&gt; ratio of the number of documented public classes and methods in the namespace to the number of all of its public classes and methods, including its subnamespaces.&lt;/p&gt;&#x0A;&lt;p&gt;&lt;strong&gt;Component:&lt;/strong&gt; ratio of the number of documented public classes and methods in the component to the number of all of its public classes and methods, including its subcomponents.&lt;/p&gt;&#x0A;</description>
+    <description>&lt;p&gt;&lt;strong&gt;Namespace:&lt;/strong&gt; ratio of the number of documented public classes and methods in the namespace to the number of all of its public classes and methods, including its subnamespaces.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Component:&lt;/strong&gt; ratio of the number of documented public classes and methods in the component to the number of all of its public classes and methods, including its subcomponents.&lt;/p&gt;
+</description>
     <severity>INFO</severity>
     <tag>sourcemeter</tag>
   </rule>
   <rule>
     <key>MET_TCD</key>
     <name>Total Comment Density (TCD) Metric Threshold Violation</name>
-    <description>&lt;p&gt;&lt;strong&gt;Method:&lt;/strong&gt; ratio of the total comment lines of the method (TCLOC) to the sum of its total comment (TCLOC) and total logical lines of code (TLLOC).&lt;/p&gt;&#x0A;&lt;p&gt;&lt;strong&gt;Class, Structure:&lt;/strong&gt; ratio of the total comment lines of the class (TCLOC) to the sum of its total comment (TCLOC) and total logical lines of code (TLLOC).&lt;/p&gt;&#x0A;&lt;p&gt;&lt;strong&gt;Namespace:&lt;/strong&gt; ratio of the total comment lines of the namespace (TCLOC) to the sum of its total comment (TCLOC) and total logical lines of code (TLLOC).&lt;/p&gt;&#x0A;&lt;p&gt;&lt;strong&gt;Component:&lt;/strong&gt; ratio of the total comment lines of the component (TCLOC) to the sum of its total comment (TCLOC) and total logical lines of code (TLLOC).&lt;/p&gt;&#x0A;</description>
+    <description>&lt;p&gt;&lt;strong&gt;Method:&lt;/strong&gt; ratio of the total comment lines of the method (TCLOC) to the sum of its total comment (TCLOC) and total logical lines of code (TLLOC).&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Class, Structure:&lt;/strong&gt; ratio of the total comment lines of the class (TCLOC) to the sum of its total comment (TCLOC) and total logical lines of code (TLLOC).&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Namespace:&lt;/strong&gt; ratio of the total comment lines of the namespace (TCLOC) to the sum of its total comment (TCLOC) and total logical lines of code (TLLOC).&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Component:&lt;/strong&gt; ratio of the total comment lines of the component (TCLOC) to the sum of its total comment (TCLOC) and total logical lines of code (TLLOC).&lt;/p&gt;
+</description>
     <severity>INFO</severity>
     <tag>sourcemeter</tag>
   </rule>
   <rule>
     <key>MET_TCLOC</key>
     <name>Total Comment Lines of Code (TCLOC) Metric Threshold Violation</name>
-    <description>&lt;p&gt;&lt;strong&gt;Method:&lt;/strong&gt; number of comment and documentation code lines of the method, including its anonymous classes.&lt;/p&gt;&#x0A;&lt;p&gt;&lt;strong&gt;Class, Structure:&lt;/strong&gt; number of comment and documentation code lines of the class, including its local methods and attributes, as well as its nested and anonymous classes.&lt;/p&gt;&#x0A;&lt;p&gt;&lt;strong&gt;Namespace:&lt;/strong&gt; number of comment and documentation code lines of the namespace, including its subnamespaces.&lt;/p&gt;&#x0A;&lt;p&gt;&lt;strong&gt;Component:&lt;/strong&gt; number of comment and documentation code lines of the component, including its subcomponents.&lt;/p&gt;&#x0A;</description>
+    <description>&lt;p&gt;&lt;strong&gt;Method:&lt;/strong&gt; number of comment and documentation code lines of the method, including its anonymous classes.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Class, Structure:&lt;/strong&gt; number of comment and documentation code lines of the class, including its local methods and attributes, as well as its nested and anonymous classes.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Namespace:&lt;/strong&gt; number of comment and documentation code lines of the namespace, including its subnamespaces.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Component:&lt;/strong&gt; number of comment and documentation code lines of the component, including its subcomponents.&lt;/p&gt;
+</description>
     <severity>INFO</severity>
     <tag>sourcemeter</tag>
   </rule>
   <rule>
     <key>MET_TLLOC</key>
     <name>Total Logical Lines of Code (TLLOC) Metric Threshold Violation</name>
-    <description>&lt;p&gt;&lt;strong&gt;Method:&lt;/strong&gt; number of non-empty and non-comment code lines of the method, including the non-empty and non-comment lines of its anonymous classes.&lt;/p&gt;&#x0A;&lt;p&gt;&lt;strong&gt;Class, Structure:&lt;/strong&gt; number of non-empty and non-comment code lines of the class, including the non-empty and non-comment code lines of its local methods, anonymous and nested classes.&lt;/p&gt;&#x0A;&lt;p&gt;&lt;strong&gt;Namespace:&lt;/strong&gt; number of non-empty and non-comment code lines of the namespace, including its subnamespaces.&lt;/p&gt;&#x0A;&lt;p&gt;&lt;strong&gt;Component:&lt;/strong&gt; number of non-empty and non-comment code lines of the component, including its subcomponents.&lt;/p&gt;&#x0A;</description>
+    <description>&lt;p&gt;&lt;strong&gt;Method:&lt;/strong&gt; number of non-empty and non-comment code lines of the method, including the non-empty and non-comment lines of its anonymous classes.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Class, Structure:&lt;/strong&gt; number of non-empty and non-comment code lines of the class, including the non-empty and non-comment code lines of its local methods, anonymous and nested classes.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Namespace:&lt;/strong&gt; number of non-empty and non-comment code lines of the namespace, including its subnamespaces.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Component:&lt;/strong&gt; number of non-empty and non-comment code lines of the component, including its subcomponents.&lt;/p&gt;
+</description>
     <severity>INFO</severity>
     <tag>sourcemeter</tag>
   </rule>
   <rule>
     <key>MET_TLOC</key>
     <name>Total Lines of Code (TLOC) Metric Threshold Violation</name>
-    <description>&lt;p&gt;&lt;strong&gt;Method:&lt;/strong&gt; number of code lines of the method, including empty and comment lines, as well as its anonymous classes.&lt;/p&gt;&#x0A;&lt;p&gt;&lt;strong&gt;Class, Structure:&lt;/strong&gt; number of code lines of the class, including empty and comment lines, as well as its local methods, anonymous and nested classes.&lt;/p&gt;&#x0A;&lt;p&gt;&lt;strong&gt;Namespace:&lt;/strong&gt; number of code lines of the namespace, including empty and comment lines, as well as its subnamespaces.&lt;/p&gt;&#x0A;&lt;p&gt;&lt;strong&gt;Component:&lt;/strong&gt; number of code lines of the component, including empty and comment lines, as well as its subcomponents.&lt;/p&gt;&#x0A;</description>
+    <description>&lt;p&gt;&lt;strong&gt;Method:&lt;/strong&gt; number of code lines of the method, including empty and comment lines, as well as its anonymous classes.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Class, Structure:&lt;/strong&gt; number of code lines of the class, including empty and comment lines, as well as its local methods, anonymous and nested classes.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Namespace:&lt;/strong&gt; number of code lines of the namespace, including empty and comment lines, as well as its subnamespaces.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Component:&lt;/strong&gt; number of code lines of the component, including empty and comment lines, as well as its subcomponents.&lt;/p&gt;
+</description>
     <severity>INFO</severity>
     <tag>sourcemeter</tag>
   </rule>
   <rule>
     <key>MET_TNA</key>
     <name>Total Number of Attributes (TNA) Metric Threshold Violation</name>
-    <description>&lt;p&gt;&lt;strong&gt;Class, Structure:&lt;/strong&gt; number of attributes in the class, including the inherited ones and generated ones backing auto properties, as well as the inherited and local attributes of its nested and anonymous classes.&lt;/p&gt;&#x0A;&lt;p&gt;&lt;strong&gt;Namespace:&lt;/strong&gt; number of attributes in the namespace, including the attributes of its subnamespaces.&lt;/p&gt;&#x0A;&lt;p&gt;&lt;strong&gt;Component:&lt;/strong&gt; number of attributes in the component, including the attributes of its subcomponents.&lt;/p&gt;&#x0A;</description>
+    <description>&lt;p&gt;&lt;strong&gt;Class, Structure:&lt;/strong&gt; number of attributes in the class, including the inherited ones and generated ones backing auto properties, as well as the inherited and local attributes of its nested and anonymous classes.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Namespace:&lt;/strong&gt; number of attributes in the namespace, including the attributes of its subnamespaces.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Component:&lt;/strong&gt; number of attributes in the component, including the attributes of its subcomponents.&lt;/p&gt;
+</description>
     <severity>INFO</severity>
     <tag>sourcemeter</tag>
   </rule>
   <rule>
     <key>MET_TNCL</key>
     <name>Total Number of Classes (TNCL) Metric Threshold Violation</name>
-    <description>&lt;p&gt;&lt;strong&gt;Namespace:&lt;/strong&gt; number of classes in the namespace, including the classes of its subnamespaces.&lt;/p&gt;&#x0A;&lt;p&gt;&lt;strong&gt;Component:&lt;/strong&gt; number of classes in the component, including the classes of its subcomponents.&lt;/p&gt;&#x0A;</description>
+    <description>&lt;p&gt;&lt;strong&gt;Namespace:&lt;/strong&gt; number of classes in the namespace, including the classes of its subnamespaces.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Component:&lt;/strong&gt; number of classes in the component, including the classes of its subcomponents.&lt;/p&gt;
+</description>
     <severity>INFO</severity>
     <tag>sourcemeter</tag>
   </rule>
   <rule>
     <key>MET_TNDI</key>
     <name>Total Number of Directories (TNDI) Metric Threshold Violation</name>
-    <description>&lt;p&gt;&lt;strong&gt;Namespace:&lt;/strong&gt; number of directories that belong to the namespace, including the directories of its subnamespaces.&lt;/p&gt;&#x0A;&lt;p&gt;&lt;strong&gt;Component:&lt;/strong&gt; number of directories that belong to the component, including its subcomponents.&lt;/p&gt;&#x0A;</description>
+    <description>&lt;p&gt;&lt;strong&gt;Namespace:&lt;/strong&gt; number of directories that belong to the namespace, including the directories of its subnamespaces.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Component:&lt;/strong&gt; number of directories that belong to the component, including its subcomponents.&lt;/p&gt;
+</description>
     <severity>INFO</severity>
     <tag>sourcemeter</tag>
   </rule>
   <rule>
     <key>MET_TNEN</key>
     <name>Total Number of Enums (TNEN) Metric Threshold Violation</name>
-    <description>&lt;p&gt;&lt;strong&gt;Namespace:&lt;/strong&gt; number of enums in the namespace, including the enums of its subnamespaces.&lt;/p&gt;&#x0A;&lt;p&gt;&lt;strong&gt;Component:&lt;/strong&gt; number of enums in the component, including the enums of its subcomponents.&lt;/p&gt;&#x0A;</description>
+    <description>&lt;p&gt;&lt;strong&gt;Namespace:&lt;/strong&gt; number of enums in the namespace, including the enums of its subnamespaces.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Component:&lt;/strong&gt; number of enums in the component, including the enums of its subcomponents.&lt;/p&gt;
+</description>
     <severity>INFO</severity>
     <tag>sourcemeter</tag>
   </rule>
   <rule>
     <key>MET_TNFI</key>
     <name>Total Number of Files (TNFI) Metric Threshold Violation</name>
-    <description>&lt;p&gt;&lt;strong&gt;Namespace:&lt;/strong&gt; number of files that belong to the namespace, including the files of its subnamespaces.&lt;/p&gt;&#x0A;&lt;p&gt;&lt;strong&gt;Component:&lt;/strong&gt; number of files that belong to the component, including its subcomponents.&lt;/p&gt;&#x0A;</description>
+    <description>&lt;p&gt;&lt;strong&gt;Namespace:&lt;/strong&gt; number of files that belong to the namespace, including the files of its subnamespaces.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Component:&lt;/strong&gt; number of files that belong to the component, including its subcomponents.&lt;/p&gt;
+</description>
     <severity>INFO</severity>
     <tag>sourcemeter</tag>
   </rule>
   <rule>
     <key>MET_TNG</key>
     <name>Total Number of Getters (TNG) Metric Threshold Violation</name>
-    <description>&lt;p&gt;&lt;strong&gt;Class, Structure:&lt;/strong&gt; number of getter methods in the class, including the inherited ones, as well as the inherited and local getter methods of its nested and anonymous classes.&lt;/p&gt;&#x0A;&lt;p&gt;&lt;strong&gt;Namespace:&lt;/strong&gt; number of getter methods in the namespace, including the getter methods of its subnamespaces.&lt;/p&gt;&#x0A;&lt;p&gt;&lt;strong&gt;Component:&lt;/strong&gt; number of getter methods in the component, including the getter methods of its subcomponents.&lt;/p&gt;&#x0A;</description>
+    <description>&lt;p&gt;&lt;strong&gt;Class, Structure:&lt;/strong&gt; number of getter methods in the class, including the inherited ones, as well as the inherited and local getter methods of its nested and anonymous classes.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Namespace:&lt;/strong&gt; number of getter methods in the namespace, including the getter methods of its subnamespaces.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Component:&lt;/strong&gt; number of getter methods in the component, including the getter methods of its subcomponents.&lt;/p&gt;
+</description>
     <severity>INFO</severity>
     <tag>sourcemeter</tag>
   </rule>
   <rule>
     <key>MET_TNIN</key>
     <name>Total Number of Interfaces (TNIN) Metric Threshold Violation</name>
-    <description>&lt;p&gt;&lt;strong&gt;Namespace:&lt;/strong&gt; number of interfaces in the namespace, including the interfaces of its subnamespaces.&lt;/p&gt;&#x0A;&lt;p&gt;&lt;strong&gt;Component:&lt;/strong&gt; number of interfaces in the component, including the interfaces of its subcomponents.&lt;/p&gt;&#x0A;</description>
+    <description>&lt;p&gt;&lt;strong&gt;Namespace:&lt;/strong&gt; number of interfaces in the namespace, including the interfaces of its subnamespaces.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Component:&lt;/strong&gt; number of interfaces in the component, including the interfaces of its subcomponents.&lt;/p&gt;
+</description>
     <severity>INFO</severity>
     <tag>sourcemeter</tag>
   </rule>
   <rule>
     <key>MET_TNLA</key>
     <name>Total Number of Local Attributes (TNLA) Metric Threshold Violation</name>
-    <description>&lt;p&gt;&lt;strong&gt;Class, Structure:&lt;/strong&gt; number of local (i.e. not inherited) attributes in the class, including the generated ones backing auto properties and also attributes of its nested and anonymous classes.&lt;/p&gt;&#x0A;</description>
+    <description>&lt;p&gt;&lt;strong&gt;Class, Structure:&lt;/strong&gt; number of local (i.e. not inherited) attributes in the class, including the generated ones backing auto properties and also attributes of its nested and anonymous classes.&lt;/p&gt;
+</description>
     <severity>INFO</severity>
     <tag>sourcemeter</tag>
   </rule>
   <rule>
     <key>MET_TNLG</key>
     <name>Total Number of Local Getters (TNLG) Metric Threshold Violation</name>
-    <description>&lt;p&gt;&lt;strong&gt;Class, Structure:&lt;/strong&gt; number of local (i.e. not inherited) getter methods in the class, including the local getter methods of its nested and anonymous classes.&lt;/p&gt;&#x0A;</description>
+    <description>&lt;p&gt;&lt;strong&gt;Class, Structure:&lt;/strong&gt; number of local (i.e. not inherited) getter methods in the class, including the local getter methods of its nested and anonymous classes.&lt;/p&gt;
+</description>
     <severity>INFO</severity>
     <tag>sourcemeter</tag>
   </rule>
   <rule>
     <key>MET_TNLM</key>
     <name>Total Number of Local Methods (TNLM) Metric Threshold Violation</name>
-    <description>&lt;p&gt;&lt;strong&gt;Class, Structure:&lt;/strong&gt; number of local (i.e. not inherited) methods in the class, including the local methods of its nested and anonymous classes.&lt;/p&gt;&#x0A;</description>
+    <description>&lt;p&gt;&lt;strong&gt;Class, Structure:&lt;/strong&gt; number of local (i.e. not inherited) methods in the class, including the local methods of its nested and anonymous classes.&lt;/p&gt;
+</description>
     <severity>INFO</severity>
     <tag>sourcemeter</tag>
   </rule>
   <rule>
     <key>MET_TNLPA</key>
     <name>Total Number of Local Public Attributes (TNLPA) Metric Threshold Violation</name>
-    <description>&lt;p&gt;&lt;strong&gt;Class, Structure:&lt;/strong&gt; number of local (i.e. not inherited) public attributes in the class, including the generated ones backing public auto properties and also local public attributes of its nested and anonymous classes.&lt;/p&gt;&#x0A;</description>
+    <description>&lt;p&gt;&lt;strong&gt;Class, Structure:&lt;/strong&gt; number of local (i.e. not inherited) public attributes in the class, including the generated ones backing public auto properties and also local public attributes of its nested and anonymous classes.&lt;/p&gt;
+</description>
     <severity>INFO</severity>
     <tag>sourcemeter</tag>
   </rule>
   <rule>
     <key>MET_TNLPM</key>
     <name>Total Number of Local Public Methods (TNLPM) Metric Threshold Violation</name>
-    <description>&lt;p&gt;&lt;strong&gt;Class, Structure:&lt;/strong&gt; number of local (i.e. not inherited) public methods in the class, including the local methods of its nested and anonymous classes.&lt;/p&gt;&#x0A;</description>
+    <description>&lt;p&gt;&lt;strong&gt;Class, Structure:&lt;/strong&gt; number of local (i.e. not inherited) public methods in the class, including the local methods of its nested and anonymous classes.&lt;/p&gt;
+</description>
     <severity>INFO</severity>
     <tag>sourcemeter</tag>
   </rule>
   <rule>
     <key>MET_TNLS</key>
     <name>Total Number of Local Setters (TNLS) Metric Threshold Violation</name>
-    <description>&lt;p&gt;&lt;strong&gt;Class, Structure:&lt;/strong&gt; number of local (i.e. not inherited) setter methods in the class, including the local setter methods of its nested and anonymous classes.&lt;/p&gt;&#x0A;</description>
+    <description>&lt;p&gt;&lt;strong&gt;Class, Structure:&lt;/strong&gt; number of local (i.e. not inherited) setter methods in the class, including the local setter methods of its nested and anonymous classes.&lt;/p&gt;
+</description>
     <severity>INFO</severity>
     <tag>sourcemeter</tag>
   </rule>
   <rule>
     <key>MET_TNM</key>
     <name>Total Number of Methods (TNM) Metric Threshold Violation</name>
-    <description>&lt;p&gt;&lt;strong&gt;Class, Structure:&lt;/strong&gt; number of methods in the class, including the inherited ones, as well as the inherited and local methods of its nested and anonymous classes. Methods that override abstract methods are not counted.&lt;/p&gt;&#x0A;&lt;p&gt;&lt;strong&gt;Namespace:&lt;/strong&gt; number of methods in the namespace, including the methods of its subnamespaces.&lt;/p&gt;&#x0A;&lt;p&gt;&lt;strong&gt;Component:&lt;/strong&gt; number of methods in the component, including the methods of its subcomponents.&lt;/p&gt;&#x0A;</description>
+    <description>&lt;p&gt;&lt;strong&gt;Class, Structure:&lt;/strong&gt; number of methods in the class, including the inherited ones, as well as the inherited and local methods of its nested and anonymous classes. Methods that override abstract methods are not counted.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Namespace:&lt;/strong&gt; number of methods in the namespace, including the methods of its subnamespaces.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Component:&lt;/strong&gt; number of methods in the component, including the methods of its subcomponents.&lt;/p&gt;
+</description>
     <severity>INFO</severity>
     <tag>sourcemeter</tag>
   </rule>
   <rule>
     <key>MET_TNOS</key>
     <name>Total Number of Statements (TNOS) Metric Threshold Violation</name>
-    <description>&lt;p&gt;&lt;strong&gt;Method:&lt;/strong&gt; number of statements in the method, including the statements of its anonymous classes.&lt;/p&gt;&#x0A;&lt;p&gt;&lt;strong&gt;Class, Structure:&lt;/strong&gt; number of statements in the class, including the statements of its nested and anonymous classes.&lt;/p&gt;&#x0A;&lt;p&gt;&lt;strong&gt;Namespace:&lt;/strong&gt; number of statements in the namespace, including the statements of its subnamespaces.&lt;/p&gt;&#x0A;&lt;p&gt;&lt;strong&gt;Component:&lt;/strong&gt; number of statements in the component, including the statements of its subcomponents.&lt;/p&gt;&#x0A;</description>
+    <description>&lt;p&gt;&lt;strong&gt;Method:&lt;/strong&gt; number of statements in the method, including the statements of its anonymous classes.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Class, Structure:&lt;/strong&gt; number of statements in the class, including the statements of its nested and anonymous classes.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Namespace:&lt;/strong&gt; number of statements in the namespace, including the statements of its subnamespaces.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Component:&lt;/strong&gt; number of statements in the component, including the statements of its subcomponents.&lt;/p&gt;
+</description>
     <severity>INFO</severity>
     <tag>sourcemeter</tag>
   </rule>
   <rule>
     <key>MET_TNPA</key>
     <name>Total Number of Public Attributes (TNPA) Metric Threshold Violation</name>
-    <description>&lt;p&gt;&lt;strong&gt;Class, Structure:&lt;/strong&gt; number of public attributes in the class, including the inherited ones and the generated ones backing public auto properties as well as the inherited and local public attributes of its nested and anonymous classes.&lt;/p&gt;&#x0A;&lt;p&gt;&lt;strong&gt;Namespace:&lt;/strong&gt; number of public attributes in the namespace, including the public attributes of its subnamespaces.&lt;/p&gt;&#x0A;&lt;p&gt;&lt;strong&gt;Component:&lt;/strong&gt; number of public attributes in the component, including the public attributes of its subcomponents.&lt;/p&gt;&#x0A;</description>
+    <description>&lt;p&gt;&lt;strong&gt;Class, Structure:&lt;/strong&gt; number of public attributes in the class, including the inherited ones and the generated ones backing public auto properties as well as the inherited and local public attributes of its nested and anonymous classes.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Namespace:&lt;/strong&gt; number of public attributes in the namespace, including the public attributes of its subnamespaces.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Component:&lt;/strong&gt; number of public attributes in the component, including the public attributes of its subcomponents.&lt;/p&gt;
+</description>
     <severity>INFO</severity>
     <tag>sourcemeter</tag>
   </rule>
   <rule>
     <key>MET_TNPCL</key>
     <name>Total Number of Public Classes (TNPCL) Metric Threshold Violation</name>
-    <description>&lt;p&gt;&lt;strong&gt;Namespace:&lt;/strong&gt; number of public classes in the namespace, including the public classes of its subnamespaces.&lt;/p&gt;&#x0A;&lt;p&gt;&lt;strong&gt;Component:&lt;/strong&gt; number of public classes in the component, including the public classes of its subcomponents.&lt;/p&gt;&#x0A;</description>
+    <description>&lt;p&gt;&lt;strong&gt;Namespace:&lt;/strong&gt; number of public classes in the namespace, including the public classes of its subnamespaces.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Component:&lt;/strong&gt; number of public classes in the component, including the public classes of its subcomponents.&lt;/p&gt;
+</description>
     <severity>INFO</severity>
     <tag>sourcemeter</tag>
   </rule>
   <rule>
     <key>MET_TNPEN</key>
     <name>Total Number of Public Enums (TNPEN) Metric Threshold Violation</name>
-    <description>&lt;p&gt;&lt;strong&gt;Namespace:&lt;/strong&gt; number of public enums in the namespace, including the public enums of its subnamespaces.&lt;/p&gt;&#x0A;&lt;p&gt;&lt;strong&gt;Component:&lt;/strong&gt; number of public enums in the component, including the public enums of its subcomponents.&lt;/p&gt;&#x0A;</description>
+    <description>&lt;p&gt;&lt;strong&gt;Namespace:&lt;/strong&gt; number of public enums in the namespace, including the public enums of its subnamespaces.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Component:&lt;/strong&gt; number of public enums in the component, including the public enums of its subcomponents.&lt;/p&gt;
+</description>
     <severity>INFO</severity>
     <tag>sourcemeter</tag>
   </rule>
   <rule>
     <key>MET_TNPIN</key>
     <name>Total Number of Public Interfaces (TNPIN) Metric Threshold Violation</name>
-    <description>&lt;p&gt;&lt;strong&gt;Namespace:&lt;/strong&gt; number of public interfaces in the namespace, including the public interfaces of its subnamespaces.&lt;/p&gt;&#x0A;&lt;p&gt;&lt;strong&gt;Component:&lt;/strong&gt; number of public interfaces in the component, including the public interfaces of its subcomponents.&lt;/p&gt;&#x0A;</description>
+    <description>&lt;p&gt;&lt;strong&gt;Namespace:&lt;/strong&gt; number of public interfaces in the namespace, including the public interfaces of its subnamespaces.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Component:&lt;/strong&gt; number of public interfaces in the component, including the public interfaces of its subcomponents.&lt;/p&gt;
+</description>
     <severity>INFO</severity>
     <tag>sourcemeter</tag>
   </rule>
   <rule>
     <key>MET_TNPKG</key>
     <name>Total Number of Packages (TNPKG) Metric Threshold Violation</name>
-    <description>&lt;p&gt;&lt;strong&gt;Namespace:&lt;/strong&gt; number of subnamespaces in the namespace, including all directly or indirectly contained subnamespaces.&lt;/p&gt;&#x0A;&lt;p&gt;&lt;strong&gt;Component:&lt;/strong&gt; number of namespaces and subnamespaces that belong to the component, including its subcomponents.&lt;/p&gt;&#x0A;</description>
+    <description>&lt;p&gt;&lt;strong&gt;Namespace:&lt;/strong&gt; number of subnamespaces in the namespace, including all directly or indirectly contained subnamespaces.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Component:&lt;/strong&gt; number of namespaces and subnamespaces that belong to the component, including its subcomponents.&lt;/p&gt;
+</description>
     <severity>INFO</severity>
     <tag>sourcemeter</tag>
   </rule>
   <rule>
     <key>MET_TNPM</key>
     <name>Total Number of Public Methods (TNPM) Metric Threshold Violation</name>
-    <description>&lt;p&gt;&lt;strong&gt;Class, Structure:&lt;/strong&gt; number of public methods in the class, including the inherited ones, as well as the inherited and local public methods of its nested and anonymous classes.&lt;/p&gt;&#x0A;&lt;p&gt;&lt;strong&gt;Namespace:&lt;/strong&gt; number of public methods in the namespace, including the public methods of its subnamespaces.&lt;/p&gt;&#x0A;&lt;p&gt;&lt;strong&gt;Component:&lt;/strong&gt; number of public methods in the component, including the public methods of its subcomponents.&lt;/p&gt;&#x0A;</description>
+    <description>&lt;p&gt;&lt;strong&gt;Class, Structure:&lt;/strong&gt; number of public methods in the class, including the inherited ones, as well as the inherited and local public methods of its nested and anonymous classes.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Namespace:&lt;/strong&gt; number of public methods in the namespace, including the public methods of its subnamespaces.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Component:&lt;/strong&gt; number of public methods in the component, including the public methods of its subcomponents.&lt;/p&gt;
+</description>
     <severity>INFO</severity>
     <tag>sourcemeter</tag>
   </rule>
   <rule>
     <key>MET_TNPST</key>
     <name>Total Number of Public Structures (TNPST) Metric Threshold Violation</name>
-    <description>&lt;p&gt;&lt;strong&gt;Namespace:&lt;/strong&gt; number of public structures in the namespace, including the public structures of its subnamespaces.&lt;/p&gt;&#x0A;&lt;p&gt;&lt;strong&gt;Component:&lt;/strong&gt; number of public structures in the component, including the public structures of its subcomponents.&lt;/p&gt;&#x0A;</description>
+    <description>&lt;p&gt;&lt;strong&gt;Namespace:&lt;/strong&gt; number of public structures in the namespace, including the public structures of its subnamespaces.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Component:&lt;/strong&gt; number of public structures in the component, including the public structures of its subcomponents.&lt;/p&gt;
+</description>
     <severity>INFO</severity>
     <tag>sourcemeter</tag>
   </rule>
   <rule>
     <key>MET_TNS</key>
     <name>Total Number of Setters (TNS) Metric Threshold Violation</name>
-    <description>&lt;p&gt;&lt;strong&gt;Class, Structure:&lt;/strong&gt; number of setter methods in the class, including the inherited ones, as well as the inherited and local setter methods of its nested and anonymous classes.&lt;/p&gt;&#x0A;&lt;p&gt;&lt;strong&gt;Namespace:&lt;/strong&gt; number of setter methods in the namespace, including the setter methods of its subnamespaces.&lt;/p&gt;&#x0A;&lt;p&gt;&lt;strong&gt;Component:&lt;/strong&gt; number of setter methods in the component, including the setter methods of its subcomponents.&lt;/p&gt;&#x0A;</description>
+    <description>&lt;p&gt;&lt;strong&gt;Class, Structure:&lt;/strong&gt; number of setter methods in the class, including the inherited ones, as well as the inherited and local setter methods of its nested and anonymous classes.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Namespace:&lt;/strong&gt; number of setter methods in the namespace, including the setter methods of its subnamespaces.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Component:&lt;/strong&gt; number of setter methods in the component, including the setter methods of its subcomponents.&lt;/p&gt;
+</description>
     <severity>INFO</severity>
     <tag>sourcemeter</tag>
   </rule>
@@ -492,21 +625,26 @@
   <rule>
     <key>MET_TPDA</key>
     <name>Total Public Documented API (TPDA) Metric Threshold Violation</name>
-    <description>&lt;p&gt;&lt;strong&gt;Namespace:&lt;/strong&gt; the number of the public documented classes and their public documented methods found in the namespace. When calculating the metric, classes and methods found in subnamespaces of the namespace are also taken into account.&lt;/p&gt;&#x0A;&lt;p&gt;&lt;strong&gt;Component:&lt;/strong&gt; the number of public documented classes and public documented methods found in the component, where in calculating the metric, classes and methods to be found in subcomponents of the component are also taken into account.&lt;/p&gt;&#x0A;</description>
+    <description>&lt;p&gt;&lt;strong&gt;Namespace:&lt;/strong&gt; the number of the public documented classes and their public documented methods found in the namespace. When calculating the metric, classes and methods found in subnamespaces of the namespace are also taken into account.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Component:&lt;/strong&gt; the number of public documented classes and public documented methods found in the component, where in calculating the metric, classes and methods to be found in subcomponents of the component are also taken into account.&lt;/p&gt;
+</description>
     <severity>INFO</severity>
     <tag>sourcemeter</tag>
   </rule>
   <rule>
     <key>MET_TPUA</key>
     <name>Total Public Undocumented API (TPUA) Metric Threshold Violation</name>
-    <description>&lt;p&gt;&lt;strong&gt;Namespace:&lt;/strong&gt; the number of the public undocumented classes and their public undocumented methods found in the namespace. When calculating the metric, classes and methods found in subnamespaces of the namespace are also taken into account.&lt;/p&gt;&#x0A;&lt;p&gt;&lt;strong&gt;Component:&lt;/strong&gt; the number of public undocumented classes and public undocumented methods found in the component, where in calculating the metric, classes and methods to be found in subcomponents of the component are also taken into account.&lt;/p&gt;&#x0A;</description>
+    <description>&lt;p&gt;&lt;strong&gt;Namespace:&lt;/strong&gt; the number of the public undocumented classes and their public undocumented methods found in the namespace. When calculating the metric, classes and methods found in subnamespaces of the namespace are also taken into account.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Component:&lt;/strong&gt; the number of public undocumented classes and public undocumented methods found in the component, where in calculating the metric, classes and methods to be found in subcomponents of the component are also taken into account.&lt;/p&gt;
+</description>
     <severity>INFO</severity>
     <tag>sourcemeter</tag>
   </rule>
   <rule>
     <key>MET_WMC</key>
     <name>Weighted Methods per Class (WMC) Metric Threshold Violation</name>
-    <description>&lt;p&gt;&lt;strong&gt;Class, Structure:&lt;/strong&gt; complexity of the class expressed as the number of independent control flow paths in it. It is calculated as the sum of the McCabe’s Cyclomatic Complexity (McCC) values of its local methods.&lt;/p&gt;&#x0A;</description>
+    <description>&lt;p&gt;&lt;strong&gt;Class, Structure:&lt;/strong&gt; complexity of the class expressed as the number of independent control flow paths in it. It is calculated as the sum of the McCabe’s Cyclomatic Complexity (McCC) values of its local methods.&lt;/p&gt;
+</description>
     <severity>INFO</severity>
     <tag>sourcemeter</tag>
   </rule>
@@ -514,6 +652,7 @@
     <key>MET_CA</key>
     <name>Clone Age (CA) Metric Threshold Violation</name>
     <description>&lt;b&gt;Clone class/clone instance:&lt;/b&gt; number of previously analyzed revisions in which the clone class/clone instance was present + 1.</description>
+    <type>BUG</type>
     <severity>INFO</severity>
     <tag>sourcemeter</tag>
   </rule>
@@ -521,6 +660,7 @@
     <key>MET_CC</key>
     <name>Clone Coverage (CC) Metric Threshold Violation</name>
     <description>&lt;b&gt;Method/Interface/Enum/class/Structure/Namespace:&lt;/b&gt; ratio of code covered by code duplications in the source code element to the size of the source code element, expressed in terms of the number of syntactic entities (statements, expressions, etc.).&lt;br&gt;&lt;b&gt;Component:&lt;/b&gt; ratio of code covered by code duplications in the component to the size of the component, expressed in terms of the number of syntactic entities (statements, expressions, etc.).</description>
+    <type>BUG</type>
     <severity>INFO</severity>
     <tag>sourcemeter</tag>
   </rule>
@@ -542,6 +682,7 @@
     <key>MET_CE</key>
     <name>Clone Embeddedness (CE) Metric Threshold Violation</name>
     <description>&lt;b&gt;Clone instance:&lt;/b&gt; sum of incoming and outgoing references (function calls, variable references, type references; different references to the same entity are counted only once) in the code fragment corresponding to the clone instance, weighted with the number of directory changes between the referenced code fragments.&lt;br&gt;&lt;b&gt;Clone class:&lt;/b&gt; sum of CE of the clone instances of the clone class + 1.</description>
+    <type>BUG</type>
     <severity>INFO</severity>
     <tag>sourcemeter</tag>
   </rule>
@@ -563,6 +704,7 @@
     <key>MET_CI</key>
     <name>Clone Instances (CI) Metric Threshold Violation</name>
     <description>&lt;b&gt;Method/class/Namespace:&lt;/b&gt; number of clone instances in the source code element.&lt;br&gt;&lt;b&gt;Component:&lt;/b&gt; number of clone instances in the component.&lt;br&gt;&lt;b&gt;Clone class:&lt;/b&gt; number of clone instances in the clone class.</description>
+    <type>BUG</type>
     <severity>INFO</severity>
     <tag>sourcemeter</tag>
   </rule>
@@ -598,6 +740,7 @@
     <key>MET_CV</key>
     <name>Clone Variability (CV) Metric Threshold Violation</name>
     <description>&lt;b&gt;Clone instance:&lt;/b&gt; instability of the clone instance since it appeared. It is computed as the ratio of the number of previously analyzed revisions when the instance had been changed to its age (CA).&lt;br&gt;&lt;b&gt;Clone class:&lt;/b&gt; instability of the clone class since it appeared. It is computed as the ratio of the number of previously analyzed revisions when its contained instances were moved, deleted, or added, to its age (CA), plus the average CV of its clone instances.</description>
+    <type>BUG</type>
     <severity>INFO</severity>
     <tag>sourcemeter</tag>
   </rule>
@@ -622,8 +765,6 @@
     <type>VULNERABILITY</type>
     <severity>MINOR</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>45min</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>ACPM</key>
@@ -640,14 +781,12 @@
     <type>BUG</type>
     <severity>CRITICAL</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>45min</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>AEC</key>
     <name>Avoid excessive complexity</name>
     <description>&lt;h3&gt;FxCop&lt;/h3&gt;Method implementations that are exceedingly complex increase the challenge of understanding and maintaining code.</description>
-    <type>CODE_SMELL</type>
+    <type>BUG</type>
     <severity>MINOR</severity>
     <tag>sourcemeter</tag>
   </rule>
@@ -666,8 +805,6 @@
     <type>BUG</type>
     <severity>MINOR</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>3h</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>AEL</key>
@@ -676,8 +813,6 @@
     <type>CODE_SMELL</type>
     <severity>MINOR</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>45min</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>AEPOGT</key>
@@ -686,8 +821,6 @@
     <type>CODE_SMELL</type>
     <severity>CRITICAL</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>45min</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>AFSNBRO</key>
@@ -696,8 +829,6 @@
     <type>VULNERABILITY</type>
     <severity>MAJOR</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>45min</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>AIF</key>
@@ -706,8 +837,6 @@
     <type>CODE_SMELL</type>
     <severity>MINOR</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>45min</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>ALTSNBCV</key>
@@ -716,8 +845,6 @@
     <type>BUG</type>
     <severity>CRITICAL</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>45min</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>AMSOCAM</key>
@@ -726,8 +853,6 @@
     <type>VULNERABILITY</type>
     <severity>BLOCKER</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>15min</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>ANFICVVT</key>
@@ -736,8 +861,6 @@
     <type>CODE_SMELL</type>
     <severity>MINOR</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>45min</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>ANWFT</key>
@@ -746,8 +869,6 @@
     <type>CODE_SMELL</type>
     <severity>MINOR</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>45min</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>AOICVI</key>
@@ -756,8 +877,6 @@
     <type>CODE_SMELL</type>
     <severity>MAJOR</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>3h</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>AOP</key>
@@ -766,18 +885,14 @@
     <type>CODE_SMELL</type>
     <severity>MINOR</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>45min</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>ASHVSN</key>
     <name>Assemblies should have valid strong names</name>
-    <description>&lt;h3&gt;FxCop&lt;/h3&gt;Either the assembly has no strong name, an invalid one, or the strong name is valid only because of the computer configuration. The assembly should not be deployed in this state. The most common causes of this are: 1) The assembly&apos;s contents were modified after it was signed. 2) The signing process failed. 3) The assembly was delay-signed. 4) A registry key existed that allowed the check to pass (where it would not have otherwise).</description>
+    <description>&lt;h3&gt;FxCop&lt;/h3&gt;Either the assembly has no strong name, an invalid one, or the strong name is valid only because of the computer configuration. The assembly should not be deployed in this state. The most common causes of this are: 1) The assembly's contents were modified after it was signed. 2) The signing process failed. 3) The assembly was delay-signed. 4) A registry key existed that allowed the check to pass (where it would not have otherwise).</description>
     <type>BUG</type>
     <severity>BLOCKER</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>45min</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>ASLSPC</key>
@@ -786,8 +901,6 @@
     <type>BUG</type>
     <severity>MINOR</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>45min</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>ASMICVT</key>
@@ -796,8 +909,6 @@
     <type>CODE_SMELL</type>
     <severity>MINOR</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>9h</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>ATSNHC</key>
@@ -806,18 +917,14 @@
     <type>BUG</type>
     <severity>MAJOR</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>15min</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>ATSOEABT</key>
     <name>APTCA types should only extend APTCA base types</name>
-    <description>&lt;h3&gt;FxCop&lt;/h3&gt;Types with the AllowPartiallyTrustedCallersAttribute that extend types without that attribute might unintentionally expose functionality in the base type to partially trusted callers. When a type has the AllowPartiallyTrustedCallersAttribute set, it is callable by partially trusted code. If the base type does not have this attribute, it requires callers to be fully trusted. If the derived type exposes protected members in the base type, the base type&apos;s data is made accessible to partially trusted callers, creating an exploitable security weakness.</description>
+    <description>&lt;h3&gt;FxCop&lt;/h3&gt;Types with the AllowPartiallyTrustedCallersAttribute that extend types without that attribute might unintentionally expose functionality in the base type to partially trusted callers. When a type has the AllowPartiallyTrustedCallersAttribute set, it is callable by partially trusted code. If the base type does not have this attribute, it requires callers to be fully trusted. If the derived type exposes protected members in the base type, the base type's data is made accessible to partially trusted callers, creating an exploitable security weakness.</description>
     <type>VULNERABILITY</type>
     <severity>BLOCKER</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>45min</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>AUA</key>
@@ -826,8 +933,6 @@
     <type>CODE_SMELL</type>
     <severity>MINOR</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>45min</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>AUC</key>
@@ -844,8 +949,6 @@
     <type>CODE_SMELL</type>
     <severity>MINOR</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>3h</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>AUPC</key>
@@ -854,8 +957,6 @@
     <type>CODE_SMELL</type>
     <severity>MINOR</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>3h</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>AUPF</key>
@@ -864,8 +965,6 @@
     <type>CODE_SMELL</type>
     <severity>MINOR</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>45min</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>AVEXIN</key>
@@ -882,8 +981,6 @@
     <type>VULNERABILITY</type>
     <severity>MAJOR</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>45min</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>CAWUNR</key>
@@ -892,8 +989,6 @@
     <type>VULNERABILITY</type>
     <severity>MINOR</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>3h</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>CBCMOT</key>
@@ -902,8 +997,6 @@
     <type>BUG</type>
     <severity>CRITICAL</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>45min</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>CEMSBO</key>
@@ -912,8 +1005,6 @@
     <type>VULNERABILITY</type>
     <severity>MAJOR</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>15min</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>CEPSBS</key>
@@ -922,8 +1013,6 @@
     <type>VULNERABILITY</type>
     <severity>MAJOR</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>15min</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>CFC</key>
@@ -932,8 +1021,6 @@
     <type>BUG</type>
     <severity>MAJOR</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>45min</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>CGLEIA</key>
@@ -942,8 +1029,6 @@
     <type>BUG</type>
     <severity>CRITICAL</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>45min</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>CNCCEIGH</key>
@@ -952,18 +1037,14 @@
     <type>VULNERABILITY</type>
     <severity>CRITICAL</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>9h</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>CPBTAP</key>
     <name>Consider passing base types as parameters</name>
-    <description>&lt;h3&gt;FxCop&lt;/h3&gt;Using base types as parameters to methods improves re-use of these methods if you only use methods &amp; properties from the parameter&apos;s base class. E.g. use Stream instead of FileStream as a parameter when only calling Stream.Read(), this makes the method work on all kind of streams instead of just File streams.</description>
+    <description>&lt;h3&gt;FxCop&lt;/h3&gt;Using base types as parameters to methods improves re-use of these methods if you only use methods &amp; properties from the parameter's base class. E.g. use Stream instead of FileStream as a parameter when only calling Stream.Read(), this makes the method work on all kind of streams instead of just File streams.</description>
     <type>CODE_SMELL</type>
     <severity>CRITICAL</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>45min</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>CPSBRO</key>
@@ -972,8 +1053,6 @@
     <type>BUG</type>
     <severity>MINOR</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>3h</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>CRMSBM</key>
@@ -982,8 +1061,6 @@
     <type>BUG</type>
     <severity>MAJOR</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>3h</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>CRMSNBV</key>
@@ -992,8 +1069,6 @@
     <type>VULNERABILITY</type>
     <severity>MAJOR</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>45min</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>CSBT</key>
@@ -1002,8 +1077,6 @@
     <type>BUG</type>
     <severity>MINOR</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>45min</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>CSIGI</key>
@@ -1012,8 +1085,6 @@
     <type>CODE_SMELL</type>
     <severity>CRITICAL</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>45min</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>CTMNPITE</key>
@@ -1022,8 +1093,6 @@
     <type>BUG</type>
     <severity>BLOCKER</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>45min</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>CVTBTSBCV</key>
@@ -1032,8 +1101,6 @@
     <type>BUG</type>
     <severity>CRITICAL</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>3h</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>CVTSBC</key>
@@ -1042,18 +1109,14 @@
     <type>BUG</type>
     <severity>CRITICAL</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>45min</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>CWSBCC</key>
     <name>Compound words should be cased correctly</name>
-    <description>&lt;h3&gt;FxCop&lt;/h3&gt;Avoid creating compound words from terms which exist in the dictionary as discrete terms. Do not create a compound word such as &apos;StopWatch&apos; or &apos;PopUp&apos;. These terms are recognized in the dictionary and should be cased as &apos;Stopwatch&apos; and &apos;Popup&apos;.</description>
+    <description>&lt;h3&gt;FxCop&lt;/h3&gt;Avoid creating compound words from terms which exist in the dictionary as discrete terms. Do not create a compound word such as 'StopWatch' or 'PopUp'. These terms are recognized in the dictionary and should be cased as 'Stopwatch' and 'Popup'.</description>
     <type>CODE_SMELL</type>
     <severity>CRITICAL</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>15min</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>DAFAA</key>
@@ -1062,8 +1125,6 @@
     <type>BUG</type>
     <severity>CRITICAL</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>45min</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>DC</key>
@@ -1072,8 +1133,6 @@
     <type>BUG</type>
     <severity>BLOCKER</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>3h</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>DCMBD</key>
@@ -1082,38 +1141,30 @@
     <type>VULNERABILITY</type>
     <severity>BLOCKER</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>15min</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>DCMHCT</key>
     <name>Default constructors must be at least as critical as base type default constructors</name>
-    <description>&lt;h3&gt;FxCop&lt;/h3&gt;On CoreCLR, if a base type has a public or protected non-transparent default constructor than the derived type must obey default constructor inheritance rules.  The derived type must also have a default constructor and that constructor must be at least as critical as the base type&apos;s default constructor.  If the base type&apos;s default constructor is safe-critical, the derived type&apos;s default constructor must be safe-critical or critical.  If the base type&apos;s default constructor is critical, then the derived type&apos;s default constructor must also be critical.</description>
+    <description>&lt;h3&gt;FxCop&lt;/h3&gt;On CoreCLR, if a base type has a public or protected non-transparent default constructor than the derived type must obey default constructor inheritance rules.  The derived type must also have a default constructor and that constructor must be at least as critical as the base type's default constructor.  If the base type's default constructor is safe-critical, the derived type's default constructor must be safe-critical or critical.  If the base type's default constructor is critical, then the derived type's default constructor must also be critical.</description>
     <type>BUG</type>
     <severity>BLOCKER</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>3h</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>DEHC</key>
     <name>Declare event handlers correctly</name>
-    <description>&lt;h3&gt;FxCop&lt;/h3&gt;By convention, .NET events have two parameters that specify the event sender and event data. Event handler signatures should follow this form: void MyEventHandler(object sender, EventArgs e). The &apos;sender&apos; parameter is always of type System.Object, even if it is possible to employ a more specific type. The &apos;e&apos; parameter is always of type System.EventArgs. Events that do not provide event data should use the System.EventHandler delegate type. Event handlers return void so that they can send each event to multiple target methods. Any value returned by a target would be lost after the first call.</description>
+    <description>&lt;h3&gt;FxCop&lt;/h3&gt;By convention, .NET events have two parameters that specify the event sender and event data. Event handler signatures should follow this form: void MyEventHandler(object sender, EventArgs e). The 'sender' parameter is always of type System.Object, even if it is possible to employ a more specific type. The 'e' parameter is always of type System.EventArgs. Events that do not provide event data should use the System.EventHandler delegate type. Event handlers return void so that they can send each event to multiple target methods. Any value returned by a target would be lost after the first call.</description>
     <type>BUG</type>
     <severity>CRITICAL</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>3h</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>DFSBD</key>
     <name>Disposable fields should be disposed</name>
-    <description>&lt;h3&gt;FxCop&lt;/h3&gt;If a type that implements IDisposable owns fields that also implement IDisposable, the encapsulating type&apos;s Dispose() implementation should call Dispose() on each disposable field.</description>
+    <description>&lt;h3&gt;FxCop&lt;/h3&gt;If a type that implements IDisposable owns fields that also implement IDisposable, the encapsulating type's Dispose() implementation should call Dispose() on each disposable field.</description>
     <type>VULNERABILITY</type>
     <severity>MINOR</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>45min</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>DMBWCT</key>
@@ -1122,8 +1173,6 @@
     <type>BUG</type>
     <severity>BLOCKER</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>45min</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>DNCGET</key>
@@ -1132,8 +1181,6 @@
     <type>BUG</type>
     <severity>BLOCKER</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>3h</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>DNCOMIC</key>
@@ -1142,8 +1189,6 @@
     <type>BUG</type>
     <severity>MAJOR</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>9h</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>DNCU</key>
@@ -1152,8 +1197,6 @@
     <type>CODE_SMELL</type>
     <severity>MINOR</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>45min</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>DNDIMV</key>
@@ -1162,8 +1205,6 @@
     <type>BUG</type>
     <severity>CRITICAL</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>45min</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>DNDPMIST</key>
@@ -1172,18 +1213,14 @@
     <type>BUG</type>
     <severity>CRITICAL</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>45min</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>DNDROMRT</key>
     <name>Do not declare read only mutable reference types</name>
-    <description>&lt;h3&gt;FxCop&lt;/h3&gt;A read-only declaration for a mutable reference type does not prevent the field&apos;s instance data from being modified. For example, a read-only StringBuilder field declaration does not make sense, since the data encapsulated by the StringBuilder can be modified using the read-only reference.</description>
+    <description>&lt;h3&gt;FxCop&lt;/h3&gt;A read-only declaration for a mutable reference type does not prevent the field's instance data from being modified. For example, a read-only StringBuilder field declaration does not make sense, since the data encapsulated by the StringBuilder can be modified using the read-only reference.</description>
     <type>BUG</type>
     <severity>CRITICAL</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>3h</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>DNDSMOGT</key>
@@ -1192,8 +1229,6 @@
     <type>BUG</type>
     <severity>CRITICAL</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>45min</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>DNDVIF</key>
@@ -1202,8 +1237,6 @@
     <type>BUG</type>
     <severity>CRITICAL</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>3h</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>DNDVMIST</key>
@@ -1212,8 +1245,6 @@
     <type>BUG</type>
     <severity>CRITICAL</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>45min</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>DNEGL</key>
@@ -1222,8 +1253,6 @@
     <type>BUG</type>
     <severity>CRITICAL</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>3h</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>DNHBCM</key>
@@ -1232,8 +1261,6 @@
     <type>BUG</type>
     <severity>MAJOR</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>45min</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>DNHLSS</key>
@@ -1242,8 +1269,6 @@
     <type>BUG</type>
     <severity>CRITICAL</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>3h</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>DNIEMWLD</key>
@@ -1252,8 +1277,6 @@
     <type>VULNERABILITY</type>
     <severity>BLOCKER</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>9h</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>DNIMR</key>
@@ -1262,13 +1285,11 @@
     <type>BUG</type>
     <severity>MINOR</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>3h</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>DNLOOWWI</key>
     <name>Do not lock on objects with weak identity</name>
-    <description>&lt;h3&gt;FxCop&lt;/h3&gt;Don&apos;t take locks on objects that may bleed across AppDomains or that don&apos;t have a strong identity.</description>
+    <description>&lt;h3&gt;FxCop&lt;/h3&gt;Don't take locks on objects that may bleed across AppDomains or that don't have a strong identity.</description>
     <type>VULNERABILITY</type>
     <severity>BLOCKER</severity>
     <tag>sourcemeter</tag>
@@ -1276,12 +1297,10 @@
   <rule>
     <key>DNMEWF</key>
     <name>Do not mark enums with FlagsAttribute</name>
-    <description>&lt;h3&gt;FxCop&lt;/h3&gt;The enumeration does not appear to contain a consistent set values that can be combined using  the OR (|) and AND (&amp;amp;amp;) operators. Using the Flags attribute on an enumeration suggests that the enumeration values are meant to be combined using the AND and OR operators. Typically, a flags enumeration uses values that are either powers of two, or combine other values that are powers of two.</description>
+    <description>&lt;h3&gt;FxCop&lt;/h3&gt;The enumeration does not appear to contain a consistent set values that can be combined using  the OR (|) and AND (&amp;amp;) operators. Using the Flags attribute on an enumeration suggests that the enumeration values are meant to be combined using the AND and OR operators. Typically, a flags enumeration uses values that are either powers of two, or combine other values that are powers of two.</description>
     <type>BUG</type>
     <severity>CRITICAL</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>45min</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>DNMSCWWM</key>
@@ -1290,18 +1309,14 @@
     <type>BUG</type>
     <severity>MAJOR</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>3h</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>DNNEVR</key>
-    <name>Do not name enum values &apos;Reserved&apos;</name>
-    <description>&lt;h3&gt;FxCop&lt;/h3&gt;Avoid naming an enum value &apos;Reserved&apos;. Adding &apos;Reserved&apos; values will lead to a breaking change on removal when the value is actually used in a later version of the product.</description>
+    <name>Do not name enum values 'Reserved'</name>
+    <description>&lt;h3&gt;FxCop&lt;/h3&gt;Avoid naming an enum value 'Reserved'. Adding 'Reserved' values will lead to a breaking change on removal when the value is actually used in a later version of the product.</description>
     <type>CODE_SMELL</type>
     <severity>CRITICAL</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>45min</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>DNNGTIMS</key>
@@ -1310,8 +1325,6 @@
     <type>BUG</type>
     <severity>BLOCKER</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>9h</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>DNOOEORT</key>
@@ -1320,8 +1333,6 @@
     <type>CODE_SMELL</type>
     <severity>MINOR</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>45min</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>DNPEVWTN</key>
@@ -1330,8 +1341,6 @@
     <type>CODE_SMELL</type>
     <severity>CRITICAL</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>15min</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>DNPTBR</key>
@@ -1340,8 +1349,6 @@
     <type>CODE_SMELL</type>
     <severity>MINOR</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>3h</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>DNREIEC</key>
@@ -1350,8 +1357,6 @@
     <type>BUG</type>
     <severity>CRITICAL</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>3h</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>DNREIUL</key>
@@ -1360,8 +1365,6 @@
     <type>BUG</type>
     <severity>CRITICAL</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>3h</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>DNRRET</key>
@@ -1370,8 +1373,6 @@
     <type>BUG</type>
     <severity>CRITICAL</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>3h</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>DNSURF</key>
@@ -1380,13 +1381,12 @@
     <type>VULNERABILITY</type>
     <severity>CRITICAL</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>3h</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>DNTFAT</key>
     <name>Do not treat fibers as threads</name>
-    <description>&lt;h3&gt;FxCop&lt;/h3&gt;Do not assume a managed thread is a Win32 thread - it could be a fiber. The runtime will run managed threads as fibers on top of real threads owned by SQL Server. These threads will be shared across AppDomains and even databases in the SQL Server process. Using managed thread local storage will work, but you may not use unmanaged thread local storage or assume your code will run on the current OS thread again. Do not change settings like the thread&apos;s locale. Do not call CreateCriticalSection or CreateMutex via P/Invoke because they require the thread that enters a lock also exit the lock. Since this will not be the case when using fibers, Win32 critical sections and mutexes will be useless in SQL Server.&#x0A;You may safely use most of the state on a managed System.Thread object, including managed thread local storage and the thread&apos;s current UI culture. For programming model reasons, you will not be able to change a thread&apos;s current culture when running in SQL Server though (this will be enforced through a new permission).</description>
+    <description>&lt;h3&gt;FxCop&lt;/h3&gt;Do not assume a managed thread is a Win32 thread - it could be a fiber. The runtime will run managed threads as fibers on top of real threads owned by SQL Server. These threads will be shared across AppDomains and even databases in the SQL Server process. Using managed thread local storage will work, but you may not use unmanaged thread local storage or assume your code will run on the current OS thread again. Do not change settings like the thread's locale. Do not call CreateCriticalSection or CreateMutex via P/Invoke because they require the thread that enters a lock also exit the lock. Since this will not be the case when using fibers, Win32 critical sections and mutexes will be useless in SQL Server.
+You may safely use most of the state on a managed System.Thread object, including managed thread local storage and the thread's current UI culture. For programming model reasons, you will not be able to change a thread's current culture when running in SQL Server though (this will be enforced through a new permission).</description>
     <type>BUG</type>
     <severity>CRITICAL</severity>
     <tag>sourcemeter</tag>
@@ -1398,8 +1398,6 @@
     <type>BUG</type>
     <severity>BLOCKER</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>3h</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>DNUIPP</key>
@@ -1408,8 +1406,6 @@
     <type>BUG</type>
     <severity>CRITICAL</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>45min</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>DNUTTPPSC</key>
@@ -1418,8 +1414,6 @@
     <type>BUG</type>
     <severity>CRITICAL</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>3h</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>DPSNBU</key>
@@ -1428,8 +1422,6 @@
     <type>BUG</type>
     <severity>CRITICAL</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>45min</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>DTIN</key>
@@ -1438,8 +1430,6 @@
     <type>BUG</type>
     <severity>CRITICAL</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>45min</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>DTSDF</key>
@@ -1448,8 +1438,6 @@
     <type>BUG</type>
     <severity>CRITICAL</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>45min</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>ECARSBT</key>
@@ -1458,8 +1446,6 @@
     <type>VULNERABILITY</type>
     <severity>MINOR</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>15min</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>EEVSBT</key>
@@ -1468,8 +1454,6 @@
     <type>VULNERABILITY</type>
     <severity>MAJOR</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>15min</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>ESBP</key>
@@ -1478,8 +1462,6 @@
     <type>BUG</type>
     <severity>MINOR</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>3h</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>ESBST</key>
@@ -1488,38 +1470,30 @@
     <type>BUG</type>
     <severity>CRITICAL</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>45min</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>ESHZV</key>
     <name>Enums should have zero value</name>
-    <description>&lt;h3&gt;FxCop&lt;/h3&gt;An enum should generally have a zero value. If the enum is not decorated with the Flags attribute, it should have a member with a value of zero that represents the empty state. Optionally, this value is named &apos;None&apos;. For a Flags-attributed enum, a zero-valued member is optional and, if it exists, should always be named &apos;None&apos;. This value should indicate that no values have been set in the enum. Using a zero-valued member for other purposes is contrary to the use of the Flags attribute in that the bitwise AND and OR operators are useless with the member.</description>
+    <description>&lt;h3&gt;FxCop&lt;/h3&gt;An enum should generally have a zero value. If the enum is not decorated with the Flags attribute, it should have a member with a value of zero that represents the empty state. Optionally, this value is named 'None'. For a Flags-attributed enum, a zero-valued member is optional and, if it exists, should always be named 'None'. This value should indicate that no values have been set in the enum. Using a zero-valued member for other purposes is contrary to the use of the Flags attribute in that the bitwise AND and OR operators are useless with the member.</description>
     <type>VULNERABILITY</type>
     <severity>BLOCKER</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>45min</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>ESNHBOAP</key>
     <name>Events should not have before or after prefix</name>
-    <description>&lt;h3&gt;FxCop&lt;/h3&gt;Use present and past tense for pre-events and post-events, instead of using &apos;Before&apos; and &apos;After&apos;. For example, use Closing and Closed rather than BeforeClose and AfterClose.</description>
+    <description>&lt;h3&gt;FxCop&lt;/h3&gt;Use present and past tense for pre-events and post-events, instead of using 'Before' and 'After'. For example, use Closing and Closed rather than BeforeClose and AfterClose.</description>
     <type>CODE_SMELL</type>
     <severity>CRITICAL</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>45min</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>ESSBI</key>
     <name>Enum storage should be Int32</name>
-    <description>&lt;h3&gt;FxCop&lt;/h3&gt;There is little or no benefit to using a type smaller than Int32. You might require a type that is larger than Int32 if: 1) the enumeration values are flags and there are or will be many (&amp;amp;gt;32) values, or 2) the type needs to be different from Int32 for backward compatibility. Avoid using an underlying type that is not integral.</description>
+    <description>&lt;h3&gt;FxCop&lt;/h3&gt;There is little or no benefit to using a type smaller than Int32. You might require a type that is larger than Int32 if: 1) the enumeration values are flags and there are or will be many (&amp;gt;32) values, or 2) the type needs to be different from Int32 for backward compatibility. Avoid using an underlying type that is not integral.</description>
     <type>CODE_SMELL</type>
     <severity>MINOR</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>3h</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>EVSMSBT</key>
@@ -1528,17 +1502,14 @@
     <type>VULNERABILITY</type>
     <severity>MAJOR</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>15min</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>EVSSBT</key>
     <name>EnableViewStateShouldBeTrue</name>
     <description>&lt;h3&gt;FxCop&lt;/h3&gt;Rule that will identify if the EnableViewStateRule is not set to false on a certain page.</description>
     <type>VULNERABILITY</type>
+    <severity>INFO</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>15min</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>FAPSBA</key>
@@ -1547,8 +1518,6 @@
     <type>VULNERABILITY</type>
     <severity>MAJOR</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>15min</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>FARBT</key>
@@ -1557,8 +1526,6 @@
     <type>VULNERABILITY</type>
     <severity>MAJOR</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>15min</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>FASESBF</key>
@@ -1567,8 +1534,6 @@
     <type>VULNERABILITY</type>
     <severity>MINOR</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>15min</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>FASNCFAC</key>
@@ -1577,8 +1542,6 @@
     <type>VULNERABILITY</type>
     <severity>BLOCKER</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>15min</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>FESHPN</key>
@@ -1587,8 +1550,6 @@
     <type>CODE_SMELL</type>
     <severity>CRITICAL</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>45min</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>FSBP</key>
@@ -1597,18 +1558,14 @@
     <type>BUG</type>
     <severity>BLOCKER</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>45min</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>FSCBCF</key>
     <name>Finalizers should call base class finalizer</name>
-    <description>&lt;h3&gt;FxCop&lt;/h3&gt;The Finalize method should call its base class&apos; Finalize method. This is done automatically with the C# destructor syntax.</description>
+    <description>&lt;h3&gt;FxCop&lt;/h3&gt;The Finalize method should call its base class' Finalize method. This is done automatically with the C# destructor syntax.</description>
     <type>BUG</type>
     <severity>BLOCKER</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>3h</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>FWCTSBC</key>
@@ -1621,12 +1578,10 @@
   <rule>
     <key>GMSPTP</key>
     <name>Generic methods should provide type parameter</name>
-    <description>&lt;h3&gt;FxCop&lt;/h3&gt;Methods where the type parameter cannot be inferred from the parameters and therefore has to be defined in the method call are too difficult to understand. Methods with a formal parameter typed as the generic method type parameter support inference. Methods with no formal parameter typed as the generic method type parameter don&apos;t support inference.</description>
+    <description>&lt;h3&gt;FxCop&lt;/h3&gt;Methods where the type parameter cannot be inferred from the parameters and therefore has to be defined in the method call are too difficult to understand. Methods with a formal parameter typed as the generic method type parameter support inference. Methods with no formal parameter typed as the generic method type parameter don't support inference.</description>
     <type>BUG</type>
     <severity>MINOR</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>45min</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>HCHOCSBT</key>
@@ -1635,8 +1590,6 @@
     <type>VULNERABILITY</type>
     <severity>MAJOR</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>15min</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>HCRBT</key>
@@ -1645,8 +1598,6 @@
     <type>VULNERABILITY</type>
     <severity>MAJOR</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>15min</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>HREHCSBT</key>
@@ -1655,8 +1606,6 @@
     <type>VULNERABILITY</type>
     <severity>MAJOR</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>15min</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>IAEC</key>
@@ -1665,8 +1614,6 @@
     <type>BUG</type>
     <severity>BLOCKER</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>3h</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>IC</key>
@@ -1675,8 +1622,6 @@
     <type>BUG</type>
     <severity>CRITICAL</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>3h</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>IIHSTM</key>
@@ -1685,8 +1630,6 @@
     <type>BUG</type>
     <severity>CRITICAL</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>3h</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>IMCO</key>
@@ -1703,8 +1646,6 @@
     <type>BUG</type>
     <severity>CRITICAL</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>3h</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>IRTSFI</key>
@@ -1713,18 +1654,14 @@
     <type>CODE_SMELL</type>
     <severity>MAJOR</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>45min</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>ISBCC</key>
     <name>Identifiers should be cased correctly</name>
-    <description>&lt;h3&gt;FxCop&lt;/h3&gt;Type, namespace, and member identifiers are Pascal-cased. Parameter identifiers are camel-cased. Two letter acronyms within these identifiers should be upper-cased, for example, use System.IO instead of System.Io. Acronyms of three or more letters should be Pascal-cased, for example, use System.Xml instead of System.XML. The pascal-casing convention capitalizes the first letter of each word, as in BackColor. The camel-casing convention formats the first letter of the first word in lowercase and capitalizes the first letter of all subsequent words, as in backgroundColor. Although it may be common practice for some two letter acronyms to not be fully capitalized, violations of this rule should not be excluded for this reason. For example, &apos;DbConnection&apos;, is common but incorrect; use DBConnection. A violation of this rule might be required for compatibility with existing, non-managed symbol schemes. In general, however, these symbols should not be visible outside the assembly that uses them.</description>
+    <description>&lt;h3&gt;FxCop&lt;/h3&gt;Type, namespace, and member identifiers are Pascal-cased. Parameter identifiers are camel-cased. Two letter acronyms within these identifiers should be upper-cased, for example, use System.IO instead of System.Io. Acronyms of three or more letters should be Pascal-cased, for example, use System.Xml instead of System.XML. The pascal-casing convention capitalizes the first letter of each word, as in BackColor. The camel-casing convention formats the first letter of the first word in lowercase and capitalizes the first letter of all subsequent words, as in backgroundColor. Although it may be common practice for some two letter acronyms to not be fully capitalized, violations of this rule should not be excluded for this reason. For example, 'DbConnection', is common but incorrect; use DBConnection. A violation of this rule might be required for compatibility with existing, non-managed symbol schemes. In general, however, these symbols should not be visible outside the assembly that uses them.</description>
     <type>CODE_SMELL</type>
     <severity>CRITICAL</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>15min</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>ISBSC</key>
@@ -1733,8 +1670,6 @@
     <type>CODE_SMELL</type>
     <severity>MAJOR</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>15min</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>ISC</key>
@@ -1743,8 +1678,6 @@
     <type>BUG</type>
     <severity>CRITICAL</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>45min</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>ISDBMTC</key>
@@ -1753,8 +1686,6 @@
     <type>BUG</type>
     <severity>CRITICAL</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>15min</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>ISEC</key>
@@ -1763,28 +1694,22 @@
     <type>BUG</type>
     <severity>CRITICAL</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>3h</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>ISHCP</key>
     <name>Identifiers should have correct prefix</name>
-    <description>&lt;h3&gt;FxCop&lt;/h3&gt;Prefix interface names with the letter &apos;I&apos; to indicate that the type is an interface, as in IFormattable. Prefix generic type parameter names with the letter &apos;T&apos; and provide them with descriptive names, as in Dictionary&lt;TKey, TValue&gt;, unless a single &apos;T&apos; is completely self-explanatory, as in Collection&lt;T&gt;. Use Pascal casing for both interface and type parameter names. Use abbreviations sparingly. Do not use the underscore character. Do use similar names when defining a class/interface pair where the class is a standard implementation of the interface. The names should differ only by the letter I prefixed on the interface name, as with Component and IComponent.</description>
+    <description>&lt;h3&gt;FxCop&lt;/h3&gt;Prefix interface names with the letter 'I' to indicate that the type is an interface, as in IFormattable. Prefix generic type parameter names with the letter 'T' and provide them with descriptive names, as in Dictionary&lt;TKey, TValue&gt;, unless a single 'T' is completely self-explanatory, as in Collection&lt;T&gt;. Use Pascal casing for both interface and type parameter names. Use abbreviations sparingly. Do not use the underscore character. Do use similar names when defining a class/interface pair where the class is a standard implementation of the interface. The names should differ only by the letter I prefixed on the interface name, as with Component and IComponent.</description>
     <type>CODE_SMELL</type>
     <severity>CRITICAL</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>15min</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>ISHCS</key>
     <name>Identifiers should have correct suffix</name>
-    <description>&lt;h3&gt;FxCop&lt;/h3&gt;Types that extend certain base types have specified name suffixes. Types that extend Attribute, for example, should be suffixed in &apos;Attribute&apos;, as in ObsoleteAttribute. This rules checks types that extend several base types, including Attribute, Exception, EventArgs, IMembershipPermission, Stream, and others.</description>
+    <description>&lt;h3&gt;FxCop&lt;/h3&gt;Types that extend certain base types have specified name suffixes. Types that extend Attribute, for example, should be suffixed in 'Attribute', as in ObsoleteAttribute. This rules checks types that extend several base types, including Attribute, Exception, EventArgs, IMembershipPermission, Stream, and others.</description>
     <type>CODE_SMELL</type>
     <severity>CRITICAL</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>15min</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>ISMC</key>
@@ -1793,8 +1718,6 @@
     <type>BUG</type>
     <severity>CRITICAL</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>3h</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>ISNBM</key>
@@ -1803,18 +1726,14 @@
     <type>CODE_SMELL</type>
     <severity>MINOR</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>3h</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>ISNCTN</key>
     <name>Identifiers should not contain type names</name>
-    <description>&lt;h3&gt;FxCop&lt;/h3&gt;Avoid using language-specific types name in parameters and members and data type identifiers in parameters. Types names might not be intuitive for all developers. It is recommended that you select a generic name, such as &apos;value&apos;, instead. If this is not sufficient, be sure to use the type name as it is defined in the .NET Framework Library and avoid language-specific type names completely. Some examples of C#-specific type names are &apos;float&apos; (use &apos;Single&apos; if a generic name is not sufficient), and &apos;ulong&apos; (use &apos;UInt64&apos; if a generic name is not sufficient).</description>
+    <description>&lt;h3&gt;FxCop&lt;/h3&gt;Avoid using language-specific types name in parameters and members and data type identifiers in parameters. Types names might not be intuitive for all developers. It is recommended that you select a generic name, such as 'value', instead. If this is not sufficient, be sure to use the type name as it is defined in the .NET Framework Library and avoid language-specific type names completely. Some examples of C#-specific type names are 'float' (use 'Single' if a generic name is not sufficient), and 'ulong' (use 'UInt64' if a generic name is not sufficient).</description>
     <type>CODE_SMELL</type>
     <severity>CRITICAL</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>15min</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>ISNCU</key>
@@ -1823,28 +1742,22 @@
     <type>CODE_SMELL</type>
     <severity>CRITICAL</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>15min</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>ISNHIP</key>
     <name>Identifiers should not have incorrect prefix</name>
-    <description>&lt;h3&gt;FxCop&lt;/h3&gt;Do not use &apos;C&apos; as a prefix for type names. Do not use any prefix for naming types. Consider using the name of the base class as the suffix when naming derived types. For example: ApplicationException is a kind of Exception. SerializableAttribute is a kind of Attribute.</description>
+    <description>&lt;h3&gt;FxCop&lt;/h3&gt;Do not use 'C' as a prefix for type names. Do not use any prefix for naming types. Consider using the name of the base class as the suffix when naming derived types. For example: ApplicationException is a kind of Exception. SerializableAttribute is a kind of Attribute.</description>
     <type>BUG</type>
     <severity>CRITICAL</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>15min</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>ISNHIS</key>
     <name>Identifiers should not have incorrect suffix</name>
-    <description>&lt;h3&gt;FxCop&lt;/h3&gt;Types that do not extend certain base types should not use reserved name suffixes. Types and members should not use &apos;Ex&apos; or &apos;New&apos; to distinguish them from an earlier version of the same API, instead, use a numeric suffix such as &apos;2&apos; or provide a more meaningful suffix. Concrete type implementations and members should not end &apos;Impl&apos;. Members instead, should either consider using the suggested alternate &apos;Core&apos; in replacement of &apos;Impl&apos; or avoid any suffix at all.</description>
+    <description>&lt;h3&gt;FxCop&lt;/h3&gt;Types that do not extend certain base types should not use reserved name suffixes. Types and members should not use 'Ex' or 'New' to distinguish them from an earlier version of the same API, instead, use a numeric suffix such as '2' or provide a more meaningful suffix. Concrete type implementations and members should not end 'Impl'. Members instead, should either consider using the suggested alternate 'Core' in replacement of 'Impl' or avoid any suffix at all.</description>
     <type>BUG</type>
     <severity>BLOCKER</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>15min</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>ISNMK</key>
@@ -1853,18 +1766,14 @@
     <type>BUG</type>
     <severity>CRITICAL</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>15min</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>IVTSFI</key>
     <name>Initialize value type static fields inline</name>
-    <description>&lt;h3&gt;FxCop&lt;/h3&gt;Do not declare explicit static constructors on value types. Initializing static data in explicit static constructors results in a value type that is not marked in metadata as &apos;beforefieldinit&apos;. In this case, the static constructor is not always guaranteed to be called before instance members on the value type are called.</description>
+    <description>&lt;h3&gt;FxCop&lt;/h3&gt;Do not declare explicit static constructors on value types. Initializing static data in explicit static constructors results in a value type that is not marked in metadata as 'beforefieldinit'. In this case, the static constructor is not always guaranteed to be called before instance members on the value type are called.</description>
     <type>BUG</type>
     <severity>BLOCKER</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>3h</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>LAST</key>
@@ -1873,8 +1782,6 @@
     <type>BUG</type>
     <severity>CRITICAL</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>9h</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>MANSF</key>
@@ -1883,8 +1790,6 @@
     <type>BUG</type>
     <severity>CRITICAL</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>45min</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>MAWAU</key>
@@ -1893,18 +1798,14 @@
     <type>BUG</type>
     <severity>CRITICAL</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>3h</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>MAWAV</key>
     <name>Mark assemblies with AssemblyVersionAttribute</name>
-    <description>&lt;h3&gt;FxCop&lt;/h3&gt;Assemblies should use version numbers. The version number is considered part of an assembly&apos;s identity. Versioning is applied by means of the AssemblyVersion attribute.</description>
+    <description>&lt;h3&gt;FxCop&lt;/h3&gt;Assemblies should use version numbers. The version number is considered part of an assembly's identity. Versioning is applied by means of the AssemblyVersion attribute.</description>
     <type>VULNERABILITY</type>
     <severity>CRITICAL</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>45min</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>MAWCC</key>
@@ -1913,38 +1814,30 @@
     <type>BUG</type>
     <severity>CRITICAL</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>9h</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>MAWCV</key>
     <name>Mark assemblies with ComVisibleAttribute</name>
-    <description>&lt;h3&gt;FxCop&lt;/h3&gt;The System.Runtime.InteropServices.ComVisible attribute indicates whether COM clients can use the library. Good design dictates that developers explicitly indicate COM visibility. The default value for this attribute is &apos;true&apos;. However, the best design is to mark the assembly ComVisible false, and then mark types, interfaces, and individual members as ComVisible true, as appropriate.</description>
+    <description>&lt;h3&gt;FxCop&lt;/h3&gt;The System.Runtime.InteropServices.ComVisible attribute indicates whether COM clients can use the library. Good design dictates that developers explicitly indicate COM visibility. The default value for this attribute is 'true'. However, the best design is to mark the assembly ComVisible false, and then mark types, interfaces, and individual members as ComVisible true, as appropriate.</description>
     <type>VULNERABILITY</type>
     <severity>BLOCKER</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>3h</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>MAWNRL</key>
     <name>Mark assemblies with NeutralResourcesLanguageAttribute</name>
-    <description>&lt;h3&gt;FxCop&lt;/h3&gt;The NeutralResourcesLanguage attribute informs the ResourceManager of the language used to render the neutral culture&apos;s resources for an assembly. When looking up resources in the same culture as the neutral resources language, the ResourceManager automatically uses the resources located in the main assembly, instead of searching for a satellite assembly with the current user interface culture for the current thread. This will improve lookup performance for the first resource you load and can reduce your working set.</description>
+    <description>&lt;h3&gt;FxCop&lt;/h3&gt;The NeutralResourcesLanguage attribute informs the ResourceManager of the language used to render the neutral culture's resources for an assembly. When looking up resources in the same culture as the neutral resources language, the ResourceManager automatically uses the resources located in the main assembly, instead of searching for a satellite assembly with the current user interface culture for the current thread. This will improve lookup performance for the first resource you load and can reduce your working set.</description>
     <type>CODE_SMELL</type>
     <severity>MINOR</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>3h</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>MBAWMA</key>
     <name>Mark boolean P/Invoke arguments with MarshalAs</name>
-    <description>&lt;h3&gt;FxCop&lt;/h3&gt;All boolean P/Invoke parameters and return types should be explicitly marked with the MarshalAs attribute. By default, the system will marshal all booleans as 4-byte UnmanagedType.Bool. This is the correct behavior for Win32 &apos;BOOL&apos; arguments but incorrect for C++ &apos;bool&apos; arguments, which should be marshaled as 1-byte UnmanagedType.U1. For code maintainability reasons, always explicitly specify the marshaling information for boolean arguments and return values.</description>
+    <description>&lt;h3&gt;FxCop&lt;/h3&gt;All boolean P/Invoke parameters and return types should be explicitly marked with the MarshalAs attribute. By default, the system will marshal all booleans as 4-byte UnmanagedType.Bool. This is the correct behavior for Win32 'BOOL' arguments but incorrect for C++ 'bool' arguments, which should be marshaled as 1-byte UnmanagedType.U1. For code maintainability reasons, always explicitly specify the marshaling information for boolean arguments and return values.</description>
     <type>BUG</type>
     <severity>MINOR</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>45min</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>MCSIA</key>
@@ -1953,18 +1846,14 @@
     <type>BUG</type>
     <severity>CRITICAL</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>3h</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>MEWF</key>
     <name>Mark enums with FlagsAttribute</name>
     <description>&lt;h3&gt;FxCop&lt;/h3&gt;The enumeration appears to be made up of combinable flags. If this true, apply the Flags attribute to the enumeration.</description>
-    <type>CODE_SMELL</type>
+    <type>BUG</type>
     <severity>MINOR</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>45min</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>MMAS</key>
@@ -1973,8 +1862,6 @@
     <type>CODE_SMELL</type>
     <severity>MINOR</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>45min</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>MMOWCT</key>
@@ -1983,8 +1870,6 @@
     <type>BUG</type>
     <severity>BLOCKER</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>45min</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>MSDBMTRT</key>
@@ -1993,8 +1878,6 @@
     <type>BUG</type>
     <severity>CRITICAL</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>3h</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>MSNECCT</key>
@@ -2003,8 +1886,6 @@
     <type>BUG</type>
     <severity>CRITICAL</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>45min</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>MSSBOT</key>
@@ -2013,8 +1894,6 @@
     <type>VULNERABILITY</type>
     <severity>BLOCKER</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>9h</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>MTNMC</key>
@@ -2023,8 +1902,6 @@
     <type>BUG</type>
     <severity>MAJOR</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>3h</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>MTWS</key>
@@ -2033,8 +1910,6 @@
     <type>BUG</type>
     <severity>MINOR</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>3h</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>MVHWVAT</key>
@@ -2043,8 +1918,6 @@
     <type>VULNERABILITY</type>
     <severity>MAJOR</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>45min</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>MWFEPWST</key>
@@ -2053,8 +1926,6 @@
     <type>BUG</type>
     <severity>CRITICAL</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>3h</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>NCFSNBV</key>
@@ -2063,8 +1934,6 @@
     <type>BUG</type>
     <severity>MINOR</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>9h</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>NSTU</key>
@@ -2073,8 +1942,6 @@
     <type>CODE_SMELL</type>
     <severity>CRITICAL</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>15min</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>NTSNBV</key>
@@ -2083,8 +1950,6 @@
     <type>BUG</type>
     <severity>CRITICAL</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>45min</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>OEAOEOVT</key>
@@ -2093,8 +1958,6 @@
     <type>CODE_SMELL</type>
     <severity>MINOR</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>3h</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>OEOOOE</key>
@@ -2103,18 +1966,14 @@
     <type>BUG</type>
     <severity>CRITICAL</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>3h</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>OFESHPN</key>
     <name>Only FlagsAttribute enums should have plural names</name>
-    <description>&lt;h3&gt;FxCop&lt;/h3&gt;Plural names indicate that the values of the enumeration can be combined. For example, an enumeration named &apos;Day&apos; indicates a single day, and an enumeration named &apos;Days&apos; indicates multiple days. Enumeration values should be combined using the bit-wise OR operator only if the Flags attribute is present on the enumeration.</description>
+    <description>&lt;h3&gt;FxCop&lt;/h3&gt;Plural names indicate that the values of the enumeration can be combined. For example, an enumeration named 'Day' indicates a single day, and an enumeration named 'Days' indicates multiple days. Enumeration values should be combined using the bit-wise OR operator only if the Flags attribute is present on the enumeration.</description>
     <type>CODE_SMELL</type>
     <severity>CRITICAL</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>45min</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>OGHCOOE</key>
@@ -2123,8 +1982,6 @@
     <type>BUG</type>
     <severity>CRITICAL</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>3h</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>OLDSBITB</key>
@@ -2133,8 +1990,6 @@
     <type>VULNERABILITY</type>
     <severity>BLOCKER</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>3h</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>OMOCT</key>
@@ -2143,8 +1998,6 @@
     <type>BUG</type>
     <severity>CRITICAL</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>3h</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>OOEOOAAS</key>
@@ -2153,8 +2006,6 @@
     <type>BUG</type>
     <severity>CRITICAL</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>3h</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>OOEOOVTE</key>
@@ -2163,18 +2014,14 @@
     <type>BUG</type>
     <severity>MINOR</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>3h</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>OOHNA</key>
     <name>Operator overloads have named alternates</name>
-    <description>&lt;h3&gt;FxCop&lt;/h3&gt;When redefining operators, implement named methods to provide access to the operator functionality from languages that do not support operator overloading. For example, the functionality of the &apos;+&apos; operator should also be accessible using an &apos;Add&apos; method.</description>
+    <description>&lt;h3&gt;FxCop&lt;/h3&gt;When redefining operators, implement named methods to provide access to the operator functionality from languages that do not support operator overloading. For example, the functionality of the '+' operator should also be accessible using an 'Add' method.</description>
     <type>BUG</type>
     <severity>CRITICAL</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>3h</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>OSHSO</key>
@@ -2183,8 +2030,6 @@
     <type>BUG</type>
     <severity>BLOCKER</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>3h</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>OSNO</key>
@@ -2193,8 +2038,6 @@
     <type>VULNERABILITY</type>
     <severity>MAJOR</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>45min</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>PDMFOF</key>
@@ -2203,8 +2046,6 @@
     <type>BUG</type>
     <severity>MINOR</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>9h</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>PDSBP</key>
@@ -2213,8 +2054,6 @@
     <type>BUG</type>
     <severity>CRITICAL</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>3h</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>PEEVMBT</key>
@@ -2223,8 +2062,6 @@
     <type>VULNERABILITY</type>
     <severity>MAJOR</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>15min</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>PEPSE</key>
@@ -2233,8 +2070,6 @@
     <type>BUG</type>
     <severity>MAJOR</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>9h</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>PEVSMSBT</key>
@@ -2243,8 +2078,6 @@
     <type>VULNERABILITY</type>
     <severity>MAJOR</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>15min</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>PJAOM</key>
@@ -2253,8 +2086,6 @@
     <type>CODE_SMELL</type>
     <severity>MINOR</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>45min</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>PNSMBD</key>
@@ -2263,8 +2094,6 @@
     <type>BUG</type>
     <severity>CRITICAL</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>45min</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>PNSNMGM</key>
@@ -2273,8 +2102,6 @@
     <type>BUG</type>
     <severity>CRITICAL</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>45min</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>PNSNMMN</key>
@@ -2283,8 +2110,6 @@
     <type>BUG</type>
     <severity>CRITICAL</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>45min</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>POAM</key>
@@ -2293,8 +2118,6 @@
     <type>BUG</type>
     <severity>CRITICAL</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>3h</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>POSHNOBEVI</key>
@@ -2319,8 +2142,6 @@
     <type>VULNERABILITY</type>
     <severity>BLOCKER</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>45min</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>PSNBWO</key>
@@ -2329,8 +2150,6 @@
     <type>BUG</type>
     <severity>CRITICAL</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>45min</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>PSNRA</key>
@@ -2339,8 +2158,6 @@
     <type>CODE_SMELL</type>
     <severity>MINOR</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>3h</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>PSUOIOS</key>
@@ -2349,8 +2166,6 @@
     <type>BUG</type>
     <severity>MINOR</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>45min</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>PVRSBE</key>
@@ -2359,8 +2174,6 @@
     <type>VULNERABILITY</type>
     <severity>MAJOR</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>15min</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>PVSEMSBA</key>
@@ -2369,8 +2182,6 @@
     <type>VULNERABILITY</type>
     <severity>CRITICAL</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>15min</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>RCTA</key>
@@ -2387,8 +2198,6 @@
     <type>VULNERABILITY</type>
     <severity>MAJOR</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>9h</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>RDSOVT</key>
@@ -2397,8 +2206,6 @@
     <type>VULNERABILITY</type>
     <severity>CRITICAL</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>9h</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>REF</key>
@@ -2407,8 +2214,6 @@
     <type>CODE_SMELL</type>
     <severity>MINOR</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>3h</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>RIS</key>
@@ -2417,8 +2222,6 @@
     <type>VULNERABILITY</type>
     <severity>BLOCKER</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>3h</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>RMCPSBA</key>
@@ -2427,8 +2230,6 @@
     <type>VULNERABILITY</type>
     <severity>MAJOR</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>15min</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>RMCRBT</key>
@@ -2437,8 +2238,6 @@
     <type>VULNERABILITY</type>
     <severity>MAJOR</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>15min</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>RMCSESBF</key>
@@ -2447,8 +2246,6 @@
     <type>VULNERABILITY</type>
     <severity>MINOR</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>15min</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>RMFN</key>
@@ -2465,18 +2262,14 @@
     <type>CODE_SMELL</type>
     <severity>MINOR</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>45min</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>RSCWSBCC</key>
     <name>Resource string compound words should be cased correctly</name>
-    <description>&lt;h3&gt;FxCop&lt;/h3&gt;Avoid creating compound words from terms which exist in the dictionary as discrete terms. Do not create a compound word such as &apos;StopWatch&apos; or &apos;PopUp&apos;. These terms are recognized in the dictionary and should be cased as &apos;Stopwatch&apos; and &apos;Popup&apos;.</description>
+    <description>&lt;h3&gt;FxCop&lt;/h3&gt;Avoid creating compound words from terms which exist in the dictionary as discrete terms. Do not create a compound word such as 'StopWatch' or 'PopUp'. These terms are recognized in the dictionary and should be cased as 'Stopwatch' and 'Popup'.</description>
     <type>CODE_SMELL</type>
     <severity>CRITICAL</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>15min</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>RSSBSC</key>
@@ -2485,8 +2278,6 @@
     <type>CODE_SMELL</type>
     <severity>MAJOR</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>15min</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>RSUCSU</key>
@@ -2495,8 +2286,6 @@
     <type>VULNERABILITY</type>
     <severity>BLOCKER</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>9h</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>RTPSD</key>
@@ -2505,8 +2294,6 @@
     <type>BUG</type>
     <severity>CRITICAL</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>45min</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>RUL</key>
@@ -2515,8 +2302,6 @@
     <type>CODE_SMELL</type>
     <severity>MINOR</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>45min</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>RUP</key>
@@ -2525,8 +2310,6 @@
     <type>CODE_SMELL</type>
     <severity>MINOR</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>3h</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>RVEH</key>
@@ -2535,18 +2318,14 @@
     <type>VULNERABILITY</type>
     <severity>BLOCKER</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>9h</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>SA</key>
     <name>Secure asserts</name>
     <description>&lt;h3&gt;FxCop&lt;/h3&gt;Asserting a security permission without performing any security checks can leave an exploitable security weakness in your code. A security stack walk stops when a security permission is asserted. If you assert a permission without performing any checks on the caller, the caller might be able to indirectly execute code using your permissions. Asserts without security checks are only permissible when you are certain that the assert cannot be used in a harmful fashion, namely, if the code you call is harmless, or users have no way to pass arbitrary information to code that you call.</description>
-    <type>VULNERABILITY</type>
+    <type>BUG</type>
     <severity>BLOCKER</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>45min</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>SCI</key>
@@ -2555,8 +2334,6 @@
     <type>BUG</type>
     <severity>CRITICAL</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>3h</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>SCSBP</key>
@@ -2565,8 +2342,6 @@
     <type>BUG</type>
     <severity>CRITICAL</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>3h</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>SESECO</key>
@@ -2583,8 +2358,6 @@
     <type>CODE_SMELL</type>
     <severity>MAJOR</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>45min</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>SHTSNHC</key>
@@ -2593,8 +2366,6 @@
     <type>BUG</type>
     <severity>CRITICAL</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>45min</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>SLFDT</key>
@@ -2603,8 +2374,6 @@
     <type>BUG</type>
     <severity>CRITICAL</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>3h</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>SMBO</key>
@@ -2613,18 +2382,14 @@
     <type>VULNERABILITY</type>
     <severity>CRITICAL</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>3h</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>SMFSA</key>
     <name>Specify marshaling for P/Invoke string arguments</name>
-    <description>&lt;h3&gt;FxCop&lt;/h3&gt;When marshaling strings as ANSI (or as Auto on Win9x), some characters may be changed. If best-fit mapping is on, strings that appear different in Unicode will be marshaled to identical ANSI strings, which may lead to incorrect security decisions. Turning best-fit mapping off reduces this risk, as all characters without equivalents are mapped to &apos;?&apos;. Also, note that CharSet.Ansi is the default setting for all string marshaling; Unicode marshaling must be specified explicitly, either as a CharSet setting of DllImport or StructLayout, or as a MarshalAs attribute with a Unicode (or system-dependent) UnmanagedType.</description>
+    <description>&lt;h3&gt;FxCop&lt;/h3&gt;When marshaling strings as ANSI (or as Auto on Win9x), some characters may be changed. If best-fit mapping is on, strings that appear different in Unicode will be marshaled to identical ANSI strings, which may lead to incorrect security decisions. Turning best-fit mapping off reduces this risk, as all characters without equivalents are mapped to '?'. Also, note that CharSet.Ansi is the default setting for all string marshaling; Unicode marshaling must be specified explicitly, either as a CharSet setting of DllImport or StructLayout, or as a MarshalAs attribute with a Unicode (or system-dependent) UnmanagedType.</description>
     <type>BUG</type>
     <severity>CRITICAL</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>3h</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>SMTSPI</key>
@@ -2633,8 +2398,6 @@
     <type>VULNERABILITY</type>
     <severity>CRITICAL</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>3h</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>SP</key>
@@ -2643,8 +2406,6 @@
     <type>BUG</type>
     <severity>CRITICAL</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>3h</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>SRSLSNBPWLD</key>
@@ -2653,8 +2414,6 @@
     <type>VULNERABILITY</type>
     <severity>MAJOR</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>15min</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>SSC</key>
@@ -2663,8 +2422,6 @@
     <type>BUG</type>
     <severity>CRITICAL</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>3h</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>STSNEF</key>
@@ -2673,8 +2430,6 @@
     <type>VULNERABILITY</type>
     <severity>BLOCKER</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>9h</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>SUOCSUO</key>
@@ -2683,8 +2438,6 @@
     <type>BUG</type>
     <severity>CRITICAL</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>45min</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>TASNC</key>
@@ -2693,8 +2446,6 @@
     <type>VULNERABILITY</type>
     <severity>MINOR</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>3h</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>TCMNUCA</key>
@@ -2703,8 +2454,6 @@
     <type>BUG</type>
     <severity>CRITICAL</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>3h</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>TFESUSL</key>
@@ -2713,18 +2462,14 @@
     <type>BUG</type>
     <severity>MINOR</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>45min</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>TFN</key>
     <name>Test for NaN correctly</name>
-    <description>&lt;h3&gt;FxCop&lt;/h3&gt;Direct comparisons against &apos;Single.NaN&apos; or &apos;Double.NaN&apos; (not a number) always return true for inequality and false for all other comparisons; use &apos;Single.IsNaN&apos; or &apos;Double.IsNaN&apos; to check if a floating point value is NaN.</description>
+    <description>&lt;h3&gt;FxCop&lt;/h3&gt;Direct comparisons against 'Single.NaN' or 'Double.NaN' (not a number) always return true for inequality and false for all other comparisons; use 'Single.IsNaN' or 'Double.IsNaN' to check if a floating point value is NaN.</description>
     <type>BUG</type>
     <severity>BLOCKER</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>45min</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>TLDRID</key>
@@ -2733,8 +2478,6 @@
     <type>VULNERABILITY</type>
     <severity>BLOCKER</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>45min</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>TMBALACABT</key>
@@ -2743,8 +2486,6 @@
     <type>VULNERABILITY</type>
     <severity>BLOCKER</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>45min</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>TMMBV</key>
@@ -2753,8 +2494,6 @@
     <type>VULNERABILITY</type>
     <severity>CRITICAL</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>45min</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>TMMNCNC</key>
@@ -2763,8 +2502,6 @@
     <type>VULNERABILITY</type>
     <severity>CRITICAL</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>45min</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>TMMNCSUCSM</key>
@@ -2773,8 +2510,6 @@
     <type>VULNERABILITY</type>
     <severity>CRITICAL</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>45min</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>TMMNHPCE</key>
@@ -2783,8 +2518,6 @@
     <type>BUG</type>
     <severity>CRITICAL</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>45min</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>TMMNRCC</key>
@@ -2793,8 +2526,6 @@
     <type>BUG</type>
     <severity>BLOCKER</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>45min</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>TMMNSLD</key>
@@ -2803,8 +2534,6 @@
     <type>VULNERABILITY</type>
     <severity>CRITICAL</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>15min</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>TMMNUSA</key>
@@ -2813,8 +2542,6 @@
     <type>BUG</type>
     <severity>BLOCKER</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>45min</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>TMSNBPWLD</key>
@@ -2823,8 +2550,6 @@
     <type>BUG</type>
     <severity>MINOR</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>3h</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>TMSND</key>
@@ -2833,8 +2558,6 @@
     <type>VULNERABILITY</type>
     <severity>MAJOR</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>15min</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>TMSNLAFBA</key>
@@ -2843,8 +2566,6 @@
     <type>VULNERABILITY</type>
     <severity>MINOR</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>45min</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>TMSNUSUCS</key>
@@ -2853,8 +2574,6 @@
     <type>VULNERABILITY</type>
     <severity>MINOR</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>15min</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>TNSNMN</key>
@@ -2863,8 +2582,6 @@
     <type>BUG</type>
     <severity>CRITICAL</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>45min</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>TSBD</key>
@@ -2873,8 +2590,6 @@
     <type>VULNERABILITY</type>
     <severity>MAJOR</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>15min</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>TSNECBT</key>
@@ -2883,8 +2598,6 @@
     <type>BUG</type>
     <severity>CRITICAL</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>45min</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>TTODFSBD</key>
@@ -2893,8 +2606,6 @@
     <type>BUG</type>
     <severity>BLOCKER</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>3h</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>TTONRSBD</key>
@@ -2903,8 +2614,6 @@
     <type>BUG</type>
     <severity>BLOCKER</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>3h</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>UEWA</key>
@@ -2913,8 +2622,6 @@
     <type>CODE_SMELL</type>
     <severity>MINOR</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>1d</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>UGEHI</key>
@@ -2923,8 +2630,6 @@
     <type>BUG</type>
     <severity>CRITICAL</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>3h</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>UGWA</key>
@@ -2933,18 +2638,14 @@
     <type>CODE_SMELL</type>
     <severity>BLOCKER</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>9h</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>UIOSAFI</key>
     <name>Use integral or string argument for indexers</name>
-    <description>&lt;h3&gt;FxCop&lt;/h3&gt;Indexers (indexed properties) should use either integer or string types for indexing values. These types are easy to use and commonly used for indexing data structures; using other types can significantly reduce the usability of the library. For example, public char this [int index] is the C# signature for the String type&apos;s indexer.</description>
+    <description>&lt;h3&gt;FxCop&lt;/h3&gt;Indexers (indexed properties) should use either integer or string types for indexing values. These types are easy to use and commonly used for indexing data structures; using other types can significantly reduce the usability of the library. For example, public char this [int index] is the C# signature for the String type's indexer.</description>
     <type>CODE_SMELL</type>
     <severity>CRITICAL</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>3h</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>ULWA</key>
@@ -2953,8 +2654,6 @@
     <type>CODE_SMELL</type>
     <severity>MINOR</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>45min</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>UMEOW</key>
@@ -2963,18 +2662,14 @@
     <type>BUG</type>
     <severity>CRITICAL</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>3h</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>UOAFTF</key>
     <name>Use only API from targeted framework</name>
-    <description>&lt;h3&gt;FxCop&lt;/h3&gt;~~@RUL_EMPTY_STRING@~~</description>
+    <description>&lt;h3&gt;FxCop&lt;/h3&gt;</description>
     <type>BUG</type>
     <severity>CRITICAL</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>3h</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>UOSC</key>
@@ -2983,28 +2678,22 @@
     <type>BUG</type>
     <severity>CRITICAL</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>45min</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>UPFVA</key>
     <name>Use params for variable arguments</name>
-    <description>&lt;h3&gt;FxCop&lt;/h3&gt;Do not use the varargs calling convention to accept a variable number of arguments. In the managed world, the &apos;params&apos; and &apos;ParamArray&apos; keywords provide this functionality..</description>
+    <description>&lt;h3&gt;FxCop&lt;/h3&gt;Do not use the varargs calling convention to accept a variable number of arguments. In the managed world, the 'params' and 'ParamArray' keywords provide this functionality..</description>
     <type>BUG</type>
     <severity>CRITICAL</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>45min</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>UPSNBS</key>
     <name>URI parameters should not be strings</name>
-    <description>&lt;h3&gt;FxCop&lt;/h3&gt;If a parameter name contains &quot;uri&quot; or &quot;url&quot; or &quot;urn&quot;, and it&apos;s typed as string, the parameter type should be changed to System.Uri, unless there is an overload method where the same parameter is typed as System.Uri.</description>
+    <description>&lt;h3&gt;FxCop&lt;/h3&gt;If a parameter name contains &quot;uri&quot; or &quot;url&quot; or &quot;urn&quot;, and it's typed as string, the parameter type should be changed to System.Uri, unless there is an overload method where the same parameter is typed as System.Uri.</description>
     <type>BUG</type>
     <severity>CRITICAL</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>45min</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>UPT</key>
@@ -3013,8 +2702,6 @@
     <type>CODE_SMELL</type>
     <severity>CRITICAL</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>45min</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>UPWA</key>
@@ -3023,13 +2710,11 @@
     <type>CODE_SMELL</type>
     <severity>MINOR</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>3h</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>URPRSHNOBEST</key>
     <name>URI properties should not be strings</name>
-    <description>&lt;h3&gt;FxCop&lt;/h3&gt;If a property name contains &quot;uri&quot; or &quot;url&quot; or &quot;urn&quot; and it&apos;s typed as string, it should be changed to System.Uri.</description>
+    <description>&lt;h3&gt;FxCop&lt;/h3&gt;If a property name contains &quot;uri&quot; or &quot;url&quot; or &quot;urn&quot; and it's typed as string, it should be changed to System.Uri.</description>
     <type>BUG</type>
     <severity>CRITICAL</severity>
     <tag>sourcemeter</tag>
@@ -3041,8 +2726,6 @@
     <type>BUG</type>
     <severity>CRITICAL</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>45min</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>USHTENR</key>
@@ -3067,8 +2750,6 @@
     <type>VULNERABILITY</type>
     <severity>MAJOR</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>15min</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>VSEMSBA</key>
@@ -3077,8 +2758,6 @@
     <type>VULNERABILITY</type>
     <severity>MAJOR</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>15min</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>VSUKSBS</key>
@@ -3087,8 +2766,6 @@
     <type>VULNERABILITY</type>
     <severity>MAJOR</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>45min</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>VTFSBP</key>
@@ -3097,8 +2774,6 @@
     <type>BUG</type>
     <severity>BLOCKER</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>3h</remediationFunctionBaseEffort>
   </rule>
   <rule>
     <key>WVFCIOT</key>
@@ -3107,7 +2782,5 @@
     <type>VULNERABILITY</type>
     <severity>CRITICAL</severity>
     <tag>sourcemeter</tag>
-    <remediationFunction>CONSTANT_ISSUE</remediationFunction>
-    <remediationFunctionBaseEffort>3h</remediationFunctionBaseEffort>
   </rule>
 </rules>
