@@ -1,0 +1,903 @@
+<?xml version="1.0" ?>
+<rules>
+  <rule>
+    <key>MET_AD</key>
+    <name>API Documentation (AD) Metric Threshold Violation</name>
+    <description>&lt;p&gt;&lt;strong&gt;Class:&lt;/strong&gt; ratio of the number of documented methods in the class +1 if the class itself is documented to the number of all methods in the class + 1 (the class itself).&lt;/p&gt;
+</description>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
+    <key>MET_CD</key>
+    <name>Comment Density (CD) Metric Threshold Violation</name>
+    <description>&lt;p&gt;&lt;strong&gt;Method, Function:&lt;/strong&gt; ratio of the comment lines of the method/function (CLOC) to the sum of its comment (CLOC) and logical lines of code (LLOC).&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Class:&lt;/strong&gt; ratio of the comment lines of the class (CLOC) to the sum of its comment (CLOC) and logical lines of code (LLOC).&lt;/p&gt;
+</description>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
+    <key>MET_CLOC</key>
+    <name>Comment Lines of Code (CLOC) Metric Threshold Violation</name>
+    <description>&lt;p&gt;&lt;strong&gt;Method, Function:&lt;/strong&gt; number of comment and documentation code lines of the method/function; however, its anonymous and local classes are not included.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Class:&lt;/strong&gt; number of comment and documentation code lines of the class, including its local methods and attributes; however, its nested, anonymous, and local classes are not included.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;File:&lt;/strong&gt; number of comment and documentation code lines of the file.&lt;/p&gt;
+</description>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
+    <key>MET_DIT</key>
+    <name>Depth of Inheritance Tree (DIT) Metric Threshold Violation</name>
+    <description>&lt;p&gt;&lt;strong&gt;Class:&lt;/strong&gt; length of the path that leads from the class to its farthest ancestor in the inheritance tree.&lt;/p&gt;
+</description>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
+    <key>MET_DLOC</key>
+    <name>Documentation Lines of Code (DLOC) Metric Threshold Violation</name>
+    <description>&lt;p&gt;&lt;strong&gt;Method, Function:&lt;/strong&gt; number of documentation code lines of the method/function.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Class:&lt;/strong&gt; number of documentation code lines of the class, including its local methods and attributes; however, its nested, anonymous, and local classes are not included.&lt;/p&gt;
+</description>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
+    <key>MET_LLOC</key>
+    <name>Logical Lines of Code (LLOC) Metric Threshold Violation</name>
+    <description>&lt;p&gt;&lt;strong&gt;Method, Function:&lt;/strong&gt; number of non-empty and non-comment code lines of the method/function; however, its anonymous and local functions are not included.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Class:&lt;/strong&gt; number of non-empty and non-comment code lines of the class, including the non-empty and non-comment lines of its local methods; however, its nested, anonymous, and local classes are not included.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;File:&lt;/strong&gt; number of non-empty and non-comment code lines of the file.&lt;/p&gt;
+</description>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
+    <key>MET_LOC</key>
+    <name>Lines of Code (LOC) Metric Threshold Violation</name>
+    <description>&lt;p&gt;&lt;strong&gt;Method, Function:&lt;/strong&gt; number of code lines of the method/function, including empty and comment lines; however, its anonymous and local classes are not included.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Class:&lt;/strong&gt; number of code lines of the class, including empty and comment lines, as well as its local methods; however, its nested, anonymous, and local classes are not included.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;File:&lt;/strong&gt; number of code lines of the file, including empty and comment lines.&lt;/p&gt;
+</description>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
+    <key>MET_McCC</key>
+    <name>McCabe's Cyclomatic Complexity (McCC) Metric Threshold Violation</name>
+    <description>&lt;p&gt;&lt;strong&gt;Method, Function:&lt;/strong&gt; complexity of the method expressed as the number of independent control flow paths in it. It represents a lower bound for the number of possible execution paths in the source code and at the same time it is an upper bound for the minimum number of test cases needed for achieving full branch test coverage. The value of the metric is calculated as the number of the following instructions plus 1: if, else if, for, for…in, for…of, while, do-while, case label (which belongs to a switch instruction), catch clause, conditional expression (?:). Moreover, logical “and” (&amp;&amp;) and logical “or” (||) expressions also add 1 to the value because their short-circuit evaluation can cause branching depending on the first operand. The following instructions are not included: else, switch, try, finally.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;File:&lt;/strong&gt; complexity of the file expressed as the number of independent control flow paths in it. It is calculated as the sum of the McCabe’s Cyclomatic Complexity values of the methods can be found in the file.&lt;/p&gt;
+</description>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
+    <key>MET_NG</key>
+    <name>Number of Getters (NG) Metric Threshold Violation</name>
+    <description>&lt;p&gt;&lt;strong&gt;Class:&lt;/strong&gt; number of getter methods in the class, including the inherited ones.&lt;/p&gt;
+</description>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
+    <key>MET_NII</key>
+    <name>Number of Incoming Invocations (NII) Metric Threshold Violation</name>
+    <description>&lt;p&gt;&lt;strong&gt;Method, Function:&lt;/strong&gt; number of other methods/functions which directly call the method. If the method/function is invoked several times from the same method/function, it is counted only once.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Class:&lt;/strong&gt; number of other methods/functions which directly call the local methods of the class. If a method is invoked several times from the same method, it is counted only once.&lt;/p&gt;
+</description>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
+    <key>MET_NL</key>
+    <name>Nesting Level (NL) Metric Threshold Violation</name>
+    <description>&lt;p&gt;&lt;strong&gt;Method, Function:&lt;/strong&gt; complexity of the method/function expressed as the depth of the maximum embeddedness of its conditional, iteration and exception handling block scopes. The following instructions are taken into account: if, else-if, else, for, for-in, for-of, while, do-while, switch, try, catch, finally and block statements that are directly inside another block statement. The following instructions do not increase the value by themselves; however, if additional embeddedness can be found in their blocks, they are considered: case and default label (which belong to a switch instruction).&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Class:&lt;/strong&gt; complexity of the class expressed as the depth of the maximum embeddedness of its conditional and iteration block scopes. It is calculated as the maximum nesting level (NL) of its local methods.&lt;/p&gt;
+</description>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
+    <key>MET_NLE</key>
+    <name>Nesting Level Else-If (NLE) Metric Threshold Violation</name>
+    <description>&lt;p&gt;&lt;strong&gt;Method, Function:&lt;/strong&gt; complexity of the method/function expressed as the depth of the maximum embeddedness of its conditional and iteration block scopes, where in the if-else-if construct only the first if instruction is considered. The following instructions are taken into account: if, for, while, conditional expression. The following instructions do not increase the value by themselves; however, if additional embeddedness can be found in their blocks, they are considered: else, else if (i.e. in the if-else-if construct the use of else-if does not increase the value of the metric), try, except, finally.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Class:&lt;/strong&gt; complexity of the class expressed as the depth of the maximum embeddedness of its conditional and iteration block scopes, where in the if-else-if construct only the first if instruction is considered. It is calculated as the maximum nesting level (NLE) of its local methods.&lt;/p&gt;
+</description>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
+    <key>MET_NLG</key>
+    <name>Number of Local Getters (NLG) Metric Threshold Violation</name>
+    <description>&lt;p&gt;&lt;strong&gt;Class:&lt;/strong&gt; number of local (i.e. not inherited) getter methods in the class; however, the getter methods of its nested, anonymous, and local classes are not included. Methods that override abstract methods are not counted.&lt;/p&gt;
+</description>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
+    <key>MET_NLM</key>
+    <name>Number of Local Methods (NLM) Metric Threshold Violation</name>
+    <description>&lt;p&gt;&lt;strong&gt;Class:&lt;/strong&gt; number of local (i.e. not inherited) methods in the class.&lt;/p&gt;
+</description>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
+    <key>MET_NLS</key>
+    <name>Number of Local Setters (NLS) Metric Threshold Violation</name>
+    <description>&lt;p&gt;&lt;strong&gt;Class:&lt;/strong&gt; number of local (i.e. not inherited) setter methods in the class.&lt;/p&gt;
+</description>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
+    <key>MET_NM</key>
+    <name>Number of Methods (NM) Metric Threshold Violation</name>
+    <description>&lt;p&gt;&lt;strong&gt;Class:&lt;/strong&gt; number of methods in the class, including the inherited ones.&lt;/p&gt;
+</description>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
+    <key>MET_NOA</key>
+    <name>Number of Ancestors (NOA) Metric Threshold Violation</name>
+    <description>&lt;p&gt;&lt;strong&gt;Class:&lt;/strong&gt; number of classes from which the class is directly or indirectly inherited.&lt;/p&gt;
+</description>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
+    <key>MET_NOC</key>
+    <name>Number of Children (NOC) Metric Threshold Violation</name>
+    <description>&lt;p&gt;&lt;strong&gt;Class:&lt;/strong&gt; number of classes which are directly derived from the class.&lt;/p&gt;
+</description>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
+    <key>MET_NOD</key>
+    <name>Number of Descendants (NOD) Metric Threshold Violation</name>
+    <description>&lt;p&gt;&lt;strong&gt;Class:&lt;/strong&gt; number of classes which are directly or indirectly derived from the class.&lt;/p&gt;
+</description>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
+    <key>MET_NOI</key>
+    <name>Number of Outgoing Invocations (NOI) Metric Threshold Violation</name>
+    <description>&lt;p&gt;&lt;strong&gt;Method, Function:&lt;/strong&gt; number of directly called methods. If a method is invoked several times, it is counted only once.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Class:&lt;/strong&gt; number of directly called methods of other classes, including method invocations from attribute initializations. If a method is invoked several times, it is counted only once.&lt;/p&gt;
+</description>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
+    <key>MET_NOS</key>
+    <name>Number of Statements (NOS) Metric Threshold Violation</name>
+    <description>&lt;p&gt;&lt;strong&gt;Method, Function:&lt;/strong&gt; number of statements in the method.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Class:&lt;/strong&gt; number of statements in the class.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;File:&lt;/strong&gt; number of statements in the file.&lt;/p&gt;
+</description>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
+    <key>MET_NS</key>
+    <name>Number of Setters (NS) Metric Threshold Violation</name>
+    <description>&lt;p&gt;&lt;strong&gt;Class:&lt;/strong&gt; number of setter methods in the class, including the inherited ones.&lt;/p&gt;
+</description>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
+    <key>MET_NUMPAR</key>
+    <name>Number of Parameters (NUMPAR) Metric Threshold Violation</name>
+    <description>&lt;p&gt;&lt;strong&gt;Method, Function:&lt;/strong&gt; number of the parameters of the method. Counts only the explicitly given number of parameters (‘arguments’ object is not counted).&lt;/p&gt;
+</description>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
+    <key>MET_PDA</key>
+    <name>Public Documented API (PDA) Metric Threshold Violation</name>
+    <description>&lt;p&gt;&lt;strong&gt;Class:&lt;/strong&gt; number of documented methods in the class (+1 if the class itself is documented); however, the methods of its nested, anonymous, and local classes are not counted.&lt;/p&gt;
+</description>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
+    <key>MET_PUA</key>
+    <name>Public Undocumented API (PUA) Metric Threshold Violation</name>
+    <description>&lt;p&gt;&lt;strong&gt;Class:&lt;/strong&gt; number of undocumented methods in the class (+1 if the class itself is undocumented); however, the methods of its nested, anonymous, and local classes are not counted.&lt;/p&gt;
+</description>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
+    <key>MET_TAD</key>
+    <name>Total API Documentation (TAD) Metric Threshold Violation</name>
+    <description>&lt;p&gt;&lt;strong&gt;Component:&lt;/strong&gt; ratio of the number of documented classes and methods in the component to the number of all of its classes and methods, including its subcomponents.&lt;/p&gt;
+</description>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
+    <key>MET_TCD</key>
+    <name>Total Comment Density (TCD) Metric Threshold Violation</name>
+    <description>&lt;p&gt;&lt;strong&gt;Method/Function:&lt;/strong&gt; ratio of the total comment lines of the method/function (TCLOC) to the sum of its total comment (TCLOC) and total logical lines of code (TLLOC).&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Class:&lt;/strong&gt; ratio of the total comment lines of the class (TCLOC) to the sum of its total comment (TCLOC) and total logical lines of code (TLLOC).&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Component:&lt;/strong&gt; ratio of the total comment lines of the component (TCLOC) to the sum of its total comment (TCLOC) and total logical lines of code (TLLOC).&lt;/p&gt;
+</description>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
+    <key>MET_TCLOC</key>
+    <name>Total Comment Lines of Code (TCLOC) Metric Threshold Violation</name>
+    <description>&lt;p&gt;&lt;strong&gt;Method/Function:&lt;/strong&gt; number of comment and documentation code lines of the method/function, including its local classes.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Class:&lt;/strong&gt; number of comment and documentation code lines of the class, including its local methods and attributes, as well as its nested and local classes.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Component:&lt;/strong&gt; number of comment and documentation code lines of the component, including its subcomponents.&lt;/p&gt;
+</description>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
+    <key>MET_TLLOC</key>
+    <name>Total Logical Lines of Code (TLLOC) Metric Threshold Violation</name>
+    <description>&lt;p&gt;&lt;strong&gt;Method, Function:&lt;/strong&gt; number of non-empty and non-comment code lines of the method/function, including the non-empty and non-comment lines of its nested functions.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Class:&lt;/strong&gt; number of non-empty and non-comment code lines of the class, including the non-empty and non-comment code lines of its nested and local classes.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Component:&lt;/strong&gt; number of non-empty and non-comment code lines of the component, including its subcomponents.&lt;/p&gt;
+</description>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
+    <key>MET_TLOC</key>
+    <name>Total Lines of Code (TLOC) Metric Threshold Violation</name>
+    <description>&lt;p&gt;&lt;strong&gt;Method, Function:&lt;/strong&gt; number of code lines of the method/function, including empty and comment lines, as well as its nested functions.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Class:&lt;/strong&gt; number of code lines of the class, including empty and comment lines, as well as its nested and local classes.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Component:&lt;/strong&gt; number of code lines of the component, including empty and comment lines, as well as its subcomponents.&lt;/p&gt;
+</description>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
+    <key>MET_TNCL</key>
+    <name>Total Number of Classes (TNCL) Metric Threshold Violation</name>
+    <description>&lt;p&gt;&lt;strong&gt;Component:&lt;/strong&gt; number of classes in the component, including the classes of its subcomponents.&lt;/p&gt;
+</description>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
+    <key>MET_TNDI</key>
+    <name>Total Number of Directories (TNDI) Metric Threshold Violation</name>
+    <description>&lt;p&gt;&lt;strong&gt;Component:&lt;/strong&gt; number of directories that belong to the component, including its subcomponents.&lt;/p&gt;
+</description>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
+    <key>MET_TNFI</key>
+    <name>Total Number of Files (TNFI) Metric Threshold Violation</name>
+    <description>&lt;p&gt;&lt;strong&gt;Component:&lt;/strong&gt; number of files that belong to the component, including its subcomponents.&lt;/p&gt;
+</description>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
+    <key>MET_TNG</key>
+    <name>Total Number of Getters (TNG) Metric Threshold Violation</name>
+    <description>&lt;p&gt;&lt;strong&gt;Class:&lt;/strong&gt; number of getter methods in the class, including the inherited ones, as well as the inherited and local getter methods of its nested, anonymous and local classes.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Component:&lt;/strong&gt; number of getter methods in the component, including the getter methods of its subcomponents.&lt;/p&gt;
+</description>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
+    <key>MET_TNLG</key>
+    <name>Total Number of Local Getters (TNLG) Metric Threshold Violation</name>
+    <description>&lt;p&gt;&lt;strong&gt;Class:&lt;/strong&gt; number of local (i.e. not inherited) getter methods in the class, including the local getter methods of its nested, anonymous, and local classes.&lt;/p&gt;
+</description>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
+    <key>MET_TNLM</key>
+    <name>Total Number of Local Methods (TNLM) Metric Threshold Violation</name>
+    <description>&lt;p&gt;&lt;strong&gt;Class:&lt;/strong&gt; number of local (i.e. not inherited) methods in the class, including the local methods of its nested and local classes.&lt;/p&gt;
+</description>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
+    <key>MET_TNLS</key>
+    <name>Total Number of Local Setters (TNLS) Metric Threshold Violation</name>
+    <description>&lt;p&gt;&lt;strong&gt;Class:&lt;/strong&gt; number of local (i.e. not inherited) setter methods in the class, including the local setter methods of its nested, anonymous, and local classes.&lt;/p&gt;
+</description>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
+    <key>MET_TNM</key>
+    <name>Total Number of Methods (TNM) Metric Threshold Violation</name>
+    <description>&lt;p&gt;&lt;strong&gt;Class:&lt;/strong&gt; number of methods in the class, including the inherited ones, as well as the inherited and local methods of its nested, anonymous, and local classes.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Component:&lt;/strong&gt; number of methods in the component, including the methods of its subcomponents.&lt;/p&gt;
+</description>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
+    <key>MET_TNOS</key>
+    <name>Total Number of Statements (TNOS) Metric Threshold Violation</name>
+    <description>&lt;p&gt;&lt;strong&gt;Method, Function:&lt;/strong&gt; number of statements in the method/function, including the statements of its nested functions.Class: number of statements in the class, including the statements of its nested and local classes.Component: number of statements in the component, including the statements of its subcomponents.&lt;/p&gt;
+</description>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
+    <key>MET_TNS</key>
+    <name>Total Number of Setters (TNS) Metric Threshold Violation</name>
+    <description>&lt;p&gt;&lt;strong&gt;Class:&lt;/strong&gt; number of setter methods in the class, including the inherited ones, as well as the inherited and local setter methods of its nested, anonymous and local classes.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Component:&lt;/strong&gt; number of setter methods in the component, including the setter methods of its subcomponents.&lt;/p&gt;
+</description>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
+    <key>MET_TPDA</key>
+    <name>Total Public Documented API (TPDA) Metric Threshold Violation</name>
+    <description>&lt;p&gt;&lt;strong&gt;Component:&lt;/strong&gt; number of documented classes and methods in the component, including the documented classes and methods of its subcomponents.&lt;/p&gt;
+</description>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
+    <key>MET_TPUA</key>
+    <name>Total Public Undocumented API (TPUA) Metric Threshold Violation</name>
+    <description>&lt;p&gt;&lt;strong&gt;Component:&lt;/strong&gt; number of undocumented classes and methods in the component, including the undocumented classes and methods of its subcomponents.&lt;/p&gt;
+</description>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
+    <key>MET_WMC</key>
+    <name>Weighted Methods per Class (WMC) Metric Threshold Violation</name>
+    <description>&lt;p&gt;&lt;strong&gt;Class:&lt;/strong&gt; complexity of the class expressed as the number of independent control flow paths in it. It is calculated as the sum of the McCabe’s Cyclomatic Complexity (McCC) values of its local methods.&lt;/p&gt;
+</description>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
+    <key>MET_CA</key>
+    <name>Clone Age (CA) Metric Threshold Violation</name>
+    <description>&lt;p&gt;&lt;strong&gt;Clone class, clone instance:&lt;/strong&gt; number of previously analyzed revisions in which the clone class/clone instance was present + 1.&lt;/p&gt;
+</description>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
+    <key>MET_CC</key>
+    <name>Clone Coverage (CC) Metric Threshold Violation</name>
+    <description>&lt;p&gt;&lt;strong&gt;Method, function, class:&lt;/strong&gt; ratio of code covered by code duplications in the source code element to the size of the source code element, expressed in terms of the number of syntactic entities (statements, expressions, etc.).&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Component:&lt;/strong&gt; ratio of code covered by code duplications in the component to the size of the component, expressed in terms of the number of syntactic entities (statements, expressions, etc.).&lt;/p&gt;
+</description>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
+    <key>MET_CCL</key>
+    <name>Clone Classes (CCL) Metric Threshold Violation</name>
+    <description>&lt;p&gt;&lt;strong&gt;Method, function, class:&lt;/strong&gt; number of clone classes having at least one clone instance in the source code element.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Component:&lt;/strong&gt; number of clone classes having at least one clone instance in the component.&lt;/p&gt;
+</description>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
+    <key>MET_CCO</key>
+    <name>Clone Complexity (CCO) Metric Threshold Violation</name>
+    <description>&lt;p&gt;&lt;strong&gt;Clone instance:&lt;/strong&gt; the McCabe complexity of the code fragment corresponding to the clone instance.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Clone class:&lt;/strong&gt; sum of CCO of clone instances in the clone class.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Method, function, class:&lt;/strong&gt; sum of CCO of clone instances in the source code element.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Component:&lt;/strong&gt; sum of CCO of clone instances in the component.&lt;/p&gt;
+</description>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
+    <key>MET_CE</key>
+    <name>Clone Embeddedness (CE) Metric Threshold Violation</name>
+    <description>&lt;p&gt;&lt;strong&gt;Clone instance:&lt;/strong&gt; sum of incoming and outgoing references (function calls, variable references, type references; different references to the same entity are counted only once) in the code fragment corresponding to the clone instance, weighted with the number of directory changes between the referenced code fragments.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Clone class:&lt;/strong&gt; sum of CE of the clone instances of the clone class + 1.&lt;/p&gt;
+</description>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
+    <key>MET_CEE</key>
+    <name>Clone Elimination Effort (CEE) Metric Threshold Violation</name>
+    <description>&lt;p&gt;&lt;strong&gt;Clone class:&lt;/strong&gt; index of the effort required to eliminate the clone class. It is computed as the product of CI, CE, and NCR.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Component:&lt;/strong&gt; index of the effort required to eliminate all clones from the component. It is computed as the sum of CEE of the clone classes in the component.&lt;/p&gt;
+</description>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
+    <key>MET_CEG</key>
+    <name>Clone Elimination Gain (CEG) Metric Threshold Violation</name>
+    <description>&lt;p&gt;&lt;strong&gt;Clone class:&lt;/strong&gt; index of the gain resulting from eliminating the clone class. It is computed as the ratio of CR to CEE. Component: index of the gain resulting from eliminating all clones from the component. It is computed as the logistic function of the ratio of CR to CEE.&lt;/p&gt;
+</description>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
+    <key>MET_CI</key>
+    <name>Clone Instances (CI) Metric Threshold Violation</name>
+    <description>&lt;p&gt;&lt;strong&gt;Method, function, class:&lt;/strong&gt; number of clone instances in the source code element.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Component:&lt;/strong&gt; number of clone instances in the component.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Clone class:&lt;/strong&gt; number of clone instances in the clone class.&lt;/p&gt;
+</description>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
+    <key>MET_CLC</key>
+    <name>Clone Line Coverage (CLC) Metric Threshold Violation</name>
+    <description>&lt;p&gt;&lt;strong&gt;Method, function, class:&lt;/strong&gt; ratio of code covered by code duplications in the source code element to the size of the source code element, expressed in terms of lines of code.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Component:&lt;/strong&gt; ratio of code covered by code duplications in the component to the size of the component, expressed in terms of lines of code.&lt;/p&gt;
+</description>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
+    <key>MET_CLLC</key>
+    <name>Clone Logical Line Coverage (CLLC) Metric Threshold Violation</name>
+    <description>&lt;p&gt;&lt;strong&gt;Method, function, class:&lt;/strong&gt; ratio of code covered by code duplications in the source code element to the size of source code element, expressed in terms of logical lines of code (non-empty, non-comment lines).&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Component:&lt;/strong&gt; ratio of code covered by code duplications in the component to the size of the component, expressed in terms of logical lines of code (non-empty, non-comment lines).&lt;/p&gt;
+</description>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
+    <key>MET_CLLOC</key>
+    <name>Clone Lines of Code (CLLOC) Metric Threshold Violation</name>
+    <description>&lt;p&gt;&lt;strong&gt;Clone instance:&lt;/strong&gt; length of the clone instance expressed in terms of lines of code.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Clone class:&lt;/strong&gt; average of CLLOC of clone instances belonging to the clone class.&lt;/p&gt;
+</description>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
+    <key>MET_CR</key>
+    <name>Clone Risk (CR) Metric Threshold Violation</name>
+    <description>&lt;p&gt;&lt;strong&gt;Clone class:&lt;/strong&gt; risk index of the existence of the clone class. It is computed as the product of CLLOC, CI, CCO, NCR, and CV.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Component:&lt;/strong&gt; relative risk index of the existence of code duplications in the component. It is computed as the sum of CR of the clone classes in the component, divided by the total logical lines of code (non-empty, non-comment lines) of the component. It expresses the risk index projected to a non-empty, non-comment line of code in the component.&lt;/p&gt;
+</description>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
+    <key>MET_CV</key>
+    <name>Clone Variability (CV) Metric Threshold Violation</name>
+    <description>&lt;p&gt;&lt;strong&gt;Clone instance:&lt;/strong&gt; instability of the clone instance since it appeared. It is computed as the ratio of the number of previously analyzed revisions when the instance had been changed to its age (CA).&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Clone class:&lt;/strong&gt; instability of the clone class since it appeared. It is computed as the ratio of the number of previously analyzed revisions when its contained instances were moved, deleted, or added, to its age (CA), plus the average CV of its clone instances.&lt;/p&gt;
+</description>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
+    <key>MET_LDC</key>
+    <name>Lines of Duplicated Code (LDC) Metric Threshold Violation</name>
+    <description>&lt;p&gt;&lt;strong&gt;Method, function, class:&lt;/strong&gt; number of code lines covered by code duplications in the source code element.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Component:&lt;/strong&gt; number of code lines covered by code duplications in the component.&lt;/p&gt;
+</description>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
+    <key>MET_LLDC</key>
+    <name>Logical Lines of Duplicated Code (LLDC) Metric Threshold Violation</name>
+    <description>&lt;p&gt;&lt;strong&gt;Method, function, class:&lt;/strong&gt; number of logical code lines (non-empty, non-comment lines) covered by code duplications in the source code element.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Component:&lt;/strong&gt; The number of logical code lines (non-empty, non-comment lines) covered by code duplications in the component.&lt;/p&gt;
+</description>
+    <severity>INFO</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
+    <key>CSU</key>
+    <name>constructor-super</name>
+    <description>&lt;h3&gt;ESLint&lt;/h3&gt;&lt;p&gt;Constructors of derived classes must call super(). Constructors of non derived classes must not call super(). If this is not observed, the javascript engine will raise a runtime error. This rule checks whether or not there is a valid super() call.&lt;/p&gt;
+</description>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
+    <key>E</key>
+    <name>eqeqeq</name>
+    <description>&lt;h3&gt;ESLint&lt;/h3&gt;&lt;p&gt;It is considered good practice to use the type-safe equality operators === and !== instead of their regular counterparts == and !=. The reason for this is that == and != do type coercion which follows the rather obscure Abstract Equality Comparison Algorithm. For instance, the following statements are all considered true: If one of those occurs in an innocent-looking statement such as a == b the actual problem is very difficult to spot.&lt;/p&gt;
+</description>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
+    <key>NC</key>
+    <name>no-console</name>
+    <description>&lt;h3&gt;ESLint&lt;/h3&gt;&lt;p&gt;In JavaScript that is designed to be executed in the browser, it’s considered a best practice to avoid using methods on console. Such messages are considered to be for debugging purposes and therefore not suitable to ship to the client. In general, calls using console should be stripped before being pushed to production.&lt;/p&gt;
+</description>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
+    <key>NCA</key>
+    <name>no-cond-assign</name>
+    <description>&lt;h3&gt;ESLint&lt;/h3&gt;&lt;p&gt;In conditional statements, it is very easy to mistype a comparison operator (such as ==) as an assignment operator (such as =). For example: There are valid reasons to use assignment operators in conditional statements. However, it can be difficult to tell whether a specific assignment was intentional.&lt;/p&gt;
+</description>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
+    <key>NCAS</key>
+    <name>no-class-assign</name>
+    <description>&lt;h3&gt;ESLint&lt;/h3&gt;&lt;p&gt;ClassDeclaration creates a variable, and we can modify the variable. But the modification is a mistake in most cases.&lt;/p&gt;
+</description>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
+    <key>NCC</key>
+    <name>no-constant-condition</name>
+    <description>&lt;h3&gt;ESLint&lt;/h3&gt;&lt;p&gt;Comparing a literal expression in a condition is usually a typo or development trigger for a specific behavior. This pattern is most likely an error and should be avoided.&lt;/p&gt;
+</description>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
+    <key>NCD</key>
+    <name>no-case-declarations</name>
+    <description>&lt;h3&gt;ESLint&lt;/h3&gt;&lt;p&gt;This rule disallows lexical declarations (let, const, function and class) in case/default clauses. The reason is that the lexical declaration is visible in the entire switch block but it only gets initialized when it is assigned, which will only happen if the case where it is defined is reached. To ensure that the lexical declaration only applies to the current case clause wrap your clauses in blocks.&lt;/p&gt;
+</description>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
+    <key>NCNZ</key>
+    <name>no-compare-neg-zero</name>
+    <description>&lt;h3&gt;ESLint&lt;/h3&gt;The rule should warn against code that tries to compare against -0, since that will not work as intended. That is, code like x === -0 will pass for both +0 and -0. The author probably intended Object.is(x, -0).</description>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
+    <key>NCONS</key>
+    <name>no-const-assign</name>
+    <description>&lt;h3&gt;ESLint&lt;/h3&gt;&lt;p&gt;We cannot modify variables that are declared using const keyword. It will raise a runtime error. Under non ES2015 environment, it might be ignored merely.&lt;/p&gt;</description>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
+    <key>ND</key>
+    <name>no-debugger</name>
+    <description>&lt;h3&gt;ESLint&lt;/h3&gt;&lt;p&gt;The debugger statement is used to tell the executing JavaScript environment to stop execution and start up a debugger at the current point in the code. This has fallen out of favor as a good practice with the advent of modern debugging and development tools. Production code should definitely not contain debugger, as it will cause the browser to stop executing code and open an appropriate debugger.&lt;/p&gt;
+</description>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
+    <key>NDA</key>
+    <name>no-dupe-args</name>
+    <description>&lt;h3&gt;ESLint&lt;/h3&gt;&lt;p&gt;If more than one parameter has the same name in a function definition, the last occurrence “shadows” the preceding occurrences. A duplicated name might be a typing error.&lt;/p&gt;
+</description>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
+    <key>NDC</key>
+    <name>no-duplicate-case</name>
+    <description>&lt;h3&gt;ESLint&lt;/h3&gt;&lt;p&gt;A switch statements with duplicate case labels is normally an indication of a programmer error. In the following example the 3rd case label uses again the literal 1 that has already been used in the first case label. Most likely the case block was copied from above and it was forgotten to change the literal.&lt;/p&gt;
+</description>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
+    <key>NDCM</key>
+    <name>no-dupe-class-members</name>
+    <description>&lt;h3&gt;ESLint&lt;/h3&gt;&lt;p&gt;If there are declarations of the same name in class members, the last declaration overwrites other declarations silently. It can cause unexpected behaviors.&lt;/p&gt;</description>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
+    <key>NDK</key>
+    <name>no-dupe-keys</name>
+    <description>&lt;h3&gt;ESLint&lt;/h3&gt;&lt;p&gt;Multiple properties with the same key in object literals can cause unexpected behavior in your application.&lt;/p&gt;
+</description>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
+    <key>NDV</key>
+    <name>no-delete-var</name>
+    <description>&lt;h3&gt;ESLint&lt;/h3&gt;&lt;p&gt;The purpose of the delete operator is to remove a property from an object. Using the delete operator on a variable might lead to unexpected behavior.&lt;/p&gt;
+</description>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
+    <key>NE</key>
+    <name>no-empty</name>
+    <description>&lt;h3&gt;ESLint&lt;/h3&gt;&lt;p&gt;Empty block statements, while not technically errors, usually occur due to refactoring that wasn’t completed. They can cause confusion when reading code.&lt;/p&gt;
+</description>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
+    <key>NEA</key>
+    <name>no-ex-assign</name>
+    <description>&lt;h3&gt;ESLint&lt;/h3&gt;&lt;p&gt;If a catch clause in a try statement accidentally (or purposely) assigns another value to the exception parameter, it impossible to refer to the error from that point on. Since there is no arguments object to offer alternative access to this data, assignment of the parameter is absolutely destructive.&lt;/p&gt;
+</description>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
+    <key>NEBC</key>
+    <name>no-extra-boolean-cast</name>
+    <description>&lt;h3&gt;ESLint&lt;/h3&gt;&lt;p&gt;In contexts such as an if statement’s test where the result of the expression will already be coerced to a Boolean, casting to a Boolean via double negation (!!) is unnecessary. For example, these if statements are equivalent:&lt;/p&gt;
+</description>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
+    <key>NECC</key>
+    <name>no-empty-character-class</name>
+    <description>&lt;h3&gt;ESLint&lt;/h3&gt;&lt;p&gt;Empty character classes in regular expressions do not match anything and can result in code that may not work as intended.&lt;/p&gt;
+</description>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
+    <key>NEPA</key>
+    <name>no-empty-pattern</name>
+    <description>&lt;h3&gt;ESLint&lt;/h3&gt;&lt;p&gt;When using destructuring, it’s possible to create a pattern that has no effect. This happens when empty curly braces are used to the right of an embedded object destructuring pattern, such as: In this code, no new variables are created because a is just a location helper while the {} is expected to contain the variables to create, such as: In many cases, the empty object pattern is a mistake where the author intended to use a default value instead, such as: The difference between these two patterns is subtle, especially because the problematic empty pattern looks just like an object literal.&lt;/p&gt;
+</description>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
+    <key>NES</key>
+    <name>no-extra-semi</name>
+    <description>&lt;h3&gt;ESLint&lt;/h3&gt;&lt;p&gt;Typing mistakes and misunderstandings about where semicolons are required can lead to semicolons that are unnecessary. While not technically an error, extra semicolons can cause confusion when reading code.&lt;/p&gt;
+</description>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
+    <key>NF</key>
+    <name>no-fallthrough</name>
+    <description>&lt;h3&gt;ESLint&lt;/h3&gt;&lt;p&gt;The switch statement in JavaScript is one of the more error-prone constructs of the language thanks in part to the ability to “fall through” from one case to the next. For example: In this example, if foo is 1,then execution will flow through both cases, as the first falls through to the second. You can prevent this by using break, as in this example: That works fine when you don’t want a fallthrough, but what if the fallthrough is intentional, there is no way to indicate that in the language. It’s considered a best practice to always indicate when a fallthrough is intentional using a comment: In this example, there is no confusion as to the expected behavior. It is clear that the first case is meant to fall through to the second case.&lt;/p&gt;
+</description>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
+    <key>NFA</key>
+    <name>no-func-assign</name>
+    <description>&lt;h3&gt;ESLint&lt;/h3&gt;&lt;p&gt;JavaScript functions can be written as a FunctionDeclaration function foo() { … } or as a FunctionExpression var foo = function() { … };. While a JavaScript interpreter might tolerate it, overwriting/reassigning a function written as a FunctionDeclaration is often indicative of a mistake or issue.&lt;/p&gt;
+</description>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
+    <key>NGA</key>
+    <name>no-global-assign</name>
+    <description>&lt;h3&gt;ESLint&lt;/h3&gt;&lt;p&gt;JavaScript environments contain a number of built-in global variables, such as window in browsers and process in Node.js. In almost all cases, you don’t want to assign a value to these global variables as doing so could result in losing access to important functionality. &lt;/p&gt;
+</description>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
+    <key>NI</key>
+    <name>no-iterator</name>
+    <description>&lt;h3&gt;ESLint&lt;/h3&gt;&lt;p&gt;The &lt;strong&gt;iterator&lt;/strong&gt; property was a SpiderMonkey extension to JavaScript that could be used to create custom iterators that are compatible with JavaScript’s for in and for each constructs. However, this property is now obsolete, so it should not be used. Here’s an example of how this used to work: You should use ECMAScript 6 iterators and generators instead.&lt;/p&gt;
+</description>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
+    <key>NID</key>
+    <name>no-inner-declarations</name>
+    <description>&lt;h3&gt;ESLint&lt;/h3&gt;&lt;p&gt;In JavaScript, prior to ES6, a function declaration is only allowed in the first level of a program or the body of another function, though parsers sometimes erroneously accept them elsewhere. This only applies to function declarations; named or anonymous function expressions can occur anywhere an expression is permitted. A variable declaration is permitted anywhere a statement can go, even nested deeply inside other blocks. This is often undesirable due to variable hoisting, and moving declarations to the root of the program or function body can increase clarity. Note that block bindings (let, const) are not hoisted and therefore they are not affected by this rule.&lt;/p&gt;
+</description>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
+    <key>NIR</key>
+    <name>no-invalid-regexp</name>
+    <description>&lt;h3&gt;ESLint&lt;/h3&gt;&lt;p&gt;An invalid pattern in a regular expression literal is a SyntaxError when the code is parsed, but an invalid string in RegExp constructors throws a SyntaxError only when the code is executed.&lt;/p&gt;
+</description>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
+    <key>NIW</key>
+    <name>no-irregular-whitespace</name>
+    <description>&lt;h3&gt;ESLint&lt;/h3&gt;&lt;p&gt;Invalid or irregular whitespace causes issues with ECMAScript 5 parsers and also makes code harder to debug in a similar nature to mixed tabs and spaces. Various whitespace characters can be inputted by programmers by mistake for example from copying or keyboard shortcuts. Pressing Alt + Space on OS X adds in a non breaking space character for example. Known issues these spaces cause:&lt;/p&gt;
+</description>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
+    <key>NMN</key>
+    <name>no-magic-numbers</name>
+    <description>&lt;h3&gt;ESLint&lt;/h3&gt;&lt;p&gt;‘Magic numbers’ are numbers that occur multiple time in code without an explicit meaning. They should preferably be replaced by named constants.&lt;/p&gt;
+</description>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
+    <key>NMSAT</key>
+    <name>no-mixed-spaces-and-tabs</name>
+    <description>&lt;h3&gt;ESLint&lt;/h3&gt;&lt;p&gt;Most code conventions require either tabs or spaces be used for indentation. As such, it’s usually an error if a single line of code is indented with both tabs and spaces.&lt;/p&gt;
+</description>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
+    <key>NNSY</key>
+    <name>no-new-symbol</name>
+    <description>&lt;h3&gt;ESLint&lt;/h3&gt;&lt;p&gt;Using a single import statement per module will make the code clearer because you can see everything being imported from that module on one line. In the following example the module import on line 1 is repeated on line 3. These can be combined to make the list of imports more succinct.&lt;/p&gt;</description>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
+    <key>NNW</key>
+    <name>no-new-wrappers</name>
+    <description>&lt;h3&gt;ESLint&lt;/h3&gt;&lt;p&gt;There are three primitive types in JavaScript that have wrapper objects: string, number, and boolean. These are represented by the constructors String, Number, and Boolean, respectively. The primitive wrapper types are used whenever one of these primitive values is read, providing them with object-like capabilities such as methods. Behind the scenes, an object of the associated wrapper type is created and then destroyed, which is why you can call methods on primitive values, such as: Behind the scenes in this example, a String object is constructed. The substring() method exists on String.prototype and so is accessible to the string instance. It’s also possible to manually create a new wrapper instance: Although possible, there aren’t any good reasons to use these primitive wrappers as constructors. They tend to confuse other developers more than anything else because they seem like they should act as primitives, but they do not. For example: The first problem is that primitive wrapper objects are, in fact, objects. That means typeof will return “object” instead of “string”, “number”, or “boolean”. The second problem comes with boolean objects. Every object is truthy, that means an instance of Boolean always resolves to true even when its actual value is false. For these reasons, it’s considered a best practice to avoid using primitive wrapper types with new.&lt;/p&gt;
+</description>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
+    <key>NO</key>
+    <name>no-octal</name>
+    <description>&lt;h3&gt;ESLint&lt;/h3&gt;&lt;p&gt;Octal literals are numerals that begin with a leading zero, such as: The leading zero to identify an octal literal has been a source of confusion and error in JavaScript. ECMAScript 5 deprecates the use of octal numeric literals in JavaScript and octal literals cause syntax errors in strict mode. It’s therefore recommended to avoid using octal literals in JavaScript code.&lt;/p&gt;
+</description>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
+    <key>NOC</key>
+    <name>no-obj-calls</name>
+    <description>&lt;h3&gt;ESLint&lt;/h3&gt;&lt;p&gt;ECMAScript provides several global objects that are intended to be used as-is. Some of these objects look as if they could be constructors due their capitalization (such as Math and JSON) but will throw an error if you try to execute them as functions. The ECMAScript 5 specification makes it clear that both Math and JSON cannot be invoked:&lt;/p&gt;
+</description>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
+    <key>NR</key>
+    <name>no-redeclare</name>
+    <description>&lt;h3&gt;ESLint&lt;/h3&gt;&lt;p&gt;In JavaScript, it’s possible to redeclare the same variable name using var. This can lead to confusion as to where the variable is actually declared and initialized.&lt;/p&gt;
+</description>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
+    <key>NRS</key>
+    <name>no-regex-spaces</name>
+    <description>&lt;h3&gt;ESLint&lt;/h3&gt;&lt;p&gt;Regular expressions can be very complex and difficult to understand, which is why it’s important to keep them as simple as possible in order to avoid mistakes. One of the more error-prone things you can do with a regular expression is to use more than one space, such as: In this regular expression, it’s very hard to tell how many spaces are intended to be matched. It’s better to use only one space and then specify how many spaces are expected, such as: Now it is very clear that three spaces are expected to be matched.&lt;/p&gt;
+</description>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
+    <key>NSA</key>
+    <name>no-sparse-arrays</name>
+    <description>&lt;h3&gt;ESLint&lt;/h3&gt;&lt;p&gt;Sparse arrays contain empty slots, most frequently due to multiple commas being used in an array literal, such as: While the items array in this example has a length of 2, there are actually no values in items[0] or items[1]. The fact that the array literal is valid with only commas inside, coupled with the length being set and actual item values not being set, make sparse arrays confusing for many developers. Consider the following: In this example, the colors array has a length of 3. But did the developer intend for there to be an empty spot in the middle of the array? Or is it a typo? The confusion around sparse arrays defined in this manner is enough that it’s recommended to avoid using them unless you are certain that they are useful in your code.&lt;/p&gt;
+</description>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
+    <key>NSAS</key>
+    <name>no-self-assign</name>
+    <description>&lt;h3&gt;ESLint&lt;/h3&gt;&lt;p&gt;Self assignments have no effect, so probably those are an error due to incomplete refactoring. Those indicate that what you should do is still remaining.&lt;/p&gt;
+</description>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
+    <key>NTBS</key>
+    <name>no-this-before-super</name>
+    <description>&lt;h3&gt;ESLint&lt;/h3&gt;&lt;p&gt;In the constructor of derived classes, if this/super are used before super() calls, it raises a reference error. This rule checks this/super keywords in constructors, then reports those that are before super().&lt;/p&gt;</description>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
+    <key>NU</key>
+    <name>no-unreachable</name>
+    <description>&lt;h3&gt;ESLint&lt;/h3&gt;&lt;p&gt;Because the return, throw, break, and continue statements unconditionally exit a block of code, any statements after them cannot be executed. Unreachable statements are usually a mistake.&lt;/p&gt;
+</description>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
+    <key>NUES</key>
+    <name>no-useless-escape</name>
+    <description>&lt;h3&gt;ESLint&lt;/h3&gt;&lt;p&gt;Escaping non-special characters in strings, template literals, and regular expressions doesn’t have any effect, as demonstrated in the following example:&lt;/p&gt;
+</description>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
+    <key>NUF</key>
+    <name>no-unsafe-finally</name>
+    <description>&lt;h3&gt;ESLint&lt;/h3&gt;&lt;p&gt;JavaScript suspends the control flow statements of try and catch blocks until the execution of finally block finishes. So, when return, throw, break, or continue is used in finally, control flow statements inside try and catch are overwritten, which is considered as unexpected behavior.&lt;/p&gt;
+</description>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
+    <key>NULA</key>
+    <name>no-unused-labels</name>
+    <description>&lt;h3&gt;ESLint&lt;/h3&gt;&lt;p&gt;The --fix option on the command line can automatically fix some of the problems reported by this rule. Labels that are declared and not used anywhere in the code are most likely an error due to incomplete refactoring.&lt;/p&gt;
+</description>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
+    <key>NUM</key>
+    <name>no-unexpected-multiline</name>
+    <description>&lt;h3&gt;ESLint&lt;/h3&gt;&lt;p&gt;Semicolons are optional in JavaScript, via a process called automatic semicolon insertion (ASI). See the documentation for semi for a fuller discussion of that feature. The rules for ASI are relatively straightforward: In short, as once described by Isaac Schlueter, a character always ends a statement (just like a semicolon) unless one of the following is true: This particular rule aims to spot scenarios where a newline looks like it is ending a statement, but is not.&lt;/p&gt;
+</description>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
+    <key>NUN</key>
+    <name>no-undef</name>
+    <description>&lt;h3&gt;ESLint&lt;/h3&gt;&lt;p&gt;This rule can help you locate potential ReferenceErrors resulting from misspellings of variable and parameter names, or accidental implicit globals (for example, from forgetting the var keyword in a for loop initializer).&lt;/p&gt;
+</description>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
+    <key>NUNEG</key>
+    <name>no-unsafe-negation</name>
+    <description>&lt;h3&gt;ESLint&lt;/h3&gt;&lt;p&gt;Just as developers might type -a + b when they mean -(a + b) for the negative of a sum, they might type !key in object by mistake when they almost certainly mean !(key in object) to test that a key is not in an object. !obj instanceof Ctor is similar.&lt;/p&gt;
+</description>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
+    <key>NUV</key>
+    <name>no-unused-vars</name>
+    <description>&lt;h3&gt;ESLint&lt;/h3&gt;&lt;p&gt;Variables that are declared and not used anywhere in the code are most likely an error due to incomplete refactoring. Such variables take up space in the code and can lead to confusion by readers.&lt;/p&gt;
+</description>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
+    <key>RY</key>
+    <name>require-yield</name>
+    <description>&lt;h3&gt;ESLint&lt;/h3&gt;&lt;p&gt;This rule generates warnings for generator functions that do not have the yield keyword.&lt;/p&gt;</description>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
+    <key>UI</key>
+    <name>use-isnan</name>
+    <description>&lt;h3&gt;ESLint&lt;/h3&gt;&lt;p&gt;In JavaScript, NaN is a special value of the Number type. It’s used to represent any of the “not-a-number” values represented by the double-precision 64-bit format as specified by the IEEE Standard for Binary Floating-Point Arithmetic. NaN has the unique property of not being equal to anything, including itself. That is to say, that the condition NaN !== NaN evaluates to true.&lt;/p&gt;
+</description>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
+    <key>VT</key>
+    <name>valid-typeof</name>
+    <description>&lt;h3&gt;ESLint&lt;/h3&gt;&lt;p&gt;For a vast majority of use-cases, the only valid results of the typeof operator will be one of the following: “undefined”, “object”, “boolean”, “number”, “string”, and “function”. When the result of a typeof operation is compared against a string that is not one of these strings, it is usually a typo. This rule ensures that when the result of a typeof operation is compared against a string, that string is in the aforementioned set.&lt;/p&gt;
+</description>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+</rules>

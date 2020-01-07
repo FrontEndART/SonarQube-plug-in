@@ -49,6 +49,17 @@
 .sm-icon-java-method {
     background: url('/static/SourceMeterAnalyzerjava/method.mini.png');
 }
+
+.sm-icon-javascript-package {
+    background: url('/static/SourceMeterAnalyzerjavascript/package.mini.png');
+}
+.sm-icon-javascript-class {
+    background: url('/static/SourceMeterAnalyzerjavascript/class.mini.png');
+}
+.sm-icon-javascript-method {
+    background: url('/static/SourceMeterAnalyzerjavascript/method.mini.png');
+}
+
 .sm-icon-rpg-system {
   background: url('/static/SourceMeterAnalyzerrpg/system.mini.png');
 }

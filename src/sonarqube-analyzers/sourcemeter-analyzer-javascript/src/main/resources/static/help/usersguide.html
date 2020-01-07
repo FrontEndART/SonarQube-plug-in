@@ -1,0 +1,1753 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+  </style>
+  <link href="data:text/css;charset=utf-8,%40import%20url%28data%3Atext%2Fcss%3B%20charset%3Dutf%2D8%2C%2540font%252Dface%2520%257B%250A%2520%2520font%252Dfamily%253A%2520%2527Open%2520Sans%2527%253B%250A%2520%2520font%252Dstyle%253A%2520italic%253B%250A%2520%2520font%252Dweight%253A%2520300%253B%250A%2520%2520src%253A%2520local%2528%2527Open%2520Sans%2520Light%2520Italic%2527%2529%252C%2520local%2528%2527OpenSans%252DLightItalic%2527%2529%252C%2520url%2528http%253A%252F%252Ffonts%252Egstatic%252Ecom%252Fs%252Fopensans%252Fv17%252FmemnYaGs126MiZpBA%252DUFUKWyV9hrIqY%252Ettf%2529%2520format%2528%2527truetype%2527%2529%253B%250A%257D%250A%2540font%252Dface%2520%257B%250A%2520%2520font%252Dfamily%253A%2520%2527Open%2520Sans%2527%253B%250A%2520%2520font%252Dstyle%253A%2520italic%253B%250A%2520%2520font%252Dweight%253A%2520400%253B%250A%2520%2520src%253A%2520local%2528%2527Open%2520Sans%2520Italic%2527%2529%252C%2520local%2528%2527OpenSans%252DItalic%2527%2529%252C%2520url%2528http%253A%252F%252Ffonts%252Egstatic%252Ecom%252Fs%252Fopensans%252Fv17%252Fmem6YaGs126MiZpBA%252DUFUK0Zdcg%252Ettf%2529%2520format%2528%2527truetype%2527%2529%253B%250A%257D%250A%2540font%252Dface%2520%257B%250A%2520%2520font%252Dfamily%253A%2520%2527Open%2520Sans%2527%253B%250A%2520%2520font%252Dstyle%253A%2520italic%253B%250A%2520%2520font%252Dweight%253A%2520600%253B%250A%2520%2520src%253A%2520local%2528%2527Open%2520Sans%2520SemiBold%2520Italic%2527%2529%252C%2520local%2528%2527OpenSans%252DSemiBoldItalic%2527%2529%252C%2520url%2528http%253A%252F%252Ffonts%252Egstatic%252Ecom%252Fs%252Fopensans%252Fv17%252FmemnYaGs126MiZpBA%252DUFUKXGUdhrIqY%252Ettf%2529%2520format%2528%2527truetype%2527%2529%253B%250A%257D%250A%2540font%252Dface%2520%257B%250A%2520%2520font%252Dfamily%253A%2520%2527Open%2520Sans%2527%253B%250A%2520%2520font%252Dstyle%253A%2520italic%253B%250A%2520%2520font%252Dweight%253A%2520700%253B%250A%2520%2520src%253A%2520local%2528%2527Open%2520Sans%2520Bold%2520Italic%2527%2529%252C%2520local%2528%2527OpenSans%252DBoldItalic%2527%2529%252C%2520url%2528http%253A%252F%252Ffonts%252Egstatic%252Ecom%252Fs%252Fopensans%252Fv17%252FmemnYaGs126MiZpBA%252DUFUKWiUNhrIqY%252Ettf%2529%2520format%2528%2527truetype%2527%2529%253B%250A%257D%250A%2540font%252Dface%2520%257B%250A%2520%2520font%252Dfamily%253A%2520%2527Open%2520Sans%2527%253B%250A%2520%2520font%252Dstyle%253A%2520italic%253B%250A%2520%2520font%252Dweight%253A%2520800%253B%250A%2520%2520src%253A%2520local%2528%2527Open%2520Sans%2520ExtraBold%2520Italic%2527%2529%252C%2520local%2528%2527OpenSans%252DExtraBoldItalic%2527%2529%252C%2520url%2528http%253A%252F%252Ffonts%252Egstatic%252Ecom%252Fs%252Fopensans%252Fv17%252FmemnYaGs126MiZpBA%252DUFUKW%252DU9hrIqY%252Ettf%2529%2520format%2528%2527truetype%2527%2529%253B%250A%257D%250A%2540font%252Dface%2520%257B%250A%2520%2520font%252Dfamily%253A%2520%2527Open%2520Sans%2527%253B%250A%2520%2520font%252Dstyle%253A%2520normal%253B%250A%2520%2520font%252Dweight%253A%2520300%253B%250A%2520%2520src%253A%2520local%2528%2527Open%2520Sans%2520Light%2527%2529%252C%2520local%2528%2527OpenSans%252DLight%2527%2529%252C%2520url%2528http%253A%252F%252Ffonts%252Egstatic%252Ecom%252Fs%252Fopensans%252Fv17%252Fmem5YaGs126MiZpBA%252DUN%255Fr8OUuhs%252Ettf%2529%2520format%2528%2527truetype%2527%2529%253B%250A%257D%250A%2540font%252Dface%2520%257B%250A%2520%2520font%252Dfamily%253A%2520%2527Open%2520Sans%2527%253B%250A%2520%2520font%252Dstyle%253A%2520normal%253B%250A%2520%2520font%252Dweight%253A%2520400%253B%250A%2520%2520src%253A%2520local%2528%2527Open%2520Sans%2520Regular%2527%2529%252C%2520local%2528%2527OpenSans%252DRegular%2527%2529%252C%2520url%2528http%253A%252F%252Ffonts%252Egstatic%252Ecom%252Fs%252Fopensans%252Fv17%252Fmem8YaGs126MiZpBA%252DUFVZ0e%252Ettf%2529%2520format%2528%2527truetype%2527%2529%253B%250A%257D%250A%2540font%252Dface%2520%257B%250A%2520%2520font%252Dfamily%253A%2520%2527Open%2520Sans%2527%253B%250A%2520%2520font%252Dstyle%253A%2520normal%253B%250A%2520%2520font%252Dweight%253A%2520600%253B%250A%2520%2520src%253A%2520local%2528%2527Open%2520Sans%2520SemiBold%2527%2529%252C%2520local%2528%2527OpenSans%252DSemiBold%2527%2529%252C%2520url%2528http%253A%252F%252Ffonts%252Egstatic%252Ecom%252Fs%252Fopensans%252Fv17%252Fmem5YaGs126MiZpBA%252DUNirkOUuhs%252Ettf%2529%2520format%2528%2527truetype%2527%2529%253B%250A%257D%250A%2540font%252Dface%2520%257B%250A%2520%2520font%252Dfamily%253A%2520%2527Open%2520Sans%2527%253B%250A%2520%2520font%252Dstyle%253A%2520normal%253B%250A%2520%2520font%252Dweight%253A%2520700%253B%250A%2520%2520src%253A%2520local%2528%2527Open%2520Sans%2520Bold%2527%2529%252C%2520local%2528%2527OpenSans%252DBold%2527%2529%252C%2520url%2528http%253A%252F%252Ffonts%252Egstatic%252Ecom%252Fs%252Fopensans%252Fv17%252Fmem5YaGs126MiZpBA%252DUN7rgOUuhs%252Ettf%2529%2520format%2528%2527truetype%2527%2529%253B%250A%257D%250A%2540font%252Dface%2520%257B%250A%2520%2520font%252Dfamily%253A%2520%2527Open%2520Sans%2527%253B%250A%2520%2520font%252Dstyle%253A%2520normal%253B%250A%2520%2520font%252Dweight%253A%2520800%253B%250A%2520%2520src%253A%2520local%2528%2527Open%2520Sans%2520ExtraBold%2527%2529%252C%2520local%2528%2527OpenSans%252DExtraBold%2527%2529%252C%2520url%2528http%253A%252F%252Ffonts%252Egstatic%252Ecom%252Fs%252Fopensans%252Fv17%252Fmem5YaGs126MiZpBA%252DUN8rsOUuhs%252Ettf%2529%2520format%2528%2527truetype%2527%2529%253B%250A%257D%250A%29%3B%0A%2A%20%7B%0Aoutline%3A%20none%20%21important%3B%0Amargin%3A%200%3B%0Apadding%3A%200%3B%0Aborder%3A%200px%20solid%3B%0A%7D%0Ahtml%20%7B%0Aborder%3A%200%3B%0Afont%2Dfamily%3A%20open%5Fsansregular%2C%20Arial%2C%20sans%2Dserif%3B%0Afont%2Dsize%3A%2013px%3B%0Acolor%3A%20%23666%3B%0Amargin%3A%200%3B%0Apadding%3A%201em%3B%0Abackground%3A%20%23e8eaec%3B%0A%7D%0Abody%20%7B%0Abackground%3A%20%23f9fbfc%3B%0Awidth%3A%201180px%3B%0Amargin%3A%20auto%3B%0Apadding%3A%202em%3B%0A%2Dmoz%2Dborder%2Dradius%3A%205px%3B%0A%2Dwebkit%2Dborder%2Dradius%3A%205px%3B%0Aborder%2Dradius%3A%205px%3B%0A%2Dwebkit%2Dbox%2Dshadow%3A%203px%203px%2010px%200px%20rgba%2889%2C%2089%2C%2089%2C%200%2E34%29%3B%0A%2Dmoz%2Dbox%2Dshadow%3A%203px%203px%2010px%200px%20rgba%2889%2C%2089%2C%2089%2C%200%2E34%29%3B%0Abox%2Dshadow%3A%203px%203px%2010px%200px%20rgba%2889%2C%2089%2C%2089%2C%200%2E34%29%3B%0A%7D%0Ah1%2C%20h2%2C%20h3%2C%20h4%2C%20h5%2C%20h6%20%7B%0Afont%2Dfamily%3A%20open%5Fsanssemibold%3B%0Amargin%3A%20%2E5em%200%3B%0Apadding%3A%200%3B%0A%0A%7D%0Ah3%20%7B%0Afont%2Dsize%3A%20150%25%3B%0A%7D%0Ah3%2C%20h4%2C%20h5%2C%20h6%20%7B%0Amargin%3A%20%2E5em%200%200%200%3B%0A%7D%0Ah4%2C%20h5%2C%20h6%20%7B%0Afont%2Dfamily%3A%20%22Open%20Sans%22%3B%0Afont%2Dsize%3A%20105%25%3B%0Acolor%3A%20%236DAB66%3B%0Aborder%2Dbottom%3Adotted%202px%20%2324a700%3B%0Adisplay%3A%20inline%2Dblock%3B%0A%7D%0Ah4%3Aafter%2C%20h5%3Aafter%2C%20h6%3Aafter%20%7B%0Acontent%3A%20%22%5CA%22%3B%0Awhite%2Dspace%3A%20pre%3B%0A%7D%0Aa%20%7B%0Atext%2Ddecoration%3A%20none%3B%0Acolor%3A%20%2324a700%3B%0A%7D%0Ainput%2C%20select%20%7B%0Afont%2Dfamily%3A%20open%5Fsanslight%5Fitalic%2C%20Arial%2C%20sans%2Dserif%3B%0Afont%2Dsize%3A%2012px%3B%0Aoutline%3A%200%20none%3B%0Aresize%3A%20none%3B%0Amargin%3A%200%3B%0A%7D%0Aul%20%7B%0Alist%2Dstyle%2Dtype%3A%20none%3B%0Apadding%2Dleft%3A%202em%3B%0A%7D%0Ali%20%7B%0Avertical%2Dalign%3A%20middle%3B%0Aline%2Dheight%3A%20150%25%3B%0A%7D%0Anav%23TOC%20%7B%0A%0A%7D%0Anav%23TOC%20%3E%20ul%20%7B%0A%0Atext%2Dalign%3A%20left%3B%0Afont%2Dsize%3A%201%2E5em%3B%0A%7D%0Anav%23TOC%20ul%20%7B%0Amargin%3A%200%3B%0A%7D%0Anav%23TOC%20%3E%20ul%20ul%20%7B%0Afont%2Dsize%3A%2075%25%3B%0A%7D%0Anav%23TOC%20%3E%20ul%20li%20a%20%7B%0Aborder%2Dbottom%3A%20dotted%20%236DAB66%201px%3B%0Aline%2Dheight%3A%20150%25%3B%0A%7D%0Anav%23TOC%20%3E%20ul%20ul%20ul%20li%20a%20%7B%0Aline%2Dheight%3A%20190%25%3B%0A%7D%0Anav%23TOC%20%3E%20ul%20ul%20ul%20ul%20%7B%0Afont%2Dsize%3A%20100%25%3B%0A%7D%0Anav%23TOC%20%3E%20ul%20ul%20ul%20ul%20li%20a%20%7B%0Aline%2Dheight%3A%20110%25%3B%0A%7D%0A%2Ered%20%7B%0Acolor%3A%20red%3B%0A%7D%0A%2Egreen%20%7B%0Acolor%3A%20green%3B%0A%7D%0Atable%2Efill%20%7B%0Awidth%3A%2095%25%3B%0A%7D%0A%23container%20%7B%0Abackground%3A%20%23f9fbfc%3B%0Awidth%3A%20930px%3B%0Amargin%3A%20auto%3B%0Apadding%3A%202em%3B%0A%2Dmoz%2Dborder%2Dradius%3A%205px%3B%0A%2Dwebkit%2Dborder%2Dradius%3A%205px%3B%0Aborder%2Dradius%3A%205px%0A%7D%0Atable%20%7B%0Abackground%3A%20%23ccc%3B%0Amargin%3A%2020px%3B%0Aborder%3A%20%23ccc%201px%20solid%3B%0A%2Dmoz%2Dborder%2Dradius%3A%2010px%3B%0A%2Dwebkit%2Dborder%2Dradius%3A%2010px%3B%0Aborder%2Dradius%3A%2010px%0A%7D%0Atable%20th%20%7B%0Apadding%3A%204px%2010px%3B%0Atext%2Dalign%3A%20center%3B%0Avertical%2Dalign%3A%20middle%3B%0A%0Acolor%3A%20%23233%3B%0A%7D%0Atable%2C%20tbody%2C%20tr%2C%20td%20%7B%0Avertical%2Dalign%3A%20inherit%3B%0Atext%2Dalign%3A%20inherit%3B%0A%7D%0Atable%20td%20%7B%0Abackground%3A%20%23F4F4F5%3B%0Apadding%3A%204px%2010px%204px%2010px%3B%0Avertical%2Dalign%3A%20inherit%3B%0A%7D%0A%2Emiddle%20%7B%0Avertical%2Dalign%3A%20middle%3B%0A%7D%0A%2Ecenter%20%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0Atd%2Ename%20%7B%0Atext%2Dalign%3A%20left%3B%0A%7D%0Atd%2Epath%20%7B%0Atext%2Dalign%3A%20left%3B%0A%7D%0Atable%20tr%2Eeven%20td%20%7B%0Abackground%3A%20%23eee%0A%7D%0Atable%20a%20%7B%0Adisplay%3A%20block%3B%0A%7D%0Atable%20tr%3Afirst%2Dchild%20td%3Afirst%2Dchild%20%7B%0A%2Dmoz%2Dborder%2Dradius%2Dtopleft%3A%205px%3B%0A%2Dwebkit%2Dborder%2Dtop%2Dleft%2Dradius%3A%205px%3B%0Aborder%2Dtop%2Dleft%2Dradius%3A%205px%3B%0A%7D%0Atable%20tr%3Afirst%2Dchild%20td%3Alast%2Dchild%20%7B%0A%2Dmoz%2Dborder%2Dradius%2Dtopright%3A%205px%3B%0A%2Dwebkit%2Dborder%2Dtop%2Dright%2Dradius%3A%205px%3B%0Aborder%2Dtop%2Dright%2Dradius%3A%205px%3B%0A%7D%0Atable%20tr%3Alast%2Dchild%20td%3Afirst%2Dchild%20%7B%0A%2Dmoz%2Dborder%2Dradius%2Dbottomleft%3A%205px%3B%0A%2Dwebkit%2Dborder%2Dbottom%2Dleft%2Dradius%3A%205px%3B%0Aborder%2Dbottom%2Dleft%2Dradius%3A%205px%3B%0A%7D%0Atable%20tr%3Alast%2Dchild%20td%3Alast%2Dchild%20%7B%0A%2Dmoz%2Dborder%2Dradius%2Dbottomright%3A%205px%3B%0A%2Dwebkit%2Dborder%2Dbottom%2Dright%2Dradius%3A%205px%3B%0Aborder%2Dbottom%2Dright%2Dradius%3A%205px%3B%0A%7D%0Atable%2Ecollapsed%20%7B%0Aborder%2Dcollapse%3A%20collapse%0A%7D%0Aul%20%7B%0Alist%2Dstyle%3Adisc%20outside%3B%0A%7D%0Aol%5Btype%3D1%5D%20%7B%0Alist%2Dstyle%2Dtype%3Adecimal%3B%0A%7D%0Aol%5Btype%3Da%5D%20%7B%0Alist%2Dstyle%2Dtype%3Alower%2Dalpha%3B%0A%7D%0Aol%5Btype%3DA%5D%20%7B%0Alist%2Dstyle%2Dtype%3Aupper%2Dalpha%3B%0A%7D%0Aol%5Btype%3DI%5D%20%7B%0Alist%2Dstyle%2Dtype%3Aupper%2Droman%3B%0A%7D%0Aol%5Btype%3Di%5D%20%7B%0Alist%2Dstyle%2Dtype%3Alower%2Droman%3B%0A%7D%0Ap%20%7B%0Amargin%3A%201em%200%3B%0A%7D%0Ali%20p%3Aonly%2Dof%2Dtype%20%7B%0Amargin%3A%200%3B%0A%7D%0Ablockquote%2Cul%2Col%2Cdl%20%7B%0Amargin%3A1em%202em%3B%0A%7D%0Adl%20dd%20%7B%0Amargin%2Dleft%3A1em%3B%0A%7D%0Acaption%20%7B%0Amargin%2Dbottom%3A%2E5em%3B%0Atext%2Dalign%3Acenter%3B%0A%7D%0Afieldset%2Cpre%20%7B%0Amargin%2Dtop%3A%2E5em%3B%0Amargin%2Dbottom%3A%2E5em%3B%0A%7D%0Apre%2Ccode%2Ctt%20%7B%0Afont%2Dfamily%3Amonospace%3B%0Afont%2Dsize%3A108%25%3B%0Aline%2Dheight%3A100%25%3B%0A%7D%0Adl%20%7B%0Amargin%3A0%200%201%2E125em%3B%0A%7D%0Adt%20%7B%0Afont%2Dweight%3A700%3B%0Aline%2Dheight%3A1%2E125em%3B%0Afont%2Dfamily%3A%20%22Open%20Sans%22%3B%0A%7D%0Add%20%7B%0Amargin%2Dleft%3A1em%3B%0Aline%2Dheight%3A1%2E125em%3B%0A%7D%0Add%20p%20%7B%0Amargin%2Dtop%3A%20%2E3em%3B%0A%7D%0Apre%20%7B%0Aborder%3A%202px%20dotted%20%23ddd%3B%0A%2Dwebkit%2Dborder%2Dradius%3A%204px%3B%0A%2Dmoz%2Dborder%2Dradius%3A%204px%3B%0Aborder%2Dradius%3A%204px%3B%0Apadding%3A%201%2E5em%3B%0A%7D%0Ahr%20%7B%0Aborder%2Dtop%3A%20%23ddd%20dotted%205px%3B%0A%7D%0Aimg%20%7B%0Amargin%2Dleft%3A%20auto%3B%0Amargin%2Dright%3A%20auto%3B%0Amax%2Dwidth%3A%20100%25%3B%0Aborder%2Dstyle%3A%20solid%3B%0Aborder%2Dwidth%3A%202px%3B%0A%7D" rel="stylesheet">
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<nav id="TOC">
+<ul>
+<li><a href="#sourcemeter-9.1-for-javascript">SourceMeter 9.1 for JavaScript</a></li>
+<li><a href="#introduction">Introduction</a><ul>
+<li><a href="#product-characteristics">Product characteristics</a></li>
+<li><a href="#background">Background</a></li>
+</ul></li>
+<li><a href="#installation-section">Installation</a><ul>
+<li><a href="#supported-platforms">Supported platforms</a></li>
+<li><a href="#requirements-section">Requirements</a></li>
+<li><a href="#installation-package">Installation package</a></li>
+<li><a href="#license-key">License key</a></li>
+</ul></li>
+<li><a href="#command-line-parameters">Command line parameters</a></li>
+<li><a href="#usage">Usage</a></li>
+<li><a href="#result-files">Result files</a></li>
+<li><a href="#demo">Demo</a></li>
+<li><a href="#error-messages">Error messages</a></li>
+<li><a href="#known-bugs-and-deficiencies">Known bugs and deficiencies</a></li>
+<li><a href="#faq">FAQ</a></li>
+<li><a href="#appendices">Appendices</a><ul>
+<li><a href="#reference-of-source-code-metrics">Reference of source code metrics</a><ul>
+<li><a href="#complexity-metrics">Complexity metrics</a></li>
+<li><a href="#documentation-metrics">Documentation metrics</a></li>
+<li><a href="#inheritance-metrics">Inheritance metrics</a></li>
+<li><a href="#size-metrics">Size metrics</a></li>
+</ul></li>
+<li><a href="#reference-of-code-duplication-metrics">Reference of code duplication metrics</a><ul>
+<li><a href="#clone-metrics">Clone metrics</a></li>
+</ul></li>
+<li><a href="#reference-of-eslint-coding-rule-violations">Reference of ESLint coding rule violations</a><ul>
+<li><a href="#best-practices">Best Practices</a></li>
+<li><a href="#ecmascript-6">ECMAScript 6</a></li>
+<li><a href="#possible-errors">Possible Errors</a></li>
+<li><a href="#stylistic-issues">Stylistic Issues</a></li>
+<li><a href="#variables">Variables</a></li>
+</ul></li>
+<li><a href="#the-userdefinedmetrics-module">The UserDefinedMetrics module</a><ul>
+<li><a href="#defining-a-metric">Defining a metric</a></li>
+<li><a href="#example-profile.xml">Example profile.xml</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#footnotes">Footnotes</a></li>
+</ul>
+</nav>
+<h1 id="sourcemeter-9.1-for-javascript">SourceMeter 9.1 for JavaScript</h1>
+<h1 id="introduction">Introduction</h1>
+<p>FrontEndART SourceMeter for JavaScript is a source code analyzer tool, which can perform deep static analysis of the source code of complex JavaScript systems (<a href="https://www.sourcemeter.com" class="uri">https://www.sourcemeter.com</a>).</p>
+<p>The source code of a program is usually its only up-to-date documentation. At the same time, the source code is the exquisite bearer of knowledge, business processes and methodology, accumulated over a long period of time. Source code quality decrease, which happens due to many quick fixes and time pressure, results in the increase of development and testing costs, and operational risks. In spite of this fact, the source code usually receives hostile treatment and is merely considered as a tool.</p>
+<p>FrontEndART has developed SourceMeter based on the Columbus technology researched and developed at the <a href="http://www.sed.inf.u-szeged.hu/softwarequality">Department of Software Engineering</a> of the University of Szeged. SourceMeter provides deep static analysis of source code. Using the results of the analysis, the quality of the analyzed source code can be improved and developed both in the short- and long term in a directed way.</p>
+<h2 id="product-characteristics">Product characteristics</h2>
+<p>The most important product characteristics of FrontEndART SourceMeter are the following:</p>
+<ul>
+<li><p>Platform-independent command line tools</p></li>
+<li><p>Transparent integration into build processes</p></li>
+<li><p>Powerful filter management</p></li>
+<li><p>Coding issue detection:</p>
+<ul>
+<li><p>Metric threshold violations (MetricHunter module)</p></li>
+<li><p><a href="http://eslint.org/">ESLint</a> coding rule violations</p></li>
+<li><p><a href="https://www.sonarqube.org">SONARQUBE™</a> platform 8.0 (“SonarQube” in the following) coding rule violations</p></li>
+</ul></li>
+<li><p>Clone detection (copy-pasted source code fragments) extended with clone tracking and “clone smells”</p>
+<ul>
+<li>Syntax-based, so-called Type-2 clones</li>
+</ul></li>
+<li><p>Metrics calculation at system, file, class, method, and function levels:</p>
+<ul>
+<li><p>Source code metrics</p></li>
+<li><p>Clone metrics</p></li>
+<li><p>Coding rule violation metrics</p></li>
+</ul></li>
+</ul>
+<p>By continuous static analysis, the software developers can:</p>
+<ul>
+<li><p>reduce the software erosion rate and this way decrease development costs;</p></li>
+<li><p>coding problems can be identified before testing, so the number of test iterations and the testing costs can be reduced;</p></li>
+<li><p>the number of errors in delivered software can be reduced, so the operational risks can be decreased, increasing the company’s reputation.</p></li>
+</ul>
+<p>SourceMeter can analyze source code conforming to ECMAScript 2015 (ECMAScript 6).</p>
+<p>With the help of the filtering mechanism it is possible to specify a certain part of the ASG to be used (or not to be used) during the analysis, hence the results can be made more focused and the usage of memory and CPU can be reduced (e.g. generated source files or test code can be filtered out).</p>
+<p>Visit our corporate website at <a href="http://www.frontendart.com">frontendart.com</a> to find the latest information about SourceMeter and read more about related products and services. Note, that if you are using only the free features of SourceMeter, we do not provide any free support for it. However, FrontEndART offers support services, so please feel free to search for solutions to your problems on our website and contact us with any questions you might have. We welcome feedback about the usability and eventual issues of the tool and further development suggestions at <a href="mailto:support@frontendart.com?subject=SourceMeter">support@frontendart.com</a>.</p>
+<h2 id="background">Background</h2>
+<p>During the static analysis, an Abstract Semantic Graph (ASG) is constructed from the language elements of the source code. This ASG is then processed by the different tools in the package to calculate product metrics, identify copy-pasted code (clones), coding rule violations, etc.</p>
+<h1 id="installation-section">Installation</h1>
+<h2 id="supported-platforms">Supported platforms</h2>
+<p>SourceMeter supports the following x86 and x86-64 platforms:</p>
+<ul>
+<li><p>Microsoft Windows 7, 8, 8.1, and 10</p></li>
+<li><p>Microsoft Windows 2008 R2 Server</p></li>
+<li><p>Microsoft Windows 2012 Server</p></li>
+<li><p>GNU/Linux with kernel version 2.6.18 and GNU C library 2.11 or newer</p></li>
+</ul>
+<h2 id="requirements-section">Requirements</h2>
+<p>In order to use SourceMeter for JavaScript, it is necessary to have Node.js 8.x.x installed on the computer and the necessary environment variable (PATH) must be set correctly.</p>
+<p>In case of Windows, the Microsoft Visual C++ 2017 Redistributable Package must be installed. It can be downloaded from the following URL:</p>
+<ul>
+<li><a href="https://aka.ms/vs/15/release/vc_redist.x64.exe" class="uri">https://aka.ms/vs/15/release/vc_redist.x64.exe</a> (x64)</li>
+</ul>
+<p>The Linux package uses bash scripts.</p>
+<p>The Linux package uses the code page conversion functions of the GNU C Library. If the conversion modules are not in the standard /usr/lib/gconv directory then the GCONV_PATH environment variable must be set according to the current installation of the GNU C Library.</p>
+<p>E.g.: for the Windows package:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">set</span> <span class="st">&quot;PATH=C:\Program Files\nodejs\;%PATH%&quot;</span></code></pre></div>
+<p>E.g.: for the Linux package:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="bu">export</span> <span class="st">&quot;PATH=/opt/node-v8.11.2-linux-x64/bin:</span><span class="va">$PATH</span><span class="st">&quot;</span>
+<span class="bu">export</span> <span class="st">&quot;GCONV_PATH=/usr/lib/x86_64-linux-gnu/gconv&quot;</span></code></pre></div>
+<h2 id="installation-package">Installation package</h2>
+<p>The SourceMeter installation package can be extracted into any folder and used from that location. It can be executed with the command line program SourceMeterJavaScript.</p>
+<p>The SourceMeter for JavaScript package contains the following directories and files:</p>
+<p>Windows:</p>
+<table>
+<tbody>
+<tr class="odd">
+<td>SourceMeter\JavaScript\</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td>Demo</td>
+<td># Example project directory</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>Tools</td>
+<td># ASG checker and exporter tools directory</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>SourceMeterJavaScript.exe</td>
+<td># Program file to execute the analysis</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>UsersGuide.html</td>
+<td># User’s guide</td>
+</tr>
+</tbody>
+</table>
+<p>Linux:</p>
+<table>
+<tbody>
+<tr class="odd">
+<td>SourceMeter/JavaScript/</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td>Demo</td>
+<td># Example project directory</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>Tools</td>
+<td># ASG checker and exporter tools directory</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>SourceMeterJavaScript</td>
+<td># Program file to execute the analysis</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>UsersGuide.html</td>
+<td># User’s guide</td>
+</tr>
+</tbody>
+</table>
+<h2 id="license-key">License key</h2>
+<p>The free version of SourceMeter does not require any license key file.</p>
+<p>In order to use the commercial version of SourceMeter with all features, it is necessary to obtain the license key file named LICENSE.DAT.</p>
+<p>Windows:</p>
+<p>The license key file must be copied into the root directory of the extracted package (next to the readme.txt file) or into the %APPDATA%\FrontEndART\SourceMeter\ directory of the user.</p>
+<p>Linux:</p>
+<p>The license key file must be copied into the root directory of the extracted package (next to the readme.txt file) or into the $HOME/.FrontEndART/SourceMeter/ directory of the user.</p>
+<p>In case of the first option, anyone who has permissions to access and execute the binaries of the package will be able to use SourceMeter, while in case of the second option only those users will be able to use SourceMeter, who have the license key file in the above-mentioned directory. If one would like to renew an expired license key, the already existing license key file must be replaced with the new one in the above-mentioned directories. To use SourceMeter it is also necessary to have read and write permission on the license key file.</p>
+<h1 id="command-line-parameters">Command line parameters</h1>
+<p>SourceMeter can be executed with the following parameters:</p>
+<dl>
+<dt><strong>-help</strong></dt>
+<dd><p>It displays the detailed help and exits.</p>
+</dd>
+<dt><strong>-resultsDir</strong></dt>
+<dd><p>Relative or absolute path name of the directory where the results of the analysis will be stored. The directory will be created automatically if it does not exist.</p>
+</dd>
+<dt><strong>-projectName</strong></dt>
+<dd><p>The name of the analyzed software system. The name specified here will be used for storing the results.</p>
+</dd>
+<dt><strong>-externalHardFilter</strong></dt>
+<dd><p>Filter file specified with relative or absolute path, to filter out certain files from the analysis based on their path names. Filtered files will not appear in the results. The filter file is a simple text file containing lines starting with ‘+’ or ‘-’ characters followed by a regular expression[^2]. During the analysis, each input file will be checked for these expressions. If the first character of the last matching expression is ‘-’, then the given file will be excluded from the analysis. If the first character of the last matching expression is ‘+’, or there is no matching expression, then the file will be analyzed. A line starting with a different character than ‘-’ or ‘+’ will be ignored. Example filter file content:</p>
+<pre><code># Filter out all source files starting with &quot;test&quot;:
+-test[^\.]*.js
+# But test576.js is needed:
++test576.js
+# Furthermore, files beginning with &quot;test1742&quot; are also needed:
++test1742[^\.]*.js
+# Finally, test1742_b.js is not needed:
+-test1742_b.js</code></pre>
+</dd>
+<dt><strong>-nodeOptions</strong></dt>
+<dd><p>Extra parameters can be added for the NodeJS used by SourceMeter. For instance the maximum heap memory of the v8 (used by Node) can be set manually if the default value is not enough.</p>
+</dd>
+<dt><strong>-runMetricHunter</strong></dt>
+<dd><p>This parameter turns on or off the MetricHunter module. With this feature, SourceMeter lists metric threshold violations. Its value can be “true” (turn this feature on) or “false” (turn this feature off). The default value is “true”.</p>
+</dd>
+<dt><strong>-cloneGenealogy</strong></dt>
+<dd><p>This parameter turns on or off the tracking of code clones (copy-pasted source code fragments) through the consecutive revisions of the software system. It is required that during the analysis of the different revisions, the values set to projectName and resultsDir remain the same, so SourceMeter will handle them as different revisions of the same system. Its value can be “true” (turn this feature on) or “false” (turn this feature off). The default value is “false”.</p>
+</dd>
+<dt><strong>-cloneMinLines</strong></dt>
+<dd><p>This parameter sets the minimum required size of each duplication in lines of code. The default value is 10.</p>
+</dd>
+<dt><strong>-csvSeparator</strong></dt>
+<dd><p>This parameter sets the separator character in the CSV outputs. The default value is the comma (“,”). The character set here must be placed in quotation marks (e.g. -csvSeparator=“;”). Tabulator character can be set by the special “\t” value.</p>
+</dd>
+<dt><strong>-csvDecimalMark</strong></dt>
+<dd><p>This parameter sets the decimal mark character in the CSV outputs. The default is value is the dot (“.”). The character set here must be placed in quotation marks (e.g. -csvDecimalMark=“,”).</p>
+</dd>
+<dt><strong>-sarifseverity</strong></dt>
+<dd><p>This parameter sets the severity levels to be saved in the SARIF output. (1 - Info, 2 - Minor, 3 - Major, 4 - Critical, 5 - Blocker, c/C - CloneClass). The value should not be placed in quotation marks (e.g. -sarifseverity=2345c). The default value is 2345c.</p>
+</dd>
+<dt><strong>-maximumThreads</strong></dt>
+<dd><p>This parameter sets the maximum number of parallel tasks the controller can start. The default value is the number of available CPU cores on the current system.</p>
+</dd>
+<dt><strong>-currentDate</strong></dt>
+<dd><p>The name of the directory with date inside the result directory of the project. If it is not set, then the current date is used.</p>
+</dd>
+<dt><strong>-cleanResults</strong></dt>
+<dd><p>Cleans all but the last n number of timestamped result directory of the current project.</p>
+</dd>
+<dt><strong>-cleanProject</strong></dt>
+<dd><p>Removes all files (from the directory set by the projectBaseDir parameter) created during the analysis , but does not remove anything from the results directory (resultsDir). Its value can be “true” (turn this feature on, setting projectBaseDir is mandatory in this case) or “false” (turn this feature off). The default value is “false”.</p>
+</dd>
+<dt><strong>-projectBaseDir</strong></dt>
+<dd><p>Directory of the source code to be analyzed specified with relative or absolute path. Using this option the directory analysis mode will be activated. Setting projectBaseDir is mandatory.</p>
+</dd>
+<dt><strong>-runESLint</strong></dt>
+<dd><p>This parameter turns on or off the ESLint coding rule violation checking. With this feature, SourceMeter lists coding rule violations detected by ESLint. Its value can be “true” (turn this feature on) or “false” (turn this feature off). The default value is “true”.</p>
+</dd>
+<dt><strong>-runDCF</strong></dt>
+<dd><p>This parameter turns on or off the DuplicatedCodeFinder module. With this feature, SourceMeter identifies copy-pasted code fragments. Its value can be “true” (turn this feature on) or “false” (turn this feature off). The default value is “true”.</p>
+</dd>
+<dt><strong>-runMET</strong></dt>
+<dd><p>This parameter turns on or off the Metric module. With this feature, SourceMeter computes source code metrics. Its value can be “true” (turn this feature on) or “false” (turn this feature off). The default value is “true”.</p>
+</dd>
+<dt><strong>-profileXML</strong></dt>
+<dd><p>Global configuration file for SourceMeter. Its <em>tool-options</em> tag can be used to override the default metric thresholds for the MetricHunter tool or define custom metric formulas for the UserDefinedMetrics tool. Furthermore, its <em>rule-options</em> tag can enable/disable or modify the priorities of multiple rules. An example profile xml file is shown below:</p>
+</dd>
+</dl>
+<div class="sourceCode"><pre class="sourceCode xml"><code class="sourceCode xml">      <span class="kw">&lt;sourcemeter-profile&gt;</span>
+        <span class="kw">&lt;tool-options&gt;</span>
+          <span class="kw">&lt;tool</span><span class="ot"> name</span> <span class="ot">=</span> <span class="st">&quot;MetricHunter&quot;</span><span class="ot"> enabled</span> <span class="ot">=</span> <span class="st">&quot;true&quot;</span><span class="kw">&gt;</span>
+              <span class="kw">&lt;metric-thresholds&gt;</span>
+                  <span class="kw">&lt;threshold</span><span class="ot"> metric-id=</span><span class="st">&quot;LOC&quot;</span><span class="ot"> relation=</span><span class="st">&quot;gt&quot;</span><span class="ot"> value=</span><span class="st">&quot;100&quot;</span><span class="ot"> entity=</span><span class="st">&quot;Method&quot;</span> <span class="kw">/&gt;</span>
+                  <span class="kw">&lt;threshold</span><span class="ot"> metric-id=</span><span class="st">&quot;LLOC&quot;</span><span class="ot"> relation=</span><span class="st">&quot;gt&quot;</span><span class="ot"> value=</span><span class="st">&quot;none&quot;</span><span class="ot"> entity=</span><span class="st">&quot;Method&quot;</span> <span class="kw">/&gt;</span>
+              <span class="kw">&lt;/metric-thresholds&gt;</span>
+          <span class="kw">&lt;/tool&gt;</span>
+        <span class="kw">&lt;/tool-options&gt;</span>
+
+        <span class="kw">&lt;rule-options&gt;</span>
+          <span class="kw">&lt;rule</span><span class="ot"> id=</span><span class="st">&quot;NF&quot;</span><span class="ot"> name=</span><span class="st">&quot;no-fallthrough&quot;</span><span class="ot"> priority=</span><span class="st">&quot;Critical&quot;</span><span class="ot"> enabled=</span><span class="st">&quot;false&quot;</span><span class="kw">/&gt;</span>
+        <span class="kw">&lt;/rule-options&gt;</span>
+      <span class="kw">&lt;/sourcemeter-profile&gt;</span></code></pre></div>
+<dl>
+<dt><strong>-runUDM</strong></dt>
+<dd><p>This parameter turns on or off the UserDefinedMetrics module. With this feature, SourceMeter computes custom source code metrics based on other, previously computed metrics. Its value can be “true” (turn this feature on) or “false” (turn this feature off). The default value is dependent on the presence of custom metric definitions in the profile xml.</p>
+</dd>
+<dt><strong>-runSQ</strong></dt>
+<dd><p>Import issues from SonarQube server.</p>
+</dd>
+<dt><strong>-SQHost</strong></dt>
+<dd><p>The URL address of the SonarQube server.</p>
+</dd>
+<dt><strong>-SQPort</strong></dt>
+<dd><p>The port of the SonarQube server.</p>
+</dd>
+<dt><strong>-SQProjectKey</strong></dt>
+<dd><p>The key of the project in the SonarQube server.</p>
+</dd>
+<dt><strong>-SQProjectPrefix</strong></dt>
+<dd><p>Prefix path of the project’s base directory (the path of the sonar-project.properties file).</p>
+</dd>
+<dt><strong>-SQUserName</strong></dt>
+<dd><p>The user name for the SonarQube server.</p>
+</dd>
+<dt><strong>-SQPassword</strong></dt>
+<dd><p>The password for the SonarQube server.</p>
+</dd>
+<dt><strong>-SQLanguageKey</strong></dt>
+<dd><p>The key of the language in SonarQube.</p>
+</dd>
+</dl>
+<h1 id="usage">Usage</h1>
+<p>Execute the following command to analyse the source code of a software system:</p>
+<pre><code>SourceMeterJavaScript.exe -projectBaseDir:MyProject -projectName:MyProject -resultsDir:Results</code></pre>
+<h1 id="result-files">Result files</h1>
+<p>If any problems occur in the execution of the tools of the SourceMeter package during the code analysis, SourceMeter returns with error code 1. The error code of the given tool appears on the screen (detailed information on the bug can be found in the log directory), and the analysis is stopped, but the result files created until the failure are not deleted.</p>
+<p>An error-free execution of SourceMeter produces the following files:</p>
+<ul>
+<li><p>Files containing the results of the static analysis in the results directory (set by the resultsDir parameter):</p>
+<ul>
+<li><p>$(projectName)\$(DATE)\$(projectName)-*.csv</p>
+<p>CSV (comma separated values) files containing different metrics: Component, File, Class, Method, and Function, level source code metrics, rule violation counts, and clone-related metrics at CloneClass and CloneInstance level.</p></li>
+<li><p>$(projectName)\$(DATE)\$(projectName)-clones.txt</p>
+<p>List of the code clones (copy-pasted source code fragments) in the system.</p></li>
+<li><p>$(projectName)\$(DATE)\$(projectName)-MetricHunter.txt</p>
+<p>List of the MetricHunter metric value violations in the system.</p></li>
+<li><p>$(projectName)\$(DATE)\$(projectName)-ESLint.txt</p>
+<p>List of the ESLint coding rule violations in the system.</p></li>
+<li><p>$(projectName)\$(DATE)\$(projectName).graph</p>
+<p>Binary representation of the result graph containing all the metrics, code clones and coding rule violations.</p></li>
+<li><p>$(projectName)\$(DATE)\$(projectName).xml</p>
+<p>XML representation of the result graph containing all the metrics, code clones and coding rule violations.</p></li>
+<li><p>$(projectName)\$(projectName).gsi</p>
+<p>Binary data file containing information for tracking the code clones through the consecutive revisions of the analyzed software system.</p></li>
+<li><p>$(projectName)\$(DATE)\$(projectName).sarif</p>
+<p>List of code rule warnings, errors, represented in json.</p></li>
+</ul></li>
+<li><p>Other files and directories created in the results directory:</p>
+<ul>
+<li><p>$(projectName)\$(DATE)\sourcemeter</p>
+<p>Directory, which contains configuration, binary, ASG, log, and temporary files created during the source code analysis.</p></li>
+<li><p>$(projectName)\$(DATE)\sourcemeter\asg</p>
+<p>Directory, which contains backup copies of the linked ASG and LIM files, the corresponding filter files, and the GSI file.</p></li>
+<li><p>$(projectName)\$(DATE)\sourcemeter\graph</p>
+<p>Directory, which contains backup copies of the graph files.</p></li>
+<li><p>$(projectName)\$(DATE)\sourcemeter\log</p>
+<p>Directory, which contains the log files created during the code analysis.</p></li>
+<li><p>$(projectName)\$(DATE)\sourcemeter\temp</p>
+<p>Directory, which contains the temporary files created during the code analysis.</p></li>
+</ul></li>
+<li><p>Files created outside the results directory:</p>
+<ul>
+<li><p>.jssi</p>
+<p>JavaScript language dependent ASG file.</p></li>
+</ul></li>
+</ul>
+<h1 id="demo">Demo</h1>
+<p>The Demo directory of the installation package contains the directory structure, the build and analyzer scripts for the analysis of an example project. The agenda open source javascript program is included as the example project, which can also be downloaded from the following URL:</p>
+<p><a href="https://github.com/agenda/agenda" class="uri">https://github.com/agenda/agenda</a></p>
+<p>To perform the source code analysis of the demo project, execute the analyze.bat file.</p>
+<p>Contents of the Demo directory:</p>
+<p>Windows:</p>
+<table>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Demo\</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td>agenda </td>
+<td># source code of agenda (e58fe706f4b12a8dd77768abfa8c76d4b60c5a0c)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td>analyze.bat</td>
+<td># batch file to run the demo analysis</td>
+</tr>
+</tbody>
+</table>
+<p>Linux:</p>
+<table>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Demo\</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td>agenda </td>
+<td># source code of agenda (e58fe706f4b12a8dd77768abfa8c76d4b60c5a0c)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td>analyze.sh </td>
+<td># shell script file to run the demo analysis</td>
+</tr>
+</tbody>
+</table>
+<h1 id="error-messages">Error messages</h1>
+<ul>
+<li><p>Message: There is no valid license!</p>
+<p>Solution: Install a valid license key file (see <a href="#installation-section">Installation</a> section).</p></li>
+<li><p>Message: Please set the resultsDir parameter. Under this directory a new directory with the name of the analyzed project will be created, if it does not exist yet. All results will be stored there under separate directories with their names containing the date and time.</p>
+<p>Solution: The resultsDir parameter must be set.</p></li>
+<li><p>Message: Please set the projectName parameter to the name of the analyzed software system.</p>
+<p>Solution: The projectName parameter must be set.</p></li>
+<li><p>Message: Please set the buildScript or projectBaseDir parameter. The usage of buildScript is recommended.</p>
+<p>Solution: At least one of the buildScript or projectBaseDir parameters must be set.</p></li>
+<li><p>Message: exec returned: 255</p>
+<p>If any of the log files in the the $(projectName)\$(DATE)\sourcemeter\log directory starts with “Could not load a transcoding service”, then the GCONV_PATH should be set to the current gconv directory. Check the “Requirements” section of the user’s guide.</p></li>
+<li><p>Message: exec returned: 6633</p>
+<p>Solution: The installed version of Node.js is lower than the required minimum (see <a href="#requirements-section">Requirements</a> section).</p></li>
+</ul>
+<h1 id="known-bugs-and-deficiencies">Known bugs and deficiencies</h1>
+<p>Known bugs and deficiencies of SourceMeter for Java.</p>
+<ul>
+<li>SourceMeter places the results into the directory specified by the projectName parameter. If special characters (like ‘&lt;’, ‘&gt;’, etc.) are used in the parameter, the analysis will probably fail.</li>
+<li>Variable usage edges are in experimental version. There are cases which are not handled perfectly.</li>
+</ul>
+<h1 id="faq">FAQ</h1>
+<p>Frequently Asked Questions regarding SourceMeter.</p>
+<ul>
+<li><p>Problem: After starting the analysis, neither does the computer show elevated load nor is any of the SourceMeter tools running.</p>
+<p>Solution: SourceMeter creates temporary files during the analysis (e.g. tmp-wrapper.bat) which might be judged as suspicious by certain antivirus programs so they may block them. In these cases, the temporary files must be manually whitelisted.</p></li>
+<li><p>Problem: On Windows platforms, in case of deep directory hierarchies, it may happen that the full paths of some files exceed 259 characters. In this case some SourceMeter tools may have problems with opening these files; they will terminate and write appropriate messages in the logs.</p>
+<p>Solution: Move the files to be analyzed to a directory closer to the file system root, or use the ‘subst’ shell command.</p></li>
+</ul>
+<h1 id="appendices">Appendices</h1>
+<h2 id="reference-of-source-code-metrics">Reference of source code metrics</h2>
+<p>Source code metrics are used to quantify different source code characteristics. FrontEndART SourceMeter computes source code metrics for the following source code element kinds: components, source files, classes, methods and functions.</p>
+<p>The calculated metrics are grouped into 4 categories, which are the following:</p>
+<ul>
+<li><p><strong>Complexity metrics:</strong> measure the complexity of source code elements (typically algorithms).</p></li>
+<li><p><strong>Documentation metrics:</strong> measure the amount of comments and documentation of source code elements in the system.</p></li>
+<li><p><strong>Inheritance metrics:</strong> measure the different aspects of the inheritance hierarchy of the system.</p></li>
+<li><p><strong>Size metrics:</strong> measure the basic properties of the analyzed system in terms of different cardinalities (e.g. number of code lines, number of classes or methods).</p></li>
+</ul>
+<p>The following table summarizes the metrics, their abbreviations and their correspondence to different source code element kinds:</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Category</th>
+<th style="text-align: left;">Metric name</th>
+<th style="text-align: left;">Abbreviation</th>
+<th style="text-align: center;">Class</th>
+<th style="text-align: center;">Component</th>
+<th style="text-align: center;">File</th>
+<th style="text-align: center;">Function</th>
+<th style="text-align: center;">Method</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Complexity metrics</td>
+<td style="text-align: left;">McCabe’s Cyclomatic Complexity</td>
+<td style="text-align: left;">McCC</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Nesting Level</td>
+<td style="text-align: left;">NL</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Nesting Level Else-If</td>
+<td style="text-align: left;">NLE</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Weighted Methods per Class</td>
+<td style="text-align: left;">WMC</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Documentation metrics</td>
+<td style="text-align: left;">API Documentation</td>
+<td style="text-align: left;">AD</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Comment Density</td>
+<td style="text-align: left;">CD</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Comment Lines of Code</td>
+<td style="text-align: left;">CLOC</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Documentation Lines of Code</td>
+<td style="text-align: left;">DLOC</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Public Documented API</td>
+<td style="text-align: left;">PDA</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Public Undocumented API</td>
+<td style="text-align: left;">PUA</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Total API Documentation</td>
+<td style="text-align: left;">TAD</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Total Comment Density</td>
+<td style="text-align: left;">TCD</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Total Comment Lines of Code</td>
+<td style="text-align: left;">TCLOC</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Total Public Documented API</td>
+<td style="text-align: left;">TPDA</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Total Public Undocumented API</td>
+<td style="text-align: left;">TPUA</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Inheritance metrics</td>
+<td style="text-align: left;">Depth of Inheritance Tree</td>
+<td style="text-align: left;">DIT</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Number of Ancestors</td>
+<td style="text-align: left;">NOA</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Number of Children</td>
+<td style="text-align: left;">NOC</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Number of Descendants</td>
+<td style="text-align: left;">NOD</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Size metrics</td>
+<td style="text-align: left;">Lines of Code</td>
+<td style="text-align: left;">LOC</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Logical Lines of Code</td>
+<td style="text-align: left;">LLOC</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Number of Getters</td>
+<td style="text-align: left;">NG</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Number of Local Getters</td>
+<td style="text-align: left;">NLG</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Number of Local Methods</td>
+<td style="text-align: left;">NLM</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Number of Local Setters</td>
+<td style="text-align: left;">NLS</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Number of Methods</td>
+<td style="text-align: left;">NM</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Number of Parameters</td>
+<td style="text-align: left;">NUMPAR</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Number of Setters</td>
+<td style="text-align: left;">NS</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Number of Statements</td>
+<td style="text-align: left;">NOS</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Total Lines of Code</td>
+<td style="text-align: left;">TLOC</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Total Logical Lines of Code</td>
+<td style="text-align: left;">TLLOC</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Total Number of Classes</td>
+<td style="text-align: left;">TNCL</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Total Number of Directories</td>
+<td style="text-align: left;">TNDI</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Total Number of Files</td>
+<td style="text-align: left;">TNFI</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Total Number of Getters</td>
+<td style="text-align: left;">TNG</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Total Number of Local Getters</td>
+<td style="text-align: left;">TNLG</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Total Number of Local Methods</td>
+<td style="text-align: left;">TNLM</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Total Number of Local Setters</td>
+<td style="text-align: left;">TNLS</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Total Number of Methods</td>
+<td style="text-align: left;">TNM</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Total Number of Setters</td>
+<td style="text-align: left;">TNS</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Total Number of Statements</td>
+<td style="text-align: left;">TNOS</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+</tr>
+</tbody>
+</table>
+<h3 id="complexity-metrics">Complexity metrics</h3>
+<h4 id="McCC">McCabe’s Cyclomatic Complexity (McCC)</h4>
+<p><strong>Method, Function:</strong> complexity of the method expressed as the number of independent control flow paths in it. It represents a lower bound for the number of possible execution paths in the source code and at the same time it is an upper bound for the minimum number of test cases needed for achieving full branch test coverage. The value of the metric is calculated as the number of the following instructions plus 1: if, else if, for, for…in, for…of, while, do-while, case label (which belongs to a switch instruction), catch clause, conditional expression (?:). Moreover, logical “and” (&amp;&amp;) and logical “or” (||) expressions also add 1 to the value because their short-circuit evaluation can cause branching depending on the first operand. The following instructions are not included: else, switch, try, finally.</p>
+<p><strong>File:</strong> complexity of the file expressed as the number of independent control flow paths in it. It is calculated as the sum of the McCabe’s Cyclomatic Complexity values of the methods can be found in the file.</p>
+<h4 id="NL">Nesting Level (NL)</h4>
+<p><strong>Method, Function:</strong> complexity of the method/function expressed as the depth of the maximum embeddedness of its conditional, iteration and exception handling block scopes. The following instructions are taken into account: if, else-if, else, for, for-in, for-of, while, do-while, switch, try, catch, finally and block statements that are directly inside another block statement. The following instructions do not increase the value by themselves; however, if additional embeddedness can be found in their blocks, they are considered: case and default label (which belong to a switch instruction).</p>
+<p><strong>Class:</strong> complexity of the class expressed as the depth of the maximum embeddedness of its conditional and iteration block scopes. It is calculated as the maximum nesting level (NL) of its local methods.</p>
+<h4 id="NLE">Nesting Level Else-If (NLE)</h4>
+<p><strong>Method, Function:</strong> complexity of the method/function expressed as the depth of the maximum embeddedness of its conditional and iteration block scopes, where in the if-else-if construct only the first if instruction is considered. The following instructions are taken into account: if, for, while, conditional expression. The following instructions do not increase the value by themselves; however, if additional embeddedness can be found in their blocks, they are considered: else, else if (i.e. in the if-else-if construct the use of else-if does not increase the value of the metric), try, except, finally.</p>
+<p><strong>Class:</strong> complexity of the class expressed as the depth of the maximum embeddedness of its conditional and iteration block scopes, where in the if-else-if construct only the first if instruction is considered. It is calculated as the maximum nesting level (NLE) of its local methods.</p>
+<h4 id="WMC">Weighted Methods per Class (WMC)</h4>
+<p><strong>Class:</strong> complexity of the class expressed as the number of independent control flow paths in it. It is calculated as the sum of the McCabe’s Cyclomatic Complexity (McCC) values of its local methods.</p>
+<h3 id="documentation-metrics">Documentation metrics</h3>
+<h4 id="AD">API Documentation (AD)</h4>
+<p><strong>Class:</strong> ratio of the number of documented methods in the class +1 if the class itself is documented to the number of all methods in the class + 1 (the class itself).</p>
+<h4 id="CD">Comment Density (CD)</h4>
+<p><strong>Method, Function:</strong> ratio of the comment lines of the method/function (CLOC) to the sum of its comment (CLOC) and logical lines of code (LLOC).</p>
+<p><strong>Class:</strong> ratio of the comment lines of the class (CLOC) to the sum of its comment (CLOC) and logical lines of code (LLOC).</p>
+<h4 id="CLOC">Comment Lines of Code (CLOC)</h4>
+<p><strong>Method, Function:</strong> number of comment and documentation code lines of the method/function; however, its anonymous and local classes are not included.</p>
+<p><strong>Class:</strong> number of comment and documentation code lines of the class, including its local methods and attributes; however, its nested, anonymous, and local classes are not included.</p>
+<p><strong>File:</strong> number of comment and documentation code lines of the file.</p>
+<h4 id="DLOC">Documentation Lines of Code (DLOC)</h4>
+<p><strong>Method, Function:</strong> number of documentation code lines of the method/function.</p>
+<p><strong>Class:</strong> number of documentation code lines of the class, including its local methods and attributes; however, its nested, anonymous, and local classes are not included.</p>
+<h4 id="PDA">Public Documented API (PDA)</h4>
+<p><strong>Class:</strong> number of documented methods in the class (+1 if the class itself is documented); however, the methods of its nested, anonymous, and local classes are not counted.</p>
+<h4 id="PUA">Public Undocumented API (PUA)</h4>
+<p><strong>Class:</strong> number of undocumented methods in the class (+1 if the class itself is undocumented); however, the methods of its nested, anonymous, and local classes are not counted.</p>
+<h4 id="TAD">Total API Documentation (TAD)</h4>
+<p><strong>Component:</strong> ratio of the number of documented classes and methods in the component to the number of all of its classes and methods, including its subcomponents.</p>
+<h4 id="TCD">Total Comment Density (TCD)</h4>
+<p><strong>Method/Function:</strong> ratio of the total comment lines of the method/function (TCLOC) to the sum of its total comment (TCLOC) and total logical lines of code (TLLOC).</p>
+<p><strong>Class:</strong> ratio of the total comment lines of the class (TCLOC) to the sum of its total comment (TCLOC) and total logical lines of code (TLLOC).</p>
+<p><strong>Component:</strong> ratio of the total comment lines of the component (TCLOC) to the sum of its total comment (TCLOC) and total logical lines of code (TLLOC).</p>
+<h4 id="TCLOC">Total Comment Lines of Code (TCLOC)</h4>
+<p><strong>Method/Function:</strong> number of comment and documentation code lines of the method/function, including its local classes.</p>
+<p><strong>Class:</strong> number of comment and documentation code lines of the class, including its local methods and attributes, as well as its nested and local classes.</p>
+<p><strong>Component:</strong> number of comment and documentation code lines of the component, including its subcomponents.</p>
+<h4 id="TPDA">Total Public Documented API (TPDA)</h4>
+<p><strong>Component:</strong> number of documented classes and methods in the component, including the documented classes and methods of its subcomponents.</p>
+<h4 id="TPUA">Total Public Undocumented API (TPUA)</h4>
+<p><strong>Component:</strong> number of undocumented classes and methods in the component, including the undocumented classes and methods of its subcomponents.</p>
+<h3 id="inheritance-metrics">Inheritance metrics</h3>
+<h4 id="DIT">Depth of Inheritance Tree (DIT)</h4>
+<p><strong>Class:</strong> length of the path that leads from the class to its farthest ancestor in the inheritance tree.</p>
+<h4 id="NOA">Number of Ancestors (NOA)</h4>
+<p><strong>Class:</strong> number of classes from which the class is directly or indirectly inherited.</p>
+<h4 id="NOC">Number of Children (NOC)</h4>
+<p><strong>Class:</strong> number of classes which are directly derived from the class.</p>
+<h4 id="NOD">Number of Descendants (NOD)</h4>
+<p><strong>Class:</strong> number of classes which are directly or indirectly derived from the class.</p>
+<h3 id="size-metrics">Size metrics</h3>
+<h4 id="LOC">Lines of Code (LOC)</h4>
+<p><strong>Method, Function:</strong> number of code lines of the method/function, including empty and comment lines; however, its anonymous and local classes are not included.</p>
+<p><strong>Class:</strong> number of code lines of the class, including empty and comment lines, as well as its local methods; however, its nested, anonymous, and local classes are not included.</p>
+<p><strong>File:</strong> number of code lines of the file, including empty and comment lines.</p>
+<h4 id="LLOC">Logical Lines of Code (LLOC)</h4>
+<p><strong>Method, Function:</strong> number of non-empty and non-comment code lines of the method/function; however, its anonymous and local functions are not included.</p>
+<p><strong>Class:</strong> number of non-empty and non-comment code lines of the class, including the non-empty and non-comment lines of its local methods; however, its nested, anonymous, and local classes are not included.</p>
+<p><strong>File:</strong> number of non-empty and non-comment code lines of the file.</p>
+<h4 id="NG">Number of Getters (NG)</h4>
+<p><strong>Class:</strong> number of getter methods in the class, including the inherited ones.</p>
+<h4 id="NLG">Number of Local Getters (NLG)</h4>
+<p><strong>Class:</strong> number of local (i.e. not inherited) getter methods in the class; however, the getter methods of its nested, anonymous, and local classes are not included. Methods that override abstract methods are not counted.</p>
+<h4 id="NLM">Number of Local Methods (NLM)</h4>
+<p><strong>Class:</strong> number of local (i.e. not inherited) methods in the class.</p>
+<h4 id="NLS">Number of Local Setters (NLS)</h4>
+<p><strong>Class:</strong> number of local (i.e. not inherited) setter methods in the class.</p>
+<h4 id="NM">Number of Methods (NM)</h4>
+<p><strong>Class:</strong> number of methods in the class, including the inherited ones.</p>
+<h4 id="NUMPAR">Number of Parameters (NUMPAR)</h4>
+<p><strong>Method, Function:</strong> number of the parameters of the method. Counts only the explicitly given number of parameters (‘arguments’ object is not counted).</p>
+<h4 id="NS">Number of Setters (NS)</h4>
+<p><strong>Class:</strong> number of setter methods in the class, including the inherited ones.</p>
+<h4 id="NOS">Number of Statements (NOS)</h4>
+<p><strong>Method, Function:</strong> number of statements in the method.</p>
+<p><strong>Class:</strong> number of statements in the class.</p>
+<p><strong>File:</strong> number of statements in the file.</p>
+<h4 id="TLOC">Total Lines of Code (TLOC)</h4>
+<p><strong>Method, Function:</strong> number of code lines of the method/function, including empty and comment lines, as well as its nested functions.</p>
+<p><strong>Class:</strong> number of code lines of the class, including empty and comment lines, as well as its nested and local classes.</p>
+<p><strong>Component:</strong> number of code lines of the component, including empty and comment lines, as well as its subcomponents.</p>
+<h4 id="TLLOC">Total Logical Lines of Code (TLLOC)</h4>
+<p><strong>Method, Function:</strong> number of non-empty and non-comment code lines of the method/function, including the non-empty and non-comment lines of its nested functions.</p>
+<p><strong>Class:</strong> number of non-empty and non-comment code lines of the class, including the non-empty and non-comment code lines of its nested and local classes.</p>
+<p><strong>Component:</strong> number of non-empty and non-comment code lines of the component, including its subcomponents.</p>
+<h4 id="TNCL">Total Number of Classes (TNCL)</h4>
+<p><strong>Component:</strong> number of classes in the component, including the classes of its subcomponents.</p>
+<h4 id="TNDI">Total Number of Directories (TNDI)</h4>
+<p><strong>Component:</strong> number of directories that belong to the component, including its subcomponents.</p>
+<h4 id="TNFI">Total Number of Files (TNFI)</h4>
+<p><strong>Component:</strong> number of files that belong to the component, including its subcomponents.</p>
+<h4 id="TNG">Total Number of Getters (TNG)</h4>
+<p><strong>Class:</strong> number of getter methods in the class, including the inherited ones, as well as the inherited and local getter methods of its nested, anonymous and local classes.</p>
+<p><strong>Component:</strong> number of getter methods in the component, including the getter methods of its subcomponents.</p>
+<h4 id="TNLG">Total Number of Local Getters (TNLG)</h4>
+<p><strong>Class:</strong> number of local (i.e. not inherited) getter methods in the class, including the local getter methods of its nested, anonymous, and local classes.</p>
+<h4 id="TNLM">Total Number of Local Methods (TNLM)</h4>
+<p><strong>Class:</strong> number of local (i.e. not inherited) methods in the class, including the local methods of its nested and local classes.</p>
+<h4 id="TNLS">Total Number of Local Setters (TNLS)</h4>
+<p><strong>Class:</strong> number of local (i.e. not inherited) setter methods in the class, including the local setter methods of its nested, anonymous, and local classes.</p>
+<h4 id="TNM">Total Number of Methods (TNM)</h4>
+<p><strong>Class:</strong> number of methods in the class, including the inherited ones, as well as the inherited and local methods of its nested, anonymous, and local classes.</p>
+<p><strong>Component:</strong> number of methods in the component, including the methods of its subcomponents.</p>
+<h4 id="TNS">Total Number of Setters (TNS)</h4>
+<p><strong>Class:</strong> number of setter methods in the class, including the inherited ones, as well as the inherited and local setter methods of its nested, anonymous and local classes.</p>
+<p><strong>Component:</strong> number of setter methods in the component, including the setter methods of its subcomponents.</p>
+<h4 id="TNOS">Total Number of Statements (TNOS)</h4>
+<p><strong>Method, Function:</strong> number of statements in the method/function, including the statements of its nested functions.Class: number of statements in the class, including the statements of its nested and local classes.Component: number of statements in the component, including the statements of its subcomponents.</p>
+<h2 id="reference-of-code-duplication-metrics">Reference of code duplication metrics</h2>
+<p>Code cloning (or copy-paste programming) means the copying of an existing piece of source code, pasting it somewhere else, and typically performing smaller modifications on it. Based on the level of similarity between the copied code fragments we can define the following duplication types:</p>
+<ul>
+<li><p><strong>Type-1</strong>: the copied code parts are identical code fragments except for variations in whitespace, layout and comments.</p></li>
+<li><p><strong>Type-2</strong>: syntactically identical fragments except for variations in identifier names, literals, type references, whitespace, layout and comments.</p></li>
+<li><p><strong>Type-3</strong>: copied fragments with further modifications such as altered, added, or removed statements, in addition to variations in identifier names, literals, type references, whitespace, layout and comments.</p></li>
+<li><p><strong>Type-4</strong>: the copied code fragments are syntactically different, but they perform the same functionality, i.e. they are semantically the same.</p></li>
+</ul>
+<p>FrontEndART SourceMeter is capable of identifying Type-2 clones, i.e. code fragments that are structurally identical, but may differ in variable names, literals, identifiers, etc.</p>
+<p>Two code segments correspond to each other if they are copies of each other. This relation is an equivalence relation and we use the notion of clone classes to the classes of the relation, and the members of the classes will be referred to as clone instances. Owing to the nature of the relation, each clone class must contain at least two clone instances.</p>
+<p>Clones are tracked during the source code analysis of consecutive revisions of the analyzed software system. FrontEndART SourceMeter detects suspicious, inconsistently changing code copies, which are called “clone smells”. The smells concerning clone classes are the following:</p>
+<ul>
+<li><p><strong>Disappearing Clone Class (DCC):</strong> The clone class existed in the previously analyzed revision but it does not exist anymore.</p></li>
+<li><p><strong>Appearing Clone Class (ACC):</strong> The clone class did not exist in the previously analyzed revision.</p></li>
+</ul>
+<p>The smells concerning clone instances are issued only if the containing clone class does not contain any smell. These are the following:</p>
+<ul>
+<li><p><strong>Disappearing Clone Instance (DCI):</strong> The clone instance existed in the previously analyzed revision but it does not exist anymore.</p></li>
+<li><p><strong>Appearing Clone Instance (ACI):</strong> The clone instance did not exist in the previously analyzed revision.</p></li>
+<li><p><strong>Moving Clone Instance (MCI):</strong> The clone instance belonged to a different clone class in the previously analyzed revision than its current class.</p></li>
+</ul>
+<p>The calculated metrics are grouped into 1 categories, which are the following:</p>
+<ul>
+<li><strong>Clone metrics:</strong> measure the amount of copy-paste programming in the source code.</li>
+</ul>
+<p>The following table summarizes the metrics, their abbreviations and their correspondence to different source code element kinds:</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Metric name</th>
+<th style="text-align: left;">Abbreviation</th>
+<th style="text-align: center;">Class</th>
+<th style="text-align: center;">CloneClass</th>
+<th style="text-align: center;">CloneInstance</th>
+<th style="text-align: center;">Component</th>
+<th style="text-align: center;">Function</th>
+<th style="text-align: center;">Method</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Clone Age</td>
+<td style="text-align: left;">CA</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Clone Classes</td>
+<td style="text-align: left;">CCL</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Clone Complexity</td>
+<td style="text-align: left;">CCO</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Clone Coverage</td>
+<td style="text-align: left;">CC</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Clone Elimination Effort</td>
+<td style="text-align: left;">CEE</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Clone Elimination Gain</td>
+<td style="text-align: left;">CEG</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Clone Embeddedness</td>
+<td style="text-align: left;">CE</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Clone Instances</td>
+<td style="text-align: left;">CI</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Clone Line Coverage</td>
+<td style="text-align: left;">CLC</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Clone Lines of Code</td>
+<td style="text-align: left;">CLLOC</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Clone Logical Line Coverage</td>
+<td style="text-align: left;">CLLC</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Clone Risk</td>
+<td style="text-align: left;">CR</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Clone Variability</td>
+<td style="text-align: left;">CV</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Lines of Duplicated Code</td>
+<td style="text-align: left;">LDC</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Logical Lines of Duplicated Code</td>
+<td style="text-align: left;">LLDC</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Normalized Clone Radius</td>
+<td style="text-align: left;">NCR</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<h3 id="clone-metrics">Clone metrics</h3>
+<h4 id="CA">Clone Age (CA)</h4>
+<p><strong>Clone class, clone instance:</strong> number of previously analyzed revisions in which the clone class/clone instance was present + 1.</p>
+<h4 id="CCL">Clone Classes (CCL)</h4>
+<p><strong>Method, function, class:</strong> number of clone classes having at least one clone instance in the source code element.</p>
+<p><strong>Component:</strong> number of clone classes having at least one clone instance in the component.</p>
+<h4 id="CCO">Clone Complexity (CCO)</h4>
+<p><strong>Clone instance:</strong> the McCabe complexity of the code fragment corresponding to the clone instance.</p>
+<p><strong>Clone class:</strong> sum of CCO of clone instances in the clone class.</p>
+<p><strong>Method, function, class:</strong> sum of CCO of clone instances in the source code element.</p>
+<p><strong>Component:</strong> sum of CCO of clone instances in the component.</p>
+<h4 id="CC">Clone Coverage (CC)</h4>
+<p><strong>Method, function, class:</strong> ratio of code covered by code duplications in the source code element to the size of the source code element, expressed in terms of the number of syntactic entities (statements, expressions, etc.).</p>
+<p><strong>Component:</strong> ratio of code covered by code duplications in the component to the size of the component, expressed in terms of the number of syntactic entities (statements, expressions, etc.).</p>
+<h4 id="CEE">Clone Elimination Effort (CEE)</h4>
+<p><strong>Clone class:</strong> index of the effort required to eliminate the clone class. It is computed as the product of CI, CE, and NCR.</p>
+<p><strong>Component:</strong> index of the effort required to eliminate all clones from the component. It is computed as the sum of CEE of the clone classes in the component.</p>
+<h4 id="CEG">Clone Elimination Gain (CEG)</h4>
+<p><strong>Clone class:</strong> index of the gain resulting from eliminating the clone class. It is computed as the ratio of CR to CEE. Component: index of the gain resulting from eliminating all clones from the component. It is computed as the logistic function of the ratio of CR to CEE.</p>
+<h4 id="CE">Clone Embeddedness (CE)</h4>
+<p><strong>Clone instance:</strong> sum of incoming and outgoing references (function calls, variable references, type references; different references to the same entity are counted only once) in the code fragment corresponding to the clone instance, weighted with the number of directory changes between the referenced code fragments.</p>
+<p><strong>Clone class:</strong> sum of CE of the clone instances of the clone class + 1.</p>
+<h4 id="CI">Clone Instances (CI)</h4>
+<p><strong>Method, function, class:</strong> number of clone instances in the source code element.</p>
+<p><strong>Component:</strong> number of clone instances in the component.</p>
+<p><strong>Clone class:</strong> number of clone instances in the clone class.</p>
+<h4 id="CLC">Clone Line Coverage (CLC)</h4>
+<p><strong>Method, function, class:</strong> ratio of code covered by code duplications in the source code element to the size of the source code element, expressed in terms of lines of code.</p>
+<p><strong>Component:</strong> ratio of code covered by code duplications in the component to the size of the component, expressed in terms of lines of code.</p>
+<h4 id="CLLOC">Clone Lines of Code (CLLOC)</h4>
+<p><strong>Clone instance:</strong> length of the clone instance expressed in terms of lines of code.</p>
+<p><strong>Clone class:</strong> average of CLLOC of clone instances belonging to the clone class.</p>
+<h4 id="CLLC">Clone Logical Line Coverage (CLLC)</h4>
+<p><strong>Method, function, class:</strong> ratio of code covered by code duplications in the source code element to the size of source code element, expressed in terms of logical lines of code (non-empty, non-comment lines).</p>
+<p><strong>Component:</strong> ratio of code covered by code duplications in the component to the size of the component, expressed in terms of logical lines of code (non-empty, non-comment lines).</p>
+<h4 id="CR">Clone Risk (CR)</h4>
+<p><strong>Clone class:</strong> risk index of the existence of the clone class. It is computed as the product of CLLOC, CI, CCO, NCR, and CV.</p>
+<p><strong>Component:</strong> relative risk index of the existence of code duplications in the component. It is computed as the sum of CR of the clone classes in the component, divided by the total logical lines of code (non-empty, non-comment lines) of the component. It expresses the risk index projected to a non-empty, non-comment line of code in the component.</p>
+<h4 id="CV">Clone Variability (CV)</h4>
+<p><strong>Clone instance:</strong> instability of the clone instance since it appeared. It is computed as the ratio of the number of previously analyzed revisions when the instance had been changed to its age (CA).</p>
+<p><strong>Clone class:</strong> instability of the clone class since it appeared. It is computed as the ratio of the number of previously analyzed revisions when its contained instances were moved, deleted, or added, to its age (CA), plus the average CV of its clone instances.</p>
+<h4 id="LDC">Lines of Duplicated Code (LDC)</h4>
+<p><strong>Method, function, class:</strong> number of code lines covered by code duplications in the source code element.</p>
+<p><strong>Component:</strong> number of code lines covered by code duplications in the component.</p>
+<h4 id="LLDC">Logical Lines of Duplicated Code (LLDC)</h4>
+<p><strong>Method, function, class:</strong> number of logical code lines (non-empty, non-comment lines) covered by code duplications in the source code element.</p>
+<p><strong>Component:</strong> The number of logical code lines (non-empty, non-comment lines) covered by code duplications in the component.</p>
+<h4 id="NCR">Normalized Clone Radius (NCR)</h4>
+<p><strong>Clone class:</strong> normalized average distance among clone instances belonging to the clone class, expressed in terms of number of directory changes.</p>
+<p><strong>Component:</strong> average of NCR of the clone classes in the component.</p>
+<h2 id="reference-of-eslint-coding-rule-violations">Reference of ESLint coding rule violations</h2>
+<p>FrontEndART SourceMeter incorporates the <a href="http://eslint.org/">ESLint</a> tool for coding rule violation checking and imports its results. SourceMeter also associates the issued rule violations with source code elements (i.e. methods, classes, functions, and components), and calculates metrics for the source code elements, which represent the amount of violations of each ruleset, rule, and priority groups, respectively.</p>
+<p>SourceMeter uses ESLint “as is”, without any guaranties that the results of ESLint are correct. All statements of the ESLint license apply here as well. All texts describing the rulesets and the individual rules are copied from its official home page with some minor grammatical fixes.</p>
+<p>The list of rulesets and rules contained in each ruleset are the following:</p>
+<ul>
+<li><p><strong>Best Practices:</strong> These are rules designed to prevent you from making mistakes. They either prescribe a better way of doing something or help you avoid footguns.</p></li>
+<li><p><strong>ECMAScript 6:</strong> These rules are only relevant to ES6 environments.</p></li>
+<li><p><strong>Possible Errors:</strong> These rules relate to possible syntax or logic errors in JavaScript code.</p></li>
+<li><p><strong>Stylistic Issues:</strong> These rules are purely matters of style and are quite subjective.</p></li>
+<li><p><strong>Variables:</strong> These rules have to do with variable declarations.</p></li>
+</ul>
+<p>The following table contains the enabled rules and their priorities:</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Category</th>
+<th style="text-align: left;">Name</th>
+<th style="text-align: left;">Abbreviation</th>
+<th style="text-align: left;">Prio.</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Best Practices</td>
+<td style="text-align: left;">eqeqeq</td>
+<td style="text-align: left;">ESLINT_E</td>
+<td style="text-align: left;">Major</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">no-case-declarations</td>
+<td style="text-align: left;">ESLINT_NCD</td>
+<td style="text-align: left;">Major</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">no-empty-pattern</td>
+<td style="text-align: left;">ESLINT_NEPA</td>
+<td style="text-align: left;">Major</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">no-fallthrough</td>
+<td style="text-align: left;">ESLINT_NF</td>
+<td style="text-align: left;">Major</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">no-global-assign</td>
+<td style="text-align: left;">ESLINT_NGA</td>
+<td style="text-align: left;">Major</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">no-iterator</td>
+<td style="text-align: left;">ESLINT_NI</td>
+<td style="text-align: left;">Major</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">no-magic-numbers</td>
+<td style="text-align: left;">ESLINT_NMN</td>
+<td style="text-align: left;">Major</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">no-new-wrappers</td>
+<td style="text-align: left;">ESLINT_NNW</td>
+<td style="text-align: left;">Major</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">no-octal</td>
+<td style="text-align: left;">ESLINT_NO</td>
+<td style="text-align: left;">Major</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">no-redeclare</td>
+<td style="text-align: left;">ESLINT_NR</td>
+<td style="text-align: left;">Major</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">no-self-assign</td>
+<td style="text-align: left;">ESLINT_NSAS</td>
+<td style="text-align: left;">Major</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">no-unused-labels</td>
+<td style="text-align: left;">ESLINT_NULA</td>
+<td style="text-align: left;">Major</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">no-useless-escape</td>
+<td style="text-align: left;">ESLINT_NUES</td>
+<td style="text-align: left;">Major</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ECMAScript 6</td>
+<td style="text-align: left;">constructor-super</td>
+<td style="text-align: left;">ESLINT_CSU</td>
+<td style="text-align: left;">Major</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">no-class-assign</td>
+<td style="text-align: left;">ESLINT_NCAS</td>
+<td style="text-align: left;">Major</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">no-const-assign</td>
+<td style="text-align: left;">ESLINT_NCONS</td>
+<td style="text-align: left;">Major</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">no-dupe-class-members</td>
+<td style="text-align: left;">ESLINT_NDCM</td>
+<td style="text-align: left;">Major</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">no-new-symbol</td>
+<td style="text-align: left;">ESLINT_NNSY</td>
+<td style="text-align: left;">Major</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">no-this-before-super</td>
+<td style="text-align: left;">ESLINT_NTBS</td>
+<td style="text-align: left;">Major</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">require-yield</td>
+<td style="text-align: left;">ESLINT_RY</td>
+<td style="text-align: left;">Major</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Possible Errors</td>
+<td style="text-align: left;">no-compare-neg-zero</td>
+<td style="text-align: left;">ESLINT_NCNZ</td>
+<td style="text-align: left;">Major</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">no-cond-assign</td>
+<td style="text-align: left;">ESLINT_NCA</td>
+<td style="text-align: left;">Major</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">no-console</td>
+<td style="text-align: left;">ESLINT_NC</td>
+<td style="text-align: left;">Major</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">no-constant-condition</td>
+<td style="text-align: left;">ESLINT_NCC</td>
+<td style="text-align: left;">Major</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">no-control-regex</td>
+<td style="text-align: left;">ESLINT_NCR</td>
+<td style="text-align: left;">Major</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">no-debugger</td>
+<td style="text-align: left;">ESLINT_ND</td>
+<td style="text-align: left;">Major</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">no-dupe-args</td>
+<td style="text-align: left;">ESLINT_NDA</td>
+<td style="text-align: left;">Major</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">no-dupe-keys</td>
+<td style="text-align: left;">ESLINT_NDK</td>
+<td style="text-align: left;">Major</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">no-duplicate-case</td>
+<td style="text-align: left;">ESLINT_NDC</td>
+<td style="text-align: left;">Major</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">no-empty</td>
+<td style="text-align: left;">ESLINT_NE</td>
+<td style="text-align: left;">Major</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">no-empty-character-class</td>
+<td style="text-align: left;">ESLINT_NECC</td>
+<td style="text-align: left;">Major</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">no-ex-assign</td>
+<td style="text-align: left;">ESLINT_NEA</td>
+<td style="text-align: left;">Major</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">no-extra-boolean-cast</td>
+<td style="text-align: left;">ESLINT_NEBC</td>
+<td style="text-align: left;">Major</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">no-extra-semi</td>
+<td style="text-align: left;">ESLINT_NES</td>
+<td style="text-align: left;">Major</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">no-func-assign</td>
+<td style="text-align: left;">ESLINT_NFA</td>
+<td style="text-align: left;">Major</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">no-inner-declarations</td>
+<td style="text-align: left;">ESLINT_NID</td>
+<td style="text-align: left;">Major</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">no-invalid-regexp</td>
+<td style="text-align: left;">ESLINT_NIR</td>
+<td style="text-align: left;">Major</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">no-irregular-whitespace</td>
+<td style="text-align: left;">ESLINT_NIW</td>
+<td style="text-align: left;">Major</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">no-obj-calls</td>
+<td style="text-align: left;">ESLINT_NOC</td>
+<td style="text-align: left;">Major</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">no-regex-spaces</td>
+<td style="text-align: left;">ESLINT_NRS</td>
+<td style="text-align: left;">Major</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">no-sparse-arrays</td>
+<td style="text-align: left;">ESLINT_NSA</td>
+<td style="text-align: left;">Major</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">no-unexpected-multiline</td>
+<td style="text-align: left;">ESLINT_NUM</td>
+<td style="text-align: left;">Major</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">no-unreachable</td>
+<td style="text-align: left;">ESLINT_NU</td>
+<td style="text-align: left;">Major</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">no-unsafe-finally</td>
+<td style="text-align: left;">ESLINT_NUF</td>
+<td style="text-align: left;">Major</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">no-unsafe-negation</td>
+<td style="text-align: left;">ESLINT_NUNEG</td>
+<td style="text-align: left;">Major</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">use-isnan</td>
+<td style="text-align: left;">ESLINT_UI</td>
+<td style="text-align: left;">Major</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">valid-typeof</td>
+<td style="text-align: left;">ESLINT_VT</td>
+<td style="text-align: left;">Major</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Stylistic Issues</td>
+<td style="text-align: left;">no-mixed-spaces-and-tabs</td>
+<td style="text-align: left;">ESLINT_NMSAT</td>
+<td style="text-align: left;">Major</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Variables</td>
+<td style="text-align: left;">no-delete-var</td>
+<td style="text-align: left;">ESLINT_NDV</td>
+<td style="text-align: left;">Major</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">no-undef</td>
+<td style="text-align: left;">ESLINT_NUN</td>
+<td style="text-align: left;">Major</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">no-unused-vars</td>
+<td style="text-align: left;">ESLINT_NUV</td>
+<td style="text-align: left;">Major</td>
+</tr>
+</tbody>
+</table>
+<h3 id="best-practices">Best Practices</h3>
+<h4 id="ESLINT_E">eqeqeq</h4>
+<p>It is considered good practice to use the type-safe equality operators === and !== instead of their regular counterparts == and !=. The reason for this is that == and != do type coercion which follows the rather obscure Abstract Equality Comparison Algorithm. For instance, the following statements are all considered true: If one of those occurs in an innocent-looking statement such as a == b the actual problem is very difficult to spot.</p>
+<h4 id="ESLINT_NCD">no-case-declarations</h4>
+<p>This rule disallows lexical declarations (let, const, function and class) in case/default clauses. The reason is that the lexical declaration is visible in the entire switch block but it only gets initialized when it is assigned, which will only happen if the case where it is defined is reached. To ensure that the lexical declaration only applies to the current case clause wrap your clauses in blocks.</p>
+<h4 id="ESLINT_NEPA">no-empty-pattern</h4>
+<p>When using destructuring, it’s possible to create a pattern that has no effect. This happens when empty curly braces are used to the right of an embedded object destructuring pattern, such as: In this code, no new variables are created because a is just a location helper while the {} is expected to contain the variables to create, such as: In many cases, the empty object pattern is a mistake where the author intended to use a default value instead, such as: The difference between these two patterns is subtle, especially because the problematic empty pattern looks just like an object literal.</p>
+<h4 id="ESLINT_NF">no-fallthrough</h4>
+<p>The switch statement in JavaScript is one of the more error-prone constructs of the language thanks in part to the ability to “fall through” from one case to the next. For example: In this example, if foo is 1,then execution will flow through both cases, as the first falls through to the second. You can prevent this by using break, as in this example: That works fine when you don’t want a fallthrough, but what if the fallthrough is intentional, there is no way to indicate that in the language. It’s considered a best practice to always indicate when a fallthrough is intentional using a comment: In this example, there is no confusion as to the expected behavior. It is clear that the first case is meant to fall through to the second case.</p>
+<h4 id="ESLINT_NGA">no-global-assign</h4>
+<p>JavaScript environments contain a number of built-in global variables, such as window in browsers and process in Node.js. In almost all cases, you don’t want to assign a value to these global variables as doing so could result in losing access to important functionality.</p>
+<h4 id="ESLINT_NI">no-iterator</h4>
+<p>The iterator property was a SpiderMonkey extension to JavaScript that could be used to create custom iterators that are compatible with JavaScript’s for in and for each constructs. However, this property is now obsolete, so it should not be used. Here’s an example of how this used to work: You should use ECMAScript 6 iterators and generators instead.</p>
+<h4 id="ESLINT_NMN">no-magic-numbers</h4>
+<p>‘Magic numbers’ are numbers that occur multiple time in code without an explicit meaning. They should preferably be replaced by named constants.</p>
+<h4 id="ESLINT_NNW">no-new-wrappers</h4>
+<p>There are three primitive types in JavaScript that have wrapper objects: string, number, and boolean. These are represented by the constructors String, Number, and Boolean, respectively. The primitive wrapper types are used whenever one of these primitive values is read, providing them with object-like capabilities such as methods. Behind the scenes, an object of the associated wrapper type is created and then destroyed, which is why you can call methods on primitive values, such as: Behind the scenes in this example, a String object is constructed. The substring() method exists on String.prototype and so is accessible to the string instance. It’s also possible to manually create a new wrapper instance: Although possible, there aren’t any good reasons to use these primitive wrappers as constructors. They tend to confuse other developers more than anything else because they seem like they should act as primitives, but they do not. For example: The first problem is that primitive wrapper objects are, in fact, objects. That means typeof will return “object” instead of “string”, “number”, or “boolean”. The second problem comes with boolean objects. Every object is truthy, that means an instance of Boolean always resolves to true even when its actual value is false. For these reasons, it’s considered a best practice to avoid using primitive wrapper types with new.</p>
+<h4 id="ESLINT_NO">no-octal</h4>
+<p>Octal literals are numerals that begin with a leading zero, such as: The leading zero to identify an octal literal has been a source of confusion and error in JavaScript. ECMAScript 5 deprecates the use of octal numeric literals in JavaScript and octal literals cause syntax errors in strict mode. It’s therefore recommended to avoid using octal literals in JavaScript code.</p>
+<h4 id="ESLINT_NR">no-redeclare</h4>
+<p>In JavaScript, it’s possible to redeclare the same variable name using var. This can lead to confusion as to where the variable is actually declared and initialized.</p>
+<h4 id="ESLINT_NSAS">no-self-assign</h4>
+<p>Self assignments have no effect, so probably those are an error due to incomplete refactoring. Those indicate that what you should do is still remaining.</p>
+<h4 id="ESLINT_NULA">no-unused-labels</h4>
+<p>The –fix option on the command line can automatically fix some of the problems reported by this rule. Labels that are declared and not used anywhere in the code are most likely an error due to incomplete refactoring.</p>
+<h4 id="ESLINT_NUES">no-useless-escape</h4>
+<p>Escaping non-special characters in strings, template literals, and regular expressions doesn’t have any effect, as demonstrated in the following example:</p>
+<h3 id="ecmascript-6">ECMAScript 6</h3>
+<h4 id="ESLINT_CSU">constructor-super</h4>
+<p>Constructors of derived classes must call super(). Constructors of non derived classes must not call super(). If this is not observed, the javascript engine will raise a runtime error. This rule checks whether or not there is a valid super() call.</p>
+<h4 id="ESLINT_NCAS">no-class-assign</h4>
+<p>ClassDeclaration creates a variable, and we can modify the variable. But the modification is a mistake in most cases.</p>
+<h4 id="ESLINT_NCONS">no-const-assign</h4>
+<p>We cannot modify variables that are declared using const keyword. It will raise a runtime error. Under non ES2015 environment, it might be ignored merely.</p>
+<h4 id="ESLINT_NDCM">no-dupe-class-members</h4>
+<p>If there are declarations of the same name in class members, the last declaration overwrites other declarations silently. It can cause unexpected behaviors.</p>
+<h4 id="ESLINT_NNSY">no-new-symbol</h4>
+<p>Using a single import statement per module will make the code clearer because you can see everything being imported from that module on one line. In the following example the module import on line 1 is repeated on line 3. These can be combined to make the list of imports more succinct.</p>
+<h4 id="ESLINT_NTBS">no-this-before-super</h4>
+<p>In the constructor of derived classes, if this/super are used before super() calls, it raises a reference error. This rule checks this/super keywords in constructors, then reports those that are before super().</p>
+<h4 id="ESLINT_RY">require-yield</h4>
+<p>This rule generates warnings for generator functions that do not have the yield keyword.</p>
+<h3 id="possible-errors">Possible Errors</h3>
+<h4 id="ESLINT_NCNZ">no-compare-neg-zero</h4>
+<p>The rule should warn against code that tries to compare against -0, since that will not work as intended. That is, code like x === -0 will pass for both +0 and -0. The author probably intended Object.is(x, -0).</p>
+<h4 id="ESLINT_NCA">no-cond-assign</h4>
+<p>In conditional statements, it is very easy to mistype a comparison operator (such as ==) as an assignment operator (such as =). For example: There are valid reasons to use assignment operators in conditional statements. However, it can be difficult to tell whether a specific assignment was intentional.</p>
+<h4 id="ESLINT_NC">no-console</h4>
+<p>In JavaScript that is designed to be executed in the browser, it’s considered a best practice to avoid using methods on console. Such messages are considered to be for debugging purposes and therefore not suitable to ship to the client. In general, calls using console should be stripped before being pushed to production.</p>
+<h4 id="ESLINT_NCC">no-constant-condition</h4>
+<p>Comparing a literal expression in a condition is usually a typo or development trigger for a specific behavior. This pattern is most likely an error and should be avoided.</p>
+<h4 id="ESLINT_NCR">no-control-regex</h4>
+<p>Control characters are special, invisible characters in the ASCII range 0-31. These characters are rarely used in JavaScript strings so a regular expression containing these characters is most likely a mistake.</p>
+<h4 id="ESLINT_ND">no-debugger</h4>
+<p>The debugger statement is used to tell the executing JavaScript environment to stop execution and start up a debugger at the current point in the code. This has fallen out of favor as a good practice with the advent of modern debugging and development tools. Production code should definitely not contain debugger, as it will cause the browser to stop executing code and open an appropriate debugger.</p>
+<h4 id="ESLINT_NDA">no-dupe-args</h4>
+<p>If more than one parameter has the same name in a function definition, the last occurrence “shadows” the preceding occurrences. A duplicated name might be a typing error.</p>
+<h4 id="ESLINT_NDK">no-dupe-keys</h4>
+<p>Multiple properties with the same key in object literals can cause unexpected behavior in your application.</p>
+<h4 id="ESLINT_NDC">no-duplicate-case</h4>
+<p>A switch statements with duplicate case labels is normally an indication of a programmer error. In the following example the 3rd case label uses again the literal 1 that has already been used in the first case label. Most likely the case block was copied from above and it was forgotten to change the literal.</p>
+<h4 id="ESLINT_NE">no-empty</h4>
+<p>Empty block statements, while not technically errors, usually occur due to refactoring that wasn’t completed. They can cause confusion when reading code.</p>
+<h4 id="ESLINT_NECC">no-empty-character-class</h4>
+<p>Empty character classes in regular expressions do not match anything and can result in code that may not work as intended.</p>
+<h4 id="ESLINT_NEA">no-ex-assign</h4>
+<p>If a catch clause in a try statement accidentally (or purposely) assigns another value to the exception parameter, it impossible to refer to the error from that point on. Since there is no arguments object to offer alternative access to this data, assignment of the parameter is absolutely destructive.</p>
+<h4 id="ESLINT_NEBC">no-extra-boolean-cast</h4>
+<p>In contexts such as an if statement’s test where the result of the expression will already be coerced to a Boolean, casting to a Boolean via double negation (!!) is unnecessary. For example, these if statements are equivalent:</p>
+<h4 id="ESLINT_NES">no-extra-semi</h4>
+<p>Typing mistakes and misunderstandings about where semicolons are required can lead to semicolons that are unnecessary. While not technically an error, extra semicolons can cause confusion when reading code.</p>
+<h4 id="ESLINT_NFA">no-func-assign</h4>
+<p>JavaScript functions can be written as a FunctionDeclaration function foo() { … } or as a FunctionExpression var foo = function() { … };. While a JavaScript interpreter might tolerate it, overwriting/reassigning a function written as a FunctionDeclaration is often indicative of a mistake or issue.</p>
+<h4 id="ESLINT_NID">no-inner-declarations</h4>
+<p>In JavaScript, prior to ES6, a function declaration is only allowed in the first level of a program or the body of another function, though parsers sometimes erroneously accept them elsewhere. This only applies to function declarations; named or anonymous function expressions can occur anywhere an expression is permitted. A variable declaration is permitted anywhere a statement can go, even nested deeply inside other blocks. This is often undesirable due to variable hoisting, and moving declarations to the root of the program or function body can increase clarity. Note that block bindings (let, const) are not hoisted and therefore they are not affected by this rule.</p>
+<h4 id="ESLINT_NIR">no-invalid-regexp</h4>
+<p>An invalid pattern in a regular expression literal is a SyntaxError when the code is parsed, but an invalid string in RegExp constructors throws a SyntaxError only when the code is executed.</p>
+<h4 id="ESLINT_NIW">no-irregular-whitespace</h4>
+<p>Invalid or irregular whitespace causes issues with ECMAScript 5 parsers and also makes code harder to debug in a similar nature to mixed tabs and spaces. Various whitespace characters can be inputted by programmers by mistake for example from copying or keyboard shortcuts. Pressing Alt + Space on OS X adds in a non breaking space character for example. Known issues these spaces cause:</p>
+<h4 id="ESLINT_NOC">no-obj-calls</h4>
+<p>ECMAScript provides several global objects that are intended to be used as-is. Some of these objects look as if they could be constructors due their capitalization (such as Math and JSON) but will throw an error if you try to execute them as functions. The ECMAScript 5 specification makes it clear that both Math and JSON cannot be invoked:</p>
+<h4 id="ESLINT_NRS">no-regex-spaces</h4>
+<p>Regular expressions can be very complex and difficult to understand, which is why it’s important to keep them as simple as possible in order to avoid mistakes. One of the more error-prone things you can do with a regular expression is to use more than one space, such as: In this regular expression, it’s very hard to tell how many spaces are intended to be matched. It’s better to use only one space and then specify how many spaces are expected, such as: Now it is very clear that three spaces are expected to be matched.</p>
+<h4 id="ESLINT_NSA">no-sparse-arrays</h4>
+<p>Sparse arrays contain empty slots, most frequently due to multiple commas being used in an array literal, such as: While the items array in this example has a length of 2, there are actually no values in items[0] or items[1]. The fact that the array literal is valid with only commas inside, coupled with the length being set and actual item values not being set, make sparse arrays confusing for many developers. Consider the following: In this example, the colors array has a length of 3. But did the developer intend for there to be an empty spot in the middle of the array? Or is it a typo? The confusion around sparse arrays defined in this manner is enough that it’s recommended to avoid using them unless you are certain that they are useful in your code.</p>
+<h4 id="ESLINT_NUM">no-unexpected-multiline</h4>
+<p>Semicolons are optional in JavaScript, via a process called automatic semicolon insertion (ASI). See the documentation for semi for a fuller discussion of that feature. The rules for ASI are relatively straightforward: In short, as once described by Isaac Schlueter, a character always ends a statement (just like a semicolon) unless one of the following is true: This particular rule aims to spot scenarios where a newline looks like it is ending a statement, but is not.</p>
+<h4 id="ESLINT_NU">no-unreachable</h4>
+<p>Because the return, throw, break, and continue statements unconditionally exit a block of code, any statements after them cannot be executed. Unreachable statements are usually a mistake.</p>
+<h4 id="ESLINT_NUF">no-unsafe-finally</h4>
+<p>JavaScript suspends the control flow statements of try and catch blocks until the execution of finally block finishes. So, when return, throw, break, or continue is used in finally, control flow statements inside try and catch are overwritten, which is considered as unexpected behavior.</p>
+<h4 id="ESLINT_NUNEG">no-unsafe-negation</h4>
+<p>Just as developers might type -a + b when they mean -(a + b) for the negative of a sum, they might type !key in object by mistake when they almost certainly mean !(key in object) to test that a key is not in an object. !obj instanceof Ctor is similar.</p>
+<h4 id="ESLINT_UI">use-isnan</h4>
+<p>In JavaScript, NaN is a special value of the Number type. It’s used to represent any of the “not-a-number” values represented by the double-precision 64-bit format as specified by the IEEE Standard for Binary Floating-Point Arithmetic. NaN has the unique property of not being equal to anything, including itself. That is to say, that the condition NaN !== NaN evaluates to true.</p>
+<h4 id="ESLINT_VT">valid-typeof</h4>
+<p>For a vast majority of use-cases, the only valid results of the typeof operator will be one of the following: “undefined”, “object”, “boolean”, “number”, “string”, and “function”. When the result of a typeof operation is compared against a string that is not one of these strings, it is usually a typo. This rule ensures that when the result of a typeof operation is compared against a string, that string is in the aforementioned set.</p>
+<h3 id="stylistic-issues">Stylistic Issues</h3>
+<h4 id="ESLINT_NMSAT">no-mixed-spaces-and-tabs</h4>
+<p>Most code conventions require either tabs or spaces be used for indentation. As such, it’s usually an error if a single line of code is indented with both tabs and spaces.</p>
+<h3 id="variables">Variables</h3>
+<h4 id="ESLINT_NDV">no-delete-var</h4>
+<p>The purpose of the delete operator is to remove a property from an object. Using the delete operator on a variable might lead to unexpected behavior.</p>
+<h4 id="ESLINT_NUN">no-undef</h4>
+<p>This rule can help you locate potential ReferenceErrors resulting from misspellings of variable and parameter names, or accidental implicit globals (for example, from forgetting the var keyword in a for loop initializer).</p>
+<h4 id="ESLINT_NUV">no-unused-vars</h4>
+<p>Variables that are declared and not used anywhere in the code are most likely an error due to incomplete refactoring. Such variables take up space in the code and can lead to confusion by readers.</p>
+<h2 id="the-userdefinedmetrics-module">The UserDefinedMetrics module</h2>
+<p>In addition to the built-in metrics, users can create their own metrics by using the UserDefinedMetrics (UDM) module. These new metrics can be established with a formula that can use any previous SourceMeter metric and can even depend on other custom user-defined metrics.</p>
+<h3 id="defining-a-metric">Defining a metric</h3>
+<ul>
+<li>Metric definitions are surrounded by a <code>&lt;tool name = &quot;UDM&quot; enabled = &quot;true&quot;&gt;&lt;/tool&gt;</code> tag.</li>
+<li>Metrics are defined using a <code>&lt;udm id = &quot;NAME&quot;&gt;&lt;/udm&gt;</code> tag.
+<ul>
+<li><code>NAME</code> follows standard identifier conventions (starts with a letter or an underscore, followed by any number of letters, numbers, or underscores).</li>
+<li><code>pi</code>, <code>epsilon</code>, and <code>inf</code> are occupied names (in a case-insensitive manner, so <code>Pi</code>, <code>pI</code>, <code>Epsilon</code>, <code>epSiloN</code>, etc. are occupied as well).</li>
+</ul></li>
+<li>Each metric definition can contain multiple configurations using a <code>&lt;configuration name = &quot;ConfigName&quot;&gt;&lt;/configuration&gt;</code> tag.
+<ul>
+<li>The <code>Default</code> configuration is mandatory, while the language-specific “overrides” are optional.</li>
+<li>Each “override” inherits its starting setting values from the <code>Default</code> configuration.</li>
+<li>The valid language-specific configuration values (at the moment) are <code>cpp</code>, <code>csharp</code>, <code>java</code>, <code>javascript</code>, <code>python</code>, and <code>rpg</code>.</li>
+</ul></li>
+<li>Each configuration can contain the following settings:
+<ul>
+<li><code>description</code>: The description of the metric (default: “”).</li>
+<li><code>display-name</code>: An optional name, if something other than the ID should be used for display (default: “”).</li>
+<li><code>group-member</code>: The group of metrics this metric belongs to (valid values: “Cohesion”, “Complexity”, “Coupling”, “Documentation”, “Inheritance”, “Size”, “UserDefinedMetrics”; default: “UserDefinedMetrics”)</li>
+<li><code>help-text</code>: Additional help text for the metric (default: “”).</li>
+<li><code>formula</code>: The formula used to calculate the value of the metric. It can be any valid expression supported by the <a href="https://exprtk.codeplex.com/">ExprTk library</a> and contain references to any previously computed metrics (e.g., LLOC, NOS, CBO, etc.).</li>
+<li><code>type</code>: The desired output type of the formula (valid values: “Integer”, “Float”; default: “Float”).</li>
+<li><code>calculated</code>: This field contains a list of syntactic element types (e.g., Class, Method, etc.) the metric is calculated for inside <code>&lt;calculated-for&gt;</code> tags. See the example below.
+<ul>
+<li>Note that every (both built-in and user-defined) metric has a unique set of elements it is computed for. Therefore, if a metric is dependent on another, its <code>&lt;calculated-for&gt;</code> set should be a subset of the dependency’s for it to be universally computable.</li>
+</ul></li>
+</ul></li>
+</ul>
+<h3 id="example-profile.xml">Example profile.xml</h3>
+<div class="sourceCode"><pre class="sourceCode xml"><code class="sourceCode xml"><span class="kw">&lt;?xml</span> version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;<span class="kw">?&gt;</span>
+<span class="kw">&lt;sourcemeter-profile&gt;</span>
+  <span class="kw">&lt;tool-options&gt;</span>
+    <span class="kw">&lt;tool</span><span class="ot"> name</span> <span class="ot">=</span> <span class="st">&quot;UDM&quot;</span><span class="ot"> enabled</span> <span class="ot">=</span> <span class="st">&quot;true&quot;</span><span class="kw">&gt;</span>
+      <span class="kw">&lt;udm</span><span class="ot"> id</span> <span class="ot">=</span> <span class="st">&quot;UDM_test_metric&quot;</span><span class="kw">&gt;</span>
+        <span class="kw">&lt;configuration</span><span class="ot"> name</span> <span class="ot">=</span> <span class="st">&quot;Default&quot;</span><span class="kw">&gt;</span>
+          <span class="kw">&lt;description&gt;</span>Blablabla<span class="kw">&lt;/description&gt;</span>
+          <span class="kw">&lt;display-name&gt;</span>UDM Test Metric<span class="kw">&lt;/display-name&gt;</span>
+          <span class="kw">&lt;group-member&gt;</span>UserDefinedMetrics<span class="kw">&lt;/group-member&gt;</span>
+          <span class="kw">&lt;help-text&gt;</span>A helpful comment<span class="kw">&lt;/help-text&gt;</span>
+          <span class="kw">&lt;formula&gt;</span>LLOC + 1 + sin(pi)^3<span class="kw">&lt;/formula&gt;</span>
+          <span class="kw">&lt;type&gt;</span>Integer<span class="kw">&lt;/type&gt;</span>
+          <span class="kw">&lt;calculated&gt;</span>
+            <span class="kw">&lt;calculated-for&gt;</span>Class<span class="kw">&lt;/calculated-for&gt;</span>
+            <span class="kw">&lt;calculated-for&gt;</span>Method<span class="kw">&lt;/calculated-for&gt;</span>
+          <span class="kw">&lt;/calculated&gt;</span>
+        <span class="kw">&lt;/configuration&gt;</span>
+      <span class="kw">&lt;/udm&gt;</span>
+    <span class="kw">&lt;/tool&gt;</span>
+  <span class="kw">&lt;/tool-options&gt;</span>
+<span class="kw">&lt;/sourcemeter-profile&gt;</span></code></pre></div>
+<h1 id="footnotes">Footnotes</h1>
+</body>
+</html>

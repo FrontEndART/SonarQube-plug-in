@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014-2017, FrontEndART Software Ltd.
+ * Copyright (c) 2014-2020, FrontEndART Software Ltd.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -28,7 +28,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.sourcemeter.analyzer.python;
+package com.sourcemeter.analyzer.javascript;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -42,72 +42,70 @@ import org.sonar.api.PropertyType;
 
 import com.sourcemeter.analyzer.base.core.VersionChecker;
 import com.sourcemeter.analyzer.base.helper.ThresholdPropertiesHelper;
-import com.sourcemeter.analyzer.python.batch.SourceMeterPythonSensor;
-import com.sourcemeter.analyzer.python.profile.SourceMeterPythonProfile;
-import com.sourcemeter.analyzer.python.profile.SourceMeterPythonRuleRepository;
+import com.sourcemeter.analyzer.javascript.batch.SourceMeterJavaScriptSensor;
+import com.sourcemeter.analyzer.javascript.profile.SourceMeterJavaScriptProfile;
+import com.sourcemeter.analyzer.javascript.profile.SourceMeterJavaScriptRuleRepository;
 
+/**
+ * This class is the entry point for all extensions
+ */
 @Properties({
              @Property(
-                 key = "sm.python.binary",
-                 name = "Python 3.X binary",
-                 description = "Sets Python 3.X binary executable name (full path is required if its directory is not in PATH).",
-                 category = SourceMeterAnalyzerPythonPlugin.PYTHON_GENERAL_CATEGORY,
-                 project = true,
-                 type = PropertyType.STRING
+                key = "sm.javascript.uploadMethods",
+                name = "Upload methods to the database.",
+                global = false,
+                project = false,
+                type = PropertyType.BOOLEAN,
+                defaultValue = "true"
              ),
              @Property(
-                 key = "sm.python.uploadMethods",
-                 name = "Upload methods to the database.",
-                 global = false,
-                 project = false,
-                 type = PropertyType.BOOLEAN,
-                 defaultValue = "true"
+                key = "sm.javascript.skipToolchain",
+                name = "Skip SourceMeter Python toolchain (only upload results from existing result directory).",
+                global = false,
+                project = false,
+                type = PropertyType.BOOLEAN,
+                defaultValue = "false"
              ),
              @Property(
-                 key = "sm.python.skipToolchain",
-                 name = "Skip SourceMeter Python toolchain (only upload results from existing result directory).",
-                 global = false,
-                 project = false,
-                 type = PropertyType.BOOLEAN,
-                 defaultValue = "false"
-             ),
-
-             @Property(
-                 key = "sm.python.toolchainOptions",
-                 name = "Add additional parameters for running SourceMeter Python toolchain.",
-                 global = false,
-                 project = false,
-                 type = PropertyType.STRING
+                key = "sm.javascript.toolchainOptions",
+                name = "Add additional parameters for running SourceMeter Python toolchain.",
+                global = false,
+                project = false,
+                type = PropertyType.STRING
              ),
 })
-public class SourceMeterAnalyzerPythonPlugin implements Plugin {
+public final class SourceMeterAnalyzerJavaScriptPlugin implements Plugin {
 
-    private static final Logger LOG = LoggerFactory.getLogger(SourceMeterAnalyzerPythonPlugin.class);
+    private static final Logger LOG = LoggerFactory.getLogger(SourceMeterAnalyzerJavaScriptPlugin.class);
 
-    public static final String PYTHON_GENERAL_CATEGORY = "SourceMeter Python";
+    public static final String JAVASCRIPT_GENERAL_CATEGORY = "SourceMeter JavaScript";
 
+    public static final String FALSE = "false";
     public static final String TRUE = "true";
 
     /**
      * {@inheritDoc}
      */
+    @SuppressWarnings({ "rawtypes" })
     @Override
     public void define(Context context) {
+        // Core
+        context.addExtension(VersionChecker.class);
 
+        // PMD
         context.addExtensions(
-                SourceMeterPythonMetrics.class,
-                VersionChecker.class
+                SourceMeterJavaScriptRuleRepository.class,
+                SourceMeterJavaScriptProfile.class
         );
 
-        // profile
-        context.addExtensions(
-                SourceMeterPythonProfile.class,
-                SourceMeterPythonRuleRepository.class
-        );
-
+        // Metrics definitions
         context.addExtension(
-                // Batch
-                SourceMeterPythonSensor.class
+                SourceMeterJavaScriptMetrics.class
+        );
+
+        // Batch
+        context.addExtension(
+                SourceMeterJavaScriptSensor.class
         );
 
         try (InputStream xmlFile = getClass().getResourceAsStream("/threshold_properties.xml")) {

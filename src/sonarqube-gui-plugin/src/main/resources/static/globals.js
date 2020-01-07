@@ -42,11 +42,12 @@ if (typeof SM === 'undefined') { // ensure this only runs once
   SM.isDisplayed = true;
   SM.state = [];
   SM.languages  = [
-    { id: 'JAVA',   symbol: 'Java',   pluginId: 'SourceMeterAnalyzerjava'   },
-    { id: 'CPP',    symbol: 'C++',    pluginId: 'SourceMeterAnalyzercpp'    },
-    { id: 'CSHARP', symbol: 'C#',     pluginId: 'SourceMeterAnalyzercsharp' },
-    { id: 'PYTHON', symbol: 'Python', pluginId: 'SourceMeterAnalyzerpython' },
-    { id: 'RPG',    symbol: 'RPG',    pluginId: 'SourceMeterAnalyzerrpg'    }
+    { id: 'JAVA',       symbol: 'Java',       pluginId: 'SourceMeterAnalyzerjava'      },
+    { id: 'CPP',        symbol: 'C++',        pluginId: 'SourceMeterAnalyzercpp'       },
+    { id: 'CSHARP',     symbol: 'C#',         pluginId: 'SourceMeterAnalyzercsharp'    },
+    { id: 'PYTHON',     symbol: 'Python',     pluginId: 'SourceMeterAnalyzerpython'    },
+    { id: 'RPG',        symbol: 'RPG',        pluginId: 'SourceMeterAnalyzerrpg'       },
+    { id: 'JAVASCRIPT', symbol: 'JavaScript', pluginId: 'SourceMeterAnalyzerjavascript'}
   ];
   SM.languages.helpPageLoaded = {};
 

@@ -69,6 +69,8 @@ public class FileHelper {
             pluginLanguageKey = "csharp";
         } else if ("py".equals(pluginLanguageKey)) {
             pluginLanguageKey = "python";
+        } else if ("js".equals(pluginLanguageKey)) {
+            pluginLanguageKey = "javascript";
         }
 
         resultsDir += pluginLanguageKey;
