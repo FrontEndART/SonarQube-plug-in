@@ -45,7 +45,7 @@ public class VersionChecker implements ServerStartHandler {
         int majorVersion = Integer.parseInt(version[0]);
         int minorVersion = Integer.parseInt(version[1]);
 
-        if (!(majorVersion == 6 && minorVersion >= 7) && !(majorVersion == 7 && minorVersion >= 0)) {
+        if (!(majorVersion == 7 && minorVersion >= 9) && !(majorVersion == 8 && minorVersion >= 0)) {
             throw new UnsupportedOperationException("FrontEndART SourceMeter plugin does not support your SonarQube server version (" + server.getVersion()
                     + "). For more information about the supported versions, check http://www.frontendart.com/ or read the documention of the plugin.");
         }

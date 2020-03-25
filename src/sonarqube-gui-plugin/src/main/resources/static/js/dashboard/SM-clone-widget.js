@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014-2018, FrontEndART Software Ltd.
+ * Copyright (c) 2014-2020, FrontEndART Software Ltd.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -29,6 +29,8 @@
  */
 
 SM.CloneWidget = function(elem, options) {
+  const fileQuery = '/code?id=';
+
   /**
    * (Re)render the plugin onto the div
    */
@@ -298,7 +300,7 @@ SM.CloneWidget = function(elem, options) {
   this.generatePositionAnchorTab = function(pack) {
     var anchor = pack.name;
     if (pack.positions[0]) {
-      var href = 'http://' + window.location.host + '/component?id=' + pack.displayedPath
+      var href = 'http://' + window.location.host + fileQuery + pack.displayedPath
                 + '&line=' + pack.positions[0].line;
       anchor = '<a href="' + href + '" target="_blank">' + pack.name + '</a>';
     }
@@ -309,7 +311,7 @@ SM.CloneWidget = function(elem, options) {
   this.generatePositionAnchorPopup = function(pack) {
     var anchor = pack.name;
     if (pack.positions[0]) {
-      var url = 'http://' + window.location.host + '/component?id=' + pack.displayedPath
+      var url = 'http://' + window.location.host + fileQuery + pack.displayedPath
                 + '&line=' + pack.positions[0].line;
       var href = 'javascript:(function() {window.open(\'' + url + '\', \'' + pack.displayedPath
                  + '\', \'resizable,scrollbars,status\');})()';

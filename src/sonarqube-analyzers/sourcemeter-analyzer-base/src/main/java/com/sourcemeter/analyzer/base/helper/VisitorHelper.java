@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014-2017, FrontEndART Software Ltd.
+ * Copyright (c) 2014-2020, FrontEndART Software Ltd.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -112,13 +112,18 @@ public abstract class VisitorHelper {
 
             NewIssueLocation location = getIssueLocation(warningPath, warningTextPref, startLine);
 
-            if (extraInfoAttribute == null) {
-                newIssue.at(location)
-                        .save();
-            } else {
+            if (extraInfoAttribute != null) {
                 stackTrace = getStackTraceFromWarningAttribute(extraInfoAttribute, warningText);
+                if (stackTrace != null && !stackTrace.contains(null)) {
+                    newIssue.at(location)
+                            .addFlow(stackTrace)
+                            .save();
+                } else {
+                    newIssue.at(location)
+                            .save();
+                }
+            } else {
                 newIssue.at(location)
-                        .addFlow(stackTrace)
                         .save();
             }
         }

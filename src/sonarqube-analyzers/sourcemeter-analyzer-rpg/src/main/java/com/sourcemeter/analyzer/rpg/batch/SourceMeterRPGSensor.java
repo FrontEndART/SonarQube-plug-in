@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014-2017, FrontEndART Software Ltd.
+ * Copyright (c) 2014-2020, FrontEndART Software Ltd.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -43,15 +43,12 @@ import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.sonar.api.batch.bootstrap.ProjectDefinition;
 import org.sonar.api.batch.fs.FileSystem;
-import org.sonar.api.batch.fs.InputModule;
-import org.sonar.api.batch.rule.Rules;
 import org.sonar.api.batch.sensor.SensorContext;
 import org.sonar.api.batch.sensor.SensorDescriptor;
 import org.sonar.api.config.Configuration;
 import org.sonar.api.batch.rule.ActiveRules;
-import org.sonar.api.scan.filesystem.FileExclusions;
+import org.sonar.api.scanner.fs.InputProject;
 import org.sonar.api.server.rule.RulesDefinitionXmlLoader;
 
 import com.sourcemeter.analyzer.base.batch.MetricHunterCategory;
@@ -85,8 +82,6 @@ public class SourceMeterRPGSensor extends SourceMeterSensor {
     /**
      * Command and parameters for running SourceMeter RPG analyzer
      */
-    private final List<String> commands;
-    private final Rules rules;
     private final FileSystem fileSystem;
 
     private String projectName;
@@ -96,14 +91,12 @@ public class SourceMeterRPGSensor extends SourceMeterSensor {
     private static final String THRESHOLD_PROPERTIES_PATH = "/threshold_properties.xml";
     private static final String LOGICAL_ROOT = "__LogicalRoot__";
 
-    public SourceMeterRPGSensor(FileExclusions fileExclusions, FileSystem fileSystem,
-            ProjectDefinition projectDefinition, Rules rules, ActiveRules activeRules,
-            Configuration configuration) {
+    public SourceMeterRPGSensor(FileSystem fileSystem,
+           InputProject inputProject, ActiveRules activeRules,
+           Configuration configuration) {
 
-        super(fileExclusions, fileSystem, projectDefinition, activeRules, configuration);
+        super(fileSystem, inputProject, activeRules, configuration);
 
-        this.commands = new ArrayList<String>();
-        this.rules = rules;
         this.fileSystem = fileSystem;
 
     }
@@ -117,7 +110,7 @@ public class SourceMeterRPGSensor extends SourceMeterSensor {
         if (skipRpg) {
             LOG.info("SourceMeter toolchain is skipped for RPG. Results will be uploaded from former results directory, if it exists.");
         } else {
-            if (!checkProperties()) {
+            if (!checkProperties(sensorContext)) {
                 throw new RuntimeException("Failed to initialize the SourceMeter plugin. Some mandatory properties are not set properly.");
             }
             runSourceMeter(commands);
@@ -125,11 +118,6 @@ public class SourceMeterRPGSensor extends SourceMeterSensor {
 
         this.projectName = FileHelper.getStringFromConfiguration(this.configuration, "sonar.projectKey");
         this.projectName = StringUtils.replace(this.projectName, ":", "_");
-        String analyseMode = FileHelper.getStringFromConfiguration(configuration, "sonar.analysis.mode");
-        if ("incremental".equals(analyseMode)) {
-            LOG.warn("Incremental mode is on. There are no metric based (INFO level) issues in this mode.");
-            this.isIncrementalMode = true;
-        }
 
         try {
             this.resultGraph = FileHelper.getSMSourcePath(configuration, fileSystem, '_', new RPG())
@@ -142,7 +130,7 @@ public class SourceMeterRPGSensor extends SourceMeterSensor {
         LOG.info("      Graph: " + resultGraph);
 
         try {
-            loadDataFromGraphBin(this.resultGraph, sensorContext.module(), sensorContext);
+            loadDataFromGraphBin(this.resultGraph, sensorContext.project(), sensorContext);
         } catch (GraphlibException e) {
             LOG.error("Error during graph loading!", e);
         }
@@ -179,7 +167,7 @@ public class SourceMeterRPGSensor extends SourceMeterSensor {
      * {@inheritDoc}
      */
     @Override
-    protected void loadDataFromGraphBin(String filename, InputModule project,
+    protected void loadDataFromGraphBin(String filename, InputProject project,
             SensorContext sensorContext) throws GraphlibException {
         Graph graph = new Graph();
         graph.loadBinary(filename);
@@ -268,9 +256,10 @@ public class SourceMeterRPGSensor extends SourceMeterSensor {
     /**
      * Checks the correctness of sourceMeter's properties.
      *
+     * @param sensorContext Context of the sensor.
      * @return True if the properties were set correctly.
      */
-    private boolean checkProperties() {
+    private boolean checkProperties(SensorContext sensorContext) {
         String pathToCA = FileHelper.getStringFromConfiguration(configuration, "sm.toolchaindir");
         if (pathToCA == null) {
             LOG.error("RPG SourceMeter path must be set! Check it on the settings page of your SonarQube!");
@@ -285,19 +274,12 @@ public class SourceMeterRPGSensor extends SourceMeterSensor {
             return false;
         }
 
-        List<File> sourceDirectories = getSourcesDirectoriesForProject();
-
-        if (sourceDirectories.isEmpty()) {
-            LOG.error("No source directories found!");
-            return false;
-        }
-
         String baseDir = "";
         try {
-            baseDir = sourceDirectories.get(0).getCanonicalPath();
+            baseDir = this.fileSystem.baseDir().getCanonicalPath();
         } catch (IOException e) {
             LOG.warn("Could not get base directory's canonical path. Absolute path is used.");
-            baseDir = sourceDirectories.get(0).getAbsolutePath();
+            baseDir = this.fileSystem.baseDir().getAbsolutePath();
         }
 
         this.commands.add(pathToCA + File.separator
@@ -319,11 +301,6 @@ public class SourceMeterRPGSensor extends SourceMeterSensor {
         String rpg4Pattern = FileHelper.getStringFromConfiguration(configuration, "sm.rpg.rpg4Pattern");
         this.commands.add("-rpg4FileNamePattern=" + rpg4Pattern);
 
-        String cloneGenealogy = FileHelper.getStringFromConfiguration(configuration, "sm.cloneGenealogy");
-        String cloneMinLines = FileHelper.getStringFromConfiguration(configuration, "sm.cloneMinLines");
-        this.commands.add("-cloneGenealogy=" + cloneGenealogy);
-        this.commands.add("-cloneMinLines=" + cloneMinLines);
-
         String additionalParameters = FileHelper.getStringFromConfiguration(configuration, "sm.rpg.toolchainOptions");
         if (additionalParameters != null) {
             this.commands.add(additionalParameters);
@@ -331,14 +308,11 @@ public class SourceMeterRPGSensor extends SourceMeterSensor {
 
         String hardFilter = "";
         String hardFilterFilePath = null;
-
+        hardFilter = getFilterContent(sensorContext, RPG.KEY);
         try {
-            hardFilter = getFilterContent();
             hardFilterFilePath = writeHardFilterToFile(hardFilter);
         } catch (IOException e) {
-            LOG.warn(
-                    "Cannot create hardFilter file for toolchain! No hardFilter is used during analyzis.",
-                    e);
+            LOG.warn("Cannot create hardFilter file for toolchain! No hardFilter is used during analyzis.", e);
         }
 
         if (hardFilterFilePath != null) {
@@ -347,7 +321,7 @@ public class SourceMeterRPGSensor extends SourceMeterSensor {
 
         ProfileInitializer profileInitializer = new ProfileInitializer(
                 this.configuration, getMetricHunterCategories(), this.activeRules,
-                new SourceMeterRPGRuleRepository(new RulesDefinitionXmlLoader()), rules, new RPG());
+                new SourceMeterRPGRuleRepository(new RulesDefinitionXmlLoader()), new RPG());
 
         String thresholdPath = this.fileSystem.workDir() + File.separator
                 + "SM-Profile.xml";
@@ -357,6 +331,8 @@ public class SourceMeterRPGSensor extends SourceMeterSensor {
         } catch (IOException e) {
             LOG.warn("An error occured while creating SourceMeter profile file. Default profile is used!!", e);
         }
+
+        addCommonCommandlineOptions();
 
         return true;
     }

@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014-2017, FrontEndART Software Ltd.
+ * Copyright (c) 2014-2020, FrontEndART Software Ltd.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -43,15 +43,12 @@ import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.sonar.api.batch.bootstrap.ProjectDefinition;
 import org.sonar.api.batch.fs.FileSystem;
-import org.sonar.api.batch.fs.InputModule;
-import org.sonar.api.batch.rule.Rules;
 import org.sonar.api.batch.sensor.SensorContext;
 import org.sonar.api.batch.sensor.SensorDescriptor;
 import org.sonar.api.config.Configuration;
 import org.sonar.api.batch.rule.ActiveRules;
-import org.sonar.api.scan.filesystem.FileExclusions;
+import org.sonar.api.scanner.fs.InputProject;
 import org.sonar.api.server.rule.RulesDefinitionXmlLoader;
 
 import com.sourcemeter.analyzer.base.batch.MetricHunterCategory;
@@ -85,22 +82,18 @@ public class SourceMeterCppSensor extends SourceMeterSensor {
     /**
      * Command and parameters for running SourceMeter C/C++ analyzer
      */
-    private final List<String> commands;
-    private final Rules rules;
     private final FileSystem fileSystem;
 
     private static final Logger LOG = LoggerFactory.getLogger(SourceMeterCppSensor.class);
     private static final String THRESHOLD_PROPERTIES_PATH = "/threshold_properties.xml";
     private static final String LOGICAL_ROOT = "__LogicalRoot__";
 
-    public SourceMeterCppSensor(FileExclusions fileExclusions, FileSystem fileSystem,
-            ProjectDefinition projectDefinition, Rules rules, ActiveRules activeRules,
-            Configuration configuration) {
+    public SourceMeterCppSensor(FileSystem fileSystem,
+           InputProject inputProject, ActiveRules activeRules,
+           Configuration configuration) {
 
-        super(fileExclusions, fileSystem, projectDefinition, activeRules, configuration);
+        super(fileSystem, inputProject, activeRules, configuration);
 
-        this.commands = new ArrayList<String>();
-        this.rules = rules;
         this.fileSystem = fileSystem;
     }
 
@@ -113,20 +106,15 @@ public class SourceMeterCppSensor extends SourceMeterSensor {
         if (skipCpp) {
             LOG.info("SourceMeter toolchain is skipped for C/C++. Results will be uploaded from former results directory, if it exists.");
         } else {
-            if (!checkProperties()) {
+            if (!checkProperties(sensorContext)) {
                 throw new RuntimeException("Failed to initialize the SourceMeter plugin. Some mandatory properties are not set properly.");
             }
             runSourceMeter(commands);
         }
 
-        String analyseMode = FileHelper.getStringFromConfiguration(this.configuration, "sonar.analysis.mode");
         this.projectName = FileHelper.getStringFromConfiguration(this.configuration, "sonar.projectKey");
         this.projectName = StringUtils.replace(projectName, ":", "_");
 
-        if ("incremental".equals(analyseMode)) {
-            LOG.warn("Incremental mode is on. There are no metric based (INFO level) issues in this mode.");
-            this.isIncrementalMode = true;
-        }
         try {
             this.resultGraph = FileHelper.getSMSourcePath(configuration, fileSystem, '-', new Cpp())
                     + File.separator + this.projectName + ".graph";
@@ -138,7 +126,7 @@ public class SourceMeterCppSensor extends SourceMeterSensor {
         LOG.info("      Graph: " + resultGraph);
 
         try {
-            loadDataFromGraphBin(this.resultGraph, sensorContext.module(), sensorContext);
+            loadDataFromGraphBin(this.resultGraph, sensorContext.project(), sensorContext);
         } catch (GraphlibException e) {
             LOG.error("Error during loading graph!", e);
         }
@@ -176,7 +164,7 @@ public class SourceMeterCppSensor extends SourceMeterSensor {
      * {@inheritDoc}
      */
     @Override
-    protected void loadDataFromGraphBin(String filename, InputModule project,
+    protected void loadDataFromGraphBin(String filename, InputProject project,
                     SensorContext sensorContext) throws GraphlibException {
         Graph graph = new Graph();
         graph.loadBinary(filename);
@@ -265,9 +253,10 @@ public class SourceMeterCppSensor extends SourceMeterSensor {
     /**
      * Checks the correctness of sourceMeter's properties.
      *
+     * @param sensorContext Context of the sensor.
      * @return True if the properties were set correctly.
      */
-    private boolean checkProperties() {
+    private boolean checkProperties(SensorContext sensorContext) {
         String pathToCA = FileHelper.getStringFromConfiguration(this.configuration, "sm.toolchaindir");
         if (pathToCA == null) {
             LOG.error("C/C++ SourceMeter path must be set! Check it on the settings page of your SonarQube!");
@@ -289,19 +278,9 @@ public class SourceMeterCppSensor extends SourceMeterSensor {
         String projectName = FileHelper.getStringFromConfiguration(configuration, "sonar.projectKey");
         projectName = StringUtils.replace(projectName, ":", "_");
 
-        String softFilter = "";
-        String softFilterFilePath = null;
-
-        try {
-            softFilter = getFilterContent();
-            softFilterFilePath = writeSoftFilterToFile(softFilter);
-        } catch (IOException e) {
-            LOG.warn("Cannot create softFilter file for toolchain! No softFilter is used during analyzis.", e);
-        }
-
         ProfileInitializer profileInitializer = new ProfileInitializer(
                 this.configuration, getMetricHunterCategories(), this.activeRules,
-                new SourceMeterCppRuleRepository(new RulesDefinitionXmlLoader()), rules, new Cpp());
+                new SourceMeterCppRuleRepository(new RulesDefinitionXmlLoader()), new Cpp());
 
         String profilePath = this.fileSystem.workDir() + File.separator
                 + "SM-Profile.xml";
@@ -333,10 +312,14 @@ public class SourceMeterCppSensor extends SourceMeterSensor {
         this.commands.add("-projectBaseDir=" + baseDir);
         this.commands.add("-buildScript=" + pathToBuild);
 
-        String cloneGenealogy = FileHelper.getStringFromConfiguration(configuration, "sm.cloneGenealogy");
-        String cloneMinLines = FileHelper.getStringFromConfiguration(configuration, "sm.cloneMinLines");
-        this.commands.add("-cloneGenealogy=" + cloneGenealogy);
-        this.commands.add("-cloneMinLines=" + cloneMinLines);
+        String softFilter = "";
+        String softFilterFilePath = null;
+        softFilter = getFilterContent(sensorContext, Cpp.KEY);
+        try {
+            softFilterFilePath = writeSoftFilterToFile(softFilter);
+        } catch (IOException e) {
+            LOG.warn("Cannot create softFilter file for toolchain! No softFilter is used during analyzis.", e);
+        }
 
         if (null != softFilterFilePath) {
             this.commands.add("-externalSoftFilter=" + softFilterFilePath);
@@ -351,6 +334,8 @@ public class SourceMeterCppSensor extends SourceMeterSensor {
         if (null != additionalParameters) {
             this.commands.add(additionalParameters);
         }
+
+        addCommonCommandlineOptions();
 
         return true;
     }

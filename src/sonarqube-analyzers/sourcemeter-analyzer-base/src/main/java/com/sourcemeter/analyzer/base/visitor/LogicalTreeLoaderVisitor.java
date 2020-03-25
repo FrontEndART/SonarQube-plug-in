@@ -41,7 +41,6 @@ import org.sonar.api.resources.AbstractLanguage;
 
 import graphlib.Node;
 
-import com.sourcemeter.analyzer.base.helper.FileHelper;
 import com.sourcemeter.analyzer.base.helper.VisitorHelper;
 
 /**

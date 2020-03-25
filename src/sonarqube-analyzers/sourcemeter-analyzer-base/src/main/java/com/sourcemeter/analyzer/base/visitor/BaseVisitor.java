@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014-2017, FrontEndART Software Ltd.
+ * Copyright (c) 2014-2020, FrontEndART Software Ltd.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -36,9 +36,7 @@ import java.util.ListIterator;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.sonar.api.batch.fs.FileSystem;
 import org.sonar.api.batch.fs.InputComponent;
-import org.sonar.api.batch.fs.InputFile;
 import org.sonar.api.batch.sensor.SensorContext;
 import org.sonar.api.config.Configuration;
 import org.sonar.api.resources.AbstractLanguage;
@@ -211,15 +209,11 @@ public abstract class BaseVisitor implements graphlib.Visitor {
             Attribute tempPos = (Attribute) posIter.next();
             if ("Path".equals(tempPos.getName())) {
                 path = ((AttributeString)tempPos).getValue();
-                FileSystem fs = visitorHelper.getFileSystem();
-                InputFile file = fs.inputFile(fs.predicates().hasPath(path));
-                if (file != null) {
-                    path = file.relativePath();
-                }
             } else if ("Line".equals(tempPos.getName())) {
                 line = ((AttributeInt)tempPos).getValue();
             }
         }
+        path = path.replace("\\", "/");
         positionsList.add(new Position(path, line));
     }
 
