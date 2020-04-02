@@ -6,52 +6,34 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <title></title>
   <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
   <style type="text/css">
-div.sourceCode { overflow-x: auto; }
 table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
   margin: 0; padding: 0; vertical-align: baseline; border: none; }
 table.sourceCode { width: 100%; line-height: 100%; }
 td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
 td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code > span.kw { color: #007020; font-weight: bold; }
+code > span.dt { color: #902000; }
+code > span.dv { color: #40a070; }
+code > span.bn { color: #40a070; }
+code > span.fl { color: #40a070; }
+code > span.ch { color: #4070a0; }
+code > span.st { color: #4070a0; }
+code > span.co { color: #60a0b0; font-style: italic; }
+code > span.ot { color: #007020; }
+code > span.al { color: #ff0000; font-weight: bold; }
+code > span.fu { color: #06287e; }
+code > span.er { color: #ff0000; font-weight: bold; }
   </style>
-  <link href="data:text/css;charset=utf-8,%40import%20url%28data%3Atext%2Fcss%3B%20charset%3Dutf%2D8%2C%2540font%252Dface%2520%257B%250A%2520%2520font%252Dfamily%253A%2520%2527Open%2520Sans%2527%253B%250A%2520%2520font%252Dstyle%253A%2520normal%253B%250A%2520%2520font%252Dweight%253A%2520300%253B%250A%2520%2520src%253A%2520local%2528%2527Open%2520Sans%2520Light%2527%2529%252C%2520local%2528%2527OpenSans%252DLight%2527%2529%252C%2520url%2528http%253A%252F%252Ffonts%252Egstatic%252Ecom%252Fs%252Fopensans%252Fv13%252FDXI1ORHCpsQm3Vp6mXoaTYnF5uFdDttMLvmWuJdhhgs%252Ettf%2529%2520format%2528%2527truetype%2527%2529%253B%250A%257D%250A%2540font%252Dface%2520%257B%250A%2520%2520font%252Dfamily%253A%2520%2527Open%2520Sans%2527%253B%250A%2520%2520font%252Dstyle%253A%2520normal%253B%250A%2520%2520font%252Dweight%253A%2520400%253B%250A%2520%2520src%253A%2520local%2528%2527Open%2520Sans%2527%2529%252C%2520local%2528%2527OpenSans%2527%2529%252C%2520url%2528http%253A%252F%252Ffonts%252Egstatic%252Ecom%252Fs%252Fopensans%252Fv13%252FcJZKeOuBrn4kERxqtaUH3aCWcynf%255FcDxXwCLxiixG1c%252Ettf%2529%2520format%2528%2527truetype%2527%2529%253B%250A%257D%250A%2540font%252Dface%2520%257B%250A%2520%2520font%252Dfamily%253A%2520%2527Open%2520Sans%2527%253B%250A%2520%2520font%252Dstyle%253A%2520normal%253B%250A%2520%2520font%252Dweight%253A%2520600%253B%250A%2520%2520src%253A%2520local%2528%2527Open%2520Sans%2520Semibold%2527%2529%252C%2520local%2528%2527OpenSans%252DSemibold%2527%2529%252C%2520url%2528http%253A%252F%252Ffonts%252Egstatic%252Ecom%252Fs%252Fopensans%252Fv13%252FMTP%255FySUJH%255Fbn48VBG8sNSonF5uFdDttMLvmWuJdhhgs%252Ettf%2529%2520format%2528%2527truetype%2527%2529%253B%250A%257D%250A%2540font%252Dface%2520%257B%250A%2520%2520font%252Dfamily%253A%2520%2527Open%2520Sans%2527%253B%250A%2520%2520font%252Dstyle%253A%2520normal%253B%250A%2520%2520font%252Dweight%253A%2520700%253B%250A%2520%2520src%253A%2520local%2528%2527Open%2520Sans%2520Bold%2527%2529%252C%2520local%2528%2527OpenSans%252DBold%2527%2529%252C%2520url%2528http%253A%252F%252Ffonts%252Egstatic%252Ecom%252Fs%252Fopensans%252Fv13%252Fk3k702ZOKiLJc3WVjuplzInF5uFdDttMLvmWuJdhhgs%252Ettf%2529%2520format%2528%2527truetype%2527%2529%253B%250A%257D%250A%2540font%252Dface%2520%257B%250A%2520%2520font%252Dfamily%253A%2520%2527Open%2520Sans%2527%253B%250A%2520%2520font%252Dstyle%253A%2520normal%253B%250A%2520%2520font%252Dweight%253A%2520800%253B%250A%2520%2520src%253A%2520local%2528%2527Open%2520Sans%2520Extrabold%2527%2529%252C%2520local%2528%2527OpenSans%252DExtrabold%2527%2529%252C%2520url%2528http%253A%252F%252Ffonts%252Egstatic%252Ecom%252Fs%252Fopensans%252Fv13%252FEInbV5DfGHOiMmvb1Xr%252DhonF5uFdDttMLvmWuJdhhgs%252Ettf%2529%2520format%2528%2527truetype%2527%2529%253B%250A%257D%250A%2540font%252Dface%2520%257B%250A%2520%2520font%252Dfamily%253A%2520%2527Open%2520Sans%2527%253B%250A%2520%2520font%252Dstyle%253A%2520italic%253B%250A%2520%2520font%252Dweight%253A%2520300%253B%250A%2520%2520src%253A%2520local%2528%2527Open%2520Sans%2520Light%2520Italic%2527%2529%252C%2520local%2528%2527OpenSansLight%252DItalic%2527%2529%252C%2520url%2528http%253A%252F%252Ffonts%252Egstatic%252Ecom%252Fs%252Fopensans%252Fv13%252FPRmiXeptR36kaC0GEAetxrfB31yxOzP%252Dczbf6AAKCVo%252Ettf%2529%2520format%2528%2527truetype%2527%2529%253B%250A%257D%250A%2540font%252Dface%2520%257B%250A%2520%2520font%252Dfamily%253A%2520%2527Open%2520Sans%2527%253B%250A%2520%2520font%252Dstyle%253A%2520italic%253B%250A%2520%2520font%252Dweight%253A%2520400%253B%250A%2520%2520src%253A%2520local%2528%2527Open%2520Sans%2520Italic%2527%2529%252C%2520local%2528%2527OpenSans%252DItalic%2527%2529%252C%2520url%2528http%253A%252F%252Ffonts%252Egstatic%252Ecom%252Fs%252Fopensans%252Fv13%252FxjAJXh38I15wypJXxuGMBp0EAVxt0G0biEntp43Qt6E%252Ettf%2529%2520format%2528%2527truetype%2527%2529%253B%250A%257D%250A%2540font%252Dface%2520%257B%250A%2520%2520font%252Dfamily%253A%2520%2527Open%2520Sans%2527%253B%250A%2520%2520font%252Dstyle%253A%2520italic%253B%250A%2520%2520font%252Dweight%253A%2520600%253B%250A%2520%2520src%253A%2520local%2528%2527Open%2520Sans%2520Semibold%2520Italic%2527%2529%252C%2520local%2528%2527OpenSans%252DSemiboldItalic%2527%2529%252C%2520url%2528http%253A%252F%252Ffonts%252Egstatic%252Ecom%252Fs%252Fopensans%252Fv13%252FPRmiXeptR36kaC0GEAetxi8cqLH4MEiSE0ROcU%252DqHOA%252Ettf%2529%2520format%2528%2527truetype%2527%2529%253B%250A%257D%250A%2540font%252Dface%2520%257B%250A%2520%2520font%252Dfamily%253A%2520%2527Open%2520Sans%2527%253B%250A%2520%2520font%252Dstyle%253A%2520italic%253B%250A%2520%2520font%252Dweight%253A%2520700%253B%250A%2520%2520src%253A%2520local%2528%2527Open%2520Sans%2520Bold%2520Italic%2527%2529%252C%2520local%2528%2527OpenSans%252DBoldItalic%2527%2529%252C%2520url%2528http%253A%252F%252Ffonts%252Egstatic%252Ecom%252Fs%252Fopensans%252Fv13%252FPRmiXeptR36kaC0GEAetxp%255FTkvowlIOtbR7ePgFOpF4%252Ettf%2529%2520format%2528%2527truetype%2527%2529%253B%250A%257D%250A%2540font%252Dface%2520%257B%250A%2520%2520font%252Dfamily%253A%2520%2527Open%2520Sans%2527%253B%250A%2520%2520font%252Dstyle%253A%2520italic%253B%250A%2520%2520font%252Dweight%253A%2520800%253B%250A%2520%2520src%253A%2520local%2528%2527Open%2520Sans%2520Extrabold%2520Italic%2527%2529%252C%2520local%2528%2527OpenSans%252DExtraboldItalic%2527%2529%252C%2520url%2528http%253A%252F%252Ffonts%252Egstatic%252Ecom%252Fs%252Fopensans%252Fv13%252FPRmiXeptR36kaC0GEAetxlDMrAYtoOisqqMDW9M%255FMqc%252Ettf%2529%2520format%2528%2527truetype%2527%2529%253B%250A%257D%250A%29%3B%0A%2A%20%7B%0Aoutline%3A%20none%20%21important%3B%0Amargin%3A%200%3B%0Apadding%3A%200%3B%0Aborder%3A%200px%20solid%3B%0A%7D%0Ahtml%20%7B%0Aborder%3A%200%3B%0Afont%2Dfamily%3A%20open%5Fsansregular%2C%20Arial%2C%20sans%2Dserif%3B%0Afont%2Dsize%3A%2013px%3B%0Acolor%3A%20%23666%3B%0Amargin%3A%200%3B%0Apadding%3A%201em%3B%0Abackground%3A%20%23e8eaec%3B%0A%7D%0Abody%20%7B%0Abackground%3A%20%23f9fbfc%3B%0Awidth%3A%201180px%3B%0Amargin%3A%20auto%3B%0Apadding%3A%202em%3B%0A%2Dmoz%2Dborder%2Dradius%3A%205px%3B%0A%2Dwebkit%2Dborder%2Dradius%3A%205px%3B%0Aborder%2Dradius%3A%205px%3B%0A%2Dwebkit%2Dbox%2Dshadow%3A%203px%203px%2010px%200px%20rgba%2889%2C%2089%2C%2089%2C%200%2E34%29%3B%0A%2Dmoz%2Dbox%2Dshadow%3A%203px%203px%2010px%200px%20rgba%2889%2C%2089%2C%2089%2C%200%2E34%29%3B%0Abox%2Dshadow%3A%203px%203px%2010px%200px%20rgba%2889%2C%2089%2C%2089%2C%200%2E34%29%3B%0A%7D%0Ah1%2C%20h2%2C%20h3%2C%20h4%2C%20h5%2C%20h6%20%7B%0Afont%2Dfamily%3A%20open%5Fsanssemibold%3B%0Amargin%3A%20%2E5em%200%3B%0Apadding%3A%200%3B%0A%0A%7D%0Ah3%20%7B%0Afont%2Dsize%3A%20150%25%3B%0A%7D%0Ah3%2C%20h4%2C%20h5%2C%20h6%20%7B%0Amargin%3A%20%2E5em%200%200%200%3B%0A%7D%0Ah4%2C%20h5%2C%20h6%20%7B%0Afont%2Dfamily%3A%20%22Open%20Sans%22%3B%0Afont%2Dsize%3A%20105%25%3B%0Acolor%3A%20%236DAB66%3B%0Aborder%2Dbottom%3Adotted%202px%20%2324a700%3B%0Adisplay%3A%20inline%2Dblock%3B%0A%7D%0Ah4%3Aafter%2C%20h5%3Aafter%2C%20h6%3Aafter%20%7B%0Acontent%3A%20%22%5CA%22%3B%0Awhite%2Dspace%3A%20pre%3B%0A%7D%0Aa%20%7B%0Atext%2Ddecoration%3A%20none%3B%0Acolor%3A%20%2324a700%3B%0A%7D%0Ainput%2C%20select%20%7B%0Afont%2Dfamily%3A%20open%5Fsanslight%5Fitalic%2C%20Arial%2C%20sans%2Dserif%3B%0Afont%2Dsize%3A%2012px%3B%0Aoutline%3A%200%20none%3B%0Aresize%3A%20none%3B%0Amargin%3A%200%3B%0A%7D%0Aul%20%7B%0Alist%2Dstyle%2Dtype%3A%20none%3B%0Apadding%2Dleft%3A%202em%3B%0A%7D%0Ali%20%7B%0Avertical%2Dalign%3A%20middle%3B%0Aline%2Dheight%3A%20150%25%3B%0A%7D%0Anav%23TOC%20%7B%0A%0A%7D%0Anav%23TOC%20%3E%20ul%20%7B%0A%0Atext%2Dalign%3A%20left%3B%0Afont%2Dsize%3A%201%2E5em%3B%0A%7D%0Anav%23TOC%20ul%20%7B%0Amargin%3A%200%3B%0A%7D%0Anav%23TOC%20%3E%20ul%20ul%20%7B%0Afont%2Dsize%3A%2075%25%3B%0A%7D%0Anav%23TOC%20%3E%20ul%20li%20a%20%7B%0Aborder%2Dbottom%3A%20dotted%20%236DAB66%201px%3B%0Aline%2Dheight%3A%20150%25%3B%0A%7D%0Anav%23TOC%20%3E%20ul%20ul%20ul%20li%20a%20%7B%0Aline%2Dheight%3A%20190%25%3B%0A%7D%0Anav%23TOC%20%3E%20ul%20ul%20ul%20ul%20%7B%0Afont%2Dsize%3A%20100%25%3B%0A%7D%0Anav%23TOC%20%3E%20ul%20ul%20ul%20ul%20li%20a%20%7B%0Aline%2Dheight%3A%20110%25%3B%0A%7D%0A%2Ered%20%7B%0Acolor%3A%20red%3B%0A%7D%0A%2Egreen%20%7B%0Acolor%3A%20green%3B%0A%7D%0Atable%2Efill%20%7B%0Awidth%3A%2095%25%3B%0A%7D%0A%23container%20%7B%0Abackground%3A%20%23f9fbfc%3B%0Awidth%3A%20930px%3B%0Amargin%3A%20auto%3B%0Apadding%3A%202em%3B%0A%2Dmoz%2Dborder%2Dradius%3A%205px%3B%0A%2Dwebkit%2Dborder%2Dradius%3A%205px%3B%0Aborder%2Dradius%3A%205px%0A%7D%0Atable%20%7B%0Abackground%3A%20%23ccc%3B%0Amargin%3A%2020px%3B%0Aborder%3A%20%23ccc%201px%20solid%3B%0A%2Dmoz%2Dborder%2Dradius%3A%2010px%3B%0A%2Dwebkit%2Dborder%2Dradius%3A%2010px%3B%0Aborder%2Dradius%3A%2010px%0A%7D%0Atable%20th%20%7B%0Apadding%3A%204px%2010px%3B%0Atext%2Dalign%3A%20center%3B%0Avertical%2Dalign%3A%20middle%3B%0A%0Acolor%3A%20%23233%3B%0A%7D%0Atable%2C%20tbody%2C%20tr%2C%20td%20%7B%0Avertical%2Dalign%3A%20inherit%3B%0Atext%2Dalign%3A%20inherit%3B%0A%7D%0Atable%20td%20%7B%0Abackground%3A%20%23F4F4F5%3B%0Apadding%3A%204px%2010px%204px%2010px%3B%0Avertical%2Dalign%3A%20inherit%3B%0A%7D%0A%2Emiddle%20%7B%0Avertical%2Dalign%3A%20middle%3B%0A%7D%0A%2Ecenter%20%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0Atd%2Ename%20%7B%0Atext%2Dalign%3A%20left%3B%0A%7D%0Atd%2Epath%20%7B%0Atext%2Dalign%3A%20left%3B%0A%7D%0Atable%20tr%2Eeven%20td%20%7B%0Abackground%3A%20%23eee%0A%7D%0Atable%20a%20%7B%0Adisplay%3A%20block%3B%0A%7D%0Atable%20tr%3Afirst%2Dchild%20td%3Afirst%2Dchild%20%7B%0A%2Dmoz%2Dborder%2Dradius%2Dtopleft%3A%205px%3B%0A%2Dwebkit%2Dborder%2Dtop%2Dleft%2Dradius%3A%205px%3B%0Aborder%2Dtop%2Dleft%2Dradius%3A%205px%3B%0A%7D%0Atable%20tr%3Afirst%2Dchild%20td%3Alast%2Dchild%20%7B%0A%2Dmoz%2Dborder%2Dradius%2Dtopright%3A%205px%3B%0A%2Dwebkit%2Dborder%2Dtop%2Dright%2Dradius%3A%205px%3B%0Aborder%2Dtop%2Dright%2Dradius%3A%205px%3B%0A%7D%0Atable%20tr%3Alast%2Dchild%20td%3Afirst%2Dchild%20%7B%0A%2Dmoz%2Dborder%2Dradius%2Dbottomleft%3A%205px%3B%0A%2Dwebkit%2Dborder%2Dbottom%2Dleft%2Dradius%3A%205px%3B%0Aborder%2Dbottom%2Dleft%2Dradius%3A%205px%3B%0A%7D%0Atable%20tr%3Alast%2Dchild%20td%3Alast%2Dchild%20%7B%0A%2Dmoz%2Dborder%2Dradius%2Dbottomright%3A%205px%3B%0A%2Dwebkit%2Dborder%2Dbottom%2Dright%2Dradius%3A%205px%3B%0Aborder%2Dbottom%2Dright%2Dradius%3A%205px%3B%0A%7D%0Atable%2Ecollapsed%20%7B%0Aborder%2Dcollapse%3A%20collapse%0A%7D%0Aul%20%7B%0Alist%2Dstyle%3Adisc%20outside%3B%0A%7D%0Aol%5Btype%3D1%5D%20%7B%0Alist%2Dstyle%2Dtype%3Adecimal%3B%0A%7D%0Aol%5Btype%3Da%5D%20%7B%0Alist%2Dstyle%2Dtype%3Alower%2Dalpha%3B%0A%7D%0Aol%5Btype%3DA%5D%20%7B%0Alist%2Dstyle%2Dtype%3Aupper%2Dalpha%3B%0A%7D%0Aol%5Btype%3DI%5D%20%7B%0Alist%2Dstyle%2Dtype%3Aupper%2Droman%3B%0A%7D%0Aol%5Btype%3Di%5D%20%7B%0Alist%2Dstyle%2Dtype%3Alower%2Droman%3B%0A%7D%0Ap%20%7B%0Amargin%3A%201em%200%3B%0A%7D%0Ali%20p%3Aonly%2Dof%2Dtype%20%7B%0Amargin%3A%200%3B%0A%7D%0Ablockquote%2Cul%2Col%2Cdl%20%7B%0Amargin%3A1em%202em%3B%0A%7D%0Adl%20dd%20%7B%0Amargin%2Dleft%3A1em%3B%0A%7D%0Acaption%20%7B%0Amargin%2Dbottom%3A%2E5em%3B%0Atext%2Dalign%3Acenter%3B%0A%7D%0Afieldset%2Cpre%20%7B%0Amargin%2Dtop%3A%2E5em%3B%0Amargin%2Dbottom%3A%2E5em%3B%0A%7D%0Apre%2Ccode%2Ctt%20%7B%0Afont%2Dfamily%3Amonospace%3B%0Afont%2Dsize%3A108%25%3B%0Aline%2Dheight%3A100%25%3B%0A%7D%0Adl%20%7B%0Amargin%3A0%200%201%2E125em%3B%0A%7D%0Adt%20%7B%0Afont%2Dweight%3A700%3B%0Aline%2Dheight%3A1%2E125em%3B%0Afont%2Dfamily%3A%20%22Open%20Sans%22%3B%0A%7D%0Add%20%7B%0Amargin%2Dleft%3A1em%3B%0Aline%2Dheight%3A1%2E125em%3B%0A%7D%0Add%20p%20%7B%0Amargin%2Dtop%3A%20%2E3em%3B%0A%7D%0Apre%20%7B%0Aborder%3A%202px%20dotted%20%23ddd%3B%0A%2Dwebkit%2Dborder%2Dradius%3A%204px%3B%0A%2Dmoz%2Dborder%2Dradius%3A%204px%3B%0Aborder%2Dradius%3A%204px%3B%0Apadding%3A%201%2E5em%3B%0A%7D%0Ahr%20%7B%0Aborder%2Dtop%3A%20%23ddd%20dotted%205px%3B%0A%7D%0Aimg%20%7B%0Amargin%2Dleft%3A%20auto%3B%0Amargin%2Dright%3A%20auto%3B%0Amax%2Dwidth%3A%20100%25%3B%0Aborder%2Dstyle%3A%20solid%3B%0Aborder%2Dwidth%3A%202px%3B%0A%7D" rel="stylesheet">
-  <!--[if lt IE 9]>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
-  <![endif]-->
+  <link href="data:text/css,%40import%20url%28data%3Atext%2Fcss%3B%20charset%3Dutf%2D8%3Bbase64%2CQGZvbnQtZmFjZSB7CiAgZm9udC1mYW1pbHk6ICdPcGVuIFNhbnMnOwogIGZvbnQtc3R5bGU6IGl0YWxpYzsKICBmb250LXdlaWdodDogMzAwOwogIHNyYzogbG9jYWwoJ09wZW4gU2FucyBMaWdodCBJdGFsaWMnKSwgbG9jYWwoJ09wZW5TYW5zLUxpZ2h0SXRhbGljJyksIHVybChodHRwOi8vZm9udHMuZ3N0YXRpYy5jb20vcy9vcGVuc2Fucy92MTcvbWVtbllhR3MxMjZNaVpwQkEtVUZVS1d5VjlocklxWS50dGYpIGZvcm1hdCgndHJ1ZXR5cGUnKTsKfQpAZm9udC1mYWNlIHsKICBmb250LWZhbWlseTogJ09wZW4gU2Fucyc7CiAgZm9udC1zdHlsZTogaXRhbGljOwogIGZvbnQtd2VpZ2h0OiA0MDA7CiAgc3JjOiBsb2NhbCgnT3BlbiBTYW5zIEl0YWxpYycpLCBsb2NhbCgnT3BlblNhbnMtSXRhbGljJyksIHVybChodHRwOi8vZm9udHMuZ3N0YXRpYy5jb20vcy9vcGVuc2Fucy92MTcvbWVtNllhR3MxMjZNaVpwQkEtVUZVSzBaZGNnLnR0ZikgZm9ybWF0KCd0cnVldHlwZScpOwp9CkBmb250LWZhY2UgewogIGZvbnQtZmFtaWx5OiAnT3BlbiBTYW5zJzsKICBmb250LXN0eWxlOiBpdGFsaWM7CiAgZm9udC13ZWlnaHQ6IDYwMDsKICBzcmM6IGxvY2FsKCdPcGVuIFNhbnMgU2VtaUJvbGQgSXRhbGljJyksIGxvY2FsKCdPcGVuU2Fucy1TZW1pQm9sZEl0YWxpYycpLCB1cmwoaHR0cDovL2ZvbnRzLmdzdGF0aWMuY29tL3Mvb3BlbnNhbnMvdjE3L21lbW5ZYUdzMTI2TWlacEJBLVVGVUtYR1VkaHJJcVkudHRmKSBmb3JtYXQoJ3RydWV0eXBlJyk7Cn0KQGZvbnQtZmFjZSB7CiAgZm9udC1mYW1pbHk6ICdPcGVuIFNhbnMnOwogIGZvbnQtc3R5bGU6IGl0YWxpYzsKICBmb250LXdlaWdodDogNzAwOwogIHNyYzogbG9jYWwoJ09wZW4gU2FucyBCb2xkIEl0YWxpYycpLCBsb2NhbCgnT3BlblNhbnMtQm9sZEl0YWxpYycpLCB1cmwoaHR0cDovL2ZvbnRzLmdzdGF0aWMuY29tL3Mvb3BlbnNhbnMvdjE3L21lbW5ZYUdzMTI2TWlacEJBLVVGVUtXaVVOaHJJcVkudHRmKSBmb3JtYXQoJ3RydWV0eXBlJyk7Cn0KQGZvbnQtZmFjZSB7CiAgZm9udC1mYW1pbHk6ICdPcGVuIFNhbnMnOwogIGZvbnQtc3R5bGU6IGl0YWxpYzsKICBmb250LXdlaWdodDogODAwOwogIHNyYzogbG9jYWwoJ09wZW4gU2FucyBFeHRyYUJvbGQgSXRhbGljJyksIGxvY2FsKCdPcGVuU2Fucy1FeHRyYUJvbGRJdGFsaWMnKSwgdXJsKGh0dHA6Ly9mb250cy5nc3RhdGljLmNvbS9zL29wZW5zYW5zL3YxNy9tZW1uWWFHczEyNk1pWnBCQS1VRlVLVy1VOWhySXFZLnR0ZikgZm9ybWF0KCd0cnVldHlwZScpOwp9CkBmb250LWZhY2UgewogIGZvbnQtZmFtaWx5OiAnT3BlbiBTYW5zJzsKICBmb250LXN0eWxlOiBub3JtYWw7CiAgZm9udC13ZWlnaHQ6IDMwMDsKICBzcmM6IGxvY2FsKCdPcGVuIFNhbnMgTGlnaHQnKSwgbG9jYWwoJ09wZW5TYW5zLUxpZ2h0JyksIHVybChodHRwOi8vZm9udHMuZ3N0YXRpYy5jb20vcy9vcGVuc2Fucy92MTcvbWVtNVlhR3MxMjZNaVpwQkEtVU5fcjhPVXVocy50dGYpIGZvcm1hdCgndHJ1ZXR5cGUnKTsKfQpAZm9udC1mYWNlIHsKICBmb250LWZhbWlseTogJ09wZW4gU2Fucyc7CiAgZm9udC1zdHlsZTogbm9ybWFsOwogIGZvbnQtd2VpZ2h0OiA0MDA7CiAgc3JjOiBsb2NhbCgnT3BlbiBTYW5zIFJlZ3VsYXInKSwgbG9jYWwoJ09wZW5TYW5zLVJlZ3VsYXInKSwgdXJsKGh0dHA6Ly9mb250cy5nc3RhdGljLmNvbS9zL29wZW5zYW5zL3YxNy9tZW04WWFHczEyNk1pWnBCQS1VRlZaMGUudHRmKSBmb3JtYXQoJ3RydWV0eXBlJyk7Cn0KQGZvbnQtZmFjZSB7CiAgZm9udC1mYW1pbHk6ICdPcGVuIFNhbnMnOwogIGZvbnQtc3R5bGU6IG5vcm1hbDsKICBmb250LXdlaWdodDogNjAwOwogIHNyYzogbG9jYWwoJ09wZW4gU2FucyBTZW1pQm9sZCcpLCBsb2NhbCgnT3BlblNhbnMtU2VtaUJvbGQnKSwgdXJsKGh0dHA6Ly9mb250cy5nc3RhdGljLmNvbS9zL29wZW5zYW5zL3YxNy9tZW01WWFHczEyNk1pWnBCQS1VTmlya09VdWhzLnR0ZikgZm9ybWF0KCd0cnVldHlwZScpOwp9CkBmb250LWZhY2UgewogIGZvbnQtZmFtaWx5OiAnT3BlbiBTYW5zJzsKICBmb250LXN0eWxlOiBub3JtYWw7CiAgZm9udC13ZWlnaHQ6IDcwMDsKICBzcmM6IGxvY2FsKCdPcGVuIFNhbnMgQm9sZCcpLCBsb2NhbCgnT3BlblNhbnMtQm9sZCcpLCB1cmwoaHR0cDovL2ZvbnRzLmdzdGF0aWMuY29tL3Mvb3BlbnNhbnMvdjE3L21lbTVZYUdzMTI2TWlacEJBLVVON3JnT1V1aHMudHRmKSBmb3JtYXQoJ3RydWV0eXBlJyk7Cn0KQGZvbnQtZmFjZSB7CiAgZm9udC1mYW1pbHk6ICdPcGVuIFNhbnMnOwogIGZvbnQtc3R5bGU6IG5vcm1hbDsKICBmb250LXdlaWdodDogODAwOwogIHNyYzogbG9jYWwoJ09wZW4gU2FucyBFeHRyYUJvbGQnKSwgbG9jYWwoJ09wZW5TYW5zLUV4dHJhQm9sZCcpLCB1cmwoaHR0cDovL2ZvbnRzLmdzdGF0aWMuY29tL3Mvb3BlbnNhbnMvdjE3L21lbTVZYUdzMTI2TWlacEJBLVVOOHJzT1V1aHMudHRmKSBmb3JtYXQoJ3RydWV0eXBlJyk7Cn0K%29%3B%0A%0A%2A%20%7B%0A%09outline%3A%20none%20%21important%3B%0A%09margin%3A%200%3B%0A%09padding%3A%200%3B%0A%09border%3A%200px%20solid%3B%0A%7D%0A%0Ahtml%20%7B%0A%09border%3A%200%3B%0A%09font%2Dfamily%3A%20open%5Fsansregular%2C%20Arial%2C%20sans%2Dserif%3B%0A%09font%2Dsize%3A%2013px%3B%0A%09color%3A%20%23666%3B%0A%09margin%3A%200%3B%0A%09padding%3A%201em%3B%0A%09background%3A%20%23e8eaec%3B%0A%7D%0A%0Abody%20%7B%0A%09background%3A%20%23f9fbfc%3B%0A%09width%3A%201180px%3B%0A%09margin%3A%20auto%3B%0A%09padding%3A%202em%3B%0A%09%2Dmoz%2Dborder%2Dradius%3A%205px%3B%0A%09%2Dwebkit%2Dborder%2Dradius%3A%205px%3B%0A%09border%2Dradius%3A%205px%3B%0A%20%20%2Dwebkit%2Dbox%2Dshadow%3A%20%203px%203px%2010px%200px%20rgba%2889%2C%2089%2C%2089%2C%200%2E34%29%3B%0A%20%20%2Dmoz%2Dbox%2Dshadow%3A%20%20%20%20%203px%203px%2010px%200px%20rgba%2889%2C%2089%2C%2089%2C%200%2E34%29%3B%0A%20%20box%2Dshadow%3A%20%20%20%20%20%20%20%20%20%203px%203px%2010px%200px%20rgba%2889%2C%2089%2C%2089%2C%200%2E34%29%3B%0A%7D%0A%0Ah1%2C%20h2%2C%20h3%2C%20h4%2C%20h5%2C%20h6%20%7B%0A%09font%2Dfamily%3A%20open%5Fsanssemibold%3B%0A%09margin%3A%20%2E5em%200%3B%0A%09padding%3A%200%3B%0A%09%2F%2Acolor%3A%20%236DAB66%3B%2A%2F%0A%7D%0A%0Ah3%20%7B%0A%20%20font%2Dsize%3A%20150%25%3B%0A%7D%0A%0Ah3%2C%20h4%2C%20h5%2C%20h6%20%7B%0A%09margin%3A%20%2E5em%200%200%200%3B%0A%7D%0A%0Ah4%2C%20h5%2C%20h6%20%7B%0A%09font%2Dfamily%3A%20%22Open%20Sans%22%3B%0A%20%20font%2Dsize%3A%20105%25%3B%0A%20%20color%3A%20%236DAB66%3B%0A%20%20border%2Dbottom%3Adotted%202px%20%2324a700%3B%0A%20%20display%3A%20inline%2Dblock%3B%0A%7D%0A%0Ah4%3Aafter%2C%20h5%3Aafter%2C%20h6%3Aafter%20%7B%0A%20%20content%3A%20%22%5CA%22%3B%0A%20%20white%2Dspace%3A%20pre%3B%0A%7D%0A%0Aa%20%7B%0A%09text%2Ddecoration%3A%20none%3B%0A%09color%3A%20%2324a700%3B%0A%7D%0A%0Ainput%2C%20select%20%7B%0A%09font%2Dfamily%3A%20open%5Fsanslight%5Fitalic%2C%20Arial%2C%20sans%2Dserif%3B%0A%09font%2Dsize%3A%2012px%3B%0A%09outline%3A%200%20none%3B%0A%09resize%3A%20none%3B%0A%09margin%3A%200%3B%0A%7D%0A%0Aul%20%7B%0A%09list%2Dstyle%2Dtype%3A%20none%3B%0A%09padding%2Dleft%3A%202em%3B%0A%7D%0A%0Ali%20%7B%0A%09vertical%2Dalign%3A%20middle%3B%0A%09line%2Dheight%3A%20150%25%3B%0A%7D%0A%0Anav%23TOC%20%7B%0A%20%20%2F%2Atext%2Dalign%3A%20center%3B%2A%2F%0A%7D%0A%0Anav%23TOC%20%3E%20ul%20%7B%0A%20%20%2F%2Adisplay%3A%20inline%2Dblock%3B%2A%2F%0A%20%20text%2Dalign%3A%20left%3B%0A%20%20font%2Dsize%3A%201%2E5em%3B%0A%7D%0A%0Anav%23TOC%20ul%20%7B%0A%20%20margin%3A%200%3B%0A%7D%0A%0Anav%23TOC%20%3E%20ul%20ul%20%7B%0A%20%20font%2Dsize%3A%2075%25%3B%0A%7D%0A%0Anav%23TOC%20%3E%20ul%20li%20a%20%7B%0A%20%20border%2Dbottom%3A%20dotted%20%236DAB66%201px%3B%0A%20%20line%2Dheight%3A%20150%25%3B%0A%7D%0A%0Anav%23TOC%20%3E%20ul%20ul%20ul%20li%20a%20%7B%0A%20%20line%2Dheight%3A%20190%25%3B%0A%7D%0A%0Anav%23TOC%20%3E%20ul%20ul%20ul%20ul%20%7B%0A%20%20font%2Dsize%3A%20100%25%3B%0A%7D%0A%0Anav%23TOC%20%3E%20ul%20ul%20ul%20ul%20li%20a%20%7B%0A%20%20line%2Dheight%3A%20110%25%3B%0A%7D%0A%0A%0A%2Ered%20%7B%0A%09color%3A%20red%3B%0A%7D%0A%0A%2Egreen%20%7B%0A%09color%3A%20green%3B%0A%7D%0A%0Atable%2Efill%20%7B%0A%09width%3A%2095%25%3B%0A%7D%0A%0A%23container%20%7B%0A%09background%3A%20%23f9fbfc%3B%0A%09width%3A%20930px%3B%0A%09margin%3A%20auto%3B%0A%09padding%3A%202em%3B%0A%09%2Dmoz%2Dborder%2Dradius%3A%205px%3B%0A%09%2Dwebkit%2Dborder%2Dradius%3A%205px%3B%0A%09border%2Dradius%3A%205px%0A%7D%0A%0Atable%20%7B%0A%09background%3A%20%23ccc%3B%0A%09margin%3A%2020px%3B%0A%09border%3A%20%23ccc%201px%20solid%3B%0A%09%2Dmoz%2Dborder%2Dradius%3A%2010px%3B%0A%09%2Dwebkit%2Dborder%2Dradius%3A%2010px%3B%0A%09border%2Dradius%3A%2010px%0A%7D%0A%0Atable%20th%20%7B%0A%09padding%3A%204px%2010px%3B%0A%20%20text%2Dalign%3A%20center%3B%0A%09vertical%2Dalign%3A%20middle%3B%0A%09%2F%2Acolor%3A%23f9fcfc%3B%2A%2F%0A%09color%3A%20%23233%3B%0A%7D%0A%0Atable%2C%20tbody%2C%20tr%2C%20td%20%7B%0A%09vertical%2Dalign%3A%20inherit%3B%0A%09text%2Dalign%3A%20inherit%3B%0A%7D%0A%0Atable%20td%20%7B%0A%09background%3A%20%23F4F4F5%3B%0A%09padding%3A%204px%2010px%204px%2010px%3B%0A%09vertical%2Dalign%3A%20inherit%3B%0A%7D%0A%0A%2Emiddle%20%7B%0A%09vertical%2Dalign%3A%20middle%3B%0A%7D%0A%0A%2Ecenter%20%7B%0A%09text%2Dalign%3A%20center%3B%0A%7D%0A%0Atd%2Ename%20%7B%0A%09text%2Dalign%3A%20left%3B%0A%7D%0A%0Atd%2Epath%20%7B%0A%09text%2Dalign%3A%20left%3B%0A%7D%0A%0Atable%20tr%2Eeven%20td%20%7B%0A%09background%3A%20%23eee%0A%7D%0A%0Atable%20a%20%7B%0A%09display%3A%20block%3B%0A%7D%0A%0Atable%20tr%3Afirst%2Dchild%20td%3Afirst%2Dchild%20%7B%0A%09%2Dmoz%2Dborder%2Dradius%2Dtopleft%3A%205px%3B%0A%09%2Dwebkit%2Dborder%2Dtop%2Dleft%2Dradius%3A%205px%3B%0A%09border%2Dtop%2Dleft%2Dradius%3A%205px%3B%0A%7D%0A%0Atable%20tr%3Afirst%2Dchild%20td%3Alast%2Dchild%20%7B%0A%09%2Dmoz%2Dborder%2Dradius%2Dtopright%3A%205px%3B%0A%09%2Dwebkit%2Dborder%2Dtop%2Dright%2Dradius%3A%205px%3B%0A%09border%2Dtop%2Dright%2Dradius%3A%205px%3B%0A%7D%0A%0Atable%20tr%3Alast%2Dchild%20td%3Afirst%2Dchild%20%7B%0A%09%2Dmoz%2Dborder%2Dradius%2Dbottomleft%3A%205px%3B%0A%09%2Dwebkit%2Dborder%2Dbottom%2Dleft%2Dradius%3A%205px%3B%0A%09border%2Dbottom%2Dleft%2Dradius%3A%205px%3B%0A%7D%0A%0Atable%20tr%3Alast%2Dchild%20td%3Alast%2Dchild%20%7B%0A%09%2Dmoz%2Dborder%2Dradius%2Dbottomright%3A%205px%3B%0A%09%2Dwebkit%2Dborder%2Dbottom%2Dright%2Dradius%3A%205px%3B%0A%09border%2Dbottom%2Dright%2Dradius%3A%205px%3B%0A%7D%0A%0Atable%2Ecollapsed%20%7B%0A%09border%2Dcollapse%3A%20collapse%0A%7D%0A%0Aul%20%7B%0A%20%20%20%20list%2Dstyle%3Adisc%20outside%3B%0A%7D%0A%0Aol%5Btype%3D1%5D%20%7B%0A%20%20%20%20list%2Dstyle%2Dtype%3Adecimal%3B%0A%7D%0A%0Aol%5Btype%3Da%5D%20%7B%0A%20%20%20%20list%2Dstyle%2Dtype%3Alower%2Dalpha%3B%0A%7D%0A%0Aol%5Btype%3DA%5D%20%7B%0A%20%20%20%20list%2Dstyle%2Dtype%3Aupper%2Dalpha%3B%0A%7D%0A%0Aol%5Btype%3DI%5D%20%7B%0A%20%20%20%20list%2Dstyle%2Dtype%3Aupper%2Droman%3B%0A%7D%0A%0Aol%5Btype%3Di%5D%20%7B%0A%20%20%20%20list%2Dstyle%2Dtype%3Alower%2Droman%3B%0A%7D%0A%0Ap%20%7B%0A%20%20margin%3A%201em%200%3B%0A%7D%0A%0Ali%20p%3Aonly%2Dof%2Dtype%20%7B%0A%20%20margin%3A%200%3B%0A%7D%0A%0Ablockquote%2Cul%2Col%2Cdl%20%7B%0A%20%20%20%20margin%3A1em%202em%3B%0A%7D%0A%0Adl%20dd%20%7B%0A%20%20%20%20margin%2Dleft%3A1em%3B%0A%7D%0A%0Acaption%20%7B%0A%20%20%20%20margin%2Dbottom%3A%2E5em%3B%0A%20%20%20%20text%2Dalign%3Acenter%3B%0A%7D%0A%0Afieldset%2Cpre%20%7B%0A%20%20%20%20margin%2Dtop%3A%2E5em%3B%0A%20%20%20%20margin%2Dbottom%3A%2E5em%3B%0A%7D%0A%0Apre%2Ccode%2Ctt%20%7B%0A%20%20%20%20font%2Dfamily%3Amonospace%3B%0A%20%20%20%20font%2Dsize%3A108%25%3B%0A%20%20%20%20line%2Dheight%3A100%25%3B%0A%7D%0A%0Adl%20%7B%0A%20%20%20%20margin%3A0%200%201%2E125em%3B%0A%7D%0A%0Adt%20%7B%0A%20%20%20%20font%2Dweight%3A700%3B%0A%20%20%20%20line%2Dheight%3A1%2E125em%3B%0A%20%20%20%20font%2Dfamily%3A%20%22Open%20Sans%22%3B%0A%7D%0A%0Add%20%7B%0A%20%20%20%20margin%2Dleft%3A1em%3B%0A%20%20%20%20line%2Dheight%3A1%2E125em%3B%0A%7D%0A%0Add%20p%20%7B%0A%20%20margin%2Dtop%3A%20%2E3em%3B%0A%7D%0A%0Apre%20%7B%0A%20%20border%3A%202px%20dotted%20%23ddd%3B%0A%20%20%2Dwebkit%2Dborder%2Dradius%3A%204px%3B%0A%20%20%2Dmoz%2Dborder%2Dradius%3A%204px%3B%0A%20%20border%2Dradius%3A%204px%3B%0A%20%20padding%3A%201%2E5em%3B%0A%7D%0A%0Ahr%20%7B%0A%20%20border%2Dtop%3A%20%23ddd%20dotted%205px%3B%0A%0A%7D%0A%0Aimg%20%7B%0A%20%20margin%2Dleft%3A%20auto%3B%0A%20%20margin%2Dright%3A%20auto%3B%0A%20%20max%2Dwidth%3A%20%20100%25%3B%0A%20%20border%2Dstyle%3A%20solid%3B%0A%20%20border%2Dwidth%3A%202px%3B%0A%7D" rel="stylesheet">
 </head>
 <body>
 <nav id="TOC">
 <ul>
-<li><a href="#sourcemeter-8.2-for-c">SourceMeter 8.2 for C#</a></li>
+<li><a href="#sourcemeter-9.1-for-c">SourceMeter 9.1 for C#</a></li>
 <li><a href="#introduction">Introduction</a><ul>
 <li><a href="#product-characteristics">Product characteristics</a></li>
 <li><a href="#background">Background</a></li>
@@ -102,11 +84,15 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li><a href="#microsoft.security-rules">Microsoft.Security Rules</a></li>
 <li><a href="#microsoft.usage-rules">Microsoft.Usage Rules</a></li>
 </ul></li>
+<li><a href="#the-userdefinedmetrics-module">The UserDefinedMetrics module</a><ul>
+<li><a href="#defining-a-metric">Defining a metric</a></li>
+<li><a href="#example-profile.xml">Example profile.xml</a></li>
+</ul></li>
 </ul></li>
 <li><a href="#footnotes">Footnotes</a></li>
 </ul>
 </nav>
-<h1 id="sourcemeter-8.2-for-c">SourceMeter 8.2 for C#</h1>
+<h1 id="sourcemeter-9.1-for-c">SourceMeter 9.1 for C#</h1>
 <h1 id="introduction">Introduction</h1>
 <p>FrontEndART SourceMeter for C# is a source code analyzer tool, which can perform deep static analysis of the source code of complex C# systems (<a href="https://www.sourcemeter.com" class="uri">https://www.sourcemeter.com</a>).</p>
 <p>The source code of a program is usually its only up-to-date documentation. At the same time, the source code is the exquisite bearer of knowledge, business processes and methodology, accumulated over a long period of time. Source code quality decrease, which happens due to many quick fixes and time pressure, results in the increase of development and testing costs, and operational risks. In spite of this, the source code usually receives hostile treatment and is merely considered as a tool.</p>
@@ -121,6 +107,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <ul>
 <li><p>Metric threshold violations (MetricHunter module)</p></li>
 <li><p>FxCop coding rule violations</p></li>
+<li><p>SONARQUBE™ platform 8.0 (“SonarQube” in the following) coding rule violations</p></li>
 </ul></li>
 <li><p>Clone detection (copy-pasted source code fragments) extended with clone tracking and “clone smells”</p>
 <ul>
@@ -139,19 +126,19 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li><p>coding problems can be identified before testing, so the number of test iterations and the testing costs can be reduced;</p></li>
 <li><p>the number of errors in delivered software can be reduced, so the operational risks can be decreased, increasing the company’s reputation.</p></li>
 </ul>
-<p>SourceMeter can analyze source code conforming to C# 6.0. The following can be analyzed: a solution (.sln), a project (.csproj) or a single source file (.cs). In case of a project or a solution, it is recommended to build it with pdb generation enabled before analysing, therefore FxCop can be run on the binaries in parallel. See more on this in the FxCop appendix.</p>
+<p>SourceMeter can analyze source code conforming to C# 7.3. The following can be analyzed: a solution (.sln), a project (.csproj) or a single source file (.cs). In case of a project or a solution, it is recommended to build it with pdb generation enabled before analysing, therefore FxCop can be run on the binaries in parallel. See more on this in the FxCop appendix.</p>
 <p>With the help of the filtering mechanism it is possible to specify a certain part of the ASG to be used (or not to be used) during the analysis, hence the results can be made more focused and the usage of memory and CPU can be reduced (e.g. generated source files or test code can be filtered out).</p>
 <p>Visit our corporate website at <a href="http://www.frontendart.com" class="uri">http://www.frontendart.com</a> to find the latest information about SourceMeter and read more about related products and services. Note, that if you are using only the free features of SourceMeter, we do not provide any free support for it. However, FrontEndART offers support services, so please feel free to search for solutions to your problems on our website and contact us with any questions you might have. We welcome feedback about the usability and eventual issues of the tool and further development suggestions at <script type="text/javascript">
 <!--
 h='&#102;&#114;&#x6f;&#110;&#116;&#x65;&#110;&#100;&#x61;&#114;&#116;&#46;&#x63;&#x6f;&#x6d;&#x3f;&#x73;&#x75;&#98;&#106;&#x65;&#x63;&#116;&#x3d;&#x53;&#x6f;&#x75;&#114;&#x63;&#x65;&#x4d;&#x65;&#116;&#x65;&#114;';a='&#64;';n='&#x73;&#x75;&#112;&#112;&#x6f;&#114;&#116;';e=n+a+h;
-document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail">'+'&#x73;&#x75;&#112;&#112;&#x6f;&#114;&#116;&#64;&#102;&#114;&#x6f;&#110;&#116;&#x65;&#110;&#100;&#x61;&#114;&#116;&#46;&#x63;&#x6f;&#x6d;'+'<\/'+'a'+'>');
+document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail">'+'support@frontendart.com'+'<\/'+'a'+'>');
 // -->
 </script><noscript>support@frontendart.com (support at frontendart dot com?subject=SourceMeter)</noscript>.</p>
 <h2 id="background">Background</h2>
 <p>During the static analysis, an Abstract Semantic Graph (ASG) is constructed from the language elements of the source code. This ASG is then processed by the different tools in the package to calculate product metrics, identify copy-pasted code (clones), coding rule violations, etc.</p>
 <h1 id="installation">Installation</h1>
 <h2 id="supported-platforms">Supported platforms</h2>
-<p>SourceMeter supports the following x86 and x86-64 platforms:</p>
+<p>SourceMeter supports the following x64 platforms:</p>
 <ul>
 <li><p>Microsoft Windows 7, 8, 8.1, and 10</p></li>
 <li><p>Microsoft Windows 2008 R2 Server</p></li>
@@ -160,9 +147,9 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail">'+'&#x7
 <h2 id="requirements">Requirements</h2>
 <p>The following software packages are required to be installed:</p>
 <ul>
-<li><p><a href="http://www.microsoft.com/en-ca/download/details.aspx?id=42637">Microsoft .NET Framework 4.5.2 Developer Pack</a></p></li>
-<li><p><a href="https://www.microsoft.com/en-us/download/details.aspx?id=48159">Microsoft Build Tools 2015</a></p></li>
-<li><p><a href="https://www.microsoft.com/en-us/download/details.aspx?id=48145">Microsoft Visual C++ 2015 Redistributable Package</a></p></li>
+<li><p><a href="https://dotnet.microsoft.com/download/thank-you/net46-developer-pack">Microsoft .NET Framework 4.6 Developer Pack</a></p></li>
+<li><p><a href="https://www.visualstudio.com/thank-you-downloading-visual-studio/?sku=BuildTools&amp;rel=15">Build Tools for Visual Studio 2017</a> or Visual Studio 2017 with the workloads needed by the project being analysed.</p></li>
+<li><p><a href="https://aka.ms/vs/15/release/VC_redist.x64.exe">Microsoft Visual C++ 2017 Redistributable Package</a></p></li>
 </ul>
 <h2 id="installation-package">Installation package</h2>
 <p>The SourceMeter installation package can be extracted into any folder and used from that location. It can be executed with the command line program SourceMeterCsharp.</p>
@@ -203,7 +190,7 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail">'+'&#x7
 <p>In case of the first option, anyone who has permissions to access and execute the binaries of the package will be able to use SourceMeter, while in case of the second option only those users will be able to use SourceMeter, who have the license key file in the above-mentioned directory. If one would like to renew an expired license key, the already existing license key file must be replaced with the new one in the above-mentioned directories. To use SourceMeter it is also necessary to have read and write permission on the license key file.</p>
 <h1 id="preconditions">Preconditions</h1>
 <h2 id="solution-or-project-analysis">Solution or Project analysis</h2>
-<p>The software system shall be compilable with C# 6.0 and the build process with MSBuild.</p>
+<p>The software system shall be compilable with C# 7.3 and the build process with MSBuild.</p>
 <p>In order to use SourceMeter for C# it is necessary to meet all the requirements of your project’s build process. Before starting the analysis, it is recommended to open your solution in Visual Studio and start a build. If it completed successfully, you can proceed with SourceMeter. If these conditions are not met, the solution and project files must be modified accordingly.</p>
 <p>SourceMeter creates the ASG files in the result directory.</p>
 <h2 id="single-file-analysis">Single file analysis</h2>
@@ -261,10 +248,10 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail">'+'&#x7
 <dd><p>This parameter turns on or off the Metric module. With this feature, SourceMeter computes source code metrics. Its value can be “true” (turn this feature on) or “false” (turn this feature off). The default value is “true”.</p>
 </dd>
 <dt><strong>-profileXML</strong></dt>
-<dd><p>Global configuration file for SourceMeter. Its <em>tool-options</em> tag can be used to override the default metric thresholds for the MetricHunter tool. Furthermore, its <em>rule-options</em> tag can enable/disable or modify the priorities of multiple rules. An example profile xml file is shown below:</p>
+<dd><p>Global configuration file for SourceMeter. Its <em>tool-options</em> tag can be used to override the default metric thresholds for the MetricHunter tool or define custom metric formulas for the UserDefinedMetrics tool. Furthermore, its <em>rule-options</em> tag can enable/disable or modify the priorities of multiple rules. An example profile xml file is shown below:</p>
 </dd>
 </dl>
-<div class="sourceCode"><pre class="sourceCode xml"><code class="sourceCode xml"><span class="kw">&lt;sourcemeter-profile&gt;</span>
+<pre class="sourceCode xml"><code class="sourceCode xml"><span class="kw">&lt;sourcemeter-profile&gt;</span>
   <span class="kw">&lt;tool-options&gt;</span>
     <span class="kw">&lt;tool</span><span class="ot"> name</span> <span class="ot">=</span> <span class="st">&quot;MetricHunter&quot;</span><span class="ot"> enabled</span> <span class="ot">=</span> <span class="st">&quot;true&quot;</span><span class="kw">&gt;</span>
       <span class="kw">&lt;metric-thresholds&gt;</span>
@@ -280,8 +267,11 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail">'+'&#x7
     <span class="kw">&lt;rule</span><span class="ot"> id=</span><span class="st">&quot;AEC&quot;</span><span class="ot"> name=</span><span class="st">&quot;Avoid excessive complexity&quot;</span><span class="ot"> priority=</span><span class="st">&quot;Minor&quot;</span><span class="ot"> enabled=</span><span class="st">&quot;false&quot;</span><span class="kw">/&gt;</span>
     <span class="kw">&lt;rule</span><span class="ot"> id=</span><span class="st">&quot;DNREIEC&quot;</span><span class="ot"> name=</span><span class="st">&quot;Do not raise exceptions in exception clauses&quot;</span><span class="ot"> priority=</span><span class="st">&quot;Major&quot;</span><span class="ot"> enabled=</span><span class="st">&quot;true&quot;</span><span class="kw">/&gt;</span>
   <span class="kw">&lt;/rule-options&gt;</span>
-<span class="kw">&lt;/sourcemeter-profile&gt;</span></code></pre></div>
+<span class="kw">&lt;/sourcemeter-profile&gt;</span></code></pre>
 <dl>
+<dt><strong>-runUDM</strong></dt>
+<dd><p>This parameter turns on or off the UserDefinedMetrics module. With this feature, SourceMeter computes custom source code metrics based on other, previously computed metrics. Its value can be “true” (turn this feature on) or “false” (turn this feature off). The default value is dependent on the presence of custom metric definitions in the profile xml.</p>
+</dd>
 <dt><strong>-cloneGenealogy</strong></dt>
 <dd><p>This parameter turns on or off the tracking of code clones (copy-pasted source code fragments) through the consecutive revisions of the software system. It is required that during the analysis of the different revisions, the values set to projectName and resultsDir remain the same, so SourceMeter will handle them as different revisions of the same system. Its value can be “true” (turn this feature on) or “false” (turn this feature off). The default value is “false”.</p>
 </dd>
@@ -293,6 +283,9 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail">'+'&#x7
 </dd>
 <dt><strong>-csvDecimalMark</strong></dt>
 <dd><p>This parameter sets the decimal mark character in the CSV outputs. The default is locale dependent. The character set here must be placed in quotation marks (e.g. -csvDecimalMark=“,”)</p>
+</dd>
+<dt><strong>-sarifseverity</strong></dt>
+<dd><p>This parameter sets the severity levels to be saved in the SARIF output. (1 - Info, 2 - Minor, 3 - Major, 4 - Critical, 5 - Blocker, c/C - CloneClass). The value should not be placed in quotation marks (e.g. -sarifseverity=2345c). The default value is 2345c.</p>
 </dd>
 <dt><strong>-maximumThreads</strong></dt>
 <dd><p>This parameter sets the maximum number of parallel tasks the controller can start. The default value is the number of available CPU cores on the current system.</p>
@@ -314,6 +307,30 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail">'+'&#x7
 </dd>
 <dt><strong>-platform</strong></dt>
 <dd><p>The name of the target platform.</p>
+</dd>
+<dt><strong>-runSQ</strong></dt>
+<dd><p>Import issues from SonarQube server.</p>
+</dd>
+<dt><strong>-SQHost</strong></dt>
+<dd><p>The URL address of the SonarQube server.</p>
+</dd>
+<dt><strong>-SQPort</strong></dt>
+<dd><p>The port of the SonarQube server.</p>
+</dd>
+<dt><strong>-SQProjectKey</strong></dt>
+<dd><p>The key of the project in the SonarQube server.</p>
+</dd>
+<dt><strong>-SQProjectPrefix</strong></dt>
+<dd><p>Prefix path of the project’s base directory (the path of the sonar-project.properties file).</p>
+</dd>
+<dt><strong>-SQUserName</strong></dt>
+<dd><p>The user name for the SonarQube server.</p>
+</dd>
+<dt><strong>-SQPassword</strong></dt>
+<dd><p>The password for the SonarQube server.</p>
+</dd>
+<dt><strong>-SQLanguageKey</strong></dt>
+<dd><p>The key of the language in SonarQube.</p>
 </dd>
 </dl>
 <h1 id="usage">Usage</h1>
@@ -340,6 +357,8 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail">'+'&#x7
 <p>XML representation of the result graph containing all the metrics, code clones and coding rule violations.</p></li>
 <li><p>$(projectName)\csharp\$(projectName).gsi</p>
 <p>Binary data file containing information for tracking the code clones through the consecutive revisions of the analysed software system.</p></li>
+<li><p>$(projectName)\csharp\$(DATE)\$(projectName).sarif</p>
+<p>List of code rule warnings, errors, represented in json.</p></li>
 </ul></li>
 <li><p>Other files and directories created in the results directory:</p>
 <ul>
@@ -362,7 +381,7 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail">'+'&#x7
 <h1 id="demo">Demo</h1>
 <p>The Demo directory of the installation package contains the directory structure, the build and analyzer scripts for the analysis of an example project. The log4net open source C# program is included as the example project, which can also be downloaded from the following URL:</p>
 <p><a href="http://archive.apache.org/dist/logging/log4net/source/log4net-1.2.13-src.zip" class="uri">http://archive.apache.org/dist/logging/log4net/source/log4net-1.2.13-src.zip</a></p>
-<p>To perform the source code analysis of the demo project, execute the analyze.bat file.</p>
+<p>To perform the source code analysis of the demo project, execute the analyze.bat file in a Visual Studio Developer Command Prompt.</p>
 <p>Contents of the Demo directory:</p>
 <table>
 <tbody>
@@ -433,14 +452,16 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail">'+'&#x7
 <tr class="header">
 <th style="text-align: left;">Category</th>
 <th style="text-align: left;">Metric name</th>
-<th style="text-align: left;">Abbrev.</th>
-<th style="text-align: center;">Method</th>
-<th style="text-align: center;">Class, Struct</th>
-<th style="text-align: center;">Interface</th>
+<th style="text-align: left;">Abbreviation</th>
+<th style="text-align: center;">Class</th>
+<th style="text-align: center;">Component</th>
+<th style="text-align: center;">Delegate</th>
 <th style="text-align: center;">Enum</th>
-<th style="text-align: center;">Namespace</th>
 <th style="text-align: center;">File</th>
-<th style="text-align: center;">Comp.</th>
+<th style="text-align: center;">Interface</th>
+<th style="text-align: center;">Method</th>
+<th style="text-align: center;">Namespace</th>
+<th style="text-align: center;">Structure</th>
 </tr>
 </thead>
 <tbody>
@@ -448,24 +469,28 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail">'+'&#x7
 <td style="text-align: left;">Cohesion metrics</td>
 <td style="text-align: left;">Lack of Cohesion in Methods 5</td>
 <td style="text-align: left;">LCOM5</td>
-<td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Complexity metrics</td>
 <td style="text-align: left;">McCabe’s Cyclomatic Complexity</td>
 <td style="text-align: left;">McCC</td>
-<td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 </tr>
 <tr class="odd">
@@ -473,180 +498,210 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail">'+'&#x7
 <td style="text-align: left;">Nesting Level</td>
 <td style="text-align: left;">NL</td>
 <td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"></td>
 <td style="text-align: left;">Nesting Level Else-If</td>
 <td style="text-align: left;">NLE</td>
 <td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"></td>
 <td style="text-align: left;">Weighted Methods per Class</td>
 <td style="text-align: left;">WMC</td>
-<td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Coupling metrics</td>
 <td style="text-align: left;">Coupling Between Object classes</td>
 <td style="text-align: left;">CBO</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">X</td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"></td>
 <td style="text-align: left;">Coupling Between Object classes Inverse</td>
 <td style="text-align: left;">CBOI</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">X</td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"></td>
 <td style="text-align: left;">Number of Incoming Invocations</td>
 <td style="text-align: left;">NII</td>
 <td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"></td>
 <td style="text-align: left;">Number of Outgoing Invocations</td>
 <td style="text-align: left;">NOI</td>
 <td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"></td>
 <td style="text-align: left;">Response set For Class</td>
 <td style="text-align: left;">RFC</td>
-<td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Documentation metrics</td>
 <td style="text-align: left;">API Documentation</td>
 <td style="text-align: left;">AD</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">X</td>
-<td style="text-align: center;">X</td>
-<td style="text-align: center;">X</td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"></td>
 <td style="text-align: left;">Comment Density</td>
 <td style="text-align: left;">CD</td>
 <td style="text-align: center;">X</td>
-<td style="text-align: center;">X</td>
-<td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"></td>
 <td style="text-align: left;">Comment Lines of Code</td>
 <td style="text-align: left;">CLOC</td>
 <td style="text-align: center;">X</td>
-<td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;">X</td>
-<td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"></td>
 <td style="text-align: left;">Documentation Lines of Code</td>
 <td style="text-align: left;">DLOC</td>
 <td style="text-align: center;">X</td>
-<td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"></td>
 <td style="text-align: left;">Public Documented API</td>
 <td style="text-align: left;">PDA</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;">X</td>
-<td style="text-align: center;"></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"></td>
 <td style="text-align: left;">Public Undocumented API</td>
 <td style="text-align: left;">PUA</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;">X</td>
-<td style="text-align: center;"></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"></td>
 <td style="text-align: left;">Total API Documentation</td>
 <td style="text-align: left;">TAD</td>
 <td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
-<td style="text-align: center;">X</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"></td>
@@ -654,10 +709,12 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail">'+'&#x7
 <td style="text-align: left;">TCD</td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
-<td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
 <td style="text-align: center;">X</td>
 </tr>
 <tr class="odd">
@@ -668,8 +725,10 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail">'+'&#x7
 <td style="text-align: center;">X</td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
-<td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
 <td style="text-align: center;">X</td>
 </tr>
 <tr class="even">
@@ -677,120 +736,140 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail">'+'&#x7
 <td style="text-align: left;">Total Public Documented API</td>
 <td style="text-align: left;">TPDA</td>
 <td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
-<td style="text-align: center;">X</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"></td>
 <td style="text-align: left;">Total Public Undocumented API</td>
 <td style="text-align: left;">TPUA</td>
 <td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
-<td style="text-align: center;">X</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Inheritance metrics</td>
 <td style="text-align: left;">Depth of Inheritance Tree</td>
 <td style="text-align: left;">DIT</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">X</td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"></td>
 <td style="text-align: left;">Number of Ancestors</td>
 <td style="text-align: left;">NOA</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">X</td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"></td>
 <td style="text-align: left;">Number of Children</td>
 <td style="text-align: left;">NOC</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">X</td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"></td>
 <td style="text-align: left;">Number of Descendants</td>
 <td style="text-align: left;">NOD</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">X</td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"></td>
 <td style="text-align: left;">Number of Parents</td>
 <td style="text-align: left;">NOP</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">X</td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Size metrics</td>
 <td style="text-align: left;">Lines of Code</td>
 <td style="text-align: left;">LOC</td>
 <td style="text-align: center;">X</td>
-<td style="text-align: center;">X</td>
-<td style="text-align: center;">X</td>
-<td style="text-align: center;">X</td>
-<td style="text-align: center;">X</td>
-<td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"></td>
 <td style="text-align: left;">Logical Lines of Code</td>
 <td style="text-align: left;">LLOC</td>
 <td style="text-align: center;">X</td>
-<td style="text-align: center;">X</td>
-<td style="text-align: center;">X</td>
-<td style="text-align: center;">X</td>
-<td style="text-align: center;">X</td>
-<td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"></td>
 <td style="text-align: left;">Number of Attributes</td>
 <td style="text-align: left;">NA</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">X</td>
-<td style="text-align: center;">X</td>
-<td style="text-align: center;">X</td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"></td>
@@ -800,8 +879,10 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail">'+'&#x7
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
-<td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
 </tr>
 <tr class="odd">
@@ -812,21 +893,25 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail">'+'&#x7
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
-<td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"></td>
 <td style="text-align: left;">Number of Getters</td>
 <td style="text-align: left;">NG</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">X</td>
-<td style="text-align: center;">X</td>
-<td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"></td>
@@ -836,93 +921,109 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail">'+'&#x7
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
-<td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"></td>
 <td style="text-align: left;">Number of Local Attributes</td>
 <td style="text-align: left;">NLA</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">X</td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"></td>
 <td style="text-align: left;">Number of Local Getters</td>
 <td style="text-align: left;">NLG</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">X</td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"></td>
 <td style="text-align: left;">Number of Local Methods</td>
 <td style="text-align: left;">NLM</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">X</td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"></td>
 <td style="text-align: left;">Number of Local Public Attributes</td>
 <td style="text-align: left;">NLPA</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">X</td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"></td>
 <td style="text-align: left;">Number of Local Public Methods</td>
 <td style="text-align: left;">NLPM</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">X</td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"></td>
 <td style="text-align: left;">Number of Local Setters</td>
 <td style="text-align: left;">NLS</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">X</td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"></td>
 <td style="text-align: left;">Number of Methods</td>
 <td style="text-align: left;">NM</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">X</td>
-<td style="text-align: center;">X</td>
-<td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"></td>
@@ -932,19 +1033,23 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail">'+'&#x7
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
-<td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"></td>
 <td style="text-align: left;">Number of Parameters</td>
 <td style="text-align: left;">NUMPAR</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 </tr>
@@ -952,49 +1057,57 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail">'+'&#x7
 <td style="text-align: left;"></td>
 <td style="text-align: left;">Number of Public Attributes</td>
 <td style="text-align: left;">NPA</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">X</td>
-<td style="text-align: center;">X</td>
-<td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"></td>
 <td style="text-align: left;">Number of Public Methods</td>
 <td style="text-align: left;">NPM</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">X</td>
-<td style="text-align: center;">X</td>
-<td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"></td>
 <td style="text-align: left;">Number of Setters</td>
 <td style="text-align: left;">NS</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">X</td>
-<td style="text-align: center;">X</td>
-<td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"></td>
 <td style="text-align: left;">Number of Statements</td>
 <td style="text-align: left;">NOS</td>
 <td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"></td>
@@ -1004,8 +1117,10 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail">'+'&#x7
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
-<td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
 </tr>
 <tr class="even">
@@ -1016,8 +1131,10 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail">'+'&#x7
 <td style="text-align: center;">X</td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;">X</td>
-<td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
 <td style="text-align: center;">X</td>
 </tr>
 <tr class="odd">
@@ -1028,20 +1145,24 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail">'+'&#x7
 <td style="text-align: center;">X</td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;">X</td>
-<td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
 <td style="text-align: center;">X</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"></td>
 <td style="text-align: left;">Total Number of Attributes</td>
 <td style="text-align: left;">TNA</td>
-<td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
 <td style="text-align: center;">X</td>
 </tr>
 <tr class="odd">
@@ -1049,59 +1170,69 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail">'+'&#x7
 <td style="text-align: left;">Total Number of Classes</td>
 <td style="text-align: left;">TNCL</td>
 <td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
-<td style="text-align: center;">X</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"></td>
 <td style="text-align: left;">Total Number of Directories</td>
 <td style="text-align: left;">TNDI</td>
 <td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
-<td style="text-align: center;">X</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"></td>
 <td style="text-align: left;">Total Number of Enums</td>
 <td style="text-align: left;">TNEN</td>
 <td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
-<td style="text-align: center;">X</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"></td>
 <td style="text-align: left;">Total Number of Files</td>
 <td style="text-align: left;">TNFI</td>
 <td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
-<td style="text-align: center;">X</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"></td>
 <td style="text-align: left;">Total Number of Getters</td>
 <td style="text-align: left;">TNG</td>
-<td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
 <td style="text-align: center;">X</td>
 </tr>
 <tr class="even">
@@ -1109,21 +1240,25 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail">'+'&#x7
 <td style="text-align: left;">Total Number of Interfaces</td>
 <td style="text-align: left;">TNIN</td>
 <td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
-<td style="text-align: center;">X</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"></td>
 <td style="text-align: left;">Total Number of Local Attributes</td>
 <td style="text-align: left;">TNLA</td>
-<td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
@@ -1132,10 +1267,12 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail">'+'&#x7
 <td style="text-align: left;"></td>
 <td style="text-align: left;">Total Number of Local Getters</td>
 <td style="text-align: left;">TNLG</td>
-<td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
@@ -1144,10 +1281,12 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail">'+'&#x7
 <td style="text-align: left;"></td>
 <td style="text-align: left;">Total Number of Local Methods</td>
 <td style="text-align: left;">TNLM</td>
-<td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
@@ -1156,10 +1295,12 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail">'+'&#x7
 <td style="text-align: left;"></td>
 <td style="text-align: left;">Total Number of Local Public Attributes</td>
 <td style="text-align: left;">TNLPA</td>
-<td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
@@ -1168,10 +1309,12 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail">'+'&#x7
 <td style="text-align: left;"></td>
 <td style="text-align: left;">Total Number of Local Public Methods</td>
 <td style="text-align: left;">TNLPM</td>
-<td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
@@ -1180,10 +1323,12 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail">'+'&#x7
 <td style="text-align: left;"></td>
 <td style="text-align: left;">Total Number of Local Setters</td>
 <td style="text-align: left;">TNLS</td>
-<td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
@@ -1192,12 +1337,14 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail">'+'&#x7
 <td style="text-align: left;"></td>
 <td style="text-align: left;">Total Number of Methods</td>
 <td style="text-align: left;">TNM</td>
-<td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
 <td style="text-align: center;">X</td>
 </tr>
 <tr class="even">
@@ -1205,23 +1352,27 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail">'+'&#x7
 <td style="text-align: left;">Total Number of Packages</td>
 <td style="text-align: left;">TNPKG</td>
 <td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
-<td style="text-align: center;">X</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"></td>
 <td style="text-align: left;">Total Number of Public Attributes</td>
 <td style="text-align: left;">TNPA</td>
-<td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
 <td style="text-align: center;">X</td>
 </tr>
 <tr class="even">
@@ -1229,47 +1380,55 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail">'+'&#x7
 <td style="text-align: left;">Total Number of Public Classes</td>
 <td style="text-align: left;">TNPCL</td>
 <td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
-<td style="text-align: center;">X</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"></td>
 <td style="text-align: left;">Total Number of Public Enums</td>
 <td style="text-align: left;">TNPEN</td>
 <td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
-<td style="text-align: center;">X</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"></td>
 <td style="text-align: left;">Total Number of Public Interfaces</td>
 <td style="text-align: left;">TNPIN</td>
 <td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
-<td style="text-align: center;">X</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"></td>
 <td style="text-align: left;">Total Number of Public Methods</td>
 <td style="text-align: left;">TNPM</td>
-<td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
 <td style="text-align: center;">X</td>
 </tr>
 <tr class="even">
@@ -1277,23 +1436,27 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail">'+'&#x7
 <td style="text-align: left;">Total Number of Public Structures</td>
 <td style="text-align: left;">TNPST</td>
 <td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
-<td style="text-align: center;">X</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"></td>
 <td style="text-align: left;">Total Number of Setters</td>
 <td style="text-align: left;">TNS</td>
-<td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
 <td style="text-align: center;">X</td>
 </tr>
 <tr class="even">
@@ -1304,8 +1467,10 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail">'+'&#x7
 <td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
-<td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
 <td style="text-align: center;">X</td>
 </tr>
 <tr class="odd">
@@ -1313,12 +1478,14 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail">'+'&#x7
 <td style="text-align: left;">Total Number of Structures</td>
 <td style="text-align: left;">TNST</td>
 <td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
-<td style="text-align: center;">X</td>
 </tr>
 </tbody>
 </table>
@@ -1785,10 +1952,10 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail">'+'&#x7
 <h4 id="CC">Clone Coverage (CC)</h4>
 <p><strong>Method/interface/enum/class/structure/namespace:</strong> ratio of code covered by code duplications in the source code element to the size of the source code element, expressed in terms of the number of syntactic entities (statements, expressions, etc.).</p>
 <p><strong>Component:</strong> ratio of code covered by code duplications in the component to the size of the component, expressed in terms of the number of syntactic entities (statements, expressions, etc.).</p>
-<h4 id="CEE">Clone Elimination Effort (CEE)<a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a></h4>
+<h4 id="CEE">Clone Elimination Effort (CEE)</h4>
 <p><strong>Clone class:</strong> index of the effort required to eliminate the clone class. It is computed as the product of CI, CE, and NCR.</p>
 <p><strong>Component:</strong> index of the effort required to eliminate all clones from the component. It is computed as the sum of CEE of the clone classes in the component.</p>
-<h4 id="CEG">Clone Elimination Gain (CEG)<a href="#fn3" class="footnoteRef" id="fnref3"><sup>3</sup></a></h4>
+<h4 id="CEG">Clone Elimination Gain (CEG)</h4>
 <p><strong>Clone class:</strong> index of the gain resulting from eliminating the clone class. It is computed as the ratio of CR to CEE.</p>
 <p><strong>Component:</strong> index of the gain resulting from eliminating all clones from the component. It is computed as the logistic function of the ratio of CR to CEE.</p>
 <h4 id="CE">Clone Embeddedness (CE)</h4>
@@ -1807,7 +1974,7 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail">'+'&#x7
 <h4 id="CLLC">Clone Logical Line Coverage (CLLC)</h4>
 <p><strong>Method/class/module/namespace:</strong> ratio of code covered by code duplications in the source code element to the size of source code element, expressed in terms of logical lines of code (non-empty, non-comment lines).</p>
 <p><strong>Component:</strong> ratio of code covered by code duplications in the component to the size of the component, expressed in terms of logical lines of code (non-empty, non-comment lines).</p>
-<h4 id="CR">Clone Risk (CR)<a href="#fn4" class="footnoteRef" id="fnref4"><sup>4</sup></a></h4>
+<h4 id="CR">Clone Risk (CR)</h4>
 <p><strong>Clone class:</strong> risk index of the existence of the clone class. It is computed as the product of CLLOC, CI, CCO, NCR, and CV.</p>
 <p><strong>Component:</strong> relative risk index of the existence of code duplications in the component. It is computed as the sum of CR of the clone classes in the component, divided by the total logical lines of code (non-empty, non-comment lines) of the component. It expresses the risk index projected to a non-empty, non-comment line of code in the component.</p>
 <h4 id="CV">Clone Variability (CV)</h4>
@@ -3890,14 +4057,63 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail">'+'&#x7
 <p>Use managed equivalents to Win32 API whenever possible.</p>
 <h4 id="FXCOP_UPFVA">Use params for variable arguments (FXCOP_UPFVA)</h4>
 <p>Do not use the varargs calling convention to accept a variable number of arguments. In the managed world, the ‘params’ and ‘ParamArray’ keywords provide this functionality..</p>
+<h2 id="the-userdefinedmetrics-module">The UserDefinedMetrics module</h2>
+<p>In addition to the built-in metrics, users can create their own metrics by using the UserDefinedMetrics (UDM) module. These new metrics can be established with a formula that can use any previous SourceMeter metric and can even depend on other custom user-defined metrics.</p>
+<h3 id="defining-a-metric">Defining a metric</h3>
+<ul>
+<li>Metric definitions are surrounded by a <code>&lt;tool name = &quot;UDM&quot; enabled = &quot;true&quot;&gt;&lt;/tool&gt;</code> tag.</li>
+<li>Metrics are defined using a <code>&lt;udm id = &quot;NAME&quot;&gt;&lt;/udm&gt;</code> tag.
+<ul>
+<li><code>NAME</code> follows standard identifier conventions (starts with a letter or an underscore, followed by any number of letters, numbers, or underscores).</li>
+<li><code>pi</code>, <code>epsilon</code>, and <code>inf</code> are occupied names (in a case-insensitive manner, so <code>Pi</code>, <code>pI</code>, <code>Epsilon</code>, <code>epSiloN</code>, etc. are occupied as well).</li>
+</ul></li>
+<li>Each metric definition can contain multiple configurations using a <code>&lt;configuration name = &quot;ConfigName&quot;&gt;&lt;/configuration&gt;</code> tag.
+<ul>
+<li>The <code>Default</code> configuration is mandatory, while the language-specific “overrides” are optional.</li>
+<li>Each “override” inherits its starting setting values from the <code>Default</code> configuration.</li>
+<li>The valid language-specific configuration values (at the moment) are <code>cpp</code>, <code>csharp</code>, <code>java</code>, <code>javascript</code>, <code>python</code>, and <code>rpg</code>.</li>
+</ul></li>
+<li>Each configuration can contain the following settings:
+<ul>
+<li><code>description</code>: The description of the metric (default: “”).</li>
+<li><code>display-name</code>: An optional name, if something other than the ID should be used for display (default: “”).</li>
+<li><code>group-member</code>: The group of metrics this metric belongs to (valid values: “Cohesion”, “Complexity”, “Coupling”, “Documentation”, “Inheritance”, “Size”, “UserDefinedMetrics”; default: “UserDefinedMetrics”)</li>
+<li><code>help-text</code>: Additional help text for the metric (default: “”).</li>
+<li><code>formula</code>: The formula used to calculate the value of the metric. It can be any valid expression supported by the <a href="https://exprtk.codeplex.com/">ExprTk library</a> and contain references to any previously computed metrics (e.g., LLOC, NOS, CBO, etc.).</li>
+<li><code>type</code>: The desired output type of the formula (valid values: “Integer”, “Float”; default: “Float”).</li>
+<li><code>calculated</code>: This field contains a list of syntactic element types (e.g., Class, Method, etc.) the metric is calculated for inside <code>&lt;calculated-for&gt;</code> tags. See the example below.
+<ul>
+<li>Note that every (both built-in and user-defined) metric has a unique set of elements it is computed for. Therefore, if a metric is dependent on another, its <code>&lt;calculated-for&gt;</code> set should be a subset of the dependency’s for it to be universally computable.</li>
+</ul></li>
+</ul></li>
+</ul>
+<h3 id="example-profile.xml">Example profile.xml</h3>
+<pre class="sourceCode xml"><code class="sourceCode xml"><span class="kw">&lt;?xml</span> version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;<span class="kw">?&gt;</span>
+<span class="kw">&lt;sourcemeter-profile&gt;</span>
+  <span class="kw">&lt;tool-options&gt;</span>
+    <span class="kw">&lt;tool</span><span class="ot"> name</span> <span class="ot">=</span> <span class="st">&quot;UDM&quot;</span><span class="ot"> enabled</span> <span class="ot">=</span> <span class="st">&quot;true&quot;</span><span class="kw">&gt;</span>
+      <span class="kw">&lt;udm</span><span class="ot"> id</span> <span class="ot">=</span> <span class="st">&quot;UDM_test_metric&quot;</span><span class="kw">&gt;</span>
+        <span class="kw">&lt;configuration</span><span class="ot"> name</span> <span class="ot">=</span> <span class="st">&quot;Default&quot;</span><span class="kw">&gt;</span>
+          <span class="kw">&lt;description&gt;</span>Blablabla<span class="kw">&lt;/description&gt;</span>
+          <span class="kw">&lt;display-name&gt;</span>UDM Test Metric<span class="kw">&lt;/display-name&gt;</span>
+          <span class="kw">&lt;group-member&gt;</span>UserDefinedMetrics<span class="kw">&lt;/group-member&gt;</span>
+          <span class="kw">&lt;help-text&gt;</span>A helpful comment<span class="kw">&lt;/help-text&gt;</span>
+          <span class="kw">&lt;formula&gt;</span>LLOC + 1 + sin(pi)^3<span class="kw">&lt;/formula&gt;</span>
+          <span class="kw">&lt;type&gt;</span>Integer<span class="kw">&lt;/type&gt;</span>
+          <span class="kw">&lt;calculated&gt;</span>
+            <span class="kw">&lt;calculated-for&gt;</span>Class<span class="kw">&lt;/calculated-for&gt;</span>
+            <span class="kw">&lt;calculated-for&gt;</span>Method<span class="kw">&lt;/calculated-for&gt;</span>
+          <span class="kw">&lt;/calculated&gt;</span>
+        <span class="kw">&lt;/configuration&gt;</span>
+      <span class="kw">&lt;/udm&gt;</span>
+    <span class="kw">&lt;/tool&gt;</span>
+  <span class="kw">&lt;/tool-options&gt;</span>
+<span class="kw">&lt;/sourcemeter-profile&gt;</span></code></pre>
 <h1 id="footnotes">Footnotes</h1>
 <section class="footnotes">
 <hr />
 <ol>
 <li id="fn1"><p>POSIX Extended Regular Expressions<a href="#fnref1">↩</a></p></li>
-<li id="fn2"><p>Only available in other products of FrontEndART<a href="#fnref2">↩</a></p></li>
-<li id="fn3"><p>Only available in other products of FrontEndART<a href="#fnref3">↩</a></p></li>
-<li id="fn4"><p>Only available in other products of FrontEndART<a href="#fnref4">↩</a></p></li>
 </ol>
 </section>
 </body>
