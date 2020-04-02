@@ -1,0 +1,236 @@
+Reference of FaultHunter coding rule violations,,,,
+Category,Name,Abbreviation,,Prio.
+Basic Rules,Bool Compare,FHPY_BoC,CODE_SMELL,Major
+,Dangerous Default Value,FHPY_DDV,BUG,Major
+,Method Naming,FHPY_MeN,CODE_SMELL,Minor
+,Module Naming,FHPY_MoN,CODE_SMELL,Minor
+,None Comparison,FHPY_NoC,BUG,Major
+,Object Comparison,FHPY_OC,BUG,Major
+,Sequence False Checking,FHPY_SFC,BUG,Major
+Design Rules,Big Try,FHPY_BT,CODE_SMELL,Major
+Exception Rules,Bare Except,FHPY_BE,CODE_SMELL,Major
+Format Rules,Multiple Statements,FHPY_MS,CODE_SMELL,Major
+Import Rules,Relative Import,FHPY_RI,VULNERABILITY,Minor
+,Single Import,FHPY_SI,CODE_SMELL,Minor
+,Top Import,FHPY_TI,CODE_SMELL,Major
+,Wildcard Import,FHPY_WI,CODE_SMELL,Major
+Newstyle Rules,Old Style Class,FHPY_OSC,CODE_SMELL,Major
+Python3 Rules,Old Raise Syntax,FHPY_ORS,BUG,Critical
+,Raising String,FHPY_RS,BUG,Critical
+String Rules,String Slicing Prefix,FHPY_SSP,CODE_SMELL,Major
+,String Slicing Suffix,FHPY_SSS,CODE_SMELL,Major
+Variable Rules,__all__ After Imports,FHPY_AAI,CODE_SMELL,Minor
+,,,,
+Reference of Pylint coding rule violations,,,,
+Category,Name,Abbreviation,,Prio.
+Basic Rules,Abstract Class Instantiated,PYLINT_ACI,BUG,Critical
+,Assert On Tuple,PYLINT_AOT,BUG,Major
+,Bad Builtin,PYLINT_BB,CODE_SMELL,Major
+,Bad Reversed Sequence,PYLINT_BRS,BUG,Critical
+,Blacklisted Name,PYLINT_BN,BUG,Minor
+,Dangerous Default Value,PYLINT_DDV,BUG,Major
+,Deprecated Lambda,PYLINT_DL,CODE_SMELL,Major
+,Duplicate Argument Name,PYLINT_DAN,BUG,Critical
+,Duplicate Key,PYLINT_DK,BUG,Major
+,Empty Docstring,PYLINT_ED,CODE_SMELL,Minor
+,Eval Used,PYLINT_EU,VULNERABILITY,Major
+,Exec Used,PYLINT_ExU,VULNERABILITY,Major
+,Expression Not Assigned,PYLINT_ENA,CODE_SMELL,Major
+,Function Redefined,PYLINT_FR,BUG,Critical
+,Init Is Generator,PYLINT_IIG,BUG,Critical
+,Invalid Name,PYLINT_IN,BUG,Minor
+,Lost Exception,PYLINT_LoE,CODE_SMELL,Major
+,Missing Docstring,PYLINT_MD,CODE_SMELL,Minor
+,Missing Module Attribute,PYLINT_MMA,BUG,Minor
+,Missing Reversed Argument,PYLINT_MRA,BUG,Critical
+,Nonexistent Operator,PYLINT_NO,BUG,Critical
+,Not In Loop,PYLINT_NIL,BUG,Critical
+,Pointless Statement,PYLINT_PS,CODE_SMELL,Major
+,Pointless String Statement,PYLINT_PSS,CODE_SMELL,Major
+,Return Arg In Generator,PYLINT_RAIG,BUG,Critical
+,Return In Init,PYLINT_RII,BUG,Critical
+,Return Outside Function,PYLINT_ROF,BUG,Critical
+,Star Args,PYLINT_SA,CODE_SMELL,Major
+,Unnecessary Lambda,PYLINT_UL,CODE_SMELL,Major
+,Unnecessary Pass,PYLINT_UP,CODE_SMELL,Major
+,Unreachable,PYLINT_U,CODE_SMELL,Major
+,Useless Else On Loop,PYLINT_UEOL,BUG,Major
+,Yield Outside Function,PYLINT_YOF,BUG,Critical
+Class Rules,Abstract Method,PYLINT_AM,CODE_SMELL,Major
+,Access Member Before Definition,PYLINT_AMBD,VULNERABILITY,Critical
+,Arguments Differ,PYLINT_AD,BUG,Major
+,Assigning Non Slot,PYLINT_ANS,BUG,Critical
+,Attribute Defined Outside Init,PYLINT_ADOI,BUG,Major
+,Bad Classmethod Argument,PYLINT_BCA,CODE_SMELL,Minor
+,Bad Context Manager,PYLINT_BCM,BUG,Critical
+,Bad Mcs Classmethod Argument,PYLINT_BMCA,CODE_SMELL,Minor
+,Bad Mcs Method Argument,PYLINT_BMMA,CODE_SMELL,Minor
+,Bad Staticmethod Argument,PYLINT_BSA,CODE_SMELL,Major
+,Inherit Non Class,PYLINT_INC,BUG,Critical
+,Interface Is Not Class,PYLINT_IINC,BUG,Critical
+,Invalid Slots,PYLINT_InS,BUG,Critical
+,Invalid Slots Object,PYLINT_ISO,BUG,Critical
+,Method Hidden,PYLINT_MH,BUG,Critical
+,Missing Interface Method,PYLINT_MIM,BUG,Critical
+,No Init,PYLINT_NI,BUG,Major
+,No Method Argument,PYLINT_NMA,BUG,Critical
+,No Self Argument,PYLINT_NSA,BUG,Critical
+,No Self Use,PYLINT_NSU,CODE_SMELL,Minor
+,Non Iterator Returned,PYLINT_NIR,BUG,Major
+,Non Parent Init Called,PYLINT_NPIC,BUG,Major
+,Protected Access,PYLINT_PA,BUG,Major
+,Signature Differs,PYLINT_SD,BUG,Major
+,Super Init Not Called,PYLINT_SINC,BUG,Major
+Design Rules,Abstract Class Little Used,PYLINT_ACLU,CODE_SMELL,Minor
+,Abstract Class Not Used,PYLINT_ACNU,CODE_SMELL,Minor
+,Interface Not Implemented,PYLINT_INI,CODE_SMELL,Minor
+,Too Few Public Methods,PYLINT_TFPM,CODE_SMELL,Minor
+,Too Many Ancestors,PYLINT_TMA,CODE_SMELL,Minor
+,Too Many Arguments,PYLINT_ToMA,CODE_SMELL,Minor
+,Too Many Branches,PYLINT_TMB,CODE_SMELL,Minor
+,Too Many Instance Attributes,PYLINT_TMIA,CODE_SMELL,Minor
+,Too Many Locals,PYLINT_ToML,CODE_SMELL,Minor
+,Too Many Public Methods,PYLINT_TMPM,CODE_SMELL,Minor
+,Too Many Return Statements,PYLINT_TMRS,CODE_SMELL,Minor
+,Too Many Statements,PYLINT_TMS,CODE_SMELL,Minor
+Exception Rules,Bad Except Order,PYLINT_BEO,BUG,Critical
+,Bad Exception Context,PYLINT_BEC,BUG,Critical
+,Bare Except,PYLINT_BE,CODE_SMELL,Major
+,Binary Op Exception,PYLINT_BOE,BUG,Major
+,Broad Except,PYLINT_BrE,CODE_SMELL,Major
+,Catching Non Exception,PYLINT_CNE,BUG,Critical
+,Nonstandard Exception,PYLINT_NE,CODE_SMELL,Major
+,Notimplemented Raised,PYLINT_NR,BUG,Critical
+,Pointless Except,PYLINT_PoE,CODE_SMELL,Major
+,Raising Bad Type,PYLINT_RBT,BUG,Critical
+,Raising Non Exception,PYLINT_RNE,BUG,Critical
+Format Rules,Bad Continuation,PYLINT_BC,CODE_SMELL,Minor
+,Bad Indentation,PYLINT_BI,BUG,Major
+,Bad Whitespace,PYLINT_BW,CODE_SMELL,Minor
+,Line Too Long,PYLINT_LTL,CODE_SMELL,Minor
+,Lowercase L Suffix,PYLINT_LLS,BUG,Major
+,Missing Final Newline,PYLINT_MFN,CODE_SMELL,Minor
+,Mixed Indentation,PYLINT_MI,BUG,Major
+,Mixed Line Endings,PYLINT_MLE,BUG,Minor
+,Multiple Statements,PYLINT_MS,CODE_SMELL,Minor
+,Superfluous Parens,PYLINT_SP,CODE_SMELL,Minor
+,Too Many Lines,PYLINT_TML,CODE_SMELL,Minor
+,Trailing Whitespace,PYLINT_TW,CODE_SMELL,Minor
+,Unexpected Line Ending Format,PYLINT_ULEF,BUG,Minor
+,Unnecessary Semicolon,PYLINT_US,CODE_SMELL,Major
+Import Rules,Cyclic Import,PYLINT_CI,BUG,Minor
+,Deprecated Module,PYLINT_DeM,CODE_SMELL,Major
+,Import Self,PYLINT_IS,BUG,Major
+,Misplaced Future,PYLINT_MF,BUG,Major
+,Reimported,PYLINT_R,BUG,Major
+,Relative Import,PYLINT_RI,VULNERABILITY,Major
+,Wildcard Import,PYLINT_WI,CODE_SMELL,Major
+Logging Rules,Logging Format Interpolation,PYLINT_LFI,CODE_SMELL,Major
+,Logging Format Truncated,PYLINT_LFT,BUG,Critical
+,Logging Not Lazy,PYLINT_LNL,CODE_SMELL,Major
+,Logging Too Few Args,PYLINT_LTFA,BUG,Critical
+,Logging Too Many Args,PYLINT_LTMA,BUG,Critical
+,Logging Unsupported Format,PYLINT_LUF,BUG,Critical
+Miscellaneous Rules,Fixme,PYLINT_Fi,CODE_SMELL,Major
+,Invalid Encoded Data,PYLINT_IED,BUG,Major
+Newstyle Rules,Bad Super Call,PYLINT_BSC,BUG,Critical
+,Missing Super Argument,PYLINT_MSA,BUG,Critical
+,Old Style Class,PYLINT_OSC,CODE_SMELL,Minor
+,Property On Old Class,PYLINT_POOC,BUG,Major
+,Slots On Old Class,PYLINT_SOOC,BUG,Critical
+,Super On Old Class,PYLINT_SuOOC,BUG,Critical
+Python3 Rules,Apply Builtin,PYLINT_AB,BUG,Major
+,Backtick,PYLINT_B,BUG,Critical
+,Basestring Builtin,PYLINT_BaB,BUG,Major
+,Buffer Builtin,PYLINT_BuB,BUG,Major
+,Cmp Builtin,PYLINT_CB,BUG,Major
+,Cmp Method,PYLINT_CM,BUG,Major
+,Coerce Builtin,PYLINT_CoB,BUG,Major
+,Coerce Method,PYLINT_CoM,BUG,Major
+,Delslice Method,PYLINT_DM,BUG,Major
+,Dict Iter Method,PYLINT_DIM,BUG,Major
+,Dict View Method,PYLINT_DVM,BUG,Major
+,Execfile Builtin,PYLINT_EB,BUG,Major
+,File Builtin,PYLINT_FB,BUG,Major
+,Getslice Method,PYLINT_GM,BUG,Major
+,Hex Method,PYLINT_HM,BUG,Major
+,Implicit Map Evaluation,PYLINT_IME,BUG,Major
+,Indexing Exception,PYLINT_InE,BUG,Major
+,Input Builtin,PYLINT_IB,BUG,Major
+,Long Builtin,PYLINT_LB,BUG,Major
+,Long Suffix,PYLINT_LS,BUG,Critical
+,Metaclass Assignment,PYLINT_MA,BUG,Major
+,Next Method Called,PYLINT_NMC,BUG,Major
+,No Absolute Import,PYLINT_NAI,BUG,Major
+,Nonzero Method,PYLINT_NoM,BUG,Major
+,Oct Method,PYLINT_OM,BUG,Major
+,Old Division,PYLINT_OD,BUG,Major
+,Old Ne Operator,PYLINT_ONO,BUG,Critical
+,Old Octal Literal,PYLINT_OOL,BUG,Critical
+,Old Raise Syntax,PYLINT_ORS,BUG,Critical
+,Parameter Unpacking,PYLINT_PU,BUG,Critical
+,Print Statement,PYLINT_PrS,BUG,Critical
+,Raising String,PYLINT_RS,BUG,Major
+,Raw_input Builtin,PYLINT_RB,BUG,Major
+,Reduce Builtin,PYLINT_RedB,BUG,Major
+,Reload Builtin,PYLINT_RelB,BUG,Major
+,Round Builtin,PYLINT_RoB,BUG,Major
+,Setslice Method,PYLINT_SM,BUG,Major
+,Standarderror Builtin,PYLINT_SB,BUG,Major
+,Unicode Builtin,PYLINT_UB,BUG,Major
+,Unpacking In Except,PYLINT_UIE,BUG,Critical
+,Xrange Builtin,PYLINT_XB,BUG,Major
+Spelling Rules,Wrong Spelling In Comment,PYLINT_WSIC,CODE_SMELL,Minor
+,Wrong Spelling In Docstring,PYLINT_WSID,CODE_SMELL,Minor
+Stdlib Rules,Bad Open Mode,PYLINT_BOM,BUG,Major
+,Boolean Datetime,PYLINT_BD,VULNERABILITY,Major
+,Redundant Unittest Assert,PYLINT_RUA,BUG,Major
+String Constant Rules,Anomalous Backslash In String,PYLINT_ABIS,BUG,Major
+,Anomalous Unicode Escape In String,PYLINT_AUEIS,BUG,Major
+String Rules,Bad Format Character,PYLINT_BFC,BUG,Critical
+,Bad Format String,PYLINT_BFS,BUG,Major
+,Bad Format String Key,PYLINT_BFSK,BUG,Major
+,Bad Str Strip Call,PYLINT_BSSC,BUG,Critical
+,Format Combined Specification,PYLINT_FCS,BUG,Major
+,Format Needs Mapping,PYLINT_FNM,BUG,Critical
+,Invalid Format Index,PYLINT_IFI,BUG,Major
+,Missing Format Argument Key,PYLINT_MFAK,BUG,Major
+,Missing Format Attribute,PYLINT_MFA,BUG,Major
+,Missing Format String Key,PYLINT_MFSK,BUG,Critical
+,Mixed Format String,PYLINT_MFS,BUG,Critical
+,Too Few Format Args,PYLINT_TFFA,BUG,Critical
+,Too Many Format Args,PYLINT_TMFA,BUG,Critical
+,Truncated Format String,PYLINT_TFS,BUG,Critical
+,Unused Format String Argument,PYLINT_UFSA,CODE_SMELL,Major
+,Unused Format String Key,PYLINT_UFSK,CODE_SMELL,Major
+Typecheck Rules,Assignment From No Return,PYLINT_AFNR,BUG,Critical
+,Assignment From None,PYLINT_AFN,BUG,Major
+,Invalid Sequence Index,PYLINT_ISI,BUG,Critical
+,Invalid Slice Index,PYLINT_InSI,BUG,Critical
+,Missing Kwoa,PYLINT_MK,BUG,Critical
+,No Member,PYLINT_NM,BUG,Critical
+,No Value For Parameter,PYLINT_NVFP,BUG,Critical
+,Not Callable,PYLINT_NC,BUG,Critical
+,Redundant Keyword Arg,PYLINT_RKA,BUG,Critical
+,Too Many Function Args,PYLINT_ToMFA,BUG,Critical
+,Unexpected Keyword Arg,PYLINT_UKA,BUG,Critical
+Variable Rules,Cell Var From Loop,PYLINT_CVFL,CODE_SMELL,Major
+,Global At Module Level,PYLINT_GAML,CODE_SMELL,Major
+,Global Statement,PYLINT_GS,CODE_SMELL,Major
+,Global Variable Not Assigned,PYLINT_GVNA,CODE_SMELL,Major
+,Global Variable Undefined,PYLINT_GVU,CODE_SMELL,Major
+,Invalid All Object,PYLINT_IAO,BUG,Critical
+,No Name In Module,PYLINT_NNIM,BUG,Critical
+,Redefine In Handler,PYLINT_RIH,CODE_SMELL,Major
+,Redefined Builtin,PYLINT_ReB,CODE_SMELL,Major
+,Redefined Outer Name,PYLINT_RON,CODE_SMELL,Major
+,Unbalanced Tuple Unpacking,PYLINT_UTU,BUG,Major
+,Undefined All Variable,PYLINT_UAV,BUG,Critical
+,Undefined Loop Variable,PYLINT_ULV,BUG,Major
+,Undefined Variable,PYLINT_UV,BUG,Critical
+,Unpacking Non Sequence,PYLINT_UNS,CODE_SMELL,Major
+,Unused Argument,PYLINT_UA,CODE_SMELL,Major
+,Unused Import,PYLINT_UnI,CODE_SMELL,Major
+,Unused Variable,PYLINT_UnV,CODE_SMELL,Major
+,Unused Wildcard Import,PYLINT_UWI,CODE_SMELL,Major
+,Used Before Assignment,PYLINT_UBA,BUG,Critical

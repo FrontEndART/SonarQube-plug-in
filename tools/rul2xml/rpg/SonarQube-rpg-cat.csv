@@ -1,0 +1,41 @@
+Reference of FaultHunter coding rule violations,,,,
+Category,Name,Abbreviation,,Prio.
+Basic Rules,"“*SRCSTMT, *NODEBUGIO” Header Option Should be Used",FHRPG_SHOSU,BUG,Major
+,"/Eject Should Used After Specifications (F,D,C)",FHRPG_ESUAS,CODE_SMELL,Minor
+,Avoid Debug Operations,FHRPG_ADS,BUG,Minor
+,Avoid operation,FHRPG_AO,BUG,Critical
+,CHAIN operation should use resulting indicator,FHRPG_COSURI,CODE_SMELL,Major
+,Call operand is a variable,FHRPG_COV,CODE_SMELL,Major
+,Complete Conditional Operation Needed,FHRPG_CCO,CODE_SMELL,Major
+,Figurative Constant Should Used,FHRPG_FCSU,CODE_SMELL,Major
+,Forbidden operation,FHRPG_FO,BUG,Critical
+,IF-ELSEIF Should Terminated With ELSE,FHRPG_ISTWE,CODE_SMELL,Major
+,If Should Not Use Indicators,FHRPG_ISNUI,VULNERABILITY,Major
+,Missing Error Handling in F Spec,FHRPG_MEHFS,BUG,Critical
+,USROPN Files Should Explicitly Closed,FHRPG_UFSEC,VULNERABILITY,Critical
+,Use ENDxx instead of END,FHRPG_ESU,CODE_SMELL,Major
+Design Rules,Circular reference between subroutines,FHRPG_SCC,VULNERABILITY,Critical
+,"Deep /COPY, /INCLUDE embededdness",FHRPG_DCI,CODE_SMELL,Major
+,Files should be defined externally,FHRPG_FSDE,CODE_SMELL,Minor
+,First Parameter Must be KLIST,FHRPG_FPMK,BUG,Major
+,Large static array,FHRPG_LSA,CODE_SMELL,Minor
+,Line Count Should Defined in INFDS,FHRPG_LCSDI,CODE_SMELL,Major
+,Non-Input Files Should Use No-Lock,FHRPG_NFSUNL,BUG,Critical
+,Odd Numeric Fields Should be Used,FHRPG_ONFSU,BUG,Major
+Documentation Rules,Subroutines Should be Documented,FHRPG_SSD,BUG,Critical
+,Uncommented Long Code Fragment,FHRPG_ULCF,CODE_SMELL,Major
+Naming Rules,File uses prefixed name,FHRPG_FPN,CODE_SMELL,Major
+,Lower case letter in the name of called program or procedure,FHRPG_CWLL,BUG,Critical
+,Subroutine Name Without Naming Convention,FHRPG_SNWNC,CODE_SMELL,Minor
+,Too long name,FHRPG_LVN,BUG,Minor
+,Too short name,FHRPG_SVN,BUG,Minor
+Security Rules,Copyright keyword should be defined in Control Specification,FHRPG_CSD,CODE_SMELL,Minor
+Size Rules,Do block Has Too Many Statements,FHRPG_DHTMS,CODE_SMELL,Major
+,If block Has Too Many Statements,FHRPG_IHTMS,CODE_SMELL,Major
+,WHEN Branch With Too Many Statements,FHRPG_WBWTMS,CODE_SMELL,Major
+Type Rules,Numeric operands of MOVE(L) are not compatible,FHRPG_IMO,BUG,Major
+Unnecessary and Unused Code Rules,Commented RPG statement,FHRPG_CRS,CODE_SMELL,Critical
+,Conditional expression is always false,FHRPG_BNE,BUG,Critical
+,Subroutine is never called,FHRPG_US,CODE_SMELL,Critical
+,Unused variable,FHRPG_UV,CODE_SMELL,Critical
+,Variable only referenced from an unused subroutine,FHRPG_VUIUS,CODE_SMELL,Critical

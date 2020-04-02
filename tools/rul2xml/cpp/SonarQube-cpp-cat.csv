@@ -1,0 +1,326 @@
+Reference of FaultHunter coding rule violations,,,,
+Category,Name,Abbreviation,,Prio.
+Exception Rules,Catching Non Primitive Type Exceptions By Value,FHCPP_CEBV,BUG,Critical
+,Not Public Inheritance From Catch Type,FHCPP_NPIFCT,BUG,Critical
+,Std::exception Not Inherited Publicly,FHCPP_SENIP,BUG,Critical
+Object Orientedness Rules,Member Init Order,FHCPP_IL,BUG,Critical
+,Missing Virtual Destructor Using Delete,FHCPP_MVDUD,VULNERABILITY,Critical
+,Missing Virtual Destructor Using New,FHCPP_MVDUN,VULNERABILITY,Critical
+Performance Rules,Static Data At Namespace Scope In Header,FHCPP_SDANSIH,BUG,Critical
+Readability and Consistency Rules,Hidden Parameter,FHCPP_HP,BUG,Critical
+,Not Defined Evaluation Order,FHCPP_NDEO,BUG,Critical
+,Using Directive In Namespace In Header,FHCPP_UDINIH,BUG,Critical
+Simple Type Rules,Unsigned Compare Less Than Zero,FHCPP_ULTZ,BUG,Critical
+Suspicious Construct Rules,Check For Self Assignment In Assignment Operator,FHCPP_OETS,VULNERABILITY,Critical
+,Self Assignment,FHCPP_SA,BUG,Critical
+,,,,
+Reference of Cppcheck coding rule violations,,,,
+Category,Name,Abbreviation,,Prio.
+API Rules,Invalid Function Arg,CPPCHECK_IFA,BUG,Blocker
+,Invalid Function Arg Bool,CPPCHECK_IFAB,BUG,Blocker
+,Memset Value Out Of Range,CPPCHECK_MVOOR,BUG,Critical
+,Memset Zero Bytes,CPPCHECK_MZB,BUG,Critical
+,Obsolete Functions alloca,CPPCHECK_OFAA,CODE_SMELL,Minor
+,Obsolete Functions asctime,CPPCHECK_OFAT,CODE_SMELL,Minor
+,Obsolete Functions asctime_r,CPPCHECK_OFA,CODE_SMELL,Minor
+,Obsolete Functions bcmp,CPPCHECK_OFBCMP,CODE_SMELL,Minor
+,Obsolete Functions bcopy,CPPCHECK_OFBCPY,CODE_SMELL,Minor
+,Obsolete Functions bsd_signal,CPPCHECK_OFBSS,CODE_SMELL,Minor
+,Obsolete Functions bzero,CPPCHECK_OFBZ,CODE_SMELL,Minor
+,Obsolete Functions ctime_r,CPPCHECK_OFCT,CODE_SMELL,Minor
+,Obsolete Functions ecvt,CPPCHECK_OFECVT,CODE_SMELL,Minor
+,Obsolete Functions fcvt,CPPCHECK_OFFCVT,CODE_SMELL,Minor
+,Obsolete Functions ftime,CPPCHECK_OFFT,CODE_SMELL,Minor
+,Obsolete Functions gcvt,CPPCHECK_OFGCVT,CODE_SMELL,Minor
+,Obsolete Functions getcontext,CPPCHECK_OFGC,CODE_SMELL,Minor
+,Obsolete Functions gethostbyaddr,CPPCHECK_OFGHBA,CODE_SMELL,Minor
+,Obsolete Functions gethostbyname,CPPCHECK_OFGHBN,CODE_SMELL,Minor
+,Obsolete Functions gets,CPPCHECK_OFGS,CODE_SMELL,Minor
+,Obsolete Functions getwd,CPPCHECK_OFGWD,CODE_SMELL,Minor
+,Obsolete Functions index,CPPCHECK_OFI,CODE_SMELL,Minor
+,Obsolete Functions makecontext,CPPCHECK_OFMC,CODE_SMELL,Minor
+,Obsolete Functions pthread_attr_getstackaddr,CPPCHECK_OFPAGSA,CODE_SMELL,Minor
+,Obsolete Functions pthread_attr_setstackaddr,CPPCHECK_OFPASSA,CODE_SMELL,Minor
+,Obsolete Functions rand_r,CPPCHECK_OFR,CODE_SMELL,Minor
+,Obsolete Functions rindex,CPPCHECK_OFRI,CODE_SMELL,Minor
+,Obsolete Functions scalbln,CPPCHECK_OFSB,CODE_SMELL,Minor
+,Obsolete Functions swapcontext,CPPCHECK_OFSC,CODE_SMELL,Minor
+,Obsolete Functions tmpnam,CPPCHECK_OFTN,CODE_SMELL,Minor
+,Obsolete Functions tmpnam_r,CPPCHECK_OFTNR,CODE_SMELL,Minor
+,Obsolete Functions ualarm,CPPCHECK_OFUA,CODE_SMELL,Minor
+,Obsolete Functions usleep,CPPCHECK_OFUS,CODE_SMELL,Minor
+,Obsolete Functions utime,CPPCHECK_OFUT,CODE_SMELL,Minor
+,Obsolete Functions vfork,CPPCHECK_OFVF,CODE_SMELL,Minor
+,Obsolete Functions wcswcs,CPPCHECK_OFWCS,CODE_SMELL,Minor
+,Unprecise Math Call,CPPCHECK_UPMC,BUG,Minor
+,Wrong Math Call,CPPCHECK_WMC,BUG,Critical
+,Wrong Pipe Parameter Size,CPPCHECK_WPPS,BUG,Blocker
+Boost Library Rules,Boost Foreach Error,CPPCHECK_BFE,VULNERABILITY,Blocker
+Buffer Overrun Rules,Argument Size,CPPCHECK_AS,VULNERABILITY,Critical
+,Array Index Out Of Bounds Cond,CPPCHECK_AIOOBC,VULNERABILITY,Critical
+,Array Index Then Check,CPPCHECK_AITC,VULNERABILITY,Minor
+,Buffer Access Out Of Bounds,CPPCHECK_BAOOB,VULNERABILITY,Blocker
+,Buffer Not Zero Terminated,CPPCHECK_BNZT,VULNERABILITY,Critical
+,Insecure Cmd Line Args,CPPCHECK_ICLA,VULNERABILITY,Blocker
+,Negative Index,CPPCHECK_NI,BUG,Blocker
+,Negative Memory Allocation Size,CPPCHECK_NMAS,BUG,Blocker
+,Out Of Bounds,CPPCHECK_OOB,VULNERABILITY,Blocker
+,Pointer Out Of Bounds,CPPCHECK_POOB,VULNERABILITY,Minor
+,Possible Buffer Access Out Of Bounds,CPPCHECK_PBAOOB,VULNERABILITY,Critical
+,Possible Readlink Buffer Overrun,CPPCHECK_PRBO,VULNERABILITY,Critical
+,Size Argument As Char,CPPCHECK_SAAC,VULNERABILITY,Critical
+,Strncat Usage,CPPCHECK_STRCU,VULNERABILITY,Critical
+,Terminate Strncpy,CPPCHECK_TSTRC,VULNERABILITY,Critical
+,Write Outside Buffer Size,CPPCHECK_WOBS,VULNERABILITY,Blocker
+Conditional Rules,Assign If Error,CPPCHECK_AIE,BUG,Minor
+,Clarify Condition,CPPCHECK_CCOND,CODE_SMELL,Minor
+,Comparison Error,CPPCHECK_CE,BUG,Minor
+,Comparison Function Is Always True Or False,CPPCHECK_CFIATOF,BUG,Critical
+,Incorrect Logic Operator,CPPCHECK_ILO,BUG,Critical
+,Mismatching Bit And,CPPCHECK_MBA,BUG,Minor
+,Modulo Always True False,CPPCHECK_MATF,BUG,Critical
+,Multi Condition,CPPCHECK_MCOND,BUG,Minor
+,Opposite Inner Condition,CPPCHECK_OIC,BUG,Critical
+,Redundant Condition,CPPCHECK_RCOND,BUG,Minor
+Division Rules,Zerodiv,CPPCHECK_ZD,VULNERABILITY,Blocker
+,Zerodivcond,CPPCHECK_ZDC,VULNERABILITY,Critical
+Exception Rules,Catch Exception By Value,CPPCHECK_CEBV,BUG,Minor
+,Except Dealloc Throw,CPPCHECK_EDT,VULNERABILITY,Critical
+,Except Rethrow Copy,CPPCHECK_ERC,CODE_SMELL,Minor
+,Except Throw In Attribute No Throw Function,CPPCHECK_ETIANTF,BUG,Blocker
+,Except Throw In Declspec No Throw Function,CPPCHECK_ETIDNTF,BUG,Blocker
+,Except Throw In Destructor,CPPCHECK_ETID,VULNERABILITY,Critical
+,Except Throw In No Throw Function,CPPCHECK_ETINTF,BUG,Blocker
+,Except Throw In Noexecpt Function,CPPCHECK_ETINF,BUG,Blocker
+,Unhandled Exception Specification,CPPCHECK_UES,BUG,Minor
+Initialization Rules,Deadpointer,CPPCHECK_DP,VULNERABILITY,Blocker
+,Uninit Struct Member,CPPCHECK_UISM,VULNERABILITY,Blocker
+,Uninitstring,CPPCHECK_UiS,VULNERABILITY,Blocker
+,Uninitvar,CPPCHECK_UIV,VULNERABILITY,Blocker
+Input Output Rules,Cout Cerr Misusage,CPPCHECK_CCM,VULNERABILITY,Blocker
+,Fflush On Input Stream,CPPCHECK_FOIS,BUG,Minor
+,IO Without Positioning,CPPCHECK_IOWP,BUG,Blocker
+,Invalid Length Modifier Error,CPPCHECK_ILME,BUG,Critical
+,Invalid Printf Arg Type_float,CPPCHECK_IPATF,BUG,Critical
+,Invalid Printf Arg Type_int,CPPCHECK_IPATI,BUG,Critical
+,Invalid Printf Arg Type_n,CPPCHECK_IPATN,BUG,Critical
+,Invalid Printf Arg Type_p,CPPCHECK_IPATP,BUG,Critical
+,Invalid Printf Arg Type_s,CPPCHECK_IPATS,BUG,Critical
+,Invalid Printf Arg Type_sint,CPPCHECK_IPATSI,BUG,Critical
+,Invalid Printf Arg Type_uint,CPPCHECK_IPATUI,BUG,Critical
+,Invalid Scanf,CPPCHECK_IS,VULNERABILITY,Critical
+,Invalid Scanf Arg Type_float,CPPCHECK_ISATF,VULNERABILITY,Critical
+,Invalid Scanf Arg Type_int,CPPCHECK_ISATI,VULNERABILITY,Critical
+,Invalid Scanf Arg Type_s,CPPCHECK_ISATS,VULNERABILITY,Critical
+,Invalid Scanf Format Width,CPPCHECK_ISFW,VULNERABILITY,Blocker
+,Invalid Scanf Format Width_smaller,CPPCHECK_ISFWS,VULNERABILITY,Critical
+,Invalid Scanf LibC,CPPCHECK_ISL,VULNERABILITY,Minor
+,Read Write Only File,CPPCHECK_RWOF,BUG,Blocker
+,Seek On Appended File,CPPCHECK_SOAF,BUG,Critical
+,Use Closed File,CPPCHECK_UCF,BUG,Blocker
+,Write Read Only File,CPPCHECK_WROF,BUG,Blocker
+,Wrong Printf Scanf Arg Num,CPPCHECK_WPSAN,BUG,Blocker
+,Wrong Printf Scanf Parameter Position Error,CPPCHECK_WPSPPE,VULNERABILITY,Critical
+Memory Handling Rules,Auto Variables,CPPCHECK_AV,VULNERABILITY,Blocker
+,Autovar Invalid Deallocation,CPPCHECK_AID,VULNERABILITY,Blocker
+,Dealloc Dealloc,CPPCHECK_DD,BUG,Blocker
+,Deallocret,CPPCHECK_DAR,BUG,Blocker
+,Deallocuse,CPPCHECK_DU,BUG,Blocker
+,Double Free,CPPCHECK_DF,BUG,Blocker
+,Ignored Return Value,CPPCHECK_IRV,VULNERABILITY,Critical
+,Incomplete Array Fill,CPPCHECK_IAF,VULNERABILITY,Critical
+,Invalid Free,CPPCHECK_IF,BUG,Blocker
+,Leak No Var Function Call,CPPCHECK_LNVFC,VULNERABILITY,Blocker
+,Memleak,CPPCHECK_ML,VULNERABILITY,Blocker
+,Memleak On Realloc,CPPCHECK_MOR,VULNERABILITY,Blocker
+,Mismatch Alloc Dealloc,CPPCHECK_MAD,VULNERABILITY,Blocker
+,Mismatch Size,CPPCHECK_MS,VULNERABILITY,Blocker
+,Null Pointer,CPPCHECK_NP,VULNERABILITY,Blocker
+,Public Allocation Error,CPPCHECK_PAE,VULNERABILITY,Critical
+,Resource Leak,CPPCHECK_RL,VULNERABILITY,Blocker
+,Return Address Of Auto Variable,CPPCHECK_RAOAV,VULNERABILITY,Blocker
+,Return Address Of Function Parameter,CPPCHECK_RAOFP,VULNERABILITY,Blocker
+,Return Local Variable,CPPCHECK_RLV,VULNERABILITY,Blocker
+,Return Reference,CPPCHECK_RF,VULNERABILITY,Blocker
+,Return Temp Reference,CPPCHECK_RTF,VULNERABILITY,Blocker
+,Unsafe Class Can Leak,CPPCHECK_UCCL,VULNERABILITY,Minor
+,Useless Assignment Arg,CPPCHECK_UAA,CODE_SMELL,Minor
+,Useless Assignment Ptr Arg,CPPCHECK_UAPARG,VULNERABILITY,Critical
+Object Orientedness Rules,Copy Ctor Pointer Copying,CPPCHECK_CCPC,BUG,Minor
+,Dupl Inherited Member,CPPCHECK_DIM,BUG,Critical
+,Function Const,CPPCHECK_FC,CODE_SMELL,Minor
+,Function Static,CPPCHECK_FS,CODE_SMELL,Major
+,Malloc On Class Error,CPPCHECK_MOCE,VULNERABILITY,Blocker
+,Malloc On Class Warning,CPPCHECK_MOCW,VULNERABILITY,Critical
+,Memset Class,CPPCHECK_MC,VULNERABILITY,Blocker
+,Memset Class Float,CPPCHECK_MCF,BUG,Minor
+,Memset Class Reference,CPPCHECK_MCR,VULNERABILITY,Blocker
+,No Constructor,CPPCHECK_NC,BUG,Minor
+,No Copy Constructor,CPPCHECK_NCC,BUG,Minor
+,Operator Eq,CPPCHECK_OE,CODE_SMELL,Minor
+,Operator Eq Ret Ref This,CPPCHECK_OERRT,CODE_SMELL,Minor
+,Operator Eq To Self,CPPCHECK_OETS,BUG,Critical
+,Operator Eq Var Error,CPPCHECK_OEVE,BUG,Critical
+,Pure Virtual Call,CPPCHECK_PVC,BUG,Critical
+,Self Initialization,CPPCHECK_SI,BUG,Blocker
+,This Subtraction,CPPCHECK_TS,BUG,Critical
+,Uninit Member Var,CPPCHECK_UMV,VULNERABILITY,Critical
+,Unused Private Function,CPPCHECK_UPF,CODE_SMELL,Minor
+,Use Initialization List,CPPCHECK_UIL,CODE_SMELL,Major
+,Virtual Destructor,CPPCHECK_VD,VULNERABILITY,Blocker
+Performance Rules,Passed By Value,CPPCHECK_PBV,CODE_SMELL,Major
+,Postfix Operator,CPPCHECK_PO,CODE_SMELL,Major
+,Redundant Assignment,CPPCHECK_RA,CODE_SMELL,Major
+,Redundant Copy,CPPCHECK_RCPY,CODE_SMELL,Major
+,Redundant Copy Local Const,CPPCHECK_RCLC,CODE_SMELL,Major
+Portability Rules,Assignment Address To Integer,CPPCHECK_AATI,CODE_SMELL,Minor
+,Assignment Integer To Address,CPPCHECK_AITA,CODE_SMELL,Minor
+,Cast Address To Integer At Return,CPPCHECK_CATIAR,CODE_SMELL,Minor
+,Cast Integer To Address At Return,CPPCHECK_CITAAR,CODE_SMELL,Minor
+,Unnecessary Qualification,CPPCHECK_UQ,CODE_SMELL,Minor
+Readability and Consistency Rules,Clarify Calculation,CPPCHECK_CCALC,CODE_SMELL,Minor
+,Clarify Statement,CPPCHECK_CSTAT,CODE_SMELL,Critical
+,Comma Separated Return,CPPCHECK_CSR,CODE_SMELL,Minor
+,Cstyle Cast,CPPCHECK_CSC,CODE_SMELL,Minor
+,Suspicious Semicolon,CPPCHECK_SS,CODE_SMELL,Critical
+,Variable Hiding Enum,CPPCHECK_VHE,CODE_SMELL,Minor
+,Variable Hiding Typedef,CPPCHECK_VHT,CODE_SMELL,Minor
+,Variable Scope,CPPCHECK_VS,CODE_SMELL,Minor
+Reentrancy Rules,Nonreentrant Functions crypt,CPPCHECK_NRFCR,CODE_SMELL,Minor
+,Nonreentrant Functions ctermid,CPPCHECK_NRFCT,CODE_SMELL,Minor
+,Nonreentrant Functions ecvt,CPPCHECK_NRFEC,CODE_SMELL,Minor
+,Nonreentrant Functions fcvt,CPPCHECK_NRFFC,CODE_SMELL,Minor
+,Nonreentrant Functions fgetgrent,CPPCHECK_NRFFGG,CODE_SMELL,Minor
+,Nonreentrant Functions fgetpwent,CPPCHECK_NRFFGP,CODE_SMELL,Minor
+,Nonreentrant Functions fgetspent,CPPCHECK_NRFFGS,CODE_SMELL,Minor
+,Nonreentrant Functions gcvt,CPPCHECK_NRFGC,CODE_SMELL,Minor
+,Nonreentrant Functions getgrent,CPPCHECK_NRFGG,CODE_SMELL,Minor
+,Nonreentrant Functions getgrgid,CPPCHECK_NRFGGG,CODE_SMELL,Minor
+,Nonreentrant Functions getgrnam,CPPCHECK_NRFGGN,CODE_SMELL,Minor
+,Nonreentrant Functions gethostbyaddr,CPPCHECK_NRFGHBA,CODE_SMELL,Minor
+,Nonreentrant Functions gethostbyname,CPPCHECK_NRFGHBN,CODE_SMELL,Minor
+,Nonreentrant Functions gethostbyname2,CPPCHECK_NRFGHBN2,CODE_SMELL,Minor
+,Nonreentrant Functions gethostent,CPPCHECK_NRFGH,CODE_SMELL,Minor
+,Nonreentrant Functions getlogin,CPPCHECK_NRFGL,CODE_SMELL,Minor
+,Nonreentrant Functions getnetbyaddr,CPPCHECK_NRFGNBA,CODE_SMELL,Minor
+,Nonreentrant Functions getnetbyname,CPPCHECK_NRFGNBN,CODE_SMELL,Minor
+,Nonreentrant Functions getnetgrent,CPPCHECK_NRFGNG,CODE_SMELL,Minor
+,Nonreentrant Functions getprotobyname,CPPCHECK_NRFGPBN,CODE_SMELL,Minor
+,Nonreentrant Functions getpwent,CPPCHECK_NRFGPE,CODE_SMELL,Minor
+,Nonreentrant Functions getpwnam,CPPCHECK_NRFGPN,CODE_SMELL,Minor
+,Nonreentrant Functions getpwuid,CPPCHECK_NRFGPU,CODE_SMELL,Minor
+,Nonreentrant Functions getrpcbyname,CPPCHECK_NRFGRBNA,CODE_SMELL,Minor
+,Nonreentrant Functions getrpcbynumber,CPPCHECK_NRFGRBNU,CODE_SMELL,Minor
+,Nonreentrant Functions getrpcent,CPPCHECK_NRFGRP,CODE_SMELL,Minor
+,Nonreentrant Functions getservbyname,CPPCHECK_NRFGSBN,CODE_SMELL,Minor
+,Nonreentrant Functions getservbyport,CPPCHECK_NRFGSBP,CODE_SMELL,Minor
+,Nonreentrant Functions getservent,CPPCHECK_NRFGS,CODE_SMELL,Minor
+,Nonreentrant Functions getspent,CPPCHECK_NRFGSE,CODE_SMELL,Minor
+,Nonreentrant Functions getspnam,CPPCHECK_NRFGSN,CODE_SMELL,Minor
+,Nonreentrant Functions gmtime,CPPCHECK_NRFGMT,CODE_SMELL,Minor
+,Nonreentrant Functions localtime,CPPCHECK_NRFLT,CODE_SMELL,Minor
+,Nonreentrant Functions readdir,CPPCHECK_NRFRD,CODE_SMELL,Minor
+,Nonreentrant Functions strtok,CPPCHECK_NRFST,CODE_SMELL,Minor
+,Nonreentrant Functions tempnam,CPPCHECK_NRFTN,CODE_SMELL,Minor
+,Nonreentrant Functions ttyname,CPPCHECK_NRFTTYN,CODE_SMELL,Minor
+STL Rules,Deref Invalid Iterator,CPPCHECK_DII,BUG,Critical
+,Erase Dereference,CPPCHECK_ED,BUG,Blocker
+,Invalid Iterator1,CPPCHECK_IIT,BUG,Blocker
+,Invalid Iterator2,CPPCHECK_IIT2,BUG,Blocker
+,Invalid Pointer,CPPCHECK_IP,BUG,Blocker
+,Iterators,CPPCHECK_IT,BUG,Blocker
+,Mismatching Containers,CPPCHECK_MMC,BUG,Blocker
+,Read Empty Container,CPPCHECK_REC,CODE_SMELL,Minor
+,Redundant If Remove,CPPCHECK_RIR,CODE_SMELL,Minor
+,Stl Boundaries,CPPCHECK_STLB,BUG,Blocker
+,Stl If Find,CPPCHECK_STLIF,BUG,Critical
+,Stl If Str Find,CPPCHECK_STLISF,CODE_SMELL,Major
+,Stl Missing Comparison,CPPCHECK_STLMC,BUG,Critical
+,Stl Out Of Bounds,CPPCHECK_STLOOB,VULNERABILITY,Blocker
+,Stl Size,CPPCHECK_STLS,CODE_SMELL,Major
+,Stlcstr,CPPCHECK_STLC,VULNERABILITY,Blocker
+,Stlcstr Param,CPPCHECK_SCP,CODE_SMELL,Major
+,Stlcstr Return,CPPCHECK_SCR,CODE_SMELL,Major
+,Stlcstr Throw,CPPCHECK_SCT,VULNERABILITY,Blocker
+,Use Auto Pointer Array,CPPCHECK_UAPA,VULNERABILITY,Blocker
+,Use Auto Pointer Container,CPPCHECK_UAPC,BUG,Blocker
+,Use Auto Pointer Copy,CPPCHECK_UAPCPY,BUG,Minor
+,Useless Calls Compare,CPPCHECK_UCC,BUG,Critical
+,Useless Calls Empty,CPPCHECK_UCE,BUG,Critical
+,Useless Calls Remove,CPPCHECK_UCR,BUG,Critical
+,Useless Calls Substr,CPPCHECK_UCSS,CODE_SMELL,Major
+,Useless Calls Swap,CPPCHECK_UCS,BUG,Major
+Side Effect Rules,Assert With Side Effect,CPPCHECK_AWSE,BUG,Critical
+,Assignment In Assert,CPPCHECK_AIA,BUG,Critical
+Simple Type Rules,Assign Bool To Float,CPPCHECK_ABTF,BUG,Minor
+,Assign Bool To Pointer,CPPCHECK_ABTP,BUG,Blocker
+,Bitwise On Boolean,CPPCHECK_BOB,BUG,Minor
+,Char Array Index,CPPCHECK_CAI,VULNERABILITY,Critical
+,Char Bit Op,CPPCHECK_CBO,BUG,Critical
+,Char Literal With Char Ptr Compare,CPPCHECK_CLWCPC,BUG,Critical
+,Check Cast Int To Char And Back,CPPCHECK_CCITCAB,BUG,Critical
+,Compare Bool Expression With Int,CPPCHECK_CBEWI,BUG,Critical
+,Comparison Of Bool With Bool Error,CPPCHECK_COBWBE,BUG,Minor
+,Comparison Of Bool With Int,CPPCHECK_COBWI,BUG,Critical
+,Comparison Of Bool With Invalid Comparator,CPPCHECK_COBWIC,BUG,Critical
+,Comparison Of Func Returning Bool Error,CPPCHECK_COFRBE,BUG,Minor
+,Comparison Of Two Funcs Returning Bool Error,CPPCHECK_COTFRBE,BUG,Minor
+,Incorrect String Boolean Error,CPPCHECK_ISBE,BUG,Critical
+,Incorrect String Compare,CPPCHECK_ISC,BUG,Critical
+,Increment Boolean,CPPCHECK_IB,BUG,Minor
+,Integer Overflow,CPPCHECK_IO,VULNERABILITY,Blocker
+,Invalid Pointer Cast,CPPCHECK_IPC,BUG,Minor
+,Literal With Char Ptr Compare,CPPCHECK_LWCPC,BUG,Critical
+,Memset Float,CPPCHECK_MF,BUG,Minor
+,Pointer Arith Bool,CPPCHECK_PAB,BUG,Blocker
+,Pointer Less Than Zero,CPPCHECK_PLTZ,BUG,Minor
+,Pointer Positive,CPPCHECK_PP,BUG,Minor
+,Shift Negative,CPPCHECK_SN,BUG,Blocker
+,Shift Too Many Bits,CPPCHECK_STMB,BUG,Blocker
+,Sign Conversion,CPPCHECK_SC,BUG,Critical
+,Sprintf Overlapping Data,CPPCHECK_SOD,BUG,Blocker
+,Static String Compare,CPPCHECK_SSC,BUG,Critical
+,Str Plus Char,CPPCHECK_SPC,BUG,Blocker
+,String Compare,CPPCHECK_STRCMP,BUG,Critical
+,Unsigned Less Than Zero,CPPCHECK_ULTZ,BUG,Minor
+,Unsigned Positive,CPPCHECK_UP,BUG,Minor
+Sizeof Operator Rules,Arith Operations On Void Pointer,CPPCHECK_AOOVP,BUG,Minor
+,Divide Sizeof,CPPCHECK_DSO,BUG,Critical
+,Multiply Sizeof,CPPCHECK_MSO,BUG,Critical
+,Pointer Size,CPPCHECK_PS,BUG,Critical
+,Sizeof Calculation,CPPCHECK_SOC,BUG,Critical
+,Sizeof Dereferenced Void Pointer,CPPCHECK_SODVP,BUG,Minor
+,Sizeof Division Memfunc,CPPCHECK_SODMF,BUG,Critical
+,Sizeof Sizeof,CPPCHECK_SOSO,BUG,Critical
+,Sizeof Void,CPPCHECK_SOV,BUG,Minor
+,Sizeof With Numeric Parameter,CPPCHECK_SOWNP,BUG,Critical
+,Sizeof With Silent Array Pointer,CPPCHECK_SOWSAP,BUG,Critical
+Suspicious Construct Rules,Const Statement,CPPCHECK_CS,BUG,Critical
+,Double Close Dir,CPPCHECK_DCD,BUG,Blocker
+,Duplicate Branch,CPPCHECK_DBRANCH,BUG,Minor
+,Duplicate Expression,CPPCHECK_DEXPR,BUG,Minor
+,Nan In Arithmetic Expression,CPPCHECK_NIAE,BUG,Minor
+,Redundant Assign In Switch,CPPCHECK_RAIS,BUG,Critical
+,Redundant Bitwise Operation In Switch,CPPCHECK_RBOIS,BUG,Critical
+,Redundant Copy In Switch,CPPCHECK_RCIS,BUG,Critical
+,Redundant Get And Set User Id,CPPCHECK_RGASUI,BUG,Critical
+,Self Assignment,CPPCHECK_SA,BUG,Critical
+,Suspicious Case,CPPCHECK_SUSPC,BUG,Critical
+,Suspicious Equality Comparison,CPPCHECK_SEC,BUG,Critical
+,Switch Case Fall Through,CPPCHECK_SCFT,CODE_SMELL,Minor
+,Unused Scoped Object,CPPCHECK_UUSO,BUG,Blocker
+Unnecessary and Unused Code Rules,Unassigned Variable,CPPCHECK_UAV,VULNERABILITY,Minor
+,Unnecessary Forward Declaration,CPPCHECK_UNFD,CODE_SMELL,Minor
+,Unread Variable,CPPCHECK_URV,CODE_SMELL,Minor
+,Unused Allocated Memory,CPPCHECK_UUAM,CODE_SMELL,Minor
+,Unused Function,CPPCHECK_UUF,CODE_SMELL,Minor
+,Unused Struct Member,CPPCHECK_UUSM,CODE_SMELL,Minor
+,Unused Variable,CPPCHECK_UUV,CODE_SMELL,Minor
+Unreachable Code Rules,Duplicate Break,CPPCHECK_DBREAK,CODE_SMELL,Minor
+,Unreachable Code,CPPCHECK_URC,CODE_SMELL,Minor
+Variable Argument Related Rules,Va_end Missing,CPPCHECK_VAEM,BUG,Blocker
+,Va_list Used Before Started,CPPCHECK_VALUBS,BUG,Blocker
+,Va_start Reference Passed,CPPCHECK_VASRP,BUG,Blocker
+,Va_start Subsequent Calls,CPPCHECK_VASSC,BUG,Blocker
+,Va_start Wrong Parameter,CPPCHECK_VASWP,BUG,Critical
+,Var Func Null UB,CPPCHECK_VFNUB,BUG,Minor

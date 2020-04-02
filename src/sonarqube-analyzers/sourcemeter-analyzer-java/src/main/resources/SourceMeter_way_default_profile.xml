@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" ?>
 <profile>
   <name>SourceMeter way</name>
   <language>java</language>
@@ -155,18 +155,8 @@
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
-      <key>ACF</key>
-      <priority>MAJOR</priority>
-    </rule>
-    <rule>
-      <repositoryKey>SourceMeter_java</repositoryKey>
       <key>ACGE</key>
       <priority>MAJOR</priority>
-    </rule>
-    <rule>
-      <repositoryKey>SourceMeter_java</repositoryKey>
-      <key>ACI</key>
-      <priority>MINOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
@@ -177,11 +167,6 @@
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>ADL</key>
       <priority>MAJOR</priority>
-    </rule>
-    <rule>
-      <repositoryKey>SourceMeter_java</repositoryKey>
-      <key>ADLIBDC</key>
-      <priority>CRITICAL</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
@@ -200,18 +185,23 @@
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
+      <key>AFS</key>
+      <priority>CRITICAL</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_java</repositoryKey>
       <key>ALEI</key>
       <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
-      <key>AMUO</key>
-      <priority>MAJOR</priority>
+      <key>AMG</key>
+      <priority>MINOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
-      <key>APFIFC</key>
-      <priority>MINOR</priority>
+      <key>AMUO</key>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
@@ -221,6 +211,11 @@
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>APMP</key>
+      <priority>MINOR</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_java</repositoryKey>
+      <key>ARLV</key>
       <priority>MINOR</priority>
     </rule>
     <rule>
@@ -275,11 +270,6 @@
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
-      <key>BC</key>
-      <priority>CRITICAL</priority>
-    </rule>
-    <rule>
-      <repositoryKey>SourceMeter_java</repositoryKey>
       <key>BNC</key>
       <priority>CRITICAL</priority>
     </rule>
@@ -290,13 +280,13 @@
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
-      <key>CCEWTA</key>
+      <key>CCOM</key>
       <priority>CRITICAL</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
-      <key>CCOM</key>
-      <priority>CRITICAL</priority>
+      <key>CII</key>
+      <priority>MINOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
@@ -310,13 +300,23 @@
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
-      <key>CNC</key>
+      <key>CMMBP</key>
+      <priority>MINOR</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_java</repositoryKey>
+      <key>CMRTMMCN</key>
       <priority>MINOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>CRS</key>
       <priority>CRITICAL</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_java</repositoryKey>
+      <key>CSB</key>
+      <priority>MINOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
@@ -335,18 +335,8 @@
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
-      <key>ClMMIC</key>
-      <priority>MAJOR</priority>
-    </rule>
-    <rule>
-      <repositoryKey>SourceMeter_java</repositoryKey>
-      <key>DCL</key>
-      <priority>CRITICAL</priority>
-    </rule>
-    <rule>
-      <repositoryKey>SourceMeter_java</repositoryKey>
-      <key>DCTR</key>
-      <priority>CRITICAL</priority>
+      <key>DC</key>
+      <priority>MINOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
@@ -365,17 +355,12 @@
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
-      <key>DNCGCE</key>
-      <priority>MAJOR</priority>
-    </rule>
-    <rule>
-      <repositoryKey>SourceMeter_java</repositoryKey>
-      <key>DNCSE</key>
+      <key>DNEJLE</key>
       <priority>CRITICAL</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
-      <key>DNEJLE</key>
+      <key>DNEJLT</key>
       <priority>CRITICAL</priority>
     </rule>
     <rule>
@@ -400,11 +385,6 @@
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
-      <key>EF</key>
-      <priority>MINOR</priority>
-    </rule>
-    <rule>
-      <repositoryKey>SourceMeter_java</repositoryKey>
       <key>EMIACSBA</key>
       <priority>MAJOR</priority>
     </rule>
@@ -420,11 +400,6 @@
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
-      <key>ESI</key>
-      <priority>MINOR</priority>
-    </rule>
-    <rule>
-      <repositoryKey>SourceMeter_java</repositoryKey>
       <key>ESNIL</key>
       <priority>MINOR</priority>
     </rule>
@@ -432,11 +407,6 @@
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>EmSB</key>
       <priority>MINOR</priority>
-    </rule>
-    <rule>
-      <repositoryKey>SourceMeter_java</repositoryKey>
-      <key>FDNCSF</key>
-      <priority>CRITICAL</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
@@ -450,7 +420,17 @@
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
+      <key>FLCBF</key>
+      <priority>MINOR</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_java</repositoryKey>
       <key>FLSBWL</key>
+      <priority>MINOR</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_java</repositoryKey>
+      <key>FLVC</key>
       <priority>MINOR</priority>
     </rule>
     <rule>
@@ -465,28 +445,28 @@
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
-      <key>FSBP</key>
-      <priority>CRITICAL</priority>
-    </rule>
-    <rule>
-      <repositoryKey>SourceMeter_java</repositoryKey>
-      <key>GDL</key>
-      <priority>MAJOR</priority>
-    </rule>
-    <rule>
-      <repositoryKey>SourceMeter_java</repositoryKey>
       <key>GLS</key>
-      <priority>MINOR</priority>
-    </rule>
-    <rule>
-      <repositoryKey>SourceMeter_java</repositoryKey>
-      <key>GLSJU</key>
       <priority>MINOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>GN</key>
       <priority>MINOR</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_java</repositoryKey>
+      <key>HCCK</key>
+      <priority>CRITICAL</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_java</repositoryKey>
+      <key>ICB</key>
+      <priority>MINOR</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_java</repositoryKey>
+      <key>ICI</key>
+      <priority>CRITICAL</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
@@ -505,18 +485,13 @@
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
+      <key>IS4MF</key>
+      <priority>MINOR</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_java</repositoryKey>
       <key>ISB</key>
       <priority>MINOR</priority>
-    </rule>
-    <rule>
-      <repositoryKey>SourceMeter_java</repositoryKey>
-      <key>ISMUB</key>
-      <priority>MINOR</priority>
-    </rule>
-    <rule>
-      <repositoryKey>SourceMeter_java</repositoryKey>
-      <key>ITGC</key>
-      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
@@ -531,11 +506,6 @@
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>JUS</key>
-      <priority>CRITICAL</priority>
-    </rule>
-    <rule>
-      <repositoryKey>SourceMeter_java</repositoryKey>
-      <key>JUSS</key>
       <priority>CRITICAL</priority>
     </rule>
     <rule>
@@ -580,18 +550,13 @@
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
-      <key>MRIA</key>
-      <priority>MAJOR</priority>
+      <key>MO</key>
+      <priority>MINOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>MSMINIC</key>
       <priority>MINOR</priority>
-    </rule>
-    <rule>
-      <repositoryKey>SourceMeter_java</repositoryKey>
-      <key>MSVUID</key>
-      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
@@ -630,28 +595,13 @@
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
-      <key>OTAC</key>
-      <priority>MAJOR</priority>
-    </rule>
-    <rule>
-      <repositoryKey>SourceMeter_java</repositoryKey>
       <key>PC</key>
       <priority>MINOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
-      <key>PCI</key>
-      <priority>CRITICAL</priority>
-    </rule>
-    <rule>
-      <repositoryKey>SourceMeter_java</repositoryKey>
       <key>PL</key>
       <priority>MINOR</priority>
-    </rule>
-    <rule>
-      <repositoryKey>SourceMeter_java</repositoryKey>
-      <key>REARTN</key>
-      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
@@ -705,6 +655,11 @@
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
+      <key>SCRNI</key>
+      <priority>MAJOR</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_java</repositoryKey>
       <key>SEJBFSBF</key>
       <priority>CRITICAL</priority>
     </rule>
@@ -720,12 +675,17 @@
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
+      <key>SMS</key>
+      <priority>MAJOR</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_java</repositoryKey>
       <key>SOE</key>
       <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
-      <key>STS</key>
+      <key>ST</key>
       <priority>MINOR</priority>
     </rule>
     <rule>
@@ -780,6 +740,11 @@
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
+      <key>UAVE</key>
+      <priority>MINOR</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_java</repositoryKey>
       <key>UBA</key>
       <priority>MINOR</priority>
     </rule>
@@ -810,6 +775,11 @@
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
+      <key>UDO</key>
+      <priority>MINOR</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_java</repositoryKey>
       <key>UEC</key>
       <priority>MINOR</priority>
     </rule>
@@ -830,13 +800,13 @@
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
-      <key>UNCIE</key>
+      <key>UOOI</key>
       <priority>CRITICAL</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
-      <key>UOOI</key>
-      <priority>CRITICAL</priority>
+      <key>UQT</key>
+      <priority>MINOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
@@ -845,22 +815,37 @@
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
+      <key>USF</key>
+      <priority>MINOR</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_java</repositoryKey>
+      <key>UTWR</key>
+      <priority>MINOR</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_java</repositoryKey>
+      <key>UUINL</key>
+      <priority>MINOR</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_java</repositoryKey>
       <key>UV</key>
       <priority>MINOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
-      <key>UWOC</key>
-      <priority>MAJOR</priority>
-    </rule>
-    <rule>
-      <repositoryKey>SourceMeter_java</repositoryKey>
-      <key>VNC</key>
+      <key>UnM</key>
       <priority>MINOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>CI</key>
+      <priority>BLOCKER</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_java</repositoryKey>
+      <key>DLC</key>
       <priority>BLOCKER</priority>
     </rule>
     <rule>
@@ -880,7 +865,37 @@
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
+      <key>SECC</key>
+      <priority>BLOCKER</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_java</repositoryKey>
       <key>SQLI</key>
+      <priority>BLOCKER</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_java</repositoryKey>
+      <key>TB</key>
+      <priority>BLOCKER</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_java</repositoryKey>
+      <key>WCR</key>
+      <priority>BLOCKER</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_java</repositoryKey>
+      <key>WH</key>
+      <priority>BLOCKER</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_java</repositoryKey>
+      <key>WR</key>
+      <priority>BLOCKER</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_java</repositoryKey>
+      <key>XPI</key>
       <priority>BLOCKER</priority>
     </rule>
     <rule>
@@ -1285,33 +1300,48 @@
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
+      <key>ACF</key>
+      <priority>MAJOR</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_java</repositoryKey>
+      <key>ADLIBDC</key>
+      <priority>MAJOR</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_java</repositoryKey>
       <key>AOSOCA</key>
       <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
+      <key>APFIFC</key>
+      <priority>INFO</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_java</repositoryKey>
       <key>BA</key>
-      <priority>CRITICAL</priority>
-    </rule>
-    <rule>
-      <repositoryKey>SourceMeter_java</repositoryKey>
-      <key>BAOSB</key>
-      <priority>CRITICAL</priority>
-    </rule>
-    <rule>
-      <repositoryKey>SourceMeter_java</repositoryKey>
-      <key>BAZ</key>
-      <priority>CRITICAL</priority>
-    </rule>
-    <rule>
-      <repositoryKey>SourceMeter_java</repositoryKey>
-      <key>BBCTAC</key>
       <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
+      <key>BAOSB</key>
+      <priority>MAJOR</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_java</repositoryKey>
+      <key>BAZ</key>
+      <priority>MAJOR</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_java</repositoryKey>
+      <key>BBCTAC</key>
+      <priority>INFO</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_java</repositoryKey>
       <key>BBCTCC</key>
-      <priority>CRITICAL</priority>
+      <priority>INFO</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
@@ -1326,37 +1356,42 @@
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>BBOA</key>
-      <priority>CRITICAL</priority>
+      <priority>MAJOR</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_java</repositoryKey>
+      <key>BC</key>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>BEMSWFAO</key>
-      <priority>CRITICAL</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>BIC</key>
-      <priority>BLOCKER</priority>
+      <priority>CRITICAL</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>BID</key>
-      <priority>BLOCKER</priority>
+      <priority>CRITICAL</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>BIOSB</key>
-      <priority>CRITICAL</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>BSC</key>
-      <priority>CRITICAL</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>BSCHB</key>
-      <priority>CRITICAL</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
@@ -1366,12 +1401,12 @@
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>BUC</key>
-      <priority>CRITICAL</priority>
+      <priority>INFO</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>BUCORV</key>
-      <priority>CRITICAL</priority>
+      <priority>INFO</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
@@ -1381,7 +1416,12 @@
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>BVI</key>
-      <priority>CRITICAL</priority>
+      <priority>INFO</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_java</repositoryKey>
+      <key>BWAP</key>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
@@ -1391,11 +1431,21 @@
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>BiI</key>
-      <priority>CRITICAL</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>CAS</key>
+      <priority>MAJOR</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_java</repositoryKey>
+      <key>CCEWTA</key>
+      <priority>CRITICAL</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_java</repositoryKey>
+      <key>CCIF</key>
       <priority>MAJOR</priority>
     </rule>
     <rule>
@@ -1410,6 +1460,11 @@
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
+      <key>CNC</key>
+      <priority>MAJOR</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_java</repositoryKey>
       <key>CRCV</key>
       <priority>MAJOR</priority>
     </rule>
@@ -1420,13 +1475,18 @@
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
+      <key>ClMMIC</key>
+      <priority>MAJOR</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_java</repositoryKey>
       <key>DAINVTR</key>
       <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>DAWO</key>
-      <priority>MINOR</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
@@ -1436,12 +1496,17 @@
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>DBM</key>
-      <priority>CRITICAL</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>DBMOU</key>
-      <priority>BLOCKER</priority>
+      <priority>MAJOR</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_java</repositoryKey>
+      <key>DBPFC</key>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
@@ -1456,77 +1521,87 @@
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>DCCIDP</key>
-      <priority>MAJOR</priority>
+      <priority>INFO</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>DCDP</key>
-      <priority>BLOCKER</priority>
+      <priority>MAJOR</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_java</repositoryKey>
+      <key>DCL</key>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>DCNFH</key>
-      <priority>CRITICAL</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>DCOU</key>
-      <priority>BLOCKER</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>DCSNCT</key>
-      <priority>CRITICAL</priority>
+      <priority>MAJOR</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_java</repositoryKey>
+      <key>DCTR</key>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>DDB</key>
-      <priority>CRITICAL</priority>
+      <priority>INFO</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>DDE</key>
-      <priority>MAJOR</priority>
+      <priority>INFO</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>DDIDP</key>
-      <priority>MAJOR</priority>
+      <priority>INFO</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>DDLS</key>
-      <priority>CRITICAL</priority>
+      <priority>INFO</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>DDLSIR</key>
-      <priority>CRITICAL</priority>
+      <priority>INFO</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>DDLSON</key>
-      <priority>CRITICAL</priority>
+      <priority>INFO</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>DDLSSF</key>
-      <priority>MAJOR</priority>
+      <priority>INFO</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>DDSC</key>
-      <priority>CRITICAL</priority>
+      <priority>INFO</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>DDSOCL</key>
-      <priority>CRITICAL</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>DEDP</key>
-      <priority>CRITICAL</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
@@ -1536,7 +1611,7 @@
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>DFATCMSOSTPE</key>
-      <priority>MINOR</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
@@ -1546,27 +1621,32 @@
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>DHAF</key>
-      <priority>CRITICAL</priority>
+      <priority>INFO</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>DIHOA</key>
-      <priority>CRITICAL</priority>
+      <priority>MAJOR</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_java</repositoryKey>
+      <key>DIMM</key>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>DITOA</key>
-      <priority>CRITICAL</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>DITOAA</key>
-      <priority>CRITICAL</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>DLBTDIOI</key>
-      <priority>CRITICAL</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
@@ -1585,13 +1665,23 @@
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
+      <key>DNCGCE</key>
+      <priority>MAJOR</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_java</repositoryKey>
+      <key>DNCSE</key>
+      <priority>MAJOR</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_java</repositoryKey>
       <key>DNOW</key>
-      <priority>CRITICAL</priority>
+      <priority>INFO</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>DNUT</key>
-      <priority>MAJOR</priority>
+      <priority>INFO</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
@@ -1601,7 +1691,12 @@
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>DOI</key>
-      <priority>CRITICAL</priority>
+      <priority>MAJOR</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_java</repositoryKey>
+      <key>DPC</key>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
@@ -1611,7 +1706,7 @@
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>DRUOO</key>
-      <priority>CRITICAL</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
@@ -1621,27 +1716,27 @@
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>DSOB</key>
-      <priority>CRITICAL</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>DSOBP</key>
-      <priority>CRITICAL</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>DSOSC</key>
-      <priority>CRITICAL</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>DSOUBP</key>
-      <priority>CRITICAL</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>DSTPEWZCT</key>
-      <priority>MINOR</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
@@ -1651,17 +1746,17 @@
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>DUM</key>
-      <priority>MAJOR</priority>
+      <priority>INFO</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>DURTCC</key>
-      <priority>CRITICAL</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>DUS</key>
-      <priority>CRITICAL</priority>
+      <priority>INFO</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
@@ -1671,12 +1766,12 @@
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>DVCTEM</key>
-      <priority>CRITICAL</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>DVSCC</key>
-      <priority>CRITICAL</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
@@ -1686,12 +1781,12 @@
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>EAAN</key>
-      <priority>CRITICAL</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>EAF</key>
-      <priority>BLOCKER</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
@@ -1701,12 +1796,12 @@
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>EAT</key>
-      <priority>BLOCKER</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>EBAC</key>
-      <priority>CRITICAL</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
@@ -1731,7 +1826,7 @@
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>ECUOE</key>
-      <priority>CRITICAL</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
@@ -1741,32 +1836,37 @@
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>EDOE</key>
-      <priority>CRITICAL</priority>
+      <priority>INFO</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>EER</key>
-      <priority>MAJOR</priority>
+      <priority>INFO</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>EESR</key>
+      <priority>INFO</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_java</repositoryKey>
+      <key>EF</key>
       <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>EGACC</key>
-      <priority>CRITICAL</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>EIAC</key>
-      <priority>BLOCKER</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>ENA</key>
-      <priority>CRITICAL</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
@@ -1796,31 +1896,36 @@
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>EU</key>
-      <priority>MINOR</priority>
+      <priority>INFO</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>EUCAI</key>
-      <priority>CRITICAL</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>EUI</key>
-      <priority>CRITICAL</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>EUT</key>
-      <priority>CRITICAL</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>EUTUPE</key>
-      <priority>CRITICAL</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>EiER</key>
+      <priority>INFO</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_java</repositoryKey>
+      <key>FDNCSF</key>
       <priority>MAJOR</priority>
     </rule>
     <rule>
@@ -1836,40 +1941,47 @@
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>FFPE</key>
-      <priority>CRITICAL</priority>
+      <priority>INFO</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>FMEW</key>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>FMUFP</key>
-      <priority>CRITICAL</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>FNS</key>
-      <priority>CRITICAL</priority>
+      <priority>MAJOR</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_java</repositoryKey>
+      <key>FSBP</key>
+      <priority>INFO</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>FU</key>
-      <priority>MINOR</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>FUW</key>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>GUT</key>
-      <priority>CRITICAL</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>GUTIGC</key>
-      <priority>CRITICAL</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
@@ -1879,27 +1991,27 @@
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>HEUH</key>
-      <priority>CRITICAL</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>HHNE</key>
-      <priority>CRITICAL</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>HHSSC</key>
-      <priority>CRITICAL</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>HHUOE</key>
-      <priority>CRITICAL</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>HIEUH</key>
-      <priority>CRITICAL</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
@@ -1914,37 +2026,37 @@
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>HSDHOUC</key>
-      <priority>CRITICAL</priority>
-    </rule>
-    <rule>
-      <repositoryKey>SourceMeter_java</repositoryKey>
-      <key>HUOUC</key>
-      <priority>CRITICAL</priority>
-    </rule>
-    <rule>
-      <repositoryKey>SourceMeter_java</repositoryKey>
-      <key>IACCO</key>
-      <priority>CRITICAL</priority>
-    </rule>
-    <rule>
-      <repositoryKey>SourceMeter_java</repositoryKey>
-      <key>IAIOIOOM</key>
       <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
+      <key>HUOUC</key>
+      <priority>MAJOR</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_java</repositoryKey>
+      <key>IACCO</key>
+      <priority>INFO</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_java</repositoryKey>
+      <key>IAIOIOOM</key>
+      <priority>INFO</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_java</repositoryKey>
       <key>IAMIFRM</key>
-      <priority>CRITICAL</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>IATOOS</key>
-      <priority>CRITICAL</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>IBCFO</key>
-      <priority>CRITICAL</priority>
+      <priority>INFO</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
@@ -1954,32 +2066,32 @@
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>IBCWNV</key>
-      <priority>CRITICAL</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>IBCWSB</key>
-      <priority>CRITICAL</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>IBRB1</key>
-      <priority>CRITICAL</priority>
+      <priority>INFO</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>IBSA</key>
-      <priority>CRITICAL</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>IBSM</key>
-      <priority>CRITICAL</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>ICATI</key>
-      <priority>CRITICAL</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
@@ -1989,7 +2101,7 @@
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>IFNG</key>
-      <priority>CRITICAL</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
@@ -1999,52 +2111,42 @@
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>IIC</key>
-      <priority>CRITICAL</priority>
+      <priority>INFO</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>IICTD</key>
-      <priority>CRITICAL</priority>
+      <priority>INFO</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>IICTDPTC</key>
-      <priority>CRITICAL</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>IICTFPTR</key>
-      <priority>CRITICAL</priority>
-    </rule>
-    <rule>
-      <repositoryKey>SourceMeter_java</repositoryKey>
-      <key>IIIO</key>
       <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>IIL</key>
-      <priority>CRITICAL</priority>
-    </rule>
-    <rule>
-      <repositoryKey>SourceMeter_java</repositoryKey>
-      <key>IILIO</key>
       <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>IIMCTL</key>
-      <priority>CRITICAL</priority>
+      <priority>INFO</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>IIRL</key>
-      <priority>CRITICAL</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>IIS</key>
-      <priority>CRITICAL</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
@@ -2054,32 +2156,32 @@
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>IMROI</key>
-      <priority>CRITICAL</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>INSE</key>
-      <priority>MINOR</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>INT</key>
-      <priority>CRITICAL</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>IPIDBO</key>
-      <priority>CRITICAL</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>IQURS</key>
-      <priority>CRITICAL</priority>
+      <priority>INFO</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>ISNS</key>
-      <priority>CRITICAL</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
@@ -2088,23 +2190,28 @@
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
+      <key>ITGC</key>
+      <priority>MAJOR</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_java</repositoryKey>
       <key>ITNS</key>
-      <priority>CRITICAL</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>IVBO</key>
-      <priority>CRITICAL</priority>
+      <priority>INFO</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>IVC</key>
-      <priority>CRITICAL</priority>
+      <priority>INFO</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>JFIFIIC</key>
-      <priority>MINOR</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
@@ -2114,7 +2221,7 @@
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>JJLM</key>
-      <priority>CRITICAL</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
@@ -2124,22 +2231,27 @@
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>JSONSOIS</key>
-      <priority>CRITICAL</priority>
+      <priority>MAJOR</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_java</repositoryKey>
+      <key>JUSS</key>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>LLIS</key>
-      <priority>CRITICAL</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>LLIUS</key>
-      <priority>CRITICAL</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>MCBF</key>
-      <priority>MAJOR</priority>
+      <priority>INFO</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
@@ -2148,18 +2260,38 @@
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
-      <key>MFP</key>
+      <key>MEFS</key>
       <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
+      <key>MFP</key>
+      <priority>INFO</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_java</repositoryKey>
       <key>MMA</key>
+      <priority>INFO</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_java</repositoryKey>
+      <key>MMC</key>
+      <priority>INFO</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_java</repositoryKey>
+      <key>MMCP</key>
+      <priority>INFO</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_java</repositoryKey>
+      <key>MMEF</key>
       <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>MMH</key>
-      <priority>MAJOR</priority>
+      <priority>INFO</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
@@ -2169,7 +2301,7 @@
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>MMN</key>
-      <priority>CRITICAL</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
@@ -2179,27 +2311,32 @@
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>MMW</key>
-      <priority>CRITICAL</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>MOP</key>
-      <priority>MAJOR</priority>
+      <priority>INFO</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>MP</key>
-      <priority>MAJOR</priority>
+      <priority>INFO</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_java</repositoryKey>
+      <key>MRIA</key>
+      <priority>INFO</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>MSBF</key>
-      <priority>MAJOR</priority>
+      <priority>INFO</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>MSBRTBF</key>
-      <priority>MAJOR</priority>
+      <priority>INFO</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
@@ -2214,12 +2351,17 @@
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>MSSIF</key>
-      <priority>CRITICAL</priority>
+      <priority>INFO</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_java</repositoryKey>
+      <key>MSVUID</key>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>MtSSIF</key>
-      <priority>CRITICAL</priority>
+      <priority>INFO</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
@@ -2229,17 +2371,17 @@
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>NAN</key>
-      <priority>CRITICAL</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>NANE</key>
-      <priority>CRITICAL</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>NBE</key>
-      <priority>CRITICAL</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
@@ -2254,7 +2396,7 @@
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>NCN</key>
-      <priority>BLOCKER</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
@@ -2264,12 +2406,12 @@
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>NDNSC</key>
-      <priority>CRITICAL</priority>
+      <priority>INFO</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>NDORV</key>
-      <priority>CRITICAL</priority>
+      <priority>INFO</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
@@ -2289,22 +2431,22 @@
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>NGD</key>
-      <priority>BLOCKER</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>NGDOEP</key>
-      <priority>CRITICAL</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>NIDOR</key>
-      <priority>CRITICAL</priority>
+      <priority>INFO</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>NLOKNV</key>
-      <priority>CRITICAL</priority>
+      <priority>INFO</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
@@ -2314,82 +2456,82 @@
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>NMPTA</key>
-      <priority>MAJOR</priority>
+      <priority>INFO</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>NMRRA</key>
-      <priority>MAJOR</priority>
+      <priority>INFO</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>NNFNIIC</key>
-      <priority>CRITICAL</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>NNI</key>
-      <priority>BLOCKER</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>NNN</key>
-      <priority>CRITICAL</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>NNNN</key>
-      <priority>CRITICAL</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>NNOSP</key>
-      <priority>CRITICAL</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>NNOSPE</key>
-      <priority>CRITICAL</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>NNOSPFRV</key>
-      <priority>CRITICAL</priority>
+      <priority>INFO</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>NNOSPMBI</key>
-      <priority>CRITICAL</priority>
+      <priority>INFO</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>NNPD</key>
-      <priority>CRITICAL</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>NNPDATD</key>
-      <priority>CRITICAL</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>NNPDN</key>
-      <priority>CRITICAL</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>NNPV</key>
-      <priority>CRITICAL</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>NNRV</key>
-      <priority>CRITICAL</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>NNSC</key>
-      <priority>MAJOR</priority>
+      <priority>INFO</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
@@ -2399,7 +2541,7 @@
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>NPMBNBMAN</key>
-      <priority>CRITICAL</priority>
+      <priority>INFO</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
@@ -2409,7 +2551,7 @@
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>NSINF</key>
-      <priority>CRITICAL</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
@@ -2424,7 +2566,7 @@
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>NTCRN</key>
-      <priority>CRITICAL</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
@@ -2434,7 +2576,7 @@
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>NUPOPF</key>
-      <priority>MAJOR</priority>
+      <priority>INFO</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
@@ -2459,26 +2601,31 @@
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>OODR</key>
-      <priority>CRITICAL</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>OODREP</key>
-      <priority>CRITICAL</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>OOS</key>
-      <priority>CRITICAL</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>OOSEP</key>
-      <priority>CRITICAL</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>PAPT</key>
+      <priority>MAJOR</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_java</repositoryKey>
+      <key>PCI</key>
       <priority>MAJOR</priority>
     </rule>
     <rule>
@@ -2489,12 +2636,12 @@
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>PPS</key>
-      <priority>CRITICAL</priority>
+      <priority>INFO</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>PPZLA</key>
-      <priority>MAJOR</priority>
+      <priority>INFO</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
@@ -2504,12 +2651,12 @@
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>QQBA</key>
-      <priority>CRITICAL</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>QQFL</key>
-      <priority>CRITICAL</priority>
+      <priority>INFO</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
@@ -2518,18 +2665,33 @@
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
-      <key>RAVOH</key>
+      <key>RAI</key>
       <priority>CRITICAL</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_java</repositoryKey>
+      <key>RAL</key>
+      <priority>CRITICAL</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_java</repositoryKey>
+      <key>RAO</key>
+      <priority>CRITICAL</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_java</repositoryKey>
+      <key>RAVOH</key>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>RAVORI</key>
-      <priority>CRITICAL</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>RBSFRE</key>
-      <priority>CRITICAL</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
@@ -2539,27 +2701,32 @@
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>RCE</key>
-      <priority>MAJOR</priority>
+      <priority>INFO</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>RCFPI</key>
-      <priority>MINOR</priority>
+      <priority>INFO</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>RCUFSARE</key>
-      <priority>CRITICAL</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>RDJNCR</key>
+      <priority>INFO</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_java</repositoryKey>
+      <key>REARTN</key>
       <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>RENT</key>
-      <priority>CRITICAL</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
@@ -2569,17 +2736,17 @@
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>RNROC</key>
-      <priority>MINOR</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>RPUP</key>
-      <priority>CRITICAL</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>RRC</key>
-      <priority>CRITICAL</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
@@ -2594,7 +2761,7 @@
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>RRCONANV</key>
-      <priority>CRITICAL</priority>
+      <priority>INFO</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
@@ -2604,42 +2771,42 @@
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>RRCTNV</key>
-      <priority>CRITICAL</priority>
+      <priority>INFO</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>RRI</key>
-      <priority>MAJOR</priority>
+      <priority>INFO</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>RRNONV</key>
-      <priority>CRITICAL</priority>
+      <priority>INFO</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>RRNWHBAN</key>
-      <priority>CRITICAL</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>RROH</key>
-      <priority>CRITICAL</priority>
+      <priority>INFO</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>RRORI</key>
-      <priority>CRITICAL</priority>
+      <priority>INFO</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>RRS</key>
-      <priority>CRITICAL</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>RRVI</key>
-      <priority>MINOR</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
@@ -2649,7 +2816,12 @@
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>RRVII</key>
-      <priority>MINOR</priority>
+      <priority>INFO</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_java</repositoryKey>
+      <key>RRVINSE</key>
+      <priority>INFO</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
@@ -2658,8 +2830,13 @@
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
-      <key>RcRNONV</key>
+      <key>RSI</key>
       <priority>CRITICAL</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_java</repositoryKey>
+      <key>RcRNONV</key>
+      <priority>INFO</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
@@ -2669,22 +2846,22 @@
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>SBFIC</key>
-      <priority>MINOR</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>SBFS</key>
-      <priority>CRITICAL</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>SBPSA</key>
-      <priority>CRITICAL</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>SBRA</key>
-      <priority>CRITICAL</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
@@ -2694,32 +2871,32 @@
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>SDSDTSF</key>
-      <priority>CRITICAL</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>SDSDTSFTT</key>
-      <priority>CRITICAL</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>SFDA</key>
-      <priority>CRITICAL</priority>
+      <priority>INFO</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>SFSA</key>
-      <priority>CRITICAL</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>SFSC</key>
-      <priority>CRITICAL</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>SIBFA</key>
-      <priority>CRITICAL</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
@@ -2729,22 +2906,22 @@
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>SIOC</key>
-      <priority>CRITICAL</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>SIOSCI</key>
-      <priority>CRITICAL</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>SIOSDFI</key>
-      <priority>CRITICAL</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>SIOU</key>
-      <priority>CRITICAL</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
@@ -2764,12 +2941,12 @@
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>SLDA</key>
-      <priority>CRITICAL</priority>
+      <priority>INFO</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>SLSA</key>
-      <priority>CRITICAL</priority>
+      <priority>INFO</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
@@ -2779,7 +2956,7 @@
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>SLSC</key>
-      <priority>CRITICAL</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
@@ -2794,7 +2971,7 @@
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>SNS</key>
-      <priority>CRITICAL</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
@@ -2809,17 +2986,17 @@
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>SNSPTE</key>
-      <priority>CRITICAL</priority>
-    </rule>
-    <rule>
-      <repositoryKey>SourceMeter_java</repositoryKey>
-      <key>SPRRNI</key>
       <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
+      <key>SPRRNI</key>
+      <priority>INFO</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_java</repositoryKey>
       <key>SPSGFNS</key>
-      <priority>CRITICAL</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
@@ -2839,17 +3016,17 @@
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>SSCI</key>
-      <priority>CRITICAL</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>SSI</key>
-      <priority>CRITICAL</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>SSIC</key>
-      <priority>CRITICAL</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
@@ -2864,12 +3041,12 @@
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>SSSDFI</key>
-      <priority>CRITICAL</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>SSWLH</key>
-      <priority>CRITICAL</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
@@ -2884,22 +3061,27 @@
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>STFONC</key>
+      <priority>INFO</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_java</repositoryKey>
+      <key>STS</key>
       <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>SWTSFIM</key>
-      <priority>CRITICAL</priority>
+      <priority>INFO</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>SaFSC</key>
-      <priority>CRITICAL</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>SaLSC</key>
-      <priority>CRITICAL</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
@@ -2914,7 +3096,7 @@
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>TAVUWNR</key>
-      <priority>CRITICAL</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
@@ -2924,27 +3106,27 @@
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>TEUSVRAS</key>
-      <priority>CRITICAL</priority>
+      <priority>INFO</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>TEUSVRNS</key>
-      <priority>CRITICAL</priority>
+      <priority>INFO</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>TMSVRAS</key>
-      <priority>CRITICAL</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>TMSVRNS</key>
-      <priority>CRITICAL</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>TNVUWAR</key>
-      <priority>CRITICAL</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
@@ -2959,7 +3141,7 @@
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>UFNIIC</key>
-      <priority>MINOR</priority>
+      <priority>INFO</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
@@ -2968,8 +3150,13 @@
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
+      <key>UNCIE</key>
+      <priority>MAJOR</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_java</repositoryKey>
       <key>UNF</key>
-      <priority>CRITICAL</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
@@ -2979,12 +3166,22 @@
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>UUCF</key>
-      <priority>CRITICAL</priority>
+      <priority>INFO</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>UUCFNL</key>
-      <priority>CRITICAL</priority>
+      <priority>INFO</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_java</repositoryKey>
+      <key>UUCT</key>
+      <priority>INFO</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_java</repositoryKey>
+      <key>UUCo</key>
+      <priority>INFO</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
@@ -2994,31 +3191,42 @@
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>UUL</key>
-      <priority>CRITICAL</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>UULEP</key>
-      <priority>CRITICAL</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>UUM</key>
-      <priority>CRITICAL</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>UUMOAC</key>
-      <priority>CRITICAL</priority>
+      <priority>MAJOR</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_java</repositoryKey>
+      <key>UUO</key>
+      <priority>INFO</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_java</repositoryKey>
+      <key>UUOS</key>
+      <priority>INFO</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>UUPM</key>
-      <priority>CRITICAL</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>UUPOPF</key>
+      <priority>INFO</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
@@ -3032,7 +3240,17 @@
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
+      <key>UUVM</key>
+      <priority>INFO</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_java</repositoryKey>
       <key>UUW</key>
+      <priority>MAJOR</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_java</repositoryKey>
+      <key>UWOC</key>
       <priority>MAJOR</priority>
     </rule>
     <rule>
@@ -3043,61 +3261,17 @@
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>UuUPOPF</key>
+      <priority>INFO</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>UwUF</key>
-      <priority>MINOR</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>UwUPOPF</key>
-      <priority>MINOR</priority>
-    </rule>
-    <rule>
-      <repositoryKey>SourceMeter_java</repositoryKey>
-      <key>VFSBA</key>
-      <priority>CRITICAL</priority>
-    </rule>
-    <rule>
-      <repositoryKey>SourceMeter_java</repositoryKey>
-      <key>VFSBC</key>
-      <priority>CRITICAL</priority>
-    </rule>
-    <rule>
-      <repositoryKey>SourceMeter_java</repositoryKey>
-      <key>VFSBCFA</key>
-      <priority>MAJOR</priority>
-    </rule>
-    <rule>
-      <repositoryKey>SourceMeter_java</repositoryKey>
-      <key>VFSBCTB</key>
-      <priority>MAJOR</priority>
-    </rule>
-    <rule>
-      <repositoryKey>SourceMeter_java</repositoryKey>
-      <key>VFSEAP</key>
-      <priority>MAJOR</priority>
-    </rule>
-    <rule>
-      <repositoryKey>SourceMeter_java</repositoryKey>
-      <key>VFSEMFS</key>
-      <priority>MAJOR</priority>
-    </rule>
-    <rule>
-      <repositoryKey>SourceMeter_java</repositoryKey>
-      <key>VFSI</key>
-      <priority>CRITICAL</priority>
-    </rule>
-    <rule>
-      <repositoryKey>SourceMeter_java</repositoryKey>
-      <key>VFSMA</key>
-      <priority>CRITICAL</priority>
-    </rule>
-    <rule>
-      <repositoryKey>SourceMeter_java</repositoryKey>
-      <key>VFSNPA</key>
-      <priority>CRITICAL</priority>
+      <priority>INFO</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
@@ -3107,12 +3281,12 @@
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>VPAPTOV</key>
-      <priority>CRITICAL</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>VVI</key>
-      <priority>CRITICAL</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
@@ -3122,47 +3296,47 @@
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>WANIL</key>
-      <priority>CRITICAL</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>WNIL</key>
-      <priority>CRITICAL</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>WUGRTCL</key>
-      <priority>CRITICAL</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>WWMI</key>
-      <priority>CRITICAL</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>WWS</key>
-      <priority>CRITICAL</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>XRPTJW</key>
-      <priority>CRITICAL</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>XRPTSE</key>
-      <priority>CRITICAL</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>XRPTSW</key>
-      <priority>CRITICAL</priority>
+      <priority>MAJOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
       <key>XXFB</key>
-      <priority>CRITICAL</priority>
+      <priority>INFO</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_java</repositoryKey>
