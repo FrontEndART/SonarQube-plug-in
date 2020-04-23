@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-# Copyright (c) 2014-2018, FrontEndART Software Ltd.
+# Copyright (c) 2014-2019, FrontEndART Software Ltd.
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
@@ -36,6 +36,10 @@ import subprocess
 import zipfile
 from time import sleep
 import platform
+import json
+import itertools
+import time
+import requests
 
 import common
 
@@ -59,6 +63,10 @@ def get_arguments():
                         help='Folder for downloading and unzipping SQ server and scanner (default=%(default)s)')
     parser.add_argument('--print-log', action='store_true',
                         help='Prints the SQ log files to the screen')
+    parser.add_argument('-ra', '--recursive-analyzation', action='store_true',
+                        help='Analyze projects recursively (default=true)')
+    parser.add_argument('-l', '--language', default='java',
+                        help='Name of the programing language to run tests for (default=%(default)s)')
 
     return parser.parse_args()
 
@@ -115,8 +123,8 @@ def copy_all_files_from_folder(src, dst):
             shutil.copy(path, dst)
 
         languages = ['cpp', 'csharp', 'java', 'python', 'rpg']
-        for language in languages:
-            path = ['src', 'sonarqube-analyzers', 'sourcemeter-analyzer-%s' % language, 'target', 'sourcemeter-analyzer-%s-plugin-1.1.0.jar' % language]
+        for language_key in languages:
+            path = ['src', 'sonarqube-analyzers', 'sourcemeter-analyzer-%s' % language_key, 'target', 'sourcemeter-analyzer-%s-plugin-1.1.0.jar' % language_key]
             path  = os.path.join(*path)
             shutil.copy(path, dst)
     print('Copy finished!')
@@ -143,10 +151,20 @@ def start_sq_server(version, system, dst):
 def validate_running_of_sq_server(version, number_of_attempts, wait):
     number_of_attempts = int(number_of_attempts)
     while not number_of_attempts == 0:
+
         try:
-            contents = urlopen('http://localhost:9000/api/system/ping').read()
-            return True
-        except:
+            response = requests.get('http://localhost:9000/api/system/health', auth=('admin', 'admin'))
+            health_json = response.json()
+
+            health = health_json['health']
+            print('SonarQube\'s health is ' + health)
+            if health == 'GREEN':
+                return True
+            else:
+                number_of_attempts -= 1
+                sleep(float(wait))
+        except Exception as e:
+            print('Exception occured! Message: ' + str(e))
             print('SonarQube is not started yet, rechecking...' + ' (%d attempt(s) left)' % number_of_attempts)
             number_of_attempts -= 1
             sleep(float(wait))
@@ -159,12 +177,111 @@ def analyze(scanner_version, project_folder, system, dst):
     if system == 'Windows':
         scanner_location = cwd  + '\\' + dst + '\\sonar-scanner-%s-windows\\bin\\sonar-scanner.bat' % scanner_version
         os.chdir(project_folder)
-        common.run_cmd('start', [scanner_location])
+        common.run_cmd(scanner_location, [])
     elif system == 'Linux':
-        cmd = cwd + '/' + dst + '/sonar-scanner-%s-linux/bin/sonar-scanner&' % scanner_version
+        cmd = cwd + '/' + dst + '/sonar-scanner-%s-linux/bin/sonar-scanner' % scanner_version
+        common.run_cmd('chmod', ['-R', '+x', cwd + '/' + dst + '/sonar-scanner-%s-linux' % scanner_version])
         os.chdir(project_folder)
-        common.run_cmd(cmd, [])
-    os.chdir('..')
+        common.run_cmd(cmd, ['-X', '-Dsonar.login=admin', '-Dsonar.password=admin', '-Dsonar.host.url=http://localhost:9000'])
+    os.chdir(cwd)
+
+def recursive_analyze(scanner_version, root_of_the_projects, system, dst, language):
+    cwd = os.getcwd()
+    for root, dirs, files in os.walk(root_of_the_projects, topdown=False):
+        for name in files:
+            if ('sonar-project.properties' in name):
+                print(os.path.join(root, name))
+                if language in root:
+                    analyze(scanner_version, root, system, dst)
+
+def validate_dashboard(root, ra, language):
+    is_succeeded = True
+    for dirpath, dirs, files in os.walk(root):
+        project_key = ''
+        if 'sonar-project.properties' in files and language in dirpath:
+            project_key = get_projet_key_from_property_file(dirpath)
+            language_key = get_language_from_source_files(dirpath)
+            print(project_key)
+            json_names = ['SM_%s_LOGICAL_LEVEL1' % language_key, 'SM_%s_LOGICAL_LEVEL2' % language_key, 'SM_%s_LOGICAL_LEVEL3' % language_key, 'SM_%s_CLONE_TREE' % language_key]
+
+            retry_api_call = 10
+            while not retry_api_call == 0:
+                api_call_result = []
+                for i, temp in enumerate(json_names):
+                    url = 'http://localhost:9000/api/measures/component?componentKey=%s&metricKeys=%s' % (project_key, temp)
+                    print(url)
+                    page = urlopen(url).read()
+                    # print(page)
+                    api_call_result.append(page);
+                # Check if the .graph has been uploaded
+                temp = api_call_result[0]
+                json1_api = json.loads(temp)
+                if len(json1_api['component']['measures']) != 0:
+                    json2_api = json.loads(json1_api['component']['measures'][0]['value'])
+                    break;
+                else:
+                    print('Result from the .graph file hasn\'t been uploaded yet. Retrying after 10 seconds.')
+                    retry_api_call -= 1
+                    sleep(10)
+
+            tables = api_call_result
+            expected = []
+
+            for i, temp in enumerate(json_names):
+                expected.append(os.path.join(dirpath, 'expected', temp + ".json"))
+
+            for table, expected_json in zip(tables, expected):
+
+                json1_api = json.loads(table)
+                json2_api = json.loads(json1_api['component']['measures'][0]['value'])
+
+                with open(expected_json, 'r') as f:
+                    json1 = json.load(f)
+                # Extracting the nested jsons
+                json2 = json.loads(json1['component']['measures'][0]['value'])
+
+                if 'level' in json2_api.keys() and 'level' in json2.keys():
+                    for json_api_temp, json_temp in zip(json2_api['level'], json2['level']):
+                        for key, value in json_temp['metrics'].items():
+                            if key in json_api_temp['metrics'].keys():
+                                if not round(float(json_api_temp['metrics'][key]), 2) == round(value, 2):
+                                    print("ERROR\n")
+                                    print(key + "\n")
+                                    print(json_api_temp['metrics'][key])
+                                    print(round(value, 2))
+                                    print("Project key: " + project_key)
+                                    print("EXPECTED: " + json1['component']['measures'][0]['metric'])
+                                    print("EXPECTED:\n" + json1['component']['measures'][0]['value'])
+                                    print("API: " + json1_api['component']['measures'][0]['metric'])
+                                    print("API:\n" + json1_api['component']['measures'][0]['value'])
+                                    is_succeeded = False
+                            else:
+                                print("NO KEY: " + key + "\n")
+                                print("Project key: " + project_key)
+                else:
+                    print('No key: level')
+    return is_succeeded
+
+def get_projet_key_from_property_file(dirpath):
+    with open(os.path.join(dirpath, 'sonar-project.properties'), 'r') as f:
+        property_file = f.readlines()
+    for line in property_file:
+        if 'sonar.projectKey=' in line and '#' not in line:
+            return line.replace('sonar.projectKey=', '').replace('\n', '')
+
+def get_language_from_source_files(path):
+    files = os.listdir(path)
+    for file in files:
+        if '.java' in file:
+            return 'JAVA'
+        if '.cs' in file:
+            return 'CSHARP'
+        if '.cpp' in file:
+            return 'CPP'
+        if '.py' in file:
+            return 'PYTHON'
+        if '.rpg' in file:
+            return 'RPG'
 
 def print_log(version, path):
     path = os.path.join(path, 'sonarqube-%s' % version, 'logs')
@@ -174,21 +291,23 @@ def print_log(version, path):
             print(f_in.read())
 
 def main(options):
-    server_version = options.server_version
-    scanner_version = options.scanner_version
+    server_version     = options.server_version
+    scanner_version    = options.scanner_version
     src_of_the_plugins = options.plugins_folder
     src_of_the_project = options.projects_folder
-    noa = options.number_of_attempts
-    wait = options.wait
-    system = platform.system()
-    dst = options.client_folder
-    print_log_files = options.print_log
+    noa                = options.number_of_attempts
+    wait               = options.wait
+    system             = platform.system()
+    dst                = options.client_folder
+    print_log_files    = options.print_log
+    ra                 = options.recursive_analyzation
+    language           = options.language
     common.mkdir(dst)
 
     # 0, a) Try to build the plugins with 'build.py'
 
     if system == 'Windows':
-        common.run_cmd('py', ['-3', 'build.py', '--all'])
+        common.run_cmd('py', ['-3', 'tools\\build.py', '--all'])
     elif system == 'Linux':
         common.run_cmd('python3', ['tools/build.py', '--all'])
 
@@ -227,11 +346,24 @@ def main(options):
     sleep(60)
     if validate_running_of_sq_server(server_version, noa, wait):
         print('SonarQube started properly!')
+        if not ra:
+            analyze(scanner_version, src_of_the_project, system, dst)
+        elif ra:
+            print('Start recursive analyze.')
+            recursive_analyze(scanner_version, src_of_the_project, system, dst, language)
     else:
         print(('SonarQube did not start in time (-noa=%s (number of attempts))' % (noa)))
         if print_log_files:
             print_log(server_version, dst)
         exit(1)
+
+    # 7) Dashboard validation
+
+    if not validate_dashboard(src_of_the_project, ra, language):
+        print('Validation of the dashboard has been failed!')
+        exit(1)
+    else:
+        print('The dashboard is valid!')
 
 if __name__ == "__main__":
     main(get_arguments())
