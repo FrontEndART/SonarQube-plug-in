@@ -140,6 +140,8 @@ SM.MetricLoader = new (function() { // Singleton object
         smid = "cs";
       } else if (smid === "python") {
         smid = "py";
+      } else if (smid === "javascript") {
+        smid = "js";
       }
       key = "sm." + smid + "." + metric.scope.toLowerCase()
             + ".baseline." + metric.title;

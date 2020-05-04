@@ -28,7 +28,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.sourcemeter.analyzer.python.batch;
+package com.sourcemeter.analyzer.javascript.batch;
 
 import java.io.File;
 import java.io.IOException;
@@ -42,12 +42,15 @@ import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.sonar.api.batch.bootstrap.ProjectDefinition;
 import org.sonar.api.batch.fs.FileSystem;
+import org.sonar.api.batch.fs.InputModule;
+import org.sonar.api.batch.rule.Rules;
 import org.sonar.api.batch.sensor.SensorContext;
 import org.sonar.api.batch.sensor.SensorDescriptor;
 import org.sonar.api.config.Configuration;
 import org.sonar.api.batch.rule.ActiveRules;
-import org.sonar.api.scanner.fs.InputProject;
+import org.sonar.api.scan.filesystem.FileExclusions;
 import org.sonar.api.server.rule.RulesDefinitionXmlLoader;
 
 import com.sourcemeter.analyzer.base.batch.MetricHunterCategory;
@@ -57,13 +60,13 @@ import com.sourcemeter.analyzer.base.helper.FileHelper;
 import com.sourcemeter.analyzer.base.helper.GraphHelper;
 import com.sourcemeter.analyzer.base.helper.ThresholdPropertiesHelper;
 import com.sourcemeter.analyzer.base.visitor.NodeCounterVisitor;
-import com.sourcemeter.analyzer.python.SourceMeterPythonMetrics;
-import com.sourcemeter.analyzer.python.core.Python;
-import com.sourcemeter.analyzer.python.profile.SourceMeterPythonRuleRepository;
-import com.sourcemeter.analyzer.python.visitor.CloneTreeSaverVisitorPython;
-import com.sourcemeter.analyzer.python.visitor.LogicalTreeLoaderVisitorPython;
-import com.sourcemeter.analyzer.python.visitor.LogicalTreeSaverVisitorPython;
-import com.sourcemeter.analyzer.python.visitor.PhysicalTreeLoaderVisitorPython;
+import com.sourcemeter.analyzer.javascript.SourceMeterJavaScriptMetrics;
+import com.sourcemeter.analyzer.javascript.core.JavaScript;
+import com.sourcemeter.analyzer.javascript.profile.SourceMeterJavaScriptRuleRepository;
+import com.sourcemeter.analyzer.javascript.visitor.CloneTreeSaverVisitorJavaScript;
+import com.sourcemeter.analyzer.javascript.visitor.LogicalTreeLoaderVisitorJavaScript;
+import com.sourcemeter.analyzer.javascript.visitor.LogicalTreeSaverVisitorJavaScript;
+import com.sourcemeter.analyzer.javascript.visitor.PhysicalTreeLoaderVisitorJavaScript;
 
 import graphlib.Graph;
 import graphlib.GraphlibException;
@@ -71,28 +74,32 @@ import graphlib.Node;
 import graphlib.Node.NodeType;
 import graphlib.VisitorException;
 
-import static com.sourcemeter.analyzer.python.SourceMeterPythonMetrics.SM_PYTHON_CLONE_TREE;
-import static com.sourcemeter.analyzer.python.SourceMeterPythonMetrics.SM_PYTHON_LOGICAL_LEVEL1;
-import static com.sourcemeter.analyzer.python.SourceMeterPythonMetrics.SM_PYTHON_LOGICAL_LEVEL2;
-import static com.sourcemeter.analyzer.python.SourceMeterPythonMetrics.SM_PYTHON_LOGICAL_LEVEL3;
+import static com.sourcemeter.analyzer.javascript.SourceMeterJavaScriptMetrics.SM_JAVASCRIPT_CLONE_TREE;
+import static com.sourcemeter.analyzer.javascript.SourceMeterJavaScriptMetrics.SM_JAVASCRIPT_LOGICAL_LEVEL1;
+import static com.sourcemeter.analyzer.javascript.SourceMeterJavaScriptMetrics.SM_JAVASCRIPT_LOGICAL_LEVEL2;
+import static com.sourcemeter.analyzer.javascript.SourceMeterJavaScriptMetrics.SM_JAVASCRIPT_LOGICAL_LEVEL3;
 
-public class SourceMeterPythonSensor extends SourceMeterSensor {
+public class SourceMeterJavaScriptSensor extends SourceMeterSensor {
 
     /**
-     * Command and parameters for running SourceMeter python analyzer
+     * Command and parameters for running SourceMeter JavaScript analyzer
      */
+    private final List<String> commands;
+    private final Rules rules;
     private final FileSystem fileSystem;
 
-    private static final Logger LOG = LoggerFactory.getLogger(SourceMeterPythonSensor.class);
+    private static final Logger LOG = LoggerFactory.getLogger(SourceMeterJavaScriptSensor.class);
     private static final String THRESHOLD_PROPERTIES_PATH = "/threshold_properties.xml";
     private static final String LOGICAL_ROOT = "__LogicalRoot__";
 
-    public SourceMeterPythonSensor(FileSystem fileSystem,
-           InputProject inputProject, ActiveRules activeRules,
-           Configuration configuration) {
+    public SourceMeterJavaScriptSensor(FileExclusions fileExclusions, FileSystem fileSystem,
+            ProjectDefinition projectDefinition, Rules rules, ActiveRules activeRules,
+            Configuration configuration) {
 
-        super(fileSystem, inputProject, activeRules, configuration);
+        super(fileExclusions, fileSystem, projectDefinition, activeRules, configuration);
 
+        this.commands = new ArrayList<String>();
+        this.rules = rules;
         this.fileSystem = fileSystem;
     }
 
@@ -101,21 +108,26 @@ public class SourceMeterPythonSensor extends SourceMeterSensor {
      */
     @Override
     public void execute(SensorContext sensorContext) {
-        boolean skipPython = FileHelper.getBooleanFromConfiguration(this.configuration, "sm.python.skipToolchain");
-        if (skipPython) {
-            LOG.info("SourceMeter toolchain is skipped for Python. Results will be uploaded from former results directory, if it exists.");
+        boolean skipJavaScript = FileHelper.getBooleanFromConfiguration(this.configuration, "sm.javascript.skipToolchain");
+        if (skipJavaScript) {
+            LOG.info("SourceMeter toolchain is skipped for JavaScript. Results will be uploaded from former results directory, if it exists.");
         } else {
-            if (!checkProperties(sensorContext)) {
+            if (!checkProperties()) {
                 throw new RuntimeException("Failed to initialize the SourceMeter plugin. Some mandatory properties are not set properly.");
             }
             runSourceMeter(commands);
         }
 
+        String analyseMode = FileHelper.getStringFromConfiguration(this.configuration, "sonar.analysis.mode");
         this.projectName = FileHelper.getStringFromConfiguration(this.configuration, "sonar.projectKey");
-        this.projectName = StringUtils.replace(this.projectName, ":", "_");
+        this.projectName = StringUtils.replace(projectName, ":", "_");
 
+        if ("incremental".equals(analyseMode)) {
+            LOG.warn("Incremental mode is on. There are no metric based (INFO level) issues in this mode.");
+            this.isIncrementalMode = true;
+        }
         try {
-            this.resultGraph = FileHelper.getSMSourcePath(configuration, fileSystem, '-', new Python())
+            this.resultGraph = FileHelper.getSMSourcePath(configuration, fileSystem, '-', new JavaScript())
                     + File.separator + this.projectName + ".graph";
         } catch (IOException e) {
             LOG.error("Error during loading result graph path!", e);
@@ -125,7 +137,7 @@ public class SourceMeterPythonSensor extends SourceMeterSensor {
         LOG.info("      Graph: " + resultGraph);
 
         try {
-            loadDataFromGraphBin(this.resultGraph, sensorContext.project(), sensorContext);
+            loadDataFromGraphBin(this.resultGraph, sensorContext.module(), sensorContext);
         } catch (GraphlibException e) {
             LOG.error("Error during loading graph!", e);
         }
@@ -150,19 +162,18 @@ public class SourceMeterPythonSensor extends SourceMeterSensor {
      */
     private void saveLicense(Graph graph, SensorContext sensorContext) {
         Map<String, String> headerLicenseInformations = new HashMap<String, String>();
-        headerLicenseInformations.put("FaultHunterPython", "FaultHunter");
-        headerLicenseInformations.put("MetricHunter", "MetricHunter");
         headerLicenseInformations.put("DuplicatedCodeFinder", "Duplicated Code");
         headerLicenseInformations.put("LIM2Metrics", "Metrics");
+        headerLicenseInformations.put("ESLint2Graph", "ESLint");
 
-        super.saveLicense(graph, sensorContext, headerLicenseInformations, SourceMeterPythonMetrics.PYTHON_LICENSE);
+        super.saveLicense(graph, sensorContext, headerLicenseInformations, SourceMeterJavaScriptMetrics.JAVASCRIPT_LICENSE);
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    protected void loadDataFromGraphBin(String filename, InputProject project,
+    protected void loadDataFromGraphBin(String filename, InputModule project,
                     SensorContext sensorContext) throws GraphlibException {
         Graph graph = new Graph();
         graph.loadBinary(filename);
@@ -192,22 +203,22 @@ public class SourceMeterPythonSensor extends SourceMeterSensor {
 
             nodeCounter = new NodeCounterVisitor();
             GraphHelper.processGraph(graph, LOGICAL_ROOT, "LogicalTree", nodeCounter);
-            LogicalTreeLoaderVisitorPython logicalVisitor = new LogicalTreeLoaderVisitorPython(
+            LogicalTreeLoaderVisitorJavaScript logicalVisitor = new LogicalTreeLoaderVisitorJavaScript(
                     this.fileSystem, this.configuration, sensorContext,
                     nodeCounter.getNumberOfNodes());
 
             nodeCounter = new NodeCounterVisitor();
             GraphHelper.processGraph(graph, "__PhysicalRoot__", "PhysicalTree", nodeCounter);
-            PhysicalTreeLoaderVisitorPython physicalVisitor = new PhysicalTreeLoaderVisitorPython(
+            PhysicalTreeLoaderVisitorJavaScript physicalVisitor = new PhysicalTreeLoaderVisitorJavaScript(
                     this.fileSystem, sensorContext, nodeCounter.getNumberOfNodes());
 
             nodeCounter = new NodeCounterVisitor();
             GraphHelper.processGraph(graph, LOGICAL_ROOT, "logicalTree", nodeCounter);
-            LogicalTreeSaverVisitorPython logicalSaver = new LogicalTreeSaverVisitorPython(sensorContext, this.fileSystem, configuration);
+            LogicalTreeSaverVisitorJavaScript logicalSaver = new LogicalTreeSaverVisitorJavaScript(sensorContext, this.fileSystem, configuration);
 
             nodeCounter = new NodeCounterVisitor();
             GraphHelper.processGraph(graph, "__CloneRoot__", "CloneTree", nodeCounter);
-            CloneTreeSaverVisitorPython cloneSaver = new CloneTreeSaverVisitorPython(sensorContext, this.fileSystem);
+            CloneTreeSaverVisitorJavaScript cloneSaver = new CloneTreeSaverVisitorJavaScript(sensorContext, this.fileSystem);
 
             LOG.info("      * Initialization done: " + (System.currentTimeMillis() - startTime) + MS);
 
@@ -223,13 +234,13 @@ public class SourceMeterPythonSensor extends SourceMeterSensor {
 
             LOG.info("      * Saving LogicalTree...");
             GraphHelper.processGraph(graph, LOGICAL_ROOT, "LogicalTree", logicalSaver);
-            logicalSaver.saveLogicalTreeToDatabase(SM_PYTHON_LOGICAL_LEVEL1, SM_PYTHON_LOGICAL_LEVEL2, SM_PYTHON_LOGICAL_LEVEL3);
+            logicalSaver.saveLogicalTreeToDatabase(SM_JAVASCRIPT_LOGICAL_LEVEL1, SM_JAVASCRIPT_LOGICAL_LEVEL2, SM_JAVASCRIPT_LOGICAL_LEVEL3);
             LOG.info("      * Saving LogicalTree done: " + logicalSaver.getLogicalTime() + MS);
             logicalSaver = null;
 
             LOG.info("      * Saving CloneTree...");
             GraphHelper.processGraph(graph, "__CloneRoot__", "CloneTree", cloneSaver);
-            cloneSaver.saveCloneTreeToDatabase(SM_PYTHON_CLONE_TREE);
+            cloneSaver.saveCloneTreeToDatabase(SM_JAVASCRIPT_CLONE_TREE);
             LOG.info("      * Saving CloneTree done: " + cloneSaver.getFileTime() + MS);
             cloneSaver = null;
 
@@ -245,55 +256,50 @@ public class SourceMeterPythonSensor extends SourceMeterSensor {
      */
     @Override
     public void describe(SensorDescriptor descriptor) {
-        descriptor.onlyOnLanguage(Python.KEY);
+        descriptor.onlyOnLanguage(JavaScript.KEY);
     }
 
     /**
      * Checks the correctness of sourceMeter's properties.
      *
-     * @param sensorContext Context of the sensor.
      * @return True if the properties were set correctly.
      */
-    private boolean checkProperties(SensorContext sensorContext) {
+    private boolean checkProperties() {
         String pathToCA = FileHelper.getStringFromConfiguration(this.configuration, "sm.toolchaindir");
         if (pathToCA == null) {
-            LOG.error("Python SourceMeter path must be set! Check it on the settings page of your SonarQube!");
+            LOG.error("C/C++ SourceMeter path must be set! Check it on the settings page of your SonarQube!");
             return false;
         }
 
-        String resultsDir = FileHelper.getStringFromConfiguration(this.configuration, "sm.resultsdir");
+        String resultsDir = FileHelper.getStringFromConfiguration(configuration, "sm.resultsdir");
         if (resultsDir == null) {
             LOG.error("Results directory must be set! Check it on the settings page of your SonarQube!");
             return false;
         }
 
-        String pythonBinary = FileHelper.getStringFromConfiguration(this.configuration, "sm.python.binary");
-        if (pythonBinary == null) {
-            LOG.error("Python 3.X binary path must be set! Check it on the settings page of your SonarQube!");
-            return false;
-        }
-
-        String projectName = FileHelper.getStringFromConfiguration(this.configuration, "sonar.projectKey");
+        String projectName = FileHelper.getStringFromConfiguration(configuration, "sonar.projectKey");
         projectName = StringUtils.replace(projectName, ":", "_");
 
-        String filter = "";
-        String filterFilePath = null;
-        filter = getFilterContent(sensorContext, Python.KEY);
-        try {
-            filterFilePath = writeHardFilterToFile(filter);
-        } catch (IOException e) {
-            LOG.warn("Cannot create filter file for toolchain! No filter is used during analyzis.", e);
-        }
+        String softFilter = "";
+        String softFilterFilePath = null;
 
-        this.commands.add(pathToCA + File.separator
-                + Python.NAME + File.separator + "SourceMeterPython");
+        try {
+            softFilter = getFilterContent();
+            softFilterFilePath = writeSoftFilterToFile(softFilter);
+        } catch (IOException e) {
+            LOG.warn("Cannot create softFilter file for toolchain! No softFilter is used during analyzis.", e);
+        }
 
         ProfileInitializer profileInitializer = new ProfileInitializer(
                 this.configuration, getMetricHunterCategories(), this.activeRules,
-                new SourceMeterPythonRuleRepository(new RulesDefinitionXmlLoader()), new Python());
+                new SourceMeterJavaScriptRuleRepository(new RulesDefinitionXmlLoader()), rules, new JavaScript());
 
         String profilePath = this.fileSystem.workDir() + File.separator
                 + "SM-Profile.xml";
+
+        this.commands.add(pathToCA + File.separator
+                + JavaScript.NAME + File.separator + "SourceMeterJavaScript");
+
         try {
             profileInitializer.generatePofileFile(profilePath);
             this.commands.add("-profileXML=" + profilePath);
@@ -301,7 +307,6 @@ public class SourceMeterPythonSensor extends SourceMeterSensor {
             LOG.warn("An error occured while creating SourceMeter profile file. Default profile is used!!", e);
         }
 
-        // Setting command and parameters for SourceMeter Python analyzer
         String baseDir = "";
         try {
             baseDir = this.fileSystem.baseDir().getCanonicalPath();
@@ -310,24 +315,27 @@ public class SourceMeterPythonSensor extends SourceMeterSensor {
             baseDir = this.fileSystem.baseDir().getAbsolutePath();
         }
 
-        String cleanResults = FileHelper.getStringFromConfiguration(this.configuration, "sm.cleanresults");
+        // Setting command and parameters for SourceMeter C/C++ analyzer
+        String cleanResults = FileHelper.getStringFromConfiguration(configuration, "sm.cleanresults");
         this.commands.add("-cleanResults=" + cleanResults);
-        this.commands.add("-projectBaseDir=" + baseDir);
         this.commands.add("-resultsDir=" + resultsDir);
         this.commands.add("-projectName=" + projectName);
-        this.commands.add("-pythonBinary=" + pythonBinary);
-        this.commands.add("-pythonVersion=3");
+        this.commands.add("-projectBaseDir=" + baseDir);
 
-        if (null != filterFilePath) {
-            this.commands.add("-externalHardFilter=" + filterFilePath);
+        String cloneGenealogy = FileHelper.getStringFromConfiguration(configuration, "sm.cloneGenealogy");
+        String cloneMinLines = FileHelper.getStringFromConfiguration(configuration, "sm.cloneMinLines");
+        this.commands.add("-cloneGenealogy=" + cloneGenealogy);
+        this.commands.add("-cloneMinLines=" + cloneMinLines);
+
+        String hardFilter = FileHelper.getStringFromConfiguration(configuration, "sm.javascript.hardFilter");
+        if (null != hardFilter) {
+            this.commands.add("-externalHardFilter=" + hardFilter);
         }
 
-        String additionalParameters = FileHelper.getStringFromConfiguration(this.configuration, "sm.python.toolchainOptions");
-        if (additionalParameters != null) {
+        String additionalParameters = FileHelper.getStringFromConfiguration(configuration, "sm.javascript.toolchainOptions");
+        if (null != additionalParameters) {
             this.commands.add(additionalParameters);
         }
-
-        addCommonCommandlineOptions();
 
         return true;
     }
@@ -335,7 +343,7 @@ public class SourceMeterPythonSensor extends SourceMeterSensor {
     /**
      * Generate MetricHunterCategories, stored in XML file.
      *
-     * @return List of MetricHunterCategories
+     * @return List of MetricHunterCategories.
      */
     protected List<MetricHunterCategory> getMetricHunterCategories() {
         List<MetricHunterCategory> categories = new ArrayList<MetricHunterCategory>();
@@ -343,16 +351,12 @@ public class SourceMeterPythonSensor extends SourceMeterSensor {
         InputStream xmlFile = null;
         try {
             xmlFile = getClass().getResourceAsStream(THRESHOLD_PROPERTIES_PATH);
-            categories.add(new MetricHunterCategory("Class",
-                    ThresholdPropertiesHelper.getClassThresholdMetrics(xmlFile)));
+            categories.add(new MetricHunterCategory("Class", ThresholdPropertiesHelper
+                    .getClassThresholdMetrics(xmlFile)));
 
             xmlFile = getClass().getResourceAsStream(THRESHOLD_PROPERTIES_PATH);
             categories.add(new MetricHunterCategory("Method",
                     ThresholdPropertiesHelper.getMethodThresholdMetrics(xmlFile)));
-
-            xmlFile = getClass().getResourceAsStream(THRESHOLD_PROPERTIES_PATH);
-            categories.add(new MetricHunterCategory("Function",
-                    ThresholdPropertiesHelper.getFunctionThresholdMetrics(xmlFile)));
 
             xmlFile = getClass().getResourceAsStream(THRESHOLD_PROPERTIES_PATH);
             categories.add(new MetricHunterCategory("CloneClass",

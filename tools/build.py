@@ -70,6 +70,8 @@ def get_arguments():
                              'Clone View, UsersGuide, Help)')
     group.add_argument('--java', action='store_true',
                         help='Build Java Analyzer')
+    group.add_argument('--javascript', action='store_true',
+                        help='Build JavaScript Analyzer')
     group.add_argument('--python', action='store_true',
                         help='Build Python Analyzer')
     group.add_argument('--rpg', action='store_true',
@@ -84,6 +86,7 @@ def clean():
     common.rmdir('src/sonarqube-analyzers/sourcemeter-analyzer-cpp/target')
     common.rmdir('src/sonarqube-analyzers/sourcemeter-analyzer-csharp/target')
     common.rmdir('src/sonarqube-analyzers/sourcemeter-analyzer-java/target')
+    common.rmdir('src/sonarqube-analyzers/sourcemeter-analyzer-javascript/target')
     common.rmdir('src/sonarqube-analyzers/sourcemeter-analyzer-python/target')
     common.rmdir('src/sonarqube-analyzers/sourcemeter-analyzer-rpg/target')
 
@@ -127,6 +130,7 @@ def main(options):
         options.csharp = True
         options.gui = True
         options.java = True
+        options.javascript = True
         options.python = True
         options.rpg = True
 
@@ -156,6 +160,8 @@ def main(options):
         mvn_install('sonarqube-analyzers/sourcemeter-analyzer-csharp')
     if options.java:
         mvn_install('sonarqube-analyzers/sourcemeter-analyzer-java')
+    if options.javascript:
+        mvn_install('sonarqube-analyzers/sourcemeter-analyzer-javascript')
     if options.python:
         mvn_install('sonarqube-analyzers/sourcemeter-analyzer-python')
     if options.rpg:
@@ -177,6 +183,8 @@ def main(options):
     copy_jars('src/sonarqube-analyzers/sourcemeter-analyzer-csharp/target/',
               '%s/plugins' % target_dir)
     copy_jars('src/sonarqube-analyzers/sourcemeter-analyzer-java/target/',
+              '%s/plugins' % target_dir)
+    copy_jars('src/sonarqube-analyzers/sourcemeter-analyzer-javascript/target/',
               '%s/plugins' % target_dir)
     copy_jars('src/sonarqube-analyzers/sourcemeter-analyzer-python/target/',
               '%s/plugins' % target_dir)

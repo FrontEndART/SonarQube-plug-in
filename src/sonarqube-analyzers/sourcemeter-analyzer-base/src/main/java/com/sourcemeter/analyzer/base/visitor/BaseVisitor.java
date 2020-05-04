@@ -80,6 +80,8 @@ public abstract class BaseVisitor implements graphlib.Visitor {
             pluginLanguageKey = "python";
         } else if ("cs".equals(pluginLanguageKey)) {
             pluginLanguageKey = "csharp";
+        } else if ("js".equals(pluginLanguageKey)) {
+            pluginLanguageKey = "javascript";
         }
 
         this.uploadMethods = FileHelper.getBooleanFromConfiguration(configuration, "sm." + pluginLanguageKey + ".uploadMethods");

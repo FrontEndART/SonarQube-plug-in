@@ -120,7 +120,7 @@ public class SourceMeterRPGSensor extends SourceMeterSensor {
         this.projectName = StringUtils.replace(this.projectName, ":", "_");
 
         try {
-            this.resultGraph = FileHelper.getSMSourcePath(configuration, fileSystem, '_', new RPG())
+            this.resultGraph = FileHelper.getSMSourcePath(configuration, fileSystem, '-', new RPG())
                     + File.separator + this.projectName + ".graph";
         } catch (IOException e) {
             LOG.error("Error during loading result graph path!", e);
