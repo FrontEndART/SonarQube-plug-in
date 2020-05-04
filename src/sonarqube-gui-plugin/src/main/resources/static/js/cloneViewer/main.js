@@ -71,7 +71,7 @@ SM.cloneViewer.getFormatedMetric = function(val, metric) {
 SM.cloneViewer.generatePositionAnchorPopup = function(instance) {
   var anchor = instance.name;
   if (instance.positions[0]) {
-    var url = 'http://' + window.location.host + '/component?id=' + instance.displayedPath
+    var url = 'http://' + window.location.host + '/code?id=' + instance.displayedPath
               + '&line=' + instance.positions[0].line;
     var href = 'javascript:(function() {window.open(\'' + url + '\', \'' + instance.displayedPath
                + instance.name+'\', \'resizable,scrollbars,status\');})()';

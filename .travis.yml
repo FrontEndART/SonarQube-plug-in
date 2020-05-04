@@ -2,7 +2,7 @@ language: c
 
 # Default environment: Container-based (sudo-less) Ubuntu Trusty 14.04.
 os: linux
-dist: trusty
+dist: bionic
 sudo: false
 
 # Default dependency installation step: nop intentionally.
@@ -24,5 +24,5 @@ matrix:
       script: tools/build.py --dist
     - env:
         - JOBNAME="Regression test"
-      script: python3 tools/run-test.py --init --print-log -sv 7.5
+      script: python3 tools/run-test.py --init --print-log -sv 7.9.3 -scv 4.2.0.1873
   fast_finish: true

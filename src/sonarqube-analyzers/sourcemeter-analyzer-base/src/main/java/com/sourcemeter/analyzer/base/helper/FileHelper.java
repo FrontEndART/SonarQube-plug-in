@@ -111,7 +111,7 @@ public class FileHelper {
      * @param metric Stores the data.
      */
     public static void saveGraphToDataBase(SensorContext sensorContext, String data, Metric metric) {
-        sensorContext.newMeasure().forMetric(metric).withValue(data).on(sensorContext.module()).save();
+        sensorContext.newMeasure().forMetric(metric).withValue(data).on(sensorContext.project()).save();
     }
 
     /**

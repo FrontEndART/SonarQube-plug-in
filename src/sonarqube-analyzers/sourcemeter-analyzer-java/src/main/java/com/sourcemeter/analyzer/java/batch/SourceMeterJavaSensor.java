@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014-2017, FrontEndART Software Ltd.
+ * Copyright (c) 2014-2020, FrontEndART Software Ltd.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,15 +47,12 @@ import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.sonar.api.batch.bootstrap.ProjectDefinition;
 import org.sonar.api.batch.fs.FileSystem;
-import org.sonar.api.batch.fs.InputModule;
-import org.sonar.api.batch.rule.Rules;
 import org.sonar.api.batch.sensor.SensorContext;
 import org.sonar.api.batch.sensor.SensorDescriptor;
 import org.sonar.api.config.Configuration;
 import org.sonar.api.batch.rule.ActiveRules;
-import org.sonar.api.scan.filesystem.FileExclusions;
+import org.sonar.api.scanner.fs.InputProject;
 import org.sonar.api.server.rule.RulesDefinitionXmlLoader;
 
 import com.sourcemeter.analyzer.base.batch.MetricHunterCategory;
@@ -89,8 +86,6 @@ public class SourceMeterJavaSensor extends SourceMeterSensor {
     /**
      * Command and parameters for running SourceMeter Java analyzer
      */
-    private final List<String> commands;
-    private final Rules rules;
     private final FileSystem fileSystem;
 
     private static final Logger LOG = LoggerFactory.getLogger(SourceMeterJavaSensor.class);
@@ -100,14 +95,12 @@ public class SourceMeterJavaSensor extends SourceMeterSensor {
     /**
      * Constructor: Use of IoC to get Settings
      */
-    public SourceMeterJavaSensor(FileExclusions fileExclusions, FileSystem fileSystem,
-            ProjectDefinition projectDefinition, Rules rules, ActiveRules activeRules,
+    public SourceMeterJavaSensor(FileSystem fileSystem,
+            InputProject inputProject, ActiveRules activeRules,
             Configuration configuration) {
 
-        super(fileExclusions, fileSystem, projectDefinition, activeRules, configuration);
+        super(fileSystem, inputProject, activeRules, configuration);
 
-        this.commands = new ArrayList<String>();
-        this.rules = rules;
         this.fileSystem = fileSystem;
     }
 
@@ -120,7 +113,7 @@ public class SourceMeterJavaSensor extends SourceMeterSensor {
         if (skipJava) {
             LOG.info("SourceMeter toolchain is skipped for Java. Results will be uploaded from former results directory, if it exists.");
         } else {
-            if (!checkProperties()) {
+            if (!checkProperties(sensorContext)) {
                 throw new RuntimeException("Failed to initialize the SourceMeter plugin. Some mandatory properties are not set properly.");
             }
             runSourceMeter(commands);
@@ -128,12 +121,7 @@ public class SourceMeterJavaSensor extends SourceMeterSensor {
 
         this.projectName = FileHelper.getStringFromConfiguration(this.configuration, "sonar.projectKey");
         this.projectName = StringUtils.replace(this.projectName, ":", "_");
-        String analyseMode = FileHelper.getStringFromConfiguration(this.configuration, "sonar.analysis.mode");
 
-        if ("incremental".equals(analyseMode)) {
-            LOG.warn("Incremental mode is on. There are no metric based (INFO level) issues in this mode.");
-            this.isIncrementalMode = true;
-        }
         try {
             this.resultGraph = FileHelper.getSMSourcePath(configuration, fileSystem, '-', new Java())
                     + File.separator + this.projectName + ".graph";
@@ -145,7 +133,7 @@ public class SourceMeterJavaSensor extends SourceMeterSensor {
         LOG.info("      Graph: " + resultGraph);
 
         try {
-            loadDataFromGraphBin(this.resultGraph, sensorContext.module(), sensorContext);
+            loadDataFromGraphBin(this.resultGraph, sensorContext.project(), sensorContext);
         } catch (GraphlibException e) {
             LOG.error("Error during loading graph!", e);
         }
@@ -187,7 +175,7 @@ public class SourceMeterJavaSensor extends SourceMeterSensor {
      * {@inheritDoc}
      */
     @Override
-    protected void loadDataFromGraphBin(String filename, InputModule project,
+    protected void loadDataFromGraphBin(String filename, InputProject project,
             SensorContext sensorContext) throws GraphlibException {
         Graph graph = new Graph();
         graph.loadBinary(filename);
@@ -276,9 +264,10 @@ public class SourceMeterJavaSensor extends SourceMeterSensor {
     /**
      * Checks the correctness of sourceMeter's properties.
      *
+     * @param sensorContext Context of the sensor.
      * @return True if the properties were set correctly.
      */
-    protected boolean checkProperties() {
+    protected boolean checkProperties(SensorContext sensorContext) {
         String cleanResults = FileHelper.getStringFromConfiguration(configuration, "sm.cleanresults");
         if (cleanResults == null) {
             LOG.error("sonar.sourcemeter.cleanresults property cannot be null!");
@@ -300,38 +289,10 @@ public class SourceMeterJavaSensor extends SourceMeterSensor {
         String projectName = FileHelper.getStringFromConfiguration(this.configuration, "sonar.projectKey");
         projectName = StringUtils.replace(projectName, ":", "_");
 
-        String analyseMode = FileHelper.getStringFromConfiguration(this.configuration, "sonar.analysis.mode");
-        String projectNameSuffix = "";
-        if ("incremental".equals(analyseMode)) {
-            LOG.warn("Incremental mode is on. There are no metric based (INFO level) issues in this mode.");
-            projectNameSuffix = "-incremental";
-        } else if ("preview".equals(analyseMode)) {
-            projectNameSuffix = "-preview";
-            cleanResults = "1";
-            // Copy the <projectName>.gsi file to "<projectName>-preview".
-            // Override if exists.
-            try {
-                File from = new File(resultsDir + File.separator + projectName
-                        + File.separator + projectName
-                        + ".gsi");
-                File to = new File(resultsDir + File.separator + projectName
-                        + projectNameSuffix + File.separator + projectName
-                        + projectNameSuffix + ".gsi");
-                if (from.exists()) {
-                    FileUtils.copyFile(from, to);
-                } else if (to.exists() && !to.delete()) {
-                    LOG.error("Cannot delete " + to.getName() + "! " + this.toString() + " was cancelled.");
-                    return false;
-                }
-            } catch (IOException e) {
-                LOG.error("Cannot copy .gsi file! " + this.toString() + " was cancelled.");
-            }
-        }
-
         String filter = "";
         String softFilterFilePath = null;
+        filter = getFilterContent(sensorContext, Java.KEY);
         try {
-            filter = getFilterContent();
             softFilterFilePath = writeSoftFilterToFile(filter);
         } catch (IOException e) {
             LOG.warn("Cannot create filter file for toolchain! No filter is used during analysis.", e);
@@ -351,13 +312,13 @@ public class SourceMeterJavaSensor extends SourceMeterSensor {
         this.commands.add(pathToCA + File.separator + Java.NAME + File.separator + "SourceMeterJava");
 
         this.commands.add("-resultsDir=" + resultsDir);
-        this.commands.add("-projectName=" + projectName + projectNameSuffix);
+        this.commands.add("-projectName=" + projectName);
 
 
 
         ProfileInitializer profileInitializer = new ProfileInitializer(
                 this.configuration, getMetricHunterCategories(), this.activeRules,
-                new SourceMeterJavaRuleRepository(new RulesDefinitionXmlLoader()), rules, new Java());
+                new SourceMeterJavaRuleRepository(new RulesDefinitionXmlLoader()), new Java());
 
         String profilePath = this.fileSystem.workDir() + File.separator
                 + "SM-Profile.xml";
@@ -451,18 +412,8 @@ public class SourceMeterJavaSensor extends SourceMeterSensor {
             this.commands.add("-csvSeparator=" + csvSeparator);
         }
 
-        String cloneGenealogy = FileHelper.getStringFromConfiguration(this.configuration, "sm.cloneGenealogy");
-        String cloneMinLines = FileHelper.getStringFromConfiguration(this.configuration, "sm.cloneMinLines");
-        this.commands.add("-cloneGenealogy=" + cloneGenealogy);
-        this.commands.add("-cloneMinLines=" + cloneMinLines);
-
         this.commands.add("-cleanProject=true");
         this.commands.add("-cleanResults=" + cleanResults);
-
-        if (this.isIncrementalMode) {
-            this.commands.add("-runDCF=false");
-            this.commands.add("-runMET=false");
-        }
 
         if (fbFile != null) {
             this.commands.add("-FBFileList=" + fbFile);
@@ -478,6 +429,8 @@ public class SourceMeterJavaSensor extends SourceMeterSensor {
         if (additionalParameters != null) {
             this.commands.add(additionalParameters);
         }
+
+        addCommonCommandlineOptions();
 
         return true;
     }

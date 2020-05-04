@@ -132,7 +132,7 @@ public class SourceMeterAnalyzerCppPlugin implements Plugin {
                                   .defaultValue(Cpp.DEFAULT_SOURCE_SUFFIXES)
                                   .name("Source files suffixes")
                                   .description("Comma-separated list of suffixes for source files to analyze.")
-                                  .onQualifiers(Qualifiers.PROJECT, Qualifiers.MODULE)
+                                  .onQualifiers(Qualifiers.PROJECT, Qualifiers.PROJECT)
                                   .category(CPP_GENERAL_CATEGORY)
                                   .index(1)
                                   .build(),
@@ -140,7 +140,7 @@ public class SourceMeterAnalyzerCppPlugin implements Plugin {
                                   .defaultValue(Cpp.DEFAULT_HEADER_SUFFIXES)
                                   .name("Header files suffixes")
                                   .description("Comma-separated list of suffixes for header files to analyze.")
-                                  .onQualifiers(Qualifiers.PROJECT, Qualifiers.MODULE)
+                                  .onQualifiers(Qualifiers.PROJECT, Qualifiers.PROJECT)
                                   .category(CPP_GENERAL_CATEGORY)
                                   .index(2)
                                   .build()

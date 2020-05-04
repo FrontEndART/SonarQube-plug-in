@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014-2017, FrontEndART Software Ltd.
+ * Copyright (c) 2014-2020, FrontEndART Software Ltd.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -36,14 +36,13 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.nio.charset.Charset;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Set;
 
-import org.sonar.api.batch.rule.Rule;
-import org.sonar.api.batch.rule.Rules;
 import org.sonar.api.batch.rule.Severity;
 import org.sonar.api.config.Configuration;
 import org.sonar.api.measures.Metric;
@@ -63,7 +62,7 @@ public class ProfileInitializer {
     private final AbstractLanguage language;
     private final List<MetricHunterCategory> categories;
     private final Set<String> activeRuleKeys;
-    private final Collection<Rule> allRules;
+    private final Collection<ActiveRule> allActiveRules;
 
     // private final Collection<org.sonar.api.batch.rule.Rule> allRules;
 
@@ -75,19 +74,19 @@ public class ProfileInitializer {
      * @param categories For setting which categories are passed to MetricHunter.
      * @param activeRules Needed for the list of active rules passed to profile file.
      * @param ruleRepository Stores the rules.
-     * @param rules Needed for find rules from RuleRepository by key.
      * @param pluginLanguage Current analyzed language.
      */
     public ProfileInitializer(Configuration configuration,
             List<MetricHunterCategory> categories, ActiveRules activeRules,
-            SourceMeterRuleRepository ruleRepository, Rules rules, AbstractLanguage pluginLanguage) {
+            SourceMeterRuleRepository ruleRepository, AbstractLanguage pluginLanguage) {
         this.configuration = configuration;
         this.categories = categories;
         String repositoryKey = ruleRepository.getRepositoryKey();
-        this.allRules = rules.findByRepository(repositoryKey);
         activeRuleKeys = new HashSet<String>();
+        allActiveRules = new ArrayList<ActiveRule>();
         for (ActiveRule rule : activeRules.findByRepository(repositoryKey)) {
             activeRuleKeys.add(rule.ruleKey().rule());
+            allActiveRules.add(rule);
         }
         this.language = pluginLanguage;
     }
@@ -126,12 +125,12 @@ public class ProfileInitializer {
         StringBuffer buffer = new StringBuffer();
         buffer.append("  <rule-options>\n");
 
-        for (Rule rule : allRules) {
+        for (ActiveRule rule : allActiveRules) {
             if (rule.severity().equals(Severity.INFO)) {
                 continue;
             }
 
-            String[] splittedKey = rule.key().rule().split("_");
+            String[] splittedKey = rule.ruleKey().rule().split("_");
             String key = splittedKey[splittedKey.length - 1];
 
             String priority = "Blocker";
@@ -147,7 +146,7 @@ public class ProfileInitializer {
             }
 
             buffer.append("    <rule id=\"").append(key).append("\"  enabled=\"");
-            if (activeRuleKeys.contains(rule.key().rule())) {
+            if (activeRuleKeys.contains(rule.ruleKey().rule())) {
                 buffer.append("true");
             } else {
                 buffer.append("false");

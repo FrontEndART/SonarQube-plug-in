@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014-2017, FrontEndART Software Ltd.
+ * Copyright (c) 2014-2020, FrontEndART Software Ltd.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -43,23 +43,21 @@ import java.util.List;
 import java.util.Map;
 import java.util.regex.Pattern;
 
-import org.apache.commons.lang.ArrayUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.sonar.api.batch.bootstrap.ProjectDefinition;
-import org.sonar.api.batch.fs.FilePredicate;
+import org.sonar.api.batch.fs.FilePredicates;
 import org.sonar.api.batch.fs.FileSystem;
 import org.sonar.api.batch.fs.InputFile;
-import org.sonar.api.batch.fs.InputModule;
 import org.sonar.api.batch.sensor.Sensor;
 import org.sonar.api.batch.sensor.SensorContext;
 import org.sonar.api.config.Configuration;
 import org.sonar.api.measures.Metric;
 import org.sonar.api.batch.rule.ActiveRules;
-import org.sonar.api.scan.filesystem.FileExclusions;
+import org.sonar.api.scanner.fs.InputProject;
 
 import com.google.gson.Gson;
 import com.sourcemeter.analyzer.base.core.LicenseInformation;
+import com.sourcemeter.analyzer.base.helper.FileHelper;
 
 import graphlib.Graph;
 import graphlib.GraphlibException;
@@ -71,38 +69,39 @@ public abstract class SourceMeterSensor implements Sensor {
 
     protected String resultGraph = "";
     protected String projectName = "";
-    protected boolean isIncrementalMode;
 
-    protected final FileExclusions fileExclusions;
     protected final FileSystem fileSystem;
-    protected final ProjectDefinition projectDefinition;
+    protected final InputProject inputProject;
     protected final ActiveRules activeRules;
     protected final Configuration configuration;
+
+    protected final List<String> commands;
 
     /**
      * Constructor: Use of IoC to get Settings.
      */
-    public SourceMeterSensor(FileExclusions fileExclusions, FileSystem fileSystem,
-            ProjectDefinition projectDefinition, ActiveRules activeRules,
+    public SourceMeterSensor(FileSystem fileSystem,
+            InputProject inputProject, ActiveRules activeRules,
             Configuration configuration) {
 
         this.fileSystem = fileSystem;
-        this.fileExclusions = fileExclusions;
-        this.projectDefinition = projectDefinition;
+        this.inputProject = inputProject;
         this.activeRules = activeRules;
         this.configuration = configuration;
+
+        this.commands = new ArrayList<String>();
     }
 
     /**
      * Load result graph binary.
      *
      * @param filename Name of the result graph file.
-     * @param module Module.
+     * @param project Module.
      * @param sensorContext Context of the sonarQube.
      * @throws GraphlibException
      */
     protected abstract void loadDataFromGraphBin(String filename,
-            InputModule module, SensorContext sensorContext) throws GraphlibException;
+            InputProject project, SensorContext sensorContext) throws GraphlibException;
 
     /**
      * {@inheritDoc}
@@ -214,39 +213,27 @@ public abstract class SourceMeterSensor implements Sensor {
         sensorContext.newMeasure()
                 .forMetric(targetMetric)
                 .withValue(gson.toJson(licenseInformation).toString())
-                .on(sensorContext.module())
+                .on(sensorContext.project())
                 .save();
     }
 
     /**
      * Assemble filter file's content by exclusions.
      *
+     * @param sensorContext Context of the sensor.
+     * @param languageKey Key of the analyzed language.
      * @return Filter file's content.
-     * @throws IOException
      */
-    protected String getFilterContent() throws IOException {
-        StringBuffer filter = new StringBuffer("-.*\n");
+    protected String getFilterContent(SensorContext sensorContext, String languageKey) {
+        StringBuffer filter = new StringBuffer("-*\n");
 
-        if (ArrayUtils.isNotEmpty(fileExclusions.sourceExclusions())
-                || ArrayUtils.isNotEmpty(fileExclusions.sourceInclusions())
-                || isIncrementalMode) {
-
-            FilePredicate predicate = this.fileSystem.predicates().hasType(InputFile.Type.MAIN);
-            Iterable<File> files = this.fileSystem.files(predicate);
-            for (File file : files) {
-                String filePath = file.getCanonicalPath();
-                filter.append("+");
-                filter.append(Pattern.quote(filePath));
-                filter.append("\n");
-            }
-        } else {
-            List<File> sourceDirectories = getSourcesDirectoriesForProject();
-            for (File file : sourceDirectories) {
-                String dirPath = file.getCanonicalPath();
-                filter.append("+" + Pattern.quote(dirPath + File.separator) + "\n");
-            }
+        List<InputFile> sourceFilesForProject = getSourceFilesForProject(sensorContext, languageKey);
+        for (InputFile file : sourceFilesForProject) {
+            String path = file.uri().normalize().getPath();
+            filter.append("+");
+            filter.append(Pattern.quote(path));
+            filter.append("\n");
         }
-
         return filter.toString();
     }
 
@@ -302,20 +289,39 @@ public abstract class SourceMeterSensor implements Sensor {
     }
 
     /**
-     * List of source directories for project.
+     * List of source files for project.
      *
-     * @return Source directories list.
+     * @param sensorContext Context of the sensor.
+     * @param languageKey Key of the analyzed language.
+     * @return Source files list.
      */
-    protected List<File> getSourcesDirectoriesForProject() {
-        List<File> sourceDirectories = new ArrayList<File>();
+    protected List<InputFile> getSourceFilesForProject(SensorContext sensorContext, String languageKey ) {
+        List<InputFile> sourceFiles = new ArrayList<InputFile>();
+        FileSystem fileSystem = sensorContext.fileSystem();
 
-        for (String sourcePath : this.projectDefinition.sources()) {
-            File file = fileSystem.resolvePath(sourcePath);
-            if (file.exists() && file.isDirectory()) {
-                sourceDirectories.add(file);
-            }
+        FilePredicates predicates = fileSystem.predicates();
+        Iterable<InputFile> inputFiles = fileSystem.inputFiles(
+                predicates.and(
+                        predicates.hasType(InputFile.Type.MAIN),
+                        predicates.hasLanguages(languageKey)
+                ));
+
+        for (InputFile file : inputFiles) {
+            sourceFiles.add(file);
         }
-        return sourceDirectories;
+        return sourceFiles;
+    }
+
+    /**
+     * Sets the command line options, common in all SourceMater analyzer languages.
+     */
+    protected void addCommonCommandlineOptions() {
+        this.commands.add("-changePathToRelative");
+
+        String cloneGenealogy = FileHelper.getStringFromConfiguration(this.configuration, "sm.cloneGenealogy");
+        String cloneMinLines = FileHelper.getStringFromConfiguration(this.configuration, "sm.cloneMinLines");
+        this.commands.add("-cloneGenealogy=" + cloneGenealogy);
+        this.commands.add("-cloneMinLines=" + cloneMinLines);
     }
 
 }
