@@ -60,7 +60,7 @@ import com.sourcemeter.analyzer.javascript.profile.SourceMeterJavaScriptRuleRepo
              ),
              @Property(
                 key = "sm.javascript.skipToolchain",
-                name = "Skip SourceMeter Python toolchain (only upload results from existing result directory).",
+                name = "Skip SourceMeter JavaScript toolchain (only upload results from existing result directory).",
                 global = false,
                 project = false,
                 type = PropertyType.BOOLEAN,
@@ -68,7 +68,7 @@ import com.sourcemeter.analyzer.javascript.profile.SourceMeterJavaScriptRuleRepo
              ),
              @Property(
                 key = "sm.javascript.toolchainOptions",
-                name = "Add additional parameters for running SourceMeter Python toolchain.",
+                name = "Add additional parameters for running SourceMeter JavaScript toolchain.",
                 global = false,
                 project = false,
                 type = PropertyType.STRING
