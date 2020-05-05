@@ -1,6 +1,6 @@
 # FrontEndART SourceMeter plug-in for SONARQUBE™ platform
 
-*FrontEndART* **[SourceMeter]** is a command line source code analyzer tool, which can perform **deep static analysis** of the source code of complex software systems written in **C/C++**, **C#**, **Java**, **Python**, and **RPG**. [FrontEndART] offers a **free version** of SourceMeter.
+*FrontEndART* **[SourceMeter]** is a command line source code analyzer tool, which can perform **deep static analysis** of the source code of complex software systems written in **C/C++**, **C#**, **Java**, **JavaScript**, **Python** and **RPG**. [FrontEndART] offers a **free version** of SourceMeter.
 
 *SourceMeter plug-in for SONARQUBE™ platform* ("plug-in" in the following) is an extension of the open-source [SONARQUBE]™ platform ("platform" in the following) for managing code quality. The plug-in executes SourceMeter from the platform and uploads the source code analysis results of SourceMeter into the platform's database.
 
@@ -10,7 +10,7 @@ Additionally, the plug-in extends the platform's GUI with a SourceMeter dashboar
 
 ***Highlights*** of the added features:
 
-- Precise C/C++, C#, Java, Python, and RPG source code analysis engines
+- Precise C/C++, C#, Java, JavaScript, Python and RPG source code analysis engines
 
 - Package, class and method level analyses extending the directory and file-based approach
 
@@ -26,7 +26,7 @@ Additionally, the plug-in extends the platform's GUI with a SourceMeter dashboar
 
 - And many more...
 
-The plug-in is compatible with the latest version 7.5 and the latest LTS 6.7[^1] of the platform, which can be obtained from its [website].
+The plug-in is compatible with the latest LTS version 7.9[^1], which can be obtained from its [website].
 
 [SONARQUBE]™ is a trademark of [SonarSource] SA, Switzerland.
 
@@ -44,13 +44,14 @@ Before starting with the installation of the plug-in, make sure that you have a 
 
 [platform]:http://docs.sonarqube.org/display/SONAR/Setup+and+Upgrade
 
-The installation of the plug-in is as simple as copying the `sourcemeter-gui-plugin-1.1.0.jar` and `sourcemeter-core-plugin-1.1.0.jar` files and the corresponding language analyzer plugins into the destination folder `extensions/plugins` of the platform installation:
+The installation of the plug-in is as simple as copying the `sourcemeter-gui-plugin-2.0.0.jar` and `sourcemeter-core-plugin-2.0.0.jar` files and the corresponding language analyzer plugins into the destination folder `extensions/plugins` of the platform installation:
 
-- C/C++: `sourcemeter-analyzer-cpp-plugin-1.1.0.jar`
-- C#: `sourcemeter-analyzer-csharp-plugin-1.1.0.jar`
-- Java: `sourcemeter-analyzer-java-plugin-1.1.0.jar`
-- Python: `sourcemeter-analyzer-python-plugin-1.1.0.jar`
-- RPG: `sourcemeter-analyzer-rpg-plugin-1.1.0.jar`
+- C/C++: `sourcemeter-analyzer-cpp-plugin-2.0.0.jar`
+- C#: `sourcemeter-analyzer-csharp-plugin-2.0.0.jar`
+- Java: `sourcemeter-analyzer-java-plugin-2.0.0.jar`
+- JavaScript: `sourcemeter-analyzer-javascript-plugin-2.0.0.jar`
+- Python: `sourcemeter-analyzer-python-plugin-2.0.0.jar`
+- RPG: `sourcemeter-analyzer-rpg-plugin-2.0.0.jar`
 
 Since there is an independent sensor plug-in for each language, it is enough to install (copy to the destination folder) the sensor plug-in(s) of the required language(s).
 
@@ -62,7 +63,7 @@ Please make sure to complete the following additional steps:
 
 3.  On the *Quality Profiles* page set as default the *SourceMeter way* for each language required to be analyzed by SourceMeter.
 
-4.  In case of Python make sure that the Python2.7 binary path is set with `sm.python.binary` property or in the *SourceMeter Python Settings* page.
+4.  In case of Python make sure that the Python3.X binary path is set with `sm.python.binary` property or in the *SourceMeter Python Settings* page.
 
 5.  If the code analysis is to be performed on an other machine than the platform server's machine, the steps for configuring remote analysis should be followed in Section [Performing the analysis remotely](#performing-the-analysis-remotely) of this manual.
 
@@ -77,7 +78,7 @@ Since an arbitrary number of different projects can be monitored and for the pro
 
 ## Plug-in uninstallation
 
-To uninstall the plug-in, first delete the *SourceMeter way* quality profile and then remove the installed plug-in files (`sourcemeter-*-plugin-1.1.0.jar`)  from the folder `/extensions/plugins`.
+To uninstall the plug-in, first delete the *SourceMeter way* quality profile and then remove the installed plug-in files (`sourcemeter-*-plugin-2.0.0.jar`)  from the folder `/extensions/plugins`.
 
 # Code Analysis
 
@@ -105,8 +106,12 @@ SourceMeter is able to analyze a single C# source file or C# project, compilable
 
 SourceMeter is able to analyze incomplete source code without 3^rd^ party libraries as well, but for providing precise results the analyzed system must be complete and all external references must be available. The platform provides the `sonar.libraries` setting key to provide the 3^rd^ party libraries and SourceMeter uses this parameter as well.
 
+### Code Analysis: JavaScript
+
+SourceMeter is able to analyze JavaScript sources up to version EcmaScript 2019. The analyzer can handle incomplete source code, 3rd party libraries and external references are not required to be present. Static analysis of source files happens one-by-one, no inter-file characteristics are calculated.
+
 ### Code Analysis: Python
-SourceMeter can analyze source code conforming to Python 2.7.8 and earlier versions.
+SourceMeter can analyze source code conforming to Python 3.X.
 It is sufficient to set the source directory of the project to be analyzed.
 The results will be created regardless of the possible import errors of the Python modules, but for providing precise results the analyzed system must be complete and all external references must be available.
 
@@ -156,7 +161,7 @@ The following parameters are supported:
     - **Timeout for VulnerabilityHunter:** *Timeout for VulnerabilityHunter* parameter allows to set the timeout for the VulnerabilityHunter module in minutes (see -VHTimeOut parameter of SourceMeter for Java). Key: `sm.java.vhTimeOut`
 
 - Python parameters (*SourceMeter Python* setting page)
-    - **Python 2.7 binary:** The path of Python 2.7 binary. Key: `sm.python.binary`
+    - **Python 3.X binary:** The path of Python 3.X binary. Key: `sm.python.binary`
 
 - RPG parameters (*SourceMeter RPG* setting page)
     - **RPG3 pattern:** File name pattern for RPG/400 files. Key: `sm.rpg.rpg3Pattern`
