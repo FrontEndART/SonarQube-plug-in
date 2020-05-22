@@ -192,10 +192,8 @@ public abstract class SourceMeterSensor implements Sensor {
      * @param headerLicenseInformations Informations from sourceMeter's result graph's header file.
      * @param targetMetric Information will be saved in this metric.
      */
-    protected void saveLicense(Graph graph,
-                               SensorContext sensorContext,
-                               Map<String, String> headerLicenseInformations,
-                               Metric targetMetric) {
+    protected void saveLicense(Graph graph, SensorContext sensorContext,
+                    Map<String, String> headerLicenseInformations, Metric targetMetric) {
         Gson gson = new Gson();
 
         LicenseInformation licenseInformation = new LicenseInformation();
@@ -210,11 +208,16 @@ public abstract class SourceMeterSensor implements Sensor {
             licenseInformation.addTool(entry.getValue(), value);
         }
 
+        try {
         sensorContext.newMeasure()
                 .forMetric(targetMetric)
                 .withValue(gson.toJson(licenseInformation).toString())
                 .on(sensorContext.project())
                 .save();
+        } catch (UnsupportedOperationException e) {
+            LOG.info("The license has been already saved:\n");
+            LOG.info(e.getMessage());
+        }
     }
 
     /**
