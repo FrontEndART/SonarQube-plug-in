@@ -332,15 +332,6 @@ public class SourceMeterCSharpSensor extends SourceMeterSensor {
         this.commands.add("-configuration=" + configuration);
         this.commands.add("-platform=" + platform);
 
-        String baseDir = "";
-        try {
-            baseDir = this.fileSystem.baseDir().getCanonicalPath();
-        } catch (IOException e) {
-            LOG.warn("Could not get base directory's canonical path. Absolute path is used.");
-            baseDir = this.fileSystem.baseDir().getAbsolutePath();
-        }
-        this.commands.add("-projectBaseDir=" + baseDir);
-
         String hardFilter = FileHelper.getStringFromConfiguration(this.configuration, "sm.csharp.hardFilter");
         if (null != hardFilter) {
             this.commands.add("-externalHardFilter=" + hardFilter);
