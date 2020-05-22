@@ -44,6 +44,7 @@ import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.sonar.api.batch.fs.FileSystem;
+import org.sonar.api.batch.fs.InputFile;
 import org.sonar.api.batch.sensor.SensorContext;
 import org.sonar.api.batch.sensor.SensorDescriptor;
 import org.sonar.api.config.Configuration;
@@ -331,6 +332,19 @@ public class SourceMeterCSharpSensor extends SourceMeterSensor {
         this.commands.add("-configuration=" + configuration);
         this.commands.add("-platform=" + platform);
 
+        String softFilter = "";
+        String softFilterFilePath = null;
+        softFilter = getFilterContentCsharp(sensorContext, CSharp.KEY);
+        try {
+            softFilterFilePath = writeSoftFilterToFile(softFilter);
+        } catch (IOException e) {
+            LOG.warn("Cannot create softFilter file for toolchain! No softFilter is used during analyzis.", e);
+        }
+
+        if (null != softFilterFilePath) {
+            this.commands.add("-externalSoftFilter=" + softFilterFilePath);
+        }
+
         String baseDir = "";
         try {
             baseDir = this.fileSystem.baseDir().getCanonicalPath();
@@ -383,5 +397,25 @@ public class SourceMeterCSharpSensor extends SourceMeterSensor {
             IOUtils.closeQuietly(xmlFile);
         }
         return categories;
+    }
+
+    /**
+     * Assemble filter file's content by exclusions for C#.
+     *
+     * @param sensorContext Context of the sensor.
+     * @param languageKey Key of the analyzed language.
+     * @return Filter file's content.
+     */
+    private String getFilterContentCsharp(SensorContext sensorContext, String languageKey) {
+        StringBuffer filter = new StringBuffer("-*\n");
+
+        List<InputFile> sourceFilesForProject = super.getSourceFilesForProject(sensorContext, languageKey);
+        for (InputFile file : sourceFilesForProject) {
+            String path = file.uri().normalize().getPath();
+            filter.append("+");
+            filter.append(path.substring(1).replaceAll("/", "\\\\\\\\"));
+            filter.append("\n");
+        }
+        return filter.toString();
     }
 }
