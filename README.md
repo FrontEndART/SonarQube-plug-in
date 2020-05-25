@@ -1,6 +1,6 @@
 # FrontEndART SourceMeter plug-in for SONARQUBE™ platform
 
-*FrontEndART* **[SourceMeter]** is a command line source code analyzer tool, which can perform **deep static analysis** of the source code of complex software systems written in **C/C++**, **C#**, **Java**, **Python**, and **RPG**. [FrontEndART] offers a **free version** of SourceMeter.
+*FrontEndART* **[SourceMeter]** is a command line source code analyzer tool, which can perform **deep static analysis** of the source code of complex software systems written in **C/C++**, **C#**, **Java**, **JavaScript**, **Python** and **RPG**. [FrontEndART] offers a **free version** of SourceMeter.
 
 *SourceMeter plug-in for SONARQUBE™ platform* ("plug-in" in the following) is an extension of the open-source [SONARQUBE]™ platform ("platform" in the following) for managing code quality. The plug-in executes SourceMeter from the platform and uploads the source code analysis results of SourceMeter into the platform's database.
 
@@ -10,7 +10,7 @@ Additionally, the plug-in extends the platform's GUI with a SourceMeter dashboar
 
 ***Highlights*** of the added features:
 
-- Precise C/C++, C#, Java, Python, and RPG source code analysis engines
+- Precise C/C++, C#, Java, JavaScript, Python and RPG source code analysis engines
 
 - Package, class and method level analyses extending the directory and file-based approach
 
@@ -26,7 +26,7 @@ Additionally, the plug-in extends the platform's GUI with a SourceMeter dashboar
 
 - And many more...
 
-The plug-in is compatible with the latest LTS version 6.7[^1] and the latest version 7.5 of the platform, which can be obtained from its [website].
+The plug-in is compatible with the latest LTS version 7.9[^1], which can be obtained from its [website].
 
 [Online demo].
 
@@ -34,9 +34,9 @@ The plug-in is compatible with the latest LTS version 6.7[^1] and the latest ver
 
 SONARQUBE™ is a trademark of SonarSource SA, Switzerland.
 
-January 15, 2019
+May 22, 2020
 
-(C) FrontEndART Software Ltd. 2001-2019
+(C) FrontEndART Software Ltd. 2001-2020
 
 
 [FrontEndART]:https://www.frontendart.com/
