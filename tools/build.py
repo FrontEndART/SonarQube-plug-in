@@ -43,7 +43,7 @@ import tarfile
 
 import common
 
-PACKAGENAME = 'sourcemeter-8.2-plugins-for-sonarqube-6.7-v1.1.0'
+PACKAGENAME = 'sourcemeter-9.1-plugins-for-sonarqube-7.9-v2.0.0'
 
 TOOLS_DIR = os.path.dirname(os.path.abspath(__file__))
 PROJECT_DIR = os.path.normpath(os.path.join(TOOLS_DIR, '..'))
