@@ -71,6 +71,7 @@ import graphlib.GraphlibException;
 import graphlib.Node;
 import graphlib.Node.NodeType;
 import graphlib.VisitorException;
+import org.sonar.api.utils.System2;
 
 import static com.sourcemeter.analyzer.csharp.SourceMeterCSharpMetrics.SM_CSHARP_CLONE_TREE;
 import static com.sourcemeter.analyzer.csharp.SourceMeterCSharpMetrics.SM_CSHARP_LOGICAL_LEVEL1;
@@ -90,9 +91,9 @@ public class SourceMeterCSharpSensor extends SourceMeterSensor {
 
     public SourceMeterCSharpSensor(FileSystem fileSystem,
            InputProject inputProject, ActiveRules activeRules,
-           Configuration configuration) {
+           Configuration configuration, System2 system) {
 
-        super(fileSystem, inputProject, activeRules, configuration);
+        super(fileSystem, inputProject, activeRules, configuration, system);
 
         this.fileSystem = fileSystem;
     }

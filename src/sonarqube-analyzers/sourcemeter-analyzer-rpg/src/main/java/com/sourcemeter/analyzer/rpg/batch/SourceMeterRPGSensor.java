@@ -71,6 +71,7 @@ import graphlib.GraphlibException;
 import graphlib.Node;
 import graphlib.Node.NodeType;
 import graphlib.VisitorException;
+import org.sonar.api.utils.System2;
 
 import static com.sourcemeter.analyzer.rpg.SourceMeterRPGMetrics.SM_RPG_CLONE_TREE;
 import static com.sourcemeter.analyzer.rpg.SourceMeterRPGMetrics.SM_RPG_LOGICAL_LEVEL1;
@@ -93,9 +94,9 @@ public class SourceMeterRPGSensor extends SourceMeterSensor {
 
     public SourceMeterRPGSensor(FileSystem fileSystem,
            InputProject inputProject, ActiveRules activeRules,
-           Configuration configuration) {
+           Configuration configuration, System2 system) {
 
-        super(fileSystem, inputProject, activeRules, configuration);
+        super(fileSystem, inputProject, activeRules, configuration, system);
 
         this.fileSystem = fileSystem;
 
