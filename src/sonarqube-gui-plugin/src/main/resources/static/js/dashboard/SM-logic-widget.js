@@ -43,6 +43,9 @@ SM.LogicWidget = function(HTMLelem, options) {
     this.elem.addClass("sm-widget");
     // I dont give it an id, beacause it might already have one, and I dont want to owerride that, therefore the class
     this.elem.addClass("id-" + this.id);
+    if (this.langID.includes("JAVASCRIPT") && this.title.includes("Package")) {
+      this.title[this.title.indexOf("Package")] = "File"
+    }
     this.elem.append("<div class='sm-widget-title'>" + this.title.join(' / ') + "</div>");
     var table = $('<div class="sm-widget-table-div"><table id="sm-widget-table"></table></div>');
 
