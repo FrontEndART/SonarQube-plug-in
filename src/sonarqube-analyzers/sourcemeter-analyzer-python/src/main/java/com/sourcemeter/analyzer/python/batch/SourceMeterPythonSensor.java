@@ -303,17 +303,8 @@ public class SourceMeterPythonSensor extends SourceMeterSensor {
         }
 
         // Setting command and parameters for SourceMeter Python analyzer
-        String baseDir = "";
-        try {
-            baseDir = this.fileSystem.baseDir().getCanonicalPath();
-        } catch (IOException e) {
-            LOG.warn("Could not get base directory's canonical path. Absolute path is used.");
-            baseDir = this.fileSystem.baseDir().getAbsolutePath();
-        }
-
         String cleanResults = FileHelper.getStringFromConfiguration(this.configuration, "sm.cleanresults");
         this.commands.add("-cleanResults=" + cleanResults);
-        this.commands.add("-projectBaseDir=" + baseDir);
         this.commands.add("-resultsDir=" + resultsDir);
         this.commands.add("-projectName=" + projectName);
         this.commands.add("-pythonBinary=" + pythonBinary);

@@ -323,6 +323,14 @@ public abstract class SourceMeterSensor implements Sensor {
      * Sets the command line options, common in all SourceMater analyzer languages.
      */
     protected void addCommonCommandlineOptions() {
+        String baseDir = "";
+        try {
+            baseDir = this.fileSystem.baseDir().getCanonicalPath();
+        } catch (IOException e) {
+            LOG.warn("Could not get base directory's canonical path. Absolute path is used.");
+            baseDir = this.fileSystem.baseDir().getAbsolutePath();
+        }
+        this.commands.add("-projectBaseDir=" + baseDir);
 
         String cloneGenealogy = FileHelper.getStringFromConfiguration(this.configuration, "sm.cloneGenealogy");
         String cloneMinLines = FileHelper.getStringFromConfiguration(this.configuration, "sm.cloneMinLines");

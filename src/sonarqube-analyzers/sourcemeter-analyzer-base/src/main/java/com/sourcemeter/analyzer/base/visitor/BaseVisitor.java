@@ -36,7 +36,9 @@ import java.util.ListIterator;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.sonar.api.batch.fs.FileSystem;
 import org.sonar.api.batch.fs.InputComponent;
+import org.sonar.api.batch.fs.InputFile;
 import org.sonar.api.batch.sensor.SensorContext;
 import org.sonar.api.config.Configuration;
 import org.sonar.api.resources.AbstractLanguage;
@@ -197,26 +199,53 @@ public abstract class BaseVisitor implements graphlib.Visitor {
     }
 
     /**
-     * Reads the positions from the attribute and sets their values.
+     * Reads the positions from the attribute and sets their values if position exist in file system.
      *
      * @param positionAttribute Contains positions.
      * @param positionsList List of positions to be set.
+     * @return True if path exists in file system false otherwise.
      */
-    protected void readPosition(Attribute positionAttribute, List positionsList) {
+    protected boolean readPosition(Attribute positionAttribute, List positionsList) {
         String path = "";
         int line = 0;
+        FileSystem fs = visitorHelper.getFileSystem();
+        String prefix = fs.baseDir().getAbsolutePath().replace("\\", "/");
+        if (!prefix.startsWith("/")) {
+            prefix = "/" + prefix;
+        }
+
         List positionsListTemp = positionAttribute.getAttributes();
         ListIterator posIter = positionsListTemp.listIterator();
         while (posIter.hasNext()) {
             Attribute tempPos = (Attribute) posIter.next();
             if ("Path".equals(tempPos.getName())) {
                 path = ((AttributeString)tempPos).getValue();
+                InputFile file = fs.inputFile(fs.predicates().hasPath(path));
+                if (file != null) {
+                    path = relativizePath(prefix, file.uri().normalize().getPath());
+                } else {
+                    // If file's path does not exist in the file system we skip the related measures (probably filtered out).
+                    return false;
+                }
             } else if ("Line".equals(tempPos.getName())) {
                 line = ((AttributeInt)tempPos).getValue();
             }
         }
-        path = path.replace("\\", "/");
         positionsList.add(new Position(path, line));
+        return true;
     }
 
+    /**
+     * Relativize given path based on given prefix.
+     *
+     * @param prefix This will be cut from the first part of the path.
+     * @param path Full file path to be relativized based on the prefix.
+     * @return Relativized path.
+     */
+    private static String relativizePath(String prefix, String path) {
+        if (path.startsWith(prefix)) {
+            path = path.substring(prefix.length() + 1);
+        }
+        return path;
+    }
 }

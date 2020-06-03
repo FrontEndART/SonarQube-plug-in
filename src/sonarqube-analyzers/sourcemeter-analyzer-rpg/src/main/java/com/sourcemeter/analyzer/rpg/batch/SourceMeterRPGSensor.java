@@ -275,18 +275,9 @@ public class SourceMeterRPGSensor extends SourceMeterSensor {
             return false;
         }
 
-        String baseDir = "";
-        try {
-            baseDir = this.fileSystem.baseDir().getCanonicalPath();
-        } catch (IOException e) {
-            LOG.warn("Could not get base directory's canonical path. Absolute path is used.");
-            baseDir = this.fileSystem.baseDir().getAbsolutePath();
-        }
-
         this.commands.add(pathToCA + File.separator
                 + RPG.KEY.toUpperCase(Locale.ENGLISH)
                 + File.separator + "SourceMeterRPG");
-        this.commands.add("-projectBaseDir=" + baseDir);
         this.commands.add("-resultsDir=" + this.resultsDir);
         this.commands.add("-projectName=" + this.projectName);
 

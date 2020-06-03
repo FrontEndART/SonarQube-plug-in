@@ -330,20 +330,10 @@ public class SourceMeterJavaSensor extends SourceMeterSensor {
             LOG.warn("An error occured while creating SourceMeter profile file. Default profile is used!", e);
         }
 
-        String baseDir = "";
-        try {
-            baseDir = this.fileSystem.baseDir().getCanonicalPath();
-        } catch (IOException e) {
-            LOG.warn("Could not get base directory's canonical path. Absolute path is used.");
-            baseDir = this.fileSystem.baseDir().getAbsolutePath();
-        }
-
         String buildScript = FileHelper.getStringFromConfiguration(this.configuration, "sm.java.buildscript");
         if (buildScript != null) {
             this.commands.add("-buildScript=" + buildScript);
         }
-
-        this.commands.add("-projectBaseDir=" + baseDir);
 
         if (softFilterFilePath != null) {
             this.commands.add("-externalSoftFilter=" + softFilterFilePath);
