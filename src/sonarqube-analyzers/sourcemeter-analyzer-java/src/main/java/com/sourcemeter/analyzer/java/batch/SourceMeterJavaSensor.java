@@ -416,12 +416,12 @@ public class SourceMeterJavaSensor extends SourceMeterSensor {
             this.commands.add("-FBOptions=" + findBugsOptions);
         }
 
+        addCommonCommandlineOptions();
+
         String additionalParameters = FileHelper.getStringFromConfiguration(this.configuration, "sm.java.toolchainOptions");
         if (additionalParameters != null) {
             this.commands.add(additionalParameters);
         }
-
-        addCommonCommandlineOptions();
 
         return true;
     }

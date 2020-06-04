@@ -322,12 +322,12 @@ public class SourceMeterCppSensor extends SourceMeterSensor {
             this.commands.add("-externalHardFilter=" + hardFilter);
         }
 
+        addCommonCommandlineOptions();
+
         String additionalParameters = FileHelper.getStringFromConfiguration(configuration, "sm.cpp.toolchainOptions");
         if (null != additionalParameters) {
             this.commands.add(additionalParameters);
         }
-
-        addCommonCommandlineOptions();
 
         return true;
     }
