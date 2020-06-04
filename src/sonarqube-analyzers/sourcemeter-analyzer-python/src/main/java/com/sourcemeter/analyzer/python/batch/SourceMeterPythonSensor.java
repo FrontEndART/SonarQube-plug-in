@@ -314,12 +314,12 @@ public class SourceMeterPythonSensor extends SourceMeterSensor {
             this.commands.add("-externalHardFilter=" + filterFilePath);
         }
 
+        addCommonCommandlineOptions();
+
         String additionalParameters = FileHelper.getStringFromConfiguration(this.configuration, "sm.python.toolchainOptions");
         if (additionalParameters != null) {
             this.commands.add(additionalParameters);
         }
-
-        addCommonCommandlineOptions();
 
         return true;
     }

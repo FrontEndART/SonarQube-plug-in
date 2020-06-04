@@ -337,12 +337,12 @@ public class SourceMeterCSharpSensor extends SourceMeterSensor {
             this.commands.add("-externalHardFilter=" + hardFilter);
         }
 
+        addCommonCommandlineOptions();
+
         String additionalParameters = FileHelper.getStringFromConfiguration(this.configuration, "sm.csharp.toolchainOptions");
         if (null != additionalParameters) {
             this.commands.add(additionalParameters);
         }
-
-        addCommonCommandlineOptions();
 
         return true;
     }

@@ -293,11 +293,6 @@ public class SourceMeterRPGSensor extends SourceMeterSensor {
         String rpg4Pattern = FileHelper.getStringFromConfiguration(configuration, "sm.rpg.rpg4Pattern");
         this.commands.add("-rpg4FileNamePattern=" + rpg4Pattern);
 
-        String additionalParameters = FileHelper.getStringFromConfiguration(configuration, "sm.rpg.toolchainOptions");
-        if (additionalParameters != null) {
-            this.commands.add(additionalParameters);
-        }
-
         String hardFilter = "";
         String hardFilterFilePath = null;
         hardFilter = getFilterContent(sensorContext, RPG.KEY);
@@ -325,6 +320,11 @@ public class SourceMeterRPGSensor extends SourceMeterSensor {
         }
 
         addCommonCommandlineOptions();
+
+        String additionalParameters = FileHelper.getStringFromConfiguration(configuration, "sm.rpg.toolchainOptions");
+        if (additionalParameters != null) {
+            this.commands.add(additionalParameters);
+        }
 
         return true;
     }

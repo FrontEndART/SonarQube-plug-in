@@ -297,12 +297,12 @@ public class SourceMeterJavaScriptSensor extends SourceMeterSensor {
             this.commands.add("-externalHardFilter=" + hardFilter);
         }
 
+        addCommonCommandlineOptions();
+
         String additionalParameters = FileHelper.getStringFromConfiguration(configuration, "sm.javascript.toolchainOptions");
         if (null != additionalParameters) {
             this.commands.add(additionalParameters);
         }
-
-        addCommonCommandlineOptions();
 
         return true;
     }
