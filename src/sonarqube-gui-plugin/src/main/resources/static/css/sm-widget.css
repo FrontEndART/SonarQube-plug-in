@@ -84,12 +84,12 @@ div.sm-widget .control-filter-input {
 }
 
 .sm-widget table tr:nth-child(2n) {
-  background-color: #f5f5f5;
+  background-color: #e7e7e7;
 }
 
 /*row coloring for clone table*/
 .sm-widget table td.sm-widget-row-odd {
-  background-color: #f5f5f5;
+  background-color: #e7e7e7;
 }
 .sm-widget table td.sm-widget-row-even {
   background-color: #fff
