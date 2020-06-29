@@ -218,17 +218,18 @@ class RulHandler:
 
     def findTypeByKey(self, id):
         retVal = ''
-
+        toolDescCondition = (self.toolDescription != DCF_ID and
+                             self.toolDescription != MET_ID and
+                             self.toolDescription != RPG_MET_ID)
         with open(self.csvTypeFileName, encoding='utf8') as csv_file:
             csv_reader = csv.reader(csv_file, delimiter=',')
             line_count = 0
             for row in csv_reader:
                 if line_count == 0:
                     line_count += 1
-                else:
-                    if re.search('_?' + id + '$', row[2]):
-                        retVal = row[3]
-                    line_count += 1
+                elif toolDescCondition and re.search('_' + id + '$', row[2]):
+                    retVal = row[3]
+                line_count += 1
 
         return retVal
 

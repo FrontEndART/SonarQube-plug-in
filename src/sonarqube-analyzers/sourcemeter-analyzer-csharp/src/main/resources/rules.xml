@@ -105,7 +105,6 @@
     <description>&lt;p&gt;&lt;strong&gt;Class, Structure:&lt;/strong&gt; number of attributes in the class, including the inherited ones and generated ones backing auto properties; however, the attributes of its nested and anonymous classes are not included.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Namespace:&lt;/strong&gt; number of attributes in the namespace; however, attributes of its subnamespaces are not included.&lt;/p&gt;
 </description>
-    <type>BUG</type>
     <severity>INFO</severity>
     <tag>sourcemeter</tag>
   </rule>
@@ -652,7 +651,6 @@
     <key>MET_CA</key>
     <name>Clone Age (CA) Metric Threshold Violation</name>
     <description>&lt;b&gt;Clone class/clone instance:&lt;/b&gt; number of previously analyzed revisions in which the clone class/clone instance was present + 1.</description>
-    <type>BUG</type>
     <severity>INFO</severity>
     <tag>sourcemeter</tag>
   </rule>
@@ -660,7 +658,6 @@
     <key>MET_CC</key>
     <name>Clone Coverage (CC) Metric Threshold Violation</name>
     <description>&lt;b&gt;Method/Interface/Enum/class/Structure/Namespace:&lt;/b&gt; ratio of code covered by code duplications in the source code element to the size of the source code element, expressed in terms of the number of syntactic entities (statements, expressions, etc.).&lt;br&gt;&lt;b&gt;Component:&lt;/b&gt; ratio of code covered by code duplications in the component to the size of the component, expressed in terms of the number of syntactic entities (statements, expressions, etc.).</description>
-    <type>BUG</type>
     <severity>INFO</severity>
     <tag>sourcemeter</tag>
   </rule>
@@ -682,7 +679,6 @@
     <key>MET_CE</key>
     <name>Clone Embeddedness (CE) Metric Threshold Violation</name>
     <description>&lt;b&gt;Clone instance:&lt;/b&gt; sum of incoming and outgoing references (function calls, variable references, type references; different references to the same entity are counted only once) in the code fragment corresponding to the clone instance, weighted with the number of directory changes between the referenced code fragments.&lt;br&gt;&lt;b&gt;Clone class:&lt;/b&gt; sum of CE of the clone instances of the clone class + 1.</description>
-    <type>BUG</type>
     <severity>INFO</severity>
     <tag>sourcemeter</tag>
   </rule>
@@ -704,7 +700,6 @@
     <key>MET_CI</key>
     <name>Clone Instances (CI) Metric Threshold Violation</name>
     <description>&lt;b&gt;Method/class/Namespace:&lt;/b&gt; number of clone instances in the source code element.&lt;br&gt;&lt;b&gt;Component:&lt;/b&gt; number of clone instances in the component.&lt;br&gt;&lt;b&gt;Clone class:&lt;/b&gt; number of clone instances in the clone class.</description>
-    <type>BUG</type>
     <severity>INFO</severity>
     <tag>sourcemeter</tag>
   </rule>
@@ -740,7 +735,6 @@
     <key>MET_CV</key>
     <name>Clone Variability (CV) Metric Threshold Violation</name>
     <description>&lt;b&gt;Clone instance:&lt;/b&gt; instability of the clone instance since it appeared. It is computed as the ratio of the number of previously analyzed revisions when the instance had been changed to its age (CA).&lt;br&gt;&lt;b&gt;Clone class:&lt;/b&gt; instability of the clone class since it appeared. It is computed as the ratio of the number of previously analyzed revisions when its contained instances were moved, deleted, or added, to its age (CA), plus the average CV of its clone instances.</description>
-    <type>BUG</type>
     <severity>INFO</severity>
     <tag>sourcemeter</tag>
   </rule>
@@ -786,7 +780,7 @@
     <key>AEC</key>
     <name>Avoid excessive complexity</name>
     <description>&lt;h3&gt;FxCop&lt;/h3&gt;Method implementations that are exceedingly complex increase the challenge of understanding and maintaining code.</description>
-    <type>BUG</type>
+    <type>CODE_SMELL</type>
     <severity>MINOR</severity>
     <tag>sourcemeter</tag>
   </rule>
@@ -1851,7 +1845,7 @@ You may safely use most of the state on a managed System.Thread object, includin
     <key>MEWF</key>
     <name>Mark enums with FlagsAttribute</name>
     <description>&lt;h3&gt;FxCop&lt;/h3&gt;The enumeration appears to be made up of combinable flags. If this true, apply the Flags attribute to the enumeration.</description>
-    <type>BUG</type>
+    <type>CODE_SMELL</type>
     <severity>MINOR</severity>
     <tag>sourcemeter</tag>
   </rule>
@@ -2323,7 +2317,7 @@ You may safely use most of the state on a managed System.Thread object, includin
     <key>SA</key>
     <name>Secure asserts</name>
     <description>&lt;h3&gt;FxCop&lt;/h3&gt;Asserting a security permission without performing any security checks can leave an exploitable security weakness in your code. A security stack walk stops when a security permission is asserted. If you assert a permission without performing any checks on the caller, the caller might be able to indirectly execute code using your permissions. Asserts without security checks are only permissible when you are certain that the assert cannot be used in a harmful fashion, namely, if the code you call is harmless, or users have no way to pass arbitrary information to code that you call.</description>
-    <type>BUG</type>
+    <type>VULNERABILITY</type>
     <severity>BLOCKER</severity>
     <tag>sourcemeter</tag>
   </rule>
