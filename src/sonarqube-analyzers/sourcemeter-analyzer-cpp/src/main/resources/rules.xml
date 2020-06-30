@@ -7,7 +7,6 @@
 &lt;p&gt;&lt;strong&gt;Enum:&lt;/strong&gt; ratio of the number of documented enumerators in the enum +1 if the enum itself is documented to the number of all enumerators in the enum + 1 (the enum itself).&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Namespace:&lt;/strong&gt; ratio of the number of documented public classes and methods in the namespace to the number of all of its public classes and methods; however, the classes and methods of its subnamespaces are not included.&lt;/p&gt;
 </description>
-    <type>VULNERABILITY</type>
     <severity>INFO</severity>
     <tag>sourcemeter</tag>
   </rule>
@@ -16,7 +15,6 @@
     <name>Coupling Between Object classes (CBO) Metric Threshold Violation</name>
     <description>&lt;p&gt;&lt;strong&gt;Class, Structure, Union, Interface:&lt;/strong&gt; number of directly used other classes (e.g. by inheritance, function call, type reference, attribute reference). Classes using many other classes highly depend on their environment, so it is difficult to test or reuse them; furthermore, they are very sensitive to the changes in the system.&lt;/p&gt;
 </description>
-    <type>BUG</type>
     <severity>INFO</severity>
     <tag>sourcemeter</tag>
   </rule>
@@ -35,7 +33,6 @@
 &lt;p&gt;&lt;strong&gt;Class, Structure, Union:&lt;/strong&gt; ratio of the comment lines of the class (CLOC) to the sum of its comment (CLOC) and logical lines of code (LLOC).&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Namespace:&lt;/strong&gt; ratio of the comment lines of the namespace (CLOC) to the sum of its comment (CLOC) and logical lines of code (LLOC).&lt;/p&gt;
 </description>
-    <type>BUG</type>
     <severity>INFO</severity>
     <tag>sourcemeter</tag>
   </rule>
@@ -303,7 +300,6 @@
 &lt;p&gt;&lt;strong&gt;Enum:&lt;/strong&gt; number of enumerators in the enum.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Namespace:&lt;/strong&gt; number of attributes in the namespace; however, attributes of its subnamespaces are not included.&lt;/p&gt;
 </description>
-    <type>CODE_SMELL</type>
     <severity>INFO</severity>
     <tag>sourcemeter</tag>
   </rule>
@@ -329,7 +325,6 @@
     <description>&lt;p&gt;&lt;strong&gt;Class, Structure, Union, Interface:&lt;/strong&gt; number of getter methods in the class, including the inherited ones; however, the getter methods of its nested, anonymous, and local classes are not included. Methods that override abstract methods are not counted.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Namespace:&lt;/strong&gt; number of getter methods in the namespace; however, getter methods of its subnamespaces are not included.&lt;/p&gt;
 </description>
-    <type>CODE_SMELL</type>
     <severity>INFO</severity>
     <tag>sourcemeter</tag>
   </rule>
@@ -873,7 +868,6 @@
     <name>Weighted Methods per Class (WMC) Metric Threshold Violation</name>
     <description>&lt;p&gt;&lt;strong&gt;Class, Structure, Interface:&lt;/strong&gt; complexity of the class expressed as the number of independent control flow paths in it. It is calculated as the sum of the McCabe’s Cyclomatic Complexity (McCC) values of its local methods.&lt;/p&gt;
 </description>
-    <type>BUG</type>
     <severity>INFO</severity>
     <tag>sourcemeter</tag>
   </rule>
@@ -888,7 +882,6 @@
     <key>MET_CC</key>
     <name>Clone Coverage (CC) Metric Threshold Violation</name>
     <description>&lt;b&gt;Method/Function/Union/Enum/class/Structure/Namespace:&lt;/b&gt; ratio of code covered by code duplications in the source code element to the size of the source code element, expressed in terms of the number of syntactic entities (statements, expressions, etc.).&lt;br&gt;&lt;b&gt;Component:&lt;/b&gt; ratio of code covered by code duplications in the component to the size of the component, expressed in terms of the number of syntactic entities (statements, expressions, etc.).</description>
-    <type>BUG</type>
     <severity>INFO</severity>
     <tag>sourcemeter</tag>
   </rule>
@@ -896,7 +889,6 @@
     <key>MET_CCL</key>
     <name>Clone Classes (CCL) Metric Threshold Violation</name>
     <description>&lt;b&gt;Method/class/package:&lt;/b&gt; number of clone classes having at least one clone instance in the source code element.&lt;br&gt;&lt;b&gt;Component:&lt;/b&gt; number of clone classes having at least one clone instance in the component.</description>
-    <type>VULNERABILITY</type>
     <severity>INFO</severity>
     <tag>sourcemeter</tag>
   </rule>
@@ -911,7 +903,6 @@
     <key>MET_CE</key>
     <name>Clone Embeddedness (CE) Metric Threshold Violation</name>
     <description>&lt;b&gt;Clone instance:&lt;/b&gt; sum of incoming and outgoing references (function calls, variable references, type references; different references to the same entity are counted only once) in the code fragment corresponding to the clone instance, weighted with the number of directory changes between the referenced code fragments.&lt;br&gt;&lt;b&gt;Clone class:&lt;/b&gt; sum of CE of the clone instances of the clone class + 1.</description>
-    <type>BUG</type>
     <severity>INFO</severity>
     <tag>sourcemeter</tag>
   </rule>
@@ -940,7 +931,6 @@
     <key>MET_CLC</key>
     <name>Clone Line Coverage (CLC) Metric Threshold Violation</name>
     <description>&lt;b&gt;Function/method/class/module/package:&lt;/b&gt; ratio of code covered by code duplications in the source code element to the size of the source code element, expressed in terms of lines of code.&lt;br&gt;&lt;b&gt;Component:&lt;/b&gt; ratio of code covered by code duplications in the component to the size of the component, expressed in terms of lines of code.</description>
-    <type>CODE_SMELL</type>
     <severity>INFO</severity>
     <tag>sourcemeter</tag>
   </rule>
@@ -962,7 +952,6 @@
     <key>MET_CR</key>
     <name>Clone Risk (CR) Metric Threshold Violation</name>
     <description>&lt;b&gt;Clone class:&lt;/b&gt; risk index of the existence of the clone class. It is computed as the product of CLLOC, CI, CCO, NCR, and CV.&lt;br&gt;&lt;b&gt;Component:&lt;/b&gt; relative risk index of the existence of code duplications in the component. It is computed as the sum of CR of the clone classes in the component, divided by the total logical lines of code (non-empty, non-comment lines) of the component. It expresses the risk index projected to a non-empty, non-comment line of code in the component.</description>
-    <type>BUG</type>
     <severity>INFO</severity>
     <tag>sourcemeter</tag>
   </rule>
@@ -1019,7 +1008,7 @@
   }
 }&lt;/code&gt;&lt;/pre&gt;
 </description>
-    <type>CODE_SMELL</type>
+    <type>BUG</type>
     <severity>CRITICAL</severity>
     <tag>sourcemeter</tag>
   </rule>
@@ -1160,7 +1149,6 @@ foo(++i, ++i);&lt;/code&gt;&lt;/pre&gt;
     <name>Access Forwarded</name>
     <description>&lt;h3&gt;Cppcheck&lt;/h3&gt;&lt;p&gt;Access of forwarded variable 'v'.&lt;/p&gt;
 </description>
-    <type>VULNERABILITY</type>
     <severity>CRITICAL</severity>
     <tag>sourcemeter</tag>
   </rule>
@@ -1231,7 +1219,6 @@ foo(++i, ++i);&lt;/code&gt;&lt;/pre&gt;
     <name>Access Moved</name>
     <description>&lt;h3&gt;Cppcheck&lt;/h3&gt;&lt;p&gt;Access of moved variable 'v'.&lt;/p&gt;
 </description>
-    <type>CODE_SMELL</type>
     <severity>CRITICAL</severity>
     <tag>sourcemeter</tag>
   </rule>
@@ -1257,7 +1244,7 @@ foo(++i, ++i);&lt;/code&gt;&lt;/pre&gt;
     <name>Argument Size</name>
     <description>&lt;h3&gt;Cppcheck&lt;/h3&gt;&lt;p&gt;The array 'array' is too small, the function 'function' expects a bigger one.&lt;/p&gt;
 </description>
-    <type>BUG</type>
+    <type>VULNERABILITY</type>
     <severity>CRITICAL</severity>
     <tag>sourcemeter</tag>
   </rule>
@@ -2043,7 +2030,7 @@ foo(++i, ++i);&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Source: &lt;a href=&quot;http://linux.die.net/man/3/scanf&quot; class=&quot;uri&quot;&gt;http://linux.die.net/man/3/scanf&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Source: &lt;a href=&quot;http://www.opensource.apple.com/source/xnu/xnu-1456.1.26/libkern/stdio/scanf.c&quot; class=&quot;uri&quot;&gt;http://www.opensource.apple.com/source/xnu/xnu-1456.1.26/libkern/stdio/scanf.c&lt;/a&gt;&lt;/p&gt;
 </description>
-    <type>BUG</type>
+    <type>VULNERABILITY</type>
     <severity>CRITICAL</severity>
     <tag>sourcemeter</tag>
   </rule>
@@ -2158,7 +2145,7 @@ foo(++i, ++i);&lt;/code&gt;&lt;/pre&gt;
     <name>Memset Class</name>
     <description>&lt;h3&gt;Cppcheck&lt;/h3&gt;&lt;p&gt;Using 'memfunc' on class that contains a classname is unsafe, because constructor, destructor and copy operator calls are omitted. These are necessary for this non-POD type to ensure that a valid object is created.&lt;/p&gt;
 </description>
-    <type>BUG</type>
+    <type>VULNERABILITY</type>
     <severity>BLOCKER</severity>
     <tag>sourcemeter</tag>
   </rule>
@@ -2343,7 +2330,6 @@ foo(++i, ++i);&lt;/code&gt;&lt;/pre&gt;
     <name>No Destructor</name>
     <description>&lt;h3&gt;Cppcheck&lt;/h3&gt;&lt;p&gt;Class 'class' does not have a destructor which is recommended since it has dynamic memory/resource allocation(s).&lt;/p&gt;
 </description>
-    <type>BUG</type>
     <severity>MINOR</severity>
     <tag>sourcemeter</tag>
   </rule>
@@ -2387,7 +2373,7 @@ foo(++i, ++i);&lt;/code&gt;&lt;/pre&gt;
     <name>Null Pointer</name>
     <description>&lt;h3&gt;Cppcheck&lt;/h3&gt;&lt;p&gt;Null pointer dereference&lt;/p&gt;
 </description>
-    <type>BUG</type>
+    <type>VULNERABILITY</type>
     <severity>BLOCKER</severity>
     <tag>sourcemeter</tag>
   </rule>
@@ -2764,7 +2750,6 @@ foo(++i, ++i);&lt;/code&gt;&lt;/pre&gt;
     <name>Shift By Negative</name>
     <description>&lt;h3&gt;Cppcheck&lt;/h3&gt;&lt;p&gt;Shifting by a negative value is undefined behaviour&lt;/p&gt;
 </description>
-    <type>CODE_SMELL</type>
     <severity>BLOCKER</severity>
     <tag>sourcemeter</tag>
   </rule>
@@ -2826,7 +2811,6 @@ foo(++i, ++i);&lt;/code&gt;&lt;/pre&gt;
     <name>Shadow Function</name>
     <description>&lt;h3&gt;Cppcheck&lt;/h3&gt;&lt;p&gt;Local variable f shadows outer function&lt;/p&gt;
 </description>
-    <type>CODE_SMELL</type>
     <severity>MINOR</severity>
     <tag>sourcemeter</tag>
   </rule>
@@ -3123,7 +3107,6 @@ foo(++i, ++i);&lt;/code&gt;&lt;/pre&gt;
     <name>Throw In Noexcept Function</name>
     <description>&lt;h3&gt;Cppcheck&lt;/h3&gt;&lt;p&gt;Exception thrown in function declared not to throw exceptions.&lt;/p&gt;
 </description>
-    <type>BUG</type>
     <severity>BLOCKER</severity>
     <tag>sourcemeter</tag>
   </rule>
@@ -3166,7 +3149,6 @@ foo(++i, ++i);&lt;/code&gt;&lt;/pre&gt;
     <name>Unsafe allocation</name>
     <description>&lt;h3&gt;Cppcheck&lt;/h3&gt;&lt;p&gt;Unsafe allocation. If funcName() throws, memory could be leaked. Use make_shared&lt;int&gt;() instead.&lt;/p&gt;
 </description>
-    <type>CODE_SMELL</type>
     <severity>CRITICAL</severity>
     <tag>sourcemeter</tag>
   </rule>

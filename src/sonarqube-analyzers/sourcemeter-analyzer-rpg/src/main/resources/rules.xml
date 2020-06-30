@@ -286,7 +286,6 @@
     <name>Nesting Level (NL) Metric Threshold Violation</name>
     <description>&lt;p&gt;TODO: &lt;b&gt;Subroutine:&lt;/b&gt; complexity of the subroutine expressed as the depth of the maximum embeddedness of its conditional and iteration block scopes. The following instructions are taken into account: if, else-if, for, do, do-while, do-until, select, monitor. The following instructions do not increase the value by themselves; however, if additional embeddednesses can be found in their blocks, they are considered: else, when, other, and on-error. &lt;br&gt;&lt;b&gt;Procedure:&lt;/b&gt; complexity of the procedure expressed as the depth of the maximum embeddedness of its conditional and iteration block scopes. The following instructions are taken into account: if, else-if, for, do, do-while, do-until, select, monitor. The following instructions do not increase the value by themselves; however, if additional embeddednesses can be found in their blocks, they are considered: else, when, other, and on-error. Contained local subroutines are not included. &lt;br&gt;&lt;b&gt;Program:&lt;/b&gt; complexity of the program expressed as the depth of the maximum embeddedness of its conditional and iteration block scopes. The following instructions are taken into account: if, else-if, for, do, do-while, do-until, select, monitor. The following instructions do not increase the value by themselves; however, if additional embeddednesses can be found in their blocks, they are considered: else, when, other, and on-error. Contained local subroutines and procedures are not included.&lt;/p&gt;
 </description>
-    <type>BUG</type>
     <severity>INFO</severity>
     <tag>sourcemeter</tag>
   </rule>
@@ -505,7 +504,6 @@
     <key>MET_CC</key>
     <name>Clone Coverage (CC) Metric Threshold Violation</name>
     <description>&lt;b&gt;Subroutine/procedure/program/system:&lt;/b&gt; ratio of code covered by code duplications in the source code element to the size of the source code element, expressed in terms of the number of syntactic entities (statements, expressions, etc.).&lt;br&gt;&lt;b&gt;Component:&lt;/b&gt; ratio of code covered by code duplications in the component to the size of the component, expressed in terms of the number of syntactic entities (statements, expressions, etc.).</description>
-    <type>VULNERABILITY</type>
     <severity>INFO</severity>
     <tag>sourcemeter</tag>
   </rule>
@@ -520,7 +518,6 @@
     <key>MET_CCO</key>
     <name>Clone Complexity (CCO) Metric Threshold Violation</name>
     <description>&lt;b&gt;Clone instance:&lt;/b&gt; the McCabe complexity of the code fragment corresponding to the clone instance.&lt;br&gt;&lt;b&gt;Clone class:&lt;/b&gt; sum of CCO of clone instances in the clone class.&lt;br&gt;&lt;b&gt;Subroutine/procedure/program/system:&lt;/b&gt; sum of CCO of clone instances in the source code element.&lt;br&gt;&lt;b&gt;Component:&lt;/b&gt; sum of CCO of clone instances in the component.</description>
-    <type>CODE_SMELL</type>
     <severity>INFO</severity>
     <tag>sourcemeter</tag>
   </rule>
@@ -549,7 +546,6 @@
     <key>MET_CI</key>
     <name>Clone Instances (CI) Metric Threshold Violation</name>
     <description>&lt;b&gt;Subroutine/procedure/program/system:&lt;/b&gt; number of clone instances in the source code element.&lt;br&gt;&lt;b&gt;Component:&lt;/b&gt; number of clone instances in the component.&lt;br&gt;&lt;b&gt;Clone class:&lt;/b&gt; number of clone instances in the clone class.</description>
-    <type>CODE_SMELL</type>
     <severity>INFO</severity>
     <tag>sourcemeter</tag>
   </rule>
