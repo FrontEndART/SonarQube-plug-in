@@ -103,7 +103,7 @@ window.registerExtension('SourceMeterGUI/cloneViewer', function(options) {
     var scriptLoad = document.createElement('script');
     scriptLoad.type = 'text/javascript';
     scriptLoad.async = true;
-    scriptLoad.src = "/static/SourceMeterGUI/loader.js";
+    scriptLoad.src = window.baseUrl + "/static/SourceMeterGUI/loader.js";
 
     document.head.appendChild(scriptLoad);
 
@@ -126,7 +126,7 @@ window.registerExtension('SourceMeterGUI/cloneViewer', function(options) {
   // Load global vars into global scope.
   var scriptGlob = document.createElement('script');
   scriptGlob.type = 'text/javascript';
-  scriptGlob.src = "/static/SourceMeterGUI/globals.js";
+  scriptGlob.src = window.baseUrl + "/static/SourceMeterGUI/globals.js";
 
   document.head.appendChild(scriptGlob);
   waitForNDo(

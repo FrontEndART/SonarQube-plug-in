@@ -38,7 +38,7 @@ SM.help.main = function() {
   SM.pageBuilder.help.build();
 
   var loadUG = function(lang) {
-    var url = '/static/' + lang.pluginId + '/help/usersguide.html';
+    var url = window.baseUrl + '/static/' + lang.pluginId + '/help/usersguide.html';
     $.get(url)
       .done(function(response, status, xhr) {
         if (!SM.state.help.isDisplayed) {

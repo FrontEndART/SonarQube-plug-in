@@ -129,7 +129,7 @@ window.registerExtension('SourceMeterGUI/help', function(options) {
     }
 
     // load script loader.js, from then loader loads everything.
-    loadScript("/static/SourceMeterGUI/loader.js", true);
+    loadScript("/static/SourceMeterGUI/loader.js", true, window.baseUrl);
 
     waitForNDo(
       function() {
@@ -145,7 +145,7 @@ window.registerExtension('SourceMeterGUI/help', function(options) {
 
 
   // load global vars into global scope
-  loadScript("/static/SourceMeterGUI/globals.js");
+  loadScript("/static/SourceMeterGUI/globals.js", false, window.baseUrl);
 
 
   waitForNDo(

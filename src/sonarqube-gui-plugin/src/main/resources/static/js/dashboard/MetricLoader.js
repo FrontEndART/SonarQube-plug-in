@@ -150,7 +150,7 @@ SM.MetricLoader = new (function() { // Singleton object
     }
     var queryString = query.join(",");
 
-    a = window.SonarRequest.getJSON(location.origin + '/api/settings/values', {
+    a = window.SonarRequest.getJSON('/api/settings/values', {
       component: SM.options.component.key,
       keys: queryString
     }).then(function(response) {

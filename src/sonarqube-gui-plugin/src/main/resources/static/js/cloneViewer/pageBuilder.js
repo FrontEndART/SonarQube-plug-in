@@ -39,7 +39,7 @@ SM.pageBuilder.cloneViewer = {};
 SM.pageBuilder.cloneViewer.build = function() {
   SM.getRoot().html([
     '<div class="sm-page-header">',
-      '<img id="sm-logo" height="36px" src="/static/SourceMeterGUI/graphics/MainLogo.png">',
+      '<img id="sm-logo" height="36px" src="' + window.baseUrl + '/static/SourceMeterGUI/graphics/MainLogo.png">',
       '<h1 class="sm-page-title">Clone Viewer</h1>',
     '</div>',
     '<hr>',
