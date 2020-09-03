@@ -8,7 +8,7 @@ SM.globalinit = function(){
    *  class, to fetch tooltip data.
    */
   SM.languages.forEach(function(lang, i) {
-    $.get( '/static/' + lang.pluginId + '/help/usersguide.html')
+    $.get(window.baseUrl + '/static/' + lang.pluginId + '/help/usersguide.html')
       .done(function(data, status, xhr) {
         SM.languages[i].helpPage = data;
         SM.languages.helpPageLoaded[lang.id] = true;

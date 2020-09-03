@@ -38,7 +38,7 @@ SM.pageBuilder.dashboard = {};
 SM.pageBuilder.dashboard.build = function() {
   SM.getRoot().html([
     '  <div class="sm-page-header">',
-    '    <img id="sm-logo" height="36px" src="/static/SourceMeterGUI/graphics/MainLogo.png">',
+    '    <img id="sm-logo" height="36px" src="' + window.baseUrl + '/static/SourceMeterGUI/graphics/MainLogo.png">',
     '    <h1 class="sm-page-title">Dashboard</h1>',
     '  </div>',
     '  <div id="div1">',

@@ -282,7 +282,7 @@ SM.CloneWidget = function(elem, options) {
   this.generateCloneViewerLink = function(pack, i, j) {
     var anchor = pack.name;
     if (pack.positions[0]) {
-      var url = 'http://' + window.location.host + '/project/extension/SourceMeterGUI/cloneViewer?id='
+      var url = '/project/extension/SourceMeterGUI/cloneViewer?id='
       + SM.options.component.key;
       var href = 'javascript:(function() {'
       + 'var stateData = SM.state[SM.options.component.key];'
@@ -300,7 +300,7 @@ SM.CloneWidget = function(elem, options) {
   this.generatePositionAnchorTab = function(pack) {
     var anchor = pack.name;
     if (pack.positions[0]) {
-      var href = 'http://' + window.location.host + fileQuery + pack.displayedPath
+      var href = window.baseUrl + fileQuery + pack.displayedPath
                 + '&line=' + pack.positions[0].line;
       anchor = '<a href="' + href + '" target="_blank">' + pack.name + '</a>';
     }
@@ -311,7 +311,7 @@ SM.CloneWidget = function(elem, options) {
   this.generatePositionAnchorPopup = function(pack) {
     var anchor = pack.name;
     if (pack.positions[0]) {
-      var url = 'http://' + window.location.host + fileQuery + pack.displayedPath
+      var url = window.baseUrl + fileQuery + pack.displayedPath
                 + '&line=' + pack.positions[0].line;
       var href = 'javascript:(function() {window.open(\'' + url + '\', \'' + pack.displayedPath
                  + '\', \'resizable,scrollbars,status\');})()';

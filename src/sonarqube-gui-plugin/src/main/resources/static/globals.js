@@ -37,7 +37,7 @@ if (typeof SM === 'undefined') { // ensure this only runs once
     : false;
   SM.pageBuilder = {};
   SM.rootID   = 'sm-page-content';
-  SM.basePath = "/static/SourceMeterGUI/";
+  SM.basePath = window.baseUrl + "/static/SourceMeterGUI/";
   SM.options  = null;
   SM.isDisplayed = true;
   SM.state = [];
