@@ -44,14 +44,14 @@ Before starting with the installation of the plug-in, make sure that you have a 
 
 [platform]:http://docs.sonarqube.org/display/SONAR/Setup+and+Upgrade
 
-The installation of the plug-in is as simple as copying the `sourcemeter-gui-plugin-2.0.0.jar` and `sourcemeter-core-plugin-2.0.0.jar` files and the corresponding language analyzer plugins into the destination folder `extensions/plugins` of the platform installation:
+The installation of the plug-in is as simple as copying the `sourcemeter-gui-plugin-2.0.1.jar` and `sourcemeter-core-plugin-2.0.1.jar` files and the corresponding language analyzer plugins into the destination folder `extensions/plugins` of the platform installation:
 
-- C/C++: `sourcemeter-analyzer-cpp-plugin-2.0.0.jar`
-- C#: `sourcemeter-analyzer-csharp-plugin-2.0.0.jar`
-- Java: `sourcemeter-analyzer-java-plugin-2.0.0.jar`
-- JavaScript: `sourcemeter-analyzer-javascript-plugin-2.0.0.jar`
-- Python: `sourcemeter-analyzer-python-plugin-2.0.0.jar`
-- RPG: `sourcemeter-analyzer-rpg-plugin-2.0.0.jar`
+- C/C++: `sourcemeter-analyzer-cpp-plugin-2.0.1.jar`
+- C#: `sourcemeter-analyzer-csharp-plugin-2.0.1.jar`
+- Java: `sourcemeter-analyzer-java-plugin-2.0.1.jar`
+- JavaScript: `sourcemeter-analyzer-javascript-plugin-2.0.1.jar`
+- Python: `sourcemeter-analyzer-python-plugin-2.0.1.jar`
+- RPG: `sourcemeter-analyzer-rpg-plugin-2.0.1.jar`
 
 Since there is an independent sensor plug-in for each language, it is enough to install (copy to the destination folder) the sensor plug-in(s) of the required language(s).
 
@@ -78,7 +78,7 @@ Since an arbitrary number of different projects can be monitored and for the pro
 
 ## Plug-in uninstallation
 
-To uninstall the plug-in, first delete the *SourceMeter way* quality profile and then remove the installed plug-in files (`sourcemeter-*-plugin-2.0.0.jar`)  from the folder `/extensions/plugins`.
+To uninstall the plug-in, first delete the *SourceMeter way* quality profile and then remove the installed plug-in files (`sourcemeter-*-plugin-2.0.1.jar`)  from the folder `/extensions/plugins`.
 
 # Code Analysis
 

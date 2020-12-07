@@ -5,7 +5,7 @@
   <groupId>com.sourcemeter</groupId>
   <artifactId>sourcemeter-analyzer-javascript-plugin</artifactId>
   <packaging>sonar-plugin</packaging>
-  <version>2.0.0</version>
+  <version>2.0.1</version>
 
   <name>SourceMeter JavaScript analyzer plugin</name>
   <description>SourceMeter JavaScript analyzer plugin</description>
@@ -39,13 +39,13 @@
     <dependency>
       <groupId>com.sourcemeter</groupId>
       <artifactId>sourcemeter-core-plugin</artifactId>
-      <version>2.0.0</version>
+      <version>2.0.1</version>
     </dependency>
 
     <dependency>
       <groupId>com.sourcemeter</groupId>
       <artifactId>sourcemeter-analyzer-base</artifactId>
-      <version>2.0.0</version>
+      <version>2.0.1</version>
     </dependency>
   </dependencies>
 
