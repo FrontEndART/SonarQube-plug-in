@@ -1,6 +1,6 @@
 # FrontEndART SourceMeter plug-in for SONARQUBE™ platform
 
-[![Maintainability](https://cloud.quality-gate.com/backend/api/badge?branchName=master&projectName=FrontEndART_SonarQube-plug-in)](https://www.quality-gate.com/dashboard/branches/465793)
+[![Maintainability](https://cloud.quality-gate.com/backend/api/badge?branchName=master&projectName=FrontEndART_SonarQube-plug-in)](https://cloud.quality-gate.com/dashboard/branches/465793)
 
 *FrontEndART* **[SourceMeter]** is a command line source code analyzer tool, which can perform **deep static analysis** of the source code of complex software systems written in **C/C++**, **C#**, **Java**, **JavaScript**, **Python** and **RPG**. [FrontEndART] offers a **free version** of SourceMeter.
 
