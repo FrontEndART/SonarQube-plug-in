@@ -4,7 +4,7 @@
 
   <groupId>com.sourcemeter</groupId>
   <artifactId>sourcemeter-analyzer-rpg-plugin</artifactId>
-  <version>2.0.1</version>
+  <version>2.1.0</version>
   <packaging>sonar-plugin</packaging>
 
   <name>SourceMeter RPG analyzer plugin</name>
@@ -12,8 +12,8 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <sonar.buildVersion>7.9</sonar.buildVersion>
-    <jdk.min.version>1.7</jdk.min.version>
+    <sonar.buildVersion>8.9.2.46101</sonar.buildVersion>
+    <jdk.min.version>1.8</jdk.min.version>
   </properties>
 
   <dependencies>

@@ -43,9 +43,9 @@ def get_arguments():
     parser = argparse.ArgumentParser()
     parser.add_argument('--init', action='store_true', default=False,
                         help='Initialize')
-    parser.add_argument('-sv', '--server-version', default='7.2',
+    parser.add_argument('-sv', '--server-version', default='8.9.2.46101',
                         help='Version of the SQ server (default=%(default)s)')
-    parser.add_argument('-scv', '--scanner-version', default='3.2.0.1227',
+    parser.add_argument('-scv', '--scanner-version', default='4.6.1.2450',
                         help='Version of the SQ scanner (default=%(default)s)')
     parser.add_argument('-plgf', '--plugins-folder', default=None,
                         help='Folder containing the plugins to be tested (default=%(default)s)')
@@ -110,13 +110,13 @@ def copy_all_files_from_folder(src, dst):
     else:
         plugins = ['core', 'gui']
         for plugin in plugins:
-            path = ['src', 'sonarqube-%s-plugin' % plugin, 'target', 'sourcemeter-%s-plugin-2.0.1.jar' % plugin]
+            path = ['src', 'sonarqube-%s-plugin' % plugin, 'target', 'sourcemeter-%s-plugin-2.1.0.jar' % plugin]
             path  = os.path.join(*path)
             shutil.copy(path, dst)
 
         languages = ['cpp', 'csharp', 'java', 'python', 'rpg']
         for language in languages:
-            path = ['src', 'sonarqube-analyzers', 'sourcemeter-analyzer-%s' % language, 'target', 'sourcemeter-analyzer-%s-plugin-2.0.1.jar' % language]
+            path = ['src', 'sonarqube-analyzers', 'sourcemeter-analyzer-%s' % language, 'target', 'sourcemeter-analyzer-%s-plugin-2.1.0.jar' % language]
             path  = os.path.join(*path)
             shutil.copy(path, dst)
     print('Copy finished!')
@@ -188,7 +188,7 @@ def main(options):
     # 0, a) Try to build the plugins with 'build.py'
 
     if system == 'Windows':
-        common.run_cmd('py', ['-3', 'build.py', '--all'])
+        common.run_cmd('py', ['-3', 'tools\\build.py', '--all'])
     elif system == 'Linux':
         common.run_cmd('python3', ['tools/build.py', '--all'])
 
