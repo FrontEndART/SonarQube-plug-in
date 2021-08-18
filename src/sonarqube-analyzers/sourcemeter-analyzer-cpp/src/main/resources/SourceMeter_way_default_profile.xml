@@ -140,71 +140,6 @@
     </rule>
     <rule>
       <repositoryKey>SourceMeter_cpp</repositoryKey>
-      <key>CEBV</key>
-      <priority>CRITICAL</priority>
-    </rule>
-    <rule>
-      <repositoryKey>SourceMeter_cpp</repositoryKey>
-      <key>HP</key>
-      <priority>CRITICAL</priority>
-    </rule>
-    <rule>
-      <repositoryKey>SourceMeter_cpp</repositoryKey>
-      <key>IL</key>
-      <priority>CRITICAL</priority>
-    </rule>
-    <rule>
-      <repositoryKey>SourceMeter_cpp</repositoryKey>
-      <key>MVDUD</key>
-      <priority>CRITICAL</priority>
-    </rule>
-    <rule>
-      <repositoryKey>SourceMeter_cpp</repositoryKey>
-      <key>MVDUN</key>
-      <priority>CRITICAL</priority>
-    </rule>
-    <rule>
-      <repositoryKey>SourceMeter_cpp</repositoryKey>
-      <key>NDEO</key>
-      <priority>CRITICAL</priority>
-    </rule>
-    <rule>
-      <repositoryKey>SourceMeter_cpp</repositoryKey>
-      <key>NPIFCT</key>
-      <priority>CRITICAL</priority>
-    </rule>
-    <rule>
-      <repositoryKey>SourceMeter_cpp</repositoryKey>
-      <key>OETS</key>
-      <priority>CRITICAL</priority>
-    </rule>
-    <rule>
-      <repositoryKey>SourceMeter_cpp</repositoryKey>
-      <key>SA</key>
-      <priority>CRITICAL</priority>
-    </rule>
-    <rule>
-      <repositoryKey>SourceMeter_cpp</repositoryKey>
-      <key>SDANSIH</key>
-      <priority>CRITICAL</priority>
-    </rule>
-    <rule>
-      <repositoryKey>SourceMeter_cpp</repositoryKey>
-      <key>SENIP</key>
-      <priority>CRITICAL</priority>
-    </rule>
-    <rule>
-      <repositoryKey>SourceMeter_cpp</repositoryKey>
-      <key>UDINIH</key>
-      <priority>CRITICAL</priority>
-    </rule>
-    <rule>
-      <repositoryKey>SourceMeter_cpp</repositoryKey>
-      <key>ULTZ</key>
-      <priority>CRITICAL</priority>
-    </rule>
-    <rule>
-      <repositoryKey>SourceMeter_cpp</repositoryKey>
       <key>AATI</key>
       <priority>MINOR</priority>
     </rule>
@@ -376,6 +311,11 @@
     <rule>
       <repositoryKey>SourceMeter_cpp</repositoryKey>
       <key>CE</key>
+      <priority>MINOR</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_cpp</repositoryKey>
+      <key>CEBV</key>
       <priority>MINOR</priority>
     </rule>
     <rule>
@@ -637,6 +577,11 @@
       <repositoryKey>SourceMeter_cpp</repositoryKey>
       <key>IIT2</key>
       <priority>BLOCKER</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_cpp</repositoryKey>
+      <key>IL</key>
+      <priority>MINOR</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_cpp</repositoryKey>
@@ -925,6 +870,11 @@
     </rule>
     <rule>
       <repositoryKey>SourceMeter_cpp</repositoryKey>
+      <key>OETS</key>
+      <priority>CRITICAL</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_cpp</repositoryKey>
       <key>OEVE</key>
       <priority>CRITICAL</priority>
     </rule>
@@ -1112,6 +1062,11 @@
       <repositoryKey>SourceMeter_cpp</repositoryKey>
       <key>RWOF</key>
       <priority>BLOCKER</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_cpp</repositoryKey>
+      <key>SA</key>
+      <priority>CRITICAL</priority>
     </rule>
     <rule>
       <repositoryKey>SourceMeter_cpp</repositoryKey>
@@ -1456,6 +1411,11 @@
     <rule>
       <repositoryKey>SourceMeter_cpp</repositoryKey>
       <key>UL</key>
+      <priority>MINOR</priority>
+    </rule>
+    <rule>
+      <repositoryKey>SourceMeter_cpp</repositoryKey>
+      <key>ULTZ</key>
       <priority>MINOR</priority>
     </rule>
     <rule>

@@ -13,7 +13,7 @@
   <rule>
     <key>MET_CBO</key>
     <name>Coupling Between Object classes (CBO) Metric Threshold Violation</name>
-    <description>&lt;p&gt;&lt;strong&gt;Class, Structure, Union, Interface:&lt;/strong&gt; number of directly used other classes (e.g. by inheritance, function call, type reference, attribute reference). Classes using many other classes highly depend on their environment, so it is difficult to test or reuse them; furthermore, they are very sensitive to the changes in the system.&lt;/p&gt;
+    <description>&lt;p&gt;&lt;strong&gt;Class, Structure, Union, Interface:&lt;/strong&gt; number of directly used other classes (e.g. by inheritance, function call, type reference, attribute reference). Classes using many other classes highly depend on their environment, so it is difficult to test or reuse them; furthermore, they are very sensitive to the changes in the system.&lt;/p&gt;
 </description>
     <severity>INFO</severity>
     <tag>sourcemeter</tag>
@@ -71,7 +71,7 @@
     <description>&lt;p&gt;&lt;strong&gt;Method, Function:&lt;/strong&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;em&gt;n1&lt;/em&gt;: number of distinct operators (semantic meanings of the reserved keywords, semicolons, blocks, and identifiers except in their declarations)&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;n2&lt;/em&gt;: number of distinct operands (literals - e.g. character, string, and integer literals, - and the identifiers in their declarations)&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;n2&lt;/em&gt;: number of distinct operands (literals - e.g. character, string, and integer literals, - and the identifiers in their declarations)&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;The calculated program length is &lt;em&gt;n1 * log&lt;sub&gt;2&lt;/sub&gt;(n1) + n2 * log&lt;sub&gt;2&lt;/sub&gt;(n2)&lt;/em&gt;.&lt;/p&gt;
 </description>
@@ -84,7 +84,7 @@
     <description>&lt;p&gt;&lt;strong&gt;Method, Function:&lt;/strong&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;em&gt;n1&lt;/em&gt;: number of distinct operators (semantic meanings of the reserved keywords, semicolons, blocks, and identifiers except in their declarations)&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;n2&lt;/em&gt;: number of distinct operands (literals - e.g. character, string, and integer literals, - and the identifiers in their declarations)&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;n2&lt;/em&gt;: number of distinct operands (literals - e.g. character, string, and integer literals, - and the identifiers in their declarations)&lt;/li&gt;
 &lt;li&gt;&lt;em&gt;N2&lt;/em&gt;: total number of operands&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;The Halstead difficulty is &lt;em&gt;n1/2 * N2/n2&lt;/em&gt;.&lt;/p&gt;
@@ -98,7 +98,7 @@
     <description>&lt;p&gt;&lt;strong&gt;Method, Function:&lt;/strong&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;em&gt;n1&lt;/em&gt;: number of distinct operators (semantic meanings of the reserved keywords, semicolons, blocks, and identifiers except in their declarations)&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;n2&lt;/em&gt;: number of distinct operands (literals - e.g. character, string, and integer literals, - and the identifiers in their declarations)&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;n2&lt;/em&gt;: number of distinct operands (literals - e.g. character, string, and integer literals, - and the identifiers in their declarations)&lt;/li&gt;
 &lt;li&gt;&lt;em&gt;N1&lt;/em&gt;: total number of operators&lt;/li&gt;
 &lt;li&gt;&lt;em&gt;N2&lt;/em&gt;: total number of operands&lt;/li&gt;
 &lt;li&gt;&lt;em&gt;n : n1 + n2&lt;/em&gt; (program vocabulary)&lt;/li&gt;
@@ -117,7 +117,7 @@
     <description>&lt;p&gt;&lt;strong&gt;Method, Function:&lt;/strong&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;em&gt;n1&lt;/em&gt;: number of distinct operators (semantic meanings of the reserved keywords, semicolons, blocks, and identifiers except in their declarations)&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;n2&lt;/em&gt;: number of distinct operands (literals - e.g. character, string, and integer literals, - and the identifiers in their declarations)&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;n2&lt;/em&gt;: number of distinct operands (literals - e.g. character, string, and integer literals, - and the identifiers in their declarations)&lt;/li&gt;
 &lt;li&gt;&lt;em&gt;N1&lt;/em&gt;: total number of operators&lt;/li&gt;
 &lt;li&gt;&lt;em&gt;N2&lt;/em&gt;: total number of operands&lt;/li&gt;
 &lt;li&gt;&lt;em&gt;n : n1 + n2&lt;/em&gt; (program vocabulary)&lt;/li&gt;
@@ -137,7 +137,7 @@
     <description>&lt;p&gt;&lt;strong&gt;Method, Function:&lt;/strong&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;em&gt;N1&lt;/em&gt;: total number of operators (semantic meanings of the reserved keywords, semicolons, blocks, and identifiers except in their declarations)&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;N2&lt;/em&gt;: total number of operands (literals - e.g. character, string, and integer literals, - and the identifiers in their declarations)&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;N2&lt;/em&gt;: total number of operands (literals - e.g. character, string, and integer literals, - and the identifiers in their declarations)&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Halstead program length is &lt;em&gt;N1 + N2&lt;/em&gt;.&lt;/p&gt;
 </description>
@@ -150,7 +150,7 @@
     <description>&lt;p&gt;&lt;strong&gt;Method, Function:&lt;/strong&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;em&gt;n1&lt;/em&gt;: number of distinct operators (semantic meanings of the reserved keywords, semicolons, blocks, and identifiers except in their declarations)&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;n2&lt;/em&gt;: number of distinct operands (literals - e.g. character, string, and integer literals, - and the identifiers in their declarations)&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;n2&lt;/em&gt;: number of distinct operands (literals - e.g. character, string, and integer literals, - and the identifiers in their declarations)&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Halstead program vocabulary is &lt;em&gt;n1 + n2&lt;/em&gt;.&lt;/p&gt;
 </description>
@@ -163,7 +163,7 @@
     <description>&lt;p&gt;&lt;strong&gt;Method, Function:&lt;/strong&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;em&gt;n1&lt;/em&gt;: number of distinct operators (semantic meanings of the reserved keywords, semicolons, blocks, and identifiers except in their declarations)&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;n2&lt;/em&gt;: number of distinct operands (literals - e.g. character, string, and integer literals, - and the identifiers in their declarations)&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;n2&lt;/em&gt;: number of distinct operands (literals - e.g. character, string, and integer literals, - and the identifiers in their declarations)&lt;/li&gt;
 &lt;li&gt;&lt;em&gt;N1&lt;/em&gt;: total number of operators&lt;/li&gt;
 &lt;li&gt;&lt;em&gt;N2&lt;/em&gt;: total number of operands&lt;/li&gt;
 &lt;li&gt;&lt;em&gt;n : n1 + n2&lt;/em&gt; (program vocabulary)&lt;/li&gt;
@@ -183,7 +183,7 @@
     <description>&lt;p&gt;&lt;strong&gt;Method, Function:&lt;/strong&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;em&gt;n1&lt;/em&gt;: number of distinct operators (semantic meanings of the reserved keywords, semicolons, blocks, and identifiers except in their declarations)&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;n2&lt;/em&gt;: number of distinct operands (literals - e.g. character, string, and integer literals, - and the identifiers in their declarations)&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;n2&lt;/em&gt;: number of distinct operands (literals - e.g. character, string, and integer literals, - and the identifiers in their declarations)&lt;/li&gt;
 &lt;li&gt;&lt;em&gt;N1&lt;/em&gt;: total number of operators&lt;/li&gt;
 &lt;li&gt;&lt;em&gt;N2&lt;/em&gt;: total number of operands&lt;/li&gt;
 &lt;li&gt;&lt;em&gt;n : n1 + n2&lt;/em&gt; (program vocabulary)&lt;/li&gt;
@@ -197,7 +197,7 @@
   <rule>
     <key>MET_LCOM5</key>
     <name>Lack of Cohesion in Methods 5 (LCOM5) Metric Threshold Violation</name>
-    <description>&lt;p&gt;&lt;strong&gt;Class, Structure, Union:&lt;/strong&gt; number of functionalities of the class. One of the basic principles of object-oriented programming is encapsulation, meaning that attributes belonging together and the operations that use them should be organized into one class, and one class shall implement only one functionality, i.e. its attributes and methods should be coherent. This metric measures the lack of cohesion and computes into how many coherent classes the class could be split. It is calculated by taking a non-directed graph, where the nodes are the implemented local methods of the class and there is an edge between the two nodes if and only if a common (local or inherited) attribute or abstract method is used or a method invokes another. The value of the metric is the number of connected components in the graph not counting those, which contain only constructors, destructors, getters, or setters.&lt;/p&gt;
+    <description>&lt;p&gt;&lt;strong&gt;Class, Structure, Union:&lt;/strong&gt; number of functionalities of the class. One of the basic principles of object-oriented programming is encapsulation, meaning that attributes belonging together and the operations that use them should be organized into one class, and one class shall implement only one functionality, i.e. its attributes and methods should be coherent. This metric measures the lack of cohesion and computes into how many coherent classes the class could be split. It is calculated by taking a non-directed graph, where the nodes are the implemented local methods of the class and there is an edge between the two nodes if and only if a common (local or inherited) attribute or abstract method is used or a method invokes another. The value of the metric is the number of connected components in the graph not counting those, which contain only constructors, destructors, getters, or setters.&lt;/p&gt;
 </description>
     <severity>INFO</severity>
     <tag>sourcemeter</tag>
@@ -231,7 +231,7 @@
     <name>Maintainability Index (Original version) (MI) Metric Threshold Violation</name>
     <description>&lt;ul&gt;
 &lt;li&gt;&lt;em&gt;HVOL&lt;/em&gt;: Halstead Volume&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;McCC&lt;/em&gt;: McCabe’s cyclomatic complexity&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;McCC&lt;/em&gt;: McCabe's cyclomatic complexity&lt;/li&gt;
 &lt;li&gt;&lt;em&gt;LLOC&lt;/em&gt;: logical lines of code&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;The original Maintainability Index is computed by the following formula:&lt;/p&gt;
@@ -245,10 +245,10 @@
     <name>Maintainability Index (Microsoft version) (MIMS) Metric Threshold Violation</name>
     <description>&lt;ul&gt;
 &lt;li&gt;&lt;em&gt;HVOL&lt;/em&gt;: Halstead Volume&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;McCC&lt;/em&gt;: McCabe’s cyclomatic complexity&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;McCC&lt;/em&gt;: McCabe's cyclomatic complexity&lt;/li&gt;
 &lt;li&gt;&lt;em&gt;LLOC&lt;/em&gt;: logical lines of code&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;The Maintainability Index used by Microsoft’s Visual Studio is computed by the following formula:&lt;/p&gt;
+&lt;p&gt;The Maintainability Index used by Microsoft's Visual Studio is computed by the following formula:&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;MIMS = max(0,(171 - 5.2 * ln(HVOL) - 0.23 * (McCC) - 16.2 * ln(LLOC)) * 100 / 171)&lt;/em&gt;&lt;/p&gt;
 </description>
     <severity>INFO</severity>
@@ -259,7 +259,7 @@
     <name>Maintainability Index (SEI version) (MISEI) Metric Threshold Violation</name>
     <description>&lt;ul&gt;
 &lt;li&gt;&lt;em&gt;HVOL&lt;/em&gt;: Halstead Volume&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;McCC&lt;/em&gt;: McCabe’s cyclomatic complexity&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;McCC&lt;/em&gt;: McCabe's cyclomatic complexity&lt;/li&gt;
 &lt;li&gt;&lt;em&gt;LLOC&lt;/em&gt;: logical lines of code&lt;/li&gt;
 &lt;li&gt;&lt;em&gt;CD&lt;/em&gt;: comment density&lt;/li&gt;
 &lt;/ul&gt;
@@ -274,11 +274,11 @@
     <name>Maintainability Index (SourceMeter version) (MISM) Metric Threshold Violation</name>
     <description>&lt;ul&gt;
 &lt;li&gt;&lt;em&gt;HVOL&lt;/em&gt;: Halstead Volume&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;McCC&lt;/em&gt;: McCabe’s cyclomatic complexity&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;McCC&lt;/em&gt;: McCabe's cyclomatic complexity&lt;/li&gt;
 &lt;li&gt;&lt;em&gt;LLOC&lt;/em&gt;: logical lines of code&lt;/li&gt;
 &lt;li&gt;&lt;em&gt;CD&lt;/em&gt;: comment density&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;The Maintainability Index proposed by SourceMeter combines the different scaling approach from Microsoft’s version with the inclusion of comment percentage from the Software Engineering Institute (SEI) version into the following formula:&lt;/p&gt;
+&lt;p&gt;The Maintainability Index proposed by SourceMeter combines the different scaling approach from Microsoft's version with the inclusion of comment percentage from the Software Engineering Institute (SEI) version into the following formula:&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;MISM = max(0, (171 - 5.2 * log&lt;sub&gt;2&lt;/sub&gt;(HVOL) - 0.23 * McCC - 16.2 * log&lt;sub&gt;2&lt;/sub&gt;(LLOC) + 50 * sin(sqrt(2.4 * CD))) * 100 / 171)&lt;/em&gt;&lt;/p&gt;
 </description>
     <severity>INFO</severity>
@@ -287,8 +287,8 @@
   <rule>
     <key>MET_McCC</key>
     <name>McCabe's Cyclomatic Complexity (McCC) Metric Threshold Violation</name>
-    <description>&lt;p&gt;&lt;strong&gt;Method, Function:&lt;/strong&gt; complexity of the method expressed as the number of independent control flow paths in it. It represents a lower bound for the number of possible execution paths in the source code and at the same time it is an upper bound for the minimum number of test cases needed for achieving full branch test coverage. The value of the metric is calculated as the number of the following instructions plus 1: if, for, foreach, range-based for, while, do-while, case label (which belongs to a switch instruction), catch, conditional expression (?:). Moreover, logical “and” (&amp;&amp;) and logical “or” (||) expressions also add 1 to the value because their short-circuit evaluation can cause branching depending on the first operand. The following instructions are not included: else, switch, default label (which belongs to a switch instruction), try.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;File:&lt;/strong&gt; complexity of the file expressed as the number of independent control flow paths in it. It represents a lower bound for the number of possible execution paths in the source code and at the same time it is an upper bound for the minimum number of test cases needed for achieving full branch test coverage. The value of the metric is calculated as the number of the following instructions plus 1: if, for, foreach, range-based for, while, do-while, case label (which belongs to a switch instruction), catch, conditional expression (?:). Moreover, logical “and” (&amp;&amp;) and logical “or” (||) expressions also add 1 to the value because their short-circuit evaluation can cause branching depending on the first operand. The following instructions are not included: else, switch, default label (which belongs to a switch instruction), try.&lt;/p&gt;
+    <description>&lt;p&gt;&lt;strong&gt;Method, Function:&lt;/strong&gt; complexity of the method expressed as the number of independent control flow paths in it. It represents a lower bound for the number of possible execution paths in the source code and at the same time it is an upper bound for the minimum number of test cases needed for achieving full branch test coverage. The value of the metric is calculated as the number of the following instructions plus 1: if, for, foreach, range-based for, while, do-while, case label (which belongs to a switch instruction), catch, conditional expression (?:). Moreover, logical &amp;quot;and&amp;quot; (&amp;&amp;) and logical &amp;quot;or&amp;quot; (||) expressions also add 1 to the value because their short-circuit evaluation can cause branching depending on the first operand. The following instructions are not included: else, switch, default label (which belongs to a switch instruction), try.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;File:&lt;/strong&gt; complexity of the file expressed as the number of independent control flow paths in it. It represents a lower bound for the number of possible execution paths in the source code and at the same time it is an upper bound for the minimum number of test cases needed for achieving full branch test coverage. The value of the metric is calculated as the number of the following instructions plus 1: if, for, foreach, range-based for, while, do-while, case label (which belongs to a switch instruction), catch, conditional expression (?:). Moreover, logical &amp;quot;and&amp;quot; (&amp;&amp;) and logical &amp;quot;or&amp;quot; (||) expressions also add 1 to the value because their short-circuit evaluation can cause branching depending on the first operand. The following instructions are not included: else, switch, default label (which belongs to a switch instruction), try.&lt;/p&gt;
 </description>
     <severity>INFO</severity>
     <tag>sourcemeter</tag>
@@ -357,7 +357,7 @@
   <rule>
     <key>MET_NLA</key>
     <name>Number of Local Attributes (NLA) Metric Threshold Violation</name>
-    <description>&lt;p&gt;&lt;strong&gt;Class, Structure, Interface:&lt;/strong&gt; number of local (i.e. not inherited) attributes in the class; however, the attributes of nested, anonymous, and local classes are not included.&lt;/p&gt;
+    <description>&lt;p&gt;&lt;strong&gt;Class, Structure, Interface:&lt;/strong&gt; number of local (i.e. not inherited) attributes in the class; however, the attributes of nested, anonymous, and local classes are not included.&lt;/p&gt;
 </description>
     <severity>INFO</severity>
     <tag>sourcemeter</tag>
@@ -365,7 +365,7 @@
   <rule>
     <key>MET_NLE</key>
     <name>Nesting Level Else-If (NLE) Metric Threshold Violation</name>
-    <description>&lt;p&gt;&lt;strong&gt;Method, Function:&lt;/strong&gt; complexity of the method expressed as the depth of the maximum embeddedness of its conditional, iteration and exception handling block scopes, where in the if-else-if construct only the first if instruction is considered. The following instructions are taken into account: if, else, for, while, do-while, switch, try, catch and block statements that are directly inside another block statement. The following instructions do not increase the value by themselves; however, if additional embeddednesses can be found in their blocks, they are considered: else-if (i.e. in the if-else-if construct the use of else-if does not increase the value of the metric), case and default label (which belong to a switch instruction).&lt;/p&gt;
+    <description>&lt;p&gt;&lt;strong&gt;Method, Function:&lt;/strong&gt; complexity of the method expressed as the depth of the maximum embeddedness of its conditional, iteration and exception handling block scopes, where in the if-else-if construct only the first if instruction and in case of multiply catch blocks only the first catch is considered. The following instructions are taken into account: if, else, for, while, do-while, switch, try, catch and block statements that are directly inside another block statement. The following instructions do not increase the value by themselves; however, if additional embeddednesses can be found in their blocks, they are considered: else-if (i.e. in the if-else-if construct the use of else-if does not increase the value of the metric), case and default label (which belong to a switch instruction).&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Class, Structure, Union:&lt;/strong&gt; complexity of the class expressed as the depth of the maximum embeddedness of its conditional, iteration and exception handling block scopes, where in the if-else-if construct only the first if instruction is considered. It is calculated as the maximum nesting level (NLE) of its local methods.&lt;/p&gt;
 </description>
     <severity>INFO</severity>
@@ -374,7 +374,7 @@
   <rule>
     <key>MET_NLG</key>
     <name>Number of Local Getters (NLG) Metric Threshold Violation</name>
-    <description>&lt;p&gt;&lt;strong&gt;Class, Structure, Interface:&lt;/strong&gt; number of local (i.e. not inherited) getter methods in the class; however, the getter methods of its nested, anonymous, and local classes are not included. Methods that override abstract methods are not counted.&lt;/p&gt;
+    <description>&lt;p&gt;&lt;strong&gt;Class, Structure, Interface:&lt;/strong&gt; number of local (i.e. not inherited) getter methods in the class; however, the getter methods of its nested, anonymous, and local classes are not included. Methods that override abstract methods are not counted.&lt;/p&gt;
 </description>
     <severity>INFO</severity>
     <tag>sourcemeter</tag>
@@ -382,7 +382,7 @@
   <rule>
     <key>MET_NLM</key>
     <name>Number of Local Methods (NLM) Metric Threshold Violation</name>
-    <description>&lt;p&gt;&lt;strong&gt;Class, Structure, Interface:&lt;/strong&gt; number of local (i.e. not inherited) methods in the class; however, the methods of nested, anonymous, and local classes are not included.&lt;/p&gt;
+    <description>&lt;p&gt;&lt;strong&gt;Class, Structure, Interface:&lt;/strong&gt; number of local (i.e. not inherited) methods in the class; however, the methods of nested, anonymous, and local classes are not included.&lt;/p&gt;
 </description>
     <severity>INFO</severity>
     <tag>sourcemeter</tag>
@@ -390,7 +390,7 @@
   <rule>
     <key>MET_NLPA</key>
     <name>Number of Local Public Attributes (NLPA) Metric Threshold Violation</name>
-    <description>&lt;p&gt;&lt;strong&gt;Class, Structure, Interface:&lt;/strong&gt; number of local (i.e. not inherited) public attributes in the class; however, the attributes of nested, anonymous, and local classes are not included.&lt;/p&gt;
+    <description>&lt;p&gt;&lt;strong&gt;Class, Structure, Interface:&lt;/strong&gt; number of local (i.e. not inherited) public attributes in the class; however, the attributes of nested, anonymous, and local classes are not included.&lt;/p&gt;
 </description>
     <severity>INFO</severity>
     <tag>sourcemeter</tag>
@@ -398,7 +398,7 @@
   <rule>
     <key>MET_NLPM</key>
     <name>Number of Local Public Methods (NLPM) Metric Threshold Violation</name>
-    <description>&lt;p&gt;&lt;strong&gt;Class, Structure, Interface:&lt;/strong&gt; number of local (i.e. not inherited) public methods in the class; however, the methods of nested, anonymous, and local classes are not included.&lt;/p&gt;
+    <description>&lt;p&gt;&lt;strong&gt;Class, Structure, Interface:&lt;/strong&gt; number of local (i.e. not inherited) public methods in the class; however, the methods of nested, anonymous, and local classes are not included.&lt;/p&gt;
 </description>
     <severity>INFO</severity>
     <tag>sourcemeter</tag>
@@ -406,7 +406,7 @@
   <rule>
     <key>MET_NLS</key>
     <name>Number of Local Setters (NLS) Metric Threshold Violation</name>
-    <description>&lt;p&gt;&lt;strong&gt;Class, Structure, Interface:&lt;/strong&gt; number of local (i.e. not inherited) setter methods in the class; however, the setter methods of its nested, anonymous, and local classes are not included. Methods that override abstract methods are not counted.&lt;/p&gt;
+    <description>&lt;p&gt;&lt;strong&gt;Class, Structure, Interface:&lt;/strong&gt; number of local (i.e. not inherited) setter methods in the class; however, the setter methods of its nested, anonymous, and local classes are not included. Methods that override abstract methods are not counted.&lt;/p&gt;
 </description>
     <severity>INFO</severity>
     <tag>sourcemeter</tag>
@@ -553,7 +553,7 @@
   <rule>
     <key>MET_RFC</key>
     <name>Response set For Class (RFC) Metric Threshold Violation</name>
-    <description>&lt;p&gt;&lt;strong&gt;Class, Structure, Union:&lt;/strong&gt; number of local (i.e. not inherited) methods in the class (NLM) plus the number of directly invoked other methods by its methods or attribute initializations (NOI).&lt;/p&gt;
+    <description>&lt;p&gt;&lt;strong&gt;Class, Structure, Union:&lt;/strong&gt; number of local (i.e. not inherited) methods in the class (NLM) plus the number of directly invoked other methods by its methods or attribute initializations (NOI).&lt;/p&gt;
 </description>
     <severity>INFO</severity>
     <tag>sourcemeter</tag>
@@ -679,7 +679,7 @@
   <rule>
     <key>MET_TNLA</key>
     <name>Total Number of Local Attributes (TNLA) Metric Threshold Violation</name>
-    <description>&lt;p&gt;&lt;strong&gt;Class, Structure, Interface:&lt;/strong&gt; number of local (i.e. not inherited) attributes in the class, including the attributes of its nested, anonymous, and local classes.&lt;/p&gt;
+    <description>&lt;p&gt;&lt;strong&gt;Class, Structure, Interface:&lt;/strong&gt; number of local (i.e. not inherited) attributes in the class, including the attributes of its nested, anonymous, and local classes.&lt;/p&gt;
 </description>
     <severity>INFO</severity>
     <tag>sourcemeter</tag>
@@ -687,7 +687,7 @@
   <rule>
     <key>MET_TNLG</key>
     <name>Total Number of Local Getters (TNLG) Metric Threshold Violation</name>
-    <description>&lt;p&gt;&lt;strong&gt;Class, Structure, Interface:&lt;/strong&gt; number of local (i.e. not inherited) getter methods in the class, including the local getter methods of its nested, anonymous, and local classes.&lt;/p&gt;
+    <description>&lt;p&gt;&lt;strong&gt;Class, Structure, Interface:&lt;/strong&gt; number of local (i.e. not inherited) getter methods in the class, including the local getter methods of its nested, anonymous, and local classes.&lt;/p&gt;
 </description>
     <severity>INFO</severity>
     <tag>sourcemeter</tag>
@@ -695,7 +695,7 @@
   <rule>
     <key>MET_TNLM</key>
     <name>Total Number of Local Methods (TNLM) Metric Threshold Violation</name>
-    <description>&lt;p&gt;&lt;strong&gt;Class, Structure, Interface:&lt;/strong&gt; number of local (i.e. not inherited) methods in the class, including the local methods of its nested, anonymous, and local classes.&lt;/p&gt;
+    <description>&lt;p&gt;&lt;strong&gt;Class, Structure, Interface:&lt;/strong&gt; number of local (i.e. not inherited) methods in the class, including the local methods of its nested, anonymous, and local classes.&lt;/p&gt;
 </description>
     <severity>INFO</severity>
     <tag>sourcemeter</tag>
@@ -703,7 +703,7 @@
   <rule>
     <key>MET_TNLPA</key>
     <name>Total Number of Local Public Attributes (TNLPA) Metric Threshold Violation</name>
-    <description>&lt;p&gt;&lt;strong&gt;Class, Structure, Interface:&lt;/strong&gt; number of local (i.e. not inherited) public attributes in the class, including the local public attributes of its nested, anonymous, and local classes.&lt;/p&gt;
+    <description>&lt;p&gt;&lt;strong&gt;Class, Structure, Interface:&lt;/strong&gt; number of local (i.e. not inherited) public attributes in the class, including the local public attributes of its nested, anonymous, and local classes.&lt;/p&gt;
 </description>
     <severity>INFO</severity>
     <tag>sourcemeter</tag>
@@ -711,7 +711,7 @@
   <rule>
     <key>MET_TNLPM</key>
     <name>Total Number of Local Public Methods (TNLPM) Metric Threshold Violation</name>
-    <description>&lt;p&gt;&lt;strong&gt;Class, Structure, Interface:&lt;/strong&gt; number of local (i.e. not inherited) public methods in the class, including the local methods of its nested, anonymous, and local classes.&lt;/p&gt;
+    <description>&lt;p&gt;&lt;strong&gt;Class, Structure, Interface:&lt;/strong&gt; number of local (i.e. not inherited) public methods in the class, including the local methods of its nested, anonymous, and local classes.&lt;/p&gt;
 </description>
     <severity>INFO</severity>
     <tag>sourcemeter</tag>
@@ -719,7 +719,7 @@
   <rule>
     <key>MET_TNLS</key>
     <name>Total Number of Local Setters (TNLS) Metric Threshold Violation</name>
-    <description>&lt;p&gt;&lt;strong&gt;Class, Structure, Interface:&lt;/strong&gt; number of local (i.e. not inherited) setter methods in the class, including the local setter methods of its nested, anonymous, and local classes.&lt;/p&gt;
+    <description>&lt;p&gt;&lt;strong&gt;Class, Structure, Interface:&lt;/strong&gt; number of local (i.e. not inherited) setter methods in the class, including the local setter methods of its nested, anonymous, and local classes.&lt;/p&gt;
 </description>
     <severity>INFO</severity>
     <tag>sourcemeter</tag>
@@ -866,7 +866,7 @@
   <rule>
     <key>MET_WMC</key>
     <name>Weighted Methods per Class (WMC) Metric Threshold Violation</name>
-    <description>&lt;p&gt;&lt;strong&gt;Class, Structure, Interface:&lt;/strong&gt; complexity of the class expressed as the number of independent control flow paths in it. It is calculated as the sum of the McCabe’s Cyclomatic Complexity (McCC) values of its local methods.&lt;/p&gt;
+    <description>&lt;p&gt;&lt;strong&gt;Class, Structure, Interface:&lt;/strong&gt; complexity of the class expressed as the number of independent control flow paths in it. It is calculated as the sum of the McCabe's Cyclomatic Complexity (McCC) values of its local methods.&lt;/p&gt;
 </description>
     <severity>INFO</severity>
     <tag>sourcemeter</tag>
@@ -974,147 +974,6 @@
     <name>Logical Lines of Duplicated Code (LLDC) Metric Threshold Violation</name>
     <description>&lt;b&gt;Function/method/class/module/package:&lt;/b&gt; number of logical code lines (non-empty, non-comment lines) covered by code duplications in the source code element.&lt;br&gt;&lt;b&gt;Component:&lt;/b&gt; The number of logical code lines (non-empty, non-comment lines) covered by code duplications in the component.</description>
     <severity>INFO</severity>
-    <tag>sourcemeter</tag>
-  </rule>
-  <rule>
-    <key>CEBV</key>
-    <name>Catching Non Primitive Type Exceptions By Value</name>
-    <description>&lt;h3&gt;FaultHunterCPP&lt;/h3&gt;&lt;p&gt;Reference should be used for catching a non primitive type exception.&lt;/p&gt;
-</description>
-    <type>BUG</type>
-    <severity>CRITICAL</severity>
-    <tag>sourcemeter</tag>
-  </rule>
-  <rule>
-    <key>HP</key>
-    <name>Hidden Parameter</name>
-    <description>&lt;h3&gt;FaultHunterCPP&lt;/h3&gt;&lt;p&gt;Local variables can hide the parameters of the function, because the local variables are defined in the closest scope. It causes those parameters unreachable.&lt;/p&gt;
-</description>
-    <type>BUG</type>
-    <severity>CRITICAL</severity>
-    <tag>sourcemeter</tag>
-  </rule>
-  <rule>
-    <key>IL</key>
-    <name>Member Init Order</name>
-    <description>&lt;h3&gt;FaultHunterCPP&lt;/h3&gt;&lt;p&gt;The evaluation order in the constructor initialization list does not match the order they listed. It may cause unexpected effects like use of uninitialized class members.&lt;/p&gt;
-&lt;p&gt;For example the member ‘a’ will be uninitialized when passed to the ‘Bar’ constructor, because the initialization order is the following: ‘Bar’ constructor call, ‘a’, ‘b’.&lt;/p&gt;
-&lt;pre class=&quot;sourceCode cpp&quot;&gt;&lt;code class=&quot;sourceCode cpp&quot;&gt;&lt;span class=&quot;kw&quot;&gt;class&lt;/span&gt; Foo : &lt;span class=&quot;kw&quot;&gt;public&lt;/span&gt; Bar {
-  &lt;span class=&quot;dt&quot;&gt;int&lt;/span&gt; a;
-  &lt;span class=&quot;dt&quot;&gt;int&lt;/span&gt; b;
-&lt;span class=&quot;kw&quot;&gt;public&lt;/span&gt;:
-  Foo (&lt;span class=&quot;dt&quot;&gt;int&lt;/span&gt; param) : b(param), a(b), Bar(a) {
-    ...
-  }
-}&lt;/code&gt;&lt;/pre&gt;
-</description>
-    <type>BUG</type>
-    <severity>CRITICAL</severity>
-    <tag>sourcemeter</tag>
-  </rule>
-  <rule>
-    <key>MVDUD</key>
-    <name>Missing Virtual Destructor Using Delete</name>
-    <description>&lt;h3&gt;FaultHunterCPP&lt;/h3&gt;&lt;p&gt;When using pointers, make sure that the class of the pointer type has virtual destructor if any of its accessible descendant has destructor.&lt;/p&gt;
-</description>
-    <type>VULNERABILITY</type>
-    <severity>CRITICAL</severity>
-    <tag>sourcemeter</tag>
-  </rule>
-  <rule>
-    <key>MVDUN</key>
-    <name>Missing Virtual Destructor Using New</name>
-    <description>&lt;h3&gt;FaultHunterCPP&lt;/h3&gt;&lt;p&gt;When using pointers, make sure that the class of the pointer type has virtual destructor if any of its descendant has destructor.&lt;/p&gt;
-</description>
-    <type>VULNERABILITY</type>
-    <severity>CRITICAL</severity>
-    <tag>sourcemeter</tag>
-  </rule>
-  <rule>
-    <key>NDEO</key>
-    <name>Not Defined Evaluation Order</name>
-    <description>&lt;h3&gt;FaultHunterCPP&lt;/h3&gt;&lt;p&gt;The order that operands and function parameters are evaluated is unspecified behavior.&lt;/p&gt;
-&lt;p&gt;For example in the following function call, the value of the first and second arguments could be (4, 5) or (5, 4).&lt;/p&gt;
-&lt;pre class=&quot;sourceCode cpp&quot;&gt;&lt;code class=&quot;sourceCode cpp&quot;&gt;&lt;span class=&quot;dt&quot;&gt;int&lt;/span&gt; i = &lt;span class=&quot;dv&quot;&gt;3&lt;/span&gt;;
-foo(++i, ++i);&lt;/code&gt;&lt;/pre&gt;
-</description>
-    <type>BUG</type>
-    <severity>CRITICAL</severity>
-    <tag>sourcemeter</tag>
-  </rule>
-  <rule>
-    <key>NPIFCT</key>
-    <name>Not Public Inheritance From Catch Type</name>
-    <description>&lt;h3&gt;FaultHunterCPP&lt;/h3&gt;&lt;p&gt;Not publicly derived class from a type that appears in a catch clause. This class cannot be caught in the catch clause as that base class, because no public conversion exists.&lt;/p&gt;
-</description>
-    <type>BUG</type>
-    <severity>CRITICAL</severity>
-    <tag>sourcemeter</tag>
-  </rule>
-  <rule>
-    <key>OETS</key>
-    <name>Check For Self Assignment In Assignment Operator</name>
-    <description>&lt;h3&gt;FaultHunterCPP&lt;/h3&gt;&lt;p&gt;Missing check for self assignment in assignment operator&lt;/p&gt;
-&lt;p&gt;For example in the following operator the ‘rhs._data’ will be no longer a valid object if it is a self assignment.&lt;/p&gt;
-&lt;pre class=&quot;sourceCode cpp&quot;&gt;&lt;code class=&quot;sourceCode cpp&quot;&gt;Foo&amp; &lt;span class=&quot;kw&quot;&gt;operator&lt;/span&gt;= (&lt;span class=&quot;dt&quot;&gt;const&lt;/span&gt; Foo&amp; rhs) {
-  &lt;span class=&quot;kw&quot;&gt;delete&lt;/span&gt; &lt;span class=&quot;kw&quot;&gt;this&lt;/span&gt;-&gt;_data;
-  &lt;span class=&quot;kw&quot;&gt;this&lt;/span&gt;-&gt;_data = &lt;span class=&quot;kw&quot;&gt;new&lt;/span&gt; Bar(*rhs._data);
-  &lt;span class=&quot;kw&quot;&gt;return&lt;/span&gt; *&lt;span class=&quot;kw&quot;&gt;this&lt;/span&gt;;
-}&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;A simple solution to this problem:&lt;/p&gt;
-&lt;pre class=&quot;sourceCode cpp&quot;&gt;&lt;code class=&quot;sourceCode cpp&quot;&gt;Foo&amp; &lt;span class=&quot;kw&quot;&gt;operator&lt;/span&gt;= (&lt;span class=&quot;dt&quot;&gt;const&lt;/span&gt; Foo&amp; rhs) {
-  &lt;span class=&quot;kw&quot;&gt;if&lt;/span&gt; (&lt;span class=&quot;kw&quot;&gt;this&lt;/span&gt; == &amp;rhs) &lt;span class=&quot;kw&quot;&gt;return&lt;/span&gt; *&lt;span class=&quot;kw&quot;&gt;this&lt;/span&gt;;
-  &lt;span class=&quot;kw&quot;&gt;delete&lt;/span&gt; &lt;span class=&quot;kw&quot;&gt;this&lt;/span&gt;-&gt;_data;
-  &lt;span class=&quot;kw&quot;&gt;this&lt;/span&gt;-&gt;_data = &lt;span class=&quot;kw&quot;&gt;new&lt;/span&gt; Bar(*rhs._data);
-  &lt;span class=&quot;kw&quot;&gt;return&lt;/span&gt; *&lt;span class=&quot;kw&quot;&gt;this&lt;/span&gt;;
-}&lt;/code&gt;&lt;/pre&gt;
-</description>
-    <type>BUG</type>
-    <severity>CRITICAL</severity>
-    <tag>sourcemeter</tag>
-  </rule>
-  <rule>
-    <key>SA</key>
-    <name>Self Assignment</name>
-    <description>&lt;h3&gt;FaultHunterCPP&lt;/h3&gt;Avoid assign an object to itself.</description>
-    <type>BUG</type>
-    <severity>CRITICAL</severity>
-    <tag>sourcemeter</tag>
-  </rule>
-  <rule>
-    <key>SDANSIH</key>
-    <name>Static Data At Namespace Scope In Header</name>
-    <description>&lt;h3&gt;FaultHunterCPP&lt;/h3&gt;&lt;p&gt;Static data at namespace scope in header files generates one instance inside each compilation unit. It cause bigger executables.&lt;/p&gt;
-</description>
-    <type>BUG</type>
-    <severity>CRITICAL</severity>
-    <tag>sourcemeter</tag>
-  </rule>
-  <rule>
-    <key>SENIP</key>
-    <name>Std::exception Not Inherited Publicly</name>
-    <description>&lt;h3&gt;FaultHunterCPP&lt;/h3&gt;&lt;p&gt;Not publicly derived class from std::exception cannot be caught in the catch clause as std::exception, because no public conversion exists.&lt;/p&gt;
-</description>
-    <type>BUG</type>
-    <severity>CRITICAL</severity>
-    <tag>sourcemeter</tag>
-  </rule>
-  <rule>
-    <key>UDINIH</key>
-    <name>Using Directive In Namespace In Header</name>
-    <description>&lt;h3&gt;FaultHunterCPP&lt;/h3&gt;&lt;p&gt;“using namespace” should not occour at namespace level in a header.&lt;/p&gt;
-</description>
-    <type>BUG</type>
-    <severity>CRITICAL</severity>
-    <tag>sourcemeter</tag>
-  </rule>
-  <rule>
-    <key>ULTZ</key>
-    <name>Unsigned Compare Less Than Zero</name>
-    <description>&lt;h3&gt;FaultHunterCPP&lt;/h3&gt;&lt;p&gt;Pointless comparison of unsigned integer against zero.&lt;/p&gt;
-</description>
-    <type>BUG</type>
-    <severity>CRITICAL</severity>
     <tag>sourcemeter</tag>
   </rule>
   <rule>
@@ -1425,6 +1284,15 @@ foo(++i, ++i);&lt;/code&gt;&lt;/pre&gt;
     <key>CE</key>
     <name>Comparison Error</name>
     <description>&lt;h3&gt;Cppcheck&lt;/h3&gt;&lt;p&gt;The expression '(X &amp; 0x6) == 0x1' is always false. Check carefully constants and operators used, these errors might be hard to spot sometimes. In case of complex expression it might help to split it to separate expressions.&lt;/p&gt;
+</description>
+    <type>BUG</type>
+    <severity>MINOR</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
+    <key>CEBV</key>
+    <name>Catch Exception By Value</name>
+    <description>&lt;h3&gt;Cppcheck&lt;/h3&gt;&lt;p&gt;The exception is caught by value. It could be caught as a (const) reference which is usually recommended in C++.&lt;/p&gt;
 </description>
     <type>BUG</type>
     <severity>MINOR</severity>
@@ -1887,6 +1755,15 @@ foo(++i, ++i);&lt;/code&gt;&lt;/pre&gt;
 </description>
     <type>BUG</type>
     <severity>BLOCKER</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
+    <key>IL</key>
+    <name>Initializer List</name>
+    <description>&lt;h3&gt;Cppcheck&lt;/h3&gt;&lt;p&gt;Member variable 'class::variable' is in the wrong place in the initializer list. Members are initialized in the order they are declared, not in the order they are in the initializer list. Keeping the initializer list in the same order that the members were declared prevents order dependent initialization errors.&lt;/p&gt;
+</description>
+    <type>BUG</type>
+    <severity>MINOR</severity>
     <tag>sourcemeter</tag>
   </rule>
   <rule>
@@ -2404,6 +2281,15 @@ foo(++i, ++i);&lt;/code&gt;&lt;/pre&gt;
     <tag>sourcemeter</tag>
   </rule>
   <rule>
+    <key>OETS</key>
+    <name>Operator Eq To Self</name>
+    <description>&lt;h3&gt;Cppcheck&lt;/h3&gt;&lt;p&gt;'operator=' should check for assignment to self to ensure that each block of dynamically allocated memory is owned and managed by only one instance of the class.&lt;/p&gt;
+</description>
+    <type>BUG</type>
+    <severity>CRITICAL</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
     <key>OEVE</key>
     <name>Operator Eq Var Error</name>
     <description>&lt;h3&gt;Cppcheck&lt;/h3&gt;&lt;p&gt;Member variable 'classname::' is not assigned a value in 'classname::operator='.&lt;/p&gt;
@@ -2734,6 +2620,15 @@ foo(++i, ++i);&lt;/code&gt;&lt;/pre&gt;
 </description>
     <type>BUG</type>
     <severity>BLOCKER</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
+    <key>SA</key>
+    <name>Self Assignment</name>
+    <description>&lt;h3&gt;Cppcheck&lt;/h3&gt;&lt;p&gt;Redundant assignment of 'varname' to itself.&lt;/p&gt;
+</description>
+    <type>BUG</type>
+    <severity>CRITICAL</severity>
     <tag>sourcemeter</tag>
   </rule>
   <rule>
@@ -3342,6 +3237,15 @@ foo(++i, ++i);&lt;/code&gt;&lt;/pre&gt;
     <name>Unused Label</name>
     <description>&lt;h3&gt;Cppcheck&lt;/h3&gt;&lt;p&gt;Label '' is not used.&lt;/p&gt;
 </description>
+    <severity>MINOR</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
+    <key>ULTZ</key>
+    <name>Unsigned Less Than Zero</name>
+    <description>&lt;h3&gt;Cppcheck&lt;/h3&gt;&lt;p&gt;The unsigned variable 'varname' will never be negative so it is either pointless or an error to check if it is.&lt;/p&gt;
+</description>
+    <type>BUG</type>
     <severity>MINOR</severity>
     <tag>sourcemeter</tag>
   </rule>

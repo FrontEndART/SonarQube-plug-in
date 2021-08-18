@@ -1003,6 +1003,37 @@ for (int i = 0; i &lt; 10; i++) {
     <tag>sourcemeter</tag>
   </rule>
   <rule>
+    <key>ACDC</key>
+    <name>Avoid Calendar Date Creation</name>
+    <description>&lt;h3&gt;PMD&lt;/h3&gt;&lt;p&gt;Problem: A Calendar is a heavyweight object and expensive to create.&lt;/p&gt;
+&lt;p&gt;Solution: Use &lt;code&gt;new Date()&lt;/code&gt;, Java 8+ &lt;code&gt;java.time.LocalDateTime.now()&lt;/code&gt; or &lt;code&gt;ZonedDateTime.now()&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Example(s):&lt;/p&gt;
+&lt;pre class=&quot;java&quot;&gt;&lt;code&gt;import java.time.LocalDateTime;
+import java.util.Calendar;
+import java.util.Date;
+
+public class DateStuff {
+    private Date bad1() {
+        return Calendar.getInstance().getTime(); // now
+    }
+    private Date good1a() {
+        return new Date(); // now
+    }
+    private LocalDateTime good1b() {
+        return LocalDateTime.now();
+    }
+    private long bad2() {
+        return Calendar.getInstance().getTimeInMillis();
+    }
+    private long good2() {
+        return System.currentTimeMillis();
+    }
+}&lt;/code&gt;&lt;/pre&gt;
+</description>
+    <severity>MINOR</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
     <key>ACGE</key>
     <name>Avoid Catching Generic Exception</name>
     <description>&lt;h3&gt;PMD&lt;/h3&gt;&lt;p&gt;Avoid catching generic exceptions such as NullPointerException, RuntimeException, Exception in try-catch block&lt;/p&gt;
@@ -1154,9 +1185,39 @@ private void buz(String x) {}&lt;/code&gt;&lt;/pre&gt;
     <tag>sourcemeter</tag>
   </rule>
   <rule>
+    <key>AMDF</key>
+    <name>Avoid Message Digest Field</name>
+    <description>&lt;h3&gt;PMD&lt;/h3&gt;&lt;p&gt;Declaring a MessageDigest instance as a field make this instance directly available to multiple threads. Such sharing of MessageDigest instances should be avoided if possible since it leads to wrong results if the access is not synchronized correctly. Just create a new instance and use it locally, where you need it. Creating a new instance is easier than synchronizing access to a shared instance.&lt;/p&gt;
+&lt;p&gt;Example(s):&lt;/p&gt;
+&lt;pre class=&quot;java&quot;&gt;&lt;code&gt;import java.security.MessageDigest;
+public class AvoidMessageDigestFieldExample {
+    private final MessageDigest sharedMd;
+    public AvoidMessageDigestFieldExample() throws Exception {
+        sharedMd = MessageDigest.getInstance(&amp;quot;SHA-256&amp;quot;);
+    }
+    public byte[] calculateHashShared(byte[] data) {
+        // sharing a MessageDigest like this without synchronizing access
+        // might lead to wrong results
+        sharedMd.reset();
+        sharedMd.update(data);
+        return sharedMd.digest();
+    }
+
+    // better
+    public byte[] calculateHash(byte[] data) throws Exception {
+        MessageDigest md = MessageDigest.getInstance(&amp;quot;SHA-256&amp;quot;);
+        md.update(data);
+        return md.digest();
+    }
+}&lt;/code&gt;&lt;/pre&gt;
+</description>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
     <key>AMG</key>
     <name>Accessor Method Generation</name>
-    <description>&lt;h3&gt;PMD&lt;/h3&gt;&lt;p&gt;When accessing a private field / method from another class, the Java compiler will generate a accessor methods with package-private visibility. This adds overhead, and to the dex method count on Android. This situation can be avoided by changing the visibility of the field / method from private to package-private.&lt;/p&gt;
+    <description>&lt;h3&gt;PMD&lt;/h3&gt;&lt;p&gt;When accessing private fields / methods from another class, the Java compiler will generate accessor methods with package-private visibility. This adds overhead, and to the dex method count on Android. This situation can be avoided by changing the visibility of the field / method from private to package-private.&lt;/p&gt;
 &lt;p&gt;Example(s):&lt;/p&gt;
 &lt;pre class=&quot;java&quot;&gt;&lt;code&gt;public class OuterClass {
     private int counter;
@@ -1250,6 +1311,34 @@ public class Foo {
     <tag>sourcemeter</tag>
   </rule>
   <rule>
+    <key>ARCV</key>
+    <name>Avoid Reassigning Catch Variables</name>
+    <description>&lt;h3&gt;PMD&lt;/h3&gt;&lt;p&gt;Reassigning exception variables caught in a catch statement should be avoided because of:&lt;/p&gt;
+&lt;ol type=&quot;1&quot;&gt;
+&lt;li&gt;&lt;p&gt;If it is needed, multi catch can be easily added and code will still compile.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Following the principle of least surprise we want to make sure that a variable caught in a catch statement is always the one thrown in a try block.&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Example(s):&lt;/p&gt;
+&lt;pre class=&quot;java&quot;&gt;&lt;code&gt;public class Foo {
+    public void foo() {
+        try {
+            // do something
+        } catch (Exception e) {
+            e = new NullPointerException(); // not recommended
+        }
+
+        try {
+            // do something
+        } catch (MyException | ServerException e) {
+            e = new RuntimeException(); // won't compile
+        }
+    }
+}&lt;/code&gt;&lt;/pre&gt;
+</description>
+    <severity>MINOR</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
     <key>ARLV</key>
     <name>Avoid Reassigning Loop Variables</name>
     <description>&lt;h3&gt;PMD&lt;/h3&gt;&lt;p&gt;Reassigning loop variables can lead to hard-to-find bugs. Prevent or limit how these variables can be changed.&lt;/p&gt;
@@ -1302,24 +1391,44 @@ public class Foo {
     <description>&lt;h3&gt;PMD&lt;/h3&gt;&lt;p&gt;Method-level synchronization can cause problems when new code is added to the method. Block-level synchronization helps to ensure that only the code that needs synchronization gets it.&lt;/p&gt;
 &lt;p&gt;Example(s):&lt;/p&gt;
 &lt;pre class=&quot;java&quot;&gt;&lt;code&gt;public class Foo {
-  // Try to avoid this:
-  synchronized void foo() {
-  }
-  // Prefer this:
-  void bar() {
-    synchronized(this) {
+    // Try to avoid this:
+    synchronized void foo() {
+        // code, that doesn't need synchronization
+        // ...
+        // code, that requires synchronization
+        if (!sharedData.has(&amp;quot;bar&amp;quot;)) {
+            sharedData.add(&amp;quot;bar&amp;quot;);
+        }
+        // more code, that doesn't need synchronization
+        // ...
     }
-  }
-
-  // Try to avoid this for static methods:
-  static synchronized void fooStatic() {
-  }
-
-  // Prefer this:
-  static void barStatic() {
-    synchronized(Foo.class) {
+    // Prefer this:
+    void bar() {
+        // code, that doesn't need synchronization
+        // ...
+        synchronized(this) {
+            if (!sharedData.has(&amp;quot;bar&amp;quot;)) {
+                sharedData.add(&amp;quot;bar&amp;quot;);
+            }
+        }
+        // more code, that doesn't need synchronization
+        // ...
     }
-  }
+
+    // Try to avoid this for static methods:
+    static synchronized void fooStatic() {
+    }
+
+    // Prefer this:
+    static void barStatic() {
+        // code, that doesn't need synchronization
+        // ...
+        synchronized(Foo.class) {
+            // code, that requires synchronization
+        }
+        // more code, that doesn't need synchronization
+        // ...
+    }
 }&lt;/code&gt;&lt;/pre&gt;
 </description>
     <type>CODE_SMELL</type>
@@ -1388,6 +1497,17 @@ public class Foo {
 }&lt;/code&gt;&lt;/pre&gt;
 </description>
     <type>BUG</type>
+    <severity>MINOR</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
+    <key>AUEIS</key>
+    <name>Avoid Unchecked Exceptions In Signatures</name>
+    <description>&lt;h3&gt;PMD&lt;/h3&gt;&lt;p&gt;A method or constructor should not explicitly declare unchecked exceptions in its &lt;code&gt;throws&lt;/code&gt; clause. Java doesn’t force the caller to handle an unchecked exception, so it’s unnecessary except for documentation. A better practice is to document the exceptional cases with a &lt;code&gt;@throws&lt;/code&gt; Javadoc tag, which allows being more descriptive.&lt;/p&gt;
+&lt;p&gt;Example(s):&lt;/p&gt;
+&lt;pre class=&quot;java&quot;&gt;&lt;code&gt;public void foo() throws RuntimeException {
+}&lt;/code&gt;&lt;/pre&gt;
+</description>
     <severity>MINOR</severity>
     <tag>sourcemeter</tag>
   </rule>
@@ -1732,6 +1852,31 @@ while (true) {  // preferred approach
     <tag>sourcemeter</tag>
   </rule>
   <rule>
+    <key>DBI</key>
+    <name>Double Brace Initialization</name>
+    <description>&lt;h3&gt;PMD&lt;/h3&gt;&lt;p&gt;Double brace initialisation is a pattern to initialise eg collections concisely. But it implicitly generates a new .class file, and the object holds a strong reference to the enclosing object. For those reasons, it is preferable to initialize the object normally, even though it’s verbose.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;        This rule counts any anonymous class which only has a single initializer as an instance of double-brace
+        initialization. There is currently no way to find out whether a method called in the initializer is not
+        accessible from outside the anonymous class, and those legit cases should be suppressed for the time being.&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Example(s):&lt;/p&gt;
+&lt;pre class=&quot;java&quot;&gt;&lt;code&gt;// this is double-brace initialization
+return new ArrayList&lt;String&gt;(){{
+    add(&amp;quot;a&amp;quot;);
+    add(&amp;quot;b&amp;quot;);
+    add(&amp;quot;c&amp;quot;);
+}};
+
+// the better way is to not create an anonymous class:
+List&lt;String&gt; a = new ArrayList&lt;&gt;();
+a.add(&amp;quot;a&amp;quot;);
+a.add(&amp;quot;b&amp;quot;);
+a.add(&amp;quot;c&amp;quot;);
+return a;&lt;/code&gt;&lt;/pre&gt;
+</description>
+    <severity>MINOR</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
     <key>DC</key>
     <name>Data Class</name>
     <description>&lt;h3&gt;PMD&lt;/h3&gt;&lt;p&gt;Data Classes are simple data holders, which reveal most of their state, and without complex functionality. The lack of functionality may indicate that their behaviour is defined elsewhere, which is a sign of poor data-behaviour proximity. By directly exposing their internals, Data Classes break encapsulation, and therefore reduce the system’s maintainability and understandability. Moreover, classes tend to strongly rely on their data representation, which makes for a brittle design.&lt;/p&gt;
@@ -1839,11 +1984,47 @@ public class Foo {}&lt;/code&gt;&lt;/pre&gt;
     <tag>sourcemeter</tag>
   </rule>
   <rule>
+    <key>DNTVM</key>
+    <name>Do Not Terminate VM</name>
+    <description>&lt;h3&gt;PMD&lt;/h3&gt;&lt;p&gt;Web applications should not call &lt;code&gt;System.exit()&lt;/code&gt;, since only the web container or the application server should stop the JVM. Otherwise a web application would terminate all other applications running on the same application server.&lt;/p&gt;
+&lt;p&gt;This rule also checks for the equivalent calls &lt;code&gt;Runtime.getRuntime().exit()&lt;/code&gt; and &lt;code&gt;Runtime.getRuntime().halt()&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;This rule was called &lt;em&gt;DoNotCallSystemExit&lt;/em&gt; until PMD 6.29.0.&lt;/p&gt;
+&lt;p&gt;Example(s):&lt;/p&gt;
+&lt;pre class=&quot;java&quot;&gt;&lt;code&gt;public void bar() {
+    System.exit(0);                 // never call this when running in an application server!
+}
+public void foo() {
+    Runtime.getRuntime().exit(0);   // never stop the JVM manually, the container will do this.
+}&lt;/code&gt;&lt;/pre&gt;
+</description>
+    <severity>CRITICAL</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
     <key>DP</key>
     <name>Default Package</name>
-    <description>&lt;h3&gt;PMD&lt;/h3&gt;&lt;p&gt;Use explicit scoping instead of accidental usage of default package private level. The rule allows methods and fields annotated with Guava’s &lt;span class=&quot;citation&quot; data-cites=&quot;VisibleForTesting&quot;&gt;@VisibleForTesting&lt;/span&gt;.&lt;/p&gt;
+    <description>&lt;h3&gt;PMD&lt;/h3&gt;&lt;p&gt;Use explicit scoping instead of accidental usage of default package private level. The rule allows methods and fields annotated with Guava’s &lt;span class=&quot;citation&quot; data-cites=&quot;VisibleForTesting&quot;&gt;@VisibleForTesting&lt;/span&gt; and JUnit 5’s annotations.&lt;/p&gt;
 </description>
     <type>CODE_SMELL</type>
+    <severity>MINOR</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
+    <key>DTC</key>
+    <name>Detached Test Case</name>
+    <description>&lt;h3&gt;PMD&lt;/h3&gt;&lt;p&gt;The method appears to be a test case since it has public or default visibility, non-static access, no arguments, no return value, has no annotations, but is a member of a class that has one or more JUnit test cases. If it is a utility method, it should likely have private visibility. If it is an ignored test, it should be annotated with &lt;span class=&quot;citation&quot; data-cites=&quot;Test&quot;&gt;@Test&lt;/span&gt; and &lt;span class=&quot;citation&quot; data-cites=&quot;Ignore&quot;&gt;@Ignore&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;Example(s):&lt;/p&gt;
+&lt;pre class=&quot;java&quot;&gt;&lt;code&gt;public class MyTest {
+    @Test
+    public void someTest() {
+    }
+
+    // violation: Not annotated
+    public void someOtherTest () {
+    }
+
+}&lt;/code&gt;&lt;/pre&gt;
+</description>
     <severity>MINOR</severity>
     <tag>sourcemeter</tag>
   </rule>
@@ -2179,7 +2360,7 @@ try {
     void bad() {
         byte[] iv = new byte[] { 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, };
     }
-    
+
     void alsoBad() {
         byte[] iv = &amp;quot;secret iv in here&amp;quot;.getBytes();
     }
@@ -2191,7 +2372,7 @@ try {
   <rule>
     <key>IF</key>
     <name>Immutable Field</name>
-    <description>&lt;h3&gt;PMD&lt;/h3&gt;&lt;p&gt;Identifies private fields whose values never change once object initialization ends either in the declaration of the field or by a constructor. This helps in converting existing classes to becoming immutable ones.&lt;/p&gt;
+    <description>&lt;h3&gt;PMD&lt;/h3&gt;&lt;p&gt;Identifies private fields whose values never change once object initialization ends either in the declaration of the field or by a constructor. This helps in converting existing classes to becoming immutable ones. Note that this rule does not enforce referenced object to be immutable itself. A class can still be mutable, even if all its member fields are declared final. This is referred to as shallow immutability. For more information on mutability, see Effective Java, 3rd Edition, Item 17: Minimize mutability.&lt;/p&gt;
 &lt;p&gt;Example(s):&lt;/p&gt;
 &lt;pre class=&quot;java&quot;&gt;&lt;code&gt;public class Foo {
   private int x; // could be final
@@ -2224,6 +2405,20 @@ public class Bar{}&lt;/code&gt;&lt;/pre&gt;
     <tag>sourcemeter</tag>
   </rule>
   <rule>
+    <key>ILMF</key>
+    <name>Invalid Log Message Format</name>
+    <description>&lt;h3&gt;PMD&lt;/h3&gt;&lt;p&gt;Check for messages in slf4j and log4j2 (since 6.19.0) loggers with non matching number of arguments and placeholders.&lt;/p&gt;
+&lt;p&gt;Since 6.32.0 in addition to parameterized message placeholders (&lt;code&gt;{}&lt;/code&gt;) also format specifiers of string formatted messages are supported (&lt;code&gt;%s&lt;/code&gt;).&lt;/p&gt;
+&lt;p&gt;Example(s):&lt;/p&gt;
+&lt;pre class=&quot;java&quot;&gt;&lt;code&gt;LOGGER.error(&amp;quot;forget the arg {}&amp;quot;);
+LOGGER.error(&amp;quot;forget the arg %s&amp;quot;);
+LOGGER.error(&amp;quot;too many args {}&amp;quot;, &amp;quot;arg1&amp;quot;, &amp;quot;arg2&amp;quot;);
+LOGGER.error(&amp;quot;param {}&amp;quot;, &amp;quot;arg1&amp;quot;, new IllegalStateException(&amp;quot;arg&amp;quot;)); //The exception is shown separately, so is correct.&lt;/code&gt;&lt;/pre&gt;
+</description>
+    <severity>MINOR</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
     <key>IO</key>
     <name>Idempotent Operations</name>
     <description>&lt;h3&gt;PMD&lt;/h3&gt;&lt;p&gt;Avoid idempotent operations - they have no effect.&lt;/p&gt;
@@ -2237,18 +2432,6 @@ public class Bar{}&lt;/code&gt;&lt;/pre&gt;
 </description>
     <type>BUG</type>
     <severity>MAJOR</severity>
-    <tag>sourcemeter</tag>
-  </rule>
-  <rule>
-    <key>IS4MF</key>
-    <name>Invalid Slf4j Message Format</name>
-    <description>&lt;h3&gt;PMD&lt;/h3&gt;&lt;p&gt;Check for messages in slf4j loggers with non matching number of arguments and placeholders.&lt;/p&gt;
-&lt;p&gt;Example(s):&lt;/p&gt;
-&lt;pre class=&quot;java&quot;&gt;&lt;code&gt;LOGGER.error(&amp;quot;forget the arg {}&amp;quot;);
-LOGGER.error(&amp;quot;too many args {}&amp;quot;, &amp;quot;arg1&amp;quot;, &amp;quot;arg2&amp;quot;);
-LOGGER.error(&amp;quot;param {}&amp;quot;, &amp;quot;arg1&amp;quot;, new IllegalStateException(&amp;quot;arg&amp;quot;)); //The exception is shown separately, so is correct.&lt;/code&gt;&lt;/pre&gt;
-</description>
-    <severity>MINOR</severity>
     <tag>sourcemeter</tag>
   </rule>
   <rule>
@@ -2307,7 +2490,7 @@ sb.append(System.getProperty(&amp;quot;java.io.tmpdir&amp;quot;));&lt;/code&gt;&
   <rule>
     <key>JUS</key>
     <name>JUnit Spelling</name>
-    <description>&lt;h3&gt;PMD&lt;/h3&gt;&lt;p&gt;Some JUnit framework methods are easy to misspell.&lt;/p&gt;
+    <description>&lt;h3&gt;PMD&lt;/h3&gt;&lt;p&gt;In JUnit 3, the setUp method is used to set up all data entities required in running tests. The tearDown method is used to clean up all data entities required in running tests. You should not misspell method name if you want your test to set up and clean up everything correctly.&lt;/p&gt;
 &lt;p&gt;Example(s):&lt;/p&gt;
 &lt;pre class=&quot;java&quot;&gt;&lt;code&gt;import junit.framework.*;
 
@@ -2364,6 +2547,32 @@ public class Foo extends TestCase {
     <tag>sourcemeter</tag>
   </rule>
   <rule>
+    <key>LFIC</key>
+    <name>Literals First In Comparisons</name>
+    <description>&lt;h3&gt;PMD&lt;/h3&gt;&lt;p&gt;Position literals first in all String comparisons, if the second argument is null then NullPointerExceptions can be avoided, they will just return false. Note that switching literal positions for compareTo and compareToIgnoreCase may change the result, see examples.&lt;/p&gt;
+&lt;p&gt;Example(s):&lt;/p&gt;
+&lt;pre class=&quot;java&quot;&gt;&lt;code&gt;class Foo {
+    boolean bar(String x) {
+        return x.equals(&amp;quot;2&amp;quot;); // should be &amp;quot;2&amp;quot;.equals(x)
+    }
+    boolean bar(String x) {
+        return x.equalsIgnoreCase(&amp;quot;2&amp;quot;); // should be &amp;quot;2&amp;quot;.equalsIgnoreCase(x)
+    }
+    boolean bar(String x) {
+        return (x.compareTo(&amp;quot;bar&amp;quot;) &gt; 0); // should be: &amp;quot;bar&amp;quot;.compareTo(x) &lt; 0
+    }
+    boolean bar(String x) {
+        return (x.compareToIgnoreCase(&amp;quot;bar&amp;quot;) &gt; 0); // should be: &amp;quot;bar&amp;quot;.compareToIgnoreCase(x) &lt; 0
+    }
+    boolean bar(String x) {
+        return x.contentEquals(&amp;quot;bar&amp;quot;); // should be &amp;quot;bar&amp;quot;.contentEquals(x)
+    }
+}&lt;/code&gt;&lt;/pre&gt;
+</description>
+    <severity>CRITICAL</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
     <key>LHNC</key>
     <name>Local Home Naming Convention</name>
     <description>&lt;h3&gt;PMD&lt;/h3&gt;&lt;p&gt;The Local Home interface of a Session EJB should be suffixed by ‘LocalHome’.&lt;/p&gt;
@@ -2402,6 +2611,7 @@ public interface MissingProperSuffix extends javax.ejb.EJBLocalHome {}  // non-s
     <key>LINSF</key>
     <name>Logger Is Not Static Final</name>
     <description>&lt;h3&gt;PMD&lt;/h3&gt;&lt;p&gt;In most cases, the Logger reference can be declared as static and final.&lt;/p&gt;
+&lt;p&gt;This rule is deprecated and will be removed with PMD 7.0.0. The rule is replaced by &lt;a href=&quot;#PMD_PL&quot;&gt;Proper Logger&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Example(s):&lt;/p&gt;
 &lt;pre class=&quot;java&quot;&gt;&lt;code&gt;public class Foo{
     Logger log = Logger.getLogger(Foo.class.getName());                 // not recommended
@@ -2446,12 +2656,16 @@ public class MissingTheProperSuffix implements SessionBean {}   // non-standard 
 &lt;p&gt;Example(s):&lt;/p&gt;
 &lt;pre class=&quot;java&quot;&gt;&lt;code&gt;public class Foo {
     void bar() {
-        if (a.equals(baz) &amp;&amp; a != null) {}
-        }
+        if (a.equals(baz) &amp;&amp; a != null) {} // a could be null, misplaced null check
+
+        if (a != null &amp;&amp; a.equals(baz)) {} // correct null check
+    }
 }&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&quot;java&quot;&gt;&lt;code&gt;public class Foo {
     void bar() {
-        if (a.equals(baz) || a == null) {}
+        if (a.equals(baz) || a == null) {} // a could be null, misplaced null check
+
+        if (a == null || a.equals(baz)) {} // correct null check
     }
 }&lt;/code&gt;&lt;/pre&gt;
 </description>
@@ -2478,6 +2692,7 @@ public class MissingTheProperSuffix implements SessionBean {}   // non-standard 
     <key>MSMINIC</key>
     <name>Missing Static Method In Non Instantiatable Class</name>
     <description>&lt;h3&gt;PMD&lt;/h3&gt;&lt;p&gt;A class that has private constructors and does not have any static methods or fields cannot be used.&lt;/p&gt;
+&lt;p&gt;When one of the private constructors is annotated with one of the annotations, then the class is not considered non-instantiatable anymore and no violation will be reported. See the property &lt;code&gt;annotations&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;Example(s):&lt;/p&gt;
 &lt;pre class=&quot;java&quot;&gt;&lt;code&gt;// This class is unusable, since it cannot be
 // instantiated (private constructor),
@@ -2495,7 +2710,7 @@ public class Foo {
   <rule>
     <key>MTOL</key>
     <name>More Than One Logger</name>
-    <description>&lt;h3&gt;PMD&lt;/h3&gt;&lt;p&gt;Normally only one logger is used in each class.&lt;/p&gt;
+    <description>&lt;h3&gt;PMD&lt;/h3&gt;&lt;p&gt;Normally only one logger is used in each class. This rule supports slf4j, log4j, Java Util Logging and log4j2 (since 6.19.0).&lt;/p&gt;
 &lt;p&gt;Example(s):&lt;/p&gt;
 &lt;pre class=&quot;java&quot;&gt;&lt;code&gt;public class Foo {
     Logger log = Logger.getLogger(Foo.class.getName());
@@ -2534,7 +2749,7 @@ public class Foo {
   <rule>
     <key>NP</key>
     <name>No Package</name>
-    <description>&lt;h3&gt;PMD&lt;/h3&gt;&lt;p&gt;Detects when a class or interface does not have a package definition.&lt;/p&gt;
+    <description>&lt;h3&gt;PMD&lt;/h3&gt;&lt;p&gt;Detects when a class, interface, enum or annotation does not have a package definition.&lt;/p&gt;
 &lt;p&gt;Example(s):&lt;/p&gt;
 &lt;pre class=&quot;java&quot;&gt;&lt;code&gt;// no package declaration
 public class ClassInDefaultPackage {
@@ -2646,7 +2861,7 @@ public class SomeClass {
   <rule>
     <key>PL</key>
     <name>Proper Logger</name>
-    <description>&lt;h3&gt;PMD&lt;/h3&gt;&lt;p&gt;A logger should normally be defined private static final and be associated with the correct class. Private final Log log; is also allowed for rare cases where loggers need to be passed around, with the restriction that the logger needs to be passed into the constructor.&lt;/p&gt;
+    <description>&lt;h3&gt;PMD&lt;/h3&gt;&lt;p&gt;A logger should normally be defined private static final and be associated with the correct class. &lt;code&gt;private final Log log;&lt;/code&gt; is also allowed for rare cases where loggers need to be passed around, with the restriction that the logger needs to be passed into the constructor.&lt;/p&gt;
 &lt;p&gt;Example(s):&lt;/p&gt;
 &lt;pre class=&quot;java&quot;&gt;&lt;code&gt;public class Foo {
 
@@ -2785,7 +3000,7 @@ public interface MissingProperSuffix extends javax.ejb.EJBHome {}   // non-stand
 new StringBuffer(6)     //  6
 new StringBuffer(&amp;quot;hello world&amp;quot;)  // 11 + 16 = 27
 new StringBuffer('A')   //  chr(A) = 65
-new StringBuffer(&amp;quot;A&amp;quot;)   //  1 + 16 = 17 
+new StringBuffer(&amp;quot;A&amp;quot;)   //  1 + 16 = 17
 
 new StringBuilder()     //  16
 new StringBuilder(6)    //  6
@@ -2892,7 +3107,7 @@ public boolean isBarEqualTo(int x) {
   <rule>
     <key>SEMN</key>
     <name>Suspicious Equals Method Name</name>
-    <description>&lt;h3&gt;PMD&lt;/h3&gt;&lt;p&gt;The method name and parameter number are suspiciously close to equals(Object), which can denote an intention to override the equals(Object) method.&lt;/p&gt;
+    <description>&lt;h3&gt;PMD&lt;/h3&gt;&lt;p&gt;The method name and parameter number are suspiciously close to &lt;code&gt;Object.equals&lt;/code&gt;, which can denote an intention to override it. However, the method does not override &lt;code&gt;Object.equals&lt;/code&gt;, but overloads it instead. Overloading &lt;code&gt;Object.equals&lt;/code&gt; method is confusing for other programmers, error-prone and hard to maintain, especially when using inheritance, because &lt;code&gt;@Override&lt;/code&gt; annotations used in subclasses can provide a false sense of security. For more information on &lt;code&gt;Object.equals&lt;/code&gt; method, see Effective Java, 3rd Edition, Item 10: Obey the general contract when overriding equals.&lt;/p&gt;
 &lt;p&gt;Example(s):&lt;/p&gt;
 &lt;pre class=&quot;java&quot;&gt;&lt;code&gt;public class Foo {
    public int equals(Object o) {
@@ -3073,6 +3288,107 @@ import static Yoko; // Too much !&lt;/code&gt;&lt;/pre&gt;
     <tag>sourcemeter</tag>
   </rule>
   <rule>
+    <key>UA</key>
+    <name>Unused Assignment</name>
+    <description>&lt;h3&gt;PMD&lt;/h3&gt;&lt;p&gt;Reports assignments to variables that are never used before the variable is overwritten, or goes out of scope. Unused assignments are those for which 1. The variable is never read after the assignment, or 2. The assigned value is always overwritten by other assignments before the next read of the variable.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;        The rule doesn't consider assignments to fields except for those of `this` in a constructor,
+        or static fields of the current class in static initializers.
+
+        The rule may be suppressed with the standard `@SuppressWarnings(&amp;quot;unused&amp;quot;)` tag.
+
+        The rule subsumes {% rule &amp;quot;UnusedLocalVariable&amp;quot; %}, and {% rule &amp;quot;UnusedFormalParameter&amp;quot; %}.
+        Those violations are filtered
+        out by default, in case you already have enabled those rules, but may be enabled with the property
+        `reportUnusedVariables`. Variables whose name starts with `ignored` or `unused` are filtered out, as
+        is standard practice for exceptions.
+
+        Limitations:
+        * The rule currently cannot know which method calls throw exceptions, or which exceptions they throw.
+        In the body of a try block, every method or constructor call is assumed to throw.  This may cause false-negatives.
+        The only other language construct that is assumed to throw is the `throw` statement, in particular,
+        things like `assert` statements, or NullPointerExceptions on dereference are ignored.
+        * The rule cannot resolve assignments across constructors, when they're called with the special
+        `this(...)` syntax. This may cause false-negatives.
+
+        Both of those limitations may be partly relaxed in PMD 7.&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Example(s):&lt;/p&gt;
+&lt;pre class=&quot;java&quot;&gt;&lt;code&gt;class A {
+                // this field initializer is redundant,
+                // it is always overwritten in the constructor
+                int f = 1;
+
+                A(int f) {
+                    this.f = f;
+                }
+            }&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&quot;java&quot;&gt;&lt;code&gt;class B {
+
+    int method(int i, int j) {
+        // this initializer is redundant,
+        // it is overwritten in all branches of the `if`
+        int k = 0;
+
+        // Both the assignments to k are unused, because k is
+        // not read after the if/else
+        // This may hide a bug: the programmer probably wanted to return k
+        if (i &lt; j)
+            k = i;
+        else
+            k = j;
+
+        return j;
+    }
+
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&quot;java&quot;&gt;&lt;code&gt;class C {
+
+    int method() {
+        int i = 0;
+
+        checkSomething(++i);
+        checkSomething(++i);
+        checkSomething(++i);
+        checkSomething(++i);
+
+        // That last increment is not reported unless
+        // the property `checkUnusedPrefixIncrement` is
+        // set to `true`
+        // Technically it could be written (i+1), but it
+        // is not very important
+    }
+
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&quot;java&quot;&gt;&lt;code&gt;class C {
+
+    // variables that are truly unused (at most assigned to, but never accessed)
+    // are only reported if property `reportUnusedVariables` is true
+
+    void method(int param) { } // for example this method parameter
+
+    // even then, you can suppress the violation with an annotation:
+
+    void method(@SuppressWarning(&amp;quot;unused&amp;quot;) int param) { } // no violation, even if `reportUnusedVariables` is true
+
+    // For catch parameters, or for resources which don't need to be used explicitly,
+    // you can give a name that starts with &amp;quot;ignored&amp;quot; to ignore such warnings
+
+    {
+        try (Something ignored = Something.create()) {
+            // even if ignored is unused, it won't be flagged
+            // its purpose might be to side-effect in the create/close routines
+
+        } catch (Exception e) { // this is unused and will cause a warning if `reportUnusedVariables` is true
+            // you should choose a name that starts with &amp;quot;ignored&amp;quot;
+            return;
+        }
+    }
+
+}&lt;/code&gt;&lt;/pre&gt;
+</description>
+    <severity>MINOR</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
     <key>UAAL</key>
     <name>Use Arrays As List</name>
     <description>&lt;h3&gt;PMD&lt;/h3&gt;&lt;p&gt;The java.util.Arrays class has a “asList” method that should be used when you want to create a new List from an array of objects. It is faster than executing a loop to copy all the elements of the array one by one.&lt;/p&gt;
@@ -3104,7 +3420,7 @@ import static Yoko; // Too much !&lt;/code&gt;&lt;/pre&gt;
     void testCode() {
         Object a, b;
         assertTrue(a.equals(b));                    // bad usage
-        assertEquals(?a should equals b?, a, b);    // good usage
+        assertEquals(&amp;quot;a should equals b&amp;quot;, a, b);    // good usage
     }
 }&lt;/code&gt;&lt;/pre&gt;
 </description>
@@ -3315,6 +3631,7 @@ boolean answer2 = buz.toUpperCase().equalsIgnoreCase(&amp;quot;baz&amp;quot;);  
     <key>UDO</key>
     <name>Use Diamond Operator</name>
     <description>&lt;h3&gt;PMD&lt;/h3&gt;&lt;p&gt;Use the diamond operator to let the type be inferred automatically. With the Diamond operator it is possible to avoid duplication of the type parameters. Instead, the compiler is now able to infer the parameter types for constructor calls, which makes the code also more readable.&lt;/p&gt;
+&lt;p&gt;The diamond operator has been introduced with java 7. However, type inference has been improved further with java8, rendering more type parameters unnecessary. This is only possible with java8 and the resulting code won’t compile with java7. If you use java7, make sure to enable &lt;code&gt;java7Compatibility&lt;/code&gt; for this rule to avoid false positives.&lt;/p&gt;
 &lt;p&gt;Example(s):&lt;/p&gt;
 &lt;pre class=&quot;java&quot;&gt;&lt;code&gt;List&lt;String&gt; strings = new ArrayList&lt;String&gt;(); // unnecessary duplication of type parameters
 List&lt;String&gt; stringsWithDiamond = new ArrayList&lt;&gt;(); // using the diamond operator is more concise&lt;/code&gt;&lt;/pre&gt;
@@ -3349,6 +3666,27 @@ public class Foo {
 </description>
     <type>CODE_SMELL</type>
     <severity>MINOR</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
+    <key>UIOSWACFI</key>
+    <name>Use IOStreams With Apache Commons File Item</name>
+    <description>&lt;h3&gt;PMD&lt;/h3&gt;&lt;p&gt;Problem: Use of &lt;a href=&quot;https://commons.apache.org/proper/commons-fileupload/apidocs/org/apache/commons/fileupload/FileItem.html#get--&quot;&gt;FileItem.get()&lt;/a&gt; and &lt;a href=&quot;https://commons.apache.org/proper/commons-fileupload/apidocs/org/apache/commons/fileupload/FileItem.html#getString--&quot;&gt;FileItem.getString()&lt;/a&gt; could exhaust memory since they load the entire file into memory.&lt;/p&gt;
+&lt;p&gt;Solution: Use &lt;a href=&quot;https://commons.apache.org/proper/commons-fileupload/apidocs/org/apache/commons/fileupload/FileItem.html#getInputStream--&quot;&gt;FileItem.getInputStream()&lt;/a&gt; and buffering.&lt;/p&gt;
+&lt;p&gt;Example(s):&lt;/p&gt;
+&lt;pre class=&quot;java&quot;&gt;&lt;code&gt;import org.apache.commons.fileupload.FileItem;
+
+public class FileStuff {
+   private String bad(FileItem fileItem) {
+        return fileItem.getString();
+   }
+
+   private InputStream good(FileItem fileItem) {
+        return fileItem.getInputStream();
+   }
+}&lt;/code&gt;&lt;/pre&gt;
+</description>
+    <severity>MAJOR</severity>
     <tag>sourcemeter</tag>
   </rule>
   <rule>
@@ -3440,9 +3778,21 @@ class Test {
     <tag>sourcemeter</tag>
   </rule>
   <rule>
+    <key>USAI</key>
+    <name>Use Short Array Initializer</name>
+    <description>&lt;h3&gt;PMD&lt;/h3&gt;&lt;p&gt;When declaring and initializing array fields or variables, it is not necessary to explicitly create a new array using &lt;code&gt;new&lt;/code&gt;. Instead one can simply define the initial content of the array as a expression in curly braces.&lt;/p&gt;
+&lt;p&gt;E.g. &lt;code&gt;int[] x = new int[] { 1, 2, 3 };&lt;/code&gt; can be written as &lt;code&gt;int[] x = { 1, 2, 3 };&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Example(s):&lt;/p&gt;
+&lt;pre class=&quot;java&quot;&gt;&lt;code&gt;Foo[] x = new Foo[] { ... }; // Overly verbose
+Foo[] x = { ... }; //Equivalent to above line&lt;/code&gt;&lt;/pre&gt;
+</description>
+    <severity>MINOR</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
     <key>USDF</key>
     <name>Unsynchronized Static Date Formatter</name>
-    <description>&lt;h3&gt;PMD&lt;/h3&gt;&lt;p&gt;SimpleDateFormat instances are not synchronized. Sun recommends using separate format instances for each thread. If multiple threads must access a static formatter, the formatter must be synchronized either on method or block level.&lt;/p&gt;
+    <description>&lt;h3&gt;PMD&lt;/h3&gt;&lt;p&gt;SimpleDateFormat instances are not synchronized. Sun recommends using separate format instances for each thread. If multiple threads must access a static formatter, the formatter must be synchronized on block level.&lt;/p&gt;
 &lt;p&gt;This rule has been deprecated in favor of the rule &lt;a href=&quot;#PMD_USF&quot;&gt;Unsynchronized Static Formatter&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Example(s):&lt;/p&gt;
 &lt;pre class=&quot;java&quot;&gt;&lt;code&gt;public class Foo {
@@ -3450,8 +3800,10 @@ class Test {
     void bar() {
         sdf.format(); // poor, no thread-safety
     }
-    synchronized void foo() {
-        sdf.format(); // preferred
+    void foo() {
+        synchronized (sdf) { // preferred
+            sdf.format();
+        }
     }
 }&lt;/code&gt;&lt;/pre&gt;
 </description>
@@ -3462,15 +3814,17 @@ class Test {
   <rule>
     <key>USF</key>
     <name>Unsynchronized Static Formatter</name>
-    <description>&lt;h3&gt;PMD&lt;/h3&gt;&lt;p&gt;Instances of &lt;code&gt;java.text.Format&lt;/code&gt; are generally not synchronized. Sun recommends using separate format instances for each thread. If multiple threads must access a static formatter, the formatter must be synchronized either on method or block level.&lt;/p&gt;
+    <description>&lt;h3&gt;PMD&lt;/h3&gt;&lt;p&gt;Instances of &lt;code&gt;java.text.Format&lt;/code&gt; are generally not synchronized. Sun recommends using separate format instances for each thread. If multiple threads must access a static formatter, the formatter must be synchronized on block level.&lt;/p&gt;
 &lt;p&gt;Example(s):&lt;/p&gt;
 &lt;pre class=&quot;java&quot;&gt;&lt;code&gt;public class Foo {
     private static final SimpleDateFormat sdf = new SimpleDateFormat();
     void bar() {
         sdf.format(); // poor, no thread-safety
     }
-    synchronized void foo() {
-        sdf.format(); // preferred
+    void foo() {
+        synchronized (sdf) { // preferred
+            sdf.format();
+        }
     }
 }&lt;/code&gt;&lt;/pre&gt;
 </description>
@@ -3543,6 +3897,22 @@ class Test {
     <tag>sourcemeter</tag>
   </rule>
   <rule>
+    <key>UnC</key>
+    <name>Unnecessary Cast</name>
+    <description>&lt;h3&gt;PMD&lt;/h3&gt;&lt;p&gt;This rule detects when a cast is unnecessary while accessing collection elements. This rule is mostly useful for old java code before generics where introduced with java 1.5.&lt;/p&gt;
+&lt;p&gt;Example(s):&lt;/p&gt;
+&lt;pre class=&quot;java&quot;&gt;&lt;code&gt;public class UnnecessaryCastSample {
+    public void method() {
+        List&lt;String&gt; stringList = Arrays.asList(&amp;quot;a&amp;quot;, &amp;quot;b&amp;quot;);
+        String element = (String) stringList.get(0); // this cast is unnecessary
+        String element2 = stringList.get(0);
+    }
+}&lt;/code&gt;&lt;/pre&gt;
+</description>
+    <severity>MINOR</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
     <key>UnM</key>
     <name>Unnecessary Modifier</name>
     <description>&lt;h3&gt;PMD&lt;/h3&gt;&lt;p&gt;Fields in interfaces and annotations are automatically &lt;code&gt;public static final&lt;/code&gt;, and methods are &lt;code&gt;public abstract&lt;/code&gt;. Classes, interfaces or annotations nested in an interface or annotation are automatically &lt;code&gt;public static&lt;/code&gt; (all nested interfaces and annotations are automatically static). Nested enums are automatically &lt;code&gt;static&lt;/code&gt;. For historical reasons, modifiers which are implied by the context are accepted by the compiler, but are superfluous.&lt;/p&gt;
@@ -3564,6 +3934,25 @@ public class Bar {
     public static enum FoorBar {    // static ignored
         FOO;
     }
+}&lt;/code&gt;&lt;/pre&gt;
+</description>
+    <severity>MINOR</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
+    <key>WLWLB</key>
+    <name>While Loop With Literal Boolean</name>
+    <description>&lt;h3&gt;PMD&lt;/h3&gt;&lt;p&gt;&lt;code&gt;do {} while (true);&lt;/code&gt; requires reading the end of the statement before it is apparent that it loops forever, whereas &lt;code&gt;while (true) {}&lt;/code&gt; is easier to understand.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;do {} while (false);&lt;/code&gt; is redundant, and if an inner variable scope is required, a block &lt;code&gt;{}&lt;/code&gt; is sufficient.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;while (false) {}&lt;/code&gt; will never execute the block and can be removed in its entirety.&lt;/p&gt;
+&lt;p&gt;Example(s):&lt;/p&gt;
+&lt;pre class=&quot;java&quot;&gt;&lt;code&gt;public class Example {
+  {
+    while (true) { } // allowed
+    while (false) { } // disallowed
+    do { } while (true); // disallowed
+    do { } while (false); // disallowed
+  }
 }&lt;/code&gt;&lt;/pre&gt;
 </description>
     <severity>MINOR</severity>
@@ -3669,8 +4058,12 @@ public class Bar {
   <rule>
     <key>ACNPE</key>
     <name>Avoid Catching NPE</name>
-    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;Code should never throw NullPointerExceptions under normal circumstances. A catch block may hide the original error, causing other, more subtle problems later on.&lt;/p&gt;
-&lt;p&gt;Example(s):&lt;/p&gt;
+    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;
+Code should never throw NullPointerExceptions under normal circumstances. A catch block may hide the original error, causing other, more subtle problems later on.
+&lt;/p&gt;
+&lt;p&gt;
+Example(s):
+&lt;/p&gt;
 &lt;pre class=&quot;java&quot;&gt;&lt;code&gt;public class Foo {
 
   void bar() {
@@ -3689,8 +4082,12 @@ public class Bar {
   <rule>
     <key>ACT</key>
     <name>Avoid Catching Throwable</name>
-    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;Catching Throwable errors is not recommended since its scope is very broad. It includes runtime issues such as OutOfMemoryError that should be exposed and managed separately.&lt;/p&gt;
-&lt;p&gt;Example(s):&lt;/p&gt;
+    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;
+Catching Throwable errors is not recommended since its scope is very broad. It includes runtime issues such as OutOfMemoryError that should be exposed and managed separately.
+&lt;/p&gt;
+&lt;p&gt;
+Example(s):
+&lt;/p&gt;
 &lt;pre class=&quot;java&quot;&gt;&lt;code&gt;public void bar() {
   try {
     // do something
@@ -3706,8 +4103,12 @@ public class Bar {
   <rule>
     <key>ADNIS</key>
     <name>Avoid Deeply Nested If Stmts</name>
-    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;Avoid creating deeply nested if-then statements since they are harder to read and error-prone to maintain.&lt;/p&gt;
-&lt;p&gt;Example(s):&lt;/p&gt;
+    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;
+Avoid creating deeply nested if-then statements since they are harder to read and error-prone to maintain.
+&lt;/p&gt;
+&lt;p&gt;
+Example(s):
+&lt;/p&gt;
 &lt;pre class=&quot;java&quot;&gt;&lt;code&gt;public class Foo {
 
   public void bar(int x, int y, int z) {
@@ -3728,8 +4129,12 @@ public class Bar {
   <rule>
     <key>AES</key>
     <name>Add Empty String</name>
-    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;The conversion of literals to strings by concatenating them with empty strings is inefficient. It is much better to use one of the type-specific toString() methods instead.&lt;/p&gt;
-&lt;p&gt;Example(s):&lt;/p&gt;
+    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;
+The conversion of literals to strings by concatenating them with empty strings is inefficient. It is much better to use one of the type-specific toString() methods instead.
+&lt;/p&gt;
+&lt;p&gt;
+Example(s):
+&lt;/p&gt;
 &lt;pre class=&quot;java&quot;&gt;&lt;code&gt;String s = &amp;quot;&amp;quot; + 123; // inefficient
 
 String t = Integer.toString(456); // preferred approach&lt;/code&gt;&lt;/pre&gt;
@@ -3741,8 +4146,12 @@ String t = Integer.toString(456); // preferred approach&lt;/code&gt;&lt;/pre&gt;
   <rule>
     <key>AICICC</key>
     <name>Avoid Instanceof Checks In Catch Clause</name>
-    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;Each caught exception type should be handled in its own catch clause.&lt;/p&gt;
-&lt;p&gt;Example(s):&lt;/p&gt;
+    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;
+Each caught exception type should be handled in its own catch clause.
+&lt;/p&gt;
+&lt;p&gt;
+Example(s):
+&lt;/p&gt;
 &lt;pre class=&quot;java&quot;&gt;&lt;code&gt;try { // Avoid this
   // do something
 } catch (Exception ee) {
@@ -3764,8 +4173,12 @@ try { // Prefer this:
   <rule>
     <key>AIO</key>
     <name>Assignment In Operand</name>
-    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;Avoid Assignments in operands; this can make code more complicated and harder to read.&lt;/p&gt;
-&lt;p&gt;Example(s):&lt;/p&gt;
+    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;
+Avoid Assignments in operands; this can make code more complicated and harder to read.
+&lt;/p&gt;
+&lt;p&gt;
+Example(s):
+&lt;/p&gt;
 &lt;pre class=&quot;java&quot;&gt;&lt;code&gt;public class Foo {
 
   public void bar(int x, int y, int z) {
@@ -3783,8 +4196,12 @@ try { // Prefer this:
   <rule>
     <key>AISD</key>
     <name>Array Is Stored Directly</name>
-    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;Constructors and methods receiving arrays should clone objects and store the copy. This prevents future changes from the user from affecting the original array.&lt;/p&gt;
-&lt;p&gt;Example(s):&lt;/p&gt;
+    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;
+Constructors and methods receiving arrays should clone objects and store the copy. This prevents future changes from the user from affecting the original array.
+&lt;/p&gt;
+&lt;p&gt;
+Example(s):
+&lt;/p&gt;
 &lt;pre class=&quot;java&quot;&gt;&lt;code&gt;public class Foo {
 
   private String [] x;
@@ -3802,8 +4219,12 @@ try { // Prefer this:
   <rule>
     <key>APST</key>
     <name>Avoid Print Stack Trace</name>
-    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;Avoid printStackTrace(); use a logger call instead.&lt;/p&gt;
-&lt;p&gt;Example(s):&lt;/p&gt;
+    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;
+Avoid printStackTrace(); use a logger call instead.
+&lt;/p&gt;
+&lt;p&gt;
+Example(s):
+&lt;/p&gt;
 &lt;pre class=&quot;java&quot;&gt;&lt;code&gt;class Foo {
 
   void bar() {
@@ -3822,8 +4243,12 @@ try { // Prefer this:
   <rule>
     <key>ARE</key>
     <name>Avoid Rethrowing Exception</name>
-    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;Catch blocks that merely rethrow a caught exception only add to code size and runtime complexity. In cases when the rethrowed exception can be caught by following catches are allowed.&lt;/p&gt;
-&lt;p&gt;Example(s):&lt;/p&gt;
+    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;
+Catch blocks that merely rethrow a caught exception only add to code size and runtime complexity. In cases when the rethrowed exception can be caught by following catches are allowed.
+&lt;/p&gt;
+&lt;p&gt;
+Example(s):
+&lt;/p&gt;
 &lt;pre class=&quot;java&quot;&gt;&lt;code&gt;public void bar() {
   try {
     / do something
@@ -3863,8 +4288,12 @@ public void foo(int a) throws IOException {
   <rule>
     <key>ATNPE</key>
     <name>Avoid Throwing Null Pointer Exception</name>
-    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;Avoid throwing NullPointerExceptions. These are confusing because most people will assume that the virtual machine threw it. Consider using an IllegalArgumentException instead; this will be clearly seen as a programmer-initiated exception. The rule also warns on null pointer exception instantiations.&lt;/p&gt;
-&lt;p&gt;Example(s):&lt;/p&gt;
+    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;
+Avoid throwing NullPointerExceptions. These are confusing because most people will assume that the virtual machine threw it. Consider using an IllegalArgumentException instead; this will be clearly seen as a programmer-initiated exception. The rule also warns on null pointer exception instantiations.
+&lt;/p&gt;
+&lt;p&gt;
+Example(s):
+&lt;/p&gt;
 &lt;pre class=&quot;java&quot;&gt;&lt;code&gt;public class Foo {
 
   void bar() {
@@ -3879,8 +4308,12 @@ public void foo(int a) throws IOException {
   <rule>
     <key>ATRET</key>
     <name>Avoid Throwing Raw Exception Types</name>
-    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;Avoid throwing certain exception types. Rather than throw a raw RuntimeException, Throwable, Exception, or Error, use a subclassed exception or error instead. The rule also warns on raw exception instantiations.&lt;/p&gt;
-&lt;p&gt;Example(s):&lt;/p&gt;
+    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;
+Avoid throwing certain exception types. Rather than throw a raw RuntimeException, Throwable, Exception, or Error, use a subclassed exception or error instead. The rule also warns on raw exception instantiations.
+&lt;/p&gt;
+&lt;p&gt;
+Example(s):
+&lt;/p&gt;
 &lt;pre class=&quot;java&quot;&gt;&lt;code&gt;public class Foo {
 
   public void bar() throws Exception {
@@ -3895,8 +4328,12 @@ public void foo(int a) throws IOException {
   <rule>
     <key>BGMN</key>
     <name>Boolean Get Method Name</name>
-    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;Methods that return boolean results should be named as predicate statements to denote this. I.e, ‘isReady()’, ‘hasValues()’, ‘canCommit()’, ‘willFail()’, etc. Avoid the use of the ‘get’ prefix for these methods.&lt;/p&gt;
-&lt;p&gt;Example(s):&lt;/p&gt;
+    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;
+Methods that return boolean results should be named as predicate statements to denote this. I.e, ‘isReady()’, ‘hasValues()’, ‘canCommit()’, ‘willFail()’, etc. Avoid the use of the ‘get’ prefix for these methods.
+&lt;/p&gt;
+&lt;p&gt;
+Example(s):
+&lt;/p&gt;
 &lt;pre class=&quot;java&quot;&gt;&lt;code&gt;public boolean getFoo(); // bad
 
 public boolean isFoo(); // ok
@@ -3910,8 +4347,12 @@ public boolean getFoo(boolean bar); // ok&lt;/code&gt;&lt;/pre&gt;
   <rule>
     <key>BI</key>
     <name>Boolean Instantiation</name>
-    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;Avoid instantiating Boolean objects; you can reference Boolean.TRUE, Boolean.FALSE, or call Boolean.valueOf() instead.&lt;/p&gt;
-&lt;p&gt;Example(s):&lt;/p&gt;
+    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;
+Avoid instantiating Boolean objects; you can reference Boolean.TRUE, Boolean.FALSE, or call Boolean.valueOf() instead.
+&lt;/p&gt;
+&lt;p&gt;
+Example(s):
+&lt;/p&gt;
 &lt;pre class=&quot;java&quot;&gt;&lt;code&gt;Boolean bar = new Boolean(&amp;quot;true&amp;quot;); // unnecessary creation, just reference Boolean.TRUE;
 
 Boolean buz = Boolean.valueOf(false); // ..., just reference Boolean.FALSE;&lt;/code&gt;&lt;/pre&gt;
@@ -3923,8 +4364,12 @@ Boolean buz = Boolean.valueOf(false); // ..., just reference Boolean.FALSE;&lt;/
   <rule>
     <key>BII</key>
     <name>Big Integer Instantiation</name>
-    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;Don’t create instances of already existing BigInteger (BigInteger.ZERO, BigInteger.ONE) and for Java 1.5 onwards, BigInteger.TEN and BigDecimal (BigDecimal.ZERO, BigDecimal.ONE, BigDecimal.TEN)&lt;/p&gt;
-&lt;p&gt;Example(s):&lt;/p&gt;
+    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;
+Don’t create instances of already existing BigInteger (BigInteger.ZERO, BigInteger.ONE) and for Java 1.5 onwards, BigInteger.TEN and BigDecimal (BigDecimal.ZERO, BigDecimal.ONE, BigDecimal.TEN)
+&lt;/p&gt;
+&lt;p&gt;
+Example(s):
+&lt;/p&gt;
 &lt;pre class=&quot;java&quot;&gt;&lt;code&gt;BigInteger bi = new BigInteger(1); // reference BigInteger.ONE instead
 
 BigInteger bi2 = new BigInteger(&amp;quot;0&amp;quot;); // reference BigInteger.ZERO instead
@@ -3942,8 +4387,12 @@ bi4 = new BigInteger(0); // reference BigInteger.ZERO instead&lt;/code&gt;&lt;/p
   <rule>
     <key>ByI</key>
     <name>Byte Instantiation</name>
-    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;Calling new Byte() causes memory allocation that can be avoided by the static Byte.valueOf(). It makes use of an internal cache that recycles earlier instances making it more memory efficient.&lt;/p&gt;
-&lt;p&gt;Example(s):&lt;/p&gt;
+    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;
+Calling new Byte() causes memory allocation that can be avoided by the static Byte.valueOf(). It makes use of an internal cache that recycles earlier instances making it more memory efficient.
+&lt;/p&gt;
+&lt;p&gt;
+Example(s):
+&lt;/p&gt;
 &lt;pre class=&quot;java&quot;&gt;&lt;code&gt;public class Foo {
 
   private Byte i = new Byte(0); // change to Byte i = Byte.valueOf(0);
@@ -3954,10 +4403,87 @@ bi4 = new BigInteger(0); // reference BigInteger.ZERO instead&lt;/code&gt;&lt;/p
     <tag>sourcemeter</tag>
   </rule>
   <rule>
+    <key>CEPSHJSRV</key>
+    <name>Controller endpoint parameter JSR validation</name>
+    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;
+Functions in controller classes, which act as controller endpoints should have their parameters validated with JSR validation annotations, like &lt;span class=&quot;citation&quot; data-cites=&quot;NotNull&quot;&gt;@NotNull&lt;/span&gt;, &lt;span class=&quot;citation&quot; data-cites=&quot;Min&quot;&gt;@Min&lt;/span&gt;, &lt;span class=&quot;citation&quot; data-cites=&quot;Max&quot;&gt;@Max&lt;/span&gt;, etc.
+&lt;/p&gt;
+&lt;pre class=&quot;java&quot;&gt;&lt;code&gt;
+public class ExampleController {
+  @GetMapping
+  int getEndpointWithEntityParameter(@Valid ExampleEntity testEntity) {
+    //Implementation...
+  }
+
+  @PostMapping
+  public int postEndpointWithParameter(@NotNull String str) {
+    //Implementation...
+  }
+
+  @RequestMapping
+  public int requestEndpointMoreParameter(@Positive int db, @PositiveOrZero int count) {
+    //Implementation...
+  } 
+
+  @DeleteMapping
+  public int deleteEndpointMoreParameter(@Negative int num, @NegativeOrZero int num2) {
+    //Implementation...
+  } 
+
+  @PutMapping
+  public int putEndpointMoreParameter(@PastOrPresent Date startDate, @FutureOrPresent Date endDate) {
+    //Implementation...
+  } 
+
+  @PatchMapping
+  public int patchEndpointParameter(@NotNull ControllerTmp test) {
+    //Implementation...
+  } 
+}
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    <severity>MINOR</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
+    <key>CSBVA</key>
+    <name>Controller @Validated annotation</name>
+    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;
+Controller classes should have &lt;span class=&quot;citation&quot; data-cites=&quot;Validated&quot;&gt;@Validated&lt;/span&gt; annotation in addition to the &lt;span class=&quot;citation&quot; data-cites=&quot;Controller&quot;&gt;@Controller&lt;/span&gt; or &lt;span class=&quot;citation&quot; data-cites=&quot;RestController&quot;&gt;@RestController&lt;/span&gt; annotations.
+&lt;/p&gt;
+&lt;pre class=&quot;java&quot;&gt;
+@Validated
+@Controller
+public class ExamplesControllerValidated {
+}
+
+@Validated
+@RestController
+public class ExampleRestControllerValidated {
+}
+
+//Wrong! Do not do the following two.
+@Controller
+public class ControllerValidateFailed {
+}
+
+@RestController
+public class RestControllerValidateFailed {
+} 
+&lt;code&gt;&lt;/code&gt;&lt;/pre&gt;
+</description>
+    <severity>MINOR</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
     <key>ClR</key>
     <name>Close Resource</name>
-    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;Ensure that resources (like Connection, Statement, and ResultSet objects) are always closed in a finally block after use.&lt;/p&gt;
-&lt;p&gt;Example(s):&lt;/p&gt;
+    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;
+Ensure that resources (like Connection, Statement, and ResultSet objects) are always closed in a finally block after use.
+&lt;/p&gt;
+&lt;p&gt;
+Example(s):
+&lt;/p&gt;
 &lt;pre class=&quot;java&quot;&gt;&lt;code&gt;public class Bar {
 
   public void foo() {
@@ -3980,8 +4506,12 @@ bi4 = new BigInteger(0); // reference BigInteger.ZERO instead&lt;/code&gt;&lt;/p
   <rule>
     <key>DLNLISS</key>
     <name>Default Label Not Last In Switch Stmt</name>
-    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;By convention, the default label should be the last label in a switch statement.&lt;/p&gt;
-&lt;p&gt;Example(s):&lt;/p&gt;
+    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;
+By convention, the default label should be the last label in a switch statement.
+&lt;/p&gt;
+&lt;p&gt;
+Example(s):
+&lt;/p&gt;
 &lt;pre class=&quot;java&quot;&gt;&lt;code&gt;public class Foo {
 
   void bar(int a) {
@@ -4003,8 +4533,12 @@ bi4 = new BigInteger(0); // reference BigInteger.ZERO instead&lt;/code&gt;&lt;/p
   <rule>
     <key>DNCRE</key>
     <name>Do not Call Runtime exec</name>
-    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;Runtime.exec() should not be invoked.&lt;/p&gt;
-&lt;p&gt;Example(s):&lt;/p&gt;
+    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;
+Runtime.exec() should not be invoked.
+&lt;/p&gt;
+&lt;p&gt;
+Example(s):
+&lt;/p&gt;
 &lt;pre class=&quot;java&quot;&gt;&lt;code&gt;  void executeCommand(String command) {
     Process process = Runtime.getRuntime().exec(command);
     // ...
@@ -4016,8 +4550,12 @@ bi4 = new BigInteger(0); // reference BigInteger.ZERO instead&lt;/code&gt;&lt;/p
   <rule>
     <key>DNCTIEJB</key>
     <name>Do not Create Threads in EJB</name>
-    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;The enterprise bean must not attempt to manage threads because it would harm resource management and transaction management.&lt;/p&gt;
-&lt;p&gt;Example(s):&lt;/p&gt;
+    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;
+The enterprise bean must not attempt to manage threads because it would harm resource management and transaction management.
+&lt;/p&gt;
+&lt;p&gt;
+Example(s):
+&lt;/p&gt;
 &lt;pre class=&quot;java&quot;&gt;&lt;code&gt;@Stateless
 public class Example {
   void threadExample() {
@@ -4052,8 +4590,12 @@ public class Example {
   <rule>
     <key>DNULFIEJB</key>
     <name>Do not Use Local Files in EJB</name>
-    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;java.io.Reader, java.io.InputStream, java.nio.file.Files and javax.imageio.stream.FileImageInputStream should not be used in enterprise bean to access local files.&lt;/p&gt;
-&lt;p&gt;Example(s):&lt;/p&gt;
+    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;
+java.io.Reader, java.io.InputStream, java.nio.file.Files and javax.imageio.stream.FileImageInputStream should not be used in enterprise bean to access local files.
+&lt;/p&gt;
+&lt;p&gt;
+Example(s):
+&lt;/p&gt;
 &lt;pre class=&quot;java&quot;&gt;&lt;code&gt;@Remote
 public class Example {
   void foo() {
@@ -4069,8 +4611,12 @@ public class Example {
   <rule>
     <key>DNUNQA</key>
     <name>Do Not Use NamedQuery Annotation</name>
-    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;NamedQuery annotations should not be used.&lt;/p&gt;
-&lt;p&gt;Example(s):&lt;/p&gt;
+    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;
+NamedQuery annotations should not be used.
+&lt;/p&gt;
+&lt;p&gt;
+Example(s):
+&lt;/p&gt;
 &lt;pre class=&quot;java&quot;&gt;&lt;code&gt;@NamedQuery(
     name=&amp;quot;findAllEmployee&amp;quot;,
     queryString=&amp;quot;SELECT * FROM Employee&amp;quot;
@@ -4097,8 +4643,12 @@ public class Student {
   <rule>
     <key>DNUSIEJB</key>
     <name>Do not Use Synchronized in EJB</name>
-    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;Neither method nor block level synchronization should be used in enterprise bean.&lt;/p&gt;
-&lt;p&gt;Example(s):&lt;/p&gt;
+    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;
+Neither method nor block level synchronization should be used in enterprise bean.
+&lt;/p&gt;
+&lt;p&gt;
+Example(s):
+&lt;/p&gt;
 &lt;pre class=&quot;java&quot;&gt;&lt;code&gt;@Stateless
 class Example {
   
@@ -4120,8 +4670,12 @@ class Example {
   <rule>
     <key>ECB</key>
     <name>Empty Catch Block</name>
-    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;Empty Catch Block finds instances where an exception is caught, but nothing is done, except if there is a comment in the code. In most circumstances, this swallows an exception which should either be acted on or reported.&lt;/p&gt;
-&lt;p&gt;Example(s):&lt;/p&gt;
+    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;
+Empty Catch Block finds instances where an exception is caught, but nothing is done, except if there is a comment in the code. In most circumstances, this swallows an exception which should either be acted on or reported.
+&lt;/p&gt;
+&lt;p&gt;
+Example(s):
+&lt;/p&gt;
 &lt;pre class=&quot;java&quot;&gt;&lt;code&gt;public void doSomething() {
   try {
   FileInputStream fis = new FileInputStream(&amp;quot;/tmp/bugger&amp;quot;);
@@ -4135,10 +4689,52 @@ class Example {
     <tag>sourcemeter</tag>
   </rule>
   <rule>
+    <key>EEMNEA</key>
+    <name>Need @Enumerated annotation</name>
+    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;
+Avoid enum members in an entity class without annotating it with the &lt;span class=&quot;citation&quot; data-cites=&quot;Enumerated&quot;&gt;@Enumerated&lt;/span&gt; annotation.
+&lt;/p&gt;
+&lt;pre class=&quot;java&quot;&gt;&lt;code&gt;
+public class ExampleEntity {
+  public enum TestType {
+    Test1,
+    Test2,
+    Test3
+  } 
+
+  @Enumerated(value = EnumType.STRING)
+  TestType enumMember; 
+
+  @Enumerated(EnumType.STRING)
+  TestType enumMember2; 
+
+  //The following ones are incorrect.
+  @Enumerated(value = EnumType.ORDINAL)
+  TestType wrongAnnotationValue; 
+
+  @Enumerated(value = EnumType.ORDINAL, value = EnumType.STRING)
+  TestType wrongAnnotationValueNumber; 
+
+  @Enumerated(EnumType.ORDINAL, EnumType.STRING)
+  TestType wrongAnnotationValue2;
+
+  @Enumerated
+  TestType missingAnnotationValueEnumMember; 
+}
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    <severity>MINOR</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
     <key>EFB</key>
     <name>Empty Finally Block</name>
-    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;Empty finally blocks serve no purpose and should be removed.&lt;/p&gt;
-&lt;p&gt;Example(s):&lt;/p&gt;
+    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;
+Empty finally blocks serve no purpose and should be removed.
+&lt;/p&gt;
+&lt;p&gt;
+Example(s):
+&lt;/p&gt;
 &lt;pre class=&quot;java&quot;&gt;&lt;code&gt;public class Foo {
 
   public void bar() {
@@ -4157,8 +4753,12 @@ class Example {
   <rule>
     <key>EIS</key>
     <name>Empty If Stmt</name>
-    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;Empty If Statement finds instances where a condition is checked but nothing is done about it.&lt;/p&gt;
-&lt;p&gt;Example(s):&lt;/p&gt;
+    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;
+Empty If Statement finds instances where a condition is checked but nothing is done about it.
+&lt;/p&gt;
+&lt;p&gt;
+Example(s):
+&lt;/p&gt;
 &lt;pre class=&quot;java&quot;&gt;&lt;code&gt;public class Foo {
 
   void bar(int x) {
@@ -4173,10 +4773,37 @@ class Example {
     <tag>sourcemeter</tag>
   </rule>
   <rule>
+    <key>EMHEAH</key>
+    <name>Need equals and hashcode method</name>
+    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;
+Entity classes should override both the equals and the hashcode methods inherited from the Object class.
+&lt;/p&gt;
+&lt;pre class=&quot;java&quot;&gt;&lt;code&gt;
+public class ExampleEntity {
+  @Override
+  public boolean equals(Object obj) {
+    //Implementation...
+  }
+
+  @Override
+  public int hashCode() {
+    //Implementation...
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    <severity>MINOR</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
     <key>EMRC</key>
     <name>Equal Method Returns Constant</name>
-    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;Do not use equals() methods with a constant return value. These are potentially unfinished methods.&lt;/p&gt;
-&lt;p&gt;Example(s):&lt;/p&gt;
+    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;
+Do not use equals() methods with a constant return value. These are potentially unfinished methods.
+&lt;/p&gt;
+&lt;p&gt;
+Example(s):
+&lt;/p&gt;
 &lt;pre class=&quot;java&quot;&gt;&lt;code&gt;public class Foo {
 
 @Override
@@ -4191,10 +4818,66 @@ public boolean equals(Object arg) {
     <tag>sourcemeter</tag>
   </rule>
   <rule>
+    <key>EMSHJSRV</key>
+    <name>Entity member JSR validation</name>
+    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;
+The members of the entity class should have JSR validation, like &lt;span class=&quot;citation&quot; data-cites=&quot;NotNull&quot;&gt;@NotNull&lt;/span&gt;, &lt;span class=&quot;citation&quot; data-cites=&quot;Min&quot;&gt;@Min&lt;/span&gt;, &lt;span class=&quot;citation&quot; data-cites=&quot;Max&quot;&gt;@Max&lt;/span&gt;, etc.
+&lt;/p&gt;
+&lt;p&gt;
+Example(s):
+&lt;/p&gt;
+&lt;pre class=&quot;java&quot;&gt;&lt;code&gt;
+public class ExampleEntity {
+  @Min(2)
+  private int num;
+
+  @Max(10)
+  private int db;
+
+  @AssertTrue
+  private boolean isTest;
+
+  @AssertFalse
+  private boolean isNotTest;
+
+  @NotEmpty
+  private List&lt;String&gt; labels;
+}
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    <severity>MINOR</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
+    <key>ENVMA</key>
+    <name>Entity optimistic locking</name>
+    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;
+Avoid using the &lt;span class=&quot;citation&quot; data-cites=&quot;Entity&quot;&gt;@Entity&lt;/span&gt; annotation on a class without it containing a member annotated with the &lt;span class=&quot;citation&quot; data-cites=&quot;Version&quot;&gt;@Version&lt;/span&gt; annotation. The type of this member should be long or Long.
+&lt;/p&gt;
+&lt;pre class=&quot;java&quot;&gt;&lt;code&gt;
+@Entity
+public class T_EntityVersionSuccess {
+  @Version
+  private Long version;
+  
+  public Long getVersion() {
+    return version;
+  }
+} 
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    <severity>MINOR</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
     <key>EOB</key>
     <name>Empty Override Block</name>
-    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;Do not override an empty method with another empty method. It is useless.&lt;/p&gt;
-&lt;p&gt;Example(s):&lt;/p&gt;
+    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;
+Do not override an empty method with another empty method. It is useless.
+&lt;/p&gt;
+&lt;p&gt;
+Example(s):
+&lt;/p&gt;
 &lt;pre class=&quot;java&quot;&gt;&lt;code&gt;public class Foo {
 
   public void bar() {
@@ -4218,8 +4901,12 @@ public class Child extends Foo{
   <rule>
     <key>ESB</key>
     <name>Empty Synchronized Block</name>
-    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;Empty synchronized blocks serve no purpose and should be removed.&lt;/p&gt;
-&lt;p&gt;Example(s):&lt;/p&gt;
+    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;
+Empty synchronized blocks serve no purpose and should be removed.
+&lt;/p&gt;
+&lt;p&gt;
+Example(s):
+&lt;/p&gt;
 &lt;pre class=&quot;java&quot;&gt;&lt;code&gt;public class Foo {
 
   public void bar() {
@@ -4234,10 +4921,51 @@ public class Child extends Foo{
     <tag>sourcemeter</tag>
   </rule>
   <rule>
+    <key>ESBVA</key>
+    <name>@Entity and @Validated annotation</name>
+    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;
+Entity classes should have a &lt;span class=&quot;citation&quot; data-cites=&quot;Validated&quot;&gt;@Validated&lt;/span&gt; annotation in addition to the &lt;span class=&quot;citation&quot; data-cites=&quot;Entity&quot;&gt;@Entity&lt;/span&gt; annotation.
+&lt;/p&gt;
+&lt;pre class=&quot;java&quot;&gt;&lt;code&gt;
+@Validated
+@Entity
+public class ExampleEntity {
+  public ExampleEntity() {}
+}
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    <severity>MINOR</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
+    <key>ESHPDC</key>
+    <name>Entity annotation</name>
+    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;
+Avoid using &lt;span class=&quot;citation&quot; data-cites=&quot;Entity&quot;&gt;@Entity&lt;/span&gt; annotation without a public default constructor in the class. This constructor can either be compiler-generated or explicitly written.
+&lt;/p&gt;
+&lt;p&gt;
+Example(s):
+&lt;/p&gt;
+&lt;pre class=&quot;java&quot;&gt;&lt;code&gt;
+@Validated
+@Entity
+public class ExampleEntity {
+  public ExampleEntity() {}
+}
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    <severity>MINOR</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
     <key>ESS</key>
     <name>Empty Switch Statements</name>
-    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;Empty switch statements serve no purpose and should be removed.&lt;/p&gt;
-&lt;p&gt;Example(s):&lt;/p&gt;
+    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;
+Empty switch statements serve no purpose and should be removed.
+&lt;/p&gt;
+&lt;p&gt;
+Example(s):
+&lt;/p&gt;
 &lt;pre class=&quot;java&quot;&gt;&lt;code&gt;public void bar() {
   int x = 2;
   switch (x) {
@@ -4253,8 +4981,12 @@ public class Child extends Foo{
   <rule>
     <key>ETB</key>
     <name>Empty Try Block</name>
-    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;Avoid empty try blocks - what’s the point?&lt;/p&gt;
-&lt;p&gt;Example(s):&lt;/p&gt;
+    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;
+Avoid empty try blocks - what’s the point?
+&lt;/p&gt;
+&lt;p&gt;
+Example(s):
+&lt;/p&gt;
 &lt;pre class=&quot;java&quot;&gt;&lt;code&gt;public class Foo {
 
   public void bar() {
@@ -4271,10 +5003,45 @@ public class Child extends Foo{
     <tag>sourcemeter</tag>
   </rule>
   <rule>
+    <key>EVART</key>
+    <name>Entity optimistic locking type</name>
+    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;
+The &lt;span class=&quot;citation&quot; data-cites=&quot;Version&quot;&gt;@Version&lt;/span&gt; annotation in the entity class should be used on the right type. The usable types are: int, Integer, long, Long, short, Short. We recommend using long or Long.
+&lt;/p&gt;
+&lt;pre class=&quot;java&quot;&gt;&lt;code&gt;
+public class EntityVersionRightType {
+
+  @Version
+  private Integer version; //It is OK.
+
+  public Integer getVersion() {
+    return version;
+  }
+} 
+
+public class EntityVersionWrongType {
+
+  @Version
+  private String version; //Wrong! The version member should be one of the types mentioned above.
+
+  public String getVersion() {
+    return version;
+  }
+} 
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    <severity>MINOR</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
     <key>EWS</key>
     <name>Empty While Stmt</name>
-    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;Empty While Statement finds all instances where a while statement does nothing. If it is a timing loop, then you should use Thread.sleep() for it; if it is a while loop that does a lot in the condition expression (increase, decrease, assign or call a method), no warning is issued.&lt;/p&gt;
-&lt;p&gt;Example(s):&lt;/p&gt;
+    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;
+Empty While Statement finds all instances where a while statement does nothing. If it is a timing loop, then you should use Thread.sleep() for it; if it is a while loop that does a lot in the condition expression (increase, decrease, assign or call a method), no warning is issued.
+&lt;/p&gt;
+&lt;p&gt;
+Example(s):
+&lt;/p&gt;
 &lt;pre class=&quot;java&quot;&gt;&lt;code&gt;void bar(int a, int b) {
   while (a == b) {
     // empty!
@@ -4288,8 +5055,12 @@ public class Child extends Foo{
   <rule>
     <key>FLMUB</key>
     <name>For Loops Must Use Braces</name>
-    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;Avoid using ‘for’ statements without using curly braces. If the code formatting or indentation is lost then it becomes difficult to separate the code being controlled from the rest.&lt;/p&gt;
-&lt;p&gt;Example(s):&lt;/p&gt;
+    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;
+Avoid using ‘for’ statements without using curly braces. If the code formatting or indentation is lost then it becomes difficult to separate the code being controlled from the rest.
+&lt;/p&gt;
+&lt;p&gt;
+Example(s):
+&lt;/p&gt;
 &lt;pre class=&quot;java&quot;&gt;&lt;code&gt;for (int i = 0; i &lt; 42; i++)
   foo();&lt;/code&gt;&lt;/pre&gt;
 </description>
@@ -4300,8 +5071,12 @@ public class Child extends Foo{
   <rule>
     <key>HF</key>
     <name>Hide Field</name>
-    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;Reach fields via getter/setter functions, not by direct reference.&lt;/p&gt;
-&lt;p&gt;Example(s):&lt;/p&gt;
+    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;
+Reach fields via getter/setter functions, not by direct reference.
+&lt;/p&gt;
+&lt;p&gt;
+Example(s):
+&lt;/p&gt;
 &lt;pre class=&quot;java&quot;&gt;&lt;code&gt;public class Foo {
 
   public int i;
@@ -4323,8 +5098,12 @@ class Bar {
   <rule>
     <key>IESMUB</key>
     <name>If Else Stmts Must Use Braces</name>
-    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;Avoid using if or if..else statements without using surrounding braces. If the code formatting or indentation is lost then it becomes difficult to separate the code being controlled from the rest.&lt;/p&gt;
-&lt;p&gt;Example(s):&lt;/p&gt;
+    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;
+Avoid using if or if..else statements without using surrounding braces. If the code formatting or indentation is lost then it becomes difficult to separate the code being controlled from the rest.
+&lt;/p&gt;
+&lt;p&gt;
+Example(s):
+&lt;/p&gt;
 &lt;pre class=&quot;java&quot;&gt;&lt;code&gt;if (foo)
   x = x+1;
 else
@@ -4337,8 +5116,12 @@ else
   <rule>
     <key>II</key>
     <name>Integer Instantiation</name>
-    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;Calling new Integer() causes memory allocation that can be avoided by the static Integer.valueOf(). It makes use of an internal cache that recycles earlier instances making it more memory efficient.&lt;/p&gt;
-&lt;p&gt;Example(s):&lt;/p&gt;
+    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;
+Calling new Integer() causes memory allocation that can be avoided by the static Integer.valueOf(). It makes use of an internal cache that recycles earlier instances making it more memory efficient.
+&lt;/p&gt;
+&lt;p&gt;
+Example(s):
+&lt;/p&gt;
 &lt;pre class=&quot;java&quot;&gt;&lt;code&gt;public class Foo {
 
   private Integer i = new Integer(0);
@@ -4350,10 +5133,43 @@ else
     <tag>sourcemeter</tag>
   </rule>
   <rule>
+    <key>JSRVART</key>
+    <name>JSR validation type</name>
+    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;
+The given annotation is not working properly with the type it was used on. For example, make sure you use annotations like &lt;span class=&quot;citation&quot; data-cites=&quot;Min&quot;&gt;@Min&lt;/span&gt; and &lt;span class=&quot;citation&quot; data-cites=&quot;Max&quot;&gt;@Max&lt;/span&gt; on numeric values and &lt;span class=&quot;citation&quot; data-cites=&quot;AssertTrue&quot;&gt;@AssertTrue&lt;/span&gt; and &lt;span class=&quot;citation&quot; data-cites=&quot;AssertFalse&quot;&gt;@AssertFalse&lt;/span&gt; annotations on boolean values.
+&lt;/p&gt;
+&lt;p&gt;
+Example(s):
+&lt;/p&gt;
+&lt;pre class=&quot;java&quot;&gt;&lt;code&gt;
+int getRightMinParameter(@Min(7) int id) { //It is OK, because id is an integer.
+  return 1;
+}
+
+int getRightAsserTrueParameter(@AssertTrue boolean conditionValue) { //It is also OK, @AssertTrue is on a boolean value.
+  return 1;
+}
+
+int getWrongMinPrimitiveType(@Min(7) boolean id) { //Wrong! The @Min annotation should be used on an integer value like above.
+  return 1;
+}
+
+int getWrongAsserTruePrimitiveParameter(@AssertTrue int conditionValue) { //Wrong! The @AssertTrue annotation should be used on a boolean value.
+  return 1;
+}&lt;/code&gt;&lt;/pre&gt;
+</description>
+    <severity>MINOR</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
     <key>LoC</key>
     <name>Loose Coupling</name>
-    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;Avoid using implementation types (i.e., HashSet); use the interface (i.e, Set) instead.&lt;/p&gt;
-&lt;p&gt;Example(s):&lt;/p&gt;
+    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;
+Avoid using implementation types (i.e., HashSet); use the interface (i.e, Set) instead.
+&lt;/p&gt;
+&lt;p&gt;
+Example(s):
+&lt;/p&gt;
 &lt;pre class=&quot;java&quot;&gt;&lt;code&gt;import java.util.ArrayList;
 import java.util.HashSet;
 
@@ -4374,8 +5190,12 @@ public class Bar {
   <rule>
     <key>LoI</key>
     <name>Long Instantiation</name>
-    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;Calling new Long() causes memory allocation that can be avoided by the static Long.valueOf(). It makes use of an internal cache that recycles earlier instances making it more memory efficient.&lt;/p&gt;
-&lt;p&gt;Example(s):&lt;/p&gt;
+    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;
+Calling new Long() causes memory allocation that can be avoided by the static Long.valueOf(). It makes use of an internal cache that recycles earlier instances making it more memory efficient.
+&lt;/p&gt;
+&lt;p&gt;
+Example(s):
+&lt;/p&gt;
 &lt;pre class=&quot;java&quot;&gt;&lt;code&gt;public class Foo {
 
   private Long i = new Long(0); // change to Long i = Long.valueOf(0);
@@ -4388,8 +5208,12 @@ public class Bar {
   <rule>
     <key>MBIS</key>
     <name>Missing Break In Switch</name>
-    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;Switch statements without break, continue, throw or return statements for each case branch may indicate problematic behaviour. Empty cases are ignored as these indicate an intentional fall-through. When the case branch ends with a comment with ‘fall-through’ content are ignored as well. Missing break in the last case branch does not cause any problem so it is also ignored.&lt;/p&gt;
-&lt;p&gt;Example(s):&lt;/p&gt;
+    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;
+Switch statements without break, continue, throw or return statements for each case branch may indicate problematic behaviour. Empty cases are ignored as these indicate an intentional fall-through. When the case branch ends with a comment with ‘fall-through’ content are ignored as well. Missing break in the last case branch does not cause any problem so it is also ignored.
+&lt;/p&gt;
+&lt;p&gt;
+Example(s):
+&lt;/p&gt;
 &lt;pre class=&quot;java&quot;&gt;&lt;code&gt;public void bar(int status) {
   switch(status) {
     case CANCELLED:
@@ -4416,8 +5240,12 @@ public class Bar {
   <rule>
     <key>MNCTS</key>
     <name>Missing Null Check In ToString</name>
-    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;Avoid using an object’s members in toString methods without checking whether the object is null. A null check may be required to avoid NullPointerException.&lt;/p&gt;
-&lt;p&gt;Example(s):&lt;/p&gt;
+    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;
+Avoid using an object’s members in toString methods without checking whether the object is null. A null check may be required to avoid NullPointerException.
+&lt;/p&gt;
+&lt;p&gt;
+Example(s):
+&lt;/p&gt;
 &lt;pre class=&quot;java&quot;&gt;&lt;code&gt;public class Foo {
 
   private Object o;
@@ -4435,8 +5263,12 @@ public class Bar {
   <rule>
     <key>MWSNAEC</key>
     <name>Method With Same Name As Enclosing Class</name>
-    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;Non-constructor methods should not have the same name as the enclosing class.&lt;/p&gt;
-&lt;p&gt;Example(s):&lt;/p&gt;
+    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;
+Non-constructor methods should not have the same name as the enclosing class.
+&lt;/p&gt;
+&lt;p&gt;
+Example(s):
+&lt;/p&gt;
 &lt;pre class=&quot;java&quot;&gt;&lt;code&gt;public class MyClass {
 
   public MyClass() {} // this is OK because it is a constructor
@@ -4450,8 +5282,12 @@ public class Bar {
   <rule>
     <key>MeNC</key>
     <name>Method Naming Conventions</name>
-    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;Method names should always begin with a lower case character, and should not contain underscores.&lt;/p&gt;
-&lt;p&gt;Example(s):&lt;/p&gt;
+    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;
+Method names should always begin with a lower case character, and should not contain underscores.
+&lt;/p&gt;
+&lt;p&gt;
+Example(s):
+&lt;/p&gt;
 &lt;pre class=&quot;java&quot;&gt;&lt;code&gt;public class Foo {
 
   public void fooStuff() {
@@ -4467,8 +5303,12 @@ public class Bar {
   <rule>
     <key>NFSVMBSB</key>
     <name>Non Final Static Variable Must Be In Synchronized Block</name>
-    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;Non-constant static variable must be used in synchronized block or method.&lt;/p&gt;
-&lt;p&gt;Example(s):&lt;/p&gt;
+    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;
+Non-constant static variable must be used in synchronized block or method.
+&lt;/p&gt;
+&lt;p&gt;
+Example(s):
+&lt;/p&gt;
 &lt;pre class=&quot;java&quot;&gt;&lt;code&gt;public class Foo {
 
   public static int a;
@@ -4487,8 +5327,12 @@ public class Bar {
   <rule>
     <key>PLFIC</key>
     <name>Position Literals First In Comparisons</name>
-    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;Position literals (or static final variables) first in comparisons, if the second argument is null then NullPointerExceptions can be avoided, they will just return false.&lt;/p&gt;
-&lt;p&gt;Example(s):&lt;/p&gt;
+    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;
+Position literals (or static final variables) first in comparisons, if the second argument is null then NullPointerExceptions can be avoided, they will just return false.
+&lt;/p&gt;
+&lt;p&gt;
+Example(s):
+&lt;/p&gt;
 &lt;pre class=&quot;java&quot;&gt;&lt;code&gt;class Foo {
 
   private static final String OK_BUTTON = &amp;quot;OK&amp;quot;;
@@ -4509,8 +5353,12 @@ public class Bar {
   <rule>
     <key>PLFICIC</key>
     <name>Position Literals First In Case Insensitive Comparisons</name>
-    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;Position literals (or static final variables) first in comparisons, if the second argument is null then NullPointerExceptions can be avoided, they will just return false.&lt;/p&gt;
-&lt;p&gt;Example(s):&lt;/p&gt;
+    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;
+Position literals (or static final variables) first in comparisons, if the second argument is null then NullPointerExceptions can be avoided, they will just return false.
+&lt;/p&gt;
+&lt;p&gt;
+Example(s):
+&lt;/p&gt;
 &lt;pre class=&quot;java&quot;&gt;&lt;code&gt;class Foo {
 
   private static final String OK_BUTTON = &amp;quot;OK&amp;quot;;
@@ -4534,8 +5382,12 @@ public class Bar {
   <rule>
     <key>PST</key>
     <name>Preserve Stack Trace</name>
-    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;Throwing a new exception from a catch block without passing the original exception into the new exception will cause the original stack trace to be lost making it difficult to debug effectively.&lt;/p&gt;
-&lt;p&gt;Example(s):&lt;/p&gt;
+    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;
+Throwing a new exception from a catch block without passing the original exception into the new exception will cause the original stack trace to be lost making it difficult to debug effectively.
+&lt;/p&gt;
+&lt;p&gt;
+Example(s):
+&lt;/p&gt;
 &lt;pre class=&quot;java&quot;&gt;&lt;code&gt;public class Foo {
 
   void good() {
@@ -4567,10 +5419,34 @@ public class Bar {
     <tag>sourcemeter</tag>
   </rule>
   <rule>
+    <key>RFRO</key>
+    <name>Repository function should return Optional</name>
+    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;
+The repository functions should return Optional if the return type is not a collection.
+&lt;/p&gt;
+&lt;pre class=&quot;java&quot;&gt;&lt;code&gt;
+public interface ExampleRepository&lt;ExampleEntity, Long&gt;() {
+  ExampleEntity findByFirstName(String firstName); //Wrong! Do not do it.
+  
+  //Use this one instead.
+  Optional&lt;ExampleEntity&gt; findByFirstName(String firstName);
+
+  List&lt;ExampleEntity&gt; findAllByFirstName(String firstName);
+}
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    <severity>MINOR</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
     <key>RHWM</key>
     <name>Replace Hashtable With Map</name>
-    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;Consider replacing Hashtable usage with the newer java.util.Map if thread safety is not required.&lt;/p&gt;
-&lt;p&gt;Example(s):&lt;/p&gt;
+    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;
+Consider replacing Hashtable usage with the newer java.util.Map if thread safety is not required.
+&lt;/p&gt;
+&lt;p&gt;
+Example(s):
+&lt;/p&gt;
 &lt;pre class=&quot;java&quot;&gt;&lt;code&gt;public class Foo {
 
   void bar() {
@@ -4585,8 +5461,12 @@ public class Bar {
   <rule>
     <key>RVWL</key>
     <name>Replace Vector With List</name>
-    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;Consider replacing Vector usages with the newer java.util.ArrayList if expensive thread-safe operations are not required.&lt;/p&gt;
-&lt;p&gt;Example(s):&lt;/p&gt;
+    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;
+Consider replacing Vector usages with the newer java.util.ArrayList if expensive thread-safe operations are not required.
+&lt;/p&gt;
+&lt;p&gt;
+Example(s):
+&lt;/p&gt;
 &lt;pre class=&quot;java&quot;&gt;&lt;code&gt;public class Foo {
 
   void bar() {
@@ -4601,8 +5481,12 @@ public class Bar {
   <rule>
     <key>SC</key>
     <name>Simplify Conditional</name>
-    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;No need to check for null before an instanceof; the instanceof keyword returns false when given a null argument.&lt;/p&gt;
-&lt;p&gt;Example(s):&lt;/p&gt;
+    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;
+No need to check for null before an instanceof; the instanceof keyword returns false when given a null argument.
+&lt;/p&gt;
+&lt;p&gt;
+Example(s):
+&lt;/p&gt;
 &lt;pre class=&quot;java&quot;&gt;&lt;code&gt;class Foo {
 
   void bar(Object x) {
@@ -4619,8 +5503,12 @@ public class Bar {
   <rule>
     <key>SDFNL</key>
     <name>Simple Date Format Needs Locale</name>
-    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;Be sure to specify a Locale when creating java.text.SimpleDateFormat instances to ensure that locale-appropriate formatting is used.&lt;/p&gt;
-&lt;p&gt;Example(s):&lt;/p&gt;
+    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;
+Be sure to specify a Locale when creating java.text.SimpleDateFormat instances to ensure that locale-appropriate formatting is used.
+&lt;/p&gt;
+&lt;p&gt;
+Example(s):
+&lt;/p&gt;
 &lt;pre class=&quot;java&quot;&gt;&lt;code&gt;public class Foo {
 
   // Should specify Locale.US (or whatever)
@@ -4632,10 +5520,84 @@ public class Bar {
     <tag>sourcemeter</tag>
   </rule>
   <rule>
+    <key>SFHEPTTM</key>
+    <name>Service entity parameter transactional mandatory</name>
+    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;
+If a service function has an entity as its parameter, the function should have &lt;span class=&quot;citation&quot; data-cites=&quot;Transactional&quot;&gt;@Transactional&lt;/span&gt;(Propagation.MANDATORY) annotation.
+&lt;/p&gt;
+&lt;pre class=&quot;java&quot;&gt;&lt;code&gt;
+public class ExampleService {
+  @Transactional //No entity parameter, @Transactional is enough.
+  public void serviceFunctionWithoutEntity(@NotBlank String str) {
+  }
+
+  @Transactional(propagation = Propagation.MANDATORY)
+  public void serviceFunctionWithEntityRight(@NotBlank String str, @NotNull ExampleEntity testEntity) {
+  }
+
+  @Transactional(propagation = Propagation.MANDATORY) //There is no entity parameter so according to the rule, this is unnecessary.
+  public void serviceFunctionWithEntityWrong3(@NotBlank String str, @NotEmpty List&lt;ExampleEntity&gt; testEntityList) {
+    this.privateFunctionWithParameter();
+  } 
+  
+}
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
+    <key>SFPSHJSRV</key>
+    <name>Service function JSR validation</name>
+    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;
+The parameters of a service function should have been validated with JSR validations like &lt;span class=&quot;citation&quot; data-cites=&quot;NotNull&quot;&gt;@NotNull&lt;/span&gt;, &lt;span class=&quot;citation&quot; data-cites=&quot;Min&quot;&gt;@Min&lt;/span&gt;, &lt;span class=&quot;citation&quot; data-cites=&quot;Max&quot;&gt;@Max&lt;/span&gt;, &lt;span class=&quot;citation&quot; data-cites=&quot;NotEmpty&quot;&gt;@NotEmpty&lt;/span&gt;, etc.
+&lt;/p&gt;
+&lt;pre class=&quot;java&quot;&gt;&lt;code&gt;
+public class ExampleService {
+  @Transactional
+  public void serviceFunctionWithValidation(@NotBlank String str, @Min(4) Integer num) {
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    <severity>MINOR</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
+    <key>SFSHT</key>
+    <name>Service function @Transactional annotation</name>
+    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;
+If a function is used as a service function in a service class, it should be annotated with the &lt;span class=&quot;citation&quot; data-cites=&quot;Transactional&quot;&gt;@Transactional&lt;/span&gt; annotation.
+&lt;/p&gt;
+&lt;pre class=&quot;java&quot;&gt;&lt;code&gt;
+public class ExampleService {
+  @Transactional
+  public void serviceFunctionWithoutParameter() {
+  }
+
+  @Transactional
+  public void serviceFunctionWithParameter(@NotBlank String str) {
+  }
+
+  //This is not a service function in this case, it does not need the @Transactional annotation.
+  private void privatecFunctionWithoutParameter() {
+    staticFunctionWithoutParameter();
+  }  
+}
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
     <key>SHMN</key>
     <name>Suspicious Hashcode Method Name</name>
-    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;The method name and return type are suspiciously close to hashCode(), which may denote an intention to override the hashCode() method.&lt;/p&gt;
-&lt;p&gt;Example(s):&lt;/p&gt;
+    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;
+The method name and return type are suspiciously close to hashCode(), which may denote an intention to override the hashCode() method.
+&lt;/p&gt;
+&lt;p&gt;
+Example(s):
+&lt;/p&gt;
 &lt;pre class=&quot;java&quot;&gt;&lt;code&gt;public class Foo {
 
   public int hashcode() { 
@@ -4652,8 +5614,12 @@ public class Bar {
   <rule>
     <key>SI</key>
     <name>Short Instantiation</name>
-    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;Calling new Short() causes memory allocation that can be avoided by the static Short.valueOf(). It makes use of an internal cache that recycles earlier instances making it more memory efficient.&lt;/p&gt;
-&lt;p&gt;Example(s):&lt;/p&gt;
+    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;
+Calling new Short() causes memory allocation that can be avoided by the static Short.valueOf(). It makes use of an internal cache that recycles earlier instances making it more memory efficient.
+&lt;/p&gt;
+&lt;p&gt;
+Example(s):
+&lt;/p&gt;
 &lt;pre class=&quot;java&quot;&gt;&lt;code&gt;public class Foo {
 
   private Short i = new Short(0); // change to Short i = Short.valueOf(0);
@@ -4666,8 +5632,12 @@ public class Bar {
   <rule>
     <key>SMN</key>
     <name>Short Method Name</name>
-    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;Method names that are very short are not helpful to the reader. Names like ‘or’, ‘in’, ‘lt’, ‘gt’, ‘eq’, ‘le’, ‘ge’, ‘ne’ are allowed.&lt;/p&gt;
-&lt;p&gt;Example(s):&lt;/p&gt;
+    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;
+Method names that are very short are not helpful to the reader. Names like ‘or’, ‘in’, ‘lt’, ‘gt’, ‘eq’, ‘le’, ‘ge’, ‘ne’ are allowed.
+&lt;/p&gt;
+&lt;p&gt;
+Example(s):
+&lt;/p&gt;
 &lt;pre class=&quot;java&quot;&gt;&lt;code&gt;public class ShortMethod {
 
   public void a( int i ) { // Violation
@@ -4680,10 +5650,37 @@ public class Bar {
     <tag>sourcemeter</tag>
   </rule>
   <rule>
+    <key>SNUAS</key>
+    <name>Service uses service</name>
+    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;
+A service should not use another service either as its member or as a parameter for one of its functions.
+&lt;/p&gt;
+&lt;pre class=&quot;java&quot;&gt;&lt;code&gt;
+public class AnotherService {
+  //Some methods here for the service class.
+}
+
+public class ExampleService {
+  private AnotherService anotherService; //Wrong! Another service as a member is not recommended.
+  
+  //Wrong! Another service as a parameter for a function is not recommended.
+  public void serviceFuntionWithServiceParameter(@NotBlank String strParameter, @NotNull AnotherService service) {
+  } 
+}
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    <severity>MINOR</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
     <key>SP</key>
     <name>System Println</name>
-    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;Printing to System.(out|err) is usually intended for debugging purposes and should not remain in the code.&lt;/p&gt;
-&lt;p&gt;Example(s):&lt;/p&gt;
+    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;
+Printing to System.(out|err) is usually intended for debugging purposes and should not remain in the code.
+&lt;/p&gt;
+&lt;p&gt;
+Example(s):
+&lt;/p&gt;
 &lt;pre class=&quot;java&quot;&gt;&lt;code&gt;public class Foo {
 
   Logger log = Logger.getLogger(Foo.class.getName());
@@ -4705,10 +5702,37 @@ public class Bar {
     <tag>sourcemeter</tag>
   </rule>
   <rule>
+    <key>SSBVA</key>
+    <name>Service @Validated annotation</name>
+    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;
+Service classes should have both &lt;span class=&quot;citation&quot; data-cites=&quot;Service&quot;&gt;@Service&lt;/span&gt; and &lt;span class=&quot;citation&quot; data-cites=&quot;Validated&quot;&gt;@Validated&lt;/span&gt; annotations.
+&lt;/p&gt;
+&lt;pre class=&quot;java&quot;&gt;&lt;code&gt;
+@Validated
+@Service
+public class ServiceValidation { //OK.
+}
+
+@Service
+final class ServiceWithoutValidation { //@Validated annotation is missing!
+}
+
+final class ServiceValidationSimpleClass { //@Service and @Validated annotations are missing! 
+} 
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    <severity>MINOR</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
     <key>SSSHD</key>
     <name>Switch Stmts Should Have Default</name>
-    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;All switch statements should include a default option to catch any unspecified values.&lt;/p&gt;
-&lt;p&gt;Example(s):&lt;/p&gt;
+    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;
+All switch statements should include a default option to catch any unspecified values.
+&lt;/p&gt;
+&lt;p&gt;
+Example(s):
+&lt;/p&gt;
 &lt;pre class=&quot;java&quot;&gt;&lt;code&gt;public void bar() {
   int x = 2;
   switch (x) {
@@ -4725,8 +5749,12 @@ public class Bar {
   <rule>
     <key>TMR</key>
     <name>Too Many Returns</name>
-    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;Do not use more than one return statement in a method. Too many return statements can make a method less understandable.&lt;/p&gt;
-&lt;p&gt;Example(s):&lt;/p&gt;
+    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;
+Do not use more than one return statement in a method. Too many return statements can make a method less understandable.
+&lt;/p&gt;
+&lt;p&gt;
+Example(s):
+&lt;/p&gt;
 &lt;pre class=&quot;java&quot;&gt;&lt;code&gt;public class Foo {
 
   public void bar(int x, int y, int z) { // too many returns
@@ -4747,8 +5775,12 @@ public class Bar {
   <rule>
     <key>UALIOV</key>
     <name>Use Array List Instead Of Vector</name>
-    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;ArrayList is a much better Collection implementation than Vector if thread-safe operation is not required.&lt;/p&gt;
-&lt;p&gt;Example(s):&lt;/p&gt;
+    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;
+ArrayList is a much better Collection implementation than Vector if thread-safe operation is not required.
+&lt;/p&gt;
+&lt;p&gt;
+Example(s):
+&lt;/p&gt;
 &lt;pre class=&quot;java&quot;&gt;&lt;code&gt;public class SimpleTest extends TestCase {
 
   public void testX() {
@@ -4765,8 +5797,12 @@ public class Bar {
   <rule>
     <key>UEM</key>
     <name>Uncommented Empty Method</name>
-    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;Uncommented Empty Method finds instances where a method does not contain statements, but there is no comment. By explicitly commenting empty methods it is easier to distinguish between intentional (commented) and unintentional empty methods.&lt;/p&gt;
-&lt;p&gt;Example(s):&lt;/p&gt;
+    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;
+Uncommented Empty Method finds instances where a method does not contain statements, but there is no comment. By explicitly commenting empty methods it is easier to distinguish between intentional (commented) and unintentional empty methods.
+&lt;/p&gt;
+&lt;p&gt;
+Example(s):
+&lt;/p&gt;
 &lt;pre class=&quot;java&quot;&gt;&lt;code&gt;public void doSomething() {
 
 }&lt;/code&gt;&lt;/pre&gt;
@@ -4778,8 +5814,12 @@ public class Bar {
   <rule>
     <key>UETCS</key>
     <name>Use Equals To Compare Strings</name>
-    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;Using ‘==’ or ‘!=’ to compare strings only works if intern version is used on both sides. Use the equals() method instead.&lt;/p&gt;
-&lt;p&gt;Example(s):&lt;/p&gt;
+    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;
+Using ‘==’ or ‘!=’ to compare strings only works if intern version is used on both sides. Use the equals() method instead.
+&lt;/p&gt;
+&lt;p&gt;
+Example(s):
+&lt;/p&gt;
 &lt;pre class=&quot;java&quot;&gt;&lt;code&gt;public boolean test(String s) {
   if (s == &amp;quot;one&amp;quot;) return true; // unreliable
   if (&amp;quot;two&amp;quot;.equals(s)) return true; // better
@@ -4793,8 +5833,12 @@ public class Bar {
   <rule>
     <key>ULBR</key>
     <name>Unnecessary Local Before Return</name>
-    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;Consider simply returning the value vs storing it in a local variable.&lt;/p&gt;
-&lt;p&gt;Example(s):&lt;/p&gt;
+    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;
+Consider simply returning the value vs storing it in a local variable.
+&lt;/p&gt;
+&lt;p&gt;
+Example(s):
+&lt;/p&gt;
 &lt;pre class=&quot;java&quot;&gt;&lt;code&gt;public class Foo {
 
   public int foo() {
@@ -4810,8 +5854,12 @@ public class Bar {
   <rule>
     <key>ULV</key>
     <name>Unused Local Variable</name>
-    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;Detects when a local variable is just declared, but not used.&lt;/p&gt;
-&lt;p&gt;Example(s):&lt;/p&gt;
+    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;
+Detects when a local variable is just declared, but not used.
+&lt;/p&gt;
+&lt;p&gt;
+Example(s):
+&lt;/p&gt;
 &lt;pre class=&quot;java&quot;&gt;&lt;code&gt;public class Foo {
 
   public void doSomething() {
@@ -4826,8 +5874,12 @@ public class Bar {
   <rule>
     <key>ULWCC</key>
     <name>Use Locale With Case Conversions</name>
-    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;When doing String.toLowerCase()/toUpperCase() conversions, use Locales to avoid problems with languages that have unusual conventions, i.e. Turkish.&lt;/p&gt;
-&lt;p&gt;Example(s):&lt;/p&gt;
+    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;
+When doing String.toLowerCase()/toUpperCase() conversions, use Locales to avoid problems with languages that have unusual conventions, i.e. Turkish.
+&lt;/p&gt;
+&lt;p&gt;
+Example(s):
+&lt;/p&gt;
 &lt;pre class=&quot;java&quot;&gt;&lt;code&gt;class Foo {
   // BAD
   if (x.toLowerCase().equals(&amp;quot;list&amp;quot;))...
@@ -4848,8 +5900,12 @@ public class Bar {
   <rule>
     <key>UOM</key>
     <name>Useless Overriding Method</name>
-    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;The overriding method merely calls the same method defined in a superclass.&lt;/p&gt;
-&lt;p&gt;Example(s):&lt;/p&gt;
+    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;
+The overriding method merely calls the same method defined in a superclass.
+&lt;/p&gt;
+&lt;p&gt;
+Example(s):
+&lt;/p&gt;
 &lt;pre class=&quot;java&quot;&gt;&lt;code&gt;public void foo(String bar) {
   super.foo(bar); // why bother overriding?
 }
@@ -4865,8 +5921,12 @@ public String foo() {
   <rule>
     <key>UPF</key>
     <name>Unused Private Field</name>
-    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;Detects when a private field is just declared, but not used.&lt;/p&gt;
-&lt;p&gt;Example(s):&lt;/p&gt;
+    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;
+Detects when a private field is just declared, but not used.
+&lt;/p&gt;
+&lt;p&gt;
+Example(s):
+&lt;/p&gt;
 &lt;pre class=&quot;java&quot;&gt;&lt;code&gt;public class Something {
 
   private static int FOO = 2; // Unused
@@ -4885,7 +5945,17 @@ public String foo() {
   <rule>
     <key>UPM</key>
     <name>Unused Private Method</name>
-    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;&lt;b&gt;Unused Private Method&lt;/b&gt;: Unused Private Method detects when a private method is declared but is unused.&lt;/p&gt; &lt;p&gt;Example(s):&lt;/p&gt;  &lt;pre class=&quot;sourcemeter-example-code&quot;&gt;  public class Something {&amp;#x0A;  &amp;nbsp; private void foo() {} // unused&amp;#x0A;  }&amp;#x0A;  &lt;/pre&gt;</description>
+    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;
+&lt;b&gt;Unused Private Method&lt;/b&gt;: Unused Private Method detects when a private method is declared but is unused.
+&lt;/p&gt;
+&lt;p&gt;
+Example(s):
+&lt;/p&gt;
+&lt;pre class=&quot;sourcemeter-example-code&quot;&gt;  public class Something {
+    private void foo() {} // unused
+  }
+  &lt;/pre&gt;
+</description>
     <type>CODE_SMELL</type>
     <severity>MAJOR</severity>
     <tag>sourcemeter</tag>
@@ -4893,8 +5963,12 @@ public String foo() {
   <rule>
     <key>USBFSA</key>
     <name>Use String Buffer For String Appends</name>
-    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;The use of the ‘+=’ operator for appending strings causes the JVM to create and use an internal StringBuffer. If a non-trivial number of these concatenations are being used then the explicit use of a StringBuilder or threadsafe StringBuffer is recommended to avoid this.&lt;/p&gt;
-&lt;p&gt;Example(s):&lt;/p&gt;
+    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;
+The use of the ‘+=’ operator for appending strings causes the JVM to create and use an internal StringBuffer. If a non-trivial number of these concatenations are being used then the explicit use of a StringBuilder or threadsafe StringBuffer is recommended to avoid this.
+&lt;/p&gt;
+&lt;p&gt;
+Example(s):
+&lt;/p&gt;
 &lt;pre class=&quot;java&quot;&gt;&lt;code&gt;public class Foo {
 
   void bar() {
@@ -4914,8 +5988,12 @@ public String foo() {
   <rule>
     <key>UnI</key>
     <name>Unused Imports</name>
-    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;Avoid unused import statements. This rule will find unused on demand imports, i.e. import com.foo.*&lt;/p&gt;
-&lt;p&gt;Example(s):&lt;/p&gt;
+    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;
+Avoid unused import statements. This rule will find unused on demand imports, i.e. import com.foo.*
+&lt;/p&gt;
+&lt;p&gt;
+Example(s):
+&lt;/p&gt;
 &lt;pre class=&quot;java&quot;&gt;&lt;code&gt;import java.io.*; // not referenced or required
 
 public class Foo {}&lt;/code&gt;&lt;/pre&gt;
@@ -4927,8 +6005,12 @@ public class Foo {}&lt;/code&gt;&lt;/pre&gt;
   <rule>
     <key>WLMUB</key>
     <name>While Loops Must Use Braces</name>
-    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;Avoid using ‘while’ statements without using braces to surround the code block. If the code formatting or indentation is lost then it becomes difficult to separate the code being controlled from the rest.&lt;/p&gt;
-&lt;p&gt;Example(s):&lt;/p&gt;
+    <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;
+Avoid using ‘while’ statements without using braces to surround the code block. If the code formatting or indentation is lost then it becomes difficult to separate the code being controlled from the rest.
+&lt;/p&gt;
+&lt;p&gt;
+Example(s):
+&lt;/p&gt;
 &lt;pre class=&quot;java&quot;&gt;&lt;code&gt;while (true) // not recommended
   x++;
 while (true) { // preferred approach
@@ -6191,7 +7273,7 @@ object is better approach in many situations.
   <rule>
     <key>EOENS</key>
     <name>Overriding Equals Not Symmetric</name>
-    <description>&lt;h3&gt;FindBugs&lt;/h3&gt;&lt;p&gt;This class defines an equals method that overrides an equals method in a superclass. Both equals methods methods use &lt;code&gt;instanceof&lt;/code&gt; in the determination of whether two objects are equal. This is fraught with peril, since it is important that the equals method is symmetrical (in other words, &lt;code&gt;a.equals(b) == b.equals(a)&lt;/code&gt;). If B is a subtype of A, and A’s equals method checks that the argument is an instanceof A, and B’s equals method checks that the argument is an instanceof B, it is quite likely that the equivalence relation defined by these methods is not symmetric.&lt;/p&gt;
+    <description>&lt;h3&gt;FindBugs&lt;/h3&gt;&lt;p&gt;This class defines an equals method that overrides an equals method in a superclass. Both equals methods use &lt;code&gt;instanceof&lt;/code&gt; in the determination of whether two objects are equal. This is fraught with peril, since it is important that the equals method is symmetrical (in other words, &lt;code&gt;a.equals(b) == b.equals(a)&lt;/code&gt;). If B is a subtype of A, and A’s equals method checks that the argument is an instanceof A, and B’s equals method checks that the argument is an instanceof B, it is quite likely that the equivalence relation defined by these methods is not symmetric.&lt;/p&gt;
 </description>
     <type>CODE_SMELL</type>
     <severity>MAJOR</severity>
@@ -6276,7 +7358,7 @@ the contract for equals in class Object).
   <rule>
     <key>EUTUPE</key>
     <name>Unrelated Types Using Pointer Equality</name>
-    <description>&lt;h3&gt;FindBugs&lt;/h3&gt;&lt;p&gt;This method uses using pointer equality to compare two references that seem to be of different types. The result of this comparison will always be false at runtime.&lt;/p&gt;
+    <description>&lt;h3&gt;FindBugs&lt;/h3&gt;&lt;p&gt;This method uses pointer equality to compare two references that seem to be of different types. The result of this comparison will always be false at runtime.&lt;/p&gt;
 </description>
     <type>CODE_SMELL</type>
     <severity>MAJOR</severity>
@@ -6882,7 +7964,7 @@ long convertDaysToMilliseconds(int days) { return days * MILLISECONDS_PER_DAY; }
   <rule>
     <key>JJLM</key>
     <name>Jsr166 Lock Monitorenter</name>
-    <description>&lt;h3&gt;FindBugs&lt;/h3&gt;&lt;p&gt;This method performs synchronization an object that implements java.util.concurrent.locks.Lock. Such an object is locked/unlocked using &lt;code&gt;acquire()&lt;/code&gt;/&lt;code&gt;release()&lt;/code&gt; rather than using the &lt;code&gt;synchronized (...)&lt;/code&gt; construct.&lt;/p&gt;
+    <description>&lt;h3&gt;FindBugs&lt;/h3&gt;&lt;p&gt;This method performs synchronization on an object that implements java.util.concurrent.locks.Lock. Such an object is locked/unlocked using &lt;code&gt;acquire()&lt;/code&gt;/&lt;code&gt;release()&lt;/code&gt; rather than using the &lt;code&gt;synchronized (...)&lt;/code&gt; construct.&lt;/p&gt;
 </description>
     <type>CODE_SMELL</type>
     <severity>MAJOR</severity>
@@ -6891,7 +7973,7 @@ long convertDaysToMilliseconds(int days) { return days * MILLISECONDS_PER_DAY; }
   <rule>
     <key>JJUM</key>
     <name>Jsr166 Utilconcurrent Monitorenter</name>
-    <description>&lt;h3&gt;FindBugs&lt;/h3&gt;&lt;p&gt;This method performs synchronization an object that is an instance of a class from the java.util.concurrent package (or its subclasses). Instances of these classes have their own concurrency control mechanisms that are orthogonal to the synchronization provided by the Java keyword &lt;code&gt;synchronized&lt;/code&gt;. For example, synchronizing on an &lt;code&gt;AtomicBoolean&lt;/code&gt; will not prevent other threads from modifying the &lt;code&gt;AtomicBoolean&lt;/code&gt;.&lt;/p&gt;
+    <description>&lt;h3&gt;FindBugs&lt;/h3&gt;&lt;p&gt;This method performs synchronization on an object that is an instance of a class from the java.util.concurrent package (or its subclasses). Instances of these classes have their own concurrency control mechanisms that are orthogonal to the synchronization provided by the Java keyword &lt;code&gt;synchronized&lt;/code&gt;. For example, synchronizing on an &lt;code&gt;AtomicBoolean&lt;/code&gt; will not prevent other threads from modifying the &lt;code&gt;AtomicBoolean&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;Such code may be correct, but should be carefully reviewed and documented, and may confuse people who have to maintain the code at a later date.&lt;/p&gt;
 </description>
     <type>CODE_SMELL</type>
@@ -7604,6 +8686,14 @@ public class B extends A {
 &lt;p&gt;In this case, the subclass does define a method with a signature identical to the method in the superclass, so this is presumably understood. However, such methods are exceptionally confusing. You should strongly consider removing or deprecating the method with the similar but not identical signature.&lt;/p&gt;
 </description>
     <type>BUG</type>
+    <severity>MAJOR</severity>
+    <tag>sourcemeter</tag>
+  </rule>
+  <rule>
+    <key>OMMIS</key>
+    <name>Methods Must Invoke Super</name>
+    <description>&lt;h3&gt;FindBugs&lt;/h3&gt;&lt;p&gt;Super method is annotated with &lt;span class=&quot;citation&quot; data-cites=&quot;OverridingMethodsMustInvokeSuper&quot;&gt;@OverridingMethodsMustInvokeSuper&lt;/span&gt;, but the overriding method isn’t calling the super method.&lt;/p&gt;
+</description>
     <severity>MAJOR</severity>
     <tag>sourcemeter</tag>
   </rule>
@@ -8363,7 +9453,7 @@ public void foo() {
   <rule>
     <key>SNSCFE</key>
     <name>No Suitable Constructor For Externalization</name>
-    <description>&lt;h3&gt;FindBugs&lt;/h3&gt;&lt;p&gt;This class implements the &lt;code&gt;Externalizable&lt;/code&gt; interface, but does not define a void constructor. When Externalizable objects are deserialized, they first need to be constructed by invoking the void constructor. Since this class does not have one, serialization and deserialization will fail at runtime.&lt;/p&gt;
+    <description>&lt;h3&gt;FindBugs&lt;/h3&gt;&lt;p&gt;This class implements the &lt;code&gt;Externalizable&lt;/code&gt; interface, but does not define a public void constructor. When Externalizable objects are deserialized, they first need to be constructed by invoking the public void constructor. Since this class does not have one, serialization and deserialization will fail at runtime.&lt;/p&gt;
 </description>
     <type>BUG</type>
     <severity>MAJOR</severity>
@@ -8514,6 +9604,7 @@ public void foo() {
     <key>STFONC</key>
     <name>Transient Field Of Nonserializable Class</name>
     <description>&lt;h3&gt;FindBugs&lt;/h3&gt;&lt;p&gt;The field is marked as transient, but the class isn’t Serializable, so marking it as transient has absolutely no effect. This may be leftover marking from a previous version of the code in which the class was transient, or it may indicate a misunderstanding of how serialization works.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;This bug is reported only if special option &lt;code&gt;reportTransientFieldOfNonSerializableClass&lt;/code&gt; is set.&lt;/em&gt;&lt;/p&gt;
 </description>
     <type>CODE_SMELL</type>
     <severity>INFO</severity>
@@ -8906,7 +9997,7 @@ try {
   <rule>
     <key>UUMOAC</key>
     <name>Uncallable Method Of Anonymous Class</name>
-    <description>&lt;h3&gt;FindBugs&lt;/h3&gt;&lt;p&gt;This anonymous class defined a method that is not directly invoked and does not override a method in a superclass. Since methods in other classes cannot directly invoke methods declared in an anonymous class, it seems that this method is uncallable. The method might simply be dead code, but it is also possible that the method is intended to override a method declared in a superclass, and due to an typo or other error the method does not, in fact, override the method it is intended to.&lt;/p&gt;
+    <description>&lt;h3&gt;FindBugs&lt;/h3&gt;&lt;p&gt;This anonymous class defines a method that is not directly invoked and does not override a method in a superclass. Since methods in other classes cannot directly invoke methods declared in an anonymous class, it seems that this method is uncallable. The method might simply be dead code, but it is also possible that the method is intended to override a method declared in a superclass, and due to a typo or other error the method does not, in fact, override the method it is intended to.&lt;/p&gt;
 </description>
     <type>CODE_SMELL</type>
     <severity>MAJOR</severity>
