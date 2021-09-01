@@ -59,7 +59,7 @@ rule_types = ['CODE_SMELL', 'VULNERABILITY', 'BUG']
 
 toolsInRulCsv = {
                 #CPP
-                'Cppcheck':'CPPCHECK', 'FaultHunterCPP':'FHCPP',
+                'Cppcheck':'CPPCHECK', 'ClangTidy':'CT',
                 #CSHARP
                 'FxCop':'FXCOP',
                 #JAVA
