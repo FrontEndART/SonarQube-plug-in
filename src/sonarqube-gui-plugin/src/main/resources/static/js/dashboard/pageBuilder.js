@@ -52,7 +52,7 @@ SM.pageBuilder.dashboard.build = function() {
     '  <p style="text-align:center;font-size: 11px;">',
     '    <a href="https://sourcemeter.com" target="SourceMeter">SourceMeter 10.0</a>',
     '    <a href="https://github.com/FrontEndART/SonarQube-plug-in" target="SourceMeter_github">plug-in</a>',
-    '    for SONARQUBE™ platform 8.9.2',
+    '    for SONARQUBE™ platform 8.9',
     '  </p>',
     '  <div style="padding-top: 6px;">',
     '    <table id="sourcemeter_license_table" class="license_table" align="center">',
