@@ -87,7 +87,7 @@ SM.htmlDecode = function(value) {
 
 SM.dashboard.loadWidget = function(lang, lvl, key) {
   window.SonarRequest.getJSON('/api/measures/component', {
-    componentKey: key,
+    component: key,
     metricKeys: "SM_" + lang.id + "_LOGICAL_LEVEL" + lvl
   }).then(function(response) {
     if (response.component.measures.length > 0) {
@@ -150,7 +150,7 @@ SM.dashboard.loadWidget = function(lang, lvl, key) {
 SM.dashboard.loadCloneWidget = function(lang, key) {
   // clones SM_ {JAVA,CPP,CSHARP,PYTHON,RPG}_CLONE_TREE
   window.SonarRequest.getJSON('/api/measures/component', {
-    componentKey: key,
+    component: key,
     metricKeys: "SM_" + lang.id + "_CLONE_TREE"
   }).then(function(response) {
     if (response.component.measures.length > 0) {
@@ -253,7 +253,7 @@ SM.dashboard.fetch = function() {
         state.license = {};
         SM.languages.forEach(function(lang) {
           window.SonarRequest.getJSON('/api/measures/component', {
-            componentKey: comp.key,
+            component: comp.key,
             metricKeys: "SM:" + lang.id.toLowerCase() + "_license"
           }).then(function(response) {
             if (response.component.measures.length <= 0) return;

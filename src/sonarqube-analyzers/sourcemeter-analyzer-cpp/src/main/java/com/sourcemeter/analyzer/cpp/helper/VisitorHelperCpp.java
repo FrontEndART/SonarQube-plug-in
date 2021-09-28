@@ -60,6 +60,8 @@ public class VisitorHelperCpp extends VisitorHelper {
     public String getWarningTextWithPrefix(String ruleKey, String warningText) {
         if (ruleKey.startsWith("CPPCHECK_")) {
             warningText = "SourceMeter (from Cppcheck): " + warningText;
+        } else if (ruleKey.startsWith("CT_")) {
+            warningText = "SourceMeter (from ClangTidy): " + warningText;
         } else {
             warningText = "SourceMeter: " + warningText;
         }

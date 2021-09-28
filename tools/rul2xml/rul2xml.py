@@ -59,7 +59,7 @@ rule_types = ['CODE_SMELL', 'VULNERABILITY', 'BUG']
 
 toolsInRulCsv = {
                 #CPP
-                'Cppcheck':'CPPCHECK', 'FaultHunterCPP':'FHCPP',
+                'Cppcheck':'CPPCHECK', 'ClangTidy':'CT',
                 #CSHARP
                 'FxCop':'FXCOP',
                 #JAVA
@@ -285,7 +285,7 @@ def main(options):
     cpp_files = [
         'MET.rul',
         'DCF.rul',
-        'FaultHunterCPP.rul',
+        'ClangTidy.rul',
         'Cppcheck.rul'
     ]
 
@@ -359,7 +359,7 @@ def main(options):
             copyfile(join(smPath, languageDirInSm, 'UsersGuide.html'), ugDst)
 
         rulHs = []
-        if languageDirInSm is not 'JavaScript' and languageDirInSm is not 'Python' and languageDirInSm is not 'RPG':
+        if languageDirInSm != 'JavaScript' and languageDirInSm != 'Python' and languageDirInSm != 'RPG':
             toolsPath = join(smPath, languageDirInSm, platform + 'Tools')
         else:
             toolsPath = join(smPath, languageDirInSm, 'Tools')

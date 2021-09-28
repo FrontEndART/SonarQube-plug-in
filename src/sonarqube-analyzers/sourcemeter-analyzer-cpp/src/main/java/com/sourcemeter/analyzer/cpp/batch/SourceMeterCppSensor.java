@@ -152,7 +152,7 @@ public class SourceMeterCppSensor extends SourceMeterSensor {
      */
     private void saveLicense(Graph graph, SensorContext sensorContext) {
         Map<String, String> headerLicenseInformations = new HashMap<String, String>();
-        headerLicenseInformations.put("FaultHunterCPP", "FaultHunter");
+        headerLicenseInformations.put("ClangTidy2Graph", "ClangTidy");
         headerLicenseInformations.put("MetricHunter", "MetricHunter");
         headerLicenseInformations.put("DuplicatedCodeFinder", "Duplicated Code");
         headerLicenseInformations.put("LIM2Metrics", "Metrics");
