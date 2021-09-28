@@ -317,7 +317,7 @@ SM.SideBySideDiffer = function(HTMLelem, options) {
    * @param {index} id  id==0 for the left, id==1 for the right pane
    * @param {CloneInstance} selectedInstance the cloneinstance object that is displayed in the pane
    */
-  this.setInstance = function (id, selectedInstance) {
+  this.setInstance = function (id, selectedInstance, clearOther = true) {
     if (id >= this.text.length) {
       throw "IndexOutOfBoundsException";
       return;
@@ -341,6 +341,11 @@ SM.SideBySideDiffer = function(HTMLelem, options) {
       start,
       stop
     );
+
+    // clear context of the other instance
+    if (clearOther && typeof this.instance[1-id] != "undefined") {
+      this.setInstance(1-id, this.instance[1-id], false);
+    }
   };
 
   /**

@@ -103,7 +103,6 @@
 &lt;p&gt;&lt;strong&gt;Module:&lt;/strong&gt; number of attributes in the module.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Package:&lt;/strong&gt; number of attributes in the package; however, attributes of its subpackages are not included.&lt;/p&gt;
 </description>
-    <type>CODE_SMELL</type>
     <severity>INFO</severity>
     <tag>sourcemeter</tag>
   </rule>
@@ -131,7 +130,6 @@
     <description>&lt;p&gt;&lt;strong&gt;Method / Function:&lt;/strong&gt; complexity of the method/function expressed as the depth of the maximum embeddedness of its conditional, iteration and exception handling block scopes. The following instructions are taken into account: if, else-if, else, for, while, with, try, except, finally.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Class:&lt;/strong&gt; complexity of the class expressed as the depth of the maximum embeddedness of its conditional, iteration and exception handling block scopes. It is calculated as the maximum nesting level (NL) of its local methods.&lt;/p&gt;
 </description>
-    <type>CODE_SMELL</type>
     <severity>INFO</severity>
     <tag>sourcemeter</tag>
   </rule>
@@ -167,7 +165,6 @@
 &lt;p&gt;&lt;strong&gt;Module:&lt;/strong&gt; number of methods in the module.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Package:&lt;/strong&gt; number of methods in the package; however, methods of its subpackages are not included.&lt;/p&gt;
 </description>
-    <type>BUG</type>
     <severity>INFO</severity>
     <tag>sourcemeter</tag>
   </rule>
@@ -388,7 +385,6 @@
     <key>MET_CA</key>
     <name>Clone Age (CA) Metric Threshold Violation</name>
     <description>&lt;b&gt;Clone class/clone instance:&lt;/b&gt; number of previously analyzed revisions in which the clone class/clone instance was present + 1.</description>
-    <type>CODE_SMELL</type>
     <severity>INFO</severity>
     <tag>sourcemeter</tag>
   </rule>
@@ -438,7 +434,6 @@
     <key>MET_CI</key>
     <name>Clone Instances (CI) Metric Threshold Violation</name>
     <description>&lt;b&gt;Function/method/class/module/package:&lt;/b&gt; number of clone instances in the source code element.&lt;br&gt;&lt;b&gt;Component:&lt;/b&gt; number of clone instances in the component.&lt;br&gt;&lt;b&gt;Clone class:&lt;/b&gt; number of clone instances in the clone class.</description>
-    <type>BUG</type>
     <severity>INFO</severity>
     <tag>sourcemeter</tag>
   </rule>
@@ -511,7 +506,7 @@
     <key>BT</key>
     <name>Big Try</name>
     <description>&lt;h3&gt;FaultHunterPython&lt;/h3&gt;For all try/except clauses, limit the 'try' clause to the absolute minimum amount of code necessary. This avoids masking bugs.</description>
-    <type>BUG</type>
+    <type>CODE_SMELL</type>
     <severity>MAJOR</severity>
     <tag>sourcemeter</tag>
   </rule>
@@ -615,7 +610,7 @@
     <key>SI</key>
     <name>Single Import</name>
     <description>&lt;h3&gt;FaultHunterPython&lt;/h3&gt;Imports should usually be on separate lines.</description>
-    <type>BUG</type>
+    <type>CODE_SMELL</type>
     <severity>MINOR</severity>
     <tag>sourcemeter</tag>
   </rule>
@@ -772,7 +767,7 @@
     <name>Backtick</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;&lt;p&gt;Used when the deprecated “``” (backtick) operator is used instead of the str() function.&lt;/p&gt;
 </description>
-    <type>CODE_SMELL</type>
+    <type>BUG</type>
     <severity>CRITICAL</severity>
     <tag>sourcemeter</tag>
   </rule>
@@ -1385,7 +1380,7 @@
     <name>Empty Docstring</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;&lt;p&gt;Used when a module, function, class or method has an empty docstring (it would be too easy ;).&lt;/p&gt;
 </description>
-    <type>BUG</type>
+    <type>CODE_SMELL</type>
     <severity>MINOR</severity>
     <tag>sourcemeter</tag>
   </rule>
@@ -1621,7 +1616,6 @@
     <name>Inconsistent Mro</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;&lt;p&gt;Used when a class has an inconsistent method resolution order.&lt;/p&gt;
 </description>
-    <type>BUG</type>
     <severity>CRITICAL</severity>
     <tag>sourcemeter</tag>
   </rule>
@@ -2135,7 +2129,7 @@
     <name>No Init</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;&lt;p&gt;Used when a class has no __init__ method, neither its parent classes.&lt;/p&gt;
 </description>
-    <type>CODE_SMELL</type>
+    <type>BUG</type>
     <severity>MAJOR</severity>
     <tag>sourcemeter</tag>
   </rule>
@@ -2590,7 +2584,6 @@
     <name>Singleton Comparison</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;&lt;p&gt;Used when an expression is compared to singleton values like True, False or None.&lt;/p&gt;
 </description>
-    <type>BUG</type>
     <severity>MINOR</severity>
     <tag>sourcemeter</tag>
   </rule>
@@ -2750,7 +2743,7 @@
     <name>Too Many Ancestors</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;&lt;p&gt;Used when class has too many parent classes, try to reduce this to get a simpler (and so easier to use) class.&lt;/p&gt;
 </description>
-    <type>BUG</type>
+    <type>CODE_SMELL</type>
     <severity>MINOR</severity>
     <tag>sourcemeter</tag>
   </rule>
@@ -2890,7 +2883,7 @@
     <name>Unreachable</name>
     <description>&lt;h3&gt;Pylint&lt;/h3&gt;&lt;p&gt;Used when there is some code behind a “return” or “raise” statement, which will never be accessed.&lt;/p&gt;
 </description>
-    <type>BUG</type>
+    <type>CODE_SMELL</type>
     <severity>MAJOR</severity>
     <tag>sourcemeter</tag>
   </rule>

@@ -61,6 +61,7 @@ import com.sourcemeter.analyzer.base.helper.FileHelper;
 
 import graphlib.Graph;
 import graphlib.GraphlibException;
+import org.sonar.api.utils.System2;
 
 public abstract class SourceMeterSensor implements Sensor {
 
@@ -74,6 +75,7 @@ public abstract class SourceMeterSensor implements Sensor {
     protected final InputProject inputProject;
     protected final ActiveRules activeRules;
     protected final Configuration configuration;
+    protected final System2 system;
 
     protected final List<String> commands;
 
@@ -82,12 +84,13 @@ public abstract class SourceMeterSensor implements Sensor {
      */
     public SourceMeterSensor(FileSystem fileSystem,
             InputProject inputProject, ActiveRules activeRules,
-            Configuration configuration) {
+            Configuration configuration, System2 system) {
 
         this.fileSystem = fileSystem;
         this.inputProject = inputProject;
         this.activeRules = activeRules;
         this.configuration = configuration;
+        this.system = system;
 
         this.commands = new ArrayList<String>();
     }
@@ -225,13 +228,17 @@ public abstract class SourceMeterSensor implements Sensor {
      * @return Filter file's content.
      */
     protected String getFilterContent(SensorContext sensorContext, String languageKey) {
-        StringBuffer filter = new StringBuffer("-*\n");
+        StringBuffer filter = new StringBuffer("-.*\n");
 
         List<InputFile> sourceFilesForProject = getSourceFilesForProject(sensorContext, languageKey);
         for (InputFile file : sourceFilesForProject) {
             String path = file.uri().normalize().getPath();
             filter.append("+");
-            filter.append(Pattern.quote(path));
+            if (system.isOsWindows()) {
+                filter.append(path.substring(1).replace("/", "\\\\"));
+            } else {
+                filter.append(Pattern.quote(path));
+            }
             filter.append("\n");
         }
         return filter.toString();
@@ -316,7 +323,14 @@ public abstract class SourceMeterSensor implements Sensor {
      * Sets the command line options, common in all SourceMater analyzer languages.
      */
     protected void addCommonCommandlineOptions() {
-        this.commands.add("-changePathToRelative");
+        String baseDir = "";
+        try {
+            baseDir = this.fileSystem.baseDir().getCanonicalPath();
+        } catch (IOException e) {
+            LOG.warn("Could not get base directory's canonical path. Absolute path is used.");
+            baseDir = this.fileSystem.baseDir().getAbsolutePath();
+        }
+        this.commands.add("-projectBaseDir=" + baseDir);
 
         String cloneGenealogy = FileHelper.getStringFromConfiguration(this.configuration, "sm.cloneGenealogy");
         String cloneMinLines = FileHelper.getStringFromConfiguration(this.configuration, "sm.cloneMinLines");

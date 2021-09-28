@@ -38,7 +38,7 @@ SM.pageBuilder.dashboard = {};
 SM.pageBuilder.dashboard.build = function() {
   SM.getRoot().html([
     '  <div class="sm-page-header">',
-    '    <img id="sm-logo" height="36px" src="/static/SourceMeterGUI/graphics/MainLogo.png">',
+    '    <img id="sm-logo" height="36px" src="' + window.baseUrl + '/static/SourceMeterGUI/graphics/MainLogo.png">',
     '    <h1 class="sm-page-title">Dashboard</h1>',
     '  </div>',
     '  <div id="div1">',
@@ -50,9 +50,9 @@ SM.pageBuilder.dashboard.build = function() {
     // license table
     '<div>',
     '  <p style="text-align:center;font-size: 11px;">',
-    '    <a href="https://sourcemeter.com" target="SourceMeter">SourceMeter 8.2</a>',
+    '    <a href="https://sourcemeter.com" target="SourceMeter">SourceMeter 9.1</a>',
     '    <a href="https://github.com/FrontEndART/SonarQube-plug-in" target="SourceMeter_github">plug-in</a>',
-    '    for SONARQUBE™ platform 6.7 v1.1.0',
+    '    for SONARQUBE™ platform 7.9 v2.0.1',
     '  </p>',
     '  <div style="padding-top: 6px;">',
     '    <table id="sourcemeter_license_table" class="license_table" align="center">',

@@ -8,7 +8,7 @@ SM.globalinit = function(){
    *  class, to fetch tooltip data.
    */
   SM.languages.forEach(function(lang, i) {
-    $.get( '/static/' + lang.pluginId + '/help/usersguide.html')
+    $.get(window.baseUrl + '/static/' + lang.pluginId + '/help/usersguide.html')
       .done(function(data, status, xhr) {
         SM.languages[i].helpPage = data;
         SM.languages.helpPageLoaded[lang.id] = true;
@@ -18,7 +18,7 @@ SM.globalinit = function(){
           '<div class="ui-state-error ui-state-highlight ui-corner-all" style="padding:10px"> ',
           '  In order to see the users guide for the SourceMeter ' + lang.symbol + ' ',
           '  scanner plugin, please put the ',
-          '  sourcemeter-analyzer-' + lang.id.toLowerCase() + '-plugin-1.1.0.jar',
+          '  sourcemeter-analyzer-' + lang.id.toLowerCase() + '-plugin-2.0.1.jar',
           '  into the extensions/plugins directory of your SonarQube instance. ',
           '</div>'
         ].join('/n');

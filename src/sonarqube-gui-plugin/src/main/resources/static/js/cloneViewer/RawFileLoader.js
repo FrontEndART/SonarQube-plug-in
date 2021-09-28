@@ -46,7 +46,7 @@ SM.RawFileLoader = new (function() { // Singleton object
       callback(this.cache[filePath]);
       return;
     }
-    $.get(location.origin + '/api/sources/raw',
+    $.get(window.baseUrl + '/api/sources/raw',
       {key: filePath},
       (function(data) {
         if (storeValue) {

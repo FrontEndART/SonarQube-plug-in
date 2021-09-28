@@ -1,5 +1,5 @@
-ANALYZERS = sourcemeter-analyzer-cpp sourcemeter-analyzer-csharp sourcemeter-analyzer-java sourcemeter-analyzer-python sourcemeter-analyzer-rpg
-PACKAGENAME = sourcemeter-8.2-plugins-for-sonarqube-6.7-v1.0.0
+ANALYZERS = sourcemeter-analyzer-cpp sourcemeter-analyzer-csharp sourcemeter-analyzer-java sourcemeter-analyzer-javascript sourcemeter-analyzer-python sourcemeter-analyzer-rpg
+PACKAGENAME = sourcemeter-9.1-plugins-for-sonarqube-7.9-v2.0.1
 
 all: sonarqube-plugin-package
 
@@ -33,6 +33,7 @@ sonarqube-plugin-package: usersguide sonarqube-core-plugin sonarqube-gui-plugin 
 	@cp src/sonarqube-analyzers/sourcemeter-analyzer-cpp/target/*.jar $(PACKAGENAME)/plugins
 	@cp src/sonarqube-analyzers/sourcemeter-analyzer-csharp/target/*.jar $(PACKAGENAME)/plugins
 	@cp src/sonarqube-analyzers/sourcemeter-analyzer-java/target/*.jar $(PACKAGENAME)/plugins
+	@cp src/sonarqube-analyzers/sourcemeter-analyzer-javascript/target/*.jar $(PACKAGENAME)/plugins
 	@cp src/sonarqube-analyzers/sourcemeter-analyzer-python/target/*.jar $(PACKAGENAME)/plugins
 	@cp src/sonarqube-analyzers/sourcemeter-analyzer-rpg/target/*.jar $(PACKAGENAME)/plugins
 	@cp doc/UG.html $(PACKAGENAME)/doc
@@ -47,5 +48,6 @@ clean:
 	rm -rf src/sonarqube-analyzers/sourcemeter-analyzer-cpp/target
 	rm -rf src/sonarqube-analyzers/sourcemeter-analyzer-csharp/target
 	rm -rf src/sonarqube-analyzers/sourcemeter-analyzer-java/target
+	rm -rf src/sonarqube-analyzers/sourcemeter-analyzer-javascript/target
 	rm -rf src/sonarqube-analyzers/sourcemeter-analyzer-python/target
 	rm -rf src/sonarqube-analyzers/sourcemeter-analyzer-rpg/target

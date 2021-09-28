@@ -71,6 +71,7 @@ import graphlib.GraphlibException;
 import graphlib.Node;
 import graphlib.Node.NodeType;
 import graphlib.VisitorException;
+import org.sonar.api.utils.System2;
 
 import static com.sourcemeter.analyzer.cpp.SourceMeterCppMetrics.SM_CPP_CLONE_TREE;
 import static com.sourcemeter.analyzer.cpp.SourceMeterCppMetrics.SM_CPP_LOGICAL_LEVEL1;
@@ -90,9 +91,9 @@ public class SourceMeterCppSensor extends SourceMeterSensor {
 
     public SourceMeterCppSensor(FileSystem fileSystem,
            InputProject inputProject, ActiveRules activeRules,
-           Configuration configuration) {
+           Configuration configuration, System2 system) {
 
-        super(fileSystem, inputProject, activeRules, configuration);
+        super(fileSystem, inputProject, activeRules, configuration, system);
 
         this.fileSystem = fileSystem;
     }
@@ -296,20 +297,11 @@ public class SourceMeterCppSensor extends SourceMeterSensor {
             LOG.warn("An error occured while creating SourceMeter profile file. Default profile is used!!", e);
         }
 
-        String baseDir = "";
-        try {
-            baseDir = this.fileSystem.baseDir().getCanonicalPath();
-        } catch (IOException e) {
-            LOG.warn("Could not get base directory's canonical path. Absolute path is used.");
-            baseDir = this.fileSystem.baseDir().getAbsolutePath();
-        }
-
         // Setting command and parameters for SourceMeter C/C++ analyzer
         String cleanResults = FileHelper.getStringFromConfiguration(configuration, "sm.cleanresults");
         this.commands.add("-cleanResults=" + cleanResults);
         this.commands.add("-resultsDir=" + resultsDir);
         this.commands.add("-projectName=" + projectName);
-        this.commands.add("-projectBaseDir=" + baseDir);
         this.commands.add("-buildScript=" + pathToBuild);
 
         String softFilter = "";
@@ -330,12 +322,12 @@ public class SourceMeterCppSensor extends SourceMeterSensor {
             this.commands.add("-externalHardFilter=" + hardFilter);
         }
 
+        addCommonCommandlineOptions();
+
         String additionalParameters = FileHelper.getStringFromConfiguration(configuration, "sm.cpp.toolchainOptions");
         if (null != additionalParameters) {
             this.commands.add(additionalParameters);
         }
-
-        addCommonCommandlineOptions();
 
         return true;
     }

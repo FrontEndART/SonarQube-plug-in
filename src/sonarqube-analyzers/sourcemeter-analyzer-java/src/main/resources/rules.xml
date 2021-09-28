@@ -233,7 +233,6 @@
 &lt;p&gt;The original Maintainability Index is computed by the following formula:&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;MI = 171 - 5.2 * ln(HVOL) - 0.23 * (McCC) - 16.2 * ln(LLOC)&lt;/em&gt;&lt;/p&gt;
 </description>
-    <type>BUG</type>
     <severity>INFO</severity>
     <tag>sourcemeter</tag>
   </rule>
@@ -296,7 +295,6 @@
     <description>&lt;p&gt;&lt;strong&gt;Class:&lt;/strong&gt; number of attributes in the class, including the inherited ones; however, the attributes of its nested, anonymous, and local classes are not included.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Package:&lt;/strong&gt; number of attributes in the package; however, attributes of its subpackages are not included.&lt;/p&gt;
 </description>
-    <type>CODE_SMELL</type>
     <severity>INFO</severity>
     <tag>sourcemeter</tag>
   </rule>
@@ -322,7 +320,6 @@
     <description>&lt;p&gt;&lt;strong&gt;Class:&lt;/strong&gt; number of getter methods in the class, including the inherited ones; however, the getter methods of its nested, anonymous, and local classes are not included. Methods that override abstract methods are not counted.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Package&lt;/strong&gt;: number of getter methods in the package; however, getter methods of its subpackages are not included.&lt;/p&gt;
 </description>
-    <type>BUG</type>
     <severity>INFO</severity>
     <tag>sourcemeter</tag>
   </rule>
@@ -349,7 +346,6 @@
     <description>&lt;p&gt;&lt;strong&gt;Method:&lt;/strong&gt; complexity of the method expressed as the depth of the maximum embeddedness of its conditional, iteration and exception handling block scopes. The following instructions are taken into account: if, else-if, else, for, while, do-while, switch, try, catch, finally and block statements that are directly inside another block statement. The following instructions do not increase the value by themselves; however, if additional embeddednesses can be found in their blocks, they are considered: case and default label (which belong to a switch instruction).&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Class:&lt;/strong&gt; complexity of the class expressed as the depth of the maximum embeddedness of its conditional, iteration and exception handling block scopes. It is calculated as the maximum nesting level (NL) of its local methods and init blocks.&lt;/p&gt;
 </description>
-    <type>CODE_SMELL</type>
     <severity>INFO</severity>
     <tag>sourcemeter</tag>
   </rule>
@@ -475,7 +471,6 @@
     <description>&lt;p&gt;&lt;strong&gt;Class:&lt;/strong&gt; number of public attributes in the class, including the inherited ones; however, the public attributes of its nested, anonymous, and local classes are not included.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Package:&lt;/strong&gt; number of public attributes in the package; however, the public attributes of its subpackages are not included.&lt;/p&gt;
 </description>
-    <type>BUG</type>
     <severity>INFO</severity>
     <tag>sourcemeter</tag>
   </rule>
@@ -502,7 +497,6 @@
     <description>&lt;p&gt;&lt;strong&gt;Class:&lt;/strong&gt; number of setter methods in the class, including the inherited ones; however, the setter methods of its nested, anonymous, and local classes are not included. Methods that override abstract methods are not counted.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Package:&lt;/strong&gt; number of setter methods in the package; however, setter methods of its subpackages are not included.&lt;/p&gt;
 </description>
-    <type>VULNERABILITY</type>
     <severity>INFO</severity>
     <tag>sourcemeter</tag>
   </rule>
@@ -788,7 +782,6 @@
 &lt;p&gt;&lt;strong&gt;Package:&lt;/strong&gt; number of setter methods in the package, including the setter methods of its subpackages.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Component:&lt;/strong&gt; number of setter methods in the component, including the setter methods of its subcomponents.&lt;/p&gt;
 </description>
-    <type>BUG</type>
     <severity>INFO</severity>
     <tag>sourcemeter</tag>
   </rule>
@@ -822,7 +815,6 @@
     <key>MET_CA</key>
     <name>Clone Age (CA) Metric Threshold Violation</name>
     <description>&lt;b&gt;Clone class/clone instance:&lt;/b&gt; number of previously analyzed revisions in which the clone class/clone instance was present + 1.</description>
-    <type>BUG</type>
     <severity>INFO</severity>
     <tag>sourcemeter</tag>
   </rule>
@@ -830,7 +822,6 @@
     <key>MET_CC</key>
     <name>Clone Coverage (CC) Metric Threshold Violation</name>
     <description>&lt;b&gt;Method/class/package:&lt;/b&gt; ratio of code covered by code duplications in the source code element to the size of the source code element, expressed in terms of the number of syntactic entities (statements, expressions, etc.).&lt;br&gt;&lt;b&gt;Component:&lt;/b&gt; ratio of code covered by code duplications in the component to the size of the component, expressed in terms of the number of syntactic entities (statements, expressions, etc.).</description>
-    <type>CODE_SMELL</type>
     <severity>INFO</severity>
     <tag>sourcemeter</tag>
   </rule>
@@ -845,7 +836,6 @@
     <key>MET_CCO</key>
     <name>Clone Complexity (CCO) Metric Threshold Violation</name>
     <description>&lt;b&gt;Clone instance:&lt;/b&gt; the McCabe complexity of the code fragment corresponding to the clone instance.&lt;br&gt;&lt;b&gt;Clone class:&lt;/b&gt; sum of CCO of clone instances in the clone class.&lt;br&gt;&lt;b&gt;Method/class/package:&lt;/b&gt; sum of CCO of clone instances in the source code element.&lt;br&gt;&lt;b&gt;Component:&lt;/b&gt; sum of CCO of clone instances in the component.</description>
-    <type>CODE_SMELL</type>
     <severity>INFO</severity>
     <tag>sourcemeter</tag>
   </rule>
@@ -853,7 +843,6 @@
     <key>MET_CE</key>
     <name>Clone Embeddedness (CE) Metric Threshold Violation</name>
     <description>&lt;b&gt;Clone instance:&lt;/b&gt; sum of incoming and outgoing references (function calls, variable references, type references; different references to the same entity are counted only once) in the code fragment corresponding to the clone instance, weighted with the number of directory changes between the referenced code fragments.&lt;br&gt;&lt;b&gt;Clone class:&lt;/b&gt; sum of CE of the clone instances of the clone class + 1.</description>
-    <type>CODE_SMELL</type>
     <severity>INFO</severity>
     <tag>sourcemeter</tag>
   </rule>
@@ -875,7 +864,6 @@
     <key>MET_CI</key>
     <name>Clone Instances (CI) Metric Threshold Violation</name>
     <description>&lt;b&gt;Method/class/package:&lt;/b&gt; number of clone instances in the source code element.&lt;br&gt;&lt;b&gt;Component:&lt;/b&gt; number of clone instances in the component.&lt;br&gt;&lt;b&gt;Clone class:&lt;/b&gt; number of clone instances in the clone class.</description>
-    <type>BUG</type>
     <severity>INFO</severity>
     <tag>sourcemeter</tag>
   </rule>
@@ -904,7 +892,6 @@
     <key>MET_CR</key>
     <name>Clone Risk (CR) Metric Threshold Violation</name>
     <description>&lt;b&gt;Clone class:&lt;/b&gt; risk index of the existence of the clone class. It is computed as the product of CLLOC, CI, CCO, NCR, and CV.&lt;br&gt;&lt;b&gt;Component:&lt;/b&gt; relative risk index of the existence of code duplications in the component. It is computed as the sum of CR of the clone classes in the component, divided by the total logical lines of code (non-empty, non-comment lines) of the component. It expresses the risk index projected to a non-empty, non-comment line of code in the component.</description>
-    <type>CODE_SMELL</type>
     <severity>INFO</severity>
     <tag>sourcemeter</tag>
   </rule>
@@ -912,7 +899,6 @@
     <key>MET_CV</key>
     <name>Clone Variability (CV) Metric Threshold Violation</name>
     <description>&lt;b&gt;Clone instance:&lt;/b&gt; instability of the clone instance since it appeared. It is computed as the ratio of the number of previously analyzed revisions when the instance had been changed to its age (CA).&lt;br&gt;&lt;b&gt;Clone class:&lt;/b&gt; instability of the clone class since it appeared. It is computed as the ratio of the number of previously analyzed revisions when its contained instances were moved, deleted, or added, to its age (CA), plus the average CV of its clone instances.</description>
-    <type>CODE_SMELL</type>
     <severity>INFO</severity>
     <tag>sourcemeter</tag>
   </rule>
@@ -1483,7 +1469,7 @@ k = i * j;      // set k with 80 not 120&lt;/code&gt;&lt;/pre&gt;
         return string;
 }&lt;/code&gt;&lt;/pre&gt;
 </description>
-    <type>CODE_SMELL</type>
+    <type>BUG</type>
     <severity>CRITICAL</severity>
     <tag>sourcemeter</tag>
   </rule>
@@ -1762,7 +1748,6 @@ while (true) {  // preferred approach
   }
 }&lt;/code&gt;&lt;/pre&gt;
 </description>
-    <type>BUG</type>
     <severity>MINOR</severity>
     <tag>sourcemeter</tag>
   </rule>
@@ -1775,7 +1760,7 @@ while (true) {  // preferred approach
 import java.lang.*;
 public class Foo {}&lt;/code&gt;&lt;/pre&gt;
 </description>
-    <type>BUG</type>
+    <type>CODE_SMELL</type>
     <severity>MINOR</severity>
     <tag>sourcemeter</tag>
   </rule>
@@ -1858,7 +1843,7 @@ public class Foo {}&lt;/code&gt;&lt;/pre&gt;
     <name>Default Package</name>
     <description>&lt;h3&gt;PMD&lt;/h3&gt;&lt;p&gt;Use explicit scoping instead of accidental usage of default package private level. The rule allows methods and fields annotated with Guava’s &lt;span class=&quot;citation&quot; data-cites=&quot;VisibleForTesting&quot;&gt;@VisibleForTesting&lt;/span&gt;.&lt;/p&gt;
 </description>
-    <type>VULNERABILITY</type>
+    <type>CODE_SMELL</type>
     <severity>MINOR</severity>
     <tag>sourcemeter</tag>
   </rule>
@@ -1950,7 +1935,7 @@ if (x == null) {        // preferred
 &lt;pre class=&quot;java&quot;&gt;&lt;code&gt;public class Foo extends Object {     // not required
 }&lt;/code&gt;&lt;/pre&gt;
 </description>
-    <type>BUG</type>
+    <type>CODE_SMELL</type>
     <severity>MINOR</severity>
     <tag>sourcemeter</tag>
   </rule>
@@ -2084,7 +2069,7 @@ for (int i = 0, j = 0; i &lt; 10; i++, j += 2) {
     }
 }&lt;/code&gt;&lt;/pre&gt;
 </description>
-    <type>CODE_SMELL</type>
+    <type>BUG</type>
     <severity>CRITICAL</severity>
     <tag>sourcemeter</tag>
   </rule>
@@ -2250,7 +2235,7 @@ public class Bar{}&lt;/code&gt;&lt;/pre&gt;
  }
 }&lt;/code&gt;&lt;/pre&gt;
 </description>
-    <type>CODE_SMELL</type>
+    <type>BUG</type>
     <severity>MAJOR</severity>
     <tag>sourcemeter</tag>
   </rule>
@@ -2654,7 +2639,7 @@ String name,
 public class SomeClass {
 }&lt;/code&gt;&lt;/pre&gt;
 </description>
-    <type>BUG</type>
+    <type>CODE_SMELL</type>
     <severity>MINOR</severity>
     <tag>sourcemeter</tag>
   </rule>
@@ -3006,7 +2991,6 @@ public boolean isBarEqualTo(int x) {
     }
 }&lt;/code&gt;&lt;/pre&gt;
 </description>
-    <type>BUG</type>
     <severity>MINOR</severity>
     <tag>sourcemeter</tag>
   </rule>
@@ -3589,7 +3573,7 @@ public class Bar {
     <key>CI</key>
     <name>Command Injection</name>
     <description>&lt;h3&gt;VulnerabilityHunter&lt;/h3&gt;&lt;p&gt;In case of command injection the attacker forces the application to execute manipulated OS commands.&lt;/p&gt;&lt;p&gt;&lt;b&gt;Prevention:&lt;/b&gt; Escape not acceptable characters like ';' or '&amp;'. (The given characters are just examples and not a complete list. The list of the characters, which you should take care of, is platform dependent.).&lt;/p&gt;&lt;p&gt;&lt;b&gt;Example:&lt;/b&gt;&lt;/p&gt;&lt;pre class=&quot;sourcemeter-example-code&quot;&gt;String dir =request.getParameter(&amp;quot;dir_name&amp;quot;);&amp;#x0A;String osCommand =&amp;quot;c:\\WINDOWS\\SYSTEM32\\cmd.exe /c dir &amp;quot;;&amp;#x0A;Process process =Runtime.getRuntime().exec(osCommand + dir);&amp;#x0A;&lt;/pre&gt;&lt;p&gt;&lt;b&gt;Input:&lt;/b&gt; &amp;quot;bin &amp; rmdir /S /Q data&amp;quot;&lt;/p&gt;&lt;p&gt;&lt;b&gt;Result:&lt;/b&gt; The bin directory is listed and the data directory with all its subdirectories is deleted.&lt;/p&gt;</description>
-    <type>BUG</type>
+    <type>VULNERABILITY</type>
     <severity>BLOCKER</severity>
     <tag>sourcemeter</tag>
   </rule>
@@ -3643,7 +3627,6 @@ public class Bar {
     <key>TB</key>
     <name>Trust Boundary</name>
     <description>&lt;h3&gt;VulnerabilityHunter&lt;/h3&gt;Programs often have to cooperate with other programs e.g. exchanging information. This information could be considered validated (no further validation is needed). In that case the provider program is inside of our program's Trust Boundary. If a provider is outside of this boundary all information need to be validated. The hardest task is to determine which programs are inside/outside this boundary.</description>
-    <type>CODE_SMELL</type>
     <severity>BLOCKER</severity>
     <tag>sourcemeter</tag>
   </rule>
@@ -3873,7 +3856,7 @@ public void foo(int a) throws IOException {
     }
   }&lt;/code&gt;&lt;/pre&gt;
 </description>
-    <type>BUG</type>
+    <type>CODE_SMELL</type>
     <severity>MINOR</severity>
     <tag>sourcemeter</tag>
   </rule>
@@ -3933,7 +3916,7 @@ public boolean getFoo(boolean bar); // ok&lt;/code&gt;&lt;/pre&gt;
 
 Boolean buz = Boolean.valueOf(false); // ..., just reference Boolean.FALSE;&lt;/code&gt;&lt;/pre&gt;
 </description>
-    <type>BUG</type>
+    <type>CODE_SMELL</type>
     <severity>MINOR</severity>
     <tag>sourcemeter</tag>
   </rule>
@@ -4579,7 +4562,7 @@ public class Bar {
   }
 }&lt;/code&gt;&lt;/pre&gt;
 </description>
-    <type>BUG</type>
+    <type>CODE_SMELL</type>
     <severity>MAJOR</severity>
     <tag>sourcemeter</tag>
   </rule>
@@ -4903,7 +4886,7 @@ public String foo() {
     <key>UPM</key>
     <name>Unused Private Method</name>
     <description>&lt;h3&gt;FaultHunter&lt;/h3&gt;&lt;p&gt;&lt;b&gt;Unused Private Method&lt;/b&gt;: Unused Private Method detects when a private method is declared but is unused.&lt;/p&gt; &lt;p&gt;Example(s):&lt;/p&gt;  &lt;pre class=&quot;sourcemeter-example-code&quot;&gt;  public class Something {&amp;#x0A;  &amp;nbsp; private void foo() {} // unused&amp;#x0A;  }&amp;#x0A;  &lt;/pre&gt;</description>
-    <type>BUG</type>
+    <type>CODE_SMELL</type>
     <severity>MAJOR</severity>
     <tag>sourcemeter</tag>
   </rule>
@@ -5000,7 +4983,7 @@ while (true) { // preferred approach
     <key>ISC</key>
     <name>Is Super Called</name>
     <description>&lt;h3&gt;AndroidHunter&lt;/h3&gt;&lt;p&gt;&lt;b&gt;Is Super Called:&lt;/b&gt; In the classes, which inherits from Activity, you must call throughto the super class's implementation, if you override the so-called lifecycle methods.Otherwise, an exception will be thrown.The Activity&amp;#8217;s lifecycle methodsare the following:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;onCreate()&lt;/li&gt;&lt;li&gt;onStart()&lt;/li&gt;&lt;li&gt;onPause()&lt;/li&gt;&lt;li&gt;onResume()&lt;/li&gt;&lt;li&gt;onDestroy()&lt;/li&gt;&lt;li&gt;onRestart()&lt;/li&gt;&lt;li&gt;onStop()&lt;/li&gt;&lt;li&gt;onSaveInstanceState()&lt;/li&gt;&lt;/ul&gt;Example(s):&lt;/p&gt;&lt;pre&gt;public class MyActivity extends Activity{&amp;#x0A;&amp;nbsp; @Override&amp;#x0A;&amp;nbsp; public void onCreate(BundlesavedInstanceState) {&amp;#x0A;&amp;nbsp; &amp;nbsp;&amp;nbsp;...&amp;#x0A;&amp;nbsp;&amp;nbsp;&amp;nbsp; //Missing super.onCreate()&amp;#x0A;&amp;nbsp;&amp;nbsp;&amp;nbsp; ...&amp;#x0A;&amp;nbsp; }&amp;#x0A;&amp;nbsp; ...&amp;#x0A;&amp;nbsp; @Override&amp;#x0A;&amp;nbsp; protected void onStop() {&amp;#x0A;&amp;nbsp;&amp;nbsp;&amp;nbsp; ...&amp;#x0A;&amp;nbsp;&amp;nbsp;&amp;nbsp; //Missing super.onStop()&amp;#x0A;&amp;nbsp;&amp;nbsp;&amp;nbsp; ...&amp;#x0A;&amp;nbsp; }&amp;#x0A;}&amp;#x0A;&lt;/pre&gt;</description>
-    <type>CODE_SMELL</type>
+    <type>BUG</type>
     <severity>CRITICAL</severity>
     <tag>sourcemeter</tag>
   </rule>
@@ -5096,7 +5079,7 @@ while (true) { // preferred approach
     <name>And</name>
     <description>&lt;h3&gt;FindBugs&lt;/h3&gt;&lt;p&gt;This method compares an expression of the form (e &amp; C) to D, which will always compare unequal due to the specific values of constants C and D. This may indicate a logic error or typo.&lt;/p&gt;
 </description>
-    <type>CODE_SMELL</type>
+    <type>BUG</type>
     <severity>MAJOR</severity>
     <tag>sourcemeter</tag>
   </rule>
@@ -5176,7 +5159,7 @@ for(int i = 0; i &lt; 4; i++)
     <name>Test If Equal To Not A Number</name>
     <description>&lt;h3&gt;FindBugs&lt;/h3&gt;&lt;p&gt;This code checks to see if a floating point value is equal to the special Not A Number value (e.g., &lt;code&gt;if (x == Double.NaN)&lt;/code&gt;). However, because of the special semantics of &lt;code&gt;NaN&lt;/code&gt;, no value is equal to &lt;code&gt;Nan&lt;/code&gt;, including &lt;code&gt;NaN&lt;/code&gt;. Thus, &lt;code&gt;x == Double.NaN&lt;/code&gt; always evaluates to false. To check to see if a value contained in &lt;code&gt;x&lt;/code&gt; is the special Not A Number value, use &lt;code&gt;Double.isNaN(x)&lt;/code&gt; (or &lt;code&gt;Float.isNaN(x)&lt;/code&gt; if &lt;code&gt;x&lt;/code&gt; is floating point precision).&lt;/p&gt;
 </description>
-    <type>CODE_SMELL</type>
+    <type>BUG</type>
     <severity>MAJOR</severity>
     <tag>sourcemeter</tag>
   </rule>
@@ -6366,7 +6349,7 @@ the contract for equals in class Object).
     <name>Nullify Super</name>
     <description>&lt;h3&gt;FindBugs&lt;/h3&gt;&lt;p&gt;This empty &lt;code&gt;finalize()&lt;/code&gt; method explicitly negates the effect of any finalizer defined by its superclass.  Any finalizer actions defined for the superclass will not be performed.  Unless this is intended, delete this method.&lt;/p&gt;
 </description>
-    <type>VULNERABILITY</type>
+    <type>BUG</type>
     <severity>MAJOR</severity>
     <tag>sourcemeter</tag>
   </rule>
@@ -7372,7 +7355,7 @@ private Long getNotificationSequenceNumber() {
     <description>&lt;h3&gt;FindBugs&lt;/h3&gt;&lt;p&gt;A call to &lt;code&gt;notify()&lt;/code&gt; or &lt;code&gt;notifyAll()&lt;/code&gt; was made without any (apparent) accompanying modification to mutable object state.  In general, calling a notify method on a monitor is done because some condition another thread is waiting for has become true.  However, for the condition to be meaningful, it must involve a heap object that is visible to both threads.&lt;/p&gt;
 &lt;p&gt;This bug does not necessarily indicate an error, since the change to mutable object state may have taken place in a method which then called the method containing the notification.&lt;/p&gt;
 </description>
-    <type>BUG</type>
+    <type>CODE_SMELL</type>
     <severity>MAJOR</severity>
     <tag>sourcemeter</tag>
   </rule>
@@ -8102,7 +8085,7 @@ dateString = dateString.trim();&lt;/code&gt;&lt;/pre&gt;
     <name>Bad Field</name>
     <description>&lt;h3&gt;FindBugs&lt;/h3&gt;&lt;p&gt;This Serializable class defines a non-primitive instance field which is neither transient, Serializable, or &lt;code&gt;java.lang.Object&lt;/code&gt;, and does not appear to implement the &lt;code&gt;Externalizable&lt;/code&gt; interface or the &lt;code&gt;readObject()&lt;/code&gt; and &lt;code&gt;writeObject()&lt;/code&gt; methods.  Objects of this class will not be deserialized correctly if a non-Serializable object is stored in this field.&lt;/p&gt;
 </description>
-    <type>VULNERABILITY</type>
+    <type>BUG</type>
     <severity>MAJOR</severity>
     <tag>sourcemeter</tag>
   </rule>
@@ -8221,7 +8204,7 @@ public void foo() {
     <name>Inner Class</name>
     <description>&lt;h3&gt;FindBugs&lt;/h3&gt;&lt;p&gt;This Serializable class is an inner class. Any attempt to serialize it will also serialize the associated outer instance. The outer instance is serializable, so this won’t fail, but it might serialize a lot more data than intended. If possible, making the inner class a static inner class (also known as a nested class) should solve the problem.&lt;/p&gt;
 </description>
-    <type>BUG</type>
+    <type>CODE_SMELL</type>
     <severity>MAJOR</severity>
     <tag>sourcemeter</tag>
   </rule>
@@ -9243,7 +9226,7 @@ String constructComponentName() {
     <key>NAS</key>
     <name>Negative Array Size</name>
     <description>&lt;h3&gt;RTEHunter&lt;/h3&gt;Creating an array with negative size.</description>
-    <type>CODE_SMELL</type>
+    <type>BUG</type>
     <severity>BLOCKER</severity>
     <tag>sourcemeter</tag>
   </rule>
@@ -9251,7 +9234,7 @@ String constructComponentName() {
     <key>NPE</key>
     <name>NullPointerException</name>
     <description>&lt;h3&gt;RTEHunter&lt;/h3&gt;Null pointer dereferenced which causes a NullPointerException.</description>
-    <type>CODE_SMELL</type>
+    <type>BUG</type>
     <severity>BLOCKER</severity>
     <tag>sourcemeter</tag>
   </rule>

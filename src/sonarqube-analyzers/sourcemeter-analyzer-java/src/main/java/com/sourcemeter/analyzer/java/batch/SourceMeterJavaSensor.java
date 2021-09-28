@@ -75,6 +75,7 @@ import graphlib.GraphlibException;
 import graphlib.Node;
 import graphlib.Node.NodeType;
 import graphlib.VisitorException;
+import org.sonar.api.utils.System2;
 
 import static com.sourcemeter.analyzer.java.SourceMeterJavaMetrics.SM_JAVA_CLONE_TREE;
 import static com.sourcemeter.analyzer.java.SourceMeterJavaMetrics.SM_JAVA_LOGICAL_LEVEL1;
@@ -97,9 +98,9 @@ public class SourceMeterJavaSensor extends SourceMeterSensor {
      */
     public SourceMeterJavaSensor(FileSystem fileSystem,
             InputProject inputProject, ActiveRules activeRules,
-            Configuration configuration) {
+            Configuration configuration, System2 system) {
 
-        super(fileSystem, inputProject, activeRules, configuration);
+        super(fileSystem, inputProject, activeRules, configuration, system);
 
         this.fileSystem = fileSystem;
     }
@@ -329,20 +330,10 @@ public class SourceMeterJavaSensor extends SourceMeterSensor {
             LOG.warn("An error occured while creating SourceMeter profile file. Default profile is used!", e);
         }
 
-        String baseDir = "";
-        try {
-            baseDir = this.fileSystem.baseDir().getCanonicalPath();
-        } catch (IOException e) {
-            LOG.warn("Could not get base directory's canonical path. Absolute path is used.");
-            baseDir = this.fileSystem.baseDir().getAbsolutePath();
-        }
-
         String buildScript = FileHelper.getStringFromConfiguration(this.configuration, "sm.java.buildscript");
         if (buildScript != null) {
             this.commands.add("-buildScript=" + buildScript);
         }
-
-        this.commands.add("-projectBaseDir=" + baseDir);
 
         if (softFilterFilePath != null) {
             this.commands.add("-externalSoftFilter=" + softFilterFilePath);
@@ -425,12 +416,12 @@ public class SourceMeterJavaSensor extends SourceMeterSensor {
             this.commands.add("-FBOptions=" + findBugsOptions);
         }
 
+        addCommonCommandlineOptions();
+
         String additionalParameters = FileHelper.getStringFromConfiguration(this.configuration, "sm.java.toolchainOptions");
         if (additionalParameters != null) {
             this.commands.add(additionalParameters);
         }
-
-        addCommonCommandlineOptions();
 
         return true;
     }

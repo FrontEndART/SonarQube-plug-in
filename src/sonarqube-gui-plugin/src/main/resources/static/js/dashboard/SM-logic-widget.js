@@ -43,6 +43,9 @@ SM.LogicWidget = function(HTMLelem, options) {
     this.elem.addClass("sm-widget");
     // I dont give it an id, beacause it might already have one, and I dont want to owerride that, therefore the class
     this.elem.addClass("id-" + this.id);
+    if (this.langID.includes("JAVASCRIPT") && this.title.includes("Package")) {
+      this.title[this.title.indexOf("Package")] = "File"
+    }
     this.elem.append("<div class='sm-widget-title'>" + this.title.join(' / ') + "</div>");
     var table = $('<div class="sm-widget-table-div"><table id="sm-widget-table"></table></div>');
 
@@ -275,7 +278,7 @@ SM.LogicWidget = function(HTMLelem, options) {
   this.generatePositionAnchorTab = function(pack) {
     var anchor = pack.name;
     if (pack.positions[0]) {
-      var href = 'http://' + window.location.host + fileQuery + pack.displayedPath
+      var href = window.baseUrl + fileQuery + pack.displayedPath
                 + '&line=' + pack.positions[0].line;
       anchor = '<a href="' + href + '" target="_blank">' + pack.name + '</a>';
     }
@@ -285,7 +288,7 @@ SM.LogicWidget = function(HTMLelem, options) {
   this.generatePositionAnchorPopup = function(pack) {
     var anchor = pack.name;
     if (pack.positions[0]) {
-      var url = 'http://' + window.location.host + fileQuery + pack.displayedPath
+      var url = window.baseUrl + fileQuery + pack.displayedPath
                 + '&line=' + pack.positions[0].line;
       var href = 'javascript:(function() {window.open(\'' + url + '\', \'' + pack.displayedPath
                  + '\', \'resizable,scrollbars,status\');})()';

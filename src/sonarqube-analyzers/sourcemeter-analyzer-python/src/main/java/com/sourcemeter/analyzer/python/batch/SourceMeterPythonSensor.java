@@ -70,6 +70,7 @@ import graphlib.GraphlibException;
 import graphlib.Node;
 import graphlib.Node.NodeType;
 import graphlib.VisitorException;
+import org.sonar.api.utils.System2;
 
 import static com.sourcemeter.analyzer.python.SourceMeterPythonMetrics.SM_PYTHON_CLONE_TREE;
 import static com.sourcemeter.analyzer.python.SourceMeterPythonMetrics.SM_PYTHON_LOGICAL_LEVEL1;
@@ -89,9 +90,9 @@ public class SourceMeterPythonSensor extends SourceMeterSensor {
 
     public SourceMeterPythonSensor(FileSystem fileSystem,
            InputProject inputProject, ActiveRules activeRules,
-           Configuration configuration) {
+           Configuration configuration, System2 system) {
 
-        super(fileSystem, inputProject, activeRules, configuration);
+        super(fileSystem, inputProject, activeRules, configuration, system);
 
         this.fileSystem = fileSystem;
     }
@@ -302,17 +303,8 @@ public class SourceMeterPythonSensor extends SourceMeterSensor {
         }
 
         // Setting command and parameters for SourceMeter Python analyzer
-        String baseDir = "";
-        try {
-            baseDir = this.fileSystem.baseDir().getCanonicalPath();
-        } catch (IOException e) {
-            LOG.warn("Could not get base directory's canonical path. Absolute path is used.");
-            baseDir = this.fileSystem.baseDir().getAbsolutePath();
-        }
-
         String cleanResults = FileHelper.getStringFromConfiguration(this.configuration, "sm.cleanresults");
         this.commands.add("-cleanResults=" + cleanResults);
-        this.commands.add("-projectBaseDir=" + baseDir);
         this.commands.add("-resultsDir=" + resultsDir);
         this.commands.add("-projectName=" + projectName);
         this.commands.add("-pythonBinary=" + pythonBinary);
@@ -322,12 +314,12 @@ public class SourceMeterPythonSensor extends SourceMeterSensor {
             this.commands.add("-externalHardFilter=" + filterFilePath);
         }
 
+        addCommonCommandlineOptions();
+
         String additionalParameters = FileHelper.getStringFromConfiguration(this.configuration, "sm.python.toolchainOptions");
         if (additionalParameters != null) {
             this.commands.add(additionalParameters);
         }
-
-        addCommonCommandlineOptions();
 
         return true;
     }

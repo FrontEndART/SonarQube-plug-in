@@ -38,7 +38,7 @@ SM.help.main = function() {
   SM.pageBuilder.help.build();
 
   var loadUG = function(lang) {
-    var url = '/static/' + lang.pluginId + '/help/usersguide.html';
+    var url = window.baseUrl + '/static/' + lang.pluginId + '/help/usersguide.html';
     $.get(url)
       .done(function(response, status, xhr) {
         if (!SM.state.help.isDisplayed) {
@@ -69,7 +69,7 @@ SM.help.main = function() {
           '<div class="ui-state-error ui-state-highlight ui-corner-all" style="padding:10px"> ',
           '  In order to see the users guide for the SourceMeter ' + lang.symbol + ' ',
           '  scanner plugin, please put the ',
-          '  sourcemeter-analyzer-' + lang.id.toLowerCase() + '-plugin-1.1.0.jar',
+          '  sourcemeter-analyzer-' + lang.id.toLowerCase() + '-plugin-2.0.1.jar',
           '  into the extensions/plugins directory of your SonarQube instance. ',
           '</div>'
         ].join('/n');

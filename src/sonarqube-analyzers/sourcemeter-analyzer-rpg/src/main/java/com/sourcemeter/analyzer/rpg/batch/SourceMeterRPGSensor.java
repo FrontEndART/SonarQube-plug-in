@@ -71,6 +71,7 @@ import graphlib.GraphlibException;
 import graphlib.Node;
 import graphlib.Node.NodeType;
 import graphlib.VisitorException;
+import org.sonar.api.utils.System2;
 
 import static com.sourcemeter.analyzer.rpg.SourceMeterRPGMetrics.SM_RPG_CLONE_TREE;
 import static com.sourcemeter.analyzer.rpg.SourceMeterRPGMetrics.SM_RPG_LOGICAL_LEVEL1;
@@ -93,9 +94,9 @@ public class SourceMeterRPGSensor extends SourceMeterSensor {
 
     public SourceMeterRPGSensor(FileSystem fileSystem,
            InputProject inputProject, ActiveRules activeRules,
-           Configuration configuration) {
+           Configuration configuration, System2 system) {
 
-        super(fileSystem, inputProject, activeRules, configuration);
+        super(fileSystem, inputProject, activeRules, configuration, system);
 
         this.fileSystem = fileSystem;
 
@@ -274,18 +275,9 @@ public class SourceMeterRPGSensor extends SourceMeterSensor {
             return false;
         }
 
-        String baseDir = "";
-        try {
-            baseDir = this.fileSystem.baseDir().getCanonicalPath();
-        } catch (IOException e) {
-            LOG.warn("Could not get base directory's canonical path. Absolute path is used.");
-            baseDir = this.fileSystem.baseDir().getAbsolutePath();
-        }
-
         this.commands.add(pathToCA + File.separator
                 + RPG.KEY.toUpperCase(Locale.ENGLISH)
                 + File.separator + "SourceMeterRPG");
-        this.commands.add("-projectBaseDir=" + baseDir);
         this.commands.add("-resultsDir=" + this.resultsDir);
         this.commands.add("-projectName=" + this.projectName);
 
@@ -300,11 +292,6 @@ public class SourceMeterRPGSensor extends SourceMeterSensor {
 
         String rpg4Pattern = FileHelper.getStringFromConfiguration(configuration, "sm.rpg.rpg4Pattern");
         this.commands.add("-rpg4FileNamePattern=" + rpg4Pattern);
-
-        String additionalParameters = FileHelper.getStringFromConfiguration(configuration, "sm.rpg.toolchainOptions");
-        if (additionalParameters != null) {
-            this.commands.add(additionalParameters);
-        }
 
         String hardFilter = "";
         String hardFilterFilePath = null;
@@ -333,6 +320,11 @@ public class SourceMeterRPGSensor extends SourceMeterSensor {
         }
 
         addCommonCommandlineOptions();
+
+        String additionalParameters = FileHelper.getStringFromConfiguration(configuration, "sm.rpg.toolchainOptions");
+        if (additionalParameters != null) {
+            this.commands.add(additionalParameters);
+        }
 
         return true;
     }
