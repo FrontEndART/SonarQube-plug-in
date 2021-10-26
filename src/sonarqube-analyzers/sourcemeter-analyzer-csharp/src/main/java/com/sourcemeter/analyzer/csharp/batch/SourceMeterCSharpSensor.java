@@ -301,7 +301,7 @@ public class SourceMeterCSharpSensor extends SourceMeterSensor {
 
         String csharpKey = CSharp.KEY.toUpperCase(Locale.ENGLISH);
         if ("CS".equals(csharpKey)) {
-            csharpKey = "CSHARP";
+            csharpKey = "CSharp";
         }
 
         this.commands.add(pathToCA + File.separator
