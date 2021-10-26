@@ -416,7 +416,7 @@ public class SourceMeterCSharpSensor extends SourceMeterSensor {
             String path = file.uri().normalize().getPath();
             filter.append("+");
             if (system.isOsWindows()) {
-                filter.append(path.substring(1).replaceAll("/", "\\\\\\\\")); // TODO: check if really needed that much or the super defined method could be used.
+                filter.append(path.substring(1).replaceAll("/", "\\\\\\\\"));
             } else {
                 filter.append(Pattern.quote(path));
             }
