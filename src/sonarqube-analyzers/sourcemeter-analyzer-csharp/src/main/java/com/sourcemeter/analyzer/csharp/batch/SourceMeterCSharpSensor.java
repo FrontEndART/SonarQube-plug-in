@@ -38,6 +38,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.regex.Pattern;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang.StringUtils;
@@ -300,7 +301,7 @@ public class SourceMeterCSharpSensor extends SourceMeterSensor {
 
         String csharpKey = CSharp.KEY.toUpperCase(Locale.ENGLISH);
         if ("CS".equals(csharpKey)) {
-            csharpKey = "CSHARP";
+            csharpKey = "CSharp";
         }
 
         this.commands.add(pathToCA + File.separator
@@ -414,7 +415,11 @@ public class SourceMeterCSharpSensor extends SourceMeterSensor {
         for (InputFile file : sourceFilesForProject) {
             String path = file.uri().normalize().getPath();
             filter.append("+");
-            filter.append(path.substring(1).replaceAll("/", "\\\\\\\\"));
+            if (system.isOsWindows()) {
+                filter.append(path.substring(1).replaceAll("/", "\\\\\\\\"));
+            } else {
+                filter.append(Pattern.quote(path));
+            }
             filter.append("\n");
         }
         return filter.toString();
