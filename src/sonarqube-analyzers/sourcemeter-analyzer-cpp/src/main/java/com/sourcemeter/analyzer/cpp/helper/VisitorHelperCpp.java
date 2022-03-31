@@ -68,4 +68,31 @@ public class VisitorHelperCpp extends VisitorHelper {
 
         return warningText;
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String getCorrectedRuleKey(String ruleKey) {
+        if (ruleKey.contains(METRIC_VIOLATION_CONTAINS)) {
+            // class treshold violation
+            ruleKey = METRIC_PREFIX + ruleKey.substring(0, ruleKey.indexOf(METRIC_VIOLATION_CONTAINS));
+        } else {
+            String[] splittedKey = ruleKey.split("_");
+            StringBuilder sb = new StringBuilder();
+            boolean first = true;
+            for(int i = 1; i < splittedKey.length; ++i) {
+                if ( first ) {
+                    first = false;
+                }
+                else {
+                    sb.append("_");
+                }
+                sb.append(splittedKey[i]);
+            }
+            ruleKey = sb.toString();
+        }
+
+        return ruleKey;
+    }
 }

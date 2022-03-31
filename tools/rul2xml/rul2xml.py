@@ -119,7 +119,7 @@ class RulHandler:
         for metric in root.findall(prefix + 'Metric'):
             _metricId = metric.get('id')
             if '_' in _metricId:
-                _metricId = _metricId.split('_')[1]
+                _metricId = _metricId[_metricId.find('_')+1:]
             if (self.toolDescription != DCF_ID and self.toolDescription != MET_ID and self.toolDescription != RPG_MET_ID) and rulePriorInRulset(_metricId, self.toolDescription, ruleCsvFileName) != 1:
                 continue;
             confLanguage = None
