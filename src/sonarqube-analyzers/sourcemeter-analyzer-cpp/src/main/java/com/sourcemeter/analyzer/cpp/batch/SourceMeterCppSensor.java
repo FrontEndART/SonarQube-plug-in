@@ -288,7 +288,7 @@ public class SourceMeterCppSensor extends SourceMeterSensor {
 
         this.commands.add(pathToCA + File.separator
                 + Cpp.KEY.toUpperCase(Locale.ENGLISH)
-                + File.separator + "SourceMeterCPP");
+                + File.separator + "AnalyzerCPP");
 
         try {
             profileInitializer.generatePofileFile(profilePath);

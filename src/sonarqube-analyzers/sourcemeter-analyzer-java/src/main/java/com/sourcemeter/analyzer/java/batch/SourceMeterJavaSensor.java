@@ -310,7 +310,7 @@ public class SourceMeterJavaSensor extends SourceMeterSensor {
             }
         }
 
-        this.commands.add(pathToCA + File.separator + Java.NAME + File.separator + "SourceMeterJava");
+        this.commands.add(pathToCA + File.separator + Java.NAME + File.separator + "AnalyzerJava");
 
         this.commands.add("-resultsDir=" + resultsDir);
         this.commands.add("-projectName=" + projectName);

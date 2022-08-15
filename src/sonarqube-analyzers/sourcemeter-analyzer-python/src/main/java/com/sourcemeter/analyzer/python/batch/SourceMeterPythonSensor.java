@@ -287,7 +287,7 @@ public class SourceMeterPythonSensor extends SourceMeterSensor {
         }
 
         this.commands.add(pathToCA + File.separator
-                + Python.NAME + File.separator + "SourceMeterPython");
+                + Python.NAME + File.separator + "AnalyzerPython");
 
         ProfileInitializer profileInitializer = new ProfileInitializer(
                 this.configuration, getMetricHunterCategories(), this.activeRules,
