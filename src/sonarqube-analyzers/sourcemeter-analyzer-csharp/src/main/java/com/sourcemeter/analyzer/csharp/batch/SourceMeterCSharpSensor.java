@@ -306,7 +306,7 @@ public class SourceMeterCSharpSensor extends SourceMeterSensor {
 
         this.commands.add(pathToCA + File.separator
                 + csharpKey + File.separator
-                + "SourceMeterCSharp");
+                + "AnalyzerCSharp");
 
         try {
             profileInitializer.generatePofileFile(profilePath);

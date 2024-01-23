@@ -277,7 +277,7 @@ public class SourceMeterJavaScriptSensor extends SourceMeterSensor {
                 + "SM-Profile.xml";
 
         this.commands.add(pathToCA + File.separator
-                + JavaScript.NAME + File.separator + "SourceMeterJavaScript");
+                + JavaScript.NAME + File.separator + "AnalyzerJavaScript");
 
         try {
             profileInitializer.generatePofileFile(profilePath);

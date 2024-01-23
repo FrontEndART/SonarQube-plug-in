@@ -277,7 +277,7 @@ public class SourceMeterRPGSensor extends SourceMeterSensor {
 
         this.commands.add(pathToCA + File.separator
                 + RPG.KEY.toUpperCase(Locale.ENGLISH)
-                + File.separator + "SourceMeterRPG");
+                + File.separator + "AnalyzerRPG");
         this.commands.add("-resultsDir=" + this.resultsDir);
         this.commands.add("-projectName=" + this.projectName);
 
