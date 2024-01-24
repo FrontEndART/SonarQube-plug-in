@@ -43,7 +43,7 @@ import tarfile
 
 import common
 
-PACKAGENAME = 'sourcemeter-10.0-plugins-for-sonarqube-8.9-v2.1.0'
+PACKAGENAME = 'sourcemeter-10.2-plugins-for-sonarqube-9.9-v2.2.0'
 # TODO: check the version number
 
 TOOLS_DIR = os.path.dirname(os.path.abspath(__file__))
