@@ -37,18 +37,17 @@ SM.loader = {};
 SM.loader.src = {
   cdn: {
     scripts: [ // these scripts will be loaded on this page, replacing f.e. the older jquery or underscore that sonarqube uses.
-      "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js",
-      "https://code.jquery.com/ui/1.12.1/jquery-ui.min.js",
-      "https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.4/lodash.min.js"
+      // this kind of loading is not allowed in SonarQube CPS. Keep it, we might use once.
     ],
     styles: [ // these stylesheets will be loaded
-      "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css",
-      "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css",
-      "https://cdnjs.cloudflare.com/ajax/libs/octicons/4.4.0/font/octicons.css"
+      // this kind of loading is not allowed in SonarQube CPS. Keep it, we might use once.
     ]
   },
   local: { // these get baseUrl prepended automatically
     scripts: [
+      'ext/jquery.min.js',
+      'ext/jquery-ui.min.js',
+      'ext/lodash.min.js', // these elements were loaded externally before init.js, keep the order
       'init.js',
       'lib/highlightjs/highlight.pack.js',
       'lib/diff2html/diff2html.min.js',
@@ -73,6 +72,9 @@ SM.loader.src = {
       'last.js'
     ],
     styles: [
+      'css/ext/font-awesome.min.css',
+      'css/ext/github.min.css',
+      'css/ext/octicons.css',
       'css/sm-widget.css',
       'css/sm-icons.css',
       'css/license.css',
