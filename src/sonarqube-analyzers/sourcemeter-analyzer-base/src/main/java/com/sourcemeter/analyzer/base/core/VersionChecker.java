@@ -48,7 +48,7 @@ public class VersionChecker implements ServerStartHandler {
         if (
             majorVersion < 8 || // we do not support it any more as componentKey is changed to component in WEB API
             majorVersion > 9 || // we do not support versions later than 9.9 LTS
-            ( majorVersion == 8 && minorVersion < 8 ) || // 8.8 introduced an API change we used.
+            ( majorVersion == 8 && minorVersion < 8 ) // 8.8 introduced an API change we used.
         ) {
             throw new UnsupportedOperationException("FrontEndART SourceMeter plugin does not support your SonarQube server version (" + server.getVersion()
                     + "). For more information about the supported versions, check http://www.frontendart.com/ or read the documention of the plugin.");
