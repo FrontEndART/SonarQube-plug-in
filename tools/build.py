@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-# Copyright (c) 2014-2018, FrontEndART Software Ltd.
+# Copyright (c) 2014-2024, FrontEndART Software Ltd.
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
@@ -43,7 +43,7 @@ import tarfile
 
 import common
 
-PACKAGENAME = 'sourcemeter-10.2-plugins-for-sonarqube-9.9-v2.2.0'
+PACKAGENAME = 'sourcemeter-10.3-plugins-for-sonarqube-9.9.4-v2.2.0'
 # TODO: check the version number
 
 TOOLS_DIR = os.path.dirname(os.path.abspath(__file__))

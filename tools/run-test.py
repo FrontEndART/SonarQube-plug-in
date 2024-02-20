@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-# Copyright (c) 2014-2018, FrontEndART Software Ltd.
+# Copyright (c) 2014-2024, FrontEndART Software Ltd.
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
@@ -43,7 +43,7 @@ def get_arguments():
     parser = argparse.ArgumentParser()
     parser.add_argument('--init', action='store_true', default=False,
                         help='Initialize')
-    parser.add_argument('-sv', '--server-version', default='8.9.2.46101',
+    parser.add_argument('-sv', '--server-version', default='9.9.4.87374',
                         help='Version of the SQ server (default=%(default)s)')
     parser.add_argument('-scv', '--scanner-version', default='4.6.1.2450',
                         help='Version of the SQ scanner (default=%(default)s)')
