@@ -26,7 +26,7 @@ Additionally, the plug-in extends the platform's GUI with a SourceMeter dashboar
 
 - And many more...
 
-The plug-in is compatible with the latest LTS version 7.9[^1], which can be obtained from its [website].
+The plug-in is compatible with the latest LTS version 9.9[^1], which can be obtained from its [website].
 
 [SONARQUBE]™ is a trademark of [SonarSource] SA, Switzerland.
 
@@ -44,7 +44,7 @@ Before starting with the installation of the plug-in, make sure that you have a 
 
 [platform]:http://docs.sonarqube.org/display/SONAR/Setup+and+Upgrade
 
-The installation of the plug-in is as simple as copying the `sourcemeter-gui-plugin-2.1.0.jar` and `sourcemeter-core-plugin-2.1.0.jar` files and the corresponding language analyzer plugins into the destination folder `extensions/plugins` of the platform installation:
+The installation of the plug-in is as simple as copying the `sourcemeter-gui-plugin-2.2.0.jar` and `sourcemeter-core-plugin-2.1.0.jar` files and the corresponding language analyzer plugins into the destination folder `extensions/plugins` of the platform installation:
 
 - C/C++: `sourcemeter-analyzer-cpp-plugin-2.1.0.jar`
 - C#: `sourcemeter-analyzer-csharp-plugin-2.1.0.jar`
@@ -78,7 +78,7 @@ Since an arbitrary number of different projects can be monitored and for the pro
 
 ## Plug-in uninstallation
 
-To uninstall the plug-in, first delete the *SourceMeter way* quality profile and then remove the installed plug-in files (`sourcemeter-*-plugin-2.1.0.jar`)  from the folder `/extensions/plugins`.
+To uninstall the plug-in, first delete the *SourceMeter way* quality profile and then remove the installed plug-in files (`sourcemeter-*-plugin-*.jar`)  from the folder `/extensions/plugins`.
 
 # Code Analysis
 
