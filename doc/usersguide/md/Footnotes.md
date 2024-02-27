@@ -1,6 +1,6 @@
 # Footnotes
 
-[^1]: This version of the plug-in was successfully tested with the platform version 7.9
+[^1]: This version of the plug-in was successfully tested with the platform version 9.9
 
 [^2]: Project dependent setting pages are available only when a project is selected.
 
